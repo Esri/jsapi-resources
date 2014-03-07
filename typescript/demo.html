@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>TypeScript Map demo</title>
+  <link rel="stylesheet" href="//js.arcgis.com/3.8/js/esri/css/esri.css">
+  <style>
+    html, body, #mapDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+    }
+  </style>
+  <script src="//js.arcgis.com/3.8/"></script>
+  <script>
+    require({
+      packages: [{
+        name: "demo",
+        location: location.pathname.replace(/\/[^/]+$/, "") + "/demo"
+      }]
+    }, ["demo", "dojo/domReady!"], function (demo) {
+      console.log("demo started");
+    });
+  </script>
+</head>
+<body>
+  <div id="mapDiv"></div>
+</body>
+</html>
