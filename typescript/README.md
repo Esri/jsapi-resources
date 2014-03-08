@@ -31,4 +31,4 @@ Switch to the `gh-pages` branch to see the JavaScript output files.
 [3]: https://github.com/schungx/Dojo-TypeScript
 [4]: https://github.com/borisyankov/DefinitelyTyped
 [5]: http://www.sitepen.com/blog/2013/12/31/definitive-guide-to-typescript/
-[6]: https://typescript.codeplex.com/wikipage?title=TypeScript%20Documentation
+[6]: https://typescript.codeplex.com/documentation
