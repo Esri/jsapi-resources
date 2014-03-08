@@ -5,7 +5,7 @@ It is the same file esri uses internally for working on the JS API library.
 
 ### What is JSHint?
 
-It is an extended and slightly "nicer" version of the original Javascript linting tool, jslint.
+It is an extended and slightly "nicer" version of the original JavaScript linting tool, jslint.
 JSHint is supported in all major web development IDEs and is widely used throughout the industry.
 
 You can find out more information about the specific options [here.](http://jshint.com/docs/options/)
