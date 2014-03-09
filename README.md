@@ -1,6 +1,6 @@
 jsapi-resources
 ===============
-A colleciton of useful resources for developers using the [ArcGIS API for JavaScript](https://js.arcgis.com).
+A collection of useful resources for developers using the [ArcGIS API for JavaScript](https://js.arcgis.com).
 
 ## Instructions  
 Refer to the README files in each subdirectory of this repo for specific instructions on how to use a particular resource.  
@@ -12,9 +12,9 @@ Refer to the README files in each subdirectory of this repo for specific instruc
 
 ## Contributing
 Anyone and everyone is welcome to contribute. We accept pull requests. Feel free to:  
-* Report Issues
-* Contribute Code
-* Improve Documentation
+* Report issues
+* Contribute code
+* Improve documentation
 
 ## Licensing
 Copyright 2014 Esri
