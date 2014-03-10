@@ -10,7 +10,7 @@ JSHint is supported in all major web development IDEs and is widely used through
 
 You can find out more information about the specific options [here.](http://jshint.com/docs/options/)
 
-You can learn more about JSHint in [general.](http://jshint.com/docs/about/)
+You can learn more about JSHint in [general.](http://jshint.com/about/)
 
 ### How do I use it?
 
