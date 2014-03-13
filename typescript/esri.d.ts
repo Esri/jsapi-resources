@@ -1,16 +1,31 @@
 // Type definitions for ArcGIS API for JavaScript version 3.8
 // Project: http://js.arcgis.com
-// Updated: Fri Mar 07 2014
+// Updated: Thu Mar 13 2014
+
+declare module "esri" {
+  import Point = require("esri/geometry/Point");
+  import ScreenPoint = require("esri/geometry/ScreenPoint");
+
+  export interface AGSMouseEvent extends MouseEvent {
+    mapPoint: Point;
+    screenPoint: ScreenPoint;
+  }
+  export interface Signal {
+    remove(): void;
+  }
+}
 
 declare module "esri/IdentityManager" {
+  import esri = require("esri");
   import IdentityManagerBase = require("esri/IdentityManagerBase");
+  import Signal = esri.Signal;
 
   class IdentityManager extends IdentityManagerBase {
     dialog: any;
     signIn(): any;
-    on(type: "dialog-cancel", listener: (event: { info: any; target: IdentityManager }) => void): any
-    on(type: "dialog-create", listener: (event: { target: IdentityManager }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "dialog-cancel", listener: (event: { info: any; target: IdentityManager }) => void): Signal
+    on(type: "dialog-create", listener: (event: { target: IdentityManager }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = IdentityManager;
 }
@@ -51,8 +66,10 @@ declare module "esri/InfoTemplate" {
 }
 
 declare module "esri/InfoWindowBase" {
+  import esri = require("esri");
   import Map = require("esri/map");
   import Point = require("esri/geometry/Point");
+  import Signal = esri.Signal;
 
   class InfoWindowBase {
     domNode: any;
@@ -67,9 +84,9 @@ declare module "esri/InfoWindowBase" {
     show(location: Point): void;
     startupDijits(): void;
     unsetMap(map: Map): void;
-    on(type: "hide", listener: (event: { target: InfoWindowBase }) => void): any
-    on(type: "show", listener: (event: { target: InfoWindowBase }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "hide", listener: (event: { target: InfoWindowBase }) => void): Signal
+    on(type: "show", listener: (event: { target: InfoWindowBase }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = InfoWindowBase;
 }
@@ -135,6 +152,9 @@ declare module "esri/TimeExtent" {
 }
 
 declare module "esri/arcgis/Portal" {
+  import esri = require("esri");
+  import Signal = esri.Signal;
+
   export class Portal {
     access: string;
     allSSL: boolean;
@@ -166,8 +186,8 @@ declare module "esri/arcgis/Portal" {
     queryUsers(queryParams?: PortalQueryParams): any;
     signIn(): any;
     signOut(): Portal;
-    on(type: "load", listener: (event: { target: Portal }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "load", listener: (event: { target: Portal }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export class PortalComment {
     comment: string;
@@ -305,7 +325,9 @@ declare module "esri/config" {
 }
 
 declare module "esri/dijit/AttributeInspector" {
+  import esri = require("esri");
   import Graphic = require("esri/graphic");
+  import Signal = esri.Signal;
 
   class AttributeInspector {
     static STRING_FIELD_OPTION_RICHTEXT: any;
@@ -318,10 +340,10 @@ declare module "esri/dijit/AttributeInspector" {
     next(): void;
     previous(): void;
     refresh(): void;
-    on(type: "attribute-change", listener: (event: { feature: Graphic; fieldName: string; fieldValue: string; target: AttributeInspector }) => void): any
-    on(type: "delete", listener: (event: { feature: Graphic; target: AttributeInspector }) => void): any
-    on(type: "next", listener: (event: { feature: Graphic; target: AttributeInspector }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "attribute-change", listener: (event: { feature: Graphic; fieldName: string; fieldValue: string; target: AttributeInspector }) => void): Signal
+    on(type: "delete", listener: (event: { feature: Graphic; target: AttributeInspector }) => void): Signal
+    on(type: "next", listener: (event: { feature: Graphic; target: AttributeInspector }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = AttributeInspector;
 }
@@ -354,7 +376,9 @@ declare module "esri/dijit/Basemap" {
 }
 
 declare module "esri/dijit/BasemapGallery" {
+  import esri = require("esri");
   import Basemap = require("esri/dijit/Basemap");
+  import Signal = esri.Signal;
 
   class BasemapGallery {
     basemaps: Basemap[];
@@ -368,12 +392,12 @@ declare module "esri/dijit/BasemapGallery" {
     remove(id: string): Basemap;
     select(id: string): Basemap;
     startup(): void;
-    on(type: "add", listener: (event: { basemap: Basemap; target: BasemapGallery }) => void): any
-    on(type: "error", listener: (event: { target: BasemapGallery }) => void): any
-    on(type: "load", listener: (event: { target: BasemapGallery }) => void): any
-    on(type: "remove", listener: (event: { basemap: Basemap; target: BasemapGallery }) => void): any
-    on(type: "selection-change", listener: (event: { target: BasemapGallery }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "add", listener: (event: { basemap: Basemap; target: BasemapGallery }) => void): Signal
+    on(type: "error", listener: (event: { target: BasemapGallery }) => void): Signal
+    on(type: "load", listener: (event: { target: BasemapGallery }) => void): Signal
+    on(type: "remove", listener: (event: { basemap: Basemap; target: BasemapGallery }) => void): Signal
+    on(type: "selection-change", listener: (event: { target: BasemapGallery }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = BasemapGallery;
 }
@@ -396,7 +420,9 @@ declare module "esri/dijit/BasemapLayer" {
 }
 
 declare module "esri/dijit/BasemapToggle" {
+  import esri = require("esri");
   import Map = require("esri/map");
+  import Signal = esri.Signal;
 
   class BasemapToggle {
     basemap: string;
@@ -411,9 +437,9 @@ declare module "esri/dijit/BasemapToggle" {
     show(): void;
     startup(): void;
     toggle(): void;
-    on(type: "load", listener: (event: { target: BasemapToggle }) => void): any
-    on(type: "toggle", listener: (event: { currentBasemap: string; error: any; previousBasemap: string; target: BasemapToggle }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "load", listener: (event: { target: BasemapToggle }) => void): Signal
+    on(type: "toggle", listener: (event: { currentBasemap: string; error: any; previousBasemap: string; target: BasemapToggle }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = BasemapToggle;
 }
@@ -428,7 +454,9 @@ declare module "esri/dijit/BookmarkItem" {
 }
 
 declare module "esri/dijit/Bookmarks" {
+  import esri = require("esri");
   import BookmarkItem = require("esri/dijit/BookmarkItem");
+  import Signal = esri.Signal;
 
   class Bookmarks {
     bookmarks: BookmarkItem[];
@@ -439,20 +467,22 @@ declare module "esri/dijit/Bookmarks" {
     removeBookmark(bookmarkName: string): void;
     show(): void;
     toJson(): any;
-    on(type: "click", listener: (event: { target: Bookmarks }) => void): any
-    on(type: "edit", listener: (event: { target: Bookmarks }) => void): any
-    on(type: "remove", listener: (event: { target: Bookmarks }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "click", listener: (event: { target: Bookmarks }) => void): Signal
+    on(type: "edit", listener: (event: { target: Bookmarks }) => void): Signal
+    on(type: "remove", listener: (event: { target: Bookmarks }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = Bookmarks;
 }
 
 declare module "esri/dijit/Directions" {
+  import esri = require("esri");
   import DirectionsFeatureSet = require("esri/tasks/DirectionsFeatureSet");
   import Graphic = require("esri/graphic");
   import RouteParameters = require("esri/tasks/RouteParameters");
   import RouteTask = require("esri/tasks/RouteTask");
   import RouteResult = require("esri/tasks/RouteResult");
+  import Signal = esri.Signal;
 
   class Directions {
     directions: DirectionsFeatureSet;
@@ -480,18 +510,21 @@ declare module "esri/dijit/Directions" {
     updateStops(stops: any): any;
     zoomToFullRoute(): void;
     zoomToSegment(index: number): void;
-    on(type: "directions-clear", listener: (event: { target: Directions }) => void): any
-    on(type: "directions-finish", listener: (event: { result: RouteResult; target: Directions }) => void): any
-    on(type: "directions-start", listener: (event: { target: Directions }) => void): any
-    on(type: "load", listener: (event: { target: Directions }) => void): any
-    on(type: "segment-highlight", listener: (event: { graphic: Graphic; target: Directions }) => void): any
-    on(type: "segment-select", listener: (event: { graphic: Graphic; target: Directions }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "directions-clear", listener: (event: { target: Directions }) => void): Signal
+    on(type: "directions-finish", listener: (event: { result: RouteResult; target: Directions }) => void): Signal
+    on(type: "directions-start", listener: (event: { target: Directions }) => void): Signal
+    on(type: "load", listener: (event: { target: Directions }) => void): Signal
+    on(type: "segment-highlight", listener: (event: { graphic: Graphic; target: Directions }) => void): Signal
+    on(type: "segment-select", listener: (event: { graphic: Graphic; target: Directions }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = Directions;
 }
 
 declare module "esri/dijit/Gallery" {
+  import esri = require("esri");
+  import Signal = esri.Signal;
+
   class Gallery {
     constructor(params: any, srcNodeRef: any);
     destroy(): void;
@@ -502,9 +535,9 @@ declare module "esri/dijit/Gallery" {
     select(item: any): void;
     setFocus(item: any): void;
     startup(): void;
-    on(type: "focus", listener: (event: { item: any; target: Gallery }) => void): any
-    on(type: "select", listener: (event: { item: any; target: Gallery }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "focus", listener: (event: { item: any; target: Gallery }) => void): Signal
+    on(type: "select", listener: (event: { item: any; target: Gallery }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = Gallery;
 }
@@ -521,6 +554,9 @@ declare module "esri/dijit/Gauge" {
 }
 
 declare module "esri/dijit/Geocoder" {
+  import esri = require("esri");
+  import Signal = esri.Signal;
+
   class Geocoder {
     activeGeocoder: any;
     activeGeocoderIndex: number;
@@ -546,30 +582,35 @@ declare module "esri/dijit/Geocoder" {
     select(result: any): void;
     show(): void;
     startup(): void;
-    on(type: "auto-complete", listener: (event: { results : any; target: Geocoder }) => void): any
-    on(type: "clear", listener: (event: { target: Geocoder }) => void): any
-    on(type: "find-results", listener: (event: { results: any; target: Geocoder }) => void): any
-    on(type: "geocoder-select", listener: (event: { geocoder: any; target: Geocoder }) => void): any
-    on(type: "select", listener: (event: { results: any; target: Geocoder }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "auto-complete", listener: (event: { results : any; target: Geocoder }) => void): Signal
+    on(type: "clear", listener: (event: { target: Geocoder }) => void): Signal
+    on(type: "find-results", listener: (event: { results: any; target: Geocoder }) => void): Signal
+    on(type: "geocoder-select", listener: (event: { geocoder: any; target: Geocoder }) => void): Signal
+    on(type: "select", listener: (event: { results: any; target: Geocoder }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = Geocoder;
 }
 
 declare module "esri/dijit/HistogramTimeSlider" {
+  import esri = require("esri");
+  import Signal = esri.Signal;
+
   class HistogramTimeSlider {
     constructor(params: any, srcNodeRef: any);
     destroy(): void;
-    on(type: "time-extent-change", listener: (event: { target: HistogramTimeSlider }) => void): any
-    on(type: "update", listener: (event: { target: HistogramTimeSlider }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "time-extent-change", listener: (event: { target: HistogramTimeSlider }) => void): Signal
+    on(type: "update", listener: (event: { target: HistogramTimeSlider }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = HistogramTimeSlider;
 }
 
 declare module "esri/dijit/HomeButton" {
+  import esri = require("esri");
   import Extent = require("esri/geometry/Extent");
   import Map = require("esri/map");
+  import Signal = esri.Signal;
 
   class HomeButton {
     extent: Extent;
@@ -583,16 +624,18 @@ declare module "esri/dijit/HomeButton" {
     home(): void;
     show(): void;
     startup(): void;
-    on(type: "home", listener: (event: { error: any; extent: Extent; target: HomeButton }) => void): any
-    on(type: "load", listener: (event: { target: HomeButton }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "home", listener: (event: { error: any; extent: Extent; target: HomeButton }) => void): Signal
+    on(type: "load", listener: (event: { target: HomeButton }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = HomeButton;
 }
 
 declare module "esri/dijit/InfoWindow" {
+  import esri = require("esri");
   import InfoWindowBase = require("esri/InfoWindowBase");
   import Point = require("esri/geometry/Point");
+  import Signal = esri.Signal;
 
   class InfoWindow extends InfoWindowBase {
     static ANCHOR_LOWERLEFT: any;
@@ -611,17 +654,19 @@ declare module "esri/dijit/InfoWindow" {
     setFixedAnchor(anchor: string): void;
     setTitle(title: string): InfoWindow;
     show(point: Point, placement?: string): void;
-    on(type: "hide", listener: (event: { target: InfoWindow }) => void): any
-    on(type: "show", listener: (event: { target: InfoWindow }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "hide", listener: (event: { target: InfoWindow }) => void): Signal
+    on(type: "show", listener: (event: { target: InfoWindow }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = InfoWindow;
 }
 
 declare module "esri/dijit/InfoWindowLite" {
+  import esri = require("esri");
   import InfoWindowBase = require("esri/InfoWindowBase");
   import Point = require("esri/geometry/Point");
   import InfoWindow = require("esri/dijit/InfoWindow");
+  import Signal = esri.Signal;
 
   class InfoWindowLite extends InfoWindowBase {
     anchor: string;
@@ -635,16 +680,18 @@ declare module "esri/dijit/InfoWindowLite" {
     setFixedAnchor(anchor: string): void;
     setTitle(title: string): InfoWindow;
     show(point: Point, placement?: string): void;
-    on(type: "hide", listener: (event: { target: InfoWindowLite }) => void): any
-    on(type: "show", listener: (event: { target: InfoWindowLite }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "hide", listener: (event: { target: InfoWindowLite }) => void): Signal
+    on(type: "show", listener: (event: { target: InfoWindowLite }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = InfoWindowLite;
 }
 
 declare module "esri/dijit/LayerSwipe" {
+  import esri = require("esri");
   import Layer = require("esri/layers/layer");
   import Map = require("esri/map");
+  import Signal = esri.Signal;
 
   class LayerSwipe {
     clip: number;
@@ -662,9 +709,9 @@ declare module "esri/dijit/LayerSwipe" {
     enable(): void;
     startup(): void;
     swipe(): void;
-    on(type: "load", listener: (event: { target: LayerSwipe }) => void): any
-    on(type: "swipe", listener: (event: { layers: any[]; target: LayerSwipe }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "load", listener: (event: { target: LayerSwipe }) => void): Signal
+    on(type: "swipe", listener: (event: { layers: any[]; target: LayerSwipe }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = LayerSwipe;
 }
@@ -680,10 +727,12 @@ declare module "esri/dijit/Legend" {
 }
 
 declare module "esri/dijit/LocateButton" {
+  import esri = require("esri");
   import InfoTemplate = require("esri/InfoTemplate");
   import Map = require("esri/map");
   import Symbol = require("esri/symbols/Symbol");
   import Graphic = require("esri/graphic");
+  import Signal = esri.Signal;
 
   class LocateButton {
     centerAt: boolean;
@@ -706,15 +755,17 @@ declare module "esri/dijit/LocateButton" {
     locate(): any;
     show(): void;
     startup(): void;
-    on(type: "load", listener: (event: { target: LocateButton }) => void): any
-    on(type: "locate", listener: (event: { error: any; graphic: Graphic; position: any; scale: number; target: LocateButton }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "load", listener: (event: { target: LocateButton }) => void): Signal
+    on(type: "locate", listener: (event: { error: any; graphic: Graphic; position: any; scale: number; target: LocateButton }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = LocateButton;
 }
 
 declare module "esri/dijit/Measurement" {
+  import esri = require("esri");
   import Geometry = require("esri/geometry/Geometry");
+  import Signal = esri.Signal;
 
   class Measurement {
     constructor(params: any, srcNodeRef: any);
@@ -726,8 +777,8 @@ declare module "esri/dijit/Measurement" {
     show(): void;
     showTool(toolName: string): void;
     startup(): void;
-    on(type: "measure-end", listener: (event: { activeToolName: string; geometry: Geometry; target: Measurement }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "measure-end", listener: (event: { activeToolName: string; geometry: Geometry; target: Measurement }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = Measurement;
 }
@@ -744,9 +795,11 @@ declare module "esri/dijit/OverviewMap" {
 }
 
 declare module "esri/dijit/Popup" {
+  import esri = require("esri");
   import InfoWindowBase = require("esri/InfoWindowBase");
   import Graphic = require("esri/graphic");
   import Point = require("esri/geometry/Point");
+  import Signal = esri.Signal;
 
   class Popup extends InfoWindowBase {
     count: number;
@@ -772,22 +825,24 @@ declare module "esri/dijit/Popup" {
     setFeatures(features: any): void;
     setTitle(title: any): void;
     show(location: Point, options?: any): void;
-    on(type: "clear-features", listener: (event: { target: Popup }) => void): any
-    on(type: "hide", listener: (event: { target: Popup }) => void): any
-    on(type: "maximize", listener: (event: { target: Popup }) => void): any
-    on(type: "restore", listener: (event: { target: Popup }) => void): any
-    on(type: "selection-change", listener: (event: { target: Popup }) => void): any
-    on(type: "set-features", listener: (event: { target: Popup }) => void): any
-    on(type: "show", listener: (event: { target: Popup }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "clear-features", listener: (event: { target: Popup }) => void): Signal
+    on(type: "hide", listener: (event: { target: Popup }) => void): Signal
+    on(type: "maximize", listener: (event: { target: Popup }) => void): Signal
+    on(type: "restore", listener: (event: { target: Popup }) => void): Signal
+    on(type: "selection-change", listener: (event: { target: Popup }) => void): Signal
+    on(type: "set-features", listener: (event: { target: Popup }) => void): Signal
+    on(type: "show", listener: (event: { target: Popup }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = Popup;
 }
 
 declare module "esri/dijit/PopupMobile" {
+  import esri = require("esri");
   import InfoWindowBase = require("esri/InfoWindowBase");
   import Graphic = require("esri/graphic");
   import Point = require("esri/geometry/Point");
+  import Signal = esri.Signal;
 
   class PopupMobile extends InfoWindowBase {
     constructor(options: any, srcNodeRef: any);
@@ -800,12 +855,12 @@ declare module "esri/dijit/PopupMobile" {
     setFeatures(features: any): any;
     setTitle(title: any): void;
     show(location: Point): void;
-    on(type: "clear-features", listener: (event: { target: PopupMobile }) => void): any
-    on(type: "hide", listener: (event: { target: PopupMobile }) => void): any
-    on(type: "selection-change", listener: (event: { target: PopupMobile }) => void): any
-    on(type: "set-features", listener: (event: { target: PopupMobile }) => void): any
-    on(type: "show", listener: (event: { target: PopupMobile }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "clear-features", listener: (event: { target: PopupMobile }) => void): Signal
+    on(type: "hide", listener: (event: { target: PopupMobile }) => void): Signal
+    on(type: "selection-change", listener: (event: { target: PopupMobile }) => void): Signal
+    on(type: "set-features", listener: (event: { target: PopupMobile }) => void): Signal
+    on(type: "show", listener: (event: { target: PopupMobile }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = PopupMobile;
 }
@@ -819,16 +874,19 @@ declare module "esri/dijit/PopupTemplate" {
 }
 
 declare module "esri/dijit/Print" {
+  import esri = require("esri");
+  import Signal = esri.Signal;
+
   class Print {
     constructor(params: any, srcNodeRef: any);
     destroy(): void;
     hide(): void;
     show(): void;
     startup(): void;
-    on(type: "error", listener: (event: { error: Error; target: Print }) => void): any
-    on(type: "print-complete", listener: (event: { value: any; target: Print }) => void): any
-    on(type: "print-start", listener: (event: { target: Print }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "error", listener: (event: { error: Error; target: Print }) => void): Signal
+    on(type: "print-complete", listener: (event: { value: any; target: Print }) => void): Signal
+    on(type: "print-start", listener: (event: { target: Print }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = Print;
 }
@@ -844,7 +902,9 @@ declare module "esri/dijit/Scalebar" {
 }
 
 declare module "esri/dijit/TimeSlider" {
+  import esri = require("esri");
   import TimeExtent = require("esri/TimeExtent");
+  import Signal = esri.Signal;
 
   class TimeSlider {
     loop: boolean;
@@ -868,8 +928,8 @@ declare module "esri/dijit/TimeSlider" {
     setTickCount(count: number): void;
     setTimeStops(timeStops: Date[]): void;
     singleThumbAsTimeInstant(createTimeInstants: boolean): void;
-    on(type: "time-extent-change", listener: (event: { timeExtent: TimeExtent; target: TimeSlider }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "time-extent-change", listener: (event: { timeExtent: TimeExtent; target: TimeSlider }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = TimeSlider;
 }
@@ -901,21 +961,24 @@ declare module "esri/dijit/analysis/AggregatePoints" {
 }
 
 declare module "esri/dijit/analysis/AnalysisBase" {
+  import esri = require("esri");
+  import Signal = esri.Signal;
+
   class AnalysisBase {
     cancel(jobInfo: any): void;
     execute(params: string): void;
     getCreditsEstimate(toolName: string, jobParams: string): any;
-    on(type: "close", listener: (event: { target: AnalysisBase }) => void): any
-    on(type: "drawtool-activate", listener: (event: { target: AnalysisBase }) => void): any
-    on(type: "drawtool-deactivate", listener: (event: { target: AnalysisBase }) => void): any
-    on(type: "job-cancel", listener: (event: { response: any; target: AnalysisBase }) => void): any
-    on(type: "job-fail", listener: (event: { error: any; target: AnalysisBase }) => void): any
-    on(type: "job-result", listener: (event: { result: any; target: AnalysisBase }) => void): any
-    on(type: "job-status", listener: (event: { jobInfo: any; target: AnalysisBase }) => void): any
-    on(type: "job-submit", listener: (event: { params: any; target: AnalysisBase }) => void): any
-    on(type: "job-success", listener: (event: { jobInfo: any; target: AnalysisBase }) => void): any
-    on(type: "start", listener: (event: { params: any; target: AnalysisBase }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "close", listener: (event: { target: AnalysisBase }) => void): Signal
+    on(type: "drawtool-activate", listener: (event: { target: AnalysisBase }) => void): Signal
+    on(type: "drawtool-deactivate", listener: (event: { target: AnalysisBase }) => void): Signal
+    on(type: "job-cancel", listener: (event: { response: any; target: AnalysisBase }) => void): Signal
+    on(type: "job-fail", listener: (event: { error: any; target: AnalysisBase }) => void): Signal
+    on(type: "job-result", listener: (event: { result: any; target: AnalysisBase }) => void): Signal
+    on(type: "job-status", listener: (event: { jobInfo: any; target: AnalysisBase }) => void): Signal
+    on(type: "job-submit", listener: (event: { params: any; target: AnalysisBase }) => void): Signal
+    on(type: "job-success", listener: (event: { jobInfo: any; target: AnalysisBase }) => void): Signal
+    on(type: "start", listener: (event: { params: any; target: AnalysisBase }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = AnalysisBase;
 }
@@ -1253,6 +1316,9 @@ declare module "esri/dijit/editing/Editor" {
 }
 
 declare module "esri/dijit/editing/TemplatePicker" {
+  import esri = require("esri");
+  import Signal = esri.Signal;
+
   class TemplatePicker {
     grid: any;
     tooltip: HTMLDivElement;
@@ -1263,8 +1329,8 @@ declare module "esri/dijit/editing/TemplatePicker" {
     getSelected(): any;
     startup(): void;
     update(): void;
-    on(type: "selection-change", listener: (event: { target: TemplatePicker }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "selection-change", listener: (event: { target: TemplatePicker }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = TemplatePicker;
 }
@@ -1292,8 +1358,10 @@ declare module "esri/dijit/editing/Update" {
 }
 
 declare module "esri/dijit/geoenrichment/InfoGraphic" {
+  import esri = require("esri");
   import GeometryStudyArea = require("esri/tasks/geoenrichment/GeometryStudyArea");
   import FeatureSet = require("esri/tasks/FeatureSet");
+  import Signal = esri.Signal;
 
   class Infographic {
     cacheLimit: number;
@@ -1310,19 +1378,21 @@ declare module "esri/dijit/geoenrichment/InfoGraphic" {
     constructor(params: any, srcNodeRef: any);
     setData(data: FeatureSet, metadata?: any): void;
     startup(): void;
-    on(type: "data-error", listener: (event: { error: any; target: Infographic }) => void): any
-    on(type: "data-load", listener: (event: { target: Infographic }) => void): any
-    on(type: "data-ready", listener: (event: { provider: any; target: Infographic }) => void): any
-    on(type: "data-request", listener: (event: { target: Infographic }) => void): any
-    on(type: "resize", listener: (event: { size: number[]; target: Infographic }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "data-error", listener: (event: { error: any; target: Infographic }) => void): Signal
+    on(type: "data-load", listener: (event: { target: Infographic }) => void): Signal
+    on(type: "data-ready", listener: (event: { provider: any; target: Infographic }) => void): Signal
+    on(type: "data-request", listener: (event: { target: Infographic }) => void): Signal
+    on(type: "resize", listener: (event: { size: number[]; target: Infographic }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = Infographic;
 }
 
 declare module "esri/dijit/geoenrichment/InfographicsCarousel" {
+  import esri = require("esri");
   import InfographicsOptions = require("esri/dijit/geoenrichment/InfographicsOptions");
   import GeometryStudyArea = require("esri/tasks/geoenrichment/GeometryStudyArea");
+  import Signal = esri.Signal;
 
   class InfographicsCarousel {
     expanded: boolean;
@@ -1333,11 +1403,11 @@ declare module "esri/dijit/geoenrichment/InfographicsCarousel" {
     studyAreaTitle: string;
     constructor(params: any, srcNodeRef: any);
     startup(): void;
-    on(type: "data-error", listener: (event: { error: any; target: InfographicsCarousel }) => void): any
-    on(type: "data-load", listener: (event: { target: InfographicsCarousel }) => void): any
-    on(type: "data-ready", listener: (event: { provider: any; target: InfographicsCarousel }) => void): any
-    on(type: "resize", listener: (event: { size: number[]; target: InfographicsCarousel }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "data-error", listener: (event: { error: any; target: InfographicsCarousel }) => void): Signal
+    on(type: "data-load", listener: (event: { target: InfographicsCarousel }) => void): Signal
+    on(type: "data-ready", listener: (event: { provider: any; target: InfographicsCarousel }) => void): Signal
+    on(type: "resize", listener: (event: { size: number[]; target: InfographicsCarousel }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = InfographicsCarousel;
 }
@@ -1663,6 +1733,7 @@ declare module "esri/lang" {
 }
 
 declare module "esri/layers/ArcGISDynamicMapServiceLayer" {
+  import esri = require("esri");
   import DynamicMapServiceLayer = require("esri/layers/DynamicMapServiceLayer");
   import DynamicLayerInfo = require("esri/layers/DynamicLayerInfo");
   import LayerDrawingOptions = require("esri/layers/LayerDrawingOptions");
@@ -1671,6 +1742,7 @@ declare module "esri/layers/ArcGISDynamicMapServiceLayer" {
   import TimeInfo = require("esri/layers/TimeInfo");
   import ImageParameters = require("esri/layers/ImageParameters");
   import MapImage = require("esri/layers/MapImage");
+  import Signal = esri.Signal;
 
   class ArcGISDynamicMapServiceLayer extends DynamicMapServiceLayer {
     attributionDataUrl: string;
@@ -1723,18 +1795,19 @@ declare module "esri/layers/ArcGISDynamicMapServiceLayer" {
     setUseMapTime(update: boolean): void;
     setVisibleLayers(ids: number[], doNotRefresh?: boolean): void;
     suspend(): void;
-    on(type: "gdbversion-change", listener: (event: { target: ArcGISDynamicMapServiceLayer }) => void): any
-    on(type: "map-image-export", listener: (event: { mapImage: MapImage; target: ArcGISDynamicMapServiceLayer }) => void): any
-    on(type: "resume", listener: (event: { target: ArcGISDynamicMapServiceLayer }) => void): any
-    on(type: "scale-range-change", listener: (event: { target: ArcGISDynamicMapServiceLayer }) => void): any
-    on(type: "scale-visibility-change", listener: (event: { target: ArcGISDynamicMapServiceLayer }) => void): any
-    on(type: "suspend", listener: (event: { target: ArcGISDynamicMapServiceLayer }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "gdbversion-change", listener: (event: { target: ArcGISDynamicMapServiceLayer }) => void): Signal
+    on(type: "map-image-export", listener: (event: { mapImage: MapImage; target: ArcGISDynamicMapServiceLayer }) => void): Signal
+    on(type: "resume", listener: (event: { target: ArcGISDynamicMapServiceLayer }) => void): Signal
+    on(type: "scale-range-change", listener: (event: { target: ArcGISDynamicMapServiceLayer }) => void): Signal
+    on(type: "scale-visibility-change", listener: (event: { target: ArcGISDynamicMapServiceLayer }) => void): Signal
+    on(type: "suspend", listener: (event: { target: ArcGISDynamicMapServiceLayer }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = ArcGISDynamicMapServiceLayer;
 }
 
 declare module "esri/layers/ArcGISImageServiceLayer" {
+  import esri = require("esri");
   import DynamicMapServiceLayer = require("esri/layers/DynamicMapServiceLayer");
   import MosaicRule = require("esri/layers/MosaicRule");
   import RasterFunction = require("esri/layers/RasterFunction");
@@ -1744,6 +1817,7 @@ declare module "esri/layers/ArcGISImageServiceLayer" {
   import Query = require("esri/tasks/query");
   import InfoTemplate = require("esri/InfoTemplate");
   import MapImage = require("esri/layers/MapImage");
+  import Signal = esri.Signal;
 
   class ArcGISImageServiceLayer extends DynamicMapServiceLayer {
     bandCount: number;
@@ -1785,18 +1859,20 @@ declare module "esri/layers/ArcGISImageServiceLayer" {
     setMosaicRule(mosaicRule: MosaicRule, doNotRefresh?: boolean): void;
     setRenderingRule(renderingRule: RasterFunction, doNotRefresh?: boolean): void;
     setUseMapTime(update: boolean): void;
-    on(type: "map-image-export", listener: (event: { mapImage: MapImage; target: ArcGISImageServiceLayer }) => void): any
-    on(type: "mosaic-rule-change", listener: (event: { target: ArcGISImageServiceLayer }) => void): any
-    on(type: "rendering-change", listener: (event: { target: ArcGISImageServiceLayer }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "map-image-export", listener: (event: { mapImage: MapImage; target: ArcGISImageServiceLayer }) => void): Signal
+    on(type: "mosaic-rule-change", listener: (event: { target: ArcGISImageServiceLayer }) => void): Signal
+    on(type: "rendering-change", listener: (event: { target: ArcGISImageServiceLayer }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = ArcGISImageServiceLayer;
 }
 
 declare module "esri/layers/ArcGISTiledMapServiceLayer" {
+  import esri = require("esri");
   import TiledMapServiceLayer = require("esri/layers/TiledMapServiceLayer");
   import LayerInfo = require("esri/layers/LayerInfo");
   import TimeInfo = require("esri/layers/TimeInfo");
+  import Signal = esri.Signal;
 
   class ArcGISTiledMapServiceLayer extends TiledMapServiceLayer {
     attributionDataUrl: string;
@@ -1824,11 +1900,11 @@ declare module "esri/layers/ArcGISTiledMapServiceLayer" {
     setMinScale(scale: number): void;
     setScaleRange(minScale: number, maxScale: number): void;
     suspend(): void;
-    on(type: "resume", listener: (event: { target: ArcGISTiledMapServiceLayer }) => void): any
-    on(type: "scale-range-change", listener: (event: { target: ArcGISTiledMapServiceLayer }) => void): any
-    on(type: "scale-visibility-change", listener: (event: { target: ArcGISTiledMapServiceLayer }) => void): any
-    on(type: "suspend", listener: (event: { target: ArcGISTiledMapServiceLayer }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "resume", listener: (event: { target: ArcGISTiledMapServiceLayer }) => void): Signal
+    on(type: "scale-range-change", listener: (event: { target: ArcGISTiledMapServiceLayer }) => void): Signal
+    on(type: "scale-visibility-change", listener: (event: { target: ArcGISTiledMapServiceLayer }) => void): Signal
+    on(type: "suspend", listener: (event: { target: ArcGISTiledMapServiceLayer }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = ArcGISTiledMapServiceLayer;
 }
@@ -1868,10 +1944,12 @@ declare module "esri/layers/DynamicLayerInfo" {
 }
 
 declare module "esri/layers/DynamicMapServiceLayer" {
+  import esri = require("esri");
   import Layer = require("esri/layers/layer");
   import Extent = require("esri/geometry/Extent");
   import SpatialReference = require("esri/SpatialReference");
   import MapImage = require("esri/layers/MapImage");
+  import Signal = esri.Signal;
 
   class DynamicMapServiceLayer extends Layer {
     fullExtent: Extent;
@@ -1879,9 +1957,9 @@ declare module "esri/layers/DynamicMapServiceLayer" {
     spatialReference: SpatialReference;
     getImageUrl(extent: Extent, width: number, height: number, callback: Function): string;
     refresh(): void;
-    on(type: "gdb-version-change", listener: (event: { target: DynamicMapServiceLayer }) => void): any
-    on(type: "map-image-export", listener: (event: { mapImage: MapImage; target: DynamicMapServiceLayer }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "gdb-version-change", listener: (event: { target: DynamicMapServiceLayer }) => void): Signal
+    on(type: "map-image-export", listener: (event: { mapImage: MapImage; target: DynamicMapServiceLayer }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = DynamicMapServiceLayer;
 }
@@ -1897,6 +1975,7 @@ declare module "esri/layers/FeatureEditResult" {
 }
 
 declare module "esri/layers/FeatureLayer" {
+  import esri = require("esri");
   import GraphicsLayer = require("esri/layers/GraphicsLayer");
   import Field = require("esri/layers/Field");
   import Extent = require("esri/geometry/Extent");
@@ -1912,6 +1991,7 @@ declare module "esri/layers/FeatureLayer" {
   import InfoTemplate = require("esri/InfoTemplate");
   import FeatureEditResult = require("esri/layers/FeatureEditResult");
   import FeatureSet = require("esri/tasks/FeatureSet");
+  import Signal = esri.Signal;
 
   class FeatureLayer extends GraphicsLayer {
     static MODE_ONDEMAND: any;
@@ -2005,27 +2085,27 @@ declare module "esri/layers/FeatureLayer" {
     setUseMapTime(update: boolean): void;
     suspend(): void;
     toJson(): any;
-    on(type: "add-attachment-complete", listener: (event: { result: FeatureEditResult; target: FeatureLayer }) => void): any
-    on(type: "before-apply-edits", listener: (event: { adds: Graphic[]; deletes: Graphic[]; updates: Graphic[]; target: FeatureLayer }) => void): any
-    on(type: "capabilities-change", listener: (event: { target: FeatureLayer }) => void): any
-    on(type: "dbl-click", listener: (event: { event: any; target: FeatureLayer }) => void): any
-    on(type: "delete-attachments-complete", listener: (event: { results: any[]; target: FeatureLayer }) => void): any
-    on(type: "edits-complete", listener: (event: { adds: FeatureEditResult[]; deletes: FeatureEditResult[]; updates: FeatureEditResult[]; target: FeatureLayer }) => void): any
-    on(type: "query-attachment-infos-complete", listener: (event: { info: any[]; target: FeatureLayer }) => void): any
-    on(type: "query-count-complete", listener: (event: { count: number; target: FeatureLayer }) => void): any
-    on(type: "query-features-complete", listener: (event: { featureSet: FeatureSet; target: FeatureLayer }) => void): any
-    on(type: "query-ids-complete", listener: (event: { objectIds: number[]; target: FeatureLayer }) => void): any
-    on(type: "query-limit-exceeded", listener: (event: { target: FeatureLayer }) => void): any
-    on(type: "query-related-features-complete", listener: (event: { relatedFeatures: any; target: FeatureLayer }) => void): any
-    on(type: "resume", listener: (event: { target: FeatureLayer }) => void): any
-    on(type: "scale-range-change", listener: (event: { target: FeatureLayer }) => void): any
-    on(type: "scale-visibility-change", listener: (event: { target: FeatureLayer }) => void): any
-    on(type: "selection-clear", listener: (event: { target: FeatureLayer }) => void): any
-    on(type: "selection-complete", listener: (event: { features: Graphic[]; method: number; target: FeatureLayer }) => void): any
-    on(type: "suspend", listener: (event: { target: FeatureLayer }) => void): any
-    on(type: "update-end", listener: (event: { error: Error; info: any; target: FeatureLayer }) => void): any
-    on(type: "update-start", listener: (event: { target: FeatureLayer }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "add-attachment-complete", listener: (event: { result: FeatureEditResult; target: FeatureLayer }) => void): Signal
+    on(type: "before-apply-edits", listener: (event: { adds: Graphic[]; deletes: Graphic[]; updates: Graphic[]; target: FeatureLayer }) => void): Signal
+    on(type: "capabilities-change", listener: (event: { target: FeatureLayer }) => void): Signal
+    on(type: "dbl-click", listener: (event: { event: any; target: FeatureLayer }) => void): Signal
+    on(type: "delete-attachments-complete", listener: (event: { results: any[]; target: FeatureLayer }) => void): Signal
+    on(type: "edits-complete", listener: (event: { adds: FeatureEditResult[]; deletes: FeatureEditResult[]; updates: FeatureEditResult[]; target: FeatureLayer }) => void): Signal
+    on(type: "query-attachment-infos-complete", listener: (event: { info: any[]; target: FeatureLayer }) => void): Signal
+    on(type: "query-count-complete", listener: (event: { count: number; target: FeatureLayer }) => void): Signal
+    on(type: "query-features-complete", listener: (event: { featureSet: FeatureSet; target: FeatureLayer }) => void): Signal
+    on(type: "query-ids-complete", listener: (event: { objectIds: number[]; target: FeatureLayer }) => void): Signal
+    on(type: "query-limit-exceeded", listener: (event: { target: FeatureLayer }) => void): Signal
+    on(type: "query-related-features-complete", listener: (event: { relatedFeatures: any; target: FeatureLayer }) => void): Signal
+    on(type: "resume", listener: (event: { target: FeatureLayer }) => void): Signal
+    on(type: "scale-range-change", listener: (event: { target: FeatureLayer }) => void): Signal
+    on(type: "scale-visibility-change", listener: (event: { target: FeatureLayer }) => void): Signal
+    on(type: "selection-clear", listener: (event: { target: FeatureLayer }) => void): Signal
+    on(type: "selection-complete", listener: (event: { features: Graphic[]; method: number; target: FeatureLayer }) => void): Signal
+    on(type: "suspend", listener: (event: { target: FeatureLayer }) => void): Signal
+    on(type: "update-end", listener: (event: { error: Error; info: any; target: FeatureLayer }) => void): Signal
+    on(type: "update-start", listener: (event: { target: FeatureLayer }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = FeatureLayer;
 }
@@ -2083,9 +2163,11 @@ declare module "esri/layers/Field" {
 }
 
 declare module "esri/layers/GeoRSSLayer" {
+  import esri = require("esri");
   import Layer = require("esri/layers/layer");
   import Graphic = require("esri/graphic");
   import FeatureLayer = require("esri/layers/FeatureLayer");
+  import Signal = esri.Signal;
 
   class GeoRSSLayer extends Layer {
     copyright: string;
@@ -2095,17 +2177,20 @@ declare module "esri/layers/GeoRSSLayer" {
     name: string;
     constructor(url: string, options?: any);
     getFeatureLayers(): FeatureLayer[];
-    on(type: "refresh", listener: (event: { target: GeoRSSLayer }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "refresh", listener: (event: { target: GeoRSSLayer }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = GeoRSSLayer;
 }
 
 declare module "esri/layers/GraphicsLayer" {
+  import esri = require("esri");
   import Layer = require("esri/layers/layer");
   import Graphic = require("esri/graphic");
   import Renderer = require("esri/renderers/Renderer");
   import InfoTemplate = require("esri/InfoTemplate");
+  import AGSMouseEvent = esri.AGSMouseEvent;
+  import Signal = esri.Signal;
 
   class GraphicsLayer extends Layer {
     dataAttributes: any;
@@ -2124,21 +2209,21 @@ declare module "esri/layers/GraphicsLayer" {
     setInfoTemplate(infoTemplate: InfoTemplate): void;
     setOpacity(opacity: number): void;
     setRenderer(renderer: Renderer): void;
-    on(type: "click", listener: (event: { event: any; target: GraphicsLayer }) => void): any
-    on(type: "dbl-click", listener: (event: { target: GraphicsLayer }) => void): any
-    on(type: "graphic-add", listener: (event: { graphic: Graphic; target: GraphicsLayer }) => void): any
-    on(type: "graphic-draw", listener: (event: { graphic: Graphic; target: GraphicsLayer }) => void): any
-    on(type: "graphic-node-add", listener: (event: { graphic: Graphic; node: HTMLElement; target: GraphicsLayer }) => void): any
-    on(type: "graphic-node-remove", listener: (event: { graphic: Graphic; node: HTMLElement; target: GraphicsLayer }) => void): any
-    on(type: "graphic-remove", listener: (event: { graphic: Graphic; target: GraphicsLayer }) => void): any
-    on(type: "graphics-clear", listener: (event: { target: GraphicsLayer }) => void): any
-    on(type: "mouse-down", listener: (event: { mouseEvent: MouseEvent; target: GraphicsLayer }) => void): any
-    on(type: "mouse-drag", listener: (event: { mouseEvent: MouseEvent; target: GraphicsLayer }) => void): any
-    on(type: "mouse-move", listener: (event: { mouseEvent: MouseEvent; target: GraphicsLayer }) => void): any
-    on(type: "mouse-out", listener: (event: { mouseEvent: MouseEvent; target: GraphicsLayer }) => void): any
-    on(type: "mouse-over", listener: (event: { mouseEvent: MouseEvent; target: GraphicsLayer }) => void): any
-    on(type: "mouse-up", listener: (event: { mouseEvent: MouseEvent; target: GraphicsLayer }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "click", listener: (event: { event: any; target: GraphicsLayer }) => void): Signal
+    on(type: "dbl-click", listener: (event: { target: GraphicsLayer }) => void): Signal
+    on(type: "graphic-add", listener: (event: { graphic: Graphic; target: GraphicsLayer }) => void): Signal
+    on(type: "graphic-draw", listener: (event: { graphic: Graphic; target: GraphicsLayer }) => void): Signal
+    on(type: "graphic-node-add", listener: (event: { graphic: Graphic; node: HTMLElement; target: GraphicsLayer }) => void): Signal
+    on(type: "graphic-node-remove", listener: (event: { graphic: Graphic; node: HTMLElement; target: GraphicsLayer }) => void): Signal
+    on(type: "graphic-remove", listener: (event: { graphic: Graphic; target: GraphicsLayer }) => void): Signal
+    on(type: "graphics-clear", listener: (event: { target: GraphicsLayer }) => void): Signal
+    on(type: "mouse-down", listener: (event: { mouseEvent: AGSMouseEvent; target: GraphicsLayer }) => void): Signal
+    on(type: "mouse-drag", listener: (event: { mouseEvent: AGSMouseEvent; target: GraphicsLayer }) => void): Signal
+    on(type: "mouse-move", listener: (event: { mouseEvent: AGSMouseEvent; target: GraphicsLayer }) => void): Signal
+    on(type: "mouse-out", listener: (event: { mouseEvent: AGSMouseEvent; target: GraphicsLayer }) => void): Signal
+    on(type: "mouse-over", listener: (event: { mouseEvent: AGSMouseEvent; target: GraphicsLayer }) => void): Signal
+    on(type: "mouse-up", listener: (event: { mouseEvent: AGSMouseEvent; target: GraphicsLayer }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = GraphicsLayer;
 }
@@ -2252,8 +2337,10 @@ declare module "esri/layers/KMLGroundOverlay" {
 }
 
 declare module "esri/layers/KMLLayer" {
+  import esri = require("esri");
   import Layer = require("esri/layers/layer");
   import KMLFolder = require("esri/layers/KMLFolder");
+  import Signal = esri.Signal;
 
   class KMLLayer extends Layer {
     featureInfos: any[];
@@ -2263,8 +2350,8 @@ declare module "esri/layers/KMLLayer" {
     getFeature(featureInfo: any): any;
     getLayers(): Layer[];
     setFolderVisibility(folder: KMLFolder, isVisible: boolean): void;
-    on(type: "refresh", listener: (event: { target: KMLLayer }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "refresh", listener: (event: { target: KMLLayer }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = KMLLayer;
 }
@@ -2485,8 +2572,10 @@ declare module "esri/layers/RasterFunction" {
 }
 
 declare module "esri/layers/StreamLayer" {
+  import esri = require("esri");
   import FeatureLayer = require("esri/layers/FeatureLayer");
   import Graphic = require("esri/graphic");
+  import Signal = esri.Signal;
 
   class StreamLayer extends FeatureLayer {
     socket: any;
@@ -2495,12 +2584,12 @@ declare module "esri/layers/StreamLayer" {
     constructor(featureCollectionObject: any, options?: any);
     connect(callback?: Function): void;
     disconnect(callback?: Function): void;
-    on(type: "connect", listener: (event: { target: StreamLayer }) => void): any
-    on(type: "disconnect", listener: (event: { target: StreamLayer }) => void): any
-    on(type: "message", listener: (event: { graphic: Graphic; type: string; target: StreamLayer }) => void): any
-    on(type: "remove", listener: (event: { graphic: Graphic; target: StreamLayer }) => void): any
-    on(type: "update", listener: (event: { graphic: Graphic; target: StreamLayer }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "connect", listener: (event: { target: StreamLayer }) => void): Signal
+    on(type: "disconnect", listener: (event: { target: StreamLayer }) => void): Signal
+    on(type: "message", listener: (event: { graphic: Graphic; type: string; target: StreamLayer }) => void): Signal
+    on(type: "remove", listener: (event: { graphic: Graphic; target: StreamLayer }) => void): Signal
+    on(type: "update", listener: (event: { graphic: Graphic; target: StreamLayer }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = StreamLayer;
 }
@@ -2680,7 +2769,9 @@ declare module "esri/layers/WebTiledLayer" {
 }
 
 declare module "esri/layers/layer" {
+  import esri = require("esri");
   import Map = require("esri/map");
+  import Signal = esri.Signal;
 
   class Layer {
     attributionDataUrl: string;
@@ -2714,24 +2805,25 @@ declare module "esri/layers/layer" {
     setVisibility(isVisible: boolean): void;
     show(): void;
     suspend(): void;
-    on(type: "error", listener: (event: { error: Error; target: Layer }) => void): any
-    on(type: "load", listener: (event: { layer: Layer; target: Layer }) => void): any
-    on(type: "opacity-change", listener: (event: { opacity: number; target: Layer }) => void): any
-    on(type: "refresh-interval-change", listener: (event: { target: Layer }) => void): any
-    on(type: "resume", listener: (event: { target: Layer }) => void): any
-    on(type: "scale-range-change", listener: (event: { target: Layer }) => void): any
-    on(type: "scale-visibility-change", listener: (event: { target: Layer }) => void): any
-    on(type: "suspend", listener: (event: { target: Layer }) => void): any
-    on(type: "update", listener: (event: { target: Layer }) => void): any
-    on(type: "update-end", listener: (event: { error: Error; target: Layer }) => void): any
-    on(type: "update-start", listener: (event: { target: Layer }) => void): any
-    on(type: "visibility-change", listener: (event: { visible: boolean; target: Layer }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "error", listener: (event: { error: Error; target: Layer }) => void): Signal
+    on(type: "load", listener: (event: { layer: Layer; target: Layer }) => void): Signal
+    on(type: "opacity-change", listener: (event: { opacity: number; target: Layer }) => void): Signal
+    on(type: "refresh-interval-change", listener: (event: { target: Layer }) => void): Signal
+    on(type: "resume", listener: (event: { target: Layer }) => void): Signal
+    on(type: "scale-range-change", listener: (event: { target: Layer }) => void): Signal
+    on(type: "scale-visibility-change", listener: (event: { target: Layer }) => void): Signal
+    on(type: "suspend", listener: (event: { target: Layer }) => void): Signal
+    on(type: "update", listener: (event: { target: Layer }) => void): Signal
+    on(type: "update-end", listener: (event: { error: Error; target: Layer }) => void): Signal
+    on(type: "update-start", listener: (event: { target: Layer }) => void): Signal
+    on(type: "visibility-change", listener: (event: { visible: boolean; target: Layer }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = Layer;
 }
 
 declare module "esri/map" {
+  import esri = require("esri");
   import Attribution = require("esri/dijit/Attribution");
   import Extent = require("esri/geometry/Extent");
   import GraphicsLayer = require("esri/layers/GraphicsLayer");
@@ -2742,7 +2834,9 @@ declare module "esri/map" {
   import TimeExtent = require("esri/TimeExtent");
   import Layer = require("esri/layers/layer");
   import TimeSlider = require("esri/dijit/TimeSlider");
+  import AGSMouseEvent = esri.AGSMouseEvent;
   import LOD = require("esri/layers/LOD");
+  import Signal = esri.Signal;
 
   class Map {
     attribution: Attribution;
@@ -2840,44 +2934,44 @@ declare module "esri/map" {
     showZoomSlider(): void;
     toMap(screenPoint: any): Point;
     toScreen(mapPoint: Point): Point;
-    on(type: "basemap-change", listener: (event: { current: any; previous: any; target: Map }) => void): any
-    on(type: "click", listener: (event: { mouseEvent: MouseEvent; target: Map }) => void): any
-    on(type: "dbl-click", listener: (event: { mouseEvent: MouseEvent; target: Map }) => void): any
-    on(type: "extent-change", listener: (event: { delta: Point; extent: Extent; levelChange: boolean; lod: LOD; target: Map }) => void): any
-    on(type: "key-down", listener: (event: { keyboardEvent: KeyboardEvent; target: Map }) => void): any
-    on(type: "key-up", listener: (event: { keyboardEvent: KeyboardEvent; target: Map }) => void): any
-    on(type: "layer-add", listener: (event: { layer: Layer; target: Map }) => void): any
-    on(type: "layer-add-result", listener: (event: { error: Error; layer: Layer; target: Map }) => void): any
-    on(type: "layer-remove", listener: (event: { layer: Layer; target: Map }) => void): any
-    on(type: "layer-reorder", listener: (event: { index: number; layer: Layer; target: Map }) => void): any
-    on(type: "layer-resume", listener: (event: { layer: Layer; target: Map }) => void): any
-    on(type: "layers-add-result", listener: (event: { layers: Layer[]; target: Map }) => void): any
-    on(type: "layers-removed", listener: (event: { target: Map }) => void): any
-    on(type: "layers-reordered", listener: (event: { layerIds: number[]; target: Map }) => void): any
-    on(type: "layer-suspend", listener: (event: { layer: Layer; target: Map }) => void): any
-    on(type: "load", listener: (event: { map: Map; target: Map }) => void): any
-    on(type: "mouse-down", listener: (event: { mouseEvent: MouseEvent; target: Map }) => void): any
-    on(type: "mouse-drag", listener: (event: { mouseEvent: MouseEvent; target: Map }) => void): any
-    on(type: "mouse-drag-end", listener: (event: { mouseEvent: MouseEvent; target: Map }) => void): any
-    on(type: "mouse-drag-start", listener: (event: { mouseEvent: MouseEvent; target: Map }) => void): any
-    on(type: "mouse-move", listener: (event: { mouseEvent: MouseEvent; target: Map }) => void): any
-    on(type: "mouse-out", listener: (event: { mouseEvent: MouseEvent; target: Map }) => void): any
-    on(type: "mouse-over", listener: (event: { mouseEvent: MouseEvent; target: Map }) => void): any
-    on(type: "mouse-up", listener: (event: { mouseEvent: MouseEvent; target: Map }) => void): any
-    on(type: "mouse-wheel", listener: (event: { mouseEvent: MouseEvent; target: Map }) => void): any
-    on(type: "pan", listener: (event: { delta: Point; extent: Extent; target: Map }) => void): any
-    on(type: "pan-end", listener: (event: { delta: Point; extent: Extent; target: Map }) => void): any
-    on(type: "pan-start", listener: (event: { extent: Extent; target: Map }) => void): any
-    on(type: "reposition", listener: (event: { x: number; y: number; target: Map }) => void): any
-    on(type: "resize", listener: (event: { extent: Extent; height: number; width: number; target: Map }) => void): any
-    on(type: "time-extent-change", listener: (event: { timeExtent: TimeExtent; target: Map }) => void): any
-    on(type: "unload", listener: (event: { map: Map; target: Map }) => void): any
-    on(type: "update-end", listener: (event: { error: Error; target: Map }) => void): any
-    on(type: "update-start", listener: (event: { target: Map }) => void): any
-    on(type: "zoom", listener: (event: { anchor: Point; extent: Extent; zoomFactor: number; target: Map }) => void): any
-    on(type: "zoom-end", listener: (event: { anchor: Point; extent: Extent; level: number; zoomFactor: number; target: Map }) => void): any
-    on(type: "zoom-start", listener: (event: { anchor: Point; extent: Extent; level: number; zoomFactor: number; target: Map }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "basemap-change", listener: (event: { current: any; previous: any; target: Map }) => void): Signal
+    on(type: "click", listener: (event: { mouseEvent: AGSMouseEvent; target: Map }) => void): Signal
+    on(type: "dbl-click", listener: (event: { mouseEvent: AGSMouseEvent; target: Map }) => void): Signal
+    on(type: "extent-change", listener: (event: { delta: Point; extent: Extent; levelChange: boolean; lod: LOD; target: Map }) => void): Signal
+    on(type: "key-down", listener: (event: { keyboardEvent: KeyboardEvent; target: Map }) => void): Signal
+    on(type: "key-up", listener: (event: { keyboardEvent: KeyboardEvent; target: Map }) => void): Signal
+    on(type: "layer-add", listener: (event: { layer: Layer; target: Map }) => void): Signal
+    on(type: "layer-add-result", listener: (event: { error: Error; layer: Layer; target: Map }) => void): Signal
+    on(type: "layer-remove", listener: (event: { layer: Layer; target: Map }) => void): Signal
+    on(type: "layer-reorder", listener: (event: { index: number; layer: Layer; target: Map }) => void): Signal
+    on(type: "layer-resume", listener: (event: { layer: Layer; target: Map }) => void): Signal
+    on(type: "layers-add-result", listener: (event: { layers: Layer[]; target: Map }) => void): Signal
+    on(type: "layers-removed", listener: (event: { target: Map }) => void): Signal
+    on(type: "layers-reordered", listener: (event: { layerIds: number[]; target: Map }) => void): Signal
+    on(type: "layer-suspend", listener: (event: { layer: Layer; target: Map }) => void): Signal
+    on(type: "load", listener: (event: { map: Map; target: Map }) => void): Signal
+    on(type: "mouse-down", listener: (event: { mouseEvent: AGSMouseEvent; target: Map }) => void): Signal
+    on(type: "mouse-drag", listener: (event: { mouseEvent: AGSMouseEvent; target: Map }) => void): Signal
+    on(type: "mouse-drag-end", listener: (event: { mouseEvent: AGSMouseEvent; target: Map }) => void): Signal
+    on(type: "mouse-drag-start", listener: (event: { mouseEvent: AGSMouseEvent; target: Map }) => void): Signal
+    on(type: "mouse-move", listener: (event: { mouseEvent: AGSMouseEvent; target: Map }) => void): Signal
+    on(type: "mouse-out", listener: (event: { mouseEvent: AGSMouseEvent; target: Map }) => void): Signal
+    on(type: "mouse-over", listener: (event: { mouseEvent: AGSMouseEvent; target: Map }) => void): Signal
+    on(type: "mouse-up", listener: (event: { mouseEvent: AGSMouseEvent; target: Map }) => void): Signal
+    on(type: "mouse-wheel", listener: (event: { mouseEvent: AGSMouseEvent; target: Map }) => void): Signal
+    on(type: "pan", listener: (event: { delta: Point; extent: Extent; target: Map }) => void): Signal
+    on(type: "pan-end", listener: (event: { delta: Point; extent: Extent; target: Map }) => void): Signal
+    on(type: "pan-start", listener: (event: { extent: Extent; target: Map }) => void): Signal
+    on(type: "reposition", listener: (event: { x: number; y: number; target: Map }) => void): Signal
+    on(type: "resize", listener: (event: { extent: Extent; height: number; width: number; target: Map }) => void): Signal
+    on(type: "time-extent-change", listener: (event: { timeExtent: TimeExtent; target: Map }) => void): Signal
+    on(type: "unload", listener: (event: { map: Map; target: Map }) => void): Signal
+    on(type: "update-end", listener: (event: { error: Error; target: Map }) => void): Signal
+    on(type: "update-start", listener: (event: { target: Map }) => void): Signal
+    on(type: "zoom", listener: (event: { anchor: Point; extent: Extent; zoomFactor: number; target: Map }) => void): Signal
+    on(type: "zoom-end", listener: (event: { anchor: Point; extent: Extent; level: number; zoomFactor: number; target: Map }) => void): Signal
+    on(type: "zoom-start", listener: (event: { anchor: Point; extent: Extent; level: number; zoomFactor: number; target: Map }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = Map;
 }
@@ -3497,14 +3591,16 @@ declare module "esri/tasks/ClosestFacilitySolveResult" {
 }
 
 declare module "esri/tasks/ClosestFacilityTask" {
+  import esri = require("esri");
   import ClosestFacilityParameters = require("esri/tasks/ClosestFacilityParameters");
   import ClosestFacilitySolveResult = require("esri/tasks/ClosestFacilitySolveResult");
+  import Signal = esri.Signal;
 
   class ClosestFacilityTask {
     constructor();
     solve(params: ClosestFacilityParameters, callback?: Function, errback?: Function): any;
-    on(type: "solve-complete", listener: (event: { result: ClosestFacilitySolveResult; target: ClosestFacilityTask }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "solve-complete", listener: (event: { result: ClosestFacilitySolveResult; target: ClosestFacilityTask }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = ClosestFacilityTask;
 }
@@ -3629,16 +3725,18 @@ declare module "esri/tasks/FindResult" {
 }
 
 declare module "esri/tasks/FindTask" {
+  import esri = require("esri");
   import FindParameters = require("esri/tasks/FindParameters");
   import FindResult = require("esri/tasks/FindResult");
+  import Signal = esri.Signal;
 
   class FindTask {
     url: string;
     constructor(url: string, options?: any);
     execute(findParameters: FindParameters, callback?: Function, errback?: Function): any;
-    on(type: "complete", listener: (event: { results: FindResult[]; target: FindTask }) => void): any
-    on(type: "error", listener: (event: { error: Error; target: FindTask }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "complete", listener: (event: { results: FindResult[]; target: FindTask }) => void): Signal
+    on(type: "error", listener: (event: { error: Error; target: FindTask }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = FindTask;
 }
@@ -3687,20 +3785,23 @@ declare module "esri/tasks/GenerateRendererParameters" {
 }
 
 declare module "esri/tasks/GenerateRendererTask" {
+  import esri = require("esri");
   import GenerateRendererParameters = require("esri/tasks/GenerateRendererParameters");
   import Renderer = require("esri/renderers/Renderer");
+  import Signal = esri.Signal;
 
   class GenerateRendererTask {
     constructor(url: string, options?: any);
     execute(generateRendererParameters: GenerateRendererParameters, callback?: Function, errback?: Function): any;
-    on(type: "complete", listener: (event: { renderer: Renderer; target: GenerateRendererTask }) => void): any
-    on(type: "error", listener: (event: { error: Error; target: GenerateRendererTask }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "complete", listener: (event: { renderer: Renderer; target: GenerateRendererTask }) => void): Signal
+    on(type: "error", listener: (event: { error: Error; target: GenerateRendererTask }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = GenerateRendererTask;
 }
 
 declare module "esri/tasks/GeometryService" {
+  import esri = require("esri");
   import AreasAndLengthsParameters = require("esri/tasks/AreasAndLengthsParameters");
   import Polygon = require("esri/geometry/Polygon");
   import Polyline = require("esri/geometry/Polyline");
@@ -3713,6 +3814,7 @@ declare module "esri/tasks/GeometryService" {
   import ProjectParameters = require("esri/tasks/ProjectParameters");
   import RelationParameters = require("esri/tasks/RelationParameters");
   import TrimExtendParameters = require("esri/tasks/TrimExtendParameters");
+  import Signal = esri.Signal;
 
   class GeometryService {
     static UNIT_ACRES: any;
@@ -3753,38 +3855,40 @@ declare module "esri/tasks/GeometryService" {
     simplify(geometries: Geometry[], callback?: Function, errback?: Function): any;
     trimExtend(params: TrimExtendParameters, callback?: Function, errback?: Function): any;
     union(geometries: Geometry[], callback?: Function, errback?: Function): any;
-    on(type: "areas-and-lengths-complete", listener: (event: { result: any; target: GeometryService }) => void): any
-    on(type: "auto-complete-complete", listener: (event: { geometries: Polygon[]; target: GeometryService }) => void): any
-    on(type: "buffer-complete", listener: (event: { geometries: Geometry[]; target: GeometryService }) => void): any
-    on(type: "convex-hull-complete", listener: (event: { geometry: Geometry; target: GeometryService }) => void): any
-    on(type: "cut-complete", listener: (event: { result: any; target: GeometryService }) => void): any
-    on(type: "difference-complete", listener: (event: { geometries: Geometry[]; target: GeometryService }) => void): any
-    on(type: "distance-complete", listener: (event: { distance: number; target: GeometryService }) => void): any
-    on(type: "error", listener: (event: { target: GeometryService }) => void): any
-    on(type: "generalize-complete", listener: (event: { geometries: Geometry[]; target: GeometryService }) => void): any
-    on(type: "intersect-complete", listener: (event: { geometries: Geometry[]; target: GeometryService }) => void): any
-    on(type: "label-points-complete ", listener: (event: { geometries: Geometry[]; target: GeometryService }) => void): any
-    on(type: "label-points-complete", listener: (event: { labelPoints: Geometry[]; target: GeometryService }) => void): any
-    on(type: "lengths-complete", listener: (event: { result: any; target: GeometryService }) => void): any
-    on(type: "offset-complete", listener: (event: { geometries: Geometry[]; target: GeometryService }) => void): any
-    on(type: "project-complete", listener: (event: { geometries: Geometry[]; target: GeometryService }) => void): any
-    on(type: "relation-complete", listener: (event: { target: GeometryService }) => void): any
-    on(type: "reshape-complete", listener: (event: { geometry: Geometry; target: GeometryService }) => void): any
-    on(type: "simplify-complete", listener: (event: { geometries: Geometry[]; target: GeometryService }) => void): any
-    on(type: "trim-extend-complete", listener: (event: { geometries: Geometry[]; target: GeometryService }) => void): any
-    on(type: "union-complete", listener: (event: { geometry: Geometry; target: GeometryService }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "areas-and-lengths-complete", listener: (event: { result: any; target: GeometryService }) => void): Signal
+    on(type: "auto-complete-complete", listener: (event: { geometries: Polygon[]; target: GeometryService }) => void): Signal
+    on(type: "buffer-complete", listener: (event: { geometries: Geometry[]; target: GeometryService }) => void): Signal
+    on(type: "convex-hull-complete", listener: (event: { geometry: Geometry; target: GeometryService }) => void): Signal
+    on(type: "cut-complete", listener: (event: { result: any; target: GeometryService }) => void): Signal
+    on(type: "difference-complete", listener: (event: { geometries: Geometry[]; target: GeometryService }) => void): Signal
+    on(type: "distance-complete", listener: (event: { distance: number; target: GeometryService }) => void): Signal
+    on(type: "error", listener: (event: { target: GeometryService }) => void): Signal
+    on(type: "generalize-complete", listener: (event: { geometries: Geometry[]; target: GeometryService }) => void): Signal
+    on(type: "intersect-complete", listener: (event: { geometries: Geometry[]; target: GeometryService }) => void): Signal
+    on(type: "label-points-complete ", listener: (event: { geometries: Geometry[]; target: GeometryService }) => void): Signal
+    on(type: "label-points-complete", listener: (event: { labelPoints: Geometry[]; target: GeometryService }) => void): Signal
+    on(type: "lengths-complete", listener: (event: { result: any; target: GeometryService }) => void): Signal
+    on(type: "offset-complete", listener: (event: { geometries: Geometry[]; target: GeometryService }) => void): Signal
+    on(type: "project-complete", listener: (event: { geometries: Geometry[]; target: GeometryService }) => void): Signal
+    on(type: "relation-complete", listener: (event: { target: GeometryService }) => void): Signal
+    on(type: "reshape-complete", listener: (event: { geometry: Geometry; target: GeometryService }) => void): Signal
+    on(type: "simplify-complete", listener: (event: { geometries: Geometry[]; target: GeometryService }) => void): Signal
+    on(type: "trim-extend-complete", listener: (event: { geometries: Geometry[]; target: GeometryService }) => void): Signal
+    on(type: "union-complete", listener: (event: { geometry: Geometry; target: GeometryService }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = GeometryService;
 }
 
 declare module "esri/tasks/Geoprocessor" {
+  import esri = require("esri");
   import SpatialReference = require("esri/SpatialReference");
   import ImageParameters = require("esri/layers/ImageParameters");
   import ArcGISDynamicMapServiceLayer = require("esri/layers/ArcGISDynamicMapServiceLayer");
   import GPMessage = require("esri/tasks/GPMessage");
   import ParameterValue = require("esri/tasks/ParameterValue");
   import MapImage = require("esri/layers/MapImage");
+  import Signal = esri.Signal;
 
   class Geoprocessor {
     outputSpatialReference: SpatialReference;
@@ -3805,15 +3909,15 @@ declare module "esri/tasks/Geoprocessor" {
     setProcessSpatialReference(spatialReference: SpatialReference): void;
     setUpdateDelay(delay: number): void;
     submitJob(inputParameters: any, callback?: Function, statusCallback?: Function, errback?: Function): void;
-    on(type: "error", listener: (event: { error: Error; target: Geoprocessor }) => void): any
-    on(type: "execute-complete", listener: (event: { messages: GPMessage[]; results: ParameterValue[]; target: Geoprocessor }) => void): any
-    on(type: "get-result-data-complete", listener: (event: { result: ParameterValue; target: Geoprocessor }) => void): any
-    on(type: "get-result-image-complete", listener: (event: { mapImage: MapImage; target: Geoprocessor }) => void): any
-    on(type: "get-result-image-layer-complete", listener: (event: { target: Geoprocessor }) => void): any
-    on(type: "job-cancel", listener: (event: { target: Geoprocessor }) => void): any
-    on(type: "job-complete", listener: (event: { target: Geoprocessor }) => void): any
-    on(type: "status-update", listener: (event: { target: Geoprocessor }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "error", listener: (event: { error: Error; target: Geoprocessor }) => void): Signal
+    on(type: "execute-complete", listener: (event: { messages: GPMessage[]; results: ParameterValue[]; target: Geoprocessor }) => void): Signal
+    on(type: "get-result-data-complete", listener: (event: { result: ParameterValue; target: Geoprocessor }) => void): Signal
+    on(type: "get-result-image-complete", listener: (event: { mapImage: MapImage; target: Geoprocessor }) => void): Signal
+    on(type: "get-result-image-layer-complete", listener: (event: { target: Geoprocessor }) => void): Signal
+    on(type: "job-cancel", listener: (event: { target: Geoprocessor }) => void): Signal
+    on(type: "job-complete", listener: (event: { target: Geoprocessor }) => void): Signal
+    on(type: "status-update", listener: (event: { target: Geoprocessor }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = Geoprocessor;
 }
@@ -3863,16 +3967,18 @@ declare module "esri/tasks/IdentifyResult" {
 }
 
 declare module "esri/tasks/IdentifyTask" {
+  import esri = require("esri");
   import IdentifyParameters = require("esri/tasks/IdentifyParameters");
   import IdentifyResult = require("esri/tasks/IdentifyResult");
+  import Signal = esri.Signal;
 
   class IdentifyTask {
     url: string;
     constructor(url: string, options?: any);
     execute(identifyParameters: IdentifyParameters, callback?: Function, errback?: Function): any;
-    on(type: "complete", listener: (event: { results: IdentifyResult[]; target: IdentifyTask }) => void): any
-    on(type: "error", listener: (event: { error: Error; target: IdentifyTask }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "complete", listener: (event: { results: IdentifyResult[]; target: IdentifyTask }) => void): Signal
+    on(type: "error", listener: (event: { error: Error; target: IdentifyTask }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = IdentifyTask;
 }
@@ -3918,14 +4024,16 @@ declare module "esri/tasks/ImageServiceIdentifyResult" {
 }
 
 declare module "esri/tasks/ImageServiceIdentifyTask" {
+  import esri = require("esri");
   import ImageServiceIdentifyParameters = require("esri/tasks/ImageServiceIdentifyParameters");
   import ImageServiceIdentifyResult = require("esri/tasks/ImageServiceIdentifyResult");
+  import Signal = esri.Signal;
 
   class ImageServiceIdentifyTask {
     constructor(url: string);
     execute(params: ImageServiceIdentifyParameters, callback?: Function, errback?: Function): any;
-    on(type: "complete", listener: (event: { result: ImageServiceIdentifyResult; target: ImageServiceIdentifyTask }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "complete", listener: (event: { result: ImageServiceIdentifyResult; target: ImageServiceIdentifyTask }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = ImageServiceIdentifyTask;
 }
@@ -4048,15 +4156,17 @@ declare module "esri/tasks/PrintParameters" {
 }
 
 declare module "esri/tasks/PrintTask" {
+  import esri = require("esri");
   import PrintParameters = require("esri/tasks/PrintParameters");
+  import Signal = esri.Signal;
 
   class PrintTask {
     url: string;
     constructor(url: string, params?: any);
     execute(printParameters: PrintParameters, callback?: Function, errback?: Function): any;
-    on(type: "complete", listener: (event: { url: string; target: PrintTask }) => void): any
-    on(type: "error", listener: (event: { error: Error; target: PrintTask }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "complete", listener: (event: { url: string; target: PrintTask }) => void): Signal
+    on(type: "error", listener: (event: { error: Error; target: PrintTask }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = PrintTask;
 }
@@ -4090,9 +4200,11 @@ declare module "esri/tasks/ProjectParameters" {
 }
 
 declare module "esri/tasks/QueryTask" {
+  import esri = require("esri");
   import Query = require("esri/tasks/query");
   import RelationshipQuery = require("esri/tasks/RelationshipQuery");
   import FeatureSet = require("esri/tasks/FeatureSet");
+  import Signal = esri.Signal;
 
   class QueryTask {
     url: string;
@@ -4101,12 +4213,12 @@ declare module "esri/tasks/QueryTask" {
     executeForCount(query: Query, callback?: Function, errback?: Function): any;
     executeForIds(parameters: Query, callback?: Function, errback?: Function): any;
     executeRelationshipQuery(parameters: RelationshipQuery, callback?: Function, errback?: Function): any;
-    on(type: "complete", listener: (event: { featureSet: FeatureSet; target: QueryTask }) => void): any
-    on(type: "error", listener: (event: { error: Error; target: QueryTask }) => void): any
-    on(type: "execute-for-count-complete", listener: (event: { count: number; target: QueryTask }) => void): any
-    on(type: "execute-for-ids-complete", listener: (event: { objectIds: number[]; target: QueryTask }) => void): any
-    on(type: "execute-relationship-query-complete", listener: (event: { featureSets: FeatureSet[]; target: QueryTask }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "complete", listener: (event: { featureSet: FeatureSet; target: QueryTask }) => void): Signal
+    on(type: "error", listener: (event: { error: Error; target: QueryTask }) => void): Signal
+    on(type: "execute-for-count-complete", listener: (event: { count: number; target: QueryTask }) => void): Signal
+    on(type: "execute-for-ids-complete", listener: (event: { objectIds: number[]; target: QueryTask }) => void): Signal
+    on(type: "execute-relationship-query-complete", listener: (event: { featureSets: FeatureSet[]; target: QueryTask }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = QueryTask;
 }
@@ -4219,15 +4331,17 @@ declare module "esri/tasks/RouteResult" {
 }
 
 declare module "esri/tasks/RouteTask" {
+  import esri = require("esri");
   import RouteParameters = require("esri/tasks/RouteParameters");
+  import Signal = esri.Signal;
 
   class RouteTask {
     url: string;
     constructor(url: string);
     solve(params: RouteParameters, callback?: Function, errback?: Function): any;
-    on(type: "error", listener: (event: { error: Error; target: RouteTask }) => void): any
-    on(type: "solve-complete", listener: (event: { result: any; target: RouteTask }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "error", listener: (event: { error: Error; target: RouteTask }) => void): Signal
+    on(type: "solve-complete", listener: (event: { result: any; target: RouteTask }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = RouteTask;
 }
@@ -4293,14 +4407,16 @@ declare module "esri/tasks/ServiceAreaSolveResult" {
 }
 
 declare module "esri/tasks/ServiceAreaTask" {
+  import esri = require("esri");
   import ServiceAreaParameters = require("esri/tasks/ServiceAreaParameters");
   import ServiceAreaSolveResult = require("esri/tasks/ServiceAreaSolveResult");
+  import Signal = esri.Signal;
 
   class ServiceAreaTask {
     constructor();
     solve(params: ServiceAreaParameters, callback?: Function, errback?: Function): any;
-    on(type: "solve-complete", listener: (event: { result: ServiceAreaSolveResult; target: ServiceAreaTask }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "solve-complete", listener: (event: { result: ServiceAreaSolveResult; target: ServiceAreaTask }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = ServiceAreaTask;
 }
@@ -4457,9 +4573,11 @@ declare module "esri/tasks/geoenrichment/StudyArea" {
 }
 
 declare module "esri/tasks/locator" {
+  import esri = require("esri");
   import SpatialReference = require("esri/SpatialReference");
   import Point = require("esri/geometry/Point");
   import AddressCandidate = require("esri/tasks/AddressCandidate");
+  import Signal = esri.Signal;
 
   class Locator {
     outSpatialReference: SpatialReference;
@@ -4469,11 +4587,11 @@ declare module "esri/tasks/locator" {
     addressToLocations(params: any, callback?: Function, errback?: Function): any;
     locationToAddress(location: Point, distance: number, callback?: Function, errback?: Function): any;
     setOutSpatialReference(spatialReference: SpatialReference): void;
-    on(type: "addresses-to-locations-complete", listener: (event: { addresses: AddressCandidate[]; target: Locator }) => void): any
-    on(type: "address-to-locations-complete", listener: (event: { addresses: AddressCandidate[]; target: Locator }) => void): any
-    on(type: "error", listener: (event: { error: Error; target: Locator }) => void): any
-    on(type: "location-to-address-complete", listener: (event: { address: AddressCandidate; target: Locator }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "addresses-to-locations-complete", listener: (event: { addresses: AddressCandidate[]; target: Locator }) => void): Signal
+    on(type: "address-to-locations-complete", listener: (event: { addresses: AddressCandidate[]; target: Locator }) => void): Signal
+    on(type: "error", listener: (event: { error: Error; target: Locator }) => void): Signal
+    on(type: "location-to-address-complete", listener: (event: { address: AddressCandidate; target: Locator }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = Locator;
 }
@@ -4517,6 +4635,7 @@ declare module "esri/tasks/query" {
 }
 
 declare module "esri/toolbars/draw" {
+  import esri = require("esri");
   import SimpleFillSymbol = require("esri/symbols/SimpleFillSymbol");
   import SimpleLineSymbol = require("esri/symbols/SimpleLineSymbol");
   import SimpleMarkerSymbol = require("esri/symbols/SimpleMarkerSymbol");
@@ -4525,6 +4644,7 @@ declare module "esri/toolbars/draw" {
   import LineSymbol = require("esri/symbols/LineSymbol");
   import MarkerSymbol = require("esri/symbols/MarkerSymbol");
   import Geometry = require("esri/geometry/Geometry");
+  import Signal = esri.Signal;
 
   class Draw {
     static ARROW: any;
@@ -4556,16 +4676,18 @@ declare module "esri/toolbars/draw" {
     setLineSymbol(lineSymbol: LineSymbol): void;
     setMarkerSymbol(markerSymbol: MarkerSymbol): void;
     setRespectDrawingVertexOrder(set: boolean): void;
-    on(type: "draw-complete", listener: (event: { geographicGeometry: Geometry; geometry: Geometry; target: Draw }) => void): any
-    on(type: "draw-end", listener: (event: { geometry: Geometry; target: Draw }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "draw-complete", listener: (event: { geographicGeometry: Geometry; geometry: Geometry; target: Draw }) => void): Signal
+    on(type: "draw-end", listener: (event: { geometry: Geometry; target: Draw }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = Draw;
 }
 
 declare module "esri/toolbars/edit" {
+  import esri = require("esri");
   import Map = require("esri/map");
   import Graphic = require("esri/graphic");
+  import Signal = esri.Signal;
 
   class Edit {
     static EDIT_TEXT: any;
@@ -4578,38 +4700,40 @@ declare module "esri/toolbars/edit" {
     deactivate(): void;
     getCurrentState(): any;
     refresh(): void;
-    on(type: "activate", listener: (event: { graphic: Graphic; tool: string; target: Edit }) => void): any
-    on(type: "deactivate", listener: (event: { graphic: Graphic; info: any; tool: string; target: Edit }) => void): any
-    on(type: "graphic-click", listener: (event: { graphic: Graphic; info: any; target: Edit }) => void): any
-    on(type: "graphic-first-move", listener: (event: { graphic: Graphic; target: Edit }) => void): any
-    on(type: "graphic-move", listener: (event: { graphic: Graphic; transform: any; target: Edit }) => void): any
-    on(type: "graphic-move-start", listener: (event: { graphic: Graphic; target: Edit }) => void): any
-    on(type: "graphic-move-stop", listener: (event: { graphic: Graphic; transform: any; target: Edit }) => void): any
-    on(type: "rotate", listener: (event: { graphic: Graphic; info: any; target: Edit }) => void): any
-    on(type: "rotate-first-move", listener: (event: { graphic: Graphic; target: Edit }) => void): any
-    on(type: "rotate-start", listener: (event: { graphic: Graphic; target: Edit }) => void): any
-    on(type: "rotate-stop", listener: (event: { graphic: Graphic; info: any; target: Edit }) => void): any
-    on(type: "scale", listener: (event: { graphic: Graphic; info: any; target: Edit }) => void): any
-    on(type: "scale-first-move", listener: (event: { graphic: Graphic; target: Edit }) => void): any
-    on(type: "scale-start", listener: (event: { graphic: Graphic; target: Edit }) => void): any
-    on(type: "scale-stop", listener: (event: { graphic: Graphic; info: any; target: Edit }) => void): any
-    on(type: "vertex-add", listener: (event: { graphic: Graphic; vertexInfo: any; target: Edit }) => void): any
-    on(type: "vertex-click", listener: (event: { graphic: Graphic; vertexInfo: any; target: Edit }) => void): any
-    on(type: "vertex-delete", listener: (event: { graphic: Graphic; vertexInfo: any; target: Edit }) => void): any
-    on(type: "vertex-first-move", listener: (event: { graphic: Graphic; vertexInfo: any; target: Edit }) => void): any
-    on(type: "vertex-mouse-out", listener: (event: { graphic: Graphic; vertexInfo: any; target: Edit }) => void): any
-    on(type: "vertex-mouse-over", listener: (event: { graphic: Graphic; vertexInfo: any; target: Edit }) => void): any
-    on(type: "vertex-move", listener: (event: { graphic: Graphic; transform: any; vertexInfo: any; target: Edit }) => void): any
-    on(type: "vertex-move-start", listener: (event: { graphic: Graphic; vertexInfo: any; target: Edit }) => void): any
-    on(type: "vertex-move-stop", listener: (event: { graphic: Graphic; transform: any; vertexInfo: any; target: Edit }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "activate", listener: (event: { graphic: Graphic; tool: string; target: Edit }) => void): Signal
+    on(type: "deactivate", listener: (event: { graphic: Graphic; info: any; tool: string; target: Edit }) => void): Signal
+    on(type: "graphic-click", listener: (event: { graphic: Graphic; info: any; target: Edit }) => void): Signal
+    on(type: "graphic-first-move", listener: (event: { graphic: Graphic; target: Edit }) => void): Signal
+    on(type: "graphic-move", listener: (event: { graphic: Graphic; transform: any; target: Edit }) => void): Signal
+    on(type: "graphic-move-start", listener: (event: { graphic: Graphic; target: Edit }) => void): Signal
+    on(type: "graphic-move-stop", listener: (event: { graphic: Graphic; transform: any; target: Edit }) => void): Signal
+    on(type: "rotate", listener: (event: { graphic: Graphic; info: any; target: Edit }) => void): Signal
+    on(type: "rotate-first-move", listener: (event: { graphic: Graphic; target: Edit }) => void): Signal
+    on(type: "rotate-start", listener: (event: { graphic: Graphic; target: Edit }) => void): Signal
+    on(type: "rotate-stop", listener: (event: { graphic: Graphic; info: any; target: Edit }) => void): Signal
+    on(type: "scale", listener: (event: { graphic: Graphic; info: any; target: Edit }) => void): Signal
+    on(type: "scale-first-move", listener: (event: { graphic: Graphic; target: Edit }) => void): Signal
+    on(type: "scale-start", listener: (event: { graphic: Graphic; target: Edit }) => void): Signal
+    on(type: "scale-stop", listener: (event: { graphic: Graphic; info: any; target: Edit }) => void): Signal
+    on(type: "vertex-add", listener: (event: { graphic: Graphic; vertexInfo: any; target: Edit }) => void): Signal
+    on(type: "vertex-click", listener: (event: { graphic: Graphic; vertexInfo: any; target: Edit }) => void): Signal
+    on(type: "vertex-delete", listener: (event: { graphic: Graphic; vertexInfo: any; target: Edit }) => void): Signal
+    on(type: "vertex-first-move", listener: (event: { graphic: Graphic; vertexInfo: any; target: Edit }) => void): Signal
+    on(type: "vertex-mouse-out", listener: (event: { graphic: Graphic; vertexInfo: any; target: Edit }) => void): Signal
+    on(type: "vertex-mouse-over", listener: (event: { graphic: Graphic; vertexInfo: any; target: Edit }) => void): Signal
+    on(type: "vertex-move", listener: (event: { graphic: Graphic; transform: any; vertexInfo: any; target: Edit }) => void): Signal
+    on(type: "vertex-move-start", listener: (event: { graphic: Graphic; vertexInfo: any; target: Edit }) => void): Signal
+    on(type: "vertex-move-stop", listener: (event: { graphic: Graphic; transform: any; vertexInfo: any; target: Edit }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = Edit;
 }
 
 declare module "esri/toolbars/navigation" {
+  import esri = require("esri");
   import Map = require("esri/map");
   import Symbol = require("esri/symbols/Symbol");
+  import Signal = esri.Signal;
 
   class Navigation {
     static PAN: any;
@@ -4624,14 +4748,16 @@ declare module "esri/toolbars/navigation" {
     zoomToFullExtent(): void;
     zoomToNextExtent(): void;
     zoomToPrevExtent(): void;
-    on(type: "extent-history-change", listener: (event: { target: Navigation }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "extent-history-change", listener: (event: { target: Navigation }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = Navigation;
 }
 
 declare module "esri/undoManager" {
+  import esri = require("esri");
   import OperationBase = require("esri/OperationBase");
+  import Signal = esri.Signal;
 
   class UndoManager {
     canRedo: boolean;
@@ -4649,11 +4775,11 @@ declare module "esri/undoManager" {
     redo(): void;
     remove(operationId: number): OperationBase;
     undo(): void;
-    on(type: "add", listener: (event: { target: UndoManager }) => void): any
-    on(type: "change", listener: (event: { target: UndoManager }) => void): any
-    on(type: "redo", listener: (event: { target: UndoManager }) => void): any
-    on(type: "undo", listener: (event: { target: UndoManager }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "add", listener: (event: { target: UndoManager }) => void): Signal
+    on(type: "change", listener: (event: { target: UndoManager }) => void): Signal
+    on(type: "redo", listener: (event: { target: UndoManager }) => void): Signal
+    on(type: "undo", listener: (event: { target: UndoManager }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = UndoManager;
 }
@@ -4731,22 +4857,26 @@ declare module "esri/virtualearth/VEGeocodeResult" {
 }
 
 declare module "esri/virtualearth/VEGeocoder" {
+  import esri = require("esri");
   import VEGeocodeResult = require("esri/virtualearth/VEGeocodeResult");
+  import Signal = esri.Signal;
 
   class VEGeocoder {
     culture: string;
     constructor(options: any);
     addressToLocations(query: string, callback?: Function, errback?: Function): any;
     setCulture(culture: string): void;
-    on(type: "address-to-locations-complete", listener: (event: { geocodeResults: VEGeocodeResult[]; target: VEGeocoder }) => void): any
-    on(type: "error", listener: (event: { error: Error; target: VEGeocoder }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "address-to-locations-complete", listener: (event: { geocodeResults: VEGeocodeResult[]; target: VEGeocoder }) => void): Signal
+    on(type: "error", listener: (event: { error: Error; target: VEGeocoder }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = VEGeocoder;
 }
 
 declare module "esri/virtualearth/VETiledLayer" {
+  import esri = require("esri");
   import TiledMapServiceLayer = require("esri/layers/TiledMapServiceLayer");
+  import Signal = esri.Signal;
 
   class VETiledLayer extends TiledMapServiceLayer {
     static MAP_STYLE_AERIAL: any;
@@ -4758,8 +4888,8 @@ declare module "esri/virtualearth/VETiledLayer" {
     constructor(options: any);
     setCulture(culture: string): void;
     setMapStyle(style: string): void;
-    on(type: "map-style-change", listener: (event: { target: VETiledLayer }) => void): any
-    on(type: string, listener: (event: any) => void): any
+    on(type: "map-style-change", listener: (event: { target: VETiledLayer }) => void): Signal
+    on(type: string, listener: (event: any) => void): Signal
   }
   export = VETiledLayer;
 }
