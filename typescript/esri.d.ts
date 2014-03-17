@@ -1,6 +1,6 @@
 // Type definitions for ArcGIS API for JavaScript version 3.8
 // Project: http://js.arcgis.com
-// Updated: Thu Mar 13 2014
+// Updated: Mon Mar 17 2014
 
 declare module "esri" {
   import Point = require("esri/geometry/Point");
@@ -58,8 +58,10 @@ declare module "esri/InfoTemplate" {
     constructor();
     constructor(title: string, content: string);
     constructor(json: Object);
-    setContent(template: any): InfoTemplate;
-    setTitle(template: any): InfoTemplate;
+    setContent(template: string): InfoTemplate;
+    setContent(template: Function): InfoTemplate;
+    setTitle(template: string): InfoTemplate;
+    setTitle(template: Function): InfoTemplate;
     toJson(): any;
   }
   export = InfoTemplate;
@@ -76,10 +78,13 @@ declare module "esri/InfoWindowBase" {
     isShowing: boolean;
     destroyDijits(): void;
     hide(): void;
-    place(value: any, parentNode: HTMLElement): void;
+    place(value: string, parentNode: HTMLElement): void;
+    place(value: HTMLElement, parentNode: HTMLElement): void;
     resize(width: number, height: number): void;
+    setContent(content: string): void;
     setContent(content: any): void;
     setMap(map: Map): void;
+    setTitle(title: string): void;
     setTitle(title: any): void;
     show(location: Point): void;
     startupDijits(): void;
@@ -310,6 +315,7 @@ declare module "esri/arcgis/utils" {
   import Layer = require("esri/layers/layer");
 
   var utils: {
+    createMap(itemIdOrItemInfo: string, mapDiv: string, options?: any): any;
     createMap(itemIdOrItemInfo: any, mapDiv: string, options?: any): any;
     getItem(itemId: string): any;
     getLegendLayers(createMapResponse: any): Layer[];
@@ -481,6 +487,7 @@ declare module "esri/dijit/Directions" {
   import Graphic = require("esri/graphic");
   import RouteParameters = require("esri/tasks/RouteParameters");
   import RouteTask = require("esri/tasks/RouteTask");
+  import Point = require("esri/geometry/Point");
   import RouteResult = require("esri/tasks/RouteResult");
   import Signal = esri.Signal;
 
@@ -494,8 +501,14 @@ declare module "esri/dijit/Directions" {
     stops: Graphic[];
     theme: string;
     constructor(options: any, srcNodeRef: any);
-    addStop(stop: any, index: number): any;
-    addStops(stops: any, index: number): any;
+    addStop(stop: Point, index?: number): any;
+    addStop(stop: number[], index?: number): any;
+    addStop(stop: string, index?: number): any;
+    addStop(stop: any, index?: number): any;
+    addStops(stops: Point[], index?: number): any;
+    addStops(stops: number[][], index?: number): any;
+    addStops(stops: string[], index?: number): any;
+    addStops(stops: any[], index?: number): any;
     centerAtSegmentStart(index: number): void;
     clearDirections(): void;
     destroy(): void;
@@ -506,8 +519,14 @@ declare module "esri/dijit/Directions" {
     reset(): void;
     startup(): void;
     unhighlightSegment(): void;
+    updateStop(stop: Point, index: number): any;
+    updateStop(stop: number[], index: number): any;
+    updateStop(stop: string, index: number): any;
     updateStop(stop: any, index: number): any;
-    updateStops(stops: any): any;
+    updateStops(stops: Point[]): any;
+    updateStops(stops: number[][]): any;
+    updateStops(stops: string[]): any;
+    updateStops(stops: any[]): any;
     zoomToFullRoute(): void;
     zoomToSegment(index: number): void;
     on(type: "directions-clear", listener: (event: { target: Directions }) => void): Signal
@@ -821,9 +840,12 @@ declare module "esri/dijit/Popup" {
     resize(width: number, height: number): void;
     restore(): void;
     select(index: number): void;
-    setContent(content: any): void;
+    setContent(content: string): void;
+    setContent(content: Function): void;
+    setFeatures(features: Graphic[]): void;
     setFeatures(features: any): void;
-    setTitle(title: any): void;
+    setTitle(title: string): void;
+    setTitle(title: Function): void;
     show(location: Point, options?: any): void;
     on(type: "clear-features", listener: (event: { target: Popup }) => void): Signal
     on(type: "hide", listener: (event: { target: Popup }) => void): Signal
@@ -851,9 +873,12 @@ declare module "esri/dijit/PopupMobile" {
     getSelectedFeature(): Graphic;
     hide(): void;
     select(index: number): void;
-    setContent(content: any): void;
+    setContent(content: string): void;
+    setContent(content: Function): void;
+    setFeatures(features: Graphic[]): any;
     setFeatures(features: any): any;
-    setTitle(title: any): void;
+    setTitle(title: string): void;
+    setTitle(title: Function): void;
     show(location: Point): void;
     on(type: "clear-features", listener: (event: { target: PopupMobile }) => void): Signal
     on(type: "hide", listener: (event: { target: PopupMobile }) => void): Signal
@@ -1543,13 +1568,15 @@ declare module "esri/geometry/Polygon" {
     constructor(spatialReference: SpatialReference);
     constructor(json: Object);
     constructor(coordinates: any);
-    addRing(ring: any): Polygon;
+    addRing(ring: Point[]): Polygon;
+    addRing(ring: number[][]): Polygon;
     contains(point: Point): boolean;
     getCentroid(): Point;
     getExtent(): Extent;
     getPoint(ringIndex: number, pointIndex: number): Point;
     insertPoint(ringIndex: number, pointIndex: number, point: Point): Polygon;
-    isClockwise(ring: any): boolean;
+    isClockwise(ring: Point[]): boolean;
+    isClockwise(ring: number[][]): boolean;
     isSelfIntersecting(polygon: Polygon): boolean;
     removePoint(ringIndex: number, pointIndex: number): Point;
     removeRing(ringIndex: number): Point[];
@@ -1561,15 +1588,16 @@ declare module "esri/geometry/Polygon" {
 declare module "esri/geometry/Polyline" {
   import Geometry = require("esri/geometry/Geometry");
   import SpatialReference = require("esri/SpatialReference");
-  import Extent = require("esri/geometry/Extent");
   import Point = require("esri/geometry/Point");
+  import Extent = require("esri/geometry/Extent");
 
   class Polyline extends Geometry {
     paths: number[][][];
     constructor(spatialReference: SpatialReference);
     constructor(json: Object);
     constructor(coordinates: any);
-    addPath(path: any): Polyline;
+    addPath(path: Point[]): Polyline;
+    addPath(path: number[][]): Polyline;
     getExtent(): Extent;
     getPoint(pathIndex: number, pointIndex: number): Point;
     insertPoint(pathIndex: number, pointIndex: number, point: Point): Polyline;
@@ -2385,10 +2413,15 @@ declare module "esri/layers/LabelClass" {
 declare module "esri/layers/LabelLayer" {
   import GraphicsLayer = require("esri/layers/GraphicsLayer");
   import FeatureLayer = require("esri/layers/FeatureLayer");
+  import SimpleRenderer = require("esri/renderers/SimpleRenderer");
+  import UniqueValueRenderer = require("esri/renderers/UniqueValueRenderer");
+  import ClassBreaksRenderer = require("esri/renderers/ClassBreaksRenderer");
 
   class LabelLayer extends GraphicsLayer {
     constructor();
-    addFeatureLayer(featureLayer: FeatureLayer, renderer: any, textExpression: any, labelOptions?: any): void;
+    addFeatureLayer(featureLayer: FeatureLayer, renderer: SimpleRenderer, textExpression: any, labelOptions?: any): void;
+    addFeatureLayer(featureLayer: FeatureLayer, renderer: UniqueValueRenderer, textExpression: any, labelOptions?: any): void;
+    addFeatureLayer(featureLayer: FeatureLayer, renderer: ClassBreaksRenderer, textExpression: any, labelOptions?: any): void;
     getFeatureLayer(index: number): FeatureLayer;
   }
   export = LabelLayer;
@@ -2834,6 +2867,7 @@ declare module "esri/map" {
   import TimeExtent = require("esri/TimeExtent");
   import Layer = require("esri/layers/layer");
   import TimeSlider = require("esri/dijit/TimeSlider");
+  import ScreenPoint = require("esri/geometry/ScreenPoint");
   import AGSMouseEvent = esri.AGSMouseEvent;
   import LOD = require("esri/layers/LOD");
   import Signal = esri.Signal;
@@ -2932,7 +2966,8 @@ declare module "esri/map" {
     setZoom(zoom: number): any;
     showPanArrows(): void;
     showZoomSlider(): void;
-    toMap(screenPoint: any): Point;
+    toMap(screenPoint: ScreenPoint): Point;
+    toMap(screenPoint: Point): Point;
     toScreen(mapPoint: Point): Point;
     on(type: "basemap-change", listener: (event: { current: any; previous: any; target: Map }) => void): Signal
     on(type: "click", listener: (event: { mouseEvent: AGSMouseEvent; target: Map }) => void): Signal
@@ -2993,6 +3028,7 @@ declare module "esri/renderers/ClassBreaksRenderer" {
     normalizationType: string;
     constructor(defaultSymbol: Symbol, attributeField: any);
     constructor(json: Object);
+    addBreak(minValueOrInfo: number, maxValue?: number, symbol?: Symbol): void;
     addBreak(minValueOrInfo: any, maxValue?: number, symbol?: Symbol): void;
     clearBreaks(): void;
     getBreakIndex(graphic: Graphic): number;
@@ -3145,6 +3181,7 @@ declare module "esri/renderers/UniqueValueRenderer" {
     values: string[];
     constructor(defaultSymbol: Symbol, attributeField: any, attributeField2?: string, attributeField3?: string, fieldDelimeter?: string);
     constructor(json: Object);
+    addValue(valueOrInfo: string, symbol?: Symbol): void;
     addValue(valueOrInfo: any, symbol?: Symbol): void;
     getUniqueValueInfo(graphic: Graphic): any;
     removeValue(value: string): void;
@@ -3231,7 +3268,8 @@ declare module "esri/symbols/Font" {
     constructor(json: Object);
     setDecoration(decoration: string): Font;
     setFamily(family: string): Font;
-    setSize(size: any): Font;
+    setSize(size: number): Font;
+    setSize(size: string): Font;
     setStyle(style: string): Font;
     setVariant(variant: string): Font;
     setWeight(weight: string): Font;
