@@ -24,7 +24,9 @@ Switch to the `gh-pages` branch to see the JavaScript output files.
 * [Visual Studio Plugin](http://www.typescriptlang.org/#Download)
 * [JetBrains IDEs](http://www.jetbrains.com) - *Improved support coming soon!*
 * [TypeScript plugin for Sublime Text](https://github.com/Railk/T3S)
-* [TypeScript plugin for Eclipse](https://github.com/palantir/eclipse-typescript)
+* TypeScript plugins for Eclipse
+    * [TypEcs](http://typecsdev.com)
+    * [Palantir](https://github.com/palantir/eclipse-typescript)
 
 [1]: http://www.typescriptlang.org
 [2]: http://esri.github.io/jsapi-resources/typescript/demo.html
