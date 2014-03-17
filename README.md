@@ -33,5 +33,5 @@ limitations under the License.
 
 A copy of the license is available in the repository's [license.txt](https://github.com/Esri/jsapi-resources/blob/master/license.txt) file.
 
-[](Esri Tags: ArcGIS JavaScript JS API)
+[](Esri Tags: ArcGIS JavaScript JS API TypeScript)
 [](Esri Language: JavaScript)
