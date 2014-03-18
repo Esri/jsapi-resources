@@ -6,6 +6,27 @@ declare module "esri" {
   import Point = require("esri/geometry/Point");
   import ScreenPoint = require("esri/geometry/ScreenPoint");
 
+  export interface NAOutputLine {
+    NONE: any;
+    STRAIGHT: any;
+    TRUE_SHAPE: any;
+    TRUE_SHAPE_WITH_MEASURE: any;
+  }
+  export interface NAOutputPolygon {
+    DETAILED: any;
+    NONE: any;
+    SIMPLIFIED: any;
+  }
+  export interface NATravelDirection {
+    FROM_FACILITY: any;
+    TO_FACILITY: any;
+  }
+  export interface NAUTurn {
+    ALLOW_BACKTRACK: any;
+    AT_DEAD_ENDS_AND_INTERSECTIONS: any;
+    AT_DEAD_ENDS_ONLY: any;
+    NO_BACKTRACK: any;
+  }
   export interface AGSMouseEvent extends MouseEvent {
     mapPoint: Point;
     screenPoint: ScreenPoint;
@@ -4200,6 +4221,22 @@ declare module "esri/tasks/NAMessage" {
     type: number;
   }
   export = NAMessage;
+}
+
+declare module "esri/tasks/NATypes" {
+  import esri = require("esri");
+  import NAOutputLine = esri.NAOutputLine;
+  import NAOutputPolygon = esri.NAOutputPolygon;
+  import NATravelDirection = esri.NATravelDirection;
+  import NAUTurn = esri.NAUTurn;
+
+  var NATypes: {
+    OutputLine: NAOutputLine;
+    OutputPolygon: NAOutputPolygon;
+    TravelDirection: NATravelDirection;
+    UTurn: NAUTurn;
+  };
+  export = NATypes;
 }
 
 declare module "esri/tasks/OffsetParameters" {
