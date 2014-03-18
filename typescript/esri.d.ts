@@ -1,6 +1,6 @@
 // Type definitions for ArcGIS API for JavaScript version 3.8
 // Project: http://js.arcgis.com
-// Updated: Mon Mar 17 2014
+// Updated: Tue Mar 18 2014
 
 declare module "esri" {
   import Point = require("esri/geometry/Point");
@@ -339,7 +339,8 @@ declare module "esri/dijit/AttributeInspector" {
     static STRING_FIELD_OPTION_RICHTEXT: any;
     static STRING_FIELD_OPTION_TEXTAREA: any;
     static STRING_FIELD_OPTION_TEXTBOX: any;
-    constructor(params: any, srcNodeRef: any);
+    constructor(params: any, srcNodeRef: HTMLElement);
+    constructor(params: any, srcNodeRef: string);
     destroy(): void;
     first(): void;
     last(): void;
@@ -362,7 +363,8 @@ declare module "esri/dijit/Attribution" {
     itemNodes: HTMLSpanElement;
     listNode: HTMLSpanElement;
     map: Map;
-    constructor(options: any, srcNodeRef: any);
+    constructor(options: any, srcNodeRef: HTMLElement);
+    constructor(options: any, srcNodeRef: string);
     destroy(): void;
   }
   export = Attribution;
@@ -390,7 +392,8 @@ declare module "esri/dijit/BasemapGallery" {
     basemaps: Basemap[];
     loaded: boolean;
     portalUrl: string;
-    constructor(params: any, srcNodeRef?: any);
+    constructor(params: any, srcNodeRef?: HTMLElement);
+    constructor(params: any, srcNodeRef?: string);
     add(basemap: Basemap): boolean;
     destroy(): void;
     get(id: string): Basemap;
@@ -437,7 +440,8 @@ declare module "esri/dijit/BasemapToggle" {
     map: Map;
     theme: string;
     visible: boolean;
-    constructor(params: any, srcNodeRef: any);
+    constructor(params: any, srcNodeRef: HTMLElement);
+    constructor(params: any, srcNodeRef: string);
     destroy(): void;
     hide(): void;
     show(): void;
@@ -466,7 +470,8 @@ declare module "esri/dijit/Bookmarks" {
 
   class Bookmarks {
     bookmarks: BookmarkItem[];
-    constructor(params: any, srcNodeRef: any);
+    constructor(params: any, srcNodeRef: HTMLElement);
+    constructor(params: any, srcNodeRef: string);
     addBookmark(bookmarkItem: BookmarkItem): void;
     destroy(): void;
     hide(): void;
@@ -500,7 +505,8 @@ declare module "esri/dijit/Directions" {
     routeTask: RouteTask;
     stops: Graphic[];
     theme: string;
-    constructor(options: any, srcNodeRef: any);
+    constructor(options: any, srcNodeRef: HTMLElement);
+    constructor(options: any, srcNodeRef: string);
     addStop(stop: Point, index?: number): any;
     addStop(stop: number[], index?: number): any;
     addStop(stop: string, index?: number): any;
@@ -545,7 +551,8 @@ declare module "esri/dijit/Gallery" {
   import Signal = esri.Signal;
 
   class Gallery {
-    constructor(params: any, srcNodeRef: any);
+    constructor(params: any, srcNodeRef: HTMLElement);
+    constructor(params: any, srcNodeRef: string);
     destroy(): void;
     getFocusedItem(): any;
     getSelectedItem(): any;
@@ -563,7 +570,8 @@ declare module "esri/dijit/Gallery" {
 
 declare module "esri/dijit/Gauge" {
   class Gauge {
-    constructor(params: any, srcNodeRef: any);
+    constructor(params: any, srcNodeRef: HTMLElement);
+    constructor(params: any, srcNodeRef: string);
     destroy(): void;
     get(name: string): any;
     set(name: string, value: any): Gauge;
@@ -591,7 +599,8 @@ declare module "esri/dijit/Geocoder" {
     theme: string;
     value: string;
     zoomScale: number;
-    constructor(params: any, srcNodeRef: any);
+    constructor(params: any, srcNodeRef: HTMLElement);
+    constructor(params: any, srcNodeRef: string);
     blur(): void;
     clear(): void;
     destroy(): void;
@@ -616,7 +625,8 @@ declare module "esri/dijit/HistogramTimeSlider" {
   import Signal = esri.Signal;
 
   class HistogramTimeSlider {
-    constructor(params: any, srcNodeRef: any);
+    constructor(params: any, srcNodeRef: HTMLElement);
+    constructor(params: any, srcNodeRef: string);
     destroy(): void;
     on(type: "time-extent-change", listener: (event: { target: HistogramTimeSlider }) => void): Signal
     on(type: "update", listener: (event: { target: HistogramTimeSlider }) => void): Signal
@@ -637,7 +647,8 @@ declare module "esri/dijit/HomeButton" {
     map: Map;
     theme: string;
     visible: boolean;
-    constructor(params: any, srcNodeRef: any);
+    constructor(params: any, srcNodeRef: HTMLElement);
+    constructor(params: any, srcNodeRef: string);
     destroy(): void;
     hide(): void;
     home(): void;
@@ -665,7 +676,8 @@ declare module "esri/dijit/InfoWindow" {
     coords: Point;
     fixedAnchor: string;
     isShowing: boolean;
-    constructor(params: any, srcNodeRef: any);
+    constructor(params: any, srcNodeRef: HTMLElement);
+    constructor(params: any, srcNodeRef: string);
     hide(): void;
     move(point: Point): void;
     resize(width: number, height: number): void;
@@ -722,7 +734,8 @@ declare module "esri/dijit/LayerSwipe" {
     theme: string;
     top: number;
     type: string;
-    constructor(params: any, srcNodeRef: any);
+    constructor(params: any, srcNodeRef: HTMLElement);
+    constructor(params: any, srcNodeRef: string);
     destroy(): void;
     disable(): void;
     enable(): void;
@@ -737,7 +750,8 @@ declare module "esri/dijit/LayerSwipe" {
 
 declare module "esri/dijit/Legend" {
   class Legend {
-    constructor(params: any, srcNodeRef: any);
+    constructor(params: any, srcNodeRef: HTMLElement);
+    constructor(params: any, srcNodeRef: string);
     destroy(): void;
     refresh(): void;
     startup(): void;
@@ -767,7 +781,8 @@ declare module "esri/dijit/LocateButton" {
     tracking: boolean;
     useTracking: boolean;
     visible: boolean;
-    constructor(params: any, srcNodeRef: any);
+    constructor(params: any, srcNodeRef: HTMLElement);
+    constructor(params: any, srcNodeRef: string);
     clear(): void;
     destroy(): void;
     hide(): void;
@@ -787,7 +802,8 @@ declare module "esri/dijit/Measurement" {
   import Signal = esri.Signal;
 
   class Measurement {
-    constructor(params: any, srcNodeRef: any);
+    constructor(params: any, srcNodeRef: HTMLElement);
+    constructor(params: any, srcNodeRef: string);
     clearResult(): void;
     destroy(): void;
     hide(): void;
@@ -804,7 +820,8 @@ declare module "esri/dijit/Measurement" {
 
 declare module "esri/dijit/OverviewMap" {
   class OverviewMap {
-    constructor(params: any, srcNodeRef: any);
+    constructor(params: any, srcNodeRef: HTMLElement);
+    constructor(params: any, srcNodeRef: string);
     destroy(): void;
     hide(): void;
     show(): void;
@@ -822,7 +839,7 @@ declare module "esri/dijit/Popup" {
 
   class Popup extends InfoWindowBase {
     count: number;
-    deferreds: any;
+    deferreds: any[];
     domNode: any;
     features: Graphic[];
     hideDelay: number;
@@ -830,7 +847,8 @@ declare module "esri/dijit/Popup" {
     isShowing: boolean;
     selectedIndex: number;
     visibleWhenEmpty: boolean;
-    constructor(options: any, srcNodeRef: any);
+    constructor(options: any, srcNodeRef: HTMLElement);
+    constructor(options: any, srcNodeRef: string);
     clearFeatures(): void;
     destroy(): void;
     getSelectedFeature(): Graphic;
@@ -843,7 +861,7 @@ declare module "esri/dijit/Popup" {
     setContent(content: string): void;
     setContent(content: Function): void;
     setFeatures(features: Graphic[]): void;
-    setFeatures(features: any): void;
+    setFeatures(features: any[]): void;
     setTitle(title: string): void;
     setTitle(title: Function): void;
     show(location: Point, options?: any): void;
@@ -867,7 +885,8 @@ declare module "esri/dijit/PopupMobile" {
   import Signal = esri.Signal;
 
   class PopupMobile extends InfoWindowBase {
-    constructor(options: any, srcNodeRef: any);
+    constructor(options: any, srcNodeRef: HTMLElement);
+    constructor(options: any, srcNodeRef: string);
     clearFeatures(): void;
     destroy(): void;
     getSelectedFeature(): Graphic;
@@ -876,7 +895,7 @@ declare module "esri/dijit/PopupMobile" {
     setContent(content: string): void;
     setContent(content: Function): void;
     setFeatures(features: Graphic[]): any;
-    setFeatures(features: any): any;
+    setFeatures(features: any[]): any;
     setTitle(title: string): void;
     setTitle(title: Function): void;
     show(location: Point): void;
@@ -903,7 +922,8 @@ declare module "esri/dijit/Print" {
   import Signal = esri.Signal;
 
   class Print {
-    constructor(params: any, srcNodeRef: any);
+    constructor(params: any, srcNodeRef: HTMLElement);
+    constructor(params: any, srcNodeRef: string);
     destroy(): void;
     hide(): void;
     show(): void;
@@ -918,7 +938,8 @@ declare module "esri/dijit/Print" {
 
 declare module "esri/dijit/Scalebar" {
   class Scalebar {
-    constructor(params: any, srcNodeRef?: any);
+    constructor(params: any, srcNodeRef?: HTMLElement);
+    constructor(params: any, srcNodeRef?: string);
     destroy(): void;
     hide(): void;
     show(): void;
@@ -937,7 +958,8 @@ declare module "esri/dijit/TimeSlider" {
     thumbCount: number;
     thumbMovingRate: number;
     timeStops: Date[];
-    constructor(params: any, srcNodeRef: any);
+    constructor(params: any, srcNodeRef: HTMLElement);
+    constructor(params: any, srcNodeRef: string);
     createTimeStopsByCount(timeExtent: TimeExtent, count?: number): void;
     createTimeStopsByTimeInterval(timeExtent: TimeExtent, timeInterval?: number, timeIntervalUnits?: string): void;
     getCurrentTimeExtent(): TimeExtent;
@@ -980,7 +1002,8 @@ declare module "esri/dijit/analysis/AggregatePoints" {
     showHelp: boolean;
     showSelectFolder: boolean;
     summaryFields: string[];
-    constructor(params: any, srcNodeRef: any);
+    constructor(params: any, srcNodeRef: HTMLElement);
+    constructor(params: any, srcNodeRef: string);
   }
   export = AggregatePoints;
 }
@@ -1025,7 +1048,8 @@ declare module "esri/dijit/analysis/CreateBuffers" {
     showCredits: string;
     showHelp: boolean;
     showSelectFolder: boolean;
-    constructor(params: any, srcNodeRef: any);
+    constructor(params: any, srcNodeRef: HTMLElement);
+    constructor(params: any, srcNodeRef: string);
   }
   export = CreateBuffers;
 }
@@ -1050,7 +1074,8 @@ declare module "esri/dijit/analysis/CreateDriveTimeAreas" {
     showCredits: boolean;
     showHelp: boolean;
     showSelectFolder: boolean;
-    constructor(params: any, srcNodeRef: any);
+    constructor(params: any, srcNodeRef: HTMLElement);
+    constructor(params: any, srcNodeRef: string);
   }
   export = CreateDriveTimeAreas;
 }
@@ -1073,7 +1098,8 @@ declare module "esri/dijit/analysis/DissolveBoundaries" {
     showHelp: boolean;
     showSelectFolder: boolean;
     summaryFields: string[];
-    constructor(params: any, srcNodeRef: any);
+    constructor(params: any, srcNodeRef: HTMLElement);
+    constructor(params: any, srcNodeRef: string);
   }
   export = DissolveBoundaries;
 }
@@ -1096,7 +1122,8 @@ declare module "esri/dijit/analysis/EnrichLayer" {
     showHelp: boolean;
     showSelectFolder: boolean;
     showTrafficWidget: boolean;
-    constructor(params: any, srcNodeRef: any);
+    constructor(params: any, srcNodeRef: HTMLElement);
+    constructor(params: any, srcNodeRef: string);
   }
   export = EnrichLayer;
 }
@@ -1120,7 +1147,8 @@ declare module "esri/dijit/analysis/ExtractData" {
     showCredits: boolean;
     showHelp: boolean;
     showSelectFolder: boolean;
-    constructor(params: any, srcNodeRef: any);
+    constructor(params: any, srcNodeRef: HTMLElement);
+    constructor(params: any, srcNodeRef: string);
   }
   export = ExtractData;
 }
@@ -1144,7 +1172,8 @@ declare module "esri/dijit/analysis/FindHotSpots" {
     showCredits: boolean;
     showHelp: boolean;
     showSelectFolder: boolean;
-    constructor(params: any, srcNodeRef: any);
+    constructor(params: any, srcNodeRef: HTMLElement);
+    constructor(params: any, srcNodeRef: string);
   }
   export = FindHotSpots;
 }
@@ -1170,7 +1199,8 @@ declare module "esri/dijit/analysis/FindNearest" {
     showCredits: boolean;
     showHelp: boolean;
     showSelectFolder: boolean;
-    constructor(params: any, srcNodeRef: any);
+    constructor(params: any, srcNodeRef: HTMLElement);
+    constructor(params: any, srcNodeRef: string);
   }
   export = FindNearest;
 }
@@ -1193,7 +1223,8 @@ declare module "esri/dijit/analysis/MergeLayers" {
     showCredits: boolean;
     showHelp: boolean;
     showSelectFolder: boolean;
-    constructor(params: any, srcNodeRef: any);
+    constructor(params: any, srcNodeRef: HTMLElement);
+    constructor(params: any, srcNodeRef: string);
   }
   export = MergeLayers;
 }
@@ -1218,7 +1249,8 @@ declare module "esri/dijit/analysis/OverlayLayers" {
     showSelectFolder: boolean;
     snapToInput: boolean;
     tolerance: number;
-    constructor(params: any, srcNodeRef: any);
+    constructor(params: any, srcNodeRef: HTMLElement);
+    constructor(params: any, srcNodeRef: string);
   }
   export = OverlayLayers;
 }
@@ -1248,7 +1280,8 @@ declare module "esri/dijit/analysis/SummarizeNearby" {
     sumNearbyLayer: FeatureLayer;
     sumShape: boolean;
     units: string;
-    constructor(params: any, srcNodeRef: any);
+    constructor(params: any, srcNodeRef: HTMLElement);
+    constructor(params: any, srcNodeRef: string);
   }
   export = SummarizeNearby;
 }
@@ -1273,7 +1306,8 @@ declare module "esri/dijit/analysis/SummarizeWithin" {
     summaryLayer: FeatureLayer;
     summaryLayers: FeatureLayer[];
     sumWithinLayer: FeatureLayer;
-    constructor(params: any, srcNodeRef: any);
+    constructor(params: any, srcNodeRef: HTMLElement);
+    constructor(params: any, srcNodeRef: string);
   }
   export = SummarizeWithin;
 }
@@ -1294,7 +1328,8 @@ declare module "esri/dijit/editing/AttachmentEditor" {
   import FeatureLayer = require("esri/layers/FeatureLayer");
 
   class AttachmentEditor {
-    constructor(params: any, srcNodeRef: any);
+    constructor(params: any, srcNodeRef: HTMLElement);
+    constructor(params: any, srcNodeRef: string);
     showAttachments(graphic: Graphic, featureLayer: FeatureLayer): void;
     startup(): void;
   }
@@ -1335,7 +1370,8 @@ declare module "esri/dijit/editing/Editor" {
     static CREATE_TOOL_POLYLINE: any;
     static CREATE_TOOL_RECTANGLE: any;
     static CREATE_TOOL_TRIANGLE: any;
-    constructor(params: any, srcNodeRef: any);
+    constructor(params: any, srcNodeRef: HTMLElement);
+    constructor(params: any, srcNodeRef: string);
   }
   export = Editor;
 }
@@ -1347,7 +1383,8 @@ declare module "esri/dijit/editing/TemplatePicker" {
   class TemplatePicker {
     grid: any;
     tooltip: HTMLDivElement;
-    constructor(params: any, srcNodeRef: any);
+    constructor(params: any, srcNodeRef: HTMLElement);
+    constructor(params: any, srcNodeRef: string);
     attr(name: string, value?: any): void;
     clearSelection(): void;
     destroy(): void;
@@ -1400,7 +1437,8 @@ declare module "esri/dijit/geoenrichment/InfoGraphic" {
     title: string;
     type: string;
     variables: string[];
-    constructor(params: any, srcNodeRef: any);
+    constructor(params: any, srcNodeRef: HTMLElement);
+    constructor(params: any, srcNodeRef: string);
     setData(data: FeatureSet, metadata?: any): void;
     startup(): void;
     on(type: "data-error", listener: (event: { error: any; target: Infographic }) => void): Signal
@@ -1426,7 +1464,8 @@ declare module "esri/dijit/geoenrichment/InfographicsCarousel" {
     selectedIndex: number;
     studyArea: GeometryStudyArea;
     studyAreaTitle: string;
-    constructor(params: any, srcNodeRef: any);
+    constructor(params: any, srcNodeRef: HTMLElement);
+    constructor(params: any, srcNodeRef: string);
     startup(): void;
     on(type: "data-error", listener: (event: { error: any; target: InfographicsCarousel }) => void): Signal
     on(type: "data-load", listener: (event: { target: InfographicsCarousel }) => void): Signal
@@ -1461,6 +1500,7 @@ declare module "esri/domUtils" {
 declare module "esri/geometry/Circle" {
   import Polygon = require("esri/geometry/Polygon");
   import SpatialReference = require("esri/SpatialReference");
+  import Point = require("esri/geometry/Point");
 
   class Circle extends Polygon {
     center: any;
@@ -1468,7 +1508,8 @@ declare module "esri/geometry/Circle" {
     radiusUnit: string;
     rings: number[][][];
     spatialReference: SpatialReference;
-    constructor(center: any, options?: any);
+    constructor(center: Point, options?: any);
+    constructor(center: number[], options?: any);
     constructor(params: any);
   }
   export = Circle;
@@ -1567,7 +1608,8 @@ declare module "esri/geometry/Polygon" {
     rings: number[][][];
     constructor(spatialReference: SpatialReference);
     constructor(json: Object);
-    constructor(coordinates: any);
+    constructor(coordinates: number[][]);
+    constructor(coordinates: number[][][]);
     addRing(ring: Point[]): Polygon;
     addRing(ring: number[][]): Polygon;
     contains(point: Point): boolean;
@@ -1595,7 +1637,8 @@ declare module "esri/geometry/Polyline" {
     paths: number[][][];
     constructor(spatialReference: SpatialReference);
     constructor(json: Object);
-    constructor(coordinates: any);
+    constructor(coordinates: number[][]);
+    constructor(coordinates: number[][][]);
     addPath(path: Point[]): Polyline;
     addPath(path: number[][]): Polyline;
     getExtent(): Extent;
@@ -3026,7 +3069,8 @@ declare module "esri/renderers/ClassBreaksRenderer" {
     normalizationField: string;
     normalizationTotal: number;
     normalizationType: string;
-    constructor(defaultSymbol: Symbol, attributeField: any);
+    constructor(defaultSymbol: Symbol, attributeField: string);
+    constructor(defaultSymbol: Symbol, attributeField: Function);
     constructor(json: Object);
     addBreak(minValueOrInfo: number, maxValue?: number, symbol?: Symbol): void;
     addBreak(minValueOrInfo: any, maxValue?: number, symbol?: Symbol): void;
@@ -3179,7 +3223,8 @@ declare module "esri/renderers/UniqueValueRenderer" {
     fieldDelimiter: string;
     infos: any[];
     values: string[];
-    constructor(defaultSymbol: Symbol, attributeField: any, attributeField2?: string, attributeField3?: string, fieldDelimeter?: string);
+    constructor(defaultSymbol: Symbol, attributeField: string, attributeField2?: string, attributeField3?: string, fieldDelimeter?: string);
+    constructor(defaultSymbol: Symbol, attributeField: Function, attributeField2?: string, attributeField3?: string, fieldDelimeter?: string);
     constructor(json: Object);
     addValue(valueOrInfo: string, symbol?: Symbol): void;
     addValue(valueOrInfo: any, symbol?: Symbol): void;
@@ -3264,7 +3309,8 @@ declare module "esri/symbols/Font" {
     variant: string;
     weight: string;
     constructor();
-    constructor(size?: any, style?: string, variant?: string, weight?: string, family?: string);
+    constructor(size?: number, style?: string, variant?: string, weight?: string, family?: string);
+    constructor(size?: string, style?: string, variant?: string, weight?: string, family?: string);
     constructor(json: Object);
     setDecoration(decoration: string): Font;
     setFamily(family: string): Font;
