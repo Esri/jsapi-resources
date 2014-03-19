@@ -21,7 +21,7 @@
     "noempty"       : true,     // true: Prohibit use of empty blocks
     "nonew"         : true,     // true: Prohibit use of constructors for side-effects (without assignment) ** Coding style enforcement **
     "plusplus"      : false,    // true: Prohibit use of `++` & `--`
-    "quotmark"      : true,     // Quotation mark consistency: ** Use the same style. Doubles should be used it most cases **
+    "quotmark"      : true,     // Quotation mark consistency: ** Use the same style. Doubles should be used in most cases **
                                 //   false    : do nothing (default)
                                 //   true     : ensure whatever is used is consistent
                                 //   "single" : require single quotes
