@@ -9,12 +9,13 @@ define(["require", "exports", "esri/map", "./Point"], function(require, exports,
         MapController.prototype.start = function () {
             var point = new Point(-122.45, 37.75);
             point.log();
-            this.map = new Map(this.mapDiv, {
-                basemap: "topo",
-                // center: [-122.45, 37.75], // long, lat
-                center: point,
-                zoom: 13
-            });
+
+            var mapOptions = {};
+            mapOptions.basemap = "topo";
+            mapOptions.center = point;
+            mapOptions.zoom = 13;
+
+            this.map = new Map(this.mapDiv, mapOptions);
         };
         return MapController;
     })();
