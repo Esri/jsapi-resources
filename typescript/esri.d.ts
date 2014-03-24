@@ -1,11 +1,527 @@
 // Type definitions for ArcGIS API for JavaScript version 3.8
 // Project: http://js.arcgis.com
-// Updated: Thu Mar 20 2014
+// Updated: Mon Mar 24 2014
 
 declare module "esri" {
   import Point = require("esri/geometry/Point");
   import ScreenPoint = require("esri/geometry/ScreenPoint");
+  import Graphic = require("esri/graphic");
+  import FeatureLayer = require("esri/layers/FeatureLayer");
+  import Map = require("esri/map");
+  import ImageParameters = require("esri/layers/ImageParameters");
+  import ImageServiceParameters = require("esri/layers/ImageServiceParameters");
+  import InfoTemplate = require("esri/InfoTemplate");
+  import Basemap = require("esri/dijit/Basemap");
+  import Extent = require("esri/geometry/Extent");
+  import TileInfo = require("esri/layers/TileInfo");
+  import BasemapLayer = require("esri/dijit/BasemapLayer");
+  import BookmarkItem = require("esri/dijit/BookmarkItem");
+  import Units = require("esri/units");
+  import PictureMarkerSymbol = require("esri/symbols/PictureMarkerSymbol");
+  import RouteParameters = require("esri/tasks/RouteParameters");
+  import SimpleLineSymbol = require("esri/symbols/SimpleLineSymbol");
+  import Font = require("esri/symbols/Font");
+  import LineSymbol = require("esri/symbols/LineSymbol");
+  import MarkerSymbol = require("esri/symbols/MarkerSymbol");
+  import GraphicsLayer = require("esri/layers/GraphicsLayer");
+  import SpatialReference = require("esri/SpatialReference");
+  import Symbol = require("esri/symbols/Symbol");
+  import Layer = require("esri/layers/layer");
+  import InfoWindowBase = require("esri/InfoWindowBase");
+  import LOD = require("esri/layers/LOD");
+  import FillSymbol = require("esri/symbols/FillSymbol");
+  import PrintTemplate = require("esri/tasks/PrintTemplate");
+  import SimpleMarkerSymbol = require("esri/symbols/SimpleMarkerSymbol");
+  import WMTSLayerInfo = require("esri/layers/WMTSLayerInfo");
 
+  export interface AGSMouseEvent extends MouseEvent {
+    mapPoint: Point;
+    screenPoint: ScreenPoint;
+  }
+  export interface AddOptions {
+    addedGraphics?: Graphic[];
+    featureLayer?: FeatureLayer;
+  }
+  export interface AggregatePointsOptions {
+    analysisGpServer?: string;
+    groupByField?: string;
+    keepBoundariesWithNoPoints?: boolean;
+    map?: Map;
+    outputLayerName?: string;
+    pointLayer: FeatureLayer;
+    polygonLayer: FeatureLayer;
+    polygonLayers: FeatureLayer[];
+    portalUrl?: string;
+    returnFeatureCollection?: boolean;
+    showChooseExtent?: boolean;
+    showCredits?: boolean;
+    showHelp?: boolean;
+    showSelectFolder?: boolean;
+    summaryFields?: string[];
+  }
+  export interface ArcGISDynamicMapServiceLayerOptions {
+    className?: string;
+    gdbVersion?: string;
+    id?: string;
+    imageParameters?: ImageParameters;
+    opacity?: number;
+    refreshInterval?: number;
+    resourceInfo?: any;
+    showAttribution?: boolean;
+    useMapImage?: boolean;
+    useMapTime?: boolean;
+    visible?: boolean;
+  }
+  export interface ArcGISImageServiceLayerOptions {
+    id?: string;
+    imageServiceParameters?: ImageServiceParameters;
+    infoTemplate?: InfoTemplate;
+    opacity?: number;
+    resourceInfo?: any;
+    useMapTime?: boolean;
+    visible?: boolean;
+  }
+  export interface ArcGISTiledMapServiceLayerOptions {
+    className?: string;
+    displayLevels?: number;
+    id?: string;
+    opacity?: number;
+    refreshInterval?: number;
+    resampling?: boolean;
+    resamplingTolerance?: number;
+    resourceInfo?: any;
+    showAttribution?: boolean;
+    tileServers?: string[];
+    visible?: boolean;
+  }
+  export interface AttributeInspectorOptions {
+    layerInfos: any[];
+  }
+  export interface AttributionOptions {
+    itemDelimiter?: string;
+    map: Map;
+  }
+  export interface BasemapGalleryOptions {
+    basemapIds?: string[];
+    basemaps?: Basemap[];
+    basemapsGroup?: any;
+    bingMapsKey?: string;
+    map: Map;
+    portalUrl?: string;
+    referenceIds?: string[];
+    showArcGISBasemaps?: boolean;
+  }
+  export interface BasemapLayerOptions {
+    bandIds?: number[];
+    copyright?: string;
+    displayLevels?: number[];
+    fullExtent?: Extent;
+    initialExtent?: Extent;
+    isReference?: boolean;
+    opacity?: number;
+    subDomains?: string[];
+    tileInfo?: TileInfo;
+    tileServer?: string[];
+    type?: string;
+    url?: string;
+    visibleLayers?: number[];
+  }
+  export interface BasemapOptions {
+    id?: string;
+    layers: BasemapLayer[];
+    thumbnailUrl?: string;
+    title?: string;
+  }
+  export interface BasemapToggleOptions {
+    basemap?: string;
+    basemaps?: any;
+    map: Map;
+    theme?: string;
+    visible?: boolean;
+  }
+  export interface BookmarksOptions {
+    bookmarks?: BookmarkItem[];
+    editable?: boolean;
+    map: Map;
+  }
+  export interface CircleOptions1 {
+    geodesic ?: boolean;
+    numberOfPoints?: number;
+    radius?: number;
+    radiusUnit?: Units;
+  }
+  export interface CircleOptions2 {
+    center: any;
+    geodesic?: boolean;
+    numberOfPoints?: number;
+    radius?: number;
+    radiusUnit?: Units;
+  }
+  export interface CreateBuffersOptions {
+    analysisGpServer?: string;
+    bufferDistance?: number[];
+    inputLayer: FeatureLayer;
+    map?: Map;
+    outputLayerName?: string;
+    portalUrl?: string;
+    returnFeatureCollection?: boolean;
+    showChooseExtent?: boolean;
+    showCredits?: string;
+    showHelp?: boolean;
+    showSelectFolder?: boolean;
+  }
+  export interface CreateDriveTimeAreasOptions {
+    analysisGpServer?: string;
+    breakUnits?: string;
+    breakValues?: number[];
+    inputLayer: FeatureLayer;
+    inputType?: string;
+    map?: Map;
+    outputLayerName?: string;
+    overlapPolicy?: string;
+    portalUrl?: string;
+    returnFeatureCollection?: boolean;
+    showChooseExtent?: boolean;
+    showCredits?: boolean;
+    showHelp?: boolean;
+    showSelectFolder?: boolean;
+  }
+  export interface CutOptions {
+    addedGraphics?: Graphic[];
+    featureLayer?: FeatureLayer;
+    postUpdatedGraphics?: Graphic[];
+    preUpdatedGraphics?: Graphic[];
+  }
+  export interface DeleteOptions {
+    deletedGraphics?: Graphic[];
+    featureLayer?: FeatureLayer;
+  }
+  export interface DirectionsOptions {
+    alphabet?: any;
+    canModifyStops?: boolean;
+    centerAtSegmentStart?: boolean;
+    dragging?: boolean;
+    focusOnNewStop?: boolean;
+    fromSymbol?: PictureMarkerSymbol;
+    fromSymbolDrag?: PictureMarkerSymbol;
+    geocoderOptions?: any;
+    locatorUrl?: string;
+    map?: Map;
+    routeParams?: RouteParameters;
+    routeSymbol?: SimpleLineSymbol;
+    routeTaskUrl?: string;
+    segmentInfoTemplate?: InfoTemplate;
+    segmentSymbol?: SimpleLineSymbol;
+    showPrintPage?: boolean;
+    showReverseStopsButton?: boolean;
+    showSegmentHighlight?: boolean;
+    showSegmentPopup?: boolean;
+    stops?: any;
+    stopsInfoTemplate?: InfoTemplate;
+    stopSymbol?: PictureMarkerSymbol;
+    stopSymbolDrag?: PictureMarkerSymbol;
+    textSymbolColor?: any;
+    textSymbolFont?: Font;
+    textSymbolOffset?: any;
+    theme?: string;
+    toSymbol?: PictureMarkerSymbol;
+    toSymbolDrag?: PictureMarkerSymbol;
+  }
+  export interface DissolveBoundariesOptions {
+    analysisGpServer?: string;
+    dissolveFields?: string[];
+    inputLayer: FeatureLayer;
+    map?: Map;
+    outputLayerName?: string;
+    portalUrl?: string;
+    returnFeatureCollection?: boolean;
+    showChooseExtent?: boolean;
+    showCredits?: boolean;
+    showHelp?: boolean;
+    showSelectFolder?: boolean;
+    summaryFields?: string[];
+  }
+  export interface DrawOptions {
+    drawTime?: number;
+    showTooltips?: boolean;
+    tolerance?: number;
+    tooltipOffset?: number;
+  }
+  export interface DriveBufferOptions {
+    radius: number[];
+    units: string;
+  }
+  export interface EditOptions {
+    allowAddVertices?: boolean;
+    allowDeletevertices?: boolean;
+    ghostLineSymbol?: LineSymbol;
+    ghostVertexSymbol?: MarkerSymbol;
+    textSymbolEditorHolder?: any;
+    uniformScaling?: boolean;
+    vertexSymbol?: MarkerSymbol;
+  }
+  export interface EditorOptions {
+    settings?: any;
+  }
+  export interface EnrichLayerOptions {
+    analysisGpServer?: string;
+    distance?: number;
+    inputLayer: FeatureLayer;
+    map?: Map;
+    outputLayerName?: string;
+    portalUrl?: string;
+    returnFeatureCollection?: boolean;
+    showChooseExtent?: boolean;
+    showCredits?: boolean;
+    showHelp?: boolean;
+    showSelectFolder?: boolean;
+    showTrafficWidget?: boolean;
+  }
+  export interface ExtractDataOptions {
+    analysisGpServer?: string;
+    clip?: boolean;
+    dataFormat?: string;
+    featureLayers: FeatureLayer[];
+    inputLayers?: FeatureLayer[];
+    map?: Map;
+    outputLayerName?: string;
+    portalUrl?: string;
+    returnFeatureCollection?: boolean;
+    showChooseExtent?: boolean;
+    showCredits?: boolean;
+    showHelp?: boolean;
+    showSelectFolder?: boolean;
+  }
+  export interface FeatureLayerOptions {
+    autoGeneralize?: boolean;
+    className?: string;
+    displayOnPan?: boolean;
+    editSummaryCallback?: Function;
+    gdbVersion?: string;
+    id?: string;
+    infoTemplate?: InfoTemplate;
+    maxAllowableOffset?: number;
+    mode?: number;
+    opacity?: number;
+    orderByFields?: string[];
+    outFields?: string[];
+    refreshInterval?: number;
+    resourceInfo?: any;
+    showAttribution?: boolean;
+    tileHeight?: number;
+    tileWidth?: number;
+    trackIdField?: string;
+    useMapTime?: boolean;
+    visible?: boolean;
+  }
+  export interface FindHotSpotsOptions {
+    aggregationPolygonLayers: FeatureLayer[];
+    analysisField?: string;
+    analysisGpServer?: string;
+    analysisLayer: FeatureLayer;
+    boundingPolygonLayers: FeatureLayer[];
+    isProcessInfo?: boolean;
+    map?: Map;
+    outputLayerName?: string;
+    portalUrl?: string;
+    returnFeatureCollection?: boolean;
+    showChooseExtent?: boolean;
+    showCredits?: boolean;
+    showHelp?: boolean;
+    showSelectFolder?: boolean;
+  }
+  export interface FindNearestOptions {
+    analysisGpServer?: string;
+    analysisLayer: FeatureLayer;
+    map?: Map;
+    maxCount?: number;
+    nearLayer: FeatureLayer;
+    nearLayers: FeatureLayer[];
+    outputLayerName?: string;
+    portalUrl?: string;
+    returnFeatureCollection?: boolean;
+    searchCutoff?: number;
+    searchCutoffUnits?: string;
+    showChooseExtent?: boolean;
+    showCredits?: boolean;
+    showHelp?: boolean;
+    showSelectFolder?: boolean;
+  }
+  export interface FindTaskOptions {
+    gdbVersion?: string;
+  }
+  export interface GalleryOptions {
+    items: any[];
+    showTitle?: boolean;
+    thumbnailStyle?: string;
+  }
+  export interface GaugeOptions {
+    caption?: string;
+    color?: string;
+    dataField?: string;
+    dataFormat?: string;
+    dataLabelField?: string;
+    fromWebmap?: boolean;
+    layer?: GraphicsLayer;
+    maxDataValue?: number;
+    noDataLabel?: string;
+    numberFormat?: any;
+    title?: string;
+    unitLabel?: string;
+  }
+  export interface GenerateRendererTaskOptions {
+    checkValueRange?: boolean;
+    gdbVersion?: string;
+  }
+  export interface GeoRSSLayerOptions {
+    outSpatialReference?: SpatialReference;
+    pointSymbol?: Symbol;
+    polygonSymbol?: Symbol;
+    polylineSymbol?: Symbol;
+    template?: InfoTemplate;
+  }
+  export interface GeocoderOptions {
+    arcgisGeocoder?: any;
+    autoComplete?: boolean;
+    autoNavigate?: boolean;
+    geocoderMenu?: boolean;
+    geocoders?: any[];
+    map: Map;
+    maxLocations?: number;
+    minCharacters?: number;
+    searchDelay?: number;
+    showResults?: boolean;
+    theme?: string;
+    value?: string;
+    zoomScale?: number;
+  }
+  export interface GraphicsLayerOptions {
+    className?: string;
+    dataAttributes?: any;
+    displayOnPan?: boolean;
+    id?: string;
+    opacity?: number;
+    refreshInterval?: number;
+    styling?: boolean;
+    visible?: boolean;
+  }
+  export interface Handle {
+    remove(): void;
+  }
+  export interface HistogramTimeSliderOptions {
+    color?: string;
+    dateFormat?: string;
+    layers?: Layer[];
+    mode?: string;
+    timeInterval?: string;
+  }
+  export interface HomeButtonOptions {
+    extent?: Extent;
+    map: Map;
+    theme?: string;
+    visible?: boolean;
+  }
+  export interface IdentifyTaskOptions {
+    gdbVersion?: string;
+  }
+  export interface KMLLayerOptions {
+    className?: string;
+    outSR?: SpatialReference;
+    refreshInterval?: number;
+  }
+  export interface LayerOptions {
+    className?: string;
+    refreshInterval?: number;
+    showAttribution?: boolean;
+  }
+  export interface LayerSwipeOptions {
+    clip?: number;
+    enabled?: boolean;
+    layers: Layer[];
+    left?: number;
+    map: Map;
+    theme?: string;
+    top?: number;
+    type?: string;
+  }
+  export interface LegendOptions {
+    arrangement?: number;
+    autoUpdate?: boolean;
+    layerInfos?: any[];
+    map: Map;
+    respectCurrentMapScale?: boolean;
+  }
+  export interface LocateButtonOptions {
+    centerAt?: boolean;
+    geolocationOptions?: any;
+    graphicsLayer?: GraphicsLayer;
+    highlightLocation?: boolean;
+    infoTemplate?: InfoTemplate;
+    map: Map;
+    scale?: number;
+    setScale?: boolean;
+    symbol?: Symbol;
+    theme?: string;
+    useTracking?: boolean;
+    visible?: boolean;
+  }
+  export interface MapImageOptions {
+    extent?: Extent;
+    href?: string;
+  }
+  export interface MapOptions {
+    attributionWidth?: number;
+    autoResize?: boolean;
+    basemap?: string;
+    center?: any;
+    displayGraphicsOnPan?: boolean;
+    extent?: Extent;
+    fadeOnZoom?: boolean;
+    fitExtent?: boolean;
+    force3DTransforms?: boolean;
+    infoWindow?: InfoWindowBase;
+    lods?: LOD[];
+    logo?: boolean;
+    maxScale?: number;
+    maxZoom?: number;
+    minScale?: number;
+    minZoom?: number;
+    nav?: boolean;
+    navigationMode?: string;
+    optimizePanAnimation?: boolean;
+    resizeDelay?: number;
+    scale?: number;
+    showAttribution?: boolean;
+    showInfoWindowOnClick?: boolean;
+    slider?: boolean;
+    sliderLabels?: string[];
+    sliderOrientation?: string;
+    sliderPosition?: string;
+    sliderStyle?: string;
+    wrapAround180?: boolean;
+    zoom?: number;
+  }
+  export interface MeasurementOptions {
+    defaultAreaUnit?: Units;
+    defaultLengthUnit?: Units;
+    lineSymbol?: SimpleLineSymbol;
+    map: Map;
+    pointSymbol?: MarkerSymbol;
+  }
+  export interface MergeLayersOptions {
+    analysisGpServer?: string;
+    inputLayer: FeatureLayer;
+    map?: Map;
+    mergeLayers: FeatureLayer[];
+    mergingAttributes?: string[];
+    outputLayerName?: string;
+    portalUrl?: string;
+    returnFeatureCollection?: boolean;
+    showChooseExtent?: boolean;
+    showCredits?: boolean;
+    showHelp?: boolean;
+    showSelectFolder?: boolean;
+  }
   export interface NAOutputLine {
     NONE: any;
     STRAIGHT: any;
@@ -27,12 +543,229 @@ declare module "esri" {
     AT_DEAD_ENDS_ONLY: any;
     NO_BACKTRACK: any;
   }
-  export interface AGSMouseEvent extends MouseEvent {
-    mapPoint: Point;
-    screenPoint: ScreenPoint;
+  export interface OpenStreetMapLayerOptions {
+    displayLevels?: number[];
+    id?: string;
+    opacity?: number;
+    resampling?: boolean;
+    resamplingTolerance?: number;
+    tileServers?: string[];
+    visible?: boolean;
   }
-  export interface Handle {
-    remove(): void;
+  export interface OperationBaseOptions {
+    label?: string;
+    type?: string;
+  }
+  export interface OverlayLayersOptions {
+    analysisGpServer?: string;
+    inputLayer: FeatureLayer;
+    map?: Map;
+    outputLayerName?: string;
+    overlayLayer: FeatureLayer[];
+    overlayType?: string;
+    portalUrl?: string;
+    returnFeatureCollection?: boolean;
+    showChooseExtent?: boolean;
+    showCredits?: boolean;
+    showHelp?: boolean;
+    showSelectFolder?: boolean;
+    snapToInput?: boolean;
+    tolerance?: number;
+  }
+  export interface OverviewMapOptions {
+    attachTo?: string;
+    baseLayer?: Layer;
+    color?: string;
+    expandFactor?: number;
+    height?: number;
+    id?: string;
+    map: Map;
+    maximizeButton?: boolean;
+    opacity?: number;
+    visible?: boolean;
+    width?: number;
+  }
+  export interface PopupMobileOptions {
+    fillSymbol?: FillSymbol;
+    highlight?: boolean;
+    lineSymbol?: LineSymbol;
+    marginLeft?: number;
+    marginTop?: number;
+    markerSymbol?: MarkerSymbol;
+    offsetX?: number;
+    offsetY?: number;
+    zoomFactor?: number;
+  }
+  export interface PopupOptions {
+    anchor?: string;
+    fillSymbol?: FillSymbol;
+    highlight?: boolean;
+    keepHighlightOnHide?: boolean;
+    lineSymbol?: LineSymbol;
+    marginLeft?: number;
+    marginTop?: number;
+    markerSymbol?: MarkerSymbol;
+    offsetX?: number;
+    offsetY?: number;
+    pagingControls?: boolean;
+    pagingInfo?: boolean;
+    popupWindow?: boolean;
+    titleInBody?: boolean;
+    zoomFactor?: number;
+  }
+  export interface PopupTemplateOptions {
+    utcOffset?: number;
+  }
+  export interface PrintOptions {
+    async?: boolean;
+    map?: Map;
+    templates?: PrintTemplate[];
+    url?: string;
+  }
+  export interface PrintTaskOptions {
+    async?: boolean;
+  }
+  export interface QueryTaskOptions {
+    gdbVersion?: string;
+  }
+  export interface RingBufferOptions {
+    radii: number[];
+    units: string;
+  }
+  export interface ScaleDependentRendererOptions {
+    rendererInfos?: any[];
+  }
+  export interface ScalebarOptions {
+    attachTo?: string;
+    map: Map;
+    scalebarStyle?: string;
+    scalebarUnit?: string;
+  }
+  export interface SnappingManagerOptions {
+    alwaysSnap?: boolean;
+    layerInfos?: any[];
+    map: Map;
+    snapKey?: any;
+    snapPointSymbol?: SimpleMarkerSymbol;
+    tolerance?: number;
+  }
+  export interface StreamLayerOptions {
+    className?: string;
+    purgeOptions?: any;
+    refreshInterval?: number;
+    socketUrl?: string;
+  }
+  export interface SummarizeNearbyOptions {
+    analysisGpServer?: string;
+    distance?: number[];
+    groupByField?: string;
+    map?: Map;
+    nearType?: string;
+    outputLayerName?: string;
+    portalUrl?: string;
+    returnFeatureCollection?: boolean;
+    shapeUnits?: string;
+    showChooseExtent?: boolean;
+    showCredits?: boolean;
+    showHelp?: boolean;
+    showSelectFolder?: boolean;
+    summaryFields?: string[];
+    summaryLayer?: FeatureLayer;
+    summaryLayers: FeatureLayer[];
+    sumNearbyLayer: FeatureLayer;
+    sumShape?: boolean;
+    units?: string;
+  }
+  export interface SummarizeWithinOptions {
+    analysisGpServer?: string;
+    groupByField?: string;
+    map?: Map;
+    outputLayerName?: string;
+    portalUrl?: string;
+    returnFeatureCollection?: boolean;
+    showChooseExtent?: boolean;
+    showCredits?: boolean;
+    showHelp?: boolean;
+    showSelectFolder?: boolean;
+    summaryFields?: string;
+    summaryLayer?: FeatureLayer;
+    summaryLayers: FeatureLayer[];
+    sumWithinLayer: FeatureLayer;
+  }
+  export interface TemplatePickerOptions {
+    columns?: number;
+    emptyMessage?: string;
+    featureLayers?: FeatureLayer[];
+    grouping?: boolean;
+    items?: any[];
+    maxLabelLength?: number;
+    rows?: number;
+    showTooltip?: boolean;
+    style?: string;
+    useLegend?: boolean;
+  }
+  export interface TimeSliderOptions {
+    excludeDataAtLeadingThumb?: boolean;
+    excludeDataAtTrailingThumb?: boolean;
+  }
+  export interface UndoManagerOptions {
+    maxOperations?: number;
+  }
+  export interface UnionOptions {
+    deletedGraphics?: Graphic[];
+    featureLayer?: FeatureLayer;
+    postUpdatedGraphics?: Graphic[];
+    preUpdatedGraphics?: Graphic[];
+  }
+  export interface UpdateOptions {
+    featureLayer?: FeatureLayer;
+    postUpdatedGraphics?: Graphic[];
+    preUpdatedGraphics?: Graphic[];
+  }
+  export interface VEGeocoderOptions {
+    bingMapsKey?: string;
+    culture?: string;
+  }
+  export interface VETiledLayerOptions {
+    bingMapsKey?: string;
+    className?: string;
+    culture?: string;
+    mapStyle?: string;
+    refreshInterval?: number;
+  }
+  export interface WMSLayerOptions {
+    format?: string;
+    resourceInfo?: any;
+    transparent?: boolean;
+    visibleLayers?: string[];
+  }
+  export interface WMTSLayerInfoOptions {
+    description?: string;
+    format?: string;
+    fullExtent?: Extent;
+    identifier?: string;
+    initialExtent?: Extent;
+    style?: string;
+    tileInfo?: TileInfo;
+    tileMatrixSet?: string;
+    title?: string;
+  }
+  export interface WMTSLayerOptions {
+    layerInfo?: WMTSLayerInfo;
+    resampling?: boolean;
+    resamplingTolerance?: number;
+    resourceInfo?: any;
+    serviceMode?: string;
+  }
+  export interface WebTiledLayerOptions {
+    copyright?: string;
+    fullExtent?: Extent;
+    initialExtent?: Extent;
+    resampling?: boolean;
+    resamplingTolerance?: number;
+    subDomains?: string[];
+    tileInfo?: TileInfo;
+    tileServers?: string[];
   }
 }
 
@@ -116,10 +849,12 @@ declare module "esri/InfoWindowBase" {
 }
 
 declare module "esri/OperationBase" {
+  import esri = require("esri");
+
   class OperationBase {
     label: string;
     type: string;
-    constructor(params: any);
+    constructor(params: esri.OperationBaseOptions);
     performRedo(): void;
     performUndo(): void;
   }
@@ -139,10 +874,11 @@ declare module "esri/ServerInfo" {
 }
 
 declare module "esri/SnappingManager" {
+  import esri = require("esri");
   import Point = require("esri/geometry/Point");
 
   class SnappingManager {
-    constructor(options?: any);
+    constructor(options?: esri.SnappingManagerOptions);
     destroy(): void;
     getSnappingPoint(screenPoint: Point): any;
     setLayerInfos(setLayerInfos: any[]): void;
@@ -357,8 +1093,8 @@ declare module "esri/dijit/AttributeInspector" {
     static STRING_FIELD_OPTION_RICHTEXT: any;
     static STRING_FIELD_OPTION_TEXTAREA: any;
     static STRING_FIELD_OPTION_TEXTBOX: any;
-    constructor(params: any, srcNodeRef: HTMLElement);
-    constructor(params: any, srcNodeRef: string);
+    constructor(params: esri.AttributeInspectorOptions, srcNodeRef: HTMLElement);
+    constructor(params: esri.AttributeInspectorOptions, srcNodeRef: string);
     destroy(): void;
     first(): void;
     last(): void;
@@ -374,6 +1110,7 @@ declare module "esri/dijit/AttributeInspector" {
 }
 
 declare module "esri/dijit/Attribution" {
+  import esri = require("esri");
   import Map = require("esri/map");
 
   class Attribution {
@@ -381,21 +1118,22 @@ declare module "esri/dijit/Attribution" {
     itemNodes: any;
     listNode: HTMLSpanElement;
     map: Map;
-    constructor(options: any, srcNodeRef: HTMLElement);
-    constructor(options: any, srcNodeRef: string);
+    constructor(options: esri.AttributionOptions, srcNodeRef: HTMLElement);
+    constructor(options: esri.AttributionOptions, srcNodeRef: string);
     destroy(): void;
   }
   export = Attribution;
 }
 
 declare module "esri/dijit/Basemap" {
+  import esri = require("esri");
   import BasemapLayer = require("esri/dijit/BasemapLayer");
 
   class Basemap {
     id: string;
     thumbnailUrl: string;
     title: string;
-    constructor(params: any);
+    constructor(params: esri.BasemapOptions);
     getLayers(): BasemapLayer[];
   }
   export = Basemap;
@@ -409,8 +1147,8 @@ declare module "esri/dijit/BasemapGallery" {
     basemaps: Basemap[];
     loaded: boolean;
     portalUrl: string;
-    constructor(params: any, srcNodeRef?: HTMLElement);
-    constructor(params: any, srcNodeRef?: string);
+    constructor(params: esri.BasemapGalleryOptions, srcNodeRef?: HTMLElement);
+    constructor(params: esri.BasemapGalleryOptions, srcNodeRef?: string);
     add(basemap: Basemap): boolean;
     destroy(): void;
     get(id: string): Basemap;
@@ -429,6 +1167,7 @@ declare module "esri/dijit/BasemapGallery" {
 }
 
 declare module "esri/dijit/BasemapLayer" {
+  import esri = require("esri");
   import Extent = require("esri/geometry/Extent");
   import TileInfo = require("esri/layers/TileInfo");
 
@@ -440,7 +1179,7 @@ declare module "esri/dijit/BasemapLayer" {
     tileInfo: TileInfo;
     tileServer: string[];
     type: string;
-    constructor(params?: any);
+    constructor(params: esri.BasemapLayerOptions);
   }
   export = BasemapLayer;
 }
@@ -456,8 +1195,8 @@ declare module "esri/dijit/BasemapToggle" {
     map: Map;
     theme: string;
     visible: boolean;
-    constructor(params: any, srcNodeRef: HTMLElement);
-    constructor(params: any, srcNodeRef: string);
+    constructor(params: esri.BasemapToggleOptions, srcNodeRef: HTMLElement);
+    constructor(params: esri.BasemapToggleOptions, srcNodeRef: string);
     destroy(): void;
     hide(): void;
     show(): void;
@@ -485,8 +1224,8 @@ declare module "esri/dijit/Bookmarks" {
 
   class Bookmarks {
     bookmarks: BookmarkItem[];
-    constructor(params: any, srcNodeRef: HTMLElement);
-    constructor(params: any, srcNodeRef: string);
+    constructor(params: esri.BookmarksOptions, srcNodeRef: HTMLElement);
+    constructor(params: esri.BookmarksOptions, srcNodeRef: string);
     addBookmark(bookmarkItem: BookmarkItem): void;
     destroy(): void;
     hide(): void;
@@ -519,8 +1258,8 @@ declare module "esri/dijit/Directions" {
     routeTask: RouteTask;
     stops: Graphic[];
     theme: string;
-    constructor(options: any, srcNodeRef: HTMLElement);
-    constructor(options: any, srcNodeRef: string);
+    constructor(options: esri.DirectionsOptions, srcNodeRef: HTMLElement);
+    constructor(options: esri.DirectionsOptions, srcNodeRef: string);
     addStop(stop: Point, index?: number): any;
     addStop(stop: number[], index?: number): any;
     addStop(stop: string, index?: number): any;
@@ -564,8 +1303,8 @@ declare module "esri/dijit/Gallery" {
   import esri = require("esri");
 
   class Gallery {
-    constructor(params: any, srcNodeRef: HTMLElement);
-    constructor(params: any, srcNodeRef: string);
+    constructor(params: esri.GalleryOptions, srcNodeRef: HTMLElement);
+    constructor(params: esri.GalleryOptions, srcNodeRef: string);
     destroy(): void;
     getFocusedItem(): any;
     getSelectedItem(): any;
@@ -582,9 +1321,11 @@ declare module "esri/dijit/Gallery" {
 }
 
 declare module "esri/dijit/Gauge" {
+  import esri = require("esri");
+
   class Gauge {
-    constructor(params: any, srcNodeRef: HTMLElement);
-    constructor(params: any, srcNodeRef: string);
+    constructor(params: esri.GaugeOptions, srcNodeRef: HTMLElement);
+    constructor(params: esri.GaugeOptions, srcNodeRef: string);
     destroy(): void;
     get(name: string): any;
     set(name: string, value: any): Gauge;
@@ -611,8 +1352,8 @@ declare module "esri/dijit/Geocoder" {
     theme: string;
     value: string;
     zoomScale: number;
-    constructor(params: any, srcNodeRef: HTMLElement);
-    constructor(params: any, srcNodeRef: string);
+    constructor(params: esri.GeocoderOptions, srcNodeRef: HTMLElement);
+    constructor(params: esri.GeocoderOptions, srcNodeRef: string);
     blur(): void;
     clear(): void;
     destroy(): void;
@@ -636,8 +1377,8 @@ declare module "esri/dijit/HistogramTimeSlider" {
   import esri = require("esri");
 
   class HistogramTimeSlider {
-    constructor(params: any, srcNodeRef: HTMLElement);
-    constructor(params: any, srcNodeRef: string);
+    constructor(params: esri.HistogramTimeSliderOptions, srcNodeRef: HTMLElement);
+    constructor(params: esri.HistogramTimeSliderOptions, srcNodeRef: string);
     destroy(): void;
     on(type: "time-extent-change", listener: (event: { target: HistogramTimeSlider }) => void): esri.Handle
     on(type: "update", listener: (event: { target: HistogramTimeSlider }) => void): esri.Handle
@@ -657,8 +1398,8 @@ declare module "esri/dijit/HomeButton" {
     map: Map;
     theme: string;
     visible: boolean;
-    constructor(params: any, srcNodeRef: HTMLElement);
-    constructor(params: any, srcNodeRef: string);
+    constructor(params: esri.HomeButtonOptions, srcNodeRef: HTMLElement);
+    constructor(params: esri.HomeButtonOptions, srcNodeRef: string);
     destroy(): void;
     hide(): void;
     home(): void;
@@ -741,8 +1482,8 @@ declare module "esri/dijit/LayerSwipe" {
     theme: string;
     top: number;
     type: string;
-    constructor(params: any, srcNodeRef: HTMLElement);
-    constructor(params: any, srcNodeRef: string);
+    constructor(params: esri.LayerSwipeOptions, srcNodeRef: HTMLElement);
+    constructor(params: esri.LayerSwipeOptions, srcNodeRef: string);
     destroy(): void;
     disable(): void;
     enable(): void;
@@ -756,9 +1497,11 @@ declare module "esri/dijit/LayerSwipe" {
 }
 
 declare module "esri/dijit/Legend" {
+  import esri = require("esri");
+
   class Legend {
-    constructor(params: any, srcNodeRef: HTMLElement);
-    constructor(params: any, srcNodeRef: string);
+    constructor(params: esri.LegendOptions, srcNodeRef: HTMLElement);
+    constructor(params: esri.LegendOptions, srcNodeRef: string);
     destroy(): void;
     refresh(): void;
     startup(): void;
@@ -787,8 +1530,8 @@ declare module "esri/dijit/LocateButton" {
     tracking: boolean;
     useTracking: boolean;
     visible: boolean;
-    constructor(params: any, srcNodeRef: HTMLElement);
-    constructor(params: any, srcNodeRef: string);
+    constructor(params: esri.LocateButtonOptions, srcNodeRef: HTMLElement);
+    constructor(params: esri.LocateButtonOptions, srcNodeRef: string);
     clear(): void;
     destroy(): void;
     hide(): void;
@@ -807,8 +1550,8 @@ declare module "esri/dijit/Measurement" {
   import Geometry = require("esri/geometry/Geometry");
 
   class Measurement {
-    constructor(params: any, srcNodeRef: HTMLElement);
-    constructor(params: any, srcNodeRef: string);
+    constructor(params: esri.MeasurementOptions, srcNodeRef: HTMLElement);
+    constructor(params: esri.MeasurementOptions, srcNodeRef: string);
     clearResult(): void;
     destroy(): void;
     hide(): void;
@@ -824,9 +1567,11 @@ declare module "esri/dijit/Measurement" {
 }
 
 declare module "esri/dijit/OverviewMap" {
+  import esri = require("esri");
+
   class OverviewMap {
-    constructor(params: any, srcNodeRef: HTMLElement);
-    constructor(params: any, srcNodeRef: string);
+    constructor(params: esri.OverviewMapOptions, srcNodeRef: HTMLElement);
+    constructor(params: esri.OverviewMapOptions, srcNodeRef: string);
     destroy(): void;
     hide(): void;
     show(): void;
@@ -851,8 +1596,8 @@ declare module "esri/dijit/Popup" {
     isShowing: boolean;
     selectedIndex: number;
     visibleWhenEmpty: boolean;
-    constructor(options: any, srcNodeRef: HTMLElement);
-    constructor(options: any, srcNodeRef: string);
+    constructor(options: esri.PopupOptions, srcNodeRef: HTMLElement);
+    constructor(options: esri.PopupOptions, srcNodeRef: string);
     clearFeatures(): void;
     destroy(): void;
     getSelectedFeature(): Graphic;
@@ -888,8 +1633,8 @@ declare module "esri/dijit/PopupMobile" {
   import Point = require("esri/geometry/Point");
 
   class PopupMobile extends InfoWindowBase {
-    constructor(options: any, srcNodeRef: HTMLElement);
-    constructor(options: any, srcNodeRef: string);
+    constructor(options: esri.PopupMobileOptions, srcNodeRef: HTMLElement);
+    constructor(options: esri.PopupMobileOptions, srcNodeRef: string);
     clearFeatures(): void;
     destroy(): void;
     getSelectedFeature(): Graphic;
@@ -913,9 +1658,11 @@ declare module "esri/dijit/PopupMobile" {
 }
 
 declare module "esri/dijit/PopupTemplate" {
+  import esri = require("esri");
+
   class PopupTemplate {
     info: any;
-    constructor(popupInfo: any, options?: any);
+    constructor(popupInfo: any, options?: esri.PopupTemplateOptions);
   }
   export = PopupTemplate;
 }
@@ -924,8 +1671,8 @@ declare module "esri/dijit/Print" {
   import esri = require("esri");
 
   class Print {
-    constructor(params: any, srcNodeRef: HTMLElement);
-    constructor(params: any, srcNodeRef: string);
+    constructor(params: esri.PrintOptions, srcNodeRef: HTMLElement);
+    constructor(params: esri.PrintOptions, srcNodeRef: string);
     destroy(): void;
     hide(): void;
     show(): void;
@@ -939,9 +1686,11 @@ declare module "esri/dijit/Print" {
 }
 
 declare module "esri/dijit/Scalebar" {
+  import esri = require("esri");
+
   class Scalebar {
-    constructor(params: any, srcNodeRef?: HTMLElement);
-    constructor(params: any, srcNodeRef?: string);
+    constructor(params: esri.ScalebarOptions, srcNodeRef?: HTMLElement);
+    constructor(params: esri.ScalebarOptions, srcNodeRef?: string);
     destroy(): void;
     hide(): void;
     show(): void;
@@ -959,8 +1708,8 @@ declare module "esri/dijit/TimeSlider" {
     thumbCount: number;
     thumbMovingRate: number;
     timeStops: Date[];
-    constructor(params: any, srcNodeRef: HTMLElement);
-    constructor(params: any, srcNodeRef: string);
+    constructor(params: esri.TimeSliderOptions, srcNodeRef: HTMLElement);
+    constructor(params: esri.TimeSliderOptions, srcNodeRef: string);
     createTimeStopsByCount(timeExtent: TimeExtent, count?: number): void;
     createTimeStopsByTimeInterval(timeExtent: TimeExtent, timeInterval?: number, timeIntervalUnits?: string): void;
     getCurrentTimeExtent(): TimeExtent;
@@ -983,6 +1732,7 @@ declare module "esri/dijit/TimeSlider" {
 }
 
 declare module "esri/dijit/analysis/AggregatePoints" {
+  import esri = require("esri");
   import AnalysisBase = require("esri/dijit/analysis/AnalysisBase");
   import Map = require("esri/map");
   import FeatureLayer = require("esri/layers/FeatureLayer");
@@ -1003,8 +1753,8 @@ declare module "esri/dijit/analysis/AggregatePoints" {
     showHelp: boolean;
     showSelectFolder: boolean;
     summaryFields: string[];
-    constructor(params: any, srcNodeRef: HTMLElement);
-    constructor(params: any, srcNodeRef: string);
+    constructor(params: esri.AggregatePointsOptions, srcNodeRef: HTMLElement);
+    constructor(params: esri.AggregatePointsOptions, srcNodeRef: string);
   }
   export = AggregatePoints;
 }
@@ -1032,6 +1782,7 @@ declare module "esri/dijit/analysis/AnalysisBase" {
 }
 
 declare module "esri/dijit/analysis/CreateBuffers" {
+  import esri = require("esri");
   import AnalysisBase = require("esri/dijit/analysis/AnalysisBase");
   import FeatureLayer = require("esri/layers/FeatureLayer");
   import Map = require("esri/map");
@@ -1048,13 +1799,14 @@ declare module "esri/dijit/analysis/CreateBuffers" {
     showCredits: string;
     showHelp: boolean;
     showSelectFolder: boolean;
-    constructor(params: any, srcNodeRef: HTMLElement);
-    constructor(params: any, srcNodeRef: string);
+    constructor(params: esri.CreateBuffersOptions, srcNodeRef: HTMLElement);
+    constructor(params: esri.CreateBuffersOptions, srcNodeRef: string);
   }
   export = CreateBuffers;
 }
 
 declare module "esri/dijit/analysis/CreateDriveTimeAreas" {
+  import esri = require("esri");
   import AnalysisBase = require("esri/dijit/analysis/AnalysisBase");
   import FeatureLayer = require("esri/layers/FeatureLayer");
   import Map = require("esri/map");
@@ -1074,13 +1826,14 @@ declare module "esri/dijit/analysis/CreateDriveTimeAreas" {
     showCredits: boolean;
     showHelp: boolean;
     showSelectFolder: boolean;
-    constructor(params: any, srcNodeRef: HTMLElement);
-    constructor(params: any, srcNodeRef: string);
+    constructor(params: esri.CreateDriveTimeAreasOptions, srcNodeRef: HTMLElement);
+    constructor(params: esri.CreateDriveTimeAreasOptions, srcNodeRef: string);
   }
   export = CreateDriveTimeAreas;
 }
 
 declare module "esri/dijit/analysis/DissolveBoundaries" {
+  import esri = require("esri");
   import AnalysisBase = require("esri/dijit/analysis/AnalysisBase");
   import FeatureLayer = require("esri/layers/FeatureLayer");
   import Map = require("esri/map");
@@ -1098,13 +1851,14 @@ declare module "esri/dijit/analysis/DissolveBoundaries" {
     showHelp: boolean;
     showSelectFolder: boolean;
     summaryFields: string[];
-    constructor(params: any, srcNodeRef: HTMLElement);
-    constructor(params: any, srcNodeRef: string);
+    constructor(params: esri.DissolveBoundariesOptions, srcNodeRef: HTMLElement);
+    constructor(params: esri.DissolveBoundariesOptions, srcNodeRef: string);
   }
   export = DissolveBoundaries;
 }
 
 declare module "esri/dijit/analysis/EnrichLayer" {
+  import esri = require("esri");
   import AnalysisBase = require("esri/dijit/analysis/AnalysisBase");
   import FeatureLayer = require("esri/layers/FeatureLayer");
   import Map = require("esri/map");
@@ -1122,13 +1876,14 @@ declare module "esri/dijit/analysis/EnrichLayer" {
     showHelp: boolean;
     showSelectFolder: boolean;
     showTrafficWidget: boolean;
-    constructor(params: any, srcNodeRef: HTMLElement);
-    constructor(params: any, srcNodeRef: string);
+    constructor(params: esri.EnrichLayerOptions, srcNodeRef: HTMLElement);
+    constructor(params: esri.EnrichLayerOptions, srcNodeRef: string);
   }
   export = EnrichLayer;
 }
 
 declare module "esri/dijit/analysis/ExtractData" {
+  import esri = require("esri");
   import AnalysisBase = require("esri/dijit/analysis/AnalysisBase");
   import FeatureLayer = require("esri/layers/FeatureLayer");
   import Map = require("esri/map");
@@ -1147,13 +1902,14 @@ declare module "esri/dijit/analysis/ExtractData" {
     showCredits: boolean;
     showHelp: boolean;
     showSelectFolder: boolean;
-    constructor(params: any, srcNodeRef: HTMLElement);
-    constructor(params: any, srcNodeRef: string);
+    constructor(params: esri.ExtractDataOptions, srcNodeRef: HTMLElement);
+    constructor(params: esri.ExtractDataOptions, srcNodeRef: string);
   }
   export = ExtractData;
 }
 
 declare module "esri/dijit/analysis/FindHotSpots" {
+  import esri = require("esri");
   import AnalysisBase = require("esri/dijit/analysis/AnalysisBase");
   import FeatureLayer = require("esri/layers/FeatureLayer");
   import Map = require("esri/map");
@@ -1172,13 +1928,14 @@ declare module "esri/dijit/analysis/FindHotSpots" {
     showCredits: boolean;
     showHelp: boolean;
     showSelectFolder: boolean;
-    constructor(params: any, srcNodeRef: HTMLElement);
-    constructor(params: any, srcNodeRef: string);
+    constructor(params: esri.FindHotSpotsOptions, srcNodeRef: HTMLElement);
+    constructor(params: esri.FindHotSpotsOptions, srcNodeRef: string);
   }
   export = FindHotSpots;
 }
 
 declare module "esri/dijit/analysis/FindNearest" {
+  import esri = require("esri");
   import AnalysisBase = require("esri/dijit/analysis/AnalysisBase");
   import FeatureLayer = require("esri/layers/FeatureLayer");
   import Map = require("esri/map");
@@ -1199,13 +1956,14 @@ declare module "esri/dijit/analysis/FindNearest" {
     showCredits: boolean;
     showHelp: boolean;
     showSelectFolder: boolean;
-    constructor(params: any, srcNodeRef: HTMLElement);
-    constructor(params: any, srcNodeRef: string);
+    constructor(params: esri.FindNearestOptions, srcNodeRef: HTMLElement);
+    constructor(params: esri.FindNearestOptions, srcNodeRef: string);
   }
   export = FindNearest;
 }
 
 declare module "esri/dijit/analysis/MergeLayers" {
+  import esri = require("esri");
   import AnalysisBase = require("esri/dijit/analysis/AnalysisBase");
   import FeatureLayer = require("esri/layers/FeatureLayer");
   import Map = require("esri/map");
@@ -1223,13 +1981,14 @@ declare module "esri/dijit/analysis/MergeLayers" {
     showCredits: boolean;
     showHelp: boolean;
     showSelectFolder: boolean;
-    constructor(params: any, srcNodeRef: HTMLElement);
-    constructor(params: any, srcNodeRef: string);
+    constructor(params: esri.MergeLayersOptions, srcNodeRef: HTMLElement);
+    constructor(params: esri.MergeLayersOptions, srcNodeRef: string);
   }
   export = MergeLayers;
 }
 
 declare module "esri/dijit/analysis/OverlayLayers" {
+  import esri = require("esri");
   import AnalysisBase = require("esri/dijit/analysis/AnalysisBase");
   import FeatureLayer = require("esri/layers/FeatureLayer");
   import Map = require("esri/map");
@@ -1249,13 +2008,14 @@ declare module "esri/dijit/analysis/OverlayLayers" {
     showSelectFolder: boolean;
     snapToInput: boolean;
     tolerance: number;
-    constructor(params: any, srcNodeRef: HTMLElement);
-    constructor(params: any, srcNodeRef: string);
+    constructor(params: esri.OverlayLayersOptions, srcNodeRef: HTMLElement);
+    constructor(params: esri.OverlayLayersOptions, srcNodeRef: string);
   }
   export = OverlayLayers;
 }
 
 declare module "esri/dijit/analysis/SummarizeNearby" {
+  import esri = require("esri");
   import AnalysisBase = require("esri/dijit/analysis/AnalysisBase");
   import Map = require("esri/map");
   import FeatureLayer = require("esri/layers/FeatureLayer");
@@ -1280,13 +2040,14 @@ declare module "esri/dijit/analysis/SummarizeNearby" {
     sumNearbyLayer: FeatureLayer;
     sumShape: boolean;
     units: string;
-    constructor(params: any, srcNodeRef: HTMLElement);
-    constructor(params: any, srcNodeRef: string);
+    constructor(params: esri.SummarizeNearbyOptions, srcNodeRef: HTMLElement);
+    constructor(params: esri.SummarizeNearbyOptions, srcNodeRef: string);
   }
   export = SummarizeNearby;
 }
 
 declare module "esri/dijit/analysis/SummarizeWithin" {
+  import esri = require("esri");
   import AnalysisBase = require("esri/dijit/analysis/AnalysisBase");
   import Map = require("esri/map");
   import FeatureLayer = require("esri/layers/FeatureLayer");
@@ -1306,17 +2067,18 @@ declare module "esri/dijit/analysis/SummarizeWithin" {
     summaryLayer: FeatureLayer;
     summaryLayers: FeatureLayer[];
     sumWithinLayer: FeatureLayer;
-    constructor(params: any, srcNodeRef: HTMLElement);
-    constructor(params: any, srcNodeRef: string);
+    constructor(params: esri.SummarizeWithinOptions, srcNodeRef: HTMLElement);
+    constructor(params: esri.SummarizeWithinOptions, srcNodeRef: string);
   }
   export = SummarizeWithin;
 }
 
 declare module "esri/dijit/editing/Add" {
+  import esri = require("esri");
   import OperationBase = require("esri/OperationBase");
 
   class Add extends OperationBase {
-    constructor(params: any);
+    constructor(params: esri.AddOptions);
     performRedo(): void;
     performUndo(): void;
   }
@@ -1337,10 +2099,11 @@ declare module "esri/dijit/editing/AttachmentEditor" {
 }
 
 declare module "esri/dijit/editing/Cut" {
+  import esri = require("esri");
   import OperationBase = require("esri/OperationBase");
 
   class Cut extends OperationBase {
-    constructor(params: any);
+    constructor(params: esri.CutOptions);
     performRedo(): void;
     performUndo(): void;
   }
@@ -1348,10 +2111,11 @@ declare module "esri/dijit/editing/Cut" {
 }
 
 declare module "esri/dijit/editing/Delete" {
+  import esri = require("esri");
   import OperationBase = require("esri/OperationBase");
 
   class Delete extends OperationBase {
-    constructor(params: any);
+    constructor(params: esri.DeleteOptions);
     performRedo(): void;
     performUndo(): void;
   }
@@ -1359,6 +2123,8 @@ declare module "esri/dijit/editing/Delete" {
 }
 
 declare module "esri/dijit/editing/Editor" {
+  import esri = require("esri");
+
   class Editor {
     static CREATE_TOOL_ARROW: any;
     static CREATE_TOOL_AUTOCOMPLETE: any;
@@ -1370,8 +2136,8 @@ declare module "esri/dijit/editing/Editor" {
     static CREATE_TOOL_POLYLINE: any;
     static CREATE_TOOL_RECTANGLE: any;
     static CREATE_TOOL_TRIANGLE: any;
-    constructor(params: any, srcNodeRef: HTMLElement);
-    constructor(params: any, srcNodeRef: string);
+    constructor(params: esri.EditorOptions, srcNodeRef: HTMLElement);
+    constructor(params: esri.EditorOptions, srcNodeRef: string);
   }
   export = Editor;
 }
@@ -1382,8 +2148,8 @@ declare module "esri/dijit/editing/TemplatePicker" {
   class TemplatePicker {
     grid: any;
     tooltip: HTMLDivElement;
-    constructor(params: any, srcNodeRef: HTMLElement);
-    constructor(params: any, srcNodeRef: string);
+    constructor(params: esri.TemplatePickerOptions, srcNodeRef: HTMLElement);
+    constructor(params: esri.TemplatePickerOptions, srcNodeRef: string);
     attr(name: string, value?: any): void;
     clearSelection(): void;
     destroy(): void;
@@ -1397,10 +2163,11 @@ declare module "esri/dijit/editing/TemplatePicker" {
 }
 
 declare module "esri/dijit/editing/Union" {
+  import esri = require("esri");
   import OperationBase = require("esri/OperationBase");
 
   class Union extends OperationBase {
-    constructor(params: any);
+    constructor(params: esri.UnionOptions);
     performRedo(): void;
     performUndo(): void;
   }
@@ -1408,10 +2175,11 @@ declare module "esri/dijit/editing/Union" {
 }
 
 declare module "esri/dijit/editing/Update" {
+  import esri = require("esri");
   import OperationBase = require("esri/OperationBase");
 
   class Update extends OperationBase {
-    constructor(params: any);
+    constructor(params: esri.UpdateOptions);
     performRedo(): void;
     performUndo(): void;
   }
@@ -1495,6 +2263,7 @@ declare module "esri/domUtils" {
 }
 
 declare module "esri/geometry/Circle" {
+  import esri = require("esri");
   import Polygon = require("esri/geometry/Polygon");
   import SpatialReference = require("esri/SpatialReference");
   import Point = require("esri/geometry/Point");
@@ -1505,9 +2274,9 @@ declare module "esri/geometry/Circle" {
     radiusUnit: string;
     rings: number[][][];
     spatialReference: SpatialReference;
-    constructor(center: Point, options?: any);
-    constructor(center: number[], options?: any);
-    constructor(params: any);
+    constructor(center: Point, options?: esri.CircleOptions1);
+    constructor(center: number[], options?: esri.CircleOptions1);
+    constructor(params: esri.CircleOptions2);
   }
   export = Circle;
 }
@@ -1650,6 +2419,13 @@ declare module "esri/geometry/Polyline" {
 
 declare module "esri/geometry/ScreenPoint" {
   class ScreenPoint {
+    x: number;
+    y: number;
+    constructor(x: number, y: number);
+    constructor(coords: number[]);
+    constructor(json: Object);
+    toJson(): any;
+    update(x: number, y: number): ScreenPoint;
   }
   export = ScreenPoint;
 }
@@ -1839,7 +2615,7 @@ declare module "esri/layers/ArcGISDynamicMapServiceLayer" {
     version: number;
     visibleAtMapScale: boolean;
     visibleLayers: number[];
-    constructor(url: string, options?: any);
+    constructor(url: string, options?: esri.ArcGISDynamicMapServiceLayerOptions);
     createDynamicLayerInfosFromLayerInfos(): DynamicLayerInfo[];
     exportMapImage(imageParameters?: ImageParameters, callback?: Function): void;
     getAttributionData(): any;
@@ -1908,7 +2684,7 @@ declare module "esri/layers/ArcGISImageServiceLayer" {
     renderingRule: RasterFunction;
     timeInfo: TimeInfo;
     version: number;
-    constructor(url: string, options?: any);
+    constructor(url: string, options?: esri.ArcGISImageServiceLayerOptions);
     exportMapImage(imageServiceParameters?: ImageServiceParameters, callback?: Function): void;
     getDefinitionExpression(): string;
     getKeyProperties(): any;
@@ -1957,7 +2733,7 @@ declare module "esri/layers/ArcGISTiledMapServiceLayer" {
     units: string;
     version: number;
     visibleAtMapScale: boolean;
-    constructor(url: string, options?: any);
+    constructor(url: string, options?: esri.ArcGISTiledMapServiceLayerOptions);
     getAttributionData(): any;
     isVisibleAtScale(scale: number): boolean;
     resume(): void;
@@ -2104,8 +2880,8 @@ declare module "esri/layers/FeatureLayer" {
     types: FeatureType[];
     version: number;
     visibleAtMapScale: boolean;
-    constructor(url: string, options?: any);
-    constructor(featureCollectionObject: any, options?: any);
+    constructor(url: string, options?: esri.FeatureLayerOptions);
+    constructor(featureCollectionObject: any, options?: esri.FeatureLayerOptions);
     addAttachment(objectId: number, formNode: HTMLFormElement, callback?: Function, errback?: Function): any;
     applyEdits(adds?: Graphic[], updates?: Graphic[], deletes?: Graphic[], callback?: Function, errback?: Function): any;
     clearSelection(): FeatureLayer;
@@ -2237,7 +3013,7 @@ declare module "esri/layers/GeoRSSLayer" {
     description: string;
     items: Graphic[];
     name: string;
-    constructor(url: string, options?: any);
+    constructor(url: string, options?: esri.GeoRSSLayerOptions);
     getFeatureLayers(): FeatureLayer[];
     on(type: "refresh", listener: (event: { target: GeoRSSLayer }) => void): esri.Handle
     on(type: string, listener: (event: any) => void): esri.Handle
@@ -2259,7 +3035,7 @@ declare module "esri/layers/GraphicsLayer" {
     styling: boolean;
     surfaceType: string;
     constructor();
-    constructor(options?: any);
+    constructor(options?: esri.GraphicsLayerOptions);
     add(graphic: Graphic): Graphic;
     clear(): void;
     disableMouseEvents(): void;
@@ -2405,7 +3181,7 @@ declare module "esri/layers/KMLLayer" {
     featureInfos: any[];
     folders: KMLFolder[];
     linkInfo: any;
-    constructor(id: string, url: string, options?: any);
+    constructor(id: string, url: string, options?: esri.KMLLayerOptions);
     getFeature(featureInfo: any): any;
     getLayers(): Layer[];
     setFolderVisibility(folder: KMLFolder, isVisible: boolean): void;
@@ -2517,6 +3293,7 @@ declare module "esri/layers/LayerTimeOptions" {
 }
 
 declare module "esri/layers/MapImage" {
+  import esri = require("esri");
   import Extent = require("esri/geometry/Extent");
 
   class MapImage {
@@ -2525,7 +3302,7 @@ declare module "esri/layers/MapImage" {
     href: string;
     scale: number;
     width: number;
-    constructor(options: any);
+    constructor(options: esri.MapImageOptions);
   }
   export = MapImage;
 }
@@ -2579,11 +3356,12 @@ declare module "esri/layers/MosaicRule" {
 }
 
 declare module "esri/layers/OpenStreetMapLayer" {
+  import esri = require("esri");
   import TiledMapServiceLayer = require("esri/layers/TiledMapServiceLayer");
 
   class OpenStreetMapLayer extends TiledMapServiceLayer {
     copyright: string;
-    constructor(options?: any);
+    constructor(options?: esri.OpenStreetMapLayerOptions);
   }
   export = OpenStreetMapLayer;
 }
@@ -2643,8 +3421,8 @@ declare module "esri/layers/StreamLayer" {
   class StreamLayer extends FeatureLayer {
     socket: any;
     socketUrl: string;
-    constructor(url: string, options?: any);
-    constructor(featureCollectionObject: any, options?: any);
+    constructor(url: string, options?: esri.StreamLayerOptions);
+    constructor(featureCollectionObject: any, options?: esri.StreamLayerOptions);
     connect(callback?: Function): void;
     disconnect(callback?: Function): void;
     on(type: "connect", listener: (event: { target: StreamLayer }) => void): esri.Handle
@@ -2743,6 +3521,7 @@ declare module "esri/layers/TimeReference" {
 }
 
 declare module "esri/layers/WMSLayer" {
+  import esri = require("esri");
   import DynamicMapServiceLayer = require("esri/layers/DynamicMapServiceLayer");
   import Extent = require("esri/geometry/Extent");
   import WMSLayerInfo = require("esri/layers/WMSLayerInfo");
@@ -2760,7 +3539,7 @@ declare module "esri/layers/WMSLayer" {
     spatialReference: SpatialReference;
     title: string;
     version: string;
-    constructor(url: string, options?: any);
+    constructor(url: string, options?: esri.WMSLayerOptions);
     setImageFormat(format: string): void;
     setImageTransparency(transparency: boolean): void;
     setVisibleLayers(layers: string[]): void;
@@ -2782,6 +3561,7 @@ declare module "esri/layers/WMSLayerInfo" {
 }
 
 declare module "esri/layers/WMTSLayer" {
+  import esri = require("esri");
   import TiledMapServiceLayer = require("esri/layers/TiledMapServiceLayer");
   import Extent = require("esri/geometry/Extent");
   import SpatialReference = require("esri/SpatialReference");
@@ -2800,20 +3580,23 @@ declare module "esri/layers/WMTSLayer" {
     tileInfo: TileInfo;
     title: string;
     version: string;
-    constructor(url: string, options?: any);
+    constructor(url: string, options?: esri.WMTSLayerOptions);
     setActiveLayer(WMTSLayerInfo: WMTSLayerInfo): void;
   }
   export = WMTSLayer;
 }
 
 declare module "esri/layers/WMTSLayerInfo" {
+  import esri = require("esri");
+
   class WMTSLayerInfo {
-    constructor(options: any);
+    constructor(options: esri.WMTSLayerInfoOptions);
   }
   export = WMTSLayerInfo;
 }
 
 declare module "esri/layers/WebTiledLayer" {
+  import esri = require("esri");
   import TiledMapServiceLayer = require("esri/layers/TiledMapServiceLayer");
   import Extent = require("esri/geometry/Extent");
   import SpatialReference = require("esri/SpatialReference");
@@ -2826,7 +3609,7 @@ declare module "esri/layers/WebTiledLayer" {
     spatialReference: SpatialReference;
     tileInfo: TileInfo;
     tileServers: string[];
-    constructor(urlTemplate: string, options: any);
+    constructor(urlTemplate: string, options?: esri.WebTiledLayerOptions);
   }
   export = WebTiledLayer;
 }
@@ -2851,7 +3634,7 @@ declare module "esri/layers/layer" {
     url: string;
     visible: boolean;
     visibleAtMapScale: boolean;
-    constructor(options?: any);
+    constructor(options?: esri.LayerOptions);
     attr(name: string, value: string): Layer;
     getAttributionData(): any;
     getMap(): Map;
@@ -2931,7 +3714,7 @@ declare module "esri/map" {
     timeExtent: TimeExtent;
     visible: boolean;
     width: number;
-    constructor(divId: string, options?: any);
+    constructor(divId: string, options?: esri.MapOptions);
     addLayer(layer: Layer, index?: number): Layer;
     addLayers(layers: Layer[]): void;
     attr(name: string, value: string): Map;
@@ -3108,13 +3891,14 @@ declare module "esri/renderers/Renderer" {
 }
 
 declare module "esri/renderers/ScaleDependentRenderer" {
+  import esri = require("esri");
   import Renderer = require("esri/renderers/Renderer");
   import Graphic = require("esri/graphic");
 
   class ScaleDependentRenderer extends Renderer {
     rangeType: string;
     rendererInfos: any;
-    constructor(params: any);
+    constructor(params: esri.ScaleDependentRendererOptions);
     addRendererInfo(info: any): ScaleDependentRenderer;
     getRendererInfo(graphic: Graphic): any;
     getRendererInfoByScale(scale: number): any;
@@ -3797,7 +4581,7 @@ declare module "esri/tasks/FindTask" {
 
   class FindTask {
     url: string;
-    constructor(url: string, options?: any);
+    constructor(url: string, options?: esri.FindTaskOptions);
     execute(findParameters: FindParameters, callback?: Function, errback?: Function): any;
     on(type: "complete", listener: (event: { results: FindResult[]; target: FindTask }) => void): esri.Handle
     on(type: "error", listener: (event: { error: Error; target: FindTask }) => void): esri.Handle
@@ -3855,7 +4639,7 @@ declare module "esri/tasks/GenerateRendererTask" {
   import Renderer = require("esri/renderers/Renderer");
 
   class GenerateRendererTask {
-    constructor(url: string, options?: any);
+    constructor(url: string, options?: esri.GenerateRendererTaskOptions);
     execute(generateRendererParameters: GenerateRendererParameters, callback?: Function, errback?: Function): any;
     on(type: "complete", listener: (event: { renderer: Renderer; target: GenerateRendererTask }) => void): esri.Handle
     on(type: "error", listener: (event: { error: Error; target: GenerateRendererTask }) => void): esri.Handle
@@ -4035,7 +4819,7 @@ declare module "esri/tasks/IdentifyTask" {
 
   class IdentifyTask {
     url: string;
-    constructor(url: string, options?: any);
+    constructor(url: string, options?: esri.IdentifyTaskOptions);
     execute(identifyParameters: IdentifyParameters, callback?: Function, errback?: Function): any;
     on(type: "complete", listener: (event: { results: IdentifyResult[]; target: IdentifyTask }) => void): esri.Handle
     on(type: "error", listener: (event: { error: Error; target: IdentifyTask }) => void): esri.Handle
@@ -4233,7 +5017,7 @@ declare module "esri/tasks/PrintTask" {
 
   class PrintTask {
     url: string;
-    constructor(url: string, params?: any);
+    constructor(url: string, params?: esri.PrintTaskOptions);
     execute(printParameters: PrintParameters, callback?: Function, errback?: Function): any;
     on(type: "complete", listener: (event: { url: string; target: PrintTask }) => void): esri.Handle
     on(type: "error", listener: (event: { error: Error; target: PrintTask }) => void): esri.Handle
@@ -4278,7 +5062,7 @@ declare module "esri/tasks/QueryTask" {
 
   class QueryTask {
     url: string;
-    constructor(url: string, options?: any);
+    constructor(url: string, options?: esri.QueryTaskOptions);
     execute(parameters: Query, callback?: Function, errback?: Function): any;
     executeForCount(query: Query, callback?: Function, errback?: Function): any;
     executeForIds(parameters: Query, callback?: Function, errback?: Function): any;
@@ -4536,10 +5320,12 @@ declare module "esri/tasks/geoenrichment/AddressStudyArea" {
 }
 
 declare module "esri/tasks/geoenrichment/DriveBuffer" {
+  import esri = require("esri");
+
   class DriveBuffer {
     radius: number[];
-    units: any;
-    constructor(params: any);
+    units: string;
+    constructor(params: esri.DriveBufferOptions);
   }
   export = DriveBuffer;
 }
@@ -4608,10 +5394,12 @@ declare module "esri/tasks/geoenrichment/IntersectingGeographies" {
 }
 
 declare module "esri/tasks/geoenrichment/RingBuffer" {
+  import esri = require("esri");
+
   class RingBuffer {
     radii: number[];
     units: string;
-    constructor(params: any);
+    constructor(params: esri.RingBufferOptions);
   }
   export = RingBuffer;
 }
@@ -4734,7 +5522,7 @@ declare module "esri/toolbars/draw" {
     lineSymbol: SimpleLineSymbol;
     markerSymbol: SimpleMarkerSymbol;
     respectDrawingVertexOrder: boolean;
-    constructor(map: Map, options: any);
+    constructor(map: Map, options?: esri.DrawOptions);
     activate(geometryType: string, options?: any): void;
     deactivate(): void;
     finishDrawing(): void;
@@ -4760,7 +5548,7 @@ declare module "esri/toolbars/edit" {
     static MOVE: any;
     static ROTATE: any;
     static SCALE: any;
-    constructor(map: Map, options?: any);
+    constructor(map: Map, options?: esri.EditOptions);
     activate(tool: string, graphic: Graphic, options?: any): void;
     deactivate(): void;
     getCurrentState(): any;
@@ -4827,7 +5615,7 @@ declare module "esri/undoManager" {
     canUndo: boolean;
     length: number;
     position: number;
-    constructor(options: any);
+    constructor(options?: esri.UndoManagerOptions);
     add(operation: OperationBase): void;
     clearRedo(): void;
     clearUndo(): void;
@@ -4925,7 +5713,7 @@ declare module "esri/virtualearth/VEGeocoder" {
 
   class VEGeocoder {
     culture: string;
-    constructor(options: any);
+    constructor(options: esri.VEGeocoderOptions);
     addressToLocations(query: string, callback?: Function, errback?: Function): any;
     setCulture(culture: string): void;
     on(type: "address-to-locations-complete", listener: (event: { geocodeResults: VEGeocodeResult[]; target: VEGeocoder }) => void): esri.Handle
@@ -4946,7 +5734,7 @@ declare module "esri/virtualearth/VETiledLayer" {
     copyright: string;
     culture: string;
     mapStyle: string;
-    constructor(options: any);
+    constructor(options: esri.VETiledLayerOptions);
     setCulture(culture: string): void;
     setMapStyle(style: string): void;
     on(type: "map-style-change", listener: (event: { target: VETiledLayer }) => void): esri.Handle
