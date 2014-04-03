@@ -4,7 +4,7 @@ The [esri.d.ts](esri.d.ts) file provides type definitions for ArcGIS API for Jav
 
 ## Requirements
 
-* [TypeScript][1] 1.0RC+ (also known as 0.9.7)
+* [TypeScript][1] 1.0RC+
 
 ## Instructions
 
@@ -20,7 +20,7 @@ Switch to the `gh-pages` branch to see the JavaScript output files.
 
 ## IDE Support
 
-* [Visual Studio Plugin](http://www.typescriptlang.org/#Download)
+* [Visual Studio](http://www.typescriptlang.org/#Download)
 * [Visual Studio Online "Monaco"](http://blogs.msdn.com/b/monaco/)
 * [JetBrains IDEs](http://www.jetbrains.com/products.html) (WebStorm, IntelliJ, etc.)
 * [TypeScript plugin for Sublime Text](https://github.com/Railk/T3S)
