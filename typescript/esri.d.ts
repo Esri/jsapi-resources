@@ -1,11 +1,11 @@
-// Type definitions for ArcGIS API for JavaScript version 3.8
+// Type definitions for ArcGIS API for JavaScript version 3.9
 // Project: http://js.arcgis.com
-// Updated: Wed Mar 26 2014
+// Updated: Mon Apr 07 2014
 
 declare module "esri" {
+  import Graphic = require("esri/graphic");
   import Point = require("esri/geometry/Point");
   import ScreenPoint = require("esri/geometry/ScreenPoint");
-  import Graphic = require("esri/graphic");
   import FeatureLayer = require("esri/layers/FeatureLayer");
   import Map = require("esri/map");
   import ImageParameters = require("esri/layers/ImageParameters");
@@ -20,6 +20,7 @@ declare module "esri" {
   import PictureMarkerSymbol = require("esri/symbols/PictureMarkerSymbol");
   import RouteParameters = require("esri/tasks/RouteParameters");
   import SimpleLineSymbol = require("esri/symbols/SimpleLineSymbol");
+  import Color = require("esri/Color");
   import Font = require("esri/symbols/Font");
   import LineSymbol = require("esri/symbols/LineSymbol");
   import MarkerSymbol = require("esri/symbols/MarkerSymbol");
@@ -35,6 +36,7 @@ declare module "esri" {
   import WMTSLayerInfo = require("esri/layers/WMTSLayerInfo");
 
   export interface AGSMouseEvent extends MouseEvent {
+    graphic?: Graphic;
     mapPoint: Point;
     screenPoint: ScreenPoint;
   }
@@ -111,6 +113,8 @@ declare module "esri" {
     opacity?: number;
     /** Specify the metadata of the layer. */
     resourceInfo?: any;
+    /** By default, images are exported in MIME format, and the image is streamed to the client. */
+    useMapImage?: boolean;
     /** When true, the layer will update its content based on the map's time extent. */
     useMapTime?: boolean;
     /** Initial visibility of the layer. */
@@ -225,6 +229,18 @@ declare module "esri" {
     editable?: boolean;
     /** Reference to the map. */
     map: Map;
+  }
+  export interface CSVLayerOptions {
+    /** The column delimiter. */
+    columnDelimiter?: string;
+    /** Copyright information for the layer. */
+    copyright?: string;
+    /** The fields property contains objects with "name", "alias" and "type" String properties. */
+    fields?: any[];
+    /** The latitude field name. */
+    latitudeFieldName?: string;
+    /** The longitude field name. */
+    longitudeFieldName?: string;
   }
   export interface CircleOptions1 {
     /** Applicable when the spatial reference of the center point is either set to Web Mercator or geographic/geodesic as true would apply. */
@@ -366,7 +382,7 @@ declare module "esri" {
     /** The symbol that displays when an intermediate location is dragged to a new location. */
     stopSymbolDrag?: PictureMarkerSymbol;
     /** The text color for the text that appears for each destination. */
-    textSymbolColor?: any;
+    textSymbolColor?: Color;
     /** The font used for the text that displays on the map for each stop location. */
     textSymbolFont?: Font;
     /** Define an x and/or y offset for the text symbols that are used for the stop locations on the map. */
@@ -406,7 +422,7 @@ declare module "esri" {
   }
   export interface DotDensityRendererOptions {
     /** The color to be used for the background of the symbol. */
-    backgroundColor?: any;
+    backgroundColor?: Color;
     /** The shape to be used for the dot. */
     dotShape?: string;
     /** The size of the dot in pixels. */
@@ -651,12 +667,14 @@ declare module "esri" {
     unitLabel?: string;
   }
   export interface GenerateRendererTaskOptions {
-    /** Map server/feature service only sample 1000 features to generate the renderer when using GenerateRenderer operation, which mean if there are more than 1000 features, it may run into the case that some feature will not be categorized into any breaks/unique values. */
+    /** Prior to ArcGIS Server 10.2, map server/feature service only sample 1000 features to generate the renderer when using GenerateRenderer operation, which mean if there are more than 1000 features, it may run into the case that some feature will not be categorized into any breaks/unique values. */
     checkValueRange?: boolean;
     /** Specify the geodatabase version to display. */
     gdbVersion?: string;
   }
   export interface GeoRSSLayerOptions {
+    /** The template used to display popup window for identify operation. */
+    infoTemplate?: InfoTemplate;
     /** The output spatial reference for the GeoRSSLayer. */
     outSpatialReference?: SpatialReference;
     /** The default symbol use to display point features. */
@@ -665,8 +683,6 @@ declare module "esri" {
     polygonSymbol?: Symbol;
     /** The default symbol used to display polyline features. */
     polylineSymbol?: Symbol;
-    /** The template used to display popup window for identify operation. */
-    template?: InfoTemplate;
   }
   export interface GeocoderOptions {
     /** By default, the Geocoder widget uses the Esri World Locator to find search locations. */
@@ -705,6 +721,8 @@ declare module "esri" {
     displayOnPan?: boolean;
     /** Id to assign to the layer. */
     id?: string;
+    /** The info template for the layer. */
+    infoTemplate?: InfoTemplate;
     /** Initial opacity or transparency of layer. */
     opacity?: number;
     /** Refresh interval of the layer in minutes. */
@@ -879,6 +897,8 @@ declare module "esri" {
     sliderPosition?: string;
     /** Defines the slider style. */
     sliderStyle?: string;
+    /** When true, for Apple computers with a trackpad or magic mouse use, swipe pans instead of zooming. */
+    smartNavigation?: boolean;
     /** When true, supports continuous pan across the dateline. */
     wrapAround180?: boolean;
     /** Initial zoom level of the map. */
@@ -1106,6 +1126,22 @@ declare module "esri" {
     /** Set to true if the print service is an asynchronous geoprocessing service. */
     async?: boolean;
   }
+  export interface ProcessorOptions {
+    /** Start processing features immediately. */
+    autostart?: boolean;
+    /** Whether the processor allow the feature layer to draw its features. */
+    drawFeatures?: boolean;
+    /** Whether the processor do the layer's I/O via a worker. */
+    fetchWithWorker?: boolean;
+    /** A FeatureLayer or array of FeatureLayers to attach the processor to. */
+    layers?: FeatureLayer[];
+    /** Uses all FeatureLayers associated with the map in the processor. */
+    map?: Map;
+    /** Whether the processor pass the features through without modification or delay to the FeatureLayer. */
+    passFeatures?: boolean;
+    /** Whether the processor require Workers to function properly. */
+    requireWorkerSupport?: boolean;
+  }
   export interface QueryTaskOptions {
     /** Specify the geodatabase version to display. */
     gdbVersion?: string;
@@ -1143,6 +1179,26 @@ declare module "esri" {
     snapPointSymbol?: SimpleMarkerSymbol;
     /** Specify the radius of the snapping circle in pixels. */
     tolerance?: number;
+  }
+  export interface SpatialIndexOptions {
+    /** Start processing features immediately. */
+    autostart?: boolean;
+    /** Whether the processor allow the feature layer to draw its features. */
+    drawFeatures?: boolean;
+    /** Whether the processor do the layer's I/O via a worker. */
+    fetchWithWorkers?: boolean;
+    /** Index system specific options. */
+    indexOptions?: any;
+    /** The indexing system to use. */
+    indexType?: string;
+    /** A FeatureLayer or array of FeatureLayers to attach the processor to. */
+    layers?: FeatureLayer[];
+    /** Uses all FeatureLayers associated with the map in the processor. */
+    map?: Map;
+    /** Whether the processor pass the features through without modification or delay to the FeatureLayer. */
+    passFeatures?: boolean;
+    /** Whether the processor require Workers to function properly. */
+    requireWorkerSupport?: boolean;
   }
   export interface StreamLayerOptions {
     /** Class attribute to set for the layer's node. */
@@ -1354,6 +1410,128 @@ declare module "esri" {
   }
 }
 
+declare module "esri/Color" {
+  /** Inherits all attributes from dojo/_base/Color to provide functions for setting colors. */
+  class Color {
+    /** Dictionary list of all CSS named colors, by name. */
+    static named: any;
+    /** The alpha value. */
+    a: number;
+    /** The blue value. */
+    b: number;
+    /** The green value. */
+    g: number;
+    /** The red value. */
+    r: number;
+    /**
+     * Creates a new Color object.
+     * @param color A named string, hex string, array of rgb or rgba values, an object with r, g, b, and a properties, or another Color object.
+     */
+    constructor(color?: string);
+    /**
+     * Creates a new Color object.
+     * @param color A named string, hex string, array of rgb or rgba values, an object with r, g, b, and a properties, or another Color object.
+     */
+    constructor(color?: number[]);
+    /**
+     * Creates a new Color object.
+     * @param color A named string, hex string, array of rgb or rgba values, an object with r, g, b, and a properties, or another Color object.
+     */
+    constructor(color?: any);
+    /**
+     * Blend colors start and end with weight from 0 to 1, 0.5 being a 50/50 blend.
+     * @param start The start color.
+     * @param end The end color.
+     * @param weight The weight value.
+     * @param obj A previously allocated Color object to reuse for the result.
+     */
+    static blendColors(start: Color, end: Color, weight: number, obj?: Color): Color;
+    /**
+     * Builds a Color from a 3 or 4 element array, mapping each element in sequence to the rgb(a) values of the color.
+     * @param a The input array.
+     * @param obj A previously allocated Color object to reuse for the result.
+     */
+    static fromArray(a: number[], obj?: Color): Color;
+    /**
+     * Converts a hex string with a '#' prefix to a color object.
+     * @param color The input color.
+     * @param obj A previously allocated Color object to reuse for the result.
+     */
+    static fromHex(color: string, obj?: Color): Color;
+    /**
+     * Returns a Color instance from a string of the form "rgb(...)" or "rgba(...)".
+     * @param color The input color.
+     * @param obj A previously allocated Color object to reuse for the result.
+     */
+    static fromRgb(color: string, obj?: Color): Color;
+    /**
+     * Parses str for a color value.
+     * @param str The input value.
+     * @param obj A previously allocated Color object to reuse for the result.
+     */
+    static fromString(str: string, obj?: Color): Color;
+    /**
+     * Takes a named string, hex string, array of rgb or rgba values, an object with r, g, b, and a properties, or another Color object and sets this color instance to that value.
+     * @param color The new color value.
+     */
+    setColor(color: string): Color;
+    /**
+     * Takes a named string, hex string, array of rgb or rgba values, an object with r, g, b, and a properties, or another Color object and sets this color instance to that value.
+     * @param color The new color value.
+     */
+    setColor(color: number[]): Color;
+    /**
+     * Takes a named string, hex string, array of rgb or rgba values, an object with r, g, b, and a properties, or another Color object and sets this color instance to that value.
+     * @param color The new color value.
+     */
+    setColor(color: any): Color;
+    /**
+     * Returns a css color string in rgb(a) representation.
+     * @param includeAlpha If true, the alpha value will be included in the result.
+     */
+    toCss(includeAlpha?: boolean): string;
+    /** Returns a CSS color string in hexadecimal representation. */
+    toHex(): string;
+    /** Returns a 3 component array of rgb values. */
+    toRgb(): number[];
+    /** Returns a 4 component array of rgba values. */
+    toRgba(): number[];
+  }
+  export = Color;
+}
+
+declare module "esri/Credential" {
+  import esri = require("esri");
+
+  /** The Credential class represents a credential object used to access a secure ArcGIS resource. */
+  class Credential {
+    /** Token expiration time specified as number of milliseconds since 1 January 1970 00:00:00 UTC. */
+    expires: number;
+    /** Indicates whether this credential belongs to a user with admin privileges. */
+    isAdmin: boolean;
+    /** The server url. */
+    server: string;
+    /** Indicates whether the resources accessed using this credential should be fetched over HTTPS protocol. */
+    ssl: boolean;
+    /** Token generated by the token service using the specified userId and password. */
+    token: string;
+    /** User associated wth the Credential object. */
+    userId: string;
+    /** Destroy a credential. */
+    destroy(): void;
+    /** Generate a new token and update the Credential's token property with the newly acquired token. */
+    refreshToken(): any;
+    /** Return the properties of this object in JSON. */
+    toJson(): any;
+    /** Fired when a credential object is destroyed. */
+    on(type: "destroy", listener: (event: { target: Credential }) => void): esri.Handle
+    /** Fired when the token associated with the credential is updated or changed. */
+    on(type: "token-change", listener: (event: { target: Credential }) => void): esri.Handle
+    on(type: string, listener: (event: any) => void): esri.Handle
+  }
+  export = Credential;
+}
+
 declare module "esri/IdentityManager" {
   import esri = require("esri");
   import IdentityManagerBase = require("esri/IdentityManagerBase");
@@ -1374,6 +1552,7 @@ declare module "esri/IdentityManager" {
 }
 
 declare module "esri/IdentityManagerBase" {
+  import Credential = require("esri/Credential");
   import ServerInfo = require("esri/ServerInfo");
 
   /** This class provides the framework and helper methods required to implement a solution for managing user credentials. */
@@ -1385,7 +1564,7 @@ declare module "esri/IdentityManagerBase" {
      * @param url The url to a server.
      * @param userId The userId for which you want to obtain credentials.
      */
-    findCredential(url: string, userId?: string): any;
+    findCredential(url: string, userId?: string): Credential;
     /**
      * Returns information about the server that is hosting the specified url.
      * @param url The url to a server.
@@ -1518,7 +1697,7 @@ declare module "esri/InfoWindowBase" {
      */
     place(value: HTMLElement, parentNode: HTMLElement): void;
     /**
-     * Resize the info window to the specified width and height (in pixels).Sub-classes should implement this method.
+     * Resize the info window to the specified width and height (in pixels).
      * @param width The new width of the InfoWindow in pixels.
      * @param height The new height of the InfoWindow in pixels.
      */
@@ -1711,14 +1890,36 @@ declare module "esri/arcgis/Portal" {
     allSSL: boolean;
     /** The query that defines the basemaps that are displayed in the Basemap Gallery. */
     basemapGalleryGroupQuery: string;
+    /** The Bing key to use for web maps using Bing Maps. */
+    bingKey: string;
+    /** Whether an organization can list applications in the marketplace . */
+    canListApps: boolean;
+    /** Whether an organization can list data services in the marketplace. */
+    canListData: boolean;
+    /** Whether an organization can list pre-provisioned items in the marketplace. */
+    canListPreProvisionedItems: boolean;
+    /** Whether an organization can provision direct purchases in the marketplace without customer request. */
+    canProvisionDirectPurchase: boolean;
     /** When true, the organization's public items, groups and users are included in search queries. */
     canSearchPublic: boolean;
+    /** The Bing key can be shared to the public and is returned as part of a portal's description call (/sharing/rest/portals/). */
+    canShareBingPublic: boolean;
     /** When true, members of the organization can share resources outside the organization. */
     canSharePublic: boolean;
+    /** Whether to allow an organization with an enterprise IDP configured to be able to turn on or off the ArcGIS sign in. */
+    canSignInArcGIS: boolean;
+    /** Whether to allow an organization with an enterprise IDP configured to be able to turn on or off the enterprise sign in. */
+    canSignInIDP: boolean;
+    /** The query that identifies the group containing the color sets used for rendering in the map viewer. */
+    colorSetsGroupQuery: string;
+    /** Whether to allow the organization to disable commenting. */
+    commentsEnabled: boolean;
     /** Date the organization was created. */
     created: Date;
     /** The default locale (language and country) information. */
     culture: string;
+    /** The custom base URL for the portal. */
+    customBaseUrl: string;
     /** The default basemap the portal displays in the map viewer. */
     defaultBasemap: any;
     /** The default extent for the map the portal displays in the map viewer. */
@@ -1727,30 +1928,76 @@ declare module "esri/arcgis/Portal" {
     description: string;
     /** The featured groups for the portal. */
     featuredGroups: any[];
+    /** The featured groups for the organization. */
+    featuredGroupsId: string;
     /** The query that defines the featured group. */
     featuredItemsGroupQuery: string;
+    /** The query that identifies the group containing features items for the gallery. */
+    galleryTemplatesGroupQuery: string;
+    /** The group that contains featured content to be displayed on the home page. */
+    homePageFeaturedContent: string;
+    /** The number of featured items that can be displayed on the home page. */
+    homePageFeaturedContentCount: number;
+    /** The port used by the portal for HTTP communication. */
+    httpPort: number;
+    /** The port used by the portal for HTTPS communication. */
+    httpsPort: number;
     /** The id of the organization that owns this portal. */
     id: string;
+    /** The country code of the calling IP (ArcGIS Online only). */
+    ipCntryCode: string;
     /** Indicates if the portal is an organization. */
     isOrganization: boolean;
+    /** Indicates if the portal is on premises. */
+    isPortal: boolean;
     /** The query that defines the collection of editable layer templates. */
     layerTemplatesGroupQuery: string;
+    /** The maximum validity in minutes of tokens issued for users of the organization. */
+    maxTokenExpirationMinutes: number;
     /** Date the organization was last modified. */
     modified: Date;
     /** The Name of the organization / portal. */
     name: string;
+    /** The portal host's URL. */
+    portalHostname: string;
     /** Denotes multitenant or singletenant. */
     portalMode: string;
     /** The name of the portal, i.e., ArcGIS Online. */
     portalName: string;
+    /** Stores properties specific to the organization, for example the "contact us" link. */
+    portalProperties: any;
+    /** The URL to the thumbnail of the portal. */
+    portalThumbnail: string;
+    /** URL to the portal. */
+    portalUrl: string;
+    /** The region for the organization. */
+    region: string;
+    /** Custom HTML for the home page. */
+    rotatorPanels: string[];
+    /** Whether the description of your organization displays on the home page. */
+    showHomePageDescription: boolean;
+    /** Whether hosted services are supported. */
+    supportsHostedServices: boolean;
+    /** Whether OAuth is supported. */
+    supportsOAuth: boolean;
     /** The query that defines the symbols sets used by the map viewer. */
     symbolSetsGroupQuery: string;
     /** The query that defines the collection of templates that will appear in the template gallery. */
     templatesGroupQuery: string;
-    /** The url to the thumbnail of the organization. */
+    /** The URL to the thumbnail of the organization. */
+    thumbnail: string;
+    /** The url to the thumbnail of the organization (full path). */
     thumbnailUrl: string;
+    /** Sets the units of measure for the organization's users. */
+    units: string;
     /** The portal url. */
     url: string;
+    /** The prefix selected by the organization's administrator to be used with the customBaseURL. */
+    urlKey: string;
+    /** User information for the accessing user is returned only when a token is passed in. */
+    user: any;
+    /** If true, only simple where clauses that are complaint with SQL92 can be used when querying layers and tables. */
+    useStandardizedQuery: boolean;
     /**
      * Creates a new Portal object.
      * @param url The url to the ArcGIS.com site or in-house portal.
@@ -3029,6 +3276,7 @@ declare module "esri/dijit/Legend" {
 
 declare module "esri/dijit/LocateButton" {
   import esri = require("esri");
+  import GraphicsLayer = require("esri/layers/GraphicsLayer");
   import InfoTemplate = require("esri/InfoTemplate");
   import Map = require("esri/map");
   import Symbol = require("esri/symbols/Symbol");
@@ -3040,6 +3288,8 @@ declare module "esri/dijit/LocateButton" {
     centerAt: boolean;
     /** The HTML5 Geolocation Position options for locating. */
     geolocationOptions: any;
+    /** Layer in which the highlighted graphic is set to. */
+    graphicsLayer: GraphicsLayer;
     /** If true, the users location will be highlighted with a point. */
     highlightLocation: boolean;
     /** The infoTemplate used for the highlight graphic. */
@@ -3378,9 +3628,10 @@ declare module "esri/dijit/PopupMobile" {
 
 declare module "esri/dijit/PopupTemplate" {
   import esri = require("esri");
+  import InfoTemplate = require("esri/InfoTemplate");
 
   /** The PopupTemplate class extends esri.InfoTemplate and provides support for defining a layout. */
-  class PopupTemplate {
+  class PopupTemplate extends InfoTemplate {
     /** The popup definition defined as a JavaScript object. */
     info: any;
     /**
@@ -4559,6 +4810,29 @@ declare module "esri/dijit/geoenrichment/InfographicsOptions" {
   export = InfographicsOptions;
 }
 
+declare module "esri/dijit/geoenrichment/InfographicsOptionsItem" {
+  /** Defines the options for each Infographic in an InfographicsCarousel. */
+  class InfographicsOptionsItem {
+    /** The ID of the dataset to which variables used in this Infographic belong. */
+    datasetID: string;
+    /** When true, the Infographic is configured to be visible. */
+    isVisible: boolean;
+    /** The title or name of the Infographic. */
+    title: string;
+    /** The type of the Infographic. */
+    type: string;
+    /** The set of variables displayed in this Infographic. */
+    variables: string[];
+    /**
+     * Constructs an InfographicsOptionsItem object.
+     * @param type The type of the Infographic.
+     * @param variables The set of variables displayed in this InfographicsOptionsItem.
+     */
+    constructor(type: string, variables: string[]);
+  }
+  export = InfographicsOptionsItem;
+}
+
 declare module "esri/domUtils" {
   /** Utility methods related to working with a DOM. */
   var domUtils: {
@@ -5616,12 +5890,12 @@ declare module "esri/layers/ArcGISImageServiceLayer" {
   import esri = require("esri");
   import DynamicMapServiceLayer = require("esri/layers/DynamicMapServiceLayer");
   import MosaicRule = require("esri/layers/MosaicRule");
+  import InfoTemplate = require("esri/InfoTemplate");
   import RasterFunction = require("esri/layers/RasterFunction");
   import TimeInfo = require("esri/layers/TimeInfo");
   import ImageServiceParameters = require("esri/layers/ImageServiceParameters");
   import Graphic = require("esri/graphic");
   import Query = require("esri/tasks/query");
-  import InfoTemplate = require("esri/InfoTemplate");
   import MapImage = require("esri/layers/MapImage");
 
   /** Allows you to work with an image map service resource exposed by the ArcGIS Server REST API. */
@@ -5644,6 +5918,8 @@ declare module "esri/layers/ArcGISImageServiceLayer" {
     disableClientCaching: boolean;
     /** The output image type. */
     format: string;
+    /** The template that defines the content to display in the map info window when the user clicks on a raster. */
+    infoTemplate: InfoTemplate;
     /** Current interpolation method. */
     interpolation: string;
     /** The maximum image height, in pixels, that the map service will export. */
@@ -5668,6 +5944,8 @@ declare module "esri/layers/ArcGISImageServiceLayer" {
     renderingRule: RasterFunction;
     /** Temporal information for the layer, such as time extent. */
     timeInfo: TimeInfo;
+    /** By default, images are exported in MIME format, and the image is streamed to the client. */
+    useMapImage: boolean;
     /** The version of ArcGIS Server the image service is published to, e.g. */
     version: number;
     /**
@@ -5852,6 +6130,30 @@ declare module "esri/layers/ArcGISTiledMapServiceLayer" {
     on(type: string, listener: (event: any) => void): esri.Handle
   }
   export = ArcGISTiledMapServiceLayer;
+}
+
+declare module "esri/layers/CSVLayer" {
+  import esri = require("esri");
+  import FeatureLayer = require("esri/layers/FeatureLayer");
+
+  /** CSVLayer extends FeatureLayer to create a layer based on a CSV file (.csv, .txt). */
+  class CSVLayer extends FeatureLayer {
+    /** The column delimiter. */
+    columnDelimiter: string;
+    /** The latitude field name. */
+    latitudeFieldName: string;
+    /** The longitude field name. */
+    longitudeFieldName: string;
+    /** The url to a CSV resource. */
+    url: string;
+    /**
+     * Creates a CSV layer.
+     * @param url The url to a CSV resource.
+     * @param options The optional parameters.
+     */
+    constructor(url: string, options?: esri.CSVLayerOptions);
+  }
+  export = CSVLayer;
 }
 
 declare module "esri/layers/CodedValueDomain" {
@@ -6163,6 +6465,13 @@ declare module "esri/layers/FeatureLayer" {
      */
     queryCount(query: Query, callback?: Function, errback?: Function): any;
     /**
+     * Get the extent of features that satisfy the input query.
+     * @param query The query definition.
+     * @param callback The function called when the method has completed.
+     * @param errback The function called when error occurred.
+     */
+    queryExtent(query: Query, callback?: Function, errback?: Function): any;
+    /**
      * Query features from the feature layer.
      * @param query The input query.
      * @param callback The function to call when the method has completed.
@@ -6294,6 +6603,8 @@ declare module "esri/layers/FeatureLayer" {
     on(type: "query-attachment-infos-complete", listener: (event: { info: any[]; target: FeatureLayer }) => void): esri.Handle
     /** Fires when the query for the count is complete. */
     on(type: "query-count-complete", listener: (event: { count: number; target: FeatureLayer }) => void): esri.Handle
+    /** Fires when queryExtent method has completed. */
+    on(type: "query-extent-complete", listener: (event: { count: number; extent: Extent; target: FeatureLayer }) => void): esri.Handle
     /** Fires when queryFeatures() is complete. */
     on(type: "query-features-complete", listener: (event: { featureSet: FeatureSet; target: FeatureLayer }) => void): esri.Handle
     /** Fires when queryIds() is complete. */
@@ -6443,8 +6754,8 @@ declare module "esri/layers/GraphicsLayer" {
   import esri = require("esri");
   import Layer = require("esri/layers/layer");
   import Graphic = require("esri/graphic");
-  import Renderer = require("esri/renderers/Renderer");
   import InfoTemplate = require("esri/InfoTemplate");
+  import Renderer = require("esri/renderers/Renderer");
 
   /** A layer that contains one or more Graphic features. */
   class GraphicsLayer extends Layer {
@@ -6452,6 +6763,8 @@ declare module "esri/layers/GraphicsLayer" {
     dataAttributes: any;
     /** The array of graphics that make up the layer. */
     graphics: Graphic[];
+    /** The info template for the layer. */
+    infoTemplate: InfoTemplate;
     /** Renderer assigned to the GraphicsLayer. */
     renderer: Renderer;
     /** Indicates whether the layer is responsible for styling graphics. */
@@ -6515,17 +6828,17 @@ declare module "esri/layers/GraphicsLayer" {
     /** Fires when all graphics in the GraphicsLayer are cleared. */
     on(type: "graphics-clear", listener: (event: { target: GraphicsLayer }) => void): esri.Handle
     /** Fires when a mouse button is pressed down and the mouse cursor is on a graphic. */
-    on(type: "mouse-down", listener: (event: { mouseEvent: esri.AGSMouseEvent; target: GraphicsLayer }) => void): esri.Handle
+    on(type: "mouse-down", listener: (event: esri.AGSMouseEvent) => void): esri.Handle
     /** Fires while the mouse is being dragged until the mouse button is released. */
-    on(type: "mouse-drag", listener: (event: { mouseEvent: esri.AGSMouseEvent; target: GraphicsLayer }) => void): esri.Handle
+    on(type: "mouse-drag", listener: (event: esri.AGSMouseEvent) => void): esri.Handle
     /** Fires as the mouse moves through a graphic on the GraphicsLayer. */
-    on(type: "mouse-move", listener: (event: { mouseEvent: esri.AGSMouseEvent; target: GraphicsLayer }) => void): esri.Handle
+    on(type: "mouse-move", listener: (event: esri.AGSMouseEvent) => void): esri.Handle
     /** Fires as the mouse exits a graphic on the GraphicsLayer. */
-    on(type: "mouse-out", listener: (event: { mouseEvent: esri.AGSMouseEvent; target: GraphicsLayer }) => void): esri.Handle
+    on(type: "mouse-out", listener: (event: esri.AGSMouseEvent) => void): esri.Handle
     /** Fires when the mouse first enters into a graphic on the GraphicsLayer. */
-    on(type: "mouse-over", listener: (event: { mouseEvent: esri.AGSMouseEvent; target: GraphicsLayer }) => void): esri.Handle
+    on(type: "mouse-over", listener: (event: esri.AGSMouseEvent) => void): esri.Handle
     /** Fires when a mouse button is released and the mouse cursor is on a graphic. */
-    on(type: "mouse-up", listener: (event: { mouseEvent: esri.AGSMouseEvent; target: GraphicsLayer }) => void): esri.Handle
+    on(type: "mouse-up", listener: (event: esri.AGSMouseEvent) => void): esri.Handle
     on(type: string, listener: (event: any) => void): esri.Handle
   }
   export = GraphicsLayer;
@@ -7507,6 +7820,7 @@ declare module "esri/layers/WebTiledLayer" {
 
 declare module "esri/layers/layer" {
   import esri = require("esri");
+  import Credential = require("esri/Credential");
   import Map = require("esri/map");
 
   /** The base class for all layers that can be added to a map. */
@@ -7516,13 +7830,15 @@ declare module "esri/layers/layer" {
     /** class attribute of the layer's node. */
     className: string;
     /** Provides credential information for the layer such as userid and token if the layer represents a resource that is secured with token-based authentication. */
-    credential: any;
+    credential: Credential;
     /** When true the layer has attribution data. */
     hasAttributionData: boolean;
     /** ID assigned to the layer. */
     id: string;
     /** When the layer is loaded, the value becomes "true", and layer properties can be accessed. */
     loaded: boolean;
+    /** Set if the layer failed to load. */
+    loadError: Error;
     /** Maximum visible scale for the layer. */
     maxScale: number;
     /** Minimum visible scale for the layer. */
@@ -7642,8 +7958,8 @@ declare module "esri/map" {
   import SpatialReference = require("esri/SpatialReference");
   import TimeExtent = require("esri/TimeExtent");
   import Layer = require("esri/layers/layer");
-  import TimeSlider = require("esri/dijit/TimeSlider");
   import ScreenPoint = require("esri/geometry/ScreenPoint");
+  import TimeSlider = require("esri/dijit/TimeSlider");
   import LOD = require("esri/layers/LOD");
 
   /** The Map class creates a container and required DOM structure for adding layers, graphics, an info window, and other navigation controls. */
@@ -7793,7 +8109,7 @@ declare module "esri/map" {
      * Sets an InfoWindow's anchor when calling InfoWindow.show.
      * @param screenCoords The anchor point in screen units.
      */
-    getInfoWindowAnchor(screenCoords: Point): string;
+    getInfoWindowAnchor(screenCoords: ScreenPoint): string;
     /**
      * Returns an individual layer of a map.
      * @param id ID assigned to the layer.
@@ -7917,16 +8233,18 @@ declare module "esri/map" {
     toScreen(mapPoint: Point): ScreenPoint;
     /** Fired when the map's basemap is changed. */
     on(type: "basemap-change", listener: (event: { current: any; previous: any; target: Map }) => void): esri.Handle
+    /** Event is fired before the map gets destroyed. */
+    on(type: "before-unload", listener: (event: { map: Map; target: Map }) => void): esri.Handle
     /** Fires when a user single clicks on the map using the mouse and the mouse pointer is within the map region of the HTML page. */
-    on(type: "click", listener: (event: { mouseEvent: esri.AGSMouseEvent; target: Map }) => void): esri.Handle
+    on(type: "click", listener: (event: esri.AGSMouseEvent) => void): esri.Handle
     /** Fires when a user double clicks on the map using the mouse and the mouse pointer is within the map region of the HTML page. */
-    on(type: "dbl-click", listener: (event: { mouseEvent: esri.AGSMouseEvent; target: Map }) => void): esri.Handle
+    on(type: "dbl-click", listener: (event: esri.AGSMouseEvent) => void): esri.Handle
     /** Fires when the extent of the map has changed. */
     on(type: "extent-change", listener: (event: { delta: Point; extent: Extent; levelChange: boolean; lod: LOD; target: Map }) => void): esri.Handle
     /** Fires when a keyboard key is pressed. */
-    on(type: "key-down", listener: (event: { keyboardEvent: KeyboardEvent; target: Map }) => void): esri.Handle
+    on(type: "key-down", listener: (event: KeyboardEvent) => void): esri.Handle
     /** Fires when a keyboard key is released. */
-    on(type: "key-up", listener: (event: { keyboardEvent: KeyboardEvent; target: Map }) => void): esri.Handle
+    on(type: "key-up", listener: (event: KeyboardEvent) => void): esri.Handle
     /** Fires any time a layer is added to the map. */
     on(type: "layer-add", listener: (event: { layer: Layer; target: Map }) => void): esri.Handle
     /** Fires after specified layer has been added to the map. */
@@ -7942,29 +8260,29 @@ declare module "esri/map" {
     /** Fires after all the layers have been removed. */
     on(type: "layers-removed", listener: (event: { target: Map }) => void): esri.Handle
     /** Fires when all the layers have been reordered. */
-    on(type: "layers-reordered", listener: (event: { layerIds: number[]; target: Map }) => void): esri.Handle
+    on(type: "layers-reordered", listener: (event: { layerIds: string[]; target: Map }) => void): esri.Handle
     /** Fires when a map layer suspends drawing. */
     on(type: "layer-suspend", listener: (event: { layer: Layer; target: Map }) => void): esri.Handle
     /** Fires when the first or base layer has been successfully added to the map. */
     on(type: "load", listener: (event: { map: Map; target: Map }) => void): esri.Handle
     /** Fires when a mouse button is pressed down and the mouse cursor is in the map region of the HTML page. */
-    on(type: "mouse-down", listener: (event: { mouseEvent: esri.AGSMouseEvent; target: Map }) => void): esri.Handle
+    on(type: "mouse-down", listener: (event: esri.AGSMouseEvent) => void): esri.Handle
     /** Fires while the mouse is being dragged until the mouse button is released. */
-    on(type: "mouse-drag", listener: (event: { mouseEvent: esri.AGSMouseEvent; target: Map }) => void): esri.Handle
+    on(type: "mouse-drag", listener: (event: esri.AGSMouseEvent) => void): esri.Handle
     /** Fires when a mouse button is released and the user stops dragging the mouse. */
-    on(type: "mouse-drag-end", listener: (event: { mouseEvent: esri.AGSMouseEvent; target: Map }) => void): esri.Handle
+    on(type: "mouse-drag-end", listener: (event: esri.AGSMouseEvent) => void): esri.Handle
     /** Fires when a mouse button is pressed down and the user starts to drag the mouse. */
-    on(type: "mouse-drag-start", listener: (event: { mouseEvent: esri.AGSMouseEvent; target: Map }) => void): esri.Handle
+    on(type: "mouse-drag-start", listener: (event: esri.AGSMouseEvent) => void): esri.Handle
     /** Fires any time the mouse pointer moves over the map region. */
-    on(type: "mouse-move", listener: (event: { mouseEvent: esri.AGSMouseEvent; target: Map }) => void): esri.Handle
+    on(type: "mouse-move", listener: (event: esri.AGSMouseEvent) => void): esri.Handle
     /** Fires when the mouse moves out of the map region of the HTML page. */
-    on(type: "mouse-out", listener: (event: { mouseEvent: esri.AGSMouseEvent; target: Map }) => void): esri.Handle
+    on(type: "mouse-out", listener: (event: esri.AGSMouseEvent) => void): esri.Handle
     /** Fires when the mouse moves into the map region of the HTML page.. */
-    on(type: "mouse-over", listener: (event: { mouseEvent: esri.AGSMouseEvent; target: Map }) => void): esri.Handle
+    on(type: "mouse-over", listener: (event: esri.AGSMouseEvent) => void): esri.Handle
     /** Fires when the mouse button is released and the mouse pointer is within the map region of the HTML page. */
-    on(type: "mouse-up", listener: (event: { mouseEvent: esri.AGSMouseEvent; target: Map }) => void): esri.Handle
+    on(type: "mouse-up", listener: (event: esri.AGSMouseEvent) => void): esri.Handle
     /** Fires when the mouse wheel is scrolled. */
-    on(type: "mouse-wheel", listener: (event: { mouseEvent: esri.AGSMouseEvent; target: Map }) => void): esri.Handle
+    on(type: "mouse-wheel", listener: (event: esri.AGSMouseEvent) => void): esri.Handle
     /** Fires during the pan process. */
     on(type: "pan", listener: (event: { delta: Point; extent: Extent; target: Map }) => void): esri.Handle
     /** Fires when the pan is complete. */
@@ -7992,6 +8310,134 @@ declare module "esri/map" {
     on(type: string, listener: (event: any) => void): esri.Handle
   }
   export = Map;
+}
+
+declare module "esri/plugins/spatialIndex" {
+  import Map = require("esri/map");
+  import FeatureLayer = require("esri/layers/FeatureLayer");
+
+  /** A static utility module that adds or removes a SpatialIndex instance on a Map or FeatureLayer. */
+  var spatialIndex: {
+    /**
+     * Adds an index property to the target instance.
+     * @param target The map or feature layer to which the index is connected.
+     * @param options Index options.
+     */
+    add(target: Map, options?: any): void;
+    /**
+     * Adds an index property to the target instance.
+     * @param target The map or feature layer to which the index is connected.
+     * @param options Index options.
+     */
+    add(target: FeatureLayer, options?: any): void;
+    /** Removes the index plugin. */
+    remove(): void;
+  };
+  export = spatialIndex;
+}
+
+declare module "esri/process/Processor" {
+  import esri = require("esri");
+  import FeatureLayer = require("esri/layers/FeatureLayer");
+  import Map = require("esri/map");
+
+  /** The base processor class provides the generic api for processors and provides an extension point from which developers can create and extend additional processors. */
+  class Processor {
+    /** Allow the feature layer to draw the features. */
+    drawFeatures: boolean;
+    /** Should features be fetched through the Worker. */
+    fetchWithWorker: boolean;
+    /** Layer(s) connected to the processor. */
+    layers: FeatureLayer[];
+    /** Pass features back to layer without delay before processing. */
+    passFeatures: boolean;
+    /** Require support for Worker in order to use this processor. */
+    requireWorkerSupport: boolean;
+    /**
+     * Creates a processor.
+     * @param options Configuration options for the processor.
+     */
+    constructor(options?: esri.ProcessorOptions);
+    /**
+     * Add layer to processor.
+     * @param layer FeatureLayer to be added.
+     */
+    addLayer(layer: FeatureLayer): void;
+    /**
+     * Remove layer from processor.
+     * @param layer FeatureLayer to be removed.
+     */
+    removeLayer(layer: FeatureLayer): void;
+    /**
+     * Synchronize the layers the processor handles with the map's GraphicsLayer and GraphicsLayer subclasses (FeatureLayer, etc...).
+     * @param map The map instance to synchronize layers with.
+     */
+    setMap(map: Map): void;
+    /** Start the processor. */
+    start(): void;
+    /** Stop the processor. */
+    stop(): void;
+    /** Unset the map and detach processor from all layers. */
+    unsetMap(): void;
+    /** Fires when the processor is started. */
+    on(type: "start", listener: (event: { target: Processor }) => void): esri.Handle
+    /** Fires when the processor is stopped. */
+    on(type: "stop", listener: (event: { target: Processor }) => void): esri.Handle
+    on(type: string, listener: (event: any) => void): esri.Handle
+  }
+  export = Processor;
+}
+
+declare module "esri/process/SpatialIndex" {
+  import esri = require("esri");
+  import Processor = require("esri/process/Processor");
+  import Point = require("esri/geometry/Point");
+  import Graphic = require("esri/graphic");
+  import Extent = require("esri/geometry/Extent");
+
+  /** Builds and maintains a spatial index of feature geometry in one or more FeatureLayer. */
+  class SpatialIndex extends Processor {
+    /**
+     * Creates a SpatialIndex.
+     * @param options Configuration options for the processor.
+     */
+    constructor(options?: esri.SpatialIndexOptions);
+    /**
+     * Searches index for items which intersect the test object.
+     * @param test The point or area to intersect.
+     * @param layerId ID assigned to the layer.
+     * @param getRects Whether to get the rectangle object with data in leaf, otherwise just get the stored data.
+     */
+    intersects(test: Point, layerId?: string, getRects?: boolean): any;
+    /**
+     * Searches index for items which intersect the test object.
+     * @param test The point or area to intersect.
+     * @param layerId ID assigned to the layer.
+     * @param getRects Whether to get the rectangle object with data in leaf, otherwise just get the stored data.
+     */
+    intersects(test: Graphic, layerId?: string, getRects?: boolean): any;
+    /**
+     * Searches index for items which intersect the test object.
+     * @param test The point or area to intersect.
+     * @param layerId ID assigned to the layer.
+     * @param getRects Whether to get the rectangle object with data in leaf, otherwise just get the stored data.
+     */
+    intersects(test: Extent, layerId?: string, getRects?: boolean): any;
+    /**
+     * Searches index for items which intersect the test object.
+     * @param test The point or area to intersect.
+     * @param layerId ID assigned to the layer.
+     * @param getRects Whether to get the rectangle object with data in leaf, otherwise just get the stored data.
+     */
+    intersects(test: number[], layerId?: string, getRects?: boolean): any;
+    /**
+     * Searches for the nearest point(s) to the passed point within the specified criteria.
+     * @param criteria See following parameters for valid members of criteria.
+     * @param layerId ID assigned to the layer.
+     */
+    nearest(criteria: any, layerId?: string): any;
+  }
+  export = SpatialIndex;
 }
 
 declare module "esri/renderers/ClassBreaksRenderer" {
@@ -8079,12 +8525,13 @@ declare module "esri/renderers/ClassBreaksRenderer" {
 declare module "esri/renderers/DotDensityRenderer" {
   import esri = require("esri");
   import Renderer = require("esri/renderers/Renderer");
+  import Color = require("esri/Color");
   import LineSymbol = require("esri/symbols/LineSymbol");
 
   /** The DotDensityRenderer provides the ability to create dot density visualizations on data. */
   class DotDensityRenderer extends Renderer {
     /** The color to be used for the background of the symbol. */
-    backgroundColor: any;
+    backgroundColor: Color;
     /** The shape to be used for the dot. */
     dotShape: string;
     /** The size of the dot in pixels. */
@@ -8104,7 +8551,7 @@ declare module "esri/renderers/DotDensityRenderer" {
      * Updates the background color of the shape.
      * @param color Background color.
      */
-    setBackgroundColor(color: any): void;
+    setBackgroundColor(color: Color): void;
     /**
      * Updates the size of the dot.
      * @param size The size of the dot in pixels.
@@ -8127,6 +8574,7 @@ declare module "esri/renderers/DotDensityRenderer" {
 declare module "esri/renderers/Renderer" {
   import Symbol = require("esri/symbols/Symbol");
   import Graphic = require("esri/graphic");
+  import Color = require("esri/Color");
 
   /** Base class for the renderers - SimpleRenderer, ClassBreaksRenderer, UniqueValueRenderer. */
   class Renderer {
@@ -8142,7 +8590,7 @@ declare module "esri/renderers/Renderer" {
      * Gets the color for the Graphic.
      * @param graphic Graphic to get color from.
      */
-    getColor(graphic: Graphic): any;
+    getColor(graphic: Graphic): Color;
     /**
      * Returns the angle of rotation (in degrees) for the graphic calculated using rotationInfo.
      * @param graphic An input graphic for which you want to get the angle of rotation.
@@ -8331,6 +8779,7 @@ declare module "esri/renderers/TimeClassBreaksAger" {
 
 declare module "esri/renderers/TimeRampAger" {
   import SymbolAger = require("esri/renderers/SymbolAger");
+  import Color = require("esri/Color");
   import Symbol = require("esri/symbols/Symbol");
   import Graphic = require("esri/graphic");
 
@@ -8342,7 +8791,7 @@ declare module "esri/renderers/TimeRampAger" {
      * @param sizeRange An array containing the minimum and maximum size in  pixels.
      * @param alphaRange An array containing the minimum and maximum alpha opacity values.
      */
-    constructor(colorRange?: any, sizeRange?: number[], alphaRange?: number[]);
+    constructor(colorRange?: Color[], sizeRange?: number[], alphaRange?: number[]);
     /**
      * Calculates aging and returns the appropriate symbol.
      * @param symbol The symbol to age.
@@ -8446,14 +8895,18 @@ declare module "esri/request" {
      * @param options The options parameter is an object with the following properties representing various options supported by this function.
      */
     (request: any, options?: any): any;
-    /** Define a callback function that will be called just before esri.request calls into dojo IO functions such as dojo.rawXhrPost and dojo.io.script.get. */
-    setRequestPreCallback(): void;
+    /**
+     * Define a callback function that will be called just before esri.request calls into dojo IO functions such as dojo.rawXhrPost and dojo.io.script.get.
+     * @param callbackFunction The callback function that will be executed prior to esri.request calls into dojo IO functions.
+     */
+    setRequestPreCallback(callbackFunction: Function): void;
   };
   export = request;
 }
 
 declare module "esri/symbols/CartographicLineSymbol" {
   import SimpleLineSymbol = require("esri/symbols/SimpleLineSymbol");
+  import Color = require("esri/Color");
 
   /** Line symbols are used to draw linear features on the graphics layer. */
   class CartographicLineSymbol extends SimpleLineSymbol {
@@ -8492,13 +8945,13 @@ declare module "esri/symbols/CartographicLineSymbol" {
     /**
      * Creates a new CartographicLineSymbol object with parameters.
      * @param style See Constants table for values.
-     * @param color Symbol color, which is based on dojo.Color.
+     * @param color Symbol color.
      * @param width Width of the line in pixels.
      * @param cap See Constants table for values.
      * @param join See Constants table for values.
      * @param miterLimit Size threshold for showing mitered line joins.
      */
-    constructor(style?: string, color?: any, width?: number, cap?: string, join?: string, miterLimit?: string);
+    constructor(style?: string, color?: Color, width?: number, cap?: string, join?: string, miterLimit?: string);
     /**
      * Creates a new CartographicLineSymbol object using a JSON object.
      * @param json JSON object representing the CartographicLineSymbol.
@@ -8799,6 +9252,7 @@ declare module "esri/symbols/PictureMarkerSymbol" {
 }
 
 declare module "esri/symbols/ShieldLabelSymbol" {
+  import Color = require("esri/Color");
   import Font = require("esri/symbols/Font");
 
   /** The ShieldLabelSymbol is helper class which designed for drawing image with text over the image. */
@@ -8811,7 +9265,7 @@ declare module "esri/symbols/ShieldLabelSymbol" {
      * @param height Image height.
      * @param font Font used for drawing text.
      */
-    constructor(imageUrl: string, textColor?: any, width?: number, height?: number, font?: Font);
+    constructor(imageUrl: string, textColor?: Color, width?: number, height?: number, font?: Font);
   }
   export = ShieldLabelSymbol;
 }
@@ -8819,6 +9273,7 @@ declare module "esri/symbols/ShieldLabelSymbol" {
 declare module "esri/symbols/SimpleFillSymbol" {
   import FillSymbol = require("esri/symbols/FillSymbol");
   import SimpleLineSymbol = require("esri/symbols/SimpleLineSymbol");
+  import Color = require("esri/Color");
 
   /** Fill symbols are used to draw polygon features on the graphics layer. */
   class SimpleFillSymbol extends FillSymbol {
@@ -8846,9 +9301,9 @@ declare module "esri/symbols/SimpleFillSymbol" {
      * Creates a new SimpleFillSymbol object with parameters.
      * @param style See Constants table for values.
      * @param outline See SimpleLineSymbol.
-     * @param color Symbol color, which is based on dojo.Color.
+     * @param color Symbol color.
      */
-    constructor(style: string, outline: SimpleLineSymbol, color: any);
+    constructor(style: string, outline: SimpleLineSymbol, color: Color);
     /**
      * Creates a new SimpleFillSymbol object using a JSON object.
      * @param json JSON object representing the SimpleFillSymbol.
@@ -8865,6 +9320,7 @@ declare module "esri/symbols/SimpleFillSymbol" {
 
 declare module "esri/symbols/SimpleLineSymbol" {
   import LineSymbol = require("esri/symbols/LineSymbol");
+  import Color = require("esri/Color");
 
   /** Line symbols are used to draw linear features on the graphics layer. */
   class SimpleLineSymbol extends LineSymbol {
@@ -8899,10 +9355,10 @@ declare module "esri/symbols/SimpleLineSymbol" {
     /**
      * Creates a new SimpleLineSymbol object with parameters.
      * @param style See Constants table for values.
-     * @param color Symbol color, which is based on dojo.Color.
+     * @param color Symbol color.
      * @param width Width of the line in pixels.
      */
-    constructor(style: string, color: any, width: number);
+    constructor(style: string, color: Color, width: number);
     /**
      * Creates a new SimpleLineSymbol object using a JSON object.
      * @param json JSON object representing the SimpleLineSymbol.
@@ -8920,6 +9376,7 @@ declare module "esri/symbols/SimpleLineSymbol" {
 declare module "esri/symbols/SimpleMarkerSymbol" {
   import MarkerSymbol = require("esri/symbols/MarkerSymbol");
   import SimpleLineSymbol = require("esri/symbols/SimpleLineSymbol");
+  import Color = require("esri/Color");
 
   /** Marker symbols are used to draw points and multipoints on the graphics layer. */
   class SimpleMarkerSymbol extends MarkerSymbol {
@@ -8948,9 +9405,9 @@ declare module "esri/symbols/SimpleMarkerSymbol" {
      * @param style See Constants table for values.
      * @param size Size of the marker in pixels.
      * @param outline See SimpleLineSymbol.
-     * @param color Symbol color, which is based on dojo.Color.
+     * @param color Symbol color.
      */
-    constructor(style: string, size: number, outline: SimpleLineSymbol, color: any);
+    constructor(style: string, size: number, outline: SimpleLineSymbol, color: Color);
     /**
      * Creates a new SimpleMarkerSymbol object using a JSON object.
      * @param json JSON object representing the SimpleMarkerSymbol.
@@ -8976,17 +9433,19 @@ declare module "esri/symbols/SimpleMarkerSymbol" {
 }
 
 declare module "esri/symbols/Symbol" {
+  import Color = require("esri/Color");
+
   /** Symbols are used to display points, lines, and polygons on the graphics layer. */
   class Symbol {
-    /** Symbol color, which is based on dojo.Color. */
-    color: any;
+    /** Symbol color. */
+    color: Color;
     /** The type of symbol. */
     type: string;
     /**
      * Sets the symbol color.
-     * @param color Colors can be denoted in the following formats.
+     * @param color Symbol color.
      */
-    setColor(color: any): Symbol;
+    setColor(color: Color): Symbol;
     /** Converts object to its ArcGIS Server JSON representation. */
     toJson(): any;
   }
@@ -8996,6 +9455,7 @@ declare module "esri/symbols/Symbol" {
 declare module "esri/symbols/TextSymbol" {
   import Symbol = require("esri/symbols/Symbol");
   import Font = require("esri/symbols/Font");
+  import Color = require("esri/Color");
 
   /** Text symbols are used to add text on the graphics layer. */
   class TextSymbol extends Symbol {
@@ -9044,9 +9504,9 @@ declare module "esri/symbols/TextSymbol" {
      * Creates a new TextSymbol object.
      * @param text Text string for display in the graphics layer.
      * @param font Font for displaying text.
-     * @param color Symbol color, which is based on dojo.Color.
+     * @param color Symbol color.
      */
-    constructor(text: string, font: Font, color: any);
+    constructor(text: string, font: Font, color: Color);
     /**
      * Creates a new TextSymbol object using a JSON object.
      * @param json JSON object representing the TextSymbol.
@@ -9144,14 +9604,16 @@ declare module "esri/tasks/AddressCandidate" {
 }
 
 declare module "esri/tasks/AlgorithmicColorRamp" {
+  import Color = require("esri/Color");
+
   /** Create an algorithmic color ramp to define the range of colors used in the renderer generated by the GenerateRendererTask. */
   class AlgorithmicColorRamp {
     /** The algorithm used to generate the colors between the fromColor and toColor. */
     algorithm: string;
     /** The first color in the color ramp. */
-    fromColor: any;
+    fromColor: Color;
     /** The last color in the color ramp. */
-    toColor: any;
+    toColor: Color;
     /** Creates a new AlgorithmicColorRamp object. */
     constructor();
     /** Returns an easily serializable object representation of an algorithmic color ramp. */
@@ -9206,10 +9668,12 @@ declare module "esri/tasks/BufferParameters" {
 }
 
 declare module "esri/tasks/ClassBreaksDefinition" {
+  import ClassificationDefinition = require("esri/tasks/ClassificationDefinition");
   import Symbol = require("esri/symbols/Symbol");
+  import Color = require("esri/Color");
 
   /** Define a class breaks classification scheme used by the GenerateDataTask to generate classes. */
-  class ClassBreaksDefinition {
+  class ClassBreaksDefinition extends ClassificationDefinition {
     /** Define a default symbol for the classification. */
     baseSymbol: Symbol;
     /** The number of class breaks. */
@@ -9219,7 +9683,7 @@ declare module "esri/tasks/ClassBreaksDefinition" {
     /** The name of the classification method. */
     classificationMethod: string;
     /** Define a color ramp for the classification. */
-    colorRamp: any;
+    colorRamp: Color;
     /** The name of the field that contains the values used to normalize class breaks when normalizationType is set to 'field'. */
     normalizationField: string;
     /** The type of normalization used to normalize class breaks. */
@@ -9236,13 +9700,14 @@ declare module "esri/tasks/ClassBreaksDefinition" {
 
 declare module "esri/tasks/ClassificationDefinition" {
   import Symbol = require("esri/symbols/Symbol");
+  import Color = require("esri/Color");
 
   /** The super class for the classification definition objects used by the GenerateRendererTask class to generate data classes. */
   class ClassificationDefinition {
     /** Define a default symbol for the classification. */
     baseSymbol: Symbol;
     /** Define a color ramp for the classification. */
-    colorRamp: any;
+    colorRamp: Color;
     /** The type of classification definition. */
     type: string;
   }
@@ -10533,6 +10998,13 @@ declare module "esri/tasks/QueryTask" {
      */
     executeForCount(query: Query, callback?: Function, errback?: Function): any;
     /**
+     * Get the extent of the features that satisfy the input query.
+     * @param query Specify the input query object.
+     * @param callback The function to call when the method has completed.
+     * @param errback An error object is returned if an error occurs on the Server during task execution.
+     */
+    executeForExtent(query: Query, callback?: Function, errback?: Function): any;
+    /**
      * Executes a Query against an ArcGIS Server map layer.
      * @param parameters Specifies the attributes and spatial filter of the query.
      * @param callback The function to call when the method has completed.
@@ -10552,6 +11024,8 @@ declare module "esri/tasks/QueryTask" {
     on(type: "error", listener: (event: { error: Error; target: QueryTask }) => void): esri.Handle
     /** Fires when the query for the count is complete. */
     on(type: "execute-for-count-complete", listener: (event: { count: number; target: QueryTask }) => void): esri.Handle
+    /** Fires when the query for the extent is complete. */
+    on(type: "execute-for-extent-complete", listener: (event: { count: number; extent: any; target: QueryTask }) => void): esri.Handle
     /** Fires when the query on IDs is complete. */
     on(type: "execute-for-ids-complete", listener: (event: { objectIds: number[]; target: QueryTask }) => void): esri.Handle
     /** Fires when the executeRelationshipQuery is complete. */
@@ -10928,10 +11402,12 @@ declare module "esri/tasks/TrimExtendParameters" {
 }
 
 declare module "esri/tasks/UniqueValueDefinition" {
+  import ClassificationDefinition = require("esri/tasks/ClassificationDefinition");
   import Symbol = require("esri/symbols/Symbol");
+  import Color = require("esri/Color");
 
   /** Define a unique value classification scheme used by the GenerateDataTask to generate a renderer that groups values based on a unique combination of one or more fields. */
-  class UniqueValueDefinition {
+  class UniqueValueDefinition extends ClassificationDefinition {
     /** Attribute field renderer uses to match values. */
     attributeField: string;
     /** The name of the field that contains unique values when combined with the values specified by attributeField. */
@@ -10941,7 +11417,7 @@ declare module "esri/tasks/UniqueValueDefinition" {
     /** Define a default symbol for the classification. */
     baseSymbol: Symbol;
     /** Define a color ramp for the classification. */
-    colorRamp: any;
+    colorRamp: Color;
     /** Creates a new UniqueValueDefinition object. */
     constructor();
     /** Returns an easily serializable object representation of the unique value definition. */
@@ -11219,6 +11695,8 @@ declare module "esri/tasks/query" {
     static SPATIAL_REL_TOUCHES: any;
     /** The feature from feature class 1 is completely enclosed by the feature from feature class 2. */
     static SPATIAL_REL_WITHIN: any;
+    /** Distance to buffer input geometry. */
+    distance: number;
     /** The geometry to apply to the spatial filter. */
     geometry: Geometry;
     /** Specify the number of decimal places for the geometries returned by the query operation. */
@@ -11227,6 +11705,8 @@ declare module "esri/tasks/query" {
     groupByFieldsForStatistics: string[];
     /** The maximum allowable offset used for generalizing geometries returned by the query operation. */
     maxAllowableOffset: number;
+    /** Number of features to retrieve. */
+    num: number;
     /** A comma delimited list of ObjectIds for the features in the layer/table that you want to query. */
     objectIds: number[];
     /** One or more field names that will be used to order the query results. */
@@ -11245,10 +11725,14 @@ declare module "esri/tasks/query" {
     returnGeometry: boolean;
     /** The spatial relationship to be applied on the input geometry while performing the query. */
     spatialRelationship: string;
+    /** Zero-based index indicating where to begin retrieving features. */
+    start: number;
     /** Shorthand for a where clause using "like". */
     text: string;
     /** Specify a time extent for the query. */
     timeExtent: TimeExtent;
+    /** Distance unit. */
+    units: string;
     /** A where clause for the query. */
     where: string;
     /** Creates a new Query object used to execute a query on the layer resource identified by the URL. */
@@ -11752,5 +12236,64 @@ declare module "esri/virtualearth/VETiledLayer" {
     on(type: string, listener: (event: any) => void): esri.Handle
   }
   export = VETiledLayer;
+}
+
+declare module "esri/workers/WorkerClient" {
+  /** The WorkerClient is the primary entry point for interfacing with background Workers. */
+  class WorkerClient {
+    /** Return Deferreds rather than Promises from postMessage. */
+    returnDeferreds: boolean;
+    /** Reference to the actual HTML5 Worker instance. */
+    worker: Worker;
+    /**
+     * Creates a WorkerClient
+     * @param path A require style string path to the worker script.
+     * @param deferreds Whether to return Deferreds rather than Promises from methods.
+     */
+    constructor(path: string, deferreds?: boolean);
+    /**
+     * Adds a function to the worker that takes the worker's internal calls to postMessage and calls this function before sending the original message back to the main thread.
+     * @param module A require path to a worker-compatible script containing the callback function.
+     * @param name The name of the callback function.
+     */
+    addWorkerCallback(module: string, name?: string): any;
+    /**
+     * Import any script or function into the worker.
+     * @param paths An AMD require path to a script file to import.
+     */
+    importScripts(paths: string): any;
+    /**
+     * Import any script or function into the worker.
+     * @param paths An AMD require path to a script file to import.
+     */
+    importScripts(paths: string[]): any;
+    /**
+     * Posts a message to the worker.
+     * @param msg The data to post to the worker.
+     * @param transfers An optional array of transferable objects.
+     */
+    postMessage(msg: any, transfers?: any[]): any;
+    /**
+     * Posts a message to the worker.
+     * @param msg The data to post to the worker.
+     * @param transfers An optional array of transferable objects.
+     */
+    postMessage(msg: any[], transfers?: any[]): any;
+    /**
+     * Sets the worker that is used in the Worker Client.
+     * @param paths An AMD require path to a script file to import.
+     * @param path A require style string path to the worker script.
+     */
+    setWorker(paths: string, path: string): void;
+    /**
+     * Sets the worker that is used in the Worker Client.
+     * @param paths An AMD require path to a script file to import.
+     * @param path A require style string path to the worker script.
+     */
+    setWorker(paths: string[], path: string): void;
+    /** Terminates the worker and cancels all unresolved messages. */
+    terminate(): void;
+  }
+  export = WorkerClient;
 }
 
