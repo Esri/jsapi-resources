@@ -1,6 +1,6 @@
 // Type definitions for ArcGIS API for JavaScript version 3.9
 // Project: http://js.arcgis.com
-// Updated: Mon Apr 07 2014
+// Updated: Tue Apr 08 2014
 
 declare module "esri" {
   import Graphic = require("esri/graphic");
@@ -1524,10 +1524,10 @@ declare module "esri/Credential" {
     /** Return the properties of this object in JSON. */
     toJson(): any;
     /** Fired when a credential object is destroyed. */
-    on(type: "destroy", listener: (event: { target: Credential }) => void): esri.Handle
+    on(type: "destroy", listener: (event: { target: Credential }) => void): esri.Handle;
     /** Fired when the token associated with the credential is updated or changed. */
-    on(type: "token-change", listener: (event: { target: Credential }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "token-change", listener: (event: { target: Credential }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = Credential;
 }
@@ -1543,10 +1543,10 @@ declare module "esri/IdentityManager" {
     /** This method is called by the base identity manager implementation. */
     signIn(): any;
     /** Fired when the user clicks the cancel button on the dialog box widget. */
-    on(type: "dialog-cancel", listener: (event: { info: any; target: IdentityManager }) => void): esri.Handle
+    on(type: "dialog-cancel", listener: (event: { info: any; target: IdentityManager }) => void): esri.Handle;
     /** Fired when the dialog box widget, used to prompt users for their credentials, is created. */
-    on(type: "dialog-create", listener: (event: { target: IdentityManager }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "dialog-create", listener: (event: { target: IdentityManager }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = IdentityManager;
 }
@@ -1740,10 +1740,10 @@ declare module "esri/InfoWindowBase" {
      */
     unsetMap(map: Map): void;
     /** Fires after the info window is hidden. */
-    on(type: "hide", listener: (event: { target: InfoWindowBase }) => void): esri.Handle
+    on(type: "hide", listener: (event: { target: InfoWindowBase }) => void): esri.Handle;
     /** Fires after the info window becomes visible. */
-    on(type: "show", listener: (event: { target: InfoWindowBase }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "show", listener: (event: { target: InfoWindowBase }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = InfoWindowBase;
 }
@@ -2025,8 +2025,8 @@ declare module "esri/arcgis/Portal" {
     /** Sign out of the Portal which resets the Portal and disables identity checking. */
     signOut(): Portal;
     /** Fired when the portal has loaded. */
-    on(type: "load", listener: (event: { target: Portal }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "load", listener: (event: { target: Portal }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   /** Details about a comment on a Portal item.View the ArcGIS Portal API REST documentation for the item comment for more details. */
   export class PortalComment {
@@ -2356,12 +2356,12 @@ declare module "esri/dijit/AttributeInspector" {
     /** Updates the contents of the AttributeInspector. */
     refresh(): void;
     /** Fires when a fields value changes.. */
-    on(type: "attribute-change", listener: (event: { feature: Graphic; fieldName: string; fieldValue: string; target: AttributeInspector }) => void): esri.Handle
+    on(type: "attribute-change", listener: (event: { feature: Graphic; fieldName: string; fieldValue: string; target: AttributeInspector }) => void): esri.Handle;
     /** Fires when the AttributeInspector's delete button is pressed. */
-    on(type: "delete", listener: (event: { feature: Graphic; target: AttributeInspector }) => void): esri.Handle
+    on(type: "delete", listener: (event: { feature: Graphic; target: AttributeInspector }) => void): esri.Handle;
     /** Fires when the AttributeInspector's next or back button is pressed. */
-    on(type: "next", listener: (event: { feature: Graphic; target: AttributeInspector }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "next", listener: (event: { feature: Graphic; target: AttributeInspector }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = AttributeInspector;
 }
@@ -2472,16 +2472,16 @@ declare module "esri/dijit/BasemapGallery" {
     /** Finalizes the creation of the basemap gallery. */
     startup(): void;
     /** Fires when a basemap is added to the BasemapGallery's list of basemaps. */
-    on(type: "add", listener: (event: { basemap: Basemap; target: BasemapGallery }) => void): esri.Handle
+    on(type: "add", listener: (event: { basemap: Basemap; target: BasemapGallery }) => void): esri.Handle;
     /** Fires when an error occurs while switching basemaps. */
-    on(type: "error", listener: (event: { target: BasemapGallery }) => void): esri.Handle
+    on(type: "error", listener: (event: { target: BasemapGallery }) => void): esri.Handle;
     /** Fires when the BasemapGallery retrieves the ArcGIS.com basemaps. */
-    on(type: "load", listener: (event: { target: BasemapGallery }) => void): esri.Handle
+    on(type: "load", listener: (event: { target: BasemapGallery }) => void): esri.Handle;
     /** Fires when a basemap is removed from the BasemapGallery's list of basemaps. */
-    on(type: "remove", listener: (event: { basemap: Basemap; target: BasemapGallery }) => void): esri.Handle
+    on(type: "remove", listener: (event: { basemap: Basemap; target: BasemapGallery }) => void): esri.Handle;
     /** Fires after the map is updated with a new basemap. */
-    on(type: "selection-change", listener: (event: { target: BasemapGallery }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "selection-change", listener: (event: { target: BasemapGallery }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = BasemapGallery;
 }
@@ -2557,10 +2557,10 @@ declare module "esri/dijit/BasemapToggle" {
     /** Toggles to the next basemap. */
     toggle(): void;
     /** Fires when the widget has been loaded. */
-    on(type: "load", listener: (event: { target: BasemapToggle }) => void): esri.Handle
+    on(type: "load", listener: (event: { target: BasemapToggle }) => void): esri.Handle;
     /** Fires when the toggle method has been called. */
-    on(type: "toggle", listener: (event: { currentBasemap: string; error: any; previousBasemap: string; target: BasemapToggle }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "toggle", listener: (event: { currentBasemap: string; error: any; previousBasemap: string; target: BasemapToggle }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = BasemapToggle;
 }
@@ -2619,12 +2619,12 @@ declare module "esri/dijit/Bookmarks" {
     /** Returns an array of json objects with the following structure:  [{   name:bookmarkName,   extent:bookmarkExtent }]  */
     toJson(): any;
     /** Fired when a bookmark item is clicked. */
-    on(type: "click", listener: (event: { target: Bookmarks }) => void): esri.Handle
+    on(type: "click", listener: (event: { target: Bookmarks }) => void): esri.Handle;
     /** Fired after the bookmark item is edited. */
-    on(type: "edit", listener: (event: { target: Bookmarks }) => void): esri.Handle
+    on(type: "edit", listener: (event: { target: Bookmarks }) => void): esri.Handle;
     /** Fired when a bookmark item is removed. */
-    on(type: "remove", listener: (event: { target: Bookmarks }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "remove", listener: (event: { target: Bookmarks }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = Bookmarks;
 }
@@ -2797,18 +2797,18 @@ declare module "esri/dijit/Directions" {
      */
     zoomToSegment(index: number): void;
     /** Fires when the directions display is reset. */
-    on(type: "directions-clear", listener: (event: { target: Directions }) => void): esri.Handle
+    on(type: "directions-clear", listener: (event: { target: Directions }) => void): esri.Handle;
     /** Fires when the route service has calculated the route and the directions are ready for display. */
-    on(type: "directions-finish", listener: (event: { result: RouteResult; target: Directions }) => void): esri.Handle
+    on(type: "directions-finish", listener: (event: { result: RouteResult; target: Directions }) => void): esri.Handle;
     /** Fires when the route services starts to calculate the route. */
-    on(type: "directions-start", listener: (event: { target: Directions }) => void): esri.Handle
+    on(type: "directions-start", listener: (event: { target: Directions }) => void): esri.Handle;
     /** Fires when the directions widget has fully loaded. */
-    on(type: "load", listener: (event: { target: Directions }) => void): esri.Handle
+    on(type: "load", listener: (event: { target: Directions }) => void): esri.Handle;
     /** Fired when you hover over a route segment in the directions display. */
-    on(type: "segment-highlight", listener: (event: { graphic: Graphic; target: Directions }) => void): esri.Handle
+    on(type: "segment-highlight", listener: (event: { graphic: Graphic; target: Directions }) => void): esri.Handle;
     /** Fires when a route segment is selected in the directions display. */
-    on(type: "segment-select", listener: (event: { graphic: Graphic; target: Directions }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "segment-select", listener: (event: { graphic: Graphic; target: Directions }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = Directions;
 }
@@ -2853,10 +2853,10 @@ declare module "esri/dijit/Gallery" {
     /** Finalize the creation of the gallery. */
     startup(): void;
     /** Fires when the items setFocus method is called. */
-    on(type: "focus", listener: (event: { item: any; target: Gallery }) => void): esri.Handle
+    on(type: "focus", listener: (event: { item: any; target: Gallery }) => void): esri.Handle;
     /** Fires when an item is selected. */
-    on(type: "select", listener: (event: { item: any; target: Gallery }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "select", listener: (event: { item: any; target: Gallery }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = Gallery;
 }
@@ -2964,16 +2964,16 @@ declare module "esri/dijit/Geocoder" {
     /** Finalizes the creation of the widget. */
     startup(): void;
     /** Fired when results are returned from an auto-complete. */
-    on(type: "auto-complete", listener: (event: { results : any; target: Geocoder }) => void): esri.Handle
+    on(type: "auto-complete", listener: (event: { results : any; target: Geocoder }) => void): esri.Handle;
     /** Fired when a result is cleared from the input box or a new result is selected. */
-    on(type: "clear", listener: (event: { target: Geocoder }) => void): esri.Handle
+    on(type: "clear", listener: (event: { target: Geocoder }) => void): esri.Handle;
     /** Fired when results are returned from a search. */
-    on(type: "find-results", listener: (event: { results: any; target: Geocoder }) => void): esri.Handle
+    on(type: "find-results", listener: (event: { results: any; target: Geocoder }) => void): esri.Handle;
     /** Fired when a geocoder is selected. */
-    on(type: "geocoder-select", listener: (event: { geocoder: any; target: Geocoder }) => void): esri.Handle
+    on(type: "geocoder-select", listener: (event: { geocoder: any; target: Geocoder }) => void): esri.Handle;
     /** Fired when a result has been selected, the submit button is pressed, or the enter key is fired. */
-    on(type: "select", listener: (event: { results: any; target: Geocoder }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "select", listener: (event: { results: any; target: Geocoder }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = Geocoder;
 }
@@ -2998,10 +2998,10 @@ declare module "esri/dijit/HistogramTimeSlider" {
     /** Set related objects as null and hide the widget. */
     destroy(): void;
     /** Fires whenever the slider moved, and the visible time extent is changed. */
-    on(type: "time-extent-change", listener: (event: { target: HistogramTimeSlider }) => void): esri.Handle
+    on(type: "time-extent-change", listener: (event: { target: HistogramTimeSlider }) => void): esri.Handle;
     /** Fires fires each time the histogram is drawn. */
-    on(type: "update", listener: (event: { target: HistogramTimeSlider }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "update", listener: (event: { target: HistogramTimeSlider }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = HistogramTimeSlider;
 }
@@ -3046,10 +3046,10 @@ declare module "esri/dijit/HomeButton" {
     /** Finalizes the creation of this dijit. */
     startup(): void;
     /** Fires when the home method has been called. */
-    on(type: "home", listener: (event: { error: any; extent: Extent; target: HomeButton }) => void): esri.Handle
+    on(type: "home", listener: (event: { error: any; extent: Extent; target: HomeButton }) => void): esri.Handle;
     /** Fires when the widget has been loaded. */
-    on(type: "load", listener: (event: { target: HomeButton }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "load", listener: (event: { target: HomeButton }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = HomeButton;
 }
@@ -3124,10 +3124,10 @@ declare module "esri/dijit/InfoWindow" {
      */
     show(point: Point, placement?: string): void;
     /** Fires when an infoWindow is hidden. */
-    on(type: "hide", listener: (event: { target: InfoWindow }) => void): esri.Handle
+    on(type: "hide", listener: (event: { target: InfoWindow }) => void): esri.Handle;
     /** Fires when an InfoWindow is visible. */
-    on(type: "show", listener: (event: { target: InfoWindow }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "show", listener: (event: { target: InfoWindow }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = InfoWindow;
 }
@@ -3183,10 +3183,10 @@ declare module "esri/dijit/InfoWindowLite" {
      */
     show(point: Point, placement?: string): void;
     /** Fires when an infoWindow is hidden. */
-    on(type: "hide", listener: (event: { target: InfoWindowLite }) => void): esri.Handle
+    on(type: "hide", listener: (event: { target: InfoWindowLite }) => void): esri.Handle;
     /** Fires when an InfoWindowLite is displayed. */
-    on(type: "show", listener: (event: { target: InfoWindowLite }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "show", listener: (event: { target: InfoWindowLite }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = InfoWindowLite;
 }
@@ -3239,10 +3239,10 @@ declare module "esri/dijit/LayerSwipe" {
     /** Updates the map to the position of the swipe node. */
     swipe(): void;
     /** Event is fired when the widget has been loaded. */
-    on(type: "load", listener: (event: { target: LayerSwipe }) => void): esri.Handle
+    on(type: "load", listener: (event: { target: LayerSwipe }) => void): esri.Handle;
     /** Event is fired when the tool has moved. */
-    on(type: "swipe", listener: (event: { layers: any[]; target: LayerSwipe }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "swipe", listener: (event: { layers: any[]; target: LayerSwipe }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = LayerSwipe;
 }
@@ -3337,10 +3337,10 @@ declare module "esri/dijit/LocateButton" {
     /** Finalizes the creation of this dijit. */
     startup(): void;
     /** Fires when the widget has been loaded. */
-    on(type: "load", listener: (event: { target: LocateButton }) => void): esri.Handle
+    on(type: "load", listener: (event: { target: LocateButton }) => void): esri.Handle;
     /** Fires when the locate method has been called. */
-    on(type: "locate", listener: (event: { error: any; graphic: Graphic; position: any; scale: number; target: LocateButton }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "locate", listener: (event: { error: any; graphic: Graphic; position: any; scale: number; target: LocateButton }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = LocateButton;
 }
@@ -3390,8 +3390,8 @@ declare module "esri/dijit/Measurement" {
     /** Finalizes the creation of the measurement widget . */
     startup(): void;
     /** Fired when the measurement is complete. */
-    on(type: "measure-end", listener: (event: { activeToolName: string; geometry: Geometry; target: Measurement }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "measure-end", listener: (event: { activeToolName: string; geometry: Geometry; target: Measurement }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = Measurement;
 }
@@ -3525,20 +3525,20 @@ declare module "esri/dijit/Popup" {
      */
     show(location: Point, options?: any): void;
     /** Fired when clearFeatures is called. */
-    on(type: "clear-features", listener: (event: { target: Popup }) => void): esri.Handle
+    on(type: "clear-features", listener: (event: { target: Popup }) => void): esri.Handle;
     /** Fired when the info window is hidden. */
-    on(type: "hide", listener: (event: { target: Popup }) => void): esri.Handle
+    on(type: "hide", listener: (event: { target: Popup }) => void): esri.Handle;
     /** Fired when the popup has finished maximizing. */
-    on(type: "maximize", listener: (event: { target: Popup }) => void): esri.Handle
+    on(type: "maximize", listener: (event: { target: Popup }) => void): esri.Handle;
     /** Fired when the popup has been restored from its maximized state. */
-    on(type: "restore", listener: (event: { target: Popup }) => void): esri.Handle
+    on(type: "restore", listener: (event: { target: Popup }) => void): esri.Handle;
     /** Fired when the selection changes. */
-    on(type: "selection-change", listener: (event: { target: Popup }) => void): esri.Handle
+    on(type: "selection-change", listener: (event: { target: Popup }) => void): esri.Handle;
     /** Fired after registering an array of features. */
-    on(type: "set-features", listener: (event: { target: Popup }) => void): esri.Handle
+    on(type: "set-features", listener: (event: { target: Popup }) => void): esri.Handle;
     /** Fired when the info window becomes visible. */
-    on(type: "show", listener: (event: { target: Popup }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "show", listener: (event: { target: Popup }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = Popup;
 }
@@ -3612,16 +3612,16 @@ declare module "esri/dijit/PopupMobile" {
      */
     show(location: Point): void;
     /** Fired when clearFeatures is called. */
-    on(type: "clear-features", listener: (event: { target: PopupMobile }) => void): esri.Handle
+    on(type: "clear-features", listener: (event: { target: PopupMobile }) => void): esri.Handle;
     /** Fired when the info window is hidden. */
-    on(type: "hide", listener: (event: { target: PopupMobile }) => void): esri.Handle
+    on(type: "hide", listener: (event: { target: PopupMobile }) => void): esri.Handle;
     /** Fired when the selection changes. */
-    on(type: "selection-change", listener: (event: { target: PopupMobile }) => void): esri.Handle
+    on(type: "selection-change", listener: (event: { target: PopupMobile }) => void): esri.Handle;
     /** Fired after registering an array of features. */
-    on(type: "set-features", listener: (event: { target: PopupMobile }) => void): esri.Handle
+    on(type: "set-features", listener: (event: { target: PopupMobile }) => void): esri.Handle;
     /** Fired when the info window becomes visible. */
-    on(type: "show", listener: (event: { target: PopupMobile }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "show", listener: (event: { target: PopupMobile }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = PopupMobile;
 }
@@ -3670,12 +3670,12 @@ declare module "esri/dijit/Print" {
     /** Finalizes the creation of the print widget. */
     startup(): void;
     /** Fired when an error occurs during the print request. */
-    on(type: "error", listener: (event: { error: Error; target: Print }) => void): esri.Handle
+    on(type: "error", listener: (event: { error: Error; target: Print }) => void): esri.Handle;
     /** Fired when the print job has succeeded. */
-    on(type: "print-complete", listener: (event: { value: any; target: Print }) => void): esri.Handle
+    on(type: "print-complete", listener: (event: { value: any; target: Print }) => void): esri.Handle;
     /** Fired when the request is sent to the print service. */
-    on(type: "print-start", listener: (event: { target: Print }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "print-start", listener: (event: { target: Print }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = Print;
 }
@@ -3799,8 +3799,8 @@ declare module "esri/dijit/TimeSlider" {
      */
     singleThumbAsTimeInstant(createTimeInstants: boolean): void;
     /** Fires when the timeExtent of the TimeSlider is changed. */
-    on(type: "time-extent-change", listener: (event: { timeExtent: TimeExtent; target: TimeSlider }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "time-extent-change", listener: (event: { timeExtent: TimeExtent; target: TimeSlider }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = TimeSlider;
 }
@@ -3881,26 +3881,26 @@ declare module "esri/dijit/analysis/AnalysisBase" {
      */
     getCreditsEstimate(toolName: string, jobParams: string): any;
     /** Fires when close icon is clicked or when run analysis button is clicked. */
-    on(type: "close", listener: (event: { target: AnalysisBase }) => void): esri.Handle
+    on(type: "close", listener: (event: { target: AnalysisBase }) => void): esri.Handle;
     /** Fires when the drawn boundaries option is activated. */
-    on(type: "drawtool-activate", listener: (event: { target: AnalysisBase }) => void): esri.Handle
+    on(type: "drawtool-activate", listener: (event: { target: AnalysisBase }) => void): esri.Handle;
     /** Fires when the drawn boundaries option is deactivated. */
-    on(type: "drawtool-deactivate", listener: (event: { target: AnalysisBase }) => void): esri.Handle
+    on(type: "drawtool-deactivate", listener: (event: { target: AnalysisBase }) => void): esri.Handle;
     /** Fires when the job in cancelled. */
-    on(type: "job-cancel", listener: (event: { response: any; target: AnalysisBase }) => void): esri.Handle
+    on(type: "job-cancel", listener: (event: { response: any; target: AnalysisBase }) => void): esri.Handle;
     /** Fires when the job fails. */
-    on(type: "job-fail", listener: (event: { error: any; target: AnalysisBase }) => void): esri.Handle
+    on(type: "job-fail", listener: (event: { error: any; target: AnalysisBase }) => void): esri.Handle;
     /** Fires after the job fetches result data. */
-    on(type: "job-result", listener: (event: { result: any; target: AnalysisBase }) => void): esri.Handle
+    on(type: "job-result", listener: (event: { result: any; target: AnalysisBase }) => void): esri.Handle;
     /** Fires when the job execution status is received. */
-    on(type: "job-status", listener: (event: { jobInfo: any; target: AnalysisBase }) => void): esri.Handle
+    on(type: "job-status", listener: (event: { jobInfo: any; target: AnalysisBase }) => void): esri.Handle;
     /** Fires when the job is submitted to the server for asynchronous processing. */
-    on(type: "job-submit", listener: (event: { params: any; target: AnalysisBase }) => void): esri.Handle
+    on(type: "job-submit", listener: (event: { params: any; target: AnalysisBase }) => void): esri.Handle;
     /** Fires when the job succeeds. */
-    on(type: "job-success", listener: (event: { jobInfo: any; target: AnalysisBase }) => void): esri.Handle
+    on(type: "job-success", listener: (event: { jobInfo: any; target: AnalysisBase }) => void): esri.Handle;
     /** Fires when the execute method is called. */
-    on(type: "start", listener: (event: { params: any; target: AnalysisBase }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "start", listener: (event: { params: any; target: AnalysisBase }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = AnalysisBase;
 }
@@ -4633,8 +4633,8 @@ declare module "esri/dijit/editing/TemplatePicker" {
     /** Updates the templatePicker after modifying the properties of the widget. */
     update(): void;
     /** Fires when an item is selected or unselected in the template picker. */
-    on(type: "selection-change", listener: (event: { target: TemplatePicker }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "selection-change", listener: (event: { target: TemplatePicker }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = TemplatePicker;
 }
@@ -4727,16 +4727,16 @@ declare module "esri/dijit/geoenrichment/InfoGraphic" {
     /** Finalizes the creation of this dijit. */
     startup(): void;
     /** Fires if an error occurs in retrieving data for the study area. */
-    on(type: "data-error", listener: (event: { error: any; target: Infographic }) => void): esri.Handle
+    on(type: "data-error", listener: (event: { error: any; target: Infographic }) => void): esri.Handle;
     /** Fires when loading data for the study area. */
-    on(type: "data-load", listener: (event: { target: Infographic }) => void): esri.Handle
+    on(type: "data-load", listener: (event: { target: Infographic }) => void): esri.Handle;
     /** Fires when data for the study area is ready. */
-    on(type: "data-ready", listener: (event: { provider: any; target: Infographic }) => void): esri.Handle
+    on(type: "data-ready", listener: (event: { provider: any; target: Infographic }) => void): esri.Handle;
     /** Fires when requesting data for the study area. */
-    on(type: "data-request", listener: (event: { target: Infographic }) => void): esri.Handle
+    on(type: "data-request", listener: (event: { target: Infographic }) => void): esri.Handle;
     /** Fires when the Infographic is resized. */
-    on(type: "resize", listener: (event: { size: number[]; target: Infographic }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "resize", listener: (event: { size: number[]; target: Infographic }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = Infographic;
 }
@@ -4775,14 +4775,14 @@ declare module "esri/dijit/geoenrichment/InfographicsCarousel" {
     /** Finalizes the creation of this dijit. */
     startup(): void;
     /** Fires if an error occurs in retrieving data for the study area. */
-    on(type: "data-error", listener: (event: { error: any; target: InfographicsCarousel }) => void): esri.Handle
+    on(type: "data-error", listener: (event: { error: any; target: InfographicsCarousel }) => void): esri.Handle;
     /** Fires when loading data for the study area. */
-    on(type: "data-load", listener: (event: { target: InfographicsCarousel }) => void): esri.Handle
+    on(type: "data-load", listener: (event: { target: InfographicsCarousel }) => void): esri.Handle;
     /** Fires when data for the study area is ready. */
-    on(type: "data-ready", listener: (event: { provider: any; target: InfographicsCarousel }) => void): esri.Handle
+    on(type: "data-ready", listener: (event: { provider: any; target: InfographicsCarousel }) => void): esri.Handle;
     /** Fires when the InfographicsCarousel is resized. */
-    on(type: "resize", listener: (event: { size: number[]; target: InfographicsCarousel }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "resize", listener: (event: { size: number[]; target: InfographicsCarousel }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = InfographicsCarousel;
 }
@@ -5870,18 +5870,18 @@ declare module "esri/layers/ArcGISDynamicMapServiceLayer" {
     /** Suspends layer drawing. */
     suspend(): void;
     /** Fired when the geodatabase version is switched. */
-    on(type: "gdbversion-change", listener: (event: { target: ArcGISDynamicMapServiceLayer }) => void): esri.Handle
+    on(type: "gdbversion-change", listener: (event: { target: ArcGISDynamicMapServiceLayer }) => void): esri.Handle;
     /** Fires when the map export is completed. */
-    on(type: "map-image-export", listener: (event: { mapImage: MapImage; target: ArcGISDynamicMapServiceLayer }) => void): esri.Handle
+    on(type: "map-image-export", listener: (event: { mapImage: MapImage; target: ArcGISDynamicMapServiceLayer }) => void): esri.Handle;
     /** Fires when a layer resumes drawing. */
-    on(type: "resume", listener: (event: { target: ArcGISDynamicMapServiceLayer }) => void): esri.Handle
+    on(type: "resume", listener: (event: { target: ArcGISDynamicMapServiceLayer }) => void): esri.Handle;
     /** Fires when a layer's minScale and/or maxScale is changed. */
-    on(type: "scale-range-change", listener: (event: { target: ArcGISDynamicMapServiceLayer }) => void): esri.Handle
+    on(type: "scale-range-change", listener: (event: { target: ArcGISDynamicMapServiceLayer }) => void): esri.Handle;
     /** Fires when a layer's scale visibility changes. */
-    on(type: "scale-visibility-change", listener: (event: { target: ArcGISDynamicMapServiceLayer }) => void): esri.Handle
+    on(type: "scale-visibility-change", listener: (event: { target: ArcGISDynamicMapServiceLayer }) => void): esri.Handle;
     /** Fires when a layer suspends drawing. */
-    on(type: "suspend", listener: (event: { target: ArcGISDynamicMapServiceLayer }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "suspend", listener: (event: { target: ArcGISDynamicMapServiceLayer }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = ArcGISDynamicMapServiceLayer;
 }
@@ -6034,12 +6034,12 @@ declare module "esri/layers/ArcGISImageServiceLayer" {
      */
     setUseMapTime(update: boolean): void;
     /** Fires when the map export is completed. */
-    on(type: "map-image-export", listener: (event: { mapImage: MapImage; target: ArcGISImageServiceLayer }) => void): esri.Handle
+    on(type: "map-image-export", listener: (event: { mapImage: MapImage; target: ArcGISImageServiceLayer }) => void): esri.Handle;
     /** Fired when the layers mosaic rule is changed. */
-    on(type: "mosaic-rule-change", listener: (event: { target: ArcGISImageServiceLayer }) => void): esri.Handle
+    on(type: "mosaic-rule-change", listener: (event: { target: ArcGISImageServiceLayer }) => void): esri.Handle;
     /** Fired when the layers band ids are changed or if a raster function is applied. */
-    on(type: "rendering-change", listener: (event: { target: ArcGISImageServiceLayer }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "rendering-change", listener: (event: { target: ArcGISImageServiceLayer }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = ArcGISImageServiceLayer;
 }
@@ -6120,14 +6120,14 @@ declare module "esri/layers/ArcGISTiledMapServiceLayer" {
     /** Suspends layer drawing. */
     suspend(): void;
     /** Fires when a layer resumes drawing. */
-    on(type: "resume", listener: (event: { target: ArcGISTiledMapServiceLayer }) => void): esri.Handle
+    on(type: "resume", listener: (event: { target: ArcGISTiledMapServiceLayer }) => void): esri.Handle;
     /** Fires when a layer's minScale and/or maxScale is changed. */
-    on(type: "scale-range-change", listener: (event: { target: ArcGISTiledMapServiceLayer }) => void): esri.Handle
+    on(type: "scale-range-change", listener: (event: { target: ArcGISTiledMapServiceLayer }) => void): esri.Handle;
     /** Fires when a layer's scale visibility changes. */
-    on(type: "scale-visibility-change", listener: (event: { target: ArcGISTiledMapServiceLayer }) => void): esri.Handle
+    on(type: "scale-visibility-change", listener: (event: { target: ArcGISTiledMapServiceLayer }) => void): esri.Handle;
     /** Fires when a layer suspends drawing. */
-    on(type: "suspend", listener: (event: { target: ArcGISTiledMapServiceLayer }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "suspend", listener: (event: { target: ArcGISTiledMapServiceLayer }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = ArcGISTiledMapServiceLayer;
 }
@@ -6236,10 +6236,10 @@ declare module "esri/layers/DynamicMapServiceLayer" {
     /** Refreshes the map by making a new request to the server. */
     refresh(): void;
     /** Fired when the geodatabase version is switched. */
-    on(type: "gdb-version-change", listener: (event: { target: DynamicMapServiceLayer }) => void): esri.Handle
+    on(type: "gdb-version-change", listener: (event: { target: DynamicMapServiceLayer }) => void): esri.Handle;
     /** Fires when the map export is completed. */
-    on(type: "map-image-export", listener: (event: { mapImage: MapImage; target: DynamicMapServiceLayer }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "map-image-export", listener: (event: { mapImage: MapImage; target: DynamicMapServiceLayer }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = DynamicMapServiceLayer;
 }
@@ -6588,48 +6588,48 @@ declare module "esri/layers/FeatureLayer" {
     /** Returns an easily serializable object representation of the layer. */
     toJson(): any;
     /** Fires when addAttachments() is complete. */
-    on(type: "add-attachment-complete", listener: (event: { result: FeatureEditResult; target: FeatureLayer }) => void): esri.Handle
+    on(type: "add-attachment-complete", listener: (event: { result: FeatureEditResult; target: FeatureLayer }) => void): esri.Handle;
     /** Fired before edits are applied to the feature layer. */
-    on(type: "before-apply-edits", listener: (event: { adds: Graphic[]; deletes: Graphic[]; updates: Graphic[]; target: FeatureLayer }) => void): esri.Handle
+    on(type: "before-apply-edits", listener: (event: { adds: Graphic[]; deletes: Graphic[]; updates: Graphic[]; target: FeatureLayer }) => void): esri.Handle;
     /** Fired when the capabilities of the layer are modified using the setEditable method. */
-    on(type: "capabilities-change", listener: (event: { target: FeatureLayer }) => void): esri.Handle
+    on(type: "capabilities-change", listener: (event: { target: FeatureLayer }) => void): esri.Handle;
     /** Fires when a feature has been double clicked. */
-    on(type: "dbl-click", listener: (event: { event: any; target: FeatureLayer }) => void): esri.Handle
+    on(type: "dbl-click", listener: (event: { event: any; target: FeatureLayer }) => void): esri.Handle;
     /** Fires when deleteAttachments is complete. */
-    on(type: "delete-attachments-complete", listener: (event: { results: any[]; target: FeatureLayer }) => void): esri.Handle
+    on(type: "delete-attachments-complete", listener: (event: { results: any[]; target: FeatureLayer }) => void): esri.Handle;
     /** Fires after applyEdits() is complete. */
-    on(type: "edits-complete", listener: (event: { adds: FeatureEditResult[]; deletes: FeatureEditResult[]; updates: FeatureEditResult[]; target: FeatureLayer }) => void): esri.Handle
+    on(type: "edits-complete", listener: (event: { adds: FeatureEditResult[]; deletes: FeatureEditResult[]; updates: FeatureEditResult[]; target: FeatureLayer }) => void): esri.Handle;
     /** Fires when queryAttachmentInfos method is called. */
-    on(type: "query-attachment-infos-complete", listener: (event: { info: any[]; target: FeatureLayer }) => void): esri.Handle
+    on(type: "query-attachment-infos-complete", listener: (event: { info: any[]; target: FeatureLayer }) => void): esri.Handle;
     /** Fires when the query for the count is complete. */
-    on(type: "query-count-complete", listener: (event: { count: number; target: FeatureLayer }) => void): esri.Handle
+    on(type: "query-count-complete", listener: (event: { count: number; target: FeatureLayer }) => void): esri.Handle;
     /** Fires when queryExtent method has completed. */
-    on(type: "query-extent-complete", listener: (event: { count: number; extent: Extent; target: FeatureLayer }) => void): esri.Handle
+    on(type: "query-extent-complete", listener: (event: { count: number; extent: Extent; target: FeatureLayer }) => void): esri.Handle;
     /** Fires when queryFeatures() is complete. */
-    on(type: "query-features-complete", listener: (event: { featureSet: FeatureSet; target: FeatureLayer }) => void): esri.Handle
+    on(type: "query-features-complete", listener: (event: { featureSet: FeatureSet; target: FeatureLayer }) => void): esri.Handle;
     /** Fires when queryIds() is complete. */
-    on(type: "query-ids-complete", listener: (event: { objectIds: number[]; target: FeatureLayer }) => void): esri.Handle
+    on(type: "query-ids-complete", listener: (event: { objectIds: number[]; target: FeatureLayer }) => void): esri.Handle;
     /** Fired when the feature layer could not draw all the features due to a maxRecordCount limitation on a query operation. */
-    on(type: "query-limit-exceeded", listener: (event: { target: FeatureLayer }) => void): esri.Handle
+    on(type: "query-limit-exceeded", listener: (event: { target: FeatureLayer }) => void): esri.Handle;
     /** Fires when queryRelatedFeatures() is complete. */
-    on(type: "query-related-features-complete", listener: (event: { relatedFeatures: any; target: FeatureLayer }) => void): esri.Handle
+    on(type: "query-related-features-complete", listener: (event: { relatedFeatures: any; target: FeatureLayer }) => void): esri.Handle;
     /** Fires when a layer resumes drawing. */
-    on(type: "resume", listener: (event: { target: FeatureLayer }) => void): esri.Handle
+    on(type: "resume", listener: (event: { target: FeatureLayer }) => void): esri.Handle;
     /** Fires when a layer's minScale and/or maxScale is changed. */
-    on(type: "scale-range-change", listener: (event: { target: FeatureLayer }) => void): esri.Handle
+    on(type: "scale-range-change", listener: (event: { target: FeatureLayer }) => void): esri.Handle;
     /** Fires when a layer's scale visibility changes. */
-    on(type: "scale-visibility-change", listener: (event: { target: FeatureLayer }) => void): esri.Handle
+    on(type: "scale-visibility-change", listener: (event: { target: FeatureLayer }) => void): esri.Handle;
     /** Fires after clearSelection has been called. */
-    on(type: "selection-clear", listener: (event: { target: FeatureLayer }) => void): esri.Handle
+    on(type: "selection-clear", listener: (event: { target: FeatureLayer }) => void): esri.Handle;
     /** Fires when selectFeatures() completes. */
-    on(type: "selection-complete", listener: (event: { features: Graphic[]; method: number; target: FeatureLayer }) => void): esri.Handle
+    on(type: "selection-complete", listener: (event: { features: Graphic[]; method: number; target: FeatureLayer }) => void): esri.Handle;
     /** Fires when a layer suspends drawing. */
-    on(type: "suspend", listener: (event: { target: FeatureLayer }) => void): esri.Handle
+    on(type: "suspend", listener: (event: { target: FeatureLayer }) => void): esri.Handle;
     /** Fired when the layer has finished updating its content. */
-    on(type: "update-end", listener: (event: { error: Error; info: any; target: FeatureLayer }) => void): esri.Handle
+    on(type: "update-end", listener: (event: { error: Error; info: any; target: FeatureLayer }) => void): esri.Handle;
     /** Fired when the layer begins to update its content. */
-    on(type: "update-start", listener: (event: { target: FeatureLayer }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "update-start", listener: (event: { target: FeatureLayer }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = FeatureLayer;
 }
@@ -6744,8 +6744,8 @@ declare module "esri/layers/GeoRSSLayer" {
     /** An array of feature layers for the GeoRSSLayer. */
     getFeatureLayers(): FeatureLayer[];
     /** Fires when the layer is refreshed. */
-    on(type: "refresh", listener: (event: { target: GeoRSSLayer }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "refresh", listener: (event: { target: GeoRSSLayer }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = GeoRSSLayer;
 }
@@ -6812,34 +6812,34 @@ declare module "esri/layers/GraphicsLayer" {
      */
     setRenderer(renderer: Renderer): void;
     /** Fires when a graphic has been clicked. */
-    on(type: "click", listener: (event: { event: any; target: GraphicsLayer }) => void): esri.Handle
+    on(type: "click", listener: (event: { event: any; target: GraphicsLayer }) => void): esri.Handle;
     /** Fires when a graphic has been double clicked. */
-    on(type: "dbl-click", listener: (event: { target: GraphicsLayer }) => void): esri.Handle
+    on(type: "dbl-click", listener: (event: { target: GraphicsLayer }) => void): esri.Handle;
     /** Fires when a graphic is added to the GraphicsLayer. */
-    on(type: "graphic-add", listener: (event: { graphic: Graphic; target: GraphicsLayer }) => void): esri.Handle
+    on(type: "graphic-add", listener: (event: { graphic: Graphic; target: GraphicsLayer }) => void): esri.Handle;
     /** Fires when a graphic is drawn. */
-    on(type: "graphic-draw", listener: (event: { graphic: Graphic; target: GraphicsLayer }) => void): esri.Handle
+    on(type: "graphic-draw", listener: (event: { graphic: Graphic; target: GraphicsLayer }) => void): esri.Handle;
     /** Fires when a graphic's DOM node is created and added to the layer. */
-    on(type: "graphic-node-add", listener: (event: { graphic: Graphic; node: HTMLElement; target: GraphicsLayer }) => void): esri.Handle
+    on(type: "graphic-node-add", listener: (event: { graphic: Graphic; node: HTMLElement; target: GraphicsLayer }) => void): esri.Handle;
     /** This event is fired when a graphic's DOM node is removed (consider the node destroyed). */
-    on(type: "graphic-node-remove", listener: (event: { graphic: Graphic; node: HTMLElement; target: GraphicsLayer }) => void): esri.Handle
+    on(type: "graphic-node-remove", listener: (event: { graphic: Graphic; node: HTMLElement; target: GraphicsLayer }) => void): esri.Handle;
     /** Fires when a graphic is removed from the GraphicsLayer. */
-    on(type: "graphic-remove", listener: (event: { graphic: Graphic; target: GraphicsLayer }) => void): esri.Handle
+    on(type: "graphic-remove", listener: (event: { graphic: Graphic; target: GraphicsLayer }) => void): esri.Handle;
     /** Fires when all graphics in the GraphicsLayer are cleared. */
-    on(type: "graphics-clear", listener: (event: { target: GraphicsLayer }) => void): esri.Handle
+    on(type: "graphics-clear", listener: (event: { target: GraphicsLayer }) => void): esri.Handle;
     /** Fires when a mouse button is pressed down and the mouse cursor is on a graphic. */
-    on(type: "mouse-down", listener: (event: esri.AGSMouseEvent) => void): esri.Handle
+    on(type: "mouse-down", listener: (event: esri.AGSMouseEvent) => void): esri.Handle;
     /** Fires while the mouse is being dragged until the mouse button is released. */
-    on(type: "mouse-drag", listener: (event: esri.AGSMouseEvent) => void): esri.Handle
+    on(type: "mouse-drag", listener: (event: esri.AGSMouseEvent) => void): esri.Handle;
     /** Fires as the mouse moves through a graphic on the GraphicsLayer. */
-    on(type: "mouse-move", listener: (event: esri.AGSMouseEvent) => void): esri.Handle
+    on(type: "mouse-move", listener: (event: esri.AGSMouseEvent) => void): esri.Handle;
     /** Fires as the mouse exits a graphic on the GraphicsLayer. */
-    on(type: "mouse-out", listener: (event: esri.AGSMouseEvent) => void): esri.Handle
+    on(type: "mouse-out", listener: (event: esri.AGSMouseEvent) => void): esri.Handle;
     /** Fires when the mouse first enters into a graphic on the GraphicsLayer. */
-    on(type: "mouse-over", listener: (event: esri.AGSMouseEvent) => void): esri.Handle
+    on(type: "mouse-over", listener: (event: esri.AGSMouseEvent) => void): esri.Handle;
     /** Fires when a mouse button is released and the mouse cursor is on a graphic. */
-    on(type: "mouse-up", listener: (event: esri.AGSMouseEvent) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "mouse-up", listener: (event: esri.AGSMouseEvent) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = GraphicsLayer;
 }
@@ -7053,8 +7053,8 @@ declare module "esri/layers/KMLLayer" {
      */
     setFolderVisibility(folder: KMLFolder, isVisible: boolean): void;
     /** Fired after the layer is refreshed. */
-    on(type: "refresh", listener: (event: { target: KMLLayer }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "refresh", listener: (event: { target: KMLLayer }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = KMLLayer;
 }
@@ -7491,16 +7491,16 @@ declare module "esri/layers/StreamLayer" {
      */
     disconnect(callback?: Function): void;
     /** Fires when connection is successfully made to socket. */
-    on(type: "connect", listener: (event: { target: StreamLayer }) => void): esri.Handle
+    on(type: "connect", listener: (event: { target: StreamLayer }) => void): esri.Handle;
     /** Fires when disconnect from socket. */
-    on(type: "disconnect", listener: (event: { target: StreamLayer }) => void): esri.Handle
+    on(type: "disconnect", listener: (event: { target: StreamLayer }) => void): esri.Handle;
     /** Fires after a message is pushed to the layer. */
-    on(type: "message", listener: (event: { graphic: Graphic; type: string; target: StreamLayer }) => void): esri.Handle
+    on(type: "message", listener: (event: { graphic: Graphic; type: string; target: StreamLayer }) => void): esri.Handle;
     /** Fires after a message is purged (removed) from the layer. */
-    on(type: "remove", listener: (event: { graphic: Graphic; target: StreamLayer }) => void): esri.Handle
+    on(type: "remove", listener: (event: { graphic: Graphic; target: StreamLayer }) => void): esri.Handle;
     /** Fires after a graphic's attributes have been updated */
-    on(type: "update", listener: (event: { graphic: Graphic; target: StreamLayer }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "update", listener: (event: { graphic: Graphic; target: StreamLayer }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = StreamLayer;
 }
@@ -7919,30 +7919,30 @@ declare module "esri/layers/layer" {
     /** Suspends layer drawing. */
     suspend(): void;
     /** Fires when there is a problem retrieving a layer. */
-    on(type: "error", listener: (event: { error: Error; target: Layer }) => void): esri.Handle
+    on(type: "error", listener: (event: { error: Error; target: Layer }) => void): esri.Handle;
     /** Fires after layer properties for the layer are successfully populated. */
-    on(type: "load", listener: (event: { layer: Layer; target: Layer }) => void): esri.Handle
+    on(type: "load", listener: (event: { layer: Layer; target: Layer }) => void): esri.Handle;
     /** Fires when the layer opacity has been changed, and returns an object with the opacity value. */
-    on(type: "opacity-change", listener: (event: { opacity: number; target: Layer }) => void): esri.Handle
+    on(type: "opacity-change", listener: (event: { opacity: number; target: Layer }) => void): esri.Handle;
     /** This event is fired when the layer's refreshInterval is modified. */
-    on(type: "refresh-interval-change", listener: (event: { target: Layer }) => void): esri.Handle
+    on(type: "refresh-interval-change", listener: (event: { target: Layer }) => void): esri.Handle;
     /** Fires when a layer resumes drawing. */
-    on(type: "resume", listener: (event: { target: Layer }) => void): esri.Handle
+    on(type: "resume", listener: (event: { target: Layer }) => void): esri.Handle;
     /** Fires when a layer's minScale and/or maxScale is changed. */
-    on(type: "scale-range-change", listener: (event: { target: Layer }) => void): esri.Handle
+    on(type: "scale-range-change", listener: (event: { target: Layer }) => void): esri.Handle;
     /** Fires when a layer's scale visibility changes. */
-    on(type: "scale-visibility-change", listener: (event: { target: Layer }) => void): esri.Handle
+    on(type: "scale-visibility-change", listener: (event: { target: Layer }) => void): esri.Handle;
     /** Fires when a layer suspends drawing. */
-    on(type: "suspend", listener: (event: { target: Layer }) => void): esri.Handle
+    on(type: "suspend", listener: (event: { target: Layer }) => void): esri.Handle;
     /** Fires any time a layer has finished loading or updating itself. */
-    on(type: "update", listener: (event: { target: Layer }) => void): esri.Handle
+    on(type: "update", listener: (event: { target: Layer }) => void): esri.Handle;
     /** Fires when a layer has finished updating its content. */
-    on(type: "update-end", listener: (event: { error: Error; target: Layer }) => void): esri.Handle
+    on(type: "update-end", listener: (event: { error: Error; target: Layer }) => void): esri.Handle;
     /** Fires when a layer begins to update its content. */
-    on(type: "update-start", listener: (event: { target: Layer }) => void): esri.Handle
+    on(type: "update-start", listener: (event: { target: Layer }) => void): esri.Handle;
     /** Fires when the layer visibility has been changed, and returns an object with a Boolean visible property containing the new visibility value of the layer. */
-    on(type: "visibility-change", listener: (event: { visible: boolean; target: Layer }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "visibility-change", listener: (event: { visible: boolean; target: Layer }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = Layer;
 }
@@ -8232,82 +8232,82 @@ declare module "esri/map" {
      */
     toScreen(mapPoint: Point): ScreenPoint;
     /** Fired when the map's basemap is changed. */
-    on(type: "basemap-change", listener: (event: { current: any; previous: any; target: Map }) => void): esri.Handle
+    on(type: "basemap-change", listener: (event: { current: any; previous: any; target: Map }) => void): esri.Handle;
     /** Event is fired before the map gets destroyed. */
-    on(type: "before-unload", listener: (event: { map: Map; target: Map }) => void): esri.Handle
+    on(type: "before-unload", listener: (event: { map: Map; target: Map }) => void): esri.Handle;
     /** Fires when a user single clicks on the map using the mouse and the mouse pointer is within the map region of the HTML page. */
-    on(type: "click", listener: (event: esri.AGSMouseEvent) => void): esri.Handle
+    on(type: "click", listener: (event: esri.AGSMouseEvent) => void): esri.Handle;
     /** Fires when a user double clicks on the map using the mouse and the mouse pointer is within the map region of the HTML page. */
-    on(type: "dbl-click", listener: (event: esri.AGSMouseEvent) => void): esri.Handle
+    on(type: "dbl-click", listener: (event: esri.AGSMouseEvent) => void): esri.Handle;
     /** Fires when the extent of the map has changed. */
-    on(type: "extent-change", listener: (event: { delta: Point; extent: Extent; levelChange: boolean; lod: LOD; target: Map }) => void): esri.Handle
+    on(type: "extent-change", listener: (event: { delta: Point; extent: Extent; levelChange: boolean; lod: LOD; target: Map }) => void): esri.Handle;
     /** Fires when a keyboard key is pressed. */
-    on(type: "key-down", listener: (event: KeyboardEvent) => void): esri.Handle
+    on(type: "key-down", listener: (event: KeyboardEvent) => void): esri.Handle;
     /** Fires when a keyboard key is released. */
-    on(type: "key-up", listener: (event: KeyboardEvent) => void): esri.Handle
+    on(type: "key-up", listener: (event: KeyboardEvent) => void): esri.Handle;
     /** Fires any time a layer is added to the map. */
-    on(type: "layer-add", listener: (event: { layer: Layer; target: Map }) => void): esri.Handle
+    on(type: "layer-add", listener: (event: { layer: Layer; target: Map }) => void): esri.Handle;
     /** Fires after specified layer has been added to the map. */
-    on(type: "layer-add-result", listener: (event: { error: Error; layer: Layer; target: Map }) => void): esri.Handle
+    on(type: "layer-add-result", listener: (event: { error: Error; layer: Layer; target: Map }) => void): esri.Handle;
     /** Fires after the layer has been removed. */
-    on(type: "layer-remove", listener: (event: { layer: Layer; target: Map }) => void): esri.Handle
+    on(type: "layer-remove", listener: (event: { layer: Layer; target: Map }) => void): esri.Handle;
     /** Fires when the map layer order has been changed. */
-    on(type: "layer-reorder", listener: (event: { index: number; layer: Layer; target: Map }) => void): esri.Handle
+    on(type: "layer-reorder", listener: (event: { index: number; layer: Layer; target: Map }) => void): esri.Handle;
     /** Fires when a map layer resumes drawing. */
-    on(type: "layer-resume", listener: (event: { layer: Layer; target: Map }) => void): esri.Handle
+    on(type: "layer-resume", listener: (event: { layer: Layer; target: Map }) => void): esri.Handle;
     /** Fires after all layers are added to the map using the map.addLayers method. */
-    on(type: "layers-add-result", listener: (event: { layers: Layer[]; target: Map }) => void): esri.Handle
+    on(type: "layers-add-result", listener: (event: { layers: Layer[]; target: Map }) => void): esri.Handle;
     /** Fires after all the layers have been removed. */
-    on(type: "layers-removed", listener: (event: { target: Map }) => void): esri.Handle
+    on(type: "layers-removed", listener: (event: { target: Map }) => void): esri.Handle;
     /** Fires when all the layers have been reordered. */
-    on(type: "layers-reordered", listener: (event: { layerIds: string[]; target: Map }) => void): esri.Handle
+    on(type: "layers-reordered", listener: (event: { layerIds: string[]; target: Map }) => void): esri.Handle;
     /** Fires when a map layer suspends drawing. */
-    on(type: "layer-suspend", listener: (event: { layer: Layer; target: Map }) => void): esri.Handle
+    on(type: "layer-suspend", listener: (event: { layer: Layer; target: Map }) => void): esri.Handle;
     /** Fires when the first or base layer has been successfully added to the map. */
-    on(type: "load", listener: (event: { map: Map; target: Map }) => void): esri.Handle
+    on(type: "load", listener: (event: { map: Map; target: Map }) => void): esri.Handle;
     /** Fires when a mouse button is pressed down and the mouse cursor is in the map region of the HTML page. */
-    on(type: "mouse-down", listener: (event: esri.AGSMouseEvent) => void): esri.Handle
+    on(type: "mouse-down", listener: (event: esri.AGSMouseEvent) => void): esri.Handle;
     /** Fires while the mouse is being dragged until the mouse button is released. */
-    on(type: "mouse-drag", listener: (event: esri.AGSMouseEvent) => void): esri.Handle
+    on(type: "mouse-drag", listener: (event: esri.AGSMouseEvent) => void): esri.Handle;
     /** Fires when a mouse button is released and the user stops dragging the mouse. */
-    on(type: "mouse-drag-end", listener: (event: esri.AGSMouseEvent) => void): esri.Handle
+    on(type: "mouse-drag-end", listener: (event: esri.AGSMouseEvent) => void): esri.Handle;
     /** Fires when a mouse button is pressed down and the user starts to drag the mouse. */
-    on(type: "mouse-drag-start", listener: (event: esri.AGSMouseEvent) => void): esri.Handle
+    on(type: "mouse-drag-start", listener: (event: esri.AGSMouseEvent) => void): esri.Handle;
     /** Fires any time the mouse pointer moves over the map region. */
-    on(type: "mouse-move", listener: (event: esri.AGSMouseEvent) => void): esri.Handle
+    on(type: "mouse-move", listener: (event: esri.AGSMouseEvent) => void): esri.Handle;
     /** Fires when the mouse moves out of the map region of the HTML page. */
-    on(type: "mouse-out", listener: (event: esri.AGSMouseEvent) => void): esri.Handle
+    on(type: "mouse-out", listener: (event: esri.AGSMouseEvent) => void): esri.Handle;
     /** Fires when the mouse moves into the map region of the HTML page.. */
-    on(type: "mouse-over", listener: (event: esri.AGSMouseEvent) => void): esri.Handle
+    on(type: "mouse-over", listener: (event: esri.AGSMouseEvent) => void): esri.Handle;
     /** Fires when the mouse button is released and the mouse pointer is within the map region of the HTML page. */
-    on(type: "mouse-up", listener: (event: esri.AGSMouseEvent) => void): esri.Handle
+    on(type: "mouse-up", listener: (event: esri.AGSMouseEvent) => void): esri.Handle;
     /** Fires when the mouse wheel is scrolled. */
-    on(type: "mouse-wheel", listener: (event: esri.AGSMouseEvent) => void): esri.Handle
+    on(type: "mouse-wheel", listener: (event: esri.AGSMouseEvent) => void): esri.Handle;
     /** Fires during the pan process. */
-    on(type: "pan", listener: (event: { delta: Point; extent: Extent; target: Map }) => void): esri.Handle
+    on(type: "pan", listener: (event: { delta: Point; extent: Extent; target: Map }) => void): esri.Handle;
     /** Fires when the pan is complete. */
-    on(type: "pan-end", listener: (event: { delta: Point; extent: Extent; target: Map }) => void): esri.Handle
+    on(type: "pan-end", listener: (event: { delta: Point; extent: Extent; target: Map }) => void): esri.Handle;
     /** Fires when a user commences panning. */
-    on(type: "pan-start", listener: (event: { extent: Extent; target: Map }) => void): esri.Handle
+    on(type: "pan-start", listener: (event: { extent: Extent; target: Map }) => void): esri.Handle;
     /** Fires when the map DIV is repositioned. */
-    on(type: "reposition", listener: (event: { x: number; y: number; target: Map }) => void): esri.Handle
+    on(type: "reposition", listener: (event: { x: number; y: number; target: Map }) => void): esri.Handle;
     /** Fires when the map's container has been resized. */
-    on(type: "resize", listener: (event: { extent: Extent; height: number; width: number; target: Map }) => void): esri.Handle
+    on(type: "resize", listener: (event: { extent: Extent; height: number; width: number; target: Map }) => void): esri.Handle;
     /** Fires when the map's timeExtent property is set. */
-    on(type: "time-extent-change", listener: (event: { timeExtent: TimeExtent; target: Map }) => void): esri.Handle
+    on(type: "time-extent-change", listener: (event: { timeExtent: TimeExtent; target: Map }) => void): esri.Handle;
     /** Fires when the page is refreshed. */
-    on(type: "unload", listener: (event: { map: Map; target: Map }) => void): esri.Handle
+    on(type: "unload", listener: (event: { map: Map; target: Map }) => void): esri.Handle;
     /** Fires after layers that are updating their content have completed. */
-    on(type: "update-end", listener: (event: { error: Error; target: Map }) => void): esri.Handle
+    on(type: "update-end", listener: (event: { error: Error; target: Map }) => void): esri.Handle;
     /** Fires when one or more layers begins updating their content. */
-    on(type: "update-start", listener: (event: { target: Map }) => void): esri.Handle
+    on(type: "update-start", listener: (event: { target: Map }) => void): esri.Handle;
     /** Fires during the zoom process. */
-    on(type: "zoom", listener: (event: { anchor: Point; extent: Extent; zoomFactor: number; target: Map }) => void): esri.Handle
+    on(type: "zoom", listener: (event: { anchor: Point; extent: Extent; zoomFactor: number; target: Map }) => void): esri.Handle;
     /** Fires when the zoom is complete. */
-    on(type: "zoom-end", listener: (event: { anchor: Point; extent: Extent; level: number; zoomFactor: number; target: Map }) => void): esri.Handle
+    on(type: "zoom-end", listener: (event: { anchor: Point; extent: Extent; level: number; zoomFactor: number; target: Map }) => void): esri.Handle;
     /** Fires when a user commences zooming. */
-    on(type: "zoom-start", listener: (event: { anchor: Point; extent: Extent; level: number; zoomFactor: number; target: Map }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "zoom-start", listener: (event: { anchor: Point; extent: Extent; level: number; zoomFactor: number; target: Map }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = Map;
 }
@@ -8380,10 +8380,10 @@ declare module "esri/process/Processor" {
     /** Unset the map and detach processor from all layers. */
     unsetMap(): void;
     /** Fires when the processor is started. */
-    on(type: "start", listener: (event: { target: Processor }) => void): esri.Handle
+    on(type: "start", listener: (event: { target: Processor }) => void): esri.Handle;
     /** Fires when the processor is stopped. */
-    on(type: "stop", listener: (event: { target: Processor }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "stop", listener: (event: { target: Processor }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = Processor;
 }
@@ -9838,8 +9838,8 @@ declare module "esri/tasks/ClosestFacilityTask" {
      */
     solve(params: ClosestFacilityParameters, callback?: Function, errback?: Function): any;
     /** Fires when ClosestFacilityTask has completed. */
-    on(type: "solve-complete", listener: (event: { result: ClosestFacilitySolveResult; target: ClosestFacilityTask }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "solve-complete", listener: (event: { result: ClosestFacilitySolveResult; target: ClosestFacilityTask }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = ClosestFacilityTask;
 }
@@ -10052,10 +10052,10 @@ declare module "esri/tasks/FindTask" {
      */
     execute(findParameters: FindParameters, callback?: Function, errback?: Function): any;
     /** Fires when the find operation is complete. */
-    on(type: "complete", listener: (event: { results: FindResult[]; target: FindTask }) => void): esri.Handle
+    on(type: "complete", listener: (event: { results: FindResult[]; target: FindTask }) => void): esri.Handle;
     /** Fires when an error occurs when executing the task. */
-    on(type: "error", listener: (event: { error: Error; target: FindTask }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "error", listener: (event: { error: Error; target: FindTask }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = FindTask;
 }
@@ -10148,10 +10148,10 @@ declare module "esri/tasks/GenerateRendererTask" {
      */
     execute(generateRendererParameters: GenerateRendererParameters, callback?: Function, errback?: Function): any;
     /** Fired when the classification operation is complete. */
-    on(type: "complete", listener: (event: { renderer: Renderer; target: GenerateRendererTask }) => void): esri.Handle
+    on(type: "complete", listener: (event: { renderer: Renderer; target: GenerateRendererTask }) => void): esri.Handle;
     /** Fired when an error occurs during task execution. */
-    on(type: "error", listener: (event: { error: Error; target: GenerateRendererTask }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "error", listener: (event: { error: Error; target: GenerateRendererTask }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = GenerateRendererTask;
 }
@@ -10348,46 +10348,46 @@ declare module "esri/tasks/GeometryService" {
      */
     union(geometries: Geometry[], callback?: Function, errback?: Function): any;
     /** Fires when the areasAndLengths operation is complete. */
-    on(type: "areas-and-lengths-complete", listener: (event: { result: any; target: GeometryService }) => void): esri.Handle
+    on(type: "areas-and-lengths-complete", listener: (event: { result: any; target: GeometryService }) => void): esri.Handle;
     /** Fires when the autoComplete operation is complete. */
-    on(type: "auto-complete-complete", listener: (event: { geometries: Polygon[]; target: GeometryService }) => void): esri.Handle
+    on(type: "auto-complete-complete", listener: (event: { geometries: Polygon[]; target: GeometryService }) => void): esri.Handle;
     /** Fires when the buffer operation is complete. */
-    on(type: "buffer-complete", listener: (event: { geometries: Geometry[]; target: GeometryService }) => void): esri.Handle
+    on(type: "buffer-complete", listener: (event: { geometries: Geometry[]; target: GeometryService }) => void): esri.Handle;
     /** Fires when the convexHull operation is complete. */
-    on(type: "convex-hull-complete", listener: (event: { geometry: Geometry; target: GeometryService }) => void): esri.Handle
+    on(type: "convex-hull-complete", listener: (event: { geometry: Geometry; target: GeometryService }) => void): esri.Handle;
     /** Fires when the cut operation is complete. */
-    on(type: "cut-complete", listener: (event: { result: any; target: GeometryService }) => void): esri.Handle
+    on(type: "cut-complete", listener: (event: { result: any; target: GeometryService }) => void): esri.Handle;
     /** Fires when the difference operation is complete. */
-    on(type: "difference-complete", listener: (event: { geometries: Geometry[]; target: GeometryService }) => void): esri.Handle
+    on(type: "difference-complete", listener: (event: { geometries: Geometry[]; target: GeometryService }) => void): esri.Handle;
     /** Fires when the distance operation is complete. */
-    on(type: "distance-complete", listener: (event: { distance: number; target: GeometryService }) => void): esri.Handle
+    on(type: "distance-complete", listener: (event: { distance: number; target: GeometryService }) => void): esri.Handle;
     /** Fires when an error occurs when executing the task. */
-    on(type: "error", listener: (event: { target: GeometryService }) => void): esri.Handle
+    on(type: "error", listener: (event: { target: GeometryService }) => void): esri.Handle;
     /** Fires when the generalize operation is complete. */
-    on(type: "generalize-complete", listener: (event: { geometries: Geometry[]; target: GeometryService }) => void): esri.Handle
+    on(type: "generalize-complete", listener: (event: { geometries: Geometry[]; target: GeometryService }) => void): esri.Handle;
     /** Fires when the intersect operation is complete. */
-    on(type: "intersect-complete", listener: (event: { geometries: Geometry[]; target: GeometryService }) => void): esri.Handle
+    on(type: "intersect-complete", listener: (event: { geometries: Geometry[]; target: GeometryService }) => void): esri.Handle;
     /** Fires when the labelPoints operation is complete. */
-    on(type: "label-points-complete ", listener: (event: { geometries: Geometry[]; target: GeometryService }) => void): esri.Handle
+    on(type: "label-points-complete ", listener: (event: { geometries: Geometry[]; target: GeometryService }) => void): esri.Handle;
     /** Fires when the labelPoints operation is complete. */
-    on(type: "label-points-complete", listener: (event: { labelPoints: Geometry[]; target: GeometryService }) => void): esri.Handle
+    on(type: "label-points-complete", listener: (event: { labelPoints: Geometry[]; target: GeometryService }) => void): esri.Handle;
     /** Fires when the lengths operation is complete. */
-    on(type: "lengths-complete", listener: (event: { result: any; target: GeometryService }) => void): esri.Handle
+    on(type: "lengths-complete", listener: (event: { result: any; target: GeometryService }) => void): esri.Handle;
     /** Fires when the offset operation is complete. */
-    on(type: "offset-complete", listener: (event: { geometries: Geometry[]; target: GeometryService }) => void): esri.Handle
+    on(type: "offset-complete", listener: (event: { geometries: Geometry[]; target: GeometryService }) => void): esri.Handle;
     /** Fires when the project operation is complete. */
-    on(type: "project-complete", listener: (event: { geometries: Geometry[]; target: GeometryService }) => void): esri.Handle
+    on(type: "project-complete", listener: (event: { geometries: Geometry[]; target: GeometryService }) => void): esri.Handle;
     /** Fires when the relation operation is complete. */
-    on(type: "relation-complete", listener: (event: { target: GeometryService }) => void): esri.Handle
+    on(type: "relation-complete", listener: (event: { target: GeometryService }) => void): esri.Handle;
     /** Fires when the reshape operation is complete. */
-    on(type: "reshape-complete", listener: (event: { geometry: Geometry; target: GeometryService }) => void): esri.Handle
+    on(type: "reshape-complete", listener: (event: { geometry: Geometry; target: GeometryService }) => void): esri.Handle;
     /** Fires when the simplify operation is complete. */
-    on(type: "simplify-complete", listener: (event: { geometries: Geometry[]; target: GeometryService }) => void): esri.Handle
+    on(type: "simplify-complete", listener: (event: { geometries: Geometry[]; target: GeometryService }) => void): esri.Handle;
     /** Fires when the trimExtend operation is complete. */
-    on(type: "trim-extend-complete", listener: (event: { geometries: Geometry[]; target: GeometryService }) => void): esri.Handle
+    on(type: "trim-extend-complete", listener: (event: { geometries: Geometry[]; target: GeometryService }) => void): esri.Handle;
     /** Fires when the union operation is complete. */
-    on(type: "union-complete", listener: (event: { geometry: Geometry; target: GeometryService }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "union-complete", listener: (event: { geometry: Geometry; target: GeometryService }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = GeometryService;
 }
@@ -10498,22 +10498,22 @@ declare module "esri/tasks/Geoprocessor" {
      */
     submitJob(inputParameters: any, callback?: Function, statusCallback?: Function, errback?: Function): void;
     /** Fires when an error occurs when executing the task. */
-    on(type: "error", listener: (event: { error: Error; target: Geoprocessor }) => void): esri.Handle
+    on(type: "error", listener: (event: { error: Error; target: Geoprocessor }) => void): esri.Handle;
     /** Fires when a synchronous GP task is completed. */
-    on(type: "execute-complete", listener: (event: { messages: GPMessage[]; results: ParameterValue[]; target: Geoprocessor }) => void): esri.Handle
+    on(type: "execute-complete", listener: (event: { messages: GPMessage[]; results: ParameterValue[]; target: Geoprocessor }) => void): esri.Handle;
     /** Fires when the result of an asynchronous GP task execution is available. */
-    on(type: "get-result-data-complete", listener: (event: { result: ParameterValue; target: Geoprocessor }) => void): esri.Handle
+    on(type: "get-result-data-complete", listener: (event: { result: ParameterValue; target: Geoprocessor }) => void): esri.Handle;
     /** Fires when a map image is generated by invoking the getResultImage method. */
-    on(type: "get-result-image-complete", listener: (event: { mapImage: MapImage; target: Geoprocessor }) => void): esri.Handle
+    on(type: "get-result-image-complete", listener: (event: { mapImage: MapImage; target: Geoprocessor }) => void): esri.Handle;
     /** Fires when getResultImageLayer method has completed. */
-    on(type: "get-result-image-layer-complete", listener: (event: { target: Geoprocessor }) => void): esri.Handle
+    on(type: "get-result-image-layer-complete", listener: (event: { target: Geoprocessor }) => void): esri.Handle;
     /** Fires when the geoprocessing job is cancelled using the cancelJob method. */
-    on(type: "job-cancel", listener: (event: { target: Geoprocessor }) => void): esri.Handle
+    on(type: "job-cancel", listener: (event: { target: Geoprocessor }) => void): esri.Handle;
     /** Fires when an asynchronous GP task using submitJob is complete. */
-    on(type: "job-complete", listener: (event: { target: Geoprocessor }) => void): esri.Handle
+    on(type: "job-complete", listener: (event: { target: Geoprocessor }) => void): esri.Handle;
     /** Fires when a job status update is available. */
-    on(type: "status-update", listener: (event: { target: Geoprocessor }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "status-update", listener: (event: { target: Geoprocessor }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = Geoprocessor;
 }
@@ -10610,10 +10610,10 @@ declare module "esri/tasks/IdentifyTask" {
      */
     execute(identifyParameters: IdentifyParameters, callback?: Function, errback?: Function): any;
     /** Fires when the identify operation is complete. */
-    on(type: "complete", listener: (event: { results: IdentifyResult[]; target: IdentifyTask }) => void): esri.Handle
+    on(type: "complete", listener: (event: { results: IdentifyResult[]; target: IdentifyTask }) => void): esri.Handle;
     /** Fires when an error occurs when executing the task. */
-    on(type: "error", listener: (event: { error: Error; target: IdentifyTask }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "error", listener: (event: { error: Error; target: IdentifyTask }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = IdentifyTask;
 }
@@ -10699,8 +10699,8 @@ declare module "esri/tasks/ImageServiceIdentifyTask" {
      */
     execute(params: ImageServiceIdentifyParameters, callback?: Function, errback?: Function): any;
     /** Fires when the identify operation is complete. */
-    on(type: "complete", listener: (event: { result: ImageServiceIdentifyResult; target: ImageServiceIdentifyTask }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "complete", listener: (event: { result: ImageServiceIdentifyResult; target: ImageServiceIdentifyTask }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = ImageServiceIdentifyTask;
 }
@@ -10916,10 +10916,10 @@ declare module "esri/tasks/PrintTask" {
      */
     execute(printParameters: PrintParameters, callback?: Function, errback?: Function): any;
     /** Fired when the print operation is complete. */
-    on(type: "complete", listener: (event: { url: string; target: PrintTask }) => void): esri.Handle
+    on(type: "complete", listener: (event: { url: string; target: PrintTask }) => void): esri.Handle;
     /** Fired when an error occurs while executing the print task. */
-    on(type: "error", listener: (event: { error: Error; target: PrintTask }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "error", listener: (event: { error: Error; target: PrintTask }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = PrintTask;
 }
@@ -11019,18 +11019,18 @@ declare module "esri/tasks/QueryTask" {
      */
     executeRelationshipQuery(parameters: RelationshipQuery, callback?: Function, errback?: Function): any;
     /** Fires when the query operation is complete. */
-    on(type: "complete", listener: (event: { featureSet: FeatureSet; target: QueryTask }) => void): esri.Handle
+    on(type: "complete", listener: (event: { featureSet: FeatureSet; target: QueryTask }) => void): esri.Handle;
     /** Fires when an error occurs when executing the task. */
-    on(type: "error", listener: (event: { error: Error; target: QueryTask }) => void): esri.Handle
+    on(type: "error", listener: (event: { error: Error; target: QueryTask }) => void): esri.Handle;
     /** Fires when the query for the count is complete. */
-    on(type: "execute-for-count-complete", listener: (event: { count: number; target: QueryTask }) => void): esri.Handle
+    on(type: "execute-for-count-complete", listener: (event: { count: number; target: QueryTask }) => void): esri.Handle;
     /** Fires when the query for the extent is complete. */
-    on(type: "execute-for-extent-complete", listener: (event: { count: number; extent: any; target: QueryTask }) => void): esri.Handle
+    on(type: "execute-for-extent-complete", listener: (event: { count: number; extent: any; target: QueryTask }) => void): esri.Handle;
     /** Fires when the query on IDs is complete. */
-    on(type: "execute-for-ids-complete", listener: (event: { objectIds: number[]; target: QueryTask }) => void): esri.Handle
+    on(type: "execute-for-ids-complete", listener: (event: { objectIds: number[]; target: QueryTask }) => void): esri.Handle;
     /** Fires when the executeRelationshipQuery is complete. */
-    on(type: "execute-relationship-query-complete", listener: (event: { featureSets: FeatureSet[]; target: QueryTask }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "execute-relationship-query-complete", listener: (event: { featureSets: FeatureSet[]; target: QueryTask }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = QueryTask;
 }
@@ -11236,10 +11236,10 @@ declare module "esri/tasks/RouteTask" {
      */
     solve(params: RouteParameters, callback?: Function, errback?: Function): any;
     /** Fires when an error occurs when executing the task. */
-    on(type: "error", listener: (event: { error: Error; target: RouteTask }) => void): esri.Handle
+    on(type: "error", listener: (event: { error: Error; target: RouteTask }) => void): esri.Handle;
     /** Fires when RouteTask.solve() has completed. */
-    on(type: "solve-complete", listener: (event: { result: any; target: RouteTask }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "solve-complete", listener: (event: { result: any; target: RouteTask }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = RouteTask;
 }
@@ -11363,8 +11363,8 @@ declare module "esri/tasks/ServiceAreaTask" {
      */
     solve(params: ServiceAreaParameters, callback?: Function, errback?: Function): any;
     /** Fires when ServiceAreaTask has completed. */
-    on(type: "solve-complete", listener: (event: { result: ServiceAreaSolveResult; target: ServiceAreaTask }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "solve-complete", listener: (event: { result: ServiceAreaSolveResult; target: ServiceAreaTask }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = ServiceAreaTask;
 }
@@ -11656,14 +11656,14 @@ declare module "esri/tasks/locator" {
      */
     setOutSpatialReference(spatialReference: SpatialReference): void;
     /** Fires when Locator.addressesToLocations method has completed. */
-    on(type: "addresses-to-locations-complete", listener: (event: { addresses: AddressCandidate[]; target: Locator }) => void): esri.Handle
+    on(type: "addresses-to-locations-complete", listener: (event: { addresses: AddressCandidate[]; target: Locator }) => void): esri.Handle;
     /** Fires when Locator.addressToLocation method has completed. */
-    on(type: "address-to-locations-complete", listener: (event: { addresses: AddressCandidate[]; target: Locator }) => void): esri.Handle
+    on(type: "address-to-locations-complete", listener: (event: { addresses: AddressCandidate[]; target: Locator }) => void): esri.Handle;
     /** Fires when an error occurs when executing the task. */
-    on(type: "error", listener: (event: { error: Error; target: Locator }) => void): esri.Handle
+    on(type: "error", listener: (event: { error: Error; target: Locator }) => void): esri.Handle;
     /** Fires when Locator.locationToAddress method has completed. */
-    on(type: "location-to-address-complete", listener: (event: { address: AddressCandidate; target: Locator }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "location-to-address-complete", listener: (event: { address: AddressCandidate; target: Locator }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = Locator;
 }
@@ -11833,10 +11833,10 @@ declare module "esri/toolbars/draw" {
      */
     setRespectDrawingVertexOrder(set: boolean): void;
     /** Fired when the user has ended drawing. */
-    on(type: "draw-complete", listener: (event: { geographicGeometry: Geometry; geometry: Geometry; target: Draw }) => void): esri.Handle
+    on(type: "draw-complete", listener: (event: { geographicGeometry: Geometry; geometry: Geometry; target: Draw }) => void): esri.Handle;
     /** Fires when drawing is complete. */
-    on(type: "draw-end", listener: (event: { geometry: Geometry; target: Draw }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "draw-end", listener: (event: { geometry: Geometry; target: Draw }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = Draw;
 }
@@ -11878,54 +11878,54 @@ declare module "esri/toolbars/edit" {
     /** Refreshes the internal state of the toolbar. */
     refresh(): void;
     /** Activates the toolbar for editing geometries. */
-    on(type: "activate", listener: (event: { graphic: Graphic; tool: string; target: Edit }) => void): esri.Handle
+    on(type: "activate", listener: (event: { graphic: Graphic; tool: string; target: Edit }) => void): esri.Handle;
     /** Deactivates the toolbar and reactivates map navigation. */
-    on(type: "deactivate", listener: (event: { graphic: Graphic; info: any; tool: string; target: Edit }) => void): esri.Handle
+    on(type: "deactivate", listener: (event: { graphic: Graphic; info: any; tool: string; target: Edit }) => void): esri.Handle;
     /** Fires when a graphic is clicked. */
-    on(type: "graphic-click", listener: (event: { graphic: Graphic; info: any; target: Edit }) => void): esri.Handle
+    on(type: "graphic-click", listener: (event: { graphic: Graphic; info: any; target: Edit }) => void): esri.Handle;
     /** Fires when the user begins to move a graphic. */
-    on(type: "graphic-first-move", listener: (event: { graphic: Graphic; target: Edit }) => void): esri.Handle
+    on(type: "graphic-first-move", listener: (event: { graphic: Graphic; target: Edit }) => void): esri.Handle;
     /** Fired continuously as the graphic moves. */
-    on(type: "graphic-move", listener: (event: { graphic: Graphic; transform: any; target: Edit }) => void): esri.Handle
+    on(type: "graphic-move", listener: (event: { graphic: Graphic; transform: any; target: Edit }) => void): esri.Handle;
     /** Fired when the mouse button is pressed down on the graphic, usually while moving a graphic. */
-    on(type: "graphic-move-start", listener: (event: { graphic: Graphic; target: Edit }) => void): esri.Handle
+    on(type: "graphic-move-start", listener: (event: { graphic: Graphic; target: Edit }) => void): esri.Handle;
     /** Fired when the mouse button is released, usually after moving the graphic. */
-    on(type: "graphic-move-stop", listener: (event: { graphic: Graphic; transform: any; target: Edit }) => void): esri.Handle
+    on(type: "graphic-move-stop", listener: (event: { graphic: Graphic; transform: any; target: Edit }) => void): esri.Handle;
     /** Fires continuously as a graphic is rotated. */
-    on(type: "rotate", listener: (event: { graphic: Graphic; info: any; target: Edit }) => void): esri.Handle
+    on(type: "rotate", listener: (event: { graphic: Graphic; info: any; target: Edit }) => void): esri.Handle;
     /** Fires when the user begins to drag a handle to rotate the graphic. */
-    on(type: "rotate-first-move", listener: (event: { graphic: Graphic; target: Edit }) => void): esri.Handle
+    on(type: "rotate-first-move", listener: (event: { graphic: Graphic; target: Edit }) => void): esri.Handle;
     /** Fires when a user clicks on the handle to begin rotating a graphic. */
-    on(type: "rotate-start", listener: (event: { graphic: Graphic; target: Edit }) => void): esri.Handle
+    on(type: "rotate-start", listener: (event: { graphic: Graphic; target: Edit }) => void): esri.Handle;
     /** Fires when the mouse button is released from the rotate handle to finish rotating the graphic. */
-    on(type: "rotate-stop", listener: (event: { graphic: Graphic; info: any; target: Edit }) => void): esri.Handle
+    on(type: "rotate-stop", listener: (event: { graphic: Graphic; info: any; target: Edit }) => void): esri.Handle;
     /** Fires continuously as the graphic is being scaled. */
-    on(type: "scale", listener: (event: { graphic: Graphic; info: any; target: Edit }) => void): esri.Handle
+    on(type: "scale", listener: (event: { graphic: Graphic; info: any; target: Edit }) => void): esri.Handle;
     /** Fires when the user begins to drag a handle to scale the graphic. */
-    on(type: "scale-first-move", listener: (event: { graphic: Graphic; target: Edit }) => void): esri.Handle
+    on(type: "scale-first-move", listener: (event: { graphic: Graphic; target: Edit }) => void): esri.Handle;
     /** Fires when a user clicks on the handle to scale or resize a graphic. */
-    on(type: "scale-start", listener: (event: { graphic: Graphic; target: Edit }) => void): esri.Handle
+    on(type: "scale-start", listener: (event: { graphic: Graphic; target: Edit }) => void): esri.Handle;
     /** Fires when the mouse button is released from the scale handle to finish scaling the graphic. */
-    on(type: "scale-stop", listener: (event: { graphic: Graphic; info: any; target: Edit }) => void): esri.Handle
+    on(type: "scale-stop", listener: (event: { graphic: Graphic; info: any; target: Edit }) => void): esri.Handle;
     /** Fired after a new vertex is added to a polyline or polygon or a new point is added to a multipoint. */
-    on(type: "vertex-add", listener: (event: { graphic: Graphic; vertexInfo: any; target: Edit }) => void): esri.Handle
+    on(type: "vertex-add", listener: (event: { graphic: Graphic; vertexInfo: any; target: Edit }) => void): esri.Handle;
     /** Fired when the mouse button is clicked on the vertex of a polyline or polygon or a point in a multipoint. */
-    on(type: "vertex-click", listener: (event: { graphic: Graphic; vertexInfo: any; target: Edit }) => void): esri.Handle
+    on(type: "vertex-click", listener: (event: { graphic: Graphic; vertexInfo: any; target: Edit }) => void): esri.Handle;
     /** Fired after a vertex(polyline, polygon) or point(multipoint) is deleted. */
-    on(type: "vertex-delete", listener: (event: { graphic: Graphic; vertexInfo: any; target: Edit }) => void): esri.Handle
+    on(type: "vertex-delete", listener: (event: { graphic: Graphic; vertexInfo: any; target: Edit }) => void): esri.Handle;
     /** Fired when the user begins to move the vertex of a polyline or polygon or a point of a multipoint. */
-    on(type: "vertex-first-move", listener: (event: { graphic: Graphic; vertexInfo: any; target: Edit }) => void): esri.Handle
+    on(type: "vertex-first-move", listener: (event: { graphic: Graphic; vertexInfo: any; target: Edit }) => void): esri.Handle;
     /** Fires as the mouse exits a vertex(polyline, polygon) or a point(multipoint). */
-    on(type: "vertex-mouse-out", listener: (event: { graphic: Graphic; vertexInfo: any; target: Edit }) => void): esri.Handle
+    on(type: "vertex-mouse-out", listener: (event: { graphic: Graphic; vertexInfo: any; target: Edit }) => void): esri.Handle;
     /** Fired when the mouse moves over a vertex (polyline, polygon) or point (multipoint). */
-    on(type: "vertex-mouse-over", listener: (event: { graphic: Graphic; vertexInfo: any; target: Edit }) => void): esri.Handle
+    on(type: "vertex-mouse-over", listener: (event: { graphic: Graphic; vertexInfo: any; target: Edit }) => void): esri.Handle;
     /** Fired continuously as the user is moving a vertex (polyline, polygon) or point (multipoint). */
-    on(type: "vertex-move", listener: (event: { graphic: Graphic; transform: any; vertexInfo: any; target: Edit }) => void): esri.Handle
+    on(type: "vertex-move", listener: (event: { graphic: Graphic; transform: any; vertexInfo: any; target: Edit }) => void): esri.Handle;
     /** Fired when the mouse button is pressed down on a vertex (polyline, polygon) or point (multipoint). */
-    on(type: "vertex-move-start", listener: (event: { graphic: Graphic; vertexInfo: any; target: Edit }) => void): esri.Handle
+    on(type: "vertex-move-start", listener: (event: { graphic: Graphic; vertexInfo: any; target: Edit }) => void): esri.Handle;
     /** Fired when the mouse button is released from a vertex (polyline, polygon) or point(multipoint). */
-    on(type: "vertex-move-stop", listener: (event: { graphic: Graphic; transform: any; vertexInfo: any; target: Edit }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "vertex-move-stop", listener: (event: { graphic: Graphic; transform: any; vertexInfo: any; target: Edit }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = Edit;
 }
@@ -11971,8 +11971,8 @@ declare module "esri/toolbars/navigation" {
     /** Zoom to previous extent in extent history. */
     zoomToPrevExtent(): void;
     /** Fires when the extent history changes. */
-    on(type: "extent-history-change", listener: (event: { target: Navigation }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "extent-history-change", listener: (event: { target: Navigation }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = Navigation;
 }
@@ -12026,14 +12026,14 @@ declare module "esri/undoManager" {
     /** Moves the current position to the next undo operation and calls the operation's performUndo method. */
     undo(): void;
     /** Fires when the add method is called to add an operation is added to the stack. */
-    on(type: "add", listener: (event: { target: UndoManager }) => void): esri.Handle
+    on(type: "add", listener: (event: { target: UndoManager }) => void): esri.Handle;
     /** Fires when the undo/redo stack changes. */
-    on(type: "change", listener: (event: { target: UndoManager }) => void): esri.Handle
+    on(type: "change", listener: (event: { target: UndoManager }) => void): esri.Handle;
     /** Fires when the redo method is called. */
-    on(type: "redo", listener: (event: { target: UndoManager }) => void): esri.Handle
+    on(type: "redo", listener: (event: { target: UndoManager }) => void): esri.Handle;
     /** Fires when the undo method is called. */
-    on(type: "undo", listener: (event: { target: UndoManager }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "undo", listener: (event: { target: UndoManager }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = UndoManager;
 }
@@ -12190,10 +12190,10 @@ declare module "esri/virtualearth/VEGeocoder" {
      */
     setCulture(culture: string): void;
     /** Fires when VEGeocode.addressToLocation() has completed. */
-    on(type: "address-to-locations-complete", listener: (event: { geocodeResults: VEGeocodeResult[]; target: VEGeocoder }) => void): esri.Handle
+    on(type: "address-to-locations-complete", listener: (event: { geocodeResults: VEGeocodeResult[]; target: VEGeocoder }) => void): esri.Handle;
     /** Fires when an error occurs when executing the task. */
-    on(type: "error", listener: (event: { error: Error; target: VEGeocoder }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "error", listener: (event: { error: Error; target: VEGeocoder }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = VEGeocoder;
 }
@@ -12232,8 +12232,8 @@ declare module "esri/virtualearth/VETiledLayer" {
      */
     setMapStyle(style: string): void;
     /** Fires when the map style is changed. */
-    on(type: "map-style-change", listener: (event: { target: VETiledLayer }) => void): esri.Handle
-    on(type: string, listener: (event: any) => void): esri.Handle
+    on(type: "map-style-change", listener: (event: { target: VETiledLayer }) => void): esri.Handle;
+    on(type: string, listener: (event: any) => void): esri.Handle;
   }
   export = VETiledLayer;
 }
