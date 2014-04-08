@@ -1,7 +1,7 @@
 # JSHint options
 
-This is a JSHint options file appropriate for esri JS API based projects.
-It is the same file esri uses internally for working on the JS API library.
+This is a JSHint options file appropriate for Esri JS API based projects.
+It is the same file Esri uses internally for working on the JS API library.
 
 ### What is JSHint?
 
@@ -22,4 +22,4 @@ If you are interested in using this file for the majority of your projects, then
 
 Most IDEs will look **up** the directory structure, but **never** further down or in adjacent folders.
 
-Please feel free to modify as appropiate for your own use.
+Please feel free to modify as appropriate for your own use.
