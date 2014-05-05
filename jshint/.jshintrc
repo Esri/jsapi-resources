@@ -13,6 +13,7 @@
     "camelcase"     : false,    // true: Identifiers must be in camelCase
     "curly"         : true,     // true: Require {} for every new block or scope
     "eqeqeq"        : false,    // true: Require triple equals (===) for comparison ** Just use triples with undefined, null, false, 0 and 1 **
+    "es3"           : true,     // true: Adhere to ECMAScript 3 specification ** Still needed until IE8 support is dropped **
     "forin"         : true,     // true: Require filtering for..in loops with obj.hasOwnProperty() ** Still needed until IE8 support is dropped **
     "immed"         : true,     // true: Require immediate invocations to be wrapped in parens e.g. `(function () { } ());` ** Avoids confusion and minification errors **
     "latedef"       : false,    // true: Require variables/functions to be defined before being used
