@@ -1,6 +1,6 @@
 # TypeScript
 
-The [esri.d.ts](esri.d.ts) file provides type definitions for ArcGIS API for JavaScript.
+The [arcgis-js-api.d.ts](arcgis-js-api.d.ts) file provides type definitions for ArcGIS API for JavaScript.
 
 ## Requirements
 
@@ -15,7 +15,7 @@ Switch to the `gh-pages` branch to see the JavaScript output files.
 
 * [The Definitive TypeScript Guide][5] from SitePen
 * [TypeScript documentation][6] from Microsoft
-* Type definitions for Dojo are available [here][7] and [here][3].
+* Type definitions for Dojo are available [here][7], [here][8] and [here][3].
 * Type definitions for many other libraries are [available here][4].
 
 ## IDE Support
@@ -35,3 +35,4 @@ Switch to the `gh-pages` branch to see the JavaScript output files.
 [5]: http://www.sitepen.com/blog/2013/12/31/definitive-guide-to-typescript/
 [6]: https://typescript.codeplex.com/documentation
 [7]: https://github.com/bryanforbes/dojo-typescript
+[8]: https://github.com/borisyankov/DefinitelyTyped/tree/master/dojo

@@ -1,4 +1,4 @@
-/// <reference path="../esri.d.ts"/>
+/// <reference path="../arcgis-js-api.d.ts"/>
 
 import AGSPoint = require("esri/geometry/Point");
 
