@@ -1,13 +1,11 @@
-/// <reference path="../esri.d.ts"/>
+/// <reference path="../arcgis-js-api.d.ts"/>
 var __extends = this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
     __.prototype = b.prototype;
     d.prototype = new __();
 };
-define(["require", "exports", "esri/geometry/Point"], function(require, exports, AGSPoint) {
-    
-
+define(["require", "exports", "esri/geometry/Point"], function (require, exports, AGSPoint) {
     var Point = (function (_super) {
         __extends(Point, _super);
         function Point() {
