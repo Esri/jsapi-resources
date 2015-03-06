@@ -23,6 +23,7 @@ Switch to the `gh-pages` branch to see the JavaScript output files.
 * [Visual Studio](http://www.typescriptlang.org/#Download)
 * [Visual Studio Online "Monaco"](http://blogs.msdn.com/b/monaco/)
 * [JetBrains IDEs](http://www.jetbrains.com/products.html) (WebStorm, IntelliJ, etc.)
+* TypeScript plugins are available for [Atom][9] and [Brackets][10]
 * [TypeScript plugin for Sublime Text](https://github.com/Railk/T3S)
 * TypeScript plugins for Eclipse
     * [TypEcs](http://typecsdev.com)
@@ -36,3 +37,5 @@ Switch to the `gh-pages` branch to see the JavaScript output files.
 [6]: https://typescript.codeplex.com/documentation
 [7]: https://github.com/bryanforbes/dojo-typescript
 [8]: https://github.com/borisyankov/DefinitelyTyped/tree/master/dojo
+[9]: https://atom.io
+[10]: http://brackets.io
