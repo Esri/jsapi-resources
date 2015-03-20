@@ -2,6 +2,8 @@
 
 The [arcgis-js-api.d.ts](arcgis-js-api.d.ts) file provides type definitions for ArcGIS API for JavaScript.
 
+A copy of this file is also available at [DefinitelyTyped][11] and [NuGet][12].
+
 ## Requirements
 
 * [TypeScript][1] 1.0RC+
@@ -39,3 +41,5 @@ Switch to the `gh-pages` branch to see the JavaScript output files.
 [8]: https://github.com/borisyankov/DefinitelyTyped/tree/master/dojo
 [9]: https://atom.io
 [10]: http://brackets.io
+[11]: https://github.com/borisyankov/DefinitelyTyped/tree/master/arcgis-js-api
+[12]: http://www.nuget.org/packages/arcgis-js-api.TypeScript.DefinitelyTyped/
