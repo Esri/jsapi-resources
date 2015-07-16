@@ -6,7 +6,7 @@ A copy of this file is also available at [DefinitelyTyped][11] and [NuGet][12].
 
 ## Requirements
 
-* [TypeScript][1] 1.0RC+
+* [TypeScript][1] 1.4+
 
 ## Instructions
 
@@ -23,7 +23,7 @@ Switch to the `gh-pages` branch to see the JavaScript output files.
 ## IDE Support
 
 * [Visual Studio](http://www.typescriptlang.org/#Download)
-* [Visual Studio Online "Monaco"](http://blogs.msdn.com/b/monaco/)
+* [Visual Studio Code](https://code.visualstudio.com)
 * [JetBrains IDEs](http://www.jetbrains.com/products.html) (WebStorm, IntelliJ, etc.)
 * TypeScript plugins are available for [Atom][9] and [Brackets][10]
 * [TypeScript plugin for Sublime Text](https://github.com/Railk/T3S)
