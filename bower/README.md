@@ -6,7 +6,7 @@ You can read more about Bower [here](http://bower.io/).
 
 ## Why
 You would use the Bower download of the ArcGIS API for JavaScript if you wanted to create local builds of your application.
-This is siimilar to what you can do with the [JavaScript Optimzer](https://jso.arcgis.com/) but locally.
+This is similar to what you can do with the [JavaScript Optimzer](https://jso.arcgis.com/) but locally.
 This can also provide an improved debugging experience as you will know which module an error originates from.
 
 ## Dojo
@@ -16,7 +16,7 @@ The `bower` release of the [ArcGIS API for JavaScript](https://developers.arcgis
 The demo Dojo application can be found [here](dojo);
 
 ## RequireJS
-You also have the option to use [RequireJS](http://requirejs.org/) as the AMD loader with the API in place of the Dojo loader.
+You also have the option to use [RequireJS](http://requirejs.org/) as the AMD loader with the API instead of the Dojo loader.
 There are some limitations in this regard.
 The RequireJS loader is missing some methods that might be required at runtime, one of which is a cross-domain loader.
 You can view the provided [Gruntfile](requirejs/Gruntfile.js) for information on some build limitations.
