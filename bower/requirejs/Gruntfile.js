@@ -103,6 +103,7 @@ module.exports = function (grunt) {
           paths: {
             'dgrid': 'empty:',
             'xstyle': 'empty:',
+            'esri/layers/GraphicsLayer': 'empty:',
             'dojo/query': 'empty:', // becasue css selector engine is dynamically loaded
             'dojox/gfx': 'empty:', // because this dynamically loads a renderer
             'dojo/i18n': 'i18n/i18n', // only needed to get build working
