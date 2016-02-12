@@ -1,3 +1,9 @@
+questions:
+why is package.json private > true?
+why the requirement to copy/paste to a new esrijs-bower-requirejs folder?
+why are folders other than `app` copied into the `dist` folder?
+why is a bunch of `.css` and `.js` content loaded from those folders when you launch `dist/index.html`?
+
 # arcgis-js-api build tools
 ======
 
