@@ -1,9 +1,3 @@
-questions:
-why is package.json private > true?
-why the requirement to copy/paste to a new esrijs-bower-requirejs folder?
-why are folders other than `app` copied into the `dist` folder?
-why is a bunch of `.css` and `.js` content loaded from those folders when you launch `dist/index.html`?
-
 # arcgis-js-api build tools
 ======
 
@@ -12,7 +6,7 @@ You can read more about Bower [here](http://bower.io/).
 
 ## Why
 You would use the Bower download of the ArcGIS API for JavaScript if you wanted to create local builds of your application.
-This is similar to what you can do with the [JavaScript Optimzer](https://jso.arcgis.com/) but locally.
+This is similar to what you can do with the [JavaScript Optimizer](https://jso.arcgis.com/) but locally.
 This can also provide an improved debugging experience as you will know which module an error originates from.
 
 ## Dojo
