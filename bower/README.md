@@ -6,7 +6,7 @@ You can read more about Bower [here](http://bower.io/).
 
 ## Why
 You would use the Bower download of the ArcGIS API for JavaScript if you wanted to create local builds of your application.
-This is similar to what you can do with the [JavaScript Optimzer](https://jso.arcgis.com/) but locally.
+This is similar to what you can do with the [JavaScript Optimizer](https://jso.arcgis.com/) but locally.
 This can also provide an improved debugging experience as you will know which module an error originates from.
 
 ## Dojo
