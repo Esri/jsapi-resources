@@ -1,5 +1,5 @@
 module.exports = function (grunt) {
-  // Build customizations would be left up to developer to implement.
+  // additional build customizations are up to the developer to implement.
   grunt.loadNpmTasks('grunt-contrib-requirejs');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-clean');
@@ -112,9 +112,25 @@ module.exports = function (grunt) {
           },
           throwWhen: { optimize: false  }
         }
+      },
+      esricss: {
+        options: {
+          cwd: './',
+          cssIn: './src/esri/css/esri.css',
+          out: './dist/esri/css/esri.css',
+          optimizeCss: 'standard'
+        }
+      },
+      dijitcss: {
+        options: {
+          cwd: './',
+          cssIn: './src/dijit/themes/nihilo/nihilo.css',
+          out: './dist/dijit/themes/nihilo/nihilo.css',
+          optimizeCss: 'standard'
+        }
       }
     }
   });
 
-  grunt.registerTask('build', ['clean', 'requirejs:support', 'requirejs:single', 'copy']);
+  grunt.registerTask('build', ['clean', 'requirejs:support', 'requirejs:single', 'requirejs:esricss', 'requirejs:dijitcss', 'copy']);
 };

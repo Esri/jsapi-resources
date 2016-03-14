@@ -1,8 +1,7 @@
 {
   "name": "arcgis-js-api-sample-app",
   "version": "1.0.0",
-  "private": true,
-  "description": "",
+  "description": "Sample application for building the ArcGIS API for JavaScript using Bower and Dojo",
   "repository": {
     "url": "https://github.com/Esri/jsapi-resources/bower/dojo"
   },
