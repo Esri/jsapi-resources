@@ -49,9 +49,10 @@ module.exports = function (grunt) {
             'dgrid': 'empty:',
             'dstore': 'empty:',
             'put-selector': 'empty:',
-            'xstyle': 'empty:'
+            'xstyle': 'empty:',
+            'moment': 'empty:'
           },
-          fileExclusionRegExp: /test|tests|esri/g
+          fileExclusionRegExp: /test|tests|esri|min|src|templates/g
         }
       },
       single: {
@@ -95,12 +96,13 @@ module.exports = function (grunt) {
             'dojo/has',
             'xstyle',
             'dgrid',
-            'dojo/i18n', // some methods not available with RequireJS
+            'dojo/i18n' // some methods not available with RequireJS
           ],
           inlineText: true,
           //optimize: 'none',
           optimize: 'uglify2',
           paths: {
+            'moment/templates': 'empty:',
             'dgrid': 'empty:',
             'xstyle': 'empty:',
             'esri/layers/GraphicsLayer': 'empty:',
@@ -110,6 +112,7 @@ module.exports = function (grunt) {
             'dojo/text': 'text/text',
             'dojo/domReady': 'domready/domReady'
           },
+          fileExclusionRegExp: /test|tests|min|src/g,
           throwWhen: { optimize: false  }
         }
       },

@@ -44,7 +44,15 @@ var profile = {
     'dgrid',
     'xstyle',
     'put-selector',
-    'esri'
+    'esri', {
+      name: 'moment',
+      location: 'moment',
+      main: 'moment',
+      trees: [
+          // don't bother with .hidden, tests, min, src, and templates
+          [".", ".", /(\/\.)|(~$)|(test|txt|src|min|templates)/]
+      ]
+    }
   ],
 
   // Build source map files to aid in debugging.
@@ -83,6 +91,8 @@ var profile = {
         // dependencies of esri/map that will be requested if not included
         'dojox/gfx/path',
         'dojox/gfx/svg',
+        'dojox/gfx/filters',
+        'dojox/gfx/svgext',
         'dojox/gfx/shape',
         'esri/dijit/Attribution'
       ],

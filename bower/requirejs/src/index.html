@@ -58,13 +58,12 @@
     <div id="map-area"></div>
 
     <!-- Can use RequireJS loader -->
-    <script src="requirejs/require.js"></script>
-
     <script>
-      requirejs.config({
+      window.require = {
         deps: ['app/main']
-      });
+      };
     </script>
+    <script src="requirejs/require.js"></script>
 
   </body>
 </html>
