@@ -1,7 +1,7 @@
 # arcgis-js-api build tools
 ======
 
-These are the recommended build tools for using the [arcgis-js-api](https://github.com/esri/arcgis-js-api) Bower installation.
+These are the recommended build tools for using the [arcgis-js-api](https://github.com/Esri/arcgis-js-api) Bower installation.
 You can read more about Bower [here](http://bower.io/).
 
 ## Why
