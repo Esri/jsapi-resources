@@ -51,7 +51,12 @@ var profile = {
       trees: [
           // don't bother with .hidden, tests, min, src, and templates
           [".", ".", /(\/\.)|(~$)|(test|txt|src|min|templates)/]
-      ]
+      ],
+      resourceTags: {
+        amd: function(filename, mid){
+          return /\.js$/.test(filename);
+        }
+      }
     }
   ],
 
@@ -156,6 +161,11 @@ var profile = {
       'extend-esri': 0,
       'dojo-has-api': 1,
       'dojo-undef-api': 0
-    }
+    },
+    packages: [{
+      name: 'moment',
+      location: 'moment',
+      main: 'moment'
+    }]
   }
 };

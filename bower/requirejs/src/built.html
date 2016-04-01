@@ -60,7 +60,22 @@
     <!-- Can use RequireJS loader built into main -->
     <script>
       window.require ={
-        deps: ['app/main']
+        deps: ['app/main'],
+        packages: [
+          'app',
+          'dijit',
+          'dojo',
+          'dojox',
+          'dstore',
+          'dgrid',
+          'xstyle',
+          'put-selector',
+          'esri', {
+            name: 'moment',
+            location: 'moment',
+            main: 'moment'
+          }
+        ]
       };
     </script>
     <script src="app/main.js"></script>
