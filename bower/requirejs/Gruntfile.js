@@ -105,12 +105,13 @@ module.exports = function (grunt) {
             'moment/templates': 'empty:',
             'dgrid': 'empty:',
             'xstyle': 'empty:',
+            'esri/moment': 'empty:',
             'esri/layers/GraphicsLayer': 'empty:',
             'dojo/query': 'empty:', // becasue css selector engine is dynamically loaded
             'dojox/gfx': 'empty:', // because this dynamically loads a renderer
             'dojo/i18n': 'i18n/i18n', // only needed to get build working
             'dojo/text': 'text/text',
-            'dojo/domReady': 'domready/domReady'
+            'dojo/domReady': 'domReady/domReady'
           },
           fileExclusionRegExp: /test|tests|min|src/g,
           throwWhen: { optimize: false  }
