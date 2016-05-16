@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "license": "Apache-2.0",
   "dependencies": {
-    "esri": "arcgis-js-api#3.16.0"
+    "esri": "arcgis-js-api#3.16.0",
+    "xstyle": "0.3.2"
   },
   "resolutions": {
-    "dojo": "v1.10.4/esri-3.14.0"
+    "dojo": "v1.10.4/esri-3.14.0",
+    "xstyle": "0.3.2"
   }
 }
