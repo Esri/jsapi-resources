@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Sample application for building the ArcGIS API for JavaScript using Bower and Dojo",
   "repository": {
-    "url": "https://github.com/Esri/jsapi-resources/bower/dojo"
+    "url": "https://github.com/Esri/jsapi-resources/3.x/bower/dojo"
   },
   "scripts": {
     "preinstall": "bower install",
