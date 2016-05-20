@@ -4,7 +4,7 @@
   "private": true,
   "description": "",
   "repository": {
-    "url": "https://github.com/Esri/jsapi-resources/bower/requirejs"
+    "url": "https://github.com/Esri/jsapi-resources/4.x/bower/requirejs"
   },
   "scripts": {
     "preinstall": "bower install",
