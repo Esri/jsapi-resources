@@ -23,6 +23,20 @@ declare namespace __esri {
     text: string;
   }
 
+  export interface Media {
+    type: string;
+    mediaInfos: any[];
+  }
+
+  export interface Fields {
+    type: string;
+    fieldInfos: any[];
+  }
+
+  export interface Attachments {
+    type: string;
+  }
+
   export interface WatchHandle {
     remove(): void;
   }
@@ -704,16 +718,16 @@ declare namespace __esri {
   }
 
   interface Evented {
-    on(name: string, callback: Function): IHandle;
     emit(type: string, event: any): IHandle;
+    on(name: string, callback: Function): IHandle;
   }
 
   interface EventedConstructor {
     new(): Evented;
 
 
-    on(type: string, listener: Function): any;
     hasEventListener(type: string): boolean;
+    on(type: string, listener: Function): any;
   }
 
   export const Evented: EventedConstructor;
@@ -752,10 +766,10 @@ declare namespace __esri {
   }
 
   interface Camera extends Accessor {
-    position: Point;
-    heading: number;
-    tilt: number;
     fov: number;
+    heading: number;
+    position: Point;
+    tilt: number;
 
     clone(): Camera;
     toJSON(): any;
@@ -770,10 +784,10 @@ declare namespace __esri {
   export const Camera: CameraConstructor;
 
   interface CameraProperties {
-    position?: PointProperties;
-    heading?: number;
-    tilt?: number;
     fov?: number;
+    heading?: number;
+    position?: PointProperties;
+    tilt?: number;
   }
 
   interface Color {
@@ -782,24 +796,24 @@ declare namespace __esri {
     g: number;
     r: number;
 
-    toCss(includeAlpha?: boolean): string;
-    toJSON(color: Color): any;
-    toRgba(): number[];
-    toRgb(): number[];
-    toHex(): string;
-    setColor(color: string | number[] | any): Color;
     clone(): Color;
+    setColor(color: string | number[] | any): Color;
+    toCss(includeAlpha?: boolean): string;
+    toHex(): string;
+    toJSON(color: Color): any;
+    toRgb(): number[];
+    toRgba(): number[];
   }
 
   interface ColorConstructor {
-    new(color: string | number[] | any): Color;
 
     blendColors(start: Color, end: Color, weight: number, obj?: Color): Color;
-    fromString(str: string, obj?: Color): Color;
+    new(color: string | number[] | any): Color;
     fromArray(a: number, obj?: Color): Color;
     fromHex(color: string, obj?: Color): Color;
-    fromRgb(color: string, obj?: Color): Color;
     fromJSON(json: any): Color;
+    fromRgb(color: string, obj?: Color): Color;
+    fromString(str: string, obj?: Color): Color;
   }
 
   export const Color: ColorConstructor;
@@ -811,11 +825,11 @@ declare namespace __esri {
     symbol: Symbol;
     visible: boolean;
 
-    getAttribute(name: string): any;
-    setAttribute(name: string, newValue: any): void;
-    getEffectivePopupTemplate(): PopupTemplate;
-    toJSON(): any;
     clone(): Graphic;
+    getAttribute(name: string): any;
+    getEffectivePopupTemplate(): PopupTemplate;
+    setAttribute(name: string, newValue: any): void;
+    toJSON(): any;
   }
 
   interface GraphicConstructor {
@@ -851,7 +865,7 @@ declare namespace __esri {
   interface Map extends Accessor, LayersMixin {
     allLayers: Collection;
     basemap: Basemap;
-    ground: Ground | string;
+    ground: Ground;
   }
 
   interface MapConstructor {
@@ -887,20 +901,20 @@ declare namespace __esri {
 
   interface PopupTemplateProperties {
     actions?: PopupTemplateActions;
-    content?: any[];
+    content?: any[] | string;
     fieldInfos?: PopupTemplateFieldInfos[];
     overwriteActions?: boolean;
     title?: string;
   }
 
   interface Viewpoint extends Accessor {
+    camera: Camera;
     rotation: number;
     scale: number;
     targetGeometry: Geometry;
-    camera: Camera;
 
-    toJSON(): any;
     clone(): Viewpoint;
+    toJSON(): any;
   }
 
   interface ViewpointConstructor {
@@ -912,19 +926,19 @@ declare namespace __esri {
   export const Viewpoint: ViewpointConstructor;
 
   interface ViewpointProperties {
+    camera?: CameraProperties;
     rotation?: number;
     scale?: number;
     targetGeometry?: GeometryProperties;
-    camera?: CameraProperties;
   }
 
   interface WebMap extends Map, corePromise {
-    loadStatus: string;
     applicationProperties: any;
+    bookmarks: any[];
     initialViewProperties: InitialViewProperties;
     loaded: boolean;
     loadError: Error;
-    bookmarks: any[];
+    loadStatus: string;
     portalItem: PortalItem;
     presentation: any;
     tables: any[];
@@ -941,12 +955,12 @@ declare namespace __esri {
   export const WebMap: WebMapConstructor;
 
   interface WebMapProperties extends MapProperties {
-    loadStatus?: string;
     applicationProperties?: any;
+    bookmarks?: any[];
     initialViewProperties?: InitialViewPropertiesProperties;
     loaded?: boolean;
     loadError?: Error;
-    bookmarks?: any[];
+    loadStatus?: string;
     portalItem?: PortalItemProperties;
     presentation?: any;
     tables?: any[];
@@ -957,13 +971,13 @@ declare namespace __esri {
   interface WebScene extends Map, corePromise {
     clippingArea: Extent;
     clippingEnabled: boolean;
+    initialViewProperties: websceneInitialViewProperties;
     loaded: boolean;
     loadError: Error;
     loadStatus: string;
-    version: WebSceneVersion;
-    presentation: Presentation;
-    initialViewProperties: websceneInitialViewProperties;
     portalItem: PortalItem;
+    presentation: Presentation;
+    version: WebSceneVersion;
 
     load(): IPromise<any>;
   }
@@ -977,13 +991,13 @@ declare namespace __esri {
   interface WebSceneProperties extends MapProperties {
     clippingArea?: ExtentProperties;
     clippingEnabled?: boolean;
+    initialViewProperties?: websceneInitialViewPropertiesProperties;
     loaded?: boolean;
     loadError?: Error;
     loadStatus?: string;
-    version?: WebSceneVersion;
-    presentation?: PresentationProperties;
-    initialViewProperties?: websceneInitialViewPropertiesProperties;
     portalItem?: PortalItemProperties;
+    presentation?: PresentationProperties;
+    version?: WebSceneVersion;
   }
 
   interface Accessor {
@@ -1002,9 +1016,8 @@ declare namespace __esri {
   interface Collection extends Accessor, Evented {
     length: number;
 
-    map(callback: Function): Collection;
+    add(item: any, index?: number): void;
     addMany(items: any[] | Collection, index?: number): void;
-    removeAll(): void;
     clone(): Collection;
     concat(value: any[] | Collection): Collection;
     every(callback: Function): boolean;
@@ -1017,15 +1030,16 @@ declare namespace __esri {
     indexOf(searchElement: any, fromIndex?: number): number;
     join(separator?: string): string;
     lastIndexOf(searchElement: any, fromIndex?: number): number;
-    add(item: any, index?: number): void;
-    reorder(item: any, index: number): any;
+    map(callback: Function): Collection;
     pop(): any;
     push(item: any): number;
     reduce(callback: Function, initialValue?: any): any;
     reduceRight(callback: Function, initialValue?: any): any;
     remove(item: any): void;
+    removeAll(): void;
     removeAt(index: number): any;
     removeMany(items: any[] | Collection): any;
+    reorder(item: any, index: number): any;
     shift(): any;
     slice(begin?: number, end?: number): Collection;
     some(callback: Function): boolean;
@@ -1072,17 +1086,17 @@ declare namespace __esri {
   }
 
   interface Extent extends Geometry {
-    mmin: number;
     center: Point;
-    width: number;
-    xmin: number;
-    ymin: number;
     height: number;
-    zmin: number;
-    xmax: number;
-    ymax: number;
     mmax: number;
+    mmin: number;
+    width: number;
+    xmax: number;
+    xmin: number;
+    ymax: number;
+    ymin: number;
     zmax: number;
+    zmin: number;
 
     centerAt(point: Point): Extent;
     contains(geometry: Point | Extent): boolean;
@@ -1102,17 +1116,17 @@ declare namespace __esri {
   export const Extent: ExtentConstructor;
 
   interface ExtentProperties extends GeometryProperties {
-    mmin?: number;
     center?: PointProperties;
-    width?: number;
-    xmin?: number;
-    ymin?: number;
     height?: number;
-    zmin?: number;
-    xmax?: number;
-    ymax?: number;
     mmax?: number;
+    mmin?: number;
+    width?: number;
+    xmax?: number;
+    xmin?: number;
+    ymax?: number;
+    ymin?: number;
     zmax?: number;
+    zmin?: number;
   }
 
   interface Geometry extends Accessor {
@@ -1168,14 +1182,14 @@ declare namespace __esri {
   interface Point extends Geometry {
     latitude: number;
     longitude: number;
+    m: number;
     x: number;
     y: number;
     z: number;
-    m: number;
 
     copy(other: Point): void;
-    equals(point: Point): boolean;
     distance(other: Point): number;
+    equals(point: Point): boolean;
   }
 
   interface PointConstructor {
@@ -1189,10 +1203,10 @@ declare namespace __esri {
   interface PointProperties extends GeometryProperties {
     latitude?: number;
     longitude?: number;
+    m?: number;
     x?: number;
     y?: number;
     z?: number;
-    m?: number;
   }
 
   interface Polygon extends Geometry {
@@ -1202,9 +1216,9 @@ declare namespace __esri {
 
     addRing(ring: Point[] | number[][]): Polygon;
     contains(point: Point): boolean;
-    isClockwise(ring: Point[] | number[][]): boolean;
     getPoint(ringIndex: number, pointIndex: number): Point;
     insertPoint(ringIndex: number, pointIndex: number, point: Point): Polygon;
+    isClockwise(ring: Point[] | number[][]): boolean;
     removePoint(ringIndex: number, pointIndex: number): Point[];
     removeRing(index: number): Point[];
     setPoint(ringIndex: number, pointIndex: number, point: Point): Polygon;
@@ -1264,13 +1278,13 @@ declare namespace __esri {
   }
 
   interface SpatialReference extends Accessor {
-    isWGS84: boolean;
     isWebMercator: boolean;
+    isWGS84: boolean;
     isWrappable: boolean;
+    WebMercator: SpatialReference;
+    WGS84: SpatialReference;
     wkid: number;
     wkt: string;
-    WGS84: SpatialReference;
-    WebMercator: SpatialReference;
 
     clone(): SpatialReference;
     equals(spatialReference: SpatialReference): boolean;
@@ -1286,13 +1300,13 @@ declare namespace __esri {
   export const SpatialReference: SpatialReferenceConstructor;
 
   interface SpatialReferenceProperties {
-    isWGS84?: boolean;
     isWebMercator?: boolean;
+    isWGS84?: boolean;
     isWrappable?: boolean;
+    WebMercator?: SpatialReferenceProperties;
+    WGS84?: SpatialReferenceProperties;
     wkid?: number;
     wkt?: string;
-    WGS84?: SpatialReferenceProperties;
-    WebMercator?: SpatialReferenceProperties;
   }
 
   interface Credential extends Accessor {
@@ -1327,23 +1341,23 @@ declare namespace __esri {
   interface IdentityManagerBase extends Evented {
     tokenValidity: number;
 
+    checkSignInStatus(resUrl: string): IPromise<any>;
+    destroyCredentials(): void;
+    findCredential(url: string, userId?: string): Credential;
+    findOAuthInfo(url: string): OAuthInfo;
+    findServerInfo(url: string): ServerInfo;
+    generateToken(serverInfo: ServerInfo, userInfo: any, options?: IdentityManagerBaseGenerateTokenOptions): IPromise<any>;
     getCredential(url: string, options?: IdentityManagerBaseGetCredentialOptions): IPromise<any>;
+    initialize(json: any): any;
+    isBusy(): boolean;
+    oAuthSignIn(resUrl: string, serverInfo: ServerInfo, oAuthInfo: OAuthInfo, options?: IdentityManagerBaseOAuthSignInOptions): IPromise<any>;
+    registerOAuthInfos(oAuthInfos: OAuthInfo[]): void;
     registerServers(serverInfos: ServerInfo[]): void;
     registerToken(properties: IdentityManagerBaseRegisterTokenProperties): void;
-    toJSON(): any;
-    initialize(json: any): any;
-    findServerInfo(url: string): ServerInfo;
-    findOAuthInfo(url: string): OAuthInfo;
-    findCredential(url: string, userId?: string): Credential;
-    registerOAuthInfos(oAuthInfos: OAuthInfo[]): void;
-    generateToken(serverInfo: ServerInfo, userInfo: any, options?: IdentityManagerBaseGenerateTokenOptions): IPromise<any>;
-    isBusy(): boolean;
-    checkSignInStatus(resUrl: string): IPromise<any>;
-    setRedirectionHandler(handlerFunction: IdentityManagerBaseSetRedirectionHandlerHandlerFunction): void;
     setProtocolErrorHandler(handlerFunction: IdentityManagerBaseSetProtocolErrorHandlerHandlerFunction): void;
+    setRedirectionHandler(handlerFunction: IdentityManagerBaseSetRedirectionHandlerHandlerFunction): void;
     signIn(url: string, serverInfo: ServerInfo, options?: IdentityManagerBaseSignInOptions): IPromise<any>;
-    oAuthSignIn(resUrl: string, serverInfo: ServerInfo, oAuthInfo: OAuthInfo, options?: IdentityManagerBaseOAuthSignInOptions): IPromise<any>;
-    destroyCredentials(): void;
+    toJSON(): any;
   }
 
   interface IdentityManagerBaseConstructor {
@@ -1367,15 +1381,15 @@ declare namespace __esri {
 
   interface OAuthInfo {
     appId: string;
+    authNamespace: string;
     expiration: number;
     locale: string;
     minTimeUntilExpiration: number;
-    portalUrl: string;
-    authNamespace: string;
-    showSocialLogins: boolean;
     popup: boolean;
     popupCallbackUrl: string;
     popupWindowFeatures: string;
+    portalUrl: string;
+    showSocialLogins: boolean;
 
     toJSON(): any;
   }
@@ -1387,11 +1401,11 @@ declare namespace __esri {
   export const OAuthInfo: OAuthInfoConstructor;
 
   interface ServerInfo {
-    server: string;
-    tokenServiceUrl: string;
     adminTokenServiceUrl: string;
-    shortLivedTokenValidity: number;
     currentVersion: number;
+    server: string;
+    shortLivedTokenValidity: number;
+    tokenServiceUrl: string;
 
     toJSON(): any;
   }
@@ -1421,8 +1435,8 @@ declare namespace __esri {
   interface ImageryLayer extends Layer, ArcGISImageService {
     maxScale: number;
     minScale: number;
-    popupEnabled: boolean;
     pixelFilter: Function;
+    popupEnabled: boolean;
     portalItem: PortalItem;
     token: string;
 
@@ -1440,8 +1454,8 @@ declare namespace __esri {
   interface ImageryLayerProperties extends LayerProperties, ArcGISImageServiceProperties {
     maxScale?: number;
     minScale?: number;
-    popupEnabled?: boolean;
     pixelFilter?: Function;
+    popupEnabled?: boolean;
     portalItem?: PortalItemProperties;
     token?: string;
   }
@@ -1485,19 +1499,19 @@ declare namespace __esri {
   }
 
   interface FeatureLayer extends Layer, PortalLayer {
-    maxScale: number;
     copyright: string;
+    definitionExpression: string;
     elevationInfo: FeatureLayerElevationInfo;
     fields: Field[];
     geometryType: string;
     hasAttachments: boolean;
     hasM: boolean;
     hasZ: boolean;
-    labelsVisible: boolean;
     labelingInfo: LabelClass[];
+    labelsVisible: boolean;
     layerId: number;
+    maxScale: number;
     minScale: number;
-    definitionExpression: string;
     objectIdField: string;
     outFields: string[];
     popupEnabled: boolean;
@@ -1511,32 +1525,34 @@ declare namespace __esri {
     url: string;
 
     createQueryParameters(): Query;
+    queryExtent(params?: Query): IPromise<any>;
+    queryFeatureCount(params?: Query): IPromise<any>;
     queryFeatures(params?: Query): IPromise<any>;
     queryObjectIds(params?: Query): IPromise<any>;
-    queryFeatureCount(params?: Query): IPromise<any>;
-    queryExtent(params?: Query): IPromise<any>;
   }
 
   interface FeatureLayerConstructor {
     new(properties?: FeatureLayerProperties): FeatureLayer;
+
+    fromJSON(json: any): FeatureLayer;
   }
 
   export const FeatureLayer: FeatureLayerConstructor;
 
   interface FeatureLayerProperties extends LayerProperties, PortalLayerProperties {
-    maxScale?: number;
     copyright?: string;
+    definitionExpression?: string;
     elevationInfo?: FeatureLayerElevationInfo;
-    fields?: Field[];
+    fields?: FieldProperties[];
     geometryType?: string;
     hasAttachments?: boolean;
     hasM?: boolean;
     hasZ?: boolean;
+    labelingInfo?: LabelClassProperties[];
     labelsVisible?: boolean;
-    labelingInfo?: LabelClass[];
     layerId?: number;
+    maxScale?: number;
     minScale?: number;
-    definitionExpression?: string;
     objectIdField?: string;
     outFields?: string[];
     popupEnabled?: boolean;
@@ -1558,8 +1574,8 @@ declare namespace __esri {
 
     add(graphic: Graphic): void;
     addMany(graphics: Graphic[]): void;
-    removeAll(): void;
     remove(graphic: Graphic): void;
+    removeAll(): void;
     removeMany(graphics: Graphic[]): void;
   }
 
@@ -1643,34 +1659,36 @@ declare namespace __esri {
 
   interface SceneLayer extends Layer, PortalLayer {
     copyright: string;
-    popupEnabled: boolean;
-    layerId: number;
-    version: SceneLayerVersion;
     fields: Field[];
+    layerId: number;
+    popupEnabled: boolean;
+    popupTemplate: PopupTemplate;
     renderer: Renderer;
     spatialReference: SpatialReference;
-    popupTemplate: PopupTemplate;
-    url: string;
     token: string;
+    url: string;
+    version: SceneLayerVersion;
   }
 
   interface SceneLayerConstructor {
     new(properties?: SceneLayerProperties): SceneLayer;
+
+    fromJSON(json: any): SceneLayer;
   }
 
   export const SceneLayer: SceneLayerConstructor;
 
   interface SceneLayerProperties extends LayerProperties, PortalLayerProperties {
     copyright?: string;
-    popupEnabled?: boolean;
+    fields?: FieldProperties[];
     layerId?: number;
-    version?: SceneLayerVersion;
-    fields?: Field[];
+    popupEnabled?: boolean;
+    popupTemplate?: PopupTemplateProperties;
     renderer?: RendererProperties;
     spatialReference?: SpatialReferenceProperties;
-    popupTemplate?: PopupTemplateProperties;
-    url?: string;
     token?: string;
+    url?: string;
+    version?: SceneLayerVersion;
   }
 
   interface StreamLayer extends FeatureLayer {
@@ -1681,6 +1699,8 @@ declare namespace __esri {
 
   interface StreamLayerConstructor {
     new(properties?: StreamLayerProperties): StreamLayer;
+
+    fromJSON(json: any): StreamLayer;
   }
 
   export const StreamLayer: StreamLayerConstructor;
@@ -1719,12 +1739,12 @@ declare namespace __esri {
 
   interface VectorTileLayer extends Layer, PortalLayer, TiledLayer {
     ACCESS_TOKEN: string;
-    minScale: number;
     maxScale: number;
-    style: any;
+    minScale: number;
     spatialReference: SpatialReference;
+    style: any;
     token: string;
-    url: string | any;
+    url: string;
 
     loadStyle(styleUrl: string | any): IPromise<any>;
   }
@@ -1739,18 +1759,18 @@ declare namespace __esri {
 
   interface VectorTileLayerProperties extends LayerProperties, PortalLayerProperties, TiledLayerProperties {
     ACCESS_TOKEN?: string;
-    minScale?: number;
     maxScale?: number;
-    style?: any;
+    minScale?: number;
     spatialReference?: SpatialReferenceProperties;
+    style?: any;
     token?: string;
     url?: string | any;
   }
 
   interface WebTileLayer extends Layer, TiledLayer {
     copyright: string;
-    minScale: number;
     maxScale: number;
+    minScale: number;
     spatialReference: SpatialReference;
     subDomains: string[];
     tileServers: string[];
@@ -1767,8 +1787,8 @@ declare namespace __esri {
 
   interface WebTileLayerProperties extends LayerProperties, TiledLayerProperties {
     copyright?: string;
-    minScale?: number;
     maxScale?: number;
+    minScale?: number;
     spatialReference?: SpatialReferenceProperties;
     subDomains?: string[];
     tileServers?: string[];
@@ -1788,10 +1808,10 @@ declare namespace __esri {
   export const CodedValueDomain: CodedValueDomainConstructor;
 
   interface DimensionalDefinition {
-    variableName: string;
     dimensionName: string;
-    values: any[];
     isSlice: boolean;
+    values: any[];
+    variableName: string;
 
     toJSON(): any;
   }
@@ -1826,10 +1846,22 @@ declare namespace __esri {
   }
 
   interface FieldConstructor {
-    new(): Field;
+    new(properties?: FieldProperties): Field;
+
+    fromJSON(json: any): Field;
   }
 
   export const Field: FieldConstructor;
+
+  interface FieldProperties {
+    alias?: string;
+    domain?: Domain;
+    editable?: boolean;
+    length?: number;
+    name?: string;
+    nullable?: boolean;
+    type?: string;
+  }
 
   interface ImageParameters {
     layerDefinitions: string[];
@@ -1910,10 +1942,10 @@ declare namespace __esri {
     extent: Extent;
     height: number;
     href: number;
-    scale: number;
-    width: number;
-    visible: boolean;
     opacity: number;
+    scale: number;
+    visible: boolean;
+    width: number;
   }
 
   interface MapImageConstructor {
@@ -1928,10 +1960,10 @@ declare namespace __esri {
     extent?: ExtentProperties;
     height?: number;
     href?: number;
-    scale?: number;
-    width?: number;
-    visible?: boolean;
     opacity?: number;
+    scale?: number;
+    visible?: boolean;
+    width?: number;
   }
 
   interface MosaicRule {
@@ -1976,10 +2008,10 @@ declare namespace __esri {
     statistics: PixelBlockStatistics[];
     width: number;
 
-    getPlaneCount(): number;
     addData(planeData: PixelBlockAddDataPlaneData): void;
     getAsRGBA(): number[];
     getAsRGBAFloat(): number[];
+    getPlaneCount(): number;
   }
 
   interface PixelBlockConstructor {
@@ -2022,13 +2054,13 @@ declare namespace __esri {
   }
 
   interface TileInfo extends Accessor {
+    dpi: number;
+    format: string;
+    height: number;
     lods: LOD[];
     origin: Point;
     spatialReference: SpatialReference;
-    format: string;
-    dpi: number;
     width: number;
-    height: number;
 
     toJSON(): any;
   }
@@ -2042,18 +2074,18 @@ declare namespace __esri {
   export const TileInfo: TileInfoConstructor;
 
   interface TileInfoProperties {
-    lods?: LOD[];
+    dpi?: number;
+    format?: string;
+    height?: number;
+    lods?: LODProperties[];
     origin?: PointProperties;
     spatialReference?: SpatialReferenceProperties;
-    format?: string;
-    dpi?: number;
     width?: number;
-    height?: number;
   }
 
   interface Portal extends Accessor, Loadable {
-    httpPort: number;
     access: string;
+    allSSL: boolean;
     authMode: string;
     authorizedCrossOriginDomains: string[];
     bingKey: string;
@@ -2072,14 +2104,14 @@ declare namespace __esri {
     culture: string;
     customBaseUrl: string;
     defaultBasemap: Basemap;
-    defaultExtent: any;
+    defaultExtent: Extent;
     description: string;
     featuredGroups: PortalFeaturedGroups[];
     featuredItemsGroupQuery: string;
     galleryTemplatesGroupQuery: string;
     homePageFeaturedContent: string;
     homePageFeaturedContentCount: number;
-    allSSL: boolean;
+    httpPort: number;
     httpsPort: number;
     id: string;
     ipCntryCode: string;
@@ -2124,8 +2156,8 @@ declare namespace __esri {
   export const Portal: PortalConstructor;
 
   interface PortalProperties extends LoadableProperties {
-    httpPort?: number;
     access?: string;
+    allSSL?: boolean;
     authMode?: string;
     authorizedCrossOriginDomains?: string[];
     bingKey?: string;
@@ -2144,14 +2176,14 @@ declare namespace __esri {
     culture?: string;
     customBaseUrl?: string;
     defaultBasemap?: BasemapProperties;
-    defaultExtent?: any;
+    defaultExtent?: ExtentProperties;
     description?: string;
     featuredGroups?: PortalFeaturedGroups[];
     featuredItemsGroupQuery?: string;
     galleryTemplatesGroupQuery?: string;
     homePageFeaturedContent?: string;
     homePageFeaturedContentCount?: number;
-    allSSL?: boolean;
+    httpPort?: number;
     httpsPort?: number;
     id?: string;
     ipCntryCode?: string;
@@ -2203,13 +2235,13 @@ declare namespace __esri {
   }
 
   interface PortalGroup extends Accessor {
-    owner: string;
     access: string;
+    created: Date;
     description: string;
     id: string;
     isInvitationOnly: boolean;
     modified: Date;
-    created: Date;
+    owner: string;
     portal: Portal;
     snippet: string;
     tags: string[];
@@ -2227,13 +2259,13 @@ declare namespace __esri {
   export const PortalGroup: PortalGroupConstructor;
 
   interface PortalGroupProperties {
-    owner?: string;
     access?: string;
+    created?: Date;
     description?: string;
     id?: string;
     isInvitationOnly?: boolean;
     modified?: Date;
-    created?: Date;
+    owner?: string;
     portal?: PortalProperties;
     snippet?: string;
     tags?: string[];
@@ -2242,8 +2274,8 @@ declare namespace __esri {
   }
 
   interface PortalItem extends Accessor, Loadable {
-    name: string;
     created: Date;
+    description: string;
     extent: Extent;
     id: string;
     isLayer: boolean;
@@ -2251,7 +2283,7 @@ declare namespace __esri {
     itemUrl: string;
     loaded: boolean;
     modified: Date;
-    description: string;
+    name: string;
     portal: Portal;
     snippet: string;
     tags: string[];
@@ -2263,8 +2295,8 @@ declare namespace __esri {
 
     fetchData(responseType?: string): IPromise<any>;
     fetchRelatedItems(params: PortalItemFetchRelatedItemsParams): IPromise<any>;
-    update(params?: PortalItemUpdateParams): IPromise<any>;
     toJSON(): any;
+    update(params?: PortalItemUpdateParams): IPromise<any>;
   }
 
   interface PortalItemConstructor {
@@ -2276,8 +2308,8 @@ declare namespace __esri {
   export const PortalItem: PortalItemConstructor;
 
   interface PortalItemProperties extends LoadableProperties {
-    name?: string;
     created?: Date;
+    description?: string;
     extent?: ExtentProperties;
     id?: string;
     isLayer?: boolean;
@@ -2285,7 +2317,7 @@ declare namespace __esri {
     itemUrl?: string;
     loaded?: boolean;
     modified?: Date;
-    description?: string;
+    name?: string;
     portal?: PortalProperties;
     snippet?: string;
     tags?: string[];
@@ -2373,21 +2405,21 @@ declare namespace __esri {
   }
 
   interface ClassBreaksRenderer extends Renderer {
-    type: string;
-    field: string | Function;
     backgroundFillSymbol: FillSymbol;
+    classBreakInfos: ClassBreaksRendererClassBreakInfos[];
     classificationMethod: string;
     defaultSymbol: Symbol;
-    classBreakInfos: ClassBreaksRendererClassBreakInfos[];
+    field: string;
     isMaxInclusive: boolean;
     normalizationField: string;
     normalizationTotal: number;
     normalizationType: string;
+    type: string;
 
     addClassBreakInfo(min: number | any, max: number, symbol: Symbol): void;
-    removeClassBreakInfo(min: number, max: number): void;
-    getClassBreakInfo(graphic: Graphic): any;
     clone(): ClassBreaksRenderer;
+    getClassBreakInfo(graphic: Graphic): any;
+    removeClassBreakInfo(min: number, max: number): void;
   }
 
   interface ClassBreaksRendererConstructor {
@@ -2399,16 +2431,16 @@ declare namespace __esri {
   export const ClassBreaksRenderer: ClassBreaksRendererConstructor;
 
   interface ClassBreaksRendererProperties extends RendererProperties {
-    type?: string;
-    field?: string | Function;
     backgroundFillSymbol?: FillSymbolProperties;
+    classBreakInfos?: ClassBreaksRendererClassBreakInfos[];
     classificationMethod?: string;
     defaultSymbol?: SymbolProperties;
-    classBreakInfos?: ClassBreaksRendererClassBreakInfos[];
+    field?: string | Function;
     isMaxInclusive?: boolean;
     normalizationField?: string;
     normalizationTotal?: number;
     normalizationType?: string;
+    type?: string;
   }
 
   interface Renderer extends Accessor {
@@ -2428,9 +2460,9 @@ declare namespace __esri {
   }
 
   interface SimpleRenderer extends Renderer {
-    type: string;
     label: string;
     symbol: Symbol;
+    type: string;
 
     clone(): SimpleRenderer;
   }
@@ -2444,25 +2476,25 @@ declare namespace __esri {
   export const SimpleRenderer: SimpleRendererConstructor;
 
   interface SimpleRendererProperties extends RendererProperties {
-    type?: string;
     label?: string;
     symbol?: SymbolProperties;
+    type?: string;
   }
 
   interface UniqueValueRenderer extends Renderer {
-    type: string;
-    field: string | Function;
-    field2: string;
-    field3: string;
     defaultLabel: string;
     defaultSymbol: Symbol;
+    field: string;
+    field2: string;
+    field3: string;
     fieldDelimiter: string;
+    type: string;
     uniqueValueInfos: UniqueValueRendererUniqueValueInfos[];
 
     addUniqueValueInfo(valueOrInfo: string | any, symbol: Symbol): void;
-    removeUniqueValueInfo(value: string): void;
-    getUniqueValueInfo(graphic: Graphic): any;
     clone(): UniqueValueRenderer;
+    getUniqueValueInfo(graphic: Graphic): any;
+    removeUniqueValueInfo(value: string): void;
   }
 
   interface UniqueValueRendererConstructor {
@@ -2474,13 +2506,13 @@ declare namespace __esri {
   export const UniqueValueRenderer: UniqueValueRendererConstructor;
 
   interface UniqueValueRendererProperties extends RendererProperties {
-    type?: string;
+    defaultLabel?: string;
+    defaultSymbol?: SymbolProperties;
     field?: string | Function;
     field2?: string;
     field3?: string;
-    defaultLabel?: string;
-    defaultSymbol?: SymbolProperties;
     fieldDelimiter?: string;
+    type?: string;
     uniqueValueInfos?: UniqueValueRendererUniqueValueInfos[];
   }
 
@@ -2537,8 +2569,8 @@ declare namespace __esri {
   }
 
   interface Font extends Accessor {
-    toJSON(): any;
     clone(): Font;
+    toJSON(): any;
   }
 
   interface FontConstructor {
@@ -2554,10 +2586,10 @@ declare namespace __esri {
   }
 
   interface IconSymbol3DLayer extends Symbol3DLayer {
-    resource: IconSymbol3DLayerResource;
-    size: number;
     anchor: string;
     outline: IconSymbol3DLayerOutline;
+    resource: IconSymbol3DLayerResource;
+    size: number;
 
     clone(): IconSymbol3DLayer;
   }
@@ -2571,10 +2603,10 @@ declare namespace __esri {
   export const IconSymbol3DLayer: IconSymbol3DLayerConstructor;
 
   interface IconSymbol3DLayerProperties extends Symbol3DLayerProperties {
-    resource?: IconSymbol3DLayerResource;
-    size?: number;
     anchor?: string;
     outline?: IconSymbol3DLayerOutline;
+    resource?: IconSymbol3DLayerResource;
+    size?: number;
   }
 
   interface LabelSymbol3D extends Symbol3D {
@@ -2682,11 +2714,11 @@ declare namespace __esri {
   }
 
   interface ObjectSymbol3DLayer extends Symbol3DLayer {
+    anchor: string;
+    depth: number;
+    height: number;
     resource: ObjectSymbol3DLayerResource;
     width: number;
-    height: number;
-    depth: number;
-    anchor: string;
 
     clone(): ObjectSymbol3DLayer;
   }
@@ -2700,21 +2732,21 @@ declare namespace __esri {
   export const ObjectSymbol3DLayer: ObjectSymbol3DLayerConstructor;
 
   interface ObjectSymbol3DLayerProperties extends Symbol3DLayerProperties {
+    anchor?: string;
+    depth?: number;
+    height?: number;
     resource?: ObjectSymbol3DLayerResource;
     width?: number;
-    height?: number;
-    depth?: number;
-    anchor?: string;
   }
 
   interface PictureFillSymbol extends FillSymbol {
-    width: number;
-    xscale: number;
-    yscale: number;
     height: number;
-    xoffset: number;
-    yoffset: number;
     url: string;
+    width: number;
+    xoffset: number;
+    xscale: number;
+    yoffset: number;
+    yscale: number;
   }
 
   interface PictureFillSymbolConstructor {
@@ -2726,18 +2758,18 @@ declare namespace __esri {
   export const PictureFillSymbol: PictureFillSymbolConstructor;
 
   interface PictureFillSymbolProperties extends FillSymbolProperties {
-    width?: number;
-    xscale?: number;
-    yscale?: number;
     height?: number;
-    xoffset?: number;
-    yoffset?: number;
     url?: string;
+    width?: number;
+    xoffset?: number;
+    xscale?: number;
+    yoffset?: number;
+    yscale?: number;
   }
 
   interface PictureMarkerSymbol extends MarkerSymbol {
-    url: string;
     height: number;
+    url: string;
     width: number;
 
     clone(): PictureMarkerSymbol;
@@ -2752,8 +2784,8 @@ declare namespace __esri {
   export const PictureMarkerSymbol: PictureMarkerSymbolConstructor;
 
   interface PictureMarkerSymbolProperties extends MarkerSymbolProperties {
-    url?: string;
     height?: number;
+    url?: string;
     width?: number;
   }
 
@@ -2847,10 +2879,10 @@ declare namespace __esri {
 
   interface SimpleMarkerSymbol extends MarkerSymbol {
     color: Color;
-    style: string;
-    size: number;
-    path: string;
     outline: SimpleLineSymbol;
+    path: string;
+    size: number;
+    style: string;
 
     clone(): SimpleMarkerSymbol;
   }
@@ -2865,10 +2897,10 @@ declare namespace __esri {
 
   interface SimpleMarkerSymbolProperties extends MarkerSymbolProperties {
     color?: Color;
-    style?: string;
-    size?: number;
-    path?: string;
     outline?: SimpleLineSymbolProperties;
+    path?: string;
+    size?: number;
+    style?: string;
   }
 
   interface Symbol extends Accessor {
@@ -2906,8 +2938,8 @@ declare namespace __esri {
   }
 
   interface Symbol3DLayer extends Accessor {
-    type: string;
     material: any;
+    type: string;
 
     toJSON(): any;
   }
@@ -2921,22 +2953,22 @@ declare namespace __esri {
   export const Symbol3DLayer: Symbol3DLayerConstructor;
 
   interface Symbol3DLayerProperties {
-    type?: string;
     material?: any;
+    type?: string;
   }
 
   interface TextSymbol extends Symbol {
-    haloColor: Color;
+    angle: number;
+    color: Color;
     font: Font;
+    haloColor: Color;
     haloSize: number;
     horizontalAlignment: string;
     kerning: boolean;
-    color: Color;
     rotated: boolean;
     text: string;
     xoffset: number;
     yoffset: number;
-    angle: number;
 
     clone(): TextSymbol;
   }
@@ -2950,23 +2982,23 @@ declare namespace __esri {
   export const TextSymbol: TextSymbolConstructor;
 
   interface TextSymbolProperties extends SymbolProperties {
-    haloColor?: Color;
+    angle?: number;
+    color?: Color;
     font?: FontProperties;
+    haloColor?: Color;
     haloSize?: number;
     horizontalAlignment?: string;
     kerning?: boolean;
-    color?: Color;
     rotated?: boolean;
     text?: string;
     xoffset?: number;
     yoffset?: number;
-    angle?: number;
   }
 
   interface TextSymbol3DLayer extends Symbol3DLayer {
+    font: TextSymbol3DLayerFont;
     size: number;
     text: string;
-    font: TextSymbol3DLayerFont;
 
     clone(): TextSymbol3DLayer;
   }
@@ -2980,9 +3012,9 @@ declare namespace __esri {
   export const TextSymbol3DLayer: TextSymbol3DLayerConstructor;
 
   interface TextSymbol3DLayerProperties extends Symbol3DLayerProperties {
+    font?: TextSymbol3DLayerFont;
     size?: number;
     text?: string;
-    font?: TextSymbol3DLayerFont;
   }
 
   interface ClosestFacilityTask extends Task {
@@ -3017,26 +3049,26 @@ declare namespace __esri {
 
   interface GeometryService extends Task {
     areasAndLengths(areasAndLengthsParameters: AreasAndLengthsParameters): IPromise<any>;
-    simplify(geometries: Geometry[]): IPromise<any>;
-    convexHull(geometries: Geometry[]): IPromise<any>;
-    union(geometries: Geometry[]): IPromise<any>;
     autoComplete(polygons: Polygon[], polylines: Polyline[]): IPromise<any>;
-    reshape(targetGeometry: Geometry, reshaper: Geometry): IPromise<any>;
-    cut(geometries: Geometry[], cutter: Polyline): IPromise<any>;
-    intersect(geometries: Geometry[], intersector: Geometry): IPromise<any>;
-    difference(geometries: Geometry[], geometry: Geometry): IPromise<any>;
     buffer(bufferParameters: BufferParameters): IPromise<any>;
-    project(params: ProjectParameters): IPromise<any>;
-    lengths(params: LengthsParameters): IPromise<any>;
-    labelPoints(polygons: Polygon[]): IPromise<any>;
-    relation(params: RelationParameters): IPromise<any>;
-    trimExtend(__0: TrimExtendParameters): IPromise<any>;
+    convexHull(geometries: Geometry[]): IPromise<any>;
+    cut(geometries: Geometry[], cutter: Polyline): IPromise<any>;
     densify(densifyParameters: DensifyParameters): IPromise<any>;
-    generalize(params: GeneralizeParameters): IPromise<any>;
-    offset(params: OffsetParameters): IPromise<any>;
+    difference(geometries: Geometry[], geometry: Geometry): IPromise<any>;
     distance(params: DistanceParameters): IPromise<any>;
-    toGeoCoordinateString(params: GeometryServiceToGeoCoordinateStringParams): IPromise<any>;
     fromGeoCoordinateString(params: GeometryServiceFromGeoCoordinateStringParams): IPromise<any>;
+    generalize(params: GeneralizeParameters): IPromise<any>;
+    intersect(geometries: Geometry[], intersector: Geometry): IPromise<any>;
+    labelPoints(polygons: Polygon[]): IPromise<any>;
+    lengths(params: LengthsParameters): IPromise<any>;
+    offset(params: OffsetParameters): IPromise<any>;
+    project(params: ProjectParameters): IPromise<any>;
+    relation(params: RelationParameters): IPromise<any>;
+    reshape(targetGeometry: Geometry, reshaper: Geometry): IPromise<any>;
+    simplify(geometries: Geometry[]): IPromise<any>;
+    toGeoCoordinateString(params: GeometryServiceToGeoCoordinateStringParams): IPromise<any>;
+    trimExtend(__0: TrimExtendParameters): IPromise<any>;
+    union(geometries: Geometry[]): IPromise<any>;
   }
 
   interface GeometryServiceConstructor {
@@ -3050,18 +3082,18 @@ declare namespace __esri {
   }
 
   interface Geoprocessor extends Task {
-    updateDelay: number;
-    processSpatialReference: SpatialReference;
     outSpatialReference: SpatialReference;
+    processSpatialReference: SpatialReference;
+    updateDelay: number;
 
-    submitJob(params: any): IPromise<any>;
-    getResultData(jobId: string, resultName: string): IPromise<any>;
-    checkJobStatus(jobId: string): IPromise<any>;
     cancelJob(jobId: string): IPromise<any>;
-    execute(params: any): IPromise<any>;
-    getResultImage(jobId: string, resultName: string, imageParams: ImageParameters): IPromise<any>;
     cancelJobStatusUpdates(jobId: string): void;
+    checkJobStatus(jobId: string): IPromise<any>;
+    execute(params: any): IPromise<any>;
+    getResultData(jobId: string, resultName: string): IPromise<any>;
+    getResultImage(jobId: string, resultName: string, imageParams: ImageParameters): IPromise<any>;
     getResultImageLayer(jobId: string, resultName: string, imageParams: ImageParameters): MapImageLayer;
+    submitJob(params: any): IPromise<any>;
   }
 
   interface GeoprocessorConstructor {
@@ -3071,9 +3103,9 @@ declare namespace __esri {
   export const Geoprocessor: GeoprocessorConstructor;
 
   interface GeoprocessorProperties extends TaskProperties {
-    updateDelay?: number;
-    processSpatialReference?: SpatialReferenceProperties;
     outSpatialReference?: SpatialReferenceProperties;
+    processSpatialReference?: SpatialReferenceProperties;
+    updateDelay?: number;
   }
 
   interface IdentifyTask extends Task {
@@ -3111,10 +3143,10 @@ declare namespace __esri {
     countryCode: string;
     outSpatialReference: SpatialReference;
 
-    addressToLocations(params: LocatorAddressToLocationsParams, address?: any, outFields?: string[]): IPromise<any>;
-    suggestLocations(params: LocatorSuggestLocationsParams): any;
     addressesToLocations(params: LocatorAddressesToLocationsParams): IPromise<any>;
+    addressToLocations(params: LocatorAddressToLocationsParams, address?: any, outFields?: string[]): IPromise<any>;
     locationToAddress(location: Point, distance: number): IPromise<any>;
+    suggestLocations(params: LocatorSuggestLocationsParams): any;
   }
 
   interface LocatorConstructor {
@@ -3133,10 +3165,10 @@ declare namespace __esri {
     gdbVersion: string;
 
     execute(params: Query): IPromise<any>;
-    executeRelationshipQuery(params: RelationshipQuery): IPromise<any>;
-    executeForIds(params: Query): IPromise<any>;
     executeForCount(params: Query): IPromise<any>;
     executeForExtent(params: Query): IPromise<any>;
+    executeForIds(params: Query): IPromise<any>;
+    executeRelationshipQuery(params: RelationshipQuery): IPromise<any>;
   }
 
   interface QueryTaskConstructor {
@@ -3234,7 +3266,7 @@ declare namespace __esri {
     areaUnit?: string;
     calculationType?: string;
     lengthUnit?: string;
-    polygons?: Polygon[];
+    polygons?: PolygonProperties[];
   }
 
   interface BufferParameters extends Accessor {
@@ -3259,15 +3291,15 @@ declare namespace __esri {
     bufferSpatialReference?: SpatialReferenceProperties;
     distances?: number[];
     geodesic?: boolean;
-    geometries?: Geometry[];
+    geometries?: GeometryProperties[];
     outSpatialReference?: SpatialReferenceProperties;
     unionResults?: boolean;
     unit?: string;
   }
 
   interface ClosestFacilityParameters extends Accessor {
-    outSpatialReference: SpatialReference | string;
     accumulateAttributes: string[];
+    attributeParameterValues: ClosestFacilityParametersAttributeParameterValues[];
     defaultCutoff: number;
     defaultTargetFacilityCount: number;
     directionsLanguage: string;
@@ -3282,7 +3314,7 @@ declare namespace __esri {
     outputGeometryPrecision: number;
     outputGeometryPrecisionUnits: string;
     outputLines: string;
-    attributeParameterValues: ClosestFacilityParametersAttributeParameterValues[];
+    outSpatialReference: SpatialReference;
     pointBarriers: DataLayer | FeatureSet;
     polygonBarriers: DataLayer | FeatureSet;
     polylineBarriers: DataLayer | FeatureSet;
@@ -3295,10 +3327,10 @@ declare namespace __esri {
     returnPolylgonBarriers: boolean;
     returnPolylineBarriers: boolean;
     returnRoutes: boolean;
-    travelDirection: string;
-    useHierarchy: boolean;
     timeOfDay: Date;
     timeOfDayUsage: string;
+    travelDirection: string;
+    useHierarchy: boolean;
 
     toJSON(): any;
   }
@@ -3310,8 +3342,8 @@ declare namespace __esri {
   export const ClosestFacilityParameters: ClosestFacilityParametersConstructor;
 
   interface ClosestFacilityParametersProperties {
-    outSpatialReference?: SpatialReference | string;
     accumulateAttributes?: string[];
+    attributeParameterValues?: ClosestFacilityParametersAttributeParameterValues[];
     defaultCutoff?: number;
     defaultTargetFacilityCount?: number;
     directionsLanguage?: string;
@@ -3326,7 +3358,7 @@ declare namespace __esri {
     outputGeometryPrecision?: number;
     outputGeometryPrecisionUnits?: string;
     outputLines?: string;
-    attributeParameterValues?: ClosestFacilityParametersAttributeParameterValues[];
+    outSpatialReference?: SpatialReference | string;
     pointBarriers?: DataLayer | FeatureSet;
     polygonBarriers?: DataLayer | FeatureSet;
     polylineBarriers?: DataLayer | FeatureSet;
@@ -3339,10 +3371,10 @@ declare namespace __esri {
     returnPolylgonBarriers?: boolean;
     returnPolylineBarriers?: boolean;
     returnRoutes?: boolean;
-    travelDirection?: string;
-    useHierarchy?: boolean;
     timeOfDay?: Date;
     timeOfDayUsage?: string;
+    travelDirection?: string;
+    useHierarchy?: boolean;
   }
 
   interface ClosestFacilitySolveResult {
@@ -3351,8 +3383,8 @@ declare namespace __esri {
     incidents: Point[];
     messages: NAMessage[];
     pointBarriers: Point[];
-    polylineBarriers: Polyline[];
     polygonBarriers: Polygon[];
+    polylineBarriers: Polyline[];
     routes: Graphic[];
   }
 
@@ -3366,13 +3398,13 @@ declare namespace __esri {
 
   interface ClosestFacilitySolveResultProperties {
     directions?: DirectionsFeatureSetProperties;
-    facilities?: Point[];
-    incidents?: Point[];
-    messages?: NAMessage[];
-    pointBarriers?: Point[];
-    polylineBarriers?: Polyline[];
-    polygonBarriers?: Polygon[];
-    routes?: Graphic[];
+    facilities?: PointProperties[];
+    incidents?: PointProperties[];
+    messages?: NAMessageProperties[];
+    pointBarriers?: PointProperties[];
+    polygonBarriers?: PolygonProperties[];
+    polylineBarriers?: PolylineProperties[];
+    routes?: GraphicProperties[];
   }
 
   interface DataFile {
@@ -3438,8 +3470,8 @@ declare namespace __esri {
   }
 
   interface DensifyParameters extends Accessor {
-    geometries: Geometry[];
     geodesic: boolean;
+    geometries: Geometry[];
     lengthUnit: string;
     maxSegmentLength: number;
 
@@ -3453,8 +3485,8 @@ declare namespace __esri {
   export const DensifyParameters: DensifyParametersConstructor;
 
   interface DensifyParametersProperties {
-    geometries?: Geometry[];
     geodesic?: boolean;
+    geometries?: GeometryProperties[];
     lengthUnit?: string;
     maxSegmentLength?: number;
   }
@@ -3490,10 +3522,10 @@ declare namespace __esri {
   }
 
   interface DistanceParameters extends Accessor {
-    geometry1: Geometry[];
-    geometry2: Geometry[];
     distanceUnit: string;
     geodesic: boolean;
+    geometry1: Geometry[];
+    geometry2: Geometry[];
 
     toJSON(): any;
   }
@@ -3505,10 +3537,10 @@ declare namespace __esri {
   export const DistanceParameters: DistanceParametersConstructor;
 
   interface DistanceParametersProperties {
-    geometry1?: Geometry[];
-    geometry2?: Geometry[];
     distanceUnit?: string;
     geodesic?: boolean;
+    geometry1?: GeometryProperties[];
+    geometry2?: GeometryProperties[];
   }
 
   interface FeatureSet {
@@ -3532,7 +3564,7 @@ declare namespace __esri {
   interface FeatureSetProperties {
     displayFieldName?: string;
     exceededTransferLimit?: boolean;
-    features?: Graphic[];
+    features?: GraphicProperties[];
     geometryType?: string;
     spatialReference?: SpatialReferenceProperties;
   }
@@ -3540,9 +3572,9 @@ declare namespace __esri {
   interface FindParameters extends Accessor {
     contains: boolean;
     dynamicLayerInfos: any[];
+    geometryPrecision: number;
     layerDefinitions: string[];
     layerIds: number[];
-    geometryPrecision: number;
     maxAllowableOffset: number;
     outSpatialReference: SpatialReference;
     returnGeometry: boolean;
@@ -3561,9 +3593,9 @@ declare namespace __esri {
   interface FindParametersProperties {
     contains?: boolean;
     dynamicLayerInfos?: any[];
+    geometryPrecision?: number;
     layerDefinitions?: string[];
     layerIds?: number[];
-    geometryPrecision?: number;
     maxAllowableOffset?: number;
     outSpatialReference?: SpatialReferenceProperties;
     returnGeometry?: boolean;
@@ -3596,8 +3628,8 @@ declare namespace __esri {
   }
 
   interface GeneralizeParameters extends Accessor {
-    geometries: Geometry[];
     deviationUnit: string;
+    geometries: Geometry[];
     maxDeviation: number;
 
     toJSON(): any;
@@ -3610,8 +3642,8 @@ declare namespace __esri {
   export const GeneralizeParameters: GeneralizeParametersConstructor;
 
   interface GeneralizeParametersProperties {
-    geometries?: Geometry[];
     deviationUnit?: string;
+    geometries?: GeometryProperties[];
     maxDeviation?: number;
   }
 
@@ -3634,14 +3666,14 @@ declare namespace __esri {
   }
 
   interface IdentifyParameters extends Accessor {
-    mapExtent: Extent;
+    dpi: number;
     geometry: Geometry;
+    geometryPrecision: number;
     height: number;
     layerDefinitions: string[];
     layerIds: number[];
     layerOption: string;
-    dpi: number;
-    geometryPrecision: number;
+    mapExtent: Extent;
     maxAllowableOffset: number;
     returnGeometry: boolean;
     spatialReference: SpatialReference;
@@ -3658,14 +3690,14 @@ declare namespace __esri {
   export const IdentifyParameters: IdentifyParametersConstructor;
 
   interface IdentifyParametersProperties {
-    mapExtent?: ExtentProperties;
+    dpi?: number;
     geometry?: GeometryProperties;
+    geometryPrecision?: number;
     height?: number;
     layerDefinitions?: string[];
     layerIds?: number[];
     layerOption?: string;
-    dpi?: number;
-    geometryPrecision?: number;
+    mapExtent?: ExtentProperties;
     maxAllowableOffset?: number;
     returnGeometry?: boolean;
     spatialReference?: SpatialReferenceProperties;
@@ -3699,12 +3731,12 @@ declare namespace __esri {
     geometry: Point | Polygon;
     mosaicRule: MosaicRule;
     noData: string | number;
-    renderingRule: RasterFunction;
+    pixelSize: Symbol;
     pixelSizeX: number;
     pixelSizeY: number;
-    pixelSize: Symbol;
-    returnGeometry: boolean;
+    renderingRule: RasterFunction;
     returnCatalogItems: boolean;
+    returnGeometry: boolean;
 
     toJSON(): any;
   }
@@ -3719,17 +3751,17 @@ declare namespace __esri {
     geometry?: Point | Polygon;
     mosaicRule?: MosaicRuleProperties;
     noData?: string | number;
-    renderingRule?: RasterFunctionProperties;
+    pixelSize?: SymbolProperties;
     pixelSizeX?: number;
     pixelSizeY?: number;
-    pixelSize?: SymbolProperties;
-    returnGeometry?: boolean;
+    renderingRule?: RasterFunctionProperties;
     returnCatalogItems?: boolean;
+    returnGeometry?: boolean;
   }
 
   interface ImageServiceIdentifyResult {
-    catalogItemVisibilities: number[];
     catalogItems: FeatureSet;
+    catalogItemVisibilities: number[];
     location: Point;
     name: string;
     objectId: number;
@@ -3746,8 +3778,8 @@ declare namespace __esri {
   export const ImageServiceIdentifyResult: ImageServiceIdentifyResultConstructor;
 
   interface ImageServiceIdentifyResultProperties {
-    catalogItemVisibilities?: number[];
     catalogItems?: FeatureSetProperties;
+    catalogItemVisibilities?: number[];
     location?: PointProperties;
     name?: string;
     objectId?: number;
@@ -3772,7 +3804,7 @@ declare namespace __esri {
   interface JobInfoProperties {
     jobId?: string;
     jobStatus?: string;
-    messages?: GPMessage[];
+    messages?: GPMessageProperties[];
   }
 
   interface LengthsParameters extends Accessor {
@@ -3794,7 +3826,7 @@ declare namespace __esri {
     calculationType?: string;
     geodesic?: boolean;
     lengthUnit?: number | string;
-    polylines?: Polyline[];
+    polylines?: PolylineProperties[];
   }
 
   interface LinearUnit {
@@ -3853,7 +3885,7 @@ declare namespace __esri {
 
   interface OffsetParametersProperties {
     bevelRatio?: number;
-    geometries?: Geometry[];
+    geometries?: GeometryProperties[];
     offsetDistance?: number;
     offsetHow?: string;
     offsetUnit?: string;
@@ -3893,36 +3925,36 @@ declare namespace __esri {
   export const ProjectParameters: ProjectParametersConstructor;
 
   interface ProjectParametersProperties {
-    geometries?: Geometry[];
+    geometries?: GeometryProperties[];
     outSR?: SpatialReferenceProperties;
     transformation?: ProjectParametersTransformation;
     transformForward?: boolean;
   }
 
   interface Query extends Accessor {
-    num: number;
-    spatialRelationship: string;
-    where: string;
+    distance: number;
     geometry: Geometry;
     geometryPrecision: number;
     groupByFieldsForStatistics: string[];
-    objectIds: number[];
-    returnGeometry: boolean;
-    returnDistinctValues: boolean;
     maxAllowableOffset: number;
     multipatchOption: string;
-    text: string;
-    start: number;
+    num: number;
+    objectIds: number[];
     orderByFields: string[];
-    outSpatialReference: SpatialReference;
     outFields: string[];
+    outSpatialReference: SpatialReference;
     outStatistics: StatisticDefinition[];
-    relationParam: string;
     pixelSize: Symbol;
-    distance: number;
-    units: string;
     quantizationParameters: QueryQuantizationParameters;
+    relationParam: string;
+    returnDistinctValues: boolean;
+    returnGeometry: boolean;
     returnZ: boolean;
+    spatialRelationship: string;
+    start: number;
+    text: string;
+    units: string;
+    where: string;
 
     toJSON(): any;
   }
@@ -3934,29 +3966,29 @@ declare namespace __esri {
   export const Query: QueryConstructor;
 
   interface QueryProperties {
-    num?: number;
-    spatialRelationship?: string;
-    where?: string;
+    distance?: number;
     geometry?: GeometryProperties;
     geometryPrecision?: number;
     groupByFieldsForStatistics?: string[];
-    objectIds?: number[];
-    returnGeometry?: boolean;
-    returnDistinctValues?: boolean;
     maxAllowableOffset?: number;
     multipatchOption?: string;
-    text?: string;
-    start?: number;
+    num?: number;
+    objectIds?: number[];
     orderByFields?: string[];
-    outSpatialReference?: SpatialReferenceProperties;
     outFields?: string[];
-    outStatistics?: StatisticDefinition[];
-    relationParam?: string;
+    outSpatialReference?: SpatialReferenceProperties;
+    outStatistics?: StatisticDefinitionProperties[];
     pixelSize?: SymbolProperties;
-    distance?: number;
-    units?: string;
     quantizationParameters?: QueryQuantizationParameters;
+    relationParam?: string;
+    returnDistinctValues?: boolean;
+    returnGeometry?: boolean;
     returnZ?: boolean;
+    spatialRelationship?: string;
+    start?: number;
+    text?: string;
+    units?: string;
+    where?: string;
   }
 
   interface RasterData {
@@ -3997,8 +4029,8 @@ declare namespace __esri {
   export const RelationParameters: RelationParametersConstructor;
 
   interface RelationParametersProperties {
-    geometries1?: Geometry[];
-    geometries2?: Geometry[];
+    geometries1?: GeometryProperties[];
+    geometries2?: GeometryProperties[];
     relation?: string;
     relationParam?: string;
   }
@@ -4034,8 +4066,8 @@ declare namespace __esri {
   }
 
   interface RouteParameters extends Accessor {
-    polylineBarriers: DataLayer | FeatureSet;
     accumulateAttributes: string[];
+    attributeParameterValues: AttributeParamValue;
     barriers: DataLayer | FeatureSet;
     directionsLanguage: string;
     directionsLengthUnits: string;
@@ -4046,12 +4078,12 @@ declare namespace __esri {
     findBestSequence: boolean;
     ignoreInvalidLocations: boolean;
     impedanceAttribute: string;
-    outputLines: string;
     outputGeometryPrecision: number;
     outputGeometryPrecisionUnits: string;
+    outputLines: string;
     outSpatialReference: SpatialReference;
     polygonBarriers: DataLayer | FeatureSet;
-    attributeParameterValues: AttributeParamValue;
+    polylineBarriers: DataLayer | FeatureSet;
     preserveFirstStop: boolean;
     preserveLastStop: boolean;
     restrictionAttributes: string[];
@@ -4079,8 +4111,8 @@ declare namespace __esri {
   export const RouteParameters: RouteParametersConstructor;
 
   interface RouteParametersProperties {
-    polylineBarriers?: DataLayer | FeatureSet;
     accumulateAttributes?: string[];
+    attributeParameterValues?: AttributeParamValue;
     barriers?: DataLayer | FeatureSet;
     directionsLanguage?: string;
     directionsLengthUnits?: string;
@@ -4091,12 +4123,12 @@ declare namespace __esri {
     findBestSequence?: boolean;
     ignoreInvalidLocations?: boolean;
     impedanceAttribute?: string;
-    outputLines?: string;
     outputGeometryPrecision?: number;
     outputGeometryPrecisionUnits?: string;
+    outputLines?: string;
     outSpatialReference?: SpatialReferenceProperties;
     polygonBarriers?: DataLayer | FeatureSet;
-    attributeParameterValues?: AttributeParamValue;
+    polylineBarriers?: DataLayer | FeatureSet;
     preserveFirstStop?: boolean;
     preserveLastStop?: boolean;
     restrictionAttributes?: string[];
@@ -4134,12 +4166,12 @@ declare namespace __esri {
     directions?: DirectionsFeatureSetProperties;
     route?: GraphicProperties;
     routeName?: string;
-    stops?: Graphic[];
+    stops?: GraphicProperties[];
   }
 
   interface ServiceAreaParameters extends Accessor {
-    polygonBarriers: DataLayer | FeatureSet;
     accumulateAttributes: string[];
+    attributeParameterValues: any[];
     defaultBreaks: number[];
     doNotLocateOnRestrictedElements: boolean;
     excludeSourcesFromPolygons: string[];
@@ -4154,7 +4186,7 @@ declare namespace __esri {
     overlapLines: boolean;
     overlapPolygons: boolean;
     pointBarriers: DataLayer | FeatureSet;
-    attributeParameterValues: any[];
+    polygonBarriers: DataLayer | FeatureSet;
     polylineBarriers: DataLayer | FeatureSet;
     restrictionAttributes: string[];
     restrictUTurns: string;
@@ -4164,12 +4196,12 @@ declare namespace __esri {
     returnPolylineBarriers: boolean;
     splitLinesAtBreaks: boolean;
     splitPolygonsAtBreaks: boolean;
+    timeOfDay: Date;
     travelDirection: string;
     trimOuterPolygon: boolean;
     trimPolygonDistance: number;
     trimPolygonDistanceUnits: string;
     useHierarchy: boolean;
-    timeOfDay: Date;
 
     toJSON(): any;
   }
@@ -4181,8 +4213,8 @@ declare namespace __esri {
   export const ServiceAreaParameters: ServiceAreaParametersConstructor;
 
   interface ServiceAreaParametersProperties {
-    polygonBarriers?: DataLayer | FeatureSet;
     accumulateAttributes?: string[];
+    attributeParameterValues?: any[];
     defaultBreaks?: number[];
     doNotLocateOnRestrictedElements?: boolean;
     excludeSourcesFromPolygons?: string[];
@@ -4197,7 +4229,7 @@ declare namespace __esri {
     overlapLines?: boolean;
     overlapPolygons?: boolean;
     pointBarriers?: DataLayer | FeatureSet;
-    attributeParameterValues?: any[];
+    polygonBarriers?: DataLayer | FeatureSet;
     polylineBarriers?: DataLayer | FeatureSet;
     restrictionAttributes?: string[];
     restrictUTurns?: string;
@@ -4207,22 +4239,22 @@ declare namespace __esri {
     returnPolylineBarriers?: boolean;
     splitLinesAtBreaks?: boolean;
     splitPolygonsAtBreaks?: boolean;
+    timeOfDay?: Date;
     travelDirection?: string;
     trimOuterPolygon?: boolean;
     trimPolygonDistance?: number;
     trimPolygonDistanceUnits?: string;
     useHierarchy?: boolean;
-    timeOfDay?: Date;
   }
 
   interface ServiceAreaSolveResult {
     facilities: Point[];
     messages: NAMessage[];
     pointBarriers: Point[];
-    polylineBarriers: Polyline[];
     polygonBarriers: Polygon[];
-    serviceAreaPolylines: Graphic[];
+    polylineBarriers: Polyline[];
     serviceAreaPolygons: Graphic[];
+    serviceAreaPolylines: Graphic[];
   }
 
   interface ServiceAreaSolveResultConstructor {
@@ -4234,13 +4266,13 @@ declare namespace __esri {
   export const ServiceAreaSolveResult: ServiceAreaSolveResultConstructor;
 
   interface ServiceAreaSolveResultProperties {
-    facilities?: Point[];
-    messages?: NAMessage[];
-    pointBarriers?: Point[];
-    polylineBarriers?: Polyline[];
-    polygonBarriers?: Polygon[];
-    serviceAreaPolylines?: Graphic[];
-    serviceAreaPolygons?: Graphic[];
+    facilities?: PointProperties[];
+    messages?: NAMessageProperties[];
+    pointBarriers?: PointProperties[];
+    polygonBarriers?: PolygonProperties[];
+    polylineBarriers?: PolylineProperties[];
+    serviceAreaPolygons?: GraphicProperties[];
+    serviceAreaPolylines?: GraphicProperties[];
   }
 
   interface StatisticDefinition extends Accessor {
@@ -4279,15 +4311,15 @@ declare namespace __esri {
 
   interface TrimExtendParametersProperties {
     extendHow?: void;
-    polylines?: Polyline[];
+    polylines?: PolylineProperties[];
     trimExtendTo?: PolylineProperties;
   }
 
   interface MapView extends View {
-    resizeAlign: string;
     center: Point;
     constraints: MapViewConstraints;
     extent: Extent;
+    resizeAlign: string;
     rotation: number;
     scale: number;
     viewpoint: Viewpoint;
@@ -4306,10 +4338,10 @@ declare namespace __esri {
   export const MapView: MapViewConstructor;
 
   interface MapViewProperties extends ViewProperties {
-    resizeAlign?: string;
     center?: PointProperties;
     constraints?: MapViewConstraints;
     extent?: ExtentProperties;
+    resizeAlign?: string;
     rotation?: number;
     scale?: number;
     viewpoint?: ViewpointProperties;
@@ -4317,22 +4349,22 @@ declare namespace __esri {
   }
 
   interface SceneView extends View {
-    extent: Extent;
-    viewingMode: string;
-    constraints: SceneViewConstraints;
     camera: Camera;
-    viewpoint: Viewpoint;
-    environment: SceneViewEnvironment;
-    clippingArea: Extent;
-    scale: number;
-    zoom: number;
     center: Point;
+    clippingArea: Extent;
+    constraints: SceneViewConstraints;
+    environment: SceneViewEnvironment;
+    extent: Extent;
     qualityProfile: string;
+    scale: number;
+    viewingMode: string;
+    viewpoint: Viewpoint;
+    zoom: number;
 
+    goTo(target: number[] | Geometry | Geometry[] | Graphic | Graphic[] | Viewpoint | Camera | any, options?: SceneViewGoToOptions): IPromise<any>;
+    hitTest(screenPoint: ScreenPoint): IPromise<any>;
     toMap(screenPoint: ScreenPoint, mapPoint?: Point): Point;
     toScreen(point: Point, screenPoint?: ScreenPoint): ScreenPoint;
-    hitTest(screenPoint: ScreenPoint): IPromise<any>;
-    goTo(target: number[] | Geometry | Geometry[] | Graphic | Graphic[] | Viewpoint | Camera | any, options?: SceneViewGoToOptions): IPromise<any>;
   }
 
   interface SceneViewConstructor {
@@ -4342,28 +4374,28 @@ declare namespace __esri {
   export const SceneView: SceneViewConstructor;
 
   interface SceneViewProperties extends ViewProperties {
-    extent?: ExtentProperties;
-    viewingMode?: string;
-    constraints?: SceneViewConstraintsProperties;
     camera?: CameraProperties;
-    viewpoint?: ViewpointProperties;
-    environment?: SceneViewEnvironmentProperties;
-    clippingArea?: ExtentProperties;
-    scale?: number;
-    zoom?: number;
     center?: PointProperties;
+    clippingArea?: ExtentProperties;
+    constraints?: SceneViewConstraintsProperties;
+    environment?: SceneViewEnvironmentProperties;
+    extent?: ExtentProperties;
     qualityProfile?: string;
+    scale?: number;
+    viewingMode?: string;
+    viewpoint?: ViewpointProperties;
+    zoom?: number;
   }
 
   interface View extends Accessor, corePromise, Evented, DOMContainer, BreakpointsOwner {
-    padding: ViewPadding;
     allLayerViews: Collection;
+    animation: ViewAnimation;
     container: string;
     graphics: Collection;
     interacting: boolean;
     layerViews: Collection;
     map: Map;
-    animation: ViewAnimation;
+    padding: ViewPadding;
     popup: Popup;
     ready: boolean;
     spatialReference: SpatialReference;
@@ -4382,14 +4414,14 @@ declare namespace __esri {
   export const View: ViewConstructor;
 
   interface ViewProperties extends DOMContainerProperties, BreakpointsOwnerProperties {
-    padding?: ViewPadding;
     allLayerViews?: Collection;
+    animation?: ViewAnimationProperties;
     container?: string;
     graphics?: Collection;
     interacting?: boolean;
     layerViews?: Collection;
     map?: MapProperties;
-    animation?: ViewAnimationProperties;
+    padding?: ViewPadding;
     popup?: Popup;
     ready?: boolean;
     spatialReference?: SpatialReferenceProperties;
@@ -4403,8 +4435,8 @@ declare namespace __esri {
     state: string;
     target: Viewpoint;
 
-    stop(): void;
     finish(): void;
+    stop(): void;
   }
 
   interface ViewAnimationConstructor {
@@ -4439,10 +4471,10 @@ declare namespace __esri {
   }
 
   interface FeatureLayerView extends LayerView {
+    queryExtent(params?: Query): IPromise<any>;
+    queryFeatureCount(params?: Query): IPromise<any>;
     queryFeatures(params?: Query): IPromise<any>;
     queryObjectIds(params?: Query): IPromise<any>;
-    queryFeatureCount(params?: Query): IPromise<any>;
-    queryExtent(params?: Query): IPromise<any>;
   }
 
   interface FeatureLayerViewConstructor {
@@ -4486,14 +4518,14 @@ declare namespace __esri {
   interface UI extends Accessor {
     container: any;
     height: number;
-    padding: any | number;
+    padding: any;
     view: SceneView | MapView;
     width: number;
 
     add(component: any | any[], position?: string | any): void;
-    remove(component: any | any[]): void;
     empty(position?: string): void;
-    move(component: any, position?: string): void;
+    move(component: any | any[], position?: string): void;
+    remove(component: any | any[]): void;
   }
 
   interface UIConstructor {
@@ -4581,9 +4613,9 @@ declare namespace __esri {
   }
 
   interface Lighting extends Accessor, corePromise {
+    ambientOcclusionEnabled: boolean;
     date: Date;
     directShadowsEnabled: boolean;
-    ambientOcclusionEnabled: boolean;
     displayUTCOffset: number;
 
     clone(): Lighting;
@@ -4596,9 +4628,9 @@ declare namespace __esri {
   export const Lighting: LightingConstructor;
 
   interface LightingProperties {
+    ambientOcclusionEnabled?: boolean;
     date?: Date;
     directShadowsEnabled?: boolean;
-    ambientOcclusionEnabled?: boolean;
     displayUTCOffset?: number;
   }
 
@@ -4619,18 +4651,18 @@ declare namespace __esri {
   }
 
   interface Slide extends Accessor {
-    id: string;
-    title: SlideTitle;
+    basemap: Basemap;
     description: SlideDescription;
-    thumbnail: SlideThumbnail;
-    viewpoint: Viewpoint;
-    basemap: Basemap | string;
-    visibleLayers: SlideVisibleLayers;
     environment: Environment;
+    id: string;
+    thumbnail: SlideThumbnail;
+    title: SlideTitle;
+    viewpoint: Viewpoint;
+    visibleLayers: SlideVisibleLayers;
 
+    applyTo(view: SceneView, options?: SlideApplyToOptions): void;
     clone(): Slide;
     updateFrom(view: SceneView, options?: SlideUpdateFromOptions): IPromise<any>;
-    applyTo(view: SceneView, options?: SlideApplyToOptions): void;
   }
 
   interface SlideConstructor {
@@ -4643,14 +4675,14 @@ declare namespace __esri {
   export const Slide: SlideConstructor;
 
   interface SlideProperties {
-    id?: string;
-    title?: SlideTitleProperties;
-    description?: SlideDescriptionProperties;
-    thumbnail?: SlideThumbnailProperties;
-    viewpoint?: ViewpointProperties;
     basemap?: Basemap | string;
-    visibleLayers?: SlideVisibleLayers;
+    description?: SlideDescriptionProperties;
     environment?: EnvironmentProperties;
+    id?: string;
+    thumbnail?: SlideThumbnailProperties;
+    title?: SlideTitleProperties;
+    viewpoint?: ViewpointProperties;
+    visibleLayers?: SlideVisibleLayers;
   }
 
   interface Attribution extends Widget {
@@ -4695,8 +4727,8 @@ declare namespace __esri {
 
   interface Home extends Widget, Evented {
     view: MapView | SceneView;
-    viewpoint: Viewpoint;
     viewModel: HomeViewModel;
+    viewpoint: Viewpoint;
 
     go(): void;
   }
@@ -4749,28 +4781,28 @@ declare namespace __esri {
   export const NavigationToggle: NavigationToggleConstructor;
 
   interface Popup extends Widget, Evented {
-    features: Graphic[];
-    viewModel: PopupViewModel;
-    content: string | any;
-    dockOptions: PopupDockOptions;
-    dockEnabled: boolean;
-    currentDockPosition: string;
-    featureCount: number;
     actions: PopupActions;
+    content: string | any;
+    currentDockPosition: string;
+    dockEnabled: boolean;
+    dockOptions: PopupDockOptions;
+    featureCount: number;
+    features: Graphic[];
     location: Geometry;
     promises: IPromise<any>[];
     selectedFeature: Graphic;
     selectedFeatureIndex: number;
     title: string;
     view: MapView | SceneView;
+    viewModel: PopupViewModel;
     visible: boolean;
 
     clear(): void;
     close(): void;
     next(): PopupViewModel;
+    open(options?: PopupOpenOptions): void;
     previous(): PopupViewModel;
     reposition(): void;
-    open(options?: PopupOpenOptions): void;
     triggerAction(actionIndex: number): void;
   }
 
@@ -4781,27 +4813,27 @@ declare namespace __esri {
   export const Popup: PopupConstructor;
 
   interface Search extends Widget, Evented {
-    popupEnabled: boolean;
-    viewModel: SearchViewModel;
+    activeSource: FeatureLayer | Locator;
     activeSourceIndex: number;
     allPlaceholder: string;
     autoSelect: boolean;
     defaultSource: any;
-    resultGraphic: Graphic;
     maxResults: number;
     maxSuggestions: number;
     minSuggestCharacters: number;
-    activeSource: FeatureLayer | Locator;
-    popupTemplate: PopupTemplate;
-    searchAllEnabled: boolean;
-    results: any[];
-    selectedResult: any;
+    popupEnabled: boolean;
     popupOpenOnSelect: boolean;
+    popupTemplate: PopupTemplate;
+    resultGraphic: Graphic;
+    results: any[];
+    searchAllEnabled: boolean;
     searchTerm: string;
+    selectedResult: any;
     sources: SearchSources;
     suggestions: any[];
     suggestionsEnabled: boolean;
     view: MapView | SceneView;
+    viewModel: SearchViewModel;
 
     clear(): void;
     search(searchTerm?: string | Geometry | any | number[][]): IPromise<any>;
@@ -4874,7 +4906,7 @@ declare namespace __esri {
 
   interface BasemapToggleViewModel extends Accessor, Evented {
     activeBasemap: Basemap;
-    nextBasemap: Basemap | string;
+    nextBasemap: Basemap;
     state: string;
     view: SceneView | MapView;
 
@@ -4957,8 +4989,8 @@ declare namespace __esri {
   }
 
   interface NavigationToggleViewModel extends Accessor {
-    state: string;
     navigationMode: string;
+    state: string;
     view: SceneView;
 
     toggle(): void;
@@ -4971,19 +5003,19 @@ declare namespace __esri {
   export const NavigationToggleViewModel: NavigationToggleViewModelConstructor;
 
   interface NavigationToggleViewModelProperties {
-    state?: string;
     navigationMode?: string;
+    state?: string;
     view?: SceneViewProperties;
   }
 
   interface PopupViewModel extends Accessor, Evented {
-    promises: IPromise<any>[];
     actions: PopupViewModelActions;
+    content: string;
     featureCount: number;
     features: Graphic[];
     location: Geometry;
     pendingPromisesCount: number;
-    content: string | any;
+    promises: IPromise<any>[];
     selectedFeature: Graphic;
     selectedFeatureIndex: number;
     state: string;
@@ -4991,9 +5023,9 @@ declare namespace __esri {
     view: MapView | SceneView;
 
     clear(): void;
-    triggerAction(actionIndex: number): void;
     next(): PopupViewModel;
     previous(): PopupViewModel;
+    triggerAction(actionIndex: number): void;
   }
 
   interface PopupViewModelConstructor {
@@ -5003,13 +5035,13 @@ declare namespace __esri {
   export const PopupViewModel: PopupViewModelConstructor;
 
   interface PopupViewModelProperties {
-    promises?: IPromise<any>[];
     actions?: PopupViewModelActions;
+    content?: string | any;
     featureCount?: number;
-    features?: Graphic[];
+    features?: GraphicProperties[];
     location?: GeometryProperties;
     pendingPromisesCount?: number;
-    content?: string | any;
+    promises?: IPromise<any>[];
     selectedFeature?: GraphicProperties;
     selectedFeatureIndex?: number;
     state?: string;
@@ -5018,34 +5050,34 @@ declare namespace __esri {
   }
 
   interface SearchViewModel extends Accessor, Evented {
-    placeholder: string;
     activeSource: FeatureLayer | Locator;
+    activeSourceIndex: number;
     allPlaceholder: string;
     autoSelect: boolean;
-    popupEnabled: boolean;
     defaultSource: any;
-    resultGraphic: Graphic;
     maxInputLength: number;
     maxResults: number;
     maxSuggestions: number;
     minSuggestCharacters: number;
-    activeSourceIndex: number;
+    placeholder: string;
+    popupEnabled: boolean;
+    popupOpenOnSelect: boolean;
     popupTemplate: PopupTemplate;
+    resultGraphic: Graphic;
     results: any[];
     searchAllEnabled: boolean;
-    selectedResult: any;
-    popupOpenOnSelect: boolean;
     searchTerm: string;
+    selectedResult: any;
     sources: SearchViewModelSources[];
     suggestionDelay: number;
     suggestions: any[];
     suggestionsEnabled: boolean;
     view: MapView | SceneView;
 
+    cancelSuggest(): void;
     clear(): void;
     search(searchTerm?: string | Geometry | any | number[][]): IPromise<any>;
     suggest(value?: string): IPromise<any>;
-    cancelSuggest(): void;
   }
 
   interface SearchViewModelConstructor {
@@ -5055,24 +5087,24 @@ declare namespace __esri {
   export const SearchViewModel: SearchViewModelConstructor;
 
   interface SearchViewModelProperties {
-    placeholder?: string;
     activeSource?: FeatureLayer | Locator;
+    activeSourceIndex?: number;
     allPlaceholder?: string;
     autoSelect?: boolean;
-    popupEnabled?: boolean;
     defaultSource?: any;
-    resultGraphic?: GraphicProperties;
     maxInputLength?: number;
     maxResults?: number;
     maxSuggestions?: number;
     minSuggestCharacters?: number;
-    activeSourceIndex?: number;
+    placeholder?: string;
+    popupEnabled?: boolean;
+    popupOpenOnSelect?: boolean;
     popupTemplate?: PopupTemplateProperties;
+    resultGraphic?: GraphicProperties;
     results?: any[];
     searchAllEnabled?: boolean;
-    selectedResult?: any;
-    popupOpenOnSelect?: boolean;
     searchTerm?: string;
+    selectedResult?: any;
     sources?: SearchViewModelSources[];
     suggestionDelay?: number;
     suggestions?: any[];
@@ -5106,10 +5138,10 @@ declare namespace __esri {
   }
 
   interface ZoomViewModel extends Accessor {
-    state: string;
-    view: SceneView | MapView;
     canZoomIn: boolean;
     canZoomOut: boolean;
+    state: string;
+    view: SceneView | MapView;
 
     zoomIn(): void;
     zoomOut(): void;
@@ -5122,21 +5154,21 @@ declare namespace __esri {
   export const ZoomViewModel: ZoomViewModelConstructor;
 
   interface ZoomViewModelProperties {
-    state?: string;
-    view?: SceneView | MapView;
     canZoomIn?: boolean;
     canZoomOut?: boolean;
+    state?: string;
+    view?: SceneView | MapView;
   }
 
   interface LayersMixin {
     layers: Collection;
 
-    findLayerById(layerId: string): Layer;
     add(layers: Layer, index?: number): void;
     addMany(layers: Layer[], index?: number): void;
+    findLayerById(layerId: string): Layer;
     remove(layer: Layer): Layer;
-    removeMany(layers: Layer[]): Layer[];
     removeAll(): Layer[];
+    removeMany(layers: Layer[]): Layer[];
     reorder(layer: Layer, index: number): Layer;
   }
 
@@ -5164,14 +5196,14 @@ declare namespace __esri {
     loadError: Error;
     loadStatus: string;
 
-    load(): IPromise<any>;
-    cancelLoad(): void;
     always(callbackOrErrback?: Function): IPromise<any>;
-    then(callback?: Function, errback?: Function, progback?: Function): IPromise<any>;
-    isResolved(): boolean;
-    isRejected(): boolean;
+    cancelLoad(): void;
     isFulfilled(): boolean;
+    isRejected(): boolean;
+    isResolved(): boolean;
+    load(): IPromise<any>;
     otherwise(errback?: Function): IPromise<any>;
+    then(callback?: Function, errback?: Function, progback?: Function): IPromise<any>;
   }
 
   interface LoadableConstructor {
@@ -5187,11 +5219,11 @@ declare namespace __esri {
 
   interface corePromise {
     always(callbackOrErrback?: Function): IPromise<any>;
-    then(callback?: Function, errback?: Function, progback?: Function): IPromise<any>;
-    isResolved(): boolean;
-    isRejected(): boolean;
     isFulfilled(): boolean;
+    isRejected(): boolean;
+    isResolved(): boolean;
     otherwise(errback?: Function): IPromise<any>;
+    then(callback?: Function, errback?: Function, progback?: Function): IPromise<any>;
   }
 
   interface corePromiseConstructor {
@@ -5256,8 +5288,8 @@ declare namespace __esri {
     sublayers: ArcGISDynamicServiceSublayers[];
 
     findSublayerById(id: number): any;
-    getExportImageParameters(options: ArcGISDynamicServiceGetExportImageParametersOptions): any;
     fromJSON(json: any): this;
+    getExportImageParameters(options: ArcGISDynamicServiceGetExportImageParametersOptions): any;
   }
 
   interface ArcGISDynamicServiceConstructor {
@@ -5273,21 +5305,21 @@ declare namespace __esri {
     gdbVersion?: string;
     imageFormat?: string;
     imageTransparency?: boolean;
-    sublayers?: ArcGISDynamicServiceSublayers[];
+    sublayers?: ArcGISDynamicServiceSublayersProperties[];
   }
 
   interface ArcGISImageService {
-    multidimensionalInfo: any;
     compressionTolerance: number;
+    copyright: string;
     definitionExpression: string;
     domainFields: Field[];
     fields: Field[];
-    fullExtent: Extent;
     format: string;
-    hasRasterAttributeTable: boolean;
+    fullExtent: Extent;
     hasMultidimensions: boolean;
+    hasRasterAttributeTable: boolean;
     mosaicRule: MosaicRule;
-    copyright: string;
+    multidimensionalInfo: any;
     pixelType: string;
     popupTemplate: PopupTemplate;
     rasterAttributeTable: any;
@@ -5310,22 +5342,22 @@ declare namespace __esri {
   export const ArcGISImageService: ArcGISImageServiceConstructor;
 
   interface ArcGISImageServiceProperties {
-    multidimensionalInfo?: any;
     compressionTolerance?: number;
-    definitionExpression?: string;
-    domainFields?: Field[];
-    fields?: Field[];
-    fullExtent?: ExtentProperties;
-    format?: string;
-    hasRasterAttributeTable?: boolean;
-    hasMultidimensions?: boolean;
-    mosaicRule?: MosaicRuleProperties;
     copyright?: string;
+    definitionExpression?: string;
+    domainFields?: FieldProperties[];
+    fields?: FieldProperties[];
+    format?: string;
+    fullExtent?: ExtentProperties;
+    hasMultidimensions?: boolean;
+    hasRasterAttributeTable?: boolean;
+    mosaicRule?: MosaicRuleProperties;
+    multidimensionalInfo?: any;
     pixelType?: string;
     popupTemplate?: PopupTemplateProperties;
     rasterAttributeTable?: any;
     rasterAttributeTableFieldPrefix?: string;
-    rasterFields?: Field[];
+    rasterFields?: FieldProperties[];
     renderingRule?: RasterFunctionProperties;
     spatialReference?: SpatialReferenceProperties;
     url?: string;
@@ -5365,25 +5397,27 @@ declare namespace __esri {
   }
 
   interface PortalLayerConstructor {
-    new(): PortalLayer;
+    new(properties?: PortalLayerProperties): PortalLayer;
+
+    fromJSON(json: any): PortalLayer;
   }
 
   export const PortalLayer: PortalLayerConstructor;
 
   interface PortalLayerProperties {
-    portalItem?: PortalItem;
+    portalItem?: PortalItemProperties;
   }
 
   interface SpatialRelationship {
-    SPATIAL_REL_INTERSECTS: void;
     SPATIAL_REL_CONTAINS: void;
     SPATIAL_REL_CROSSES: void;
     SPATIAL_REL_ENVELOPEINTERSECTS: void;
     SPATIAL_REL_INDEXINTERSECTS: void;
+    SPATIAL_REL_INTERSECTS: void;
     SPATIAL_REL_OVERLAPS: void;
+    SPATIAL_REL_RELATION: void;
     SPATIAL_REL_TOUCHES: void;
     SPATIAL_REL_WITHIN: void;
-    SPATIAL_REL_RELATION: void;
   }
 
   interface SpatialRelationshipConstructor {
@@ -5394,9 +5428,9 @@ declare namespace __esri {
 
   interface BreakpointsOwner {
     breakpoints: BreakpointsOwnerBreakpoints;
+    heightBreakpoint: string;
     orientation: string;
     widthBreakpoint: string;
-    heightBreakpoint: string;
   }
 
   interface BreakpointsOwnerConstructor {
@@ -5407,15 +5441,15 @@ declare namespace __esri {
 
   interface BreakpointsOwnerProperties {
     breakpoints?: BreakpointsOwnerBreakpoints;
+    heightBreakpoint?: string;
     orientation?: string;
     widthBreakpoint?: string;
-    heightBreakpoint?: string;
   }
 
   interface DOMContainer {
-    size: number[];
     height: number;
     resizing: boolean;
+    size: number[];
     suspended: boolean;
     width: number;
   }
@@ -5427,9 +5461,9 @@ declare namespace __esri {
   export const DOMContainer: DOMContainerConstructor;
 
   interface DOMContainerProperties {
-    size?: number[];
     height?: number;
     resizing?: boolean;
+    size?: number[];
     suspended?: boolean;
     width?: number;
   }
@@ -5461,39 +5495,38 @@ declare namespace __esri {
   export const lang: lang;
 
   interface urlUtils {
-    urlToObject(url: string): any;
     addProxyRule(rule: urlUtilsAddProxyRuleRule): number;
     getProxyRule(url: string): any;
+    urlToObject(url: string): any;
   }
 
   export const urlUtils: urlUtils;
 
   interface watchUtils {
-    whenTrueOnce(obj: Accessor, prop: string, callback?: WatchCallback): PromisedWatchHandle;
     init(obj: Accessor, prop: string, callback: WatchCallback): WatchHandle;
+    on(obj: Accessor, prop: string, eventName: string, eventHandler: Function, attachedHandler?: EventAttachedCallback, detachedHandler?: EventAttachedCallback): WatchHandle;
     once(obj: Accessor, prop: string, callback?: WatchCallback): PromisedWatchHandle;
-    when(obj: Accessor, prop: string, callback: WatchCallback): WatchHandle;
-    whenOnce(obj: Accessor, prop: string, callback?: WatchCallback): PromisedWatchHandle;
-    whenNot(obj: Accessor, prop: string, callback: WatchCallback): WatchHandle;
-    whenNotOnce(obj: Accessor, prop: string, callback?: WatchCallback): PromisedWatchHandle;
-    whenTrue(obj: Accessor, prop: string, callback: WatchCallback): WatchHandle;
+    pausable(obj: Accessor, prop: string, callback?: WatchCallback): PausableWatchHandle;
     watch(obj: Accessor, prop: string, callback: WatchCallback): WatchHandle;
-    whenFalse(obj: Accessor, prop: string, callback: WatchCallback): WatchHandle;
-    whenFalseOnce(obj: Accessor, prop: string, callback?: WatchCallback): PromisedWatchHandle;
+    when(obj: Accessor, prop: string, callback: WatchCallback): WatchHandle;
     whenDefined(obj: Accessor, prop: string, callback: WatchCallback): WatchHandle;
     whenDefinedOnce(obj: Accessor, prop: string, callback?: WatchCallback): PromisedWatchHandle;
+    whenFalse(obj: Accessor, prop: string, callback: WatchCallback): WatchHandle;
+    whenFalseOnce(obj: Accessor, prop: string, callback?: WatchCallback): PromisedWatchHandle;
+    whenNot(obj: Accessor, prop: string, callback: WatchCallback): WatchHandle;
+    whenNotOnce(obj: Accessor, prop: string, callback?: WatchCallback): PromisedWatchHandle;
+    whenOnce(obj: Accessor, prop: string, callback?: WatchCallback): PromisedWatchHandle;
+    whenTrue(obj: Accessor, prop: string, callback: WatchCallback): WatchHandle;
+    whenTrueOnce(obj: Accessor, prop: string, callback?: WatchCallback): PromisedWatchHandle;
     whenUndefined(obj: Accessor, prop: string, callback: WatchCallback): WatchHandle;
     whenUndefinedOnce(obj: Accessor, prop: string, callback?: WatchCallback): PromisedWatchHandle;
-    pausable(obj: Accessor, prop: string, callback?: WatchCallback): PausableWatchHandle;
-    on(obj: Accessor, prop: string, eventName: string, eventHandler: Function, attachedHandler?: EventAttachedCallback, detachedHandler?: EventAttachedCallback): WatchHandle;
   }
 
   export const watchUtils: watchUtils;
 
   interface geometryEngine {
-    geodesicLength(geometry: Geometry, unit: string | number): number;
     buffer(geometry: Geometry | Geometry[], distance: number | number[], unit: string | number, unionResults?: boolean): Polygon | Polygon[];
-    geodesicBuffer(geometry: Geometry | Geometry[], distance: number | number[], unit: string | number, unionResults?: boolean): Polygon | Polygon[];
+    clip(geometry: Geometry, envelope: Extent): Geometry;
     contains(geometry1: Geometry, geometry2: Geometry): boolean;
     convexHull(geometry: Geometry, merge?: boolean): Geometry | Geometry[];
     crosses(geometry1: Geometry, geometry2: Geometry): boolean;
@@ -5508,8 +5541,9 @@ declare namespace __esri {
     flipVertical(geometry: Geometry, flipOrigin?: Point): Geometry;
     generalize(geometry: Geometry, maxDeviation: number, removeDegenerateParts?: boolean, maxDeviationUnit?: string | number): Geometry;
     geodesicArea(geometry: Polygon, unit: string | number): number;
+    geodesicBuffer(geometry: Geometry | Geometry[], distance: number | number[], unit: string | number, unionResults?: boolean): Polygon | Polygon[];
     geodesicDensify(geometry: Polyline | Polygon, maxSegmentLength: number, maxSegmentLengthUnit: string | number): Geometry;
-    clip(geometry: Geometry, envelope: Extent): Geometry;
+    geodesicLength(geometry: Geometry, unit: string | number): number;
     intersect(geometry: Geometry | Geometry[], intersector: Geometry): Geometry | Geometry[];
     intersects(geometry1: Geometry, geometry2: Geometry): boolean;
     isSimple(geometry: Geometry): boolean;
@@ -5532,9 +5566,8 @@ declare namespace __esri {
   export const geometryEngine: geometryEngine;
 
   interface geometryEngineAsync {
-    geodesicLength(geometry: Geometry, unit: string | number): IPromise<any>;
     buffer(geometry: Geometry | Geometry[], distance: number | number[], unit: string | number, unionResults?: boolean): IPromise<any>;
-    geodesicBuffer(geometry: Geometry | Geometry[], distance: number | number[], unit: string | number, unionResults?: boolean): IPromise<any>;
+    clip(geometry: Geometry, envelope: Extent): IPromise<any>;
     contains(geometry1: Geometry, geometry2: Geometry): IPromise<any>;
     convexHull(geometry: Geometry, merge?: boolean): IPromise<any>;
     crosses(geometry1: Geometry, geometry2: Geometry): IPromise<any>;
@@ -5549,8 +5582,9 @@ declare namespace __esri {
     flipVertical(geometry: Geometry, flipOrigin?: Point): IPromise<any>;
     generalize(geometry: Geometry, maxDeviation: number, removeDegenerateParts?: boolean, maxDeviationUnit?: string | number): IPromise<any>;
     geodesicArea(geometry: Polygon, unit: string | number): IPromise<any>;
+    geodesicBuffer(geometry: Geometry | Geometry[], distance: number | number[], unit: string | number, unionResults?: boolean): IPromise<any>;
     geodesicDensify(geometry: Polyline | Polygon, maxSegmentLength: number, maxSegmentLengthUnit: string | number): IPromise<any>;
-    clip(geometry: Geometry, envelope: Extent): IPromise<any>;
+    geodesicLength(geometry: Geometry, unit: string | number): IPromise<any>;
     intersect(geometry: Geometry | Geometry[], intersector: Geometry): IPromise<any>;
     intersects(geometry1: Geometry, geometry2: Geometry): IPromise<any>;
     isSimple(geometry: Geometry): IPromise<any>;
@@ -5581,11 +5615,11 @@ declare namespace __esri {
 
   interface webMercatorUtils {
     canProject(source: SpatialReference | any, target: SpatialReference | any): boolean;
-    project(geometry: Geometry, spatialReference: SpatialReference | any): Geometry;
-    lngLatToXY(long: number, lat: number): number[];
-    xyToLngLat(x: number, y: number): number[];
     geographicToWebMercator(geometry: Geometry): Geometry;
+    lngLatToXY(long: number, lat: number): number[];
+    project(geometry: Geometry, spatialReference: SpatialReference | any): Geometry;
     webMercatorToGeographic(geometry: Geometry): Geometry;
+    xyToLngLat(x: number, y: number): number[];
   }
 
   export const webMercatorUtils: webMercatorUtils;
@@ -5604,11 +5638,11 @@ declare namespace __esri {
 
   interface externalRenderers {
     add(view: SceneView, renderer: any): void;
+    fromRenderCoordinates(view: SceneView, srcCoordinates: number[], srcStart: number, destCoordinates: number[], destStart: number, destSpatialReference: SpatialReference, count: number): number[];
     remove(view: SceneView, renderer: any): void;
+    renderCoordinateTransformAt(view: SceneView, origin: number[], srcSpatialReference: SpatialReference, dest: number[]): number[];
     requestRender(view: SceneView): void;
     toRenderCoordinates(view: SceneView, srcCoordinates: number[], srcStart: number, srcSpatialReference: SpatialReference, destCoordinates: number[], destStart: number, count: number): number[];
-    fromRenderCoordinates(view: SceneView, srcCoordinates: number[], srcStart: number, destCoordinates: number[], destStart: number, destSpatialReference: SpatialReference, count: number): number[];
-    renderCoordinateTransformAt(view: SceneView, origin: number[], srcSpatialReference: SpatialReference, dest: number[]): number[];
   }
 
   export const externalRenderers: externalRenderers;
@@ -5616,6 +5650,12 @@ declare namespace __esri {
 
 declare module "esri" {
   export import Text = __esri.Text;
+
+  export import Media = __esri.Media;
+
+  export import Fields = __esri.Fields;
+
+  export import Attachments = __esri.Attachments;
 
   export import WatchHandle = __esri.WatchHandle;
 
