@@ -129,7 +129,7 @@ module.exports = function (grunt) {
             'dojox/gfx': 'empty:', // because this dynamically loads a renderer
             'dojo/i18n': 'i18n/i18n', // only needed to get build working
             'dojo/text': 'text/text',
-            'dojo/domReady': 'domready/domReady'
+            'dojo/domReady': 'domReady/domReady'
           },
           throwWhen: { optimize: false  }
         }
@@ -137,8 +137,8 @@ module.exports = function (grunt) {
       esricss: {
         options: {
           cwd: './',
-          cssIn: './src/esri/css/esri.css',
-          out: './dist/esri/css/esri.css',
+          cssIn: './src/esri/css/main.css',
+          out: './dist/esri/css/main.css',
           optimizeCss: 'standard'
         }
       },
