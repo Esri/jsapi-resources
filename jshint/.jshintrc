@@ -48,12 +48,12 @@
     "moz"           : false,     // true: Allow Mozilla specific syntax (extends and overrides esnext features)
                                  // (ex: `for each`, multiple try/catch, function expression…)
     "evil"          : false,     // true: Tolerate use of `eval` and `new Function()`
-    "expr"          : false,     // true: Tolerate `ExpressionStatement` as Programs
-    "funcscope"     : true,      // true: Tolerate defining variables inside control statements ** Other variable checks keep use from abusing this **
+    "expr"          : true,      // true: Tolerate `ExpressionStatement` as Programs
+    "funcscope"     : true,      // true: Tolerate defining variables inside control statements ** Other variable checks keep us from abusing this **
     "globalstrict"  : false,     // true: Allow global "use strict" (also enables 'strict')
     "iterator"      : false,     // true: Tolerate using the `__iterator__` property
     "lastsemic"     : false,     // true: Tolerate omitting a semicolon for the last statement of a 1-line block
-    "laxbreak"      : false,     // true: Tolerate possibly unsafe line breakings
+    "laxbreak"      : true,      // true: Tolerate possibly unsafe line breakings
     "laxcomma"      : false,     // true: Tolerate comma-first style coding
     "loopfunc"      : true,      // true: Tolerate functions being defined in loops ** Almost required in some callback & promise style code **
     "multistr"      : false,     // true: Tolerate multi-line strings
