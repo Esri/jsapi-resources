@@ -4403,6 +4403,7 @@ declare namespace __esri {
     type: string;
     ui: DefaultUI;
     updating: boolean;
+    popupManager: boolean;
 
     whenLayerView(layer: Layer): IPromise<any>;
   }
