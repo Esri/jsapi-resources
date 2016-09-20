@@ -4387,6 +4387,10 @@ declare namespace __esri {
     zoom?: number;
   }
 
+  interface PopupManager{
+    enabled: boolean;
+  }
+
   interface View extends Accessor, corePromise, Evented, DOMContainer, BreakpointsOwner {
     allLayerViews: Collection;
     animation: ViewAnimation;
@@ -4403,6 +4407,7 @@ declare namespace __esri {
     type: string;
     ui: DefaultUI;
     updating: boolean;
+    popupManager: PopupManager;
 
     whenLayerView(layer: Layer): IPromise<any>;
   }
@@ -5861,1025 +5866,1025 @@ declare module "esri" {
 
 declare module "esri/core/Evented" {
   import Evented = __esri.Evented;
-  export = Evented;
+  export default Evented;
 }
 
 declare module "esri/Basemap" {
   import Basemap = __esri.Basemap;
-  export = Basemap;
+  export default Basemap;
 }
 
 declare module "esri/Camera" {
   import Camera = __esri.Camera;
-  export = Camera;
+  export default Camera;
 }
 
 declare module "esri/Color" {
   import Color = __esri.Color;
-  export = Color;
+  export default Color;
 }
 
 declare module "esri/Graphic" {
   import Graphic = __esri.Graphic;
-  export = Graphic;
+  export default Graphic;
 }
 
 declare module "esri/Ground" {
   import Ground = __esri.Ground;
-  export = Ground;
+  export default Ground;
 }
 
 declare module "esri/Map" {
   import Map = __esri.Map;
-  export = Map;
+  export default Map;
 }
 
 declare module "esri/PopupTemplate" {
   import PopupTemplate = __esri.PopupTemplate;
-  export = PopupTemplate;
+  export default PopupTemplate;
 }
 
 declare module "esri/Viewpoint" {
   import Viewpoint = __esri.Viewpoint;
-  export = Viewpoint;
+  export default Viewpoint;
 }
 
 declare module "esri/WebMap" {
   import WebMap = __esri.WebMap;
-  export = WebMap;
+  export default WebMap;
 }
 
 declare module "esri/WebScene" {
   import WebScene = __esri.WebScene;
-  export = WebScene;
+  export default WebScene;
 }
 
 declare module "esri/core/Accessor" {
   import Accessor = __esri.Accessor;
-  export = Accessor;
+  export default Accessor;
 }
 
 declare module "esri/core/Collection" {
   import Collection = __esri.Collection;
-  export = Collection;
+  export default Collection;
 }
 
 declare module "esri/geometry/Circle" {
   import Circle = __esri.Circle;
-  export = Circle;
+  export default Circle;
 }
 
 declare module "esri/geometry/Extent" {
   import Extent = __esri.Extent;
-  export = Extent;
+  export default Extent;
 }
 
 declare module "esri/geometry/Geometry" {
   import Geometry = __esri.Geometry;
-  export = Geometry;
+  export default Geometry;
 }
 
 declare module "esri/geometry/Multipoint" {
   import Multipoint = __esri.Multipoint;
-  export = Multipoint;
+  export default Multipoint;
 }
 
 declare module "esri/geometry/Point" {
   import Point = __esri.Point;
-  export = Point;
+  export default Point;
 }
 
 declare module "esri/geometry/Polygon" {
   import Polygon = __esri.Polygon;
-  export = Polygon;
+  export default Polygon;
 }
 
 declare module "esri/geometry/Polyline" {
   import Polyline = __esri.Polyline;
-  export = Polyline;
+  export default Polyline;
 }
 
 declare module "esri/geometry/ScreenPoint" {
   import ScreenPoint = __esri.ScreenPoint;
-  export = ScreenPoint;
+  export default ScreenPoint;
 }
 
 declare module "esri/geometry/SpatialReference" {
   import SpatialReference = __esri.SpatialReference;
-  export = SpatialReference;
+  export default SpatialReference;
 }
 
 declare module "esri/identity/Credential" {
   import Credential = __esri.Credential;
-  export = Credential;
+  export default Credential;
 }
 
 declare module "esri/identity/IdentityManagerBase" {
   import IdentityManagerBase = __esri.IdentityManagerBase;
-  export = IdentityManagerBase;
+  export default IdentityManagerBase;
 }
 
 declare module "esri/identity/IdentityManager" {
   const IdentityManager: __esri.IdentityManager;
-  export = IdentityManager;
+  export default IdentityManager;
 }
 
 declare module "esri/identity/OAuthInfo" {
   import OAuthInfo = __esri.OAuthInfo;
-  export = OAuthInfo;
+  export default OAuthInfo;
 }
 
 declare module "esri/identity/ServerInfo" {
   import ServerInfo = __esri.ServerInfo;
-  export = ServerInfo;
+  export default ServerInfo;
 }
 
 declare module "esri/layers/ElevationLayer" {
   import ElevationLayer = __esri.ElevationLayer;
-  export = ElevationLayer;
+  export default ElevationLayer;
 }
 
 declare module "esri/layers/ImageryLayer" {
   import ImageryLayer = __esri.ImageryLayer;
-  export = ImageryLayer;
+  export default ImageryLayer;
 }
 
 declare module "esri/layers/MapImageLayer" {
   import MapImageLayer = __esri.MapImageLayer;
-  export = MapImageLayer;
+  export default MapImageLayer;
 }
 
 declare module "esri/layers/TileLayer" {
   import TileLayer = __esri.TileLayer;
-  export = TileLayer;
+  export default TileLayer;
 }
 
 declare module "esri/layers/FeatureLayer" {
   import FeatureLayer = __esri.FeatureLayer;
-  export = FeatureLayer;
+  export default FeatureLayer;
 }
 
 declare module "esri/layers/GraphicsLayer" {
   import GraphicsLayer = __esri.GraphicsLayer;
-  export = GraphicsLayer;
+  export default GraphicsLayer;
 }
 
 declare module "esri/layers/GroupLayer" {
   import GroupLayer = __esri.GroupLayer;
-  export = GroupLayer;
+  export default GroupLayer;
 }
 
 declare module "esri/layers/Layer" {
   import Layer = __esri.Layer;
-  export = Layer;
+  export default Layer;
 }
 
 declare module "esri/layers/OpenStreetMapLayer" {
   import OpenStreetMapLayer = __esri.OpenStreetMapLayer;
-  export = OpenStreetMapLayer;
+  export default OpenStreetMapLayer;
 }
 
 declare module "esri/layers/SceneLayer" {
   import SceneLayer = __esri.SceneLayer;
-  export = SceneLayer;
+  export default SceneLayer;
 }
 
 declare module "esri/layers/StreamLayer" {
   import StreamLayer = __esri.StreamLayer;
-  export = StreamLayer;
+  export default StreamLayer;
 }
 
 declare module "esri/layers/UnknownLayer" {
   import UnknownLayer = __esri.UnknownLayer;
-  export = UnknownLayer;
+  export default UnknownLayer;
 }
 
 declare module "esri/layers/UnsupportedLayer" {
   import UnsupportedLayer = __esri.UnsupportedLayer;
-  export = UnsupportedLayer;
+  export default UnsupportedLayer;
 }
 
 declare module "esri/layers/VectorTileLayer" {
   import VectorTileLayer = __esri.VectorTileLayer;
-  export = VectorTileLayer;
+  export default VectorTileLayer;
 }
 
 declare module "esri/layers/WebTileLayer" {
   import WebTileLayer = __esri.WebTileLayer;
-  export = WebTileLayer;
+  export default WebTileLayer;
 }
 
 declare module "esri/layers/support/CodedValueDomain" {
   import CodedValueDomain = __esri.CodedValueDomain;
-  export = CodedValueDomain;
+  export default CodedValueDomain;
 }
 
 declare module "esri/layers/support/DimensionalDefinition" {
   import DimensionalDefinition = __esri.DimensionalDefinition;
-  export = DimensionalDefinition;
+  export default DimensionalDefinition;
 }
 
 declare module "esri/layers/support/Domain" {
   import Domain = __esri.Domain;
-  export = Domain;
+  export default Domain;
 }
 
 declare module "esri/layers/support/Field" {
   import Field = __esri.Field;
-  export = Field;
+  export default Field;
 }
 
 declare module "esri/layers/support/ImageParameters" {
   import ImageParameters = __esri.ImageParameters;
-  export = ImageParameters;
+  export default ImageParameters;
 }
 
 declare module "esri/layers/support/InheritedDomain" {
   import InheritedDomain = __esri.InheritedDomain;
-  export = InheritedDomain;
+  export default InheritedDomain;
 }
 
 declare module "esri/layers/support/LabelClass" {
   import LabelClass = __esri.LabelClass;
-  export = LabelClass;
+  export default LabelClass;
 }
 
 declare module "esri/layers/support/LOD" {
   import LOD = __esri.LOD;
-  export = LOD;
+  export default LOD;
 }
 
 declare module "esri/layers/support/MapImage" {
   import MapImage = __esri.MapImage;
-  export = MapImage;
+  export default MapImage;
 }
 
 declare module "esri/layers/support/MosaicRule" {
   import MosaicRule = __esri.MosaicRule;
-  export = MosaicRule;
+  export default MosaicRule;
 }
 
 declare module "esri/layers/support/PixelBlock" {
   import PixelBlock = __esri.PixelBlock;
-  export = PixelBlock;
+  export default PixelBlock;
 }
 
 declare module "esri/layers/support/RangeDomain" {
   import RangeDomain = __esri.RangeDomain;
-  export = RangeDomain;
+  export default RangeDomain;
 }
 
 declare module "esri/layers/support/RasterFunction" {
   import RasterFunction = __esri.RasterFunction;
-  export = RasterFunction;
+  export default RasterFunction;
 }
 
 declare module "esri/layers/support/TileInfo" {
   import TileInfo = __esri.TileInfo;
-  export = TileInfo;
+  export default TileInfo;
 }
 
 declare module "esri/portal/Portal" {
   import Portal = __esri.Portal;
-  export = Portal;
+  export default Portal;
 }
 
 declare module "esri/portal/PortalFolder" {
   import PortalFolder = __esri.PortalFolder;
-  export = PortalFolder;
+  export default PortalFolder;
 }
 
 declare module "esri/portal/PortalGroup" {
   import PortalGroup = __esri.PortalGroup;
-  export = PortalGroup;
+  export default PortalGroup;
 }
 
 declare module "esri/portal/PortalItem" {
   import PortalItem = __esri.PortalItem;
-  export = PortalItem;
+  export default PortalItem;
 }
 
 declare module "esri/portal/PortalQueryParams" {
   import PortalQueryParams = __esri.PortalQueryParams;
-  export = PortalQueryParams;
+  export default PortalQueryParams;
 }
 
 declare module "esri/portal/PortalQueryResult" {
   import PortalQueryResult = __esri.PortalQueryResult;
-  export = PortalQueryResult;
+  export default PortalQueryResult;
 }
 
 declare module "esri/portal/PortalUser" {
   import PortalUser = __esri.PortalUser;
-  export = PortalUser;
+  export default PortalUser;
 }
 
 declare module "esri/renderers/ClassBreaksRenderer" {
   import ClassBreaksRenderer = __esri.ClassBreaksRenderer;
-  export = ClassBreaksRenderer;
+  export default ClassBreaksRenderer;
 }
 
 declare module "esri/renderers/Renderer" {
   import Renderer = __esri.Renderer;
-  export = Renderer;
+  export default Renderer;
 }
 
 declare module "esri/renderers/SimpleRenderer" {
   import SimpleRenderer = __esri.SimpleRenderer;
-  export = SimpleRenderer;
+  export default SimpleRenderer;
 }
 
 declare module "esri/renderers/UniqueValueRenderer" {
   import UniqueValueRenderer = __esri.UniqueValueRenderer;
-  export = UniqueValueRenderer;
+  export default UniqueValueRenderer;
 }
 
 declare module "esri/symbols/ExtrudeSymbol3DLayer" {
   import ExtrudeSymbol3DLayer = __esri.ExtrudeSymbol3DLayer;
-  export = ExtrudeSymbol3DLayer;
+  export default ExtrudeSymbol3DLayer;
 }
 
 declare module "esri/symbols/FillSymbol" {
   import FillSymbol = __esri.FillSymbol;
-  export = FillSymbol;
+  export default FillSymbol;
 }
 
 declare module "esri/symbols/FillSymbol3DLayer" {
   import FillSymbol3DLayer = __esri.FillSymbol3DLayer;
-  export = FillSymbol3DLayer;
+  export default FillSymbol3DLayer;
 }
 
 declare module "esri/symbols/Font" {
   import Font = __esri.Font;
-  export = Font;
+  export default Font;
 }
 
 declare module "esri/symbols/IconSymbol3DLayer" {
   import IconSymbol3DLayer = __esri.IconSymbol3DLayer;
-  export = IconSymbol3DLayer;
+  export default IconSymbol3DLayer;
 }
 
 declare module "esri/symbols/LabelSymbol3D" {
   import LabelSymbol3D = __esri.LabelSymbol3D;
-  export = LabelSymbol3D;
+  export default LabelSymbol3D;
 }
 
 declare module "esri/symbols/LineSymbol" {
   import LineSymbol = __esri.LineSymbol;
-  export = LineSymbol;
+  export default LineSymbol;
 }
 
 declare module "esri/symbols/LineSymbol3D" {
   import LineSymbol3D = __esri.LineSymbol3D;
-  export = LineSymbol3D;
+  export default LineSymbol3D;
 }
 
 declare module "esri/symbols/LineSymbol3DLayer" {
   import LineSymbol3DLayer = __esri.LineSymbol3DLayer;
-  export = LineSymbol3DLayer;
+  export default LineSymbol3DLayer;
 }
 
 declare module "esri/symbols/MarkerSymbol" {
   import MarkerSymbol = __esri.MarkerSymbol;
-  export = MarkerSymbol;
+  export default MarkerSymbol;
 }
 
 declare module "esri/symbols/MeshSymbol3D" {
   import MeshSymbol3D = __esri.MeshSymbol3D;
-  export = MeshSymbol3D;
+  export default MeshSymbol3D;
 }
 
 declare module "esri/symbols/ObjectSymbol3DLayer" {
   import ObjectSymbol3DLayer = __esri.ObjectSymbol3DLayer;
-  export = ObjectSymbol3DLayer;
+  export default ObjectSymbol3DLayer;
 }
 
 declare module "esri/symbols/PictureFillSymbol" {
   import PictureFillSymbol = __esri.PictureFillSymbol;
-  export = PictureFillSymbol;
+  export default PictureFillSymbol;
 }
 
 declare module "esri/symbols/PictureMarkerSymbol" {
   import PictureMarkerSymbol = __esri.PictureMarkerSymbol;
-  export = PictureMarkerSymbol;
+  export default PictureMarkerSymbol;
 }
 
 declare module "esri/symbols/PathSymbol3DLayer" {
   import PathSymbol3DLayer = __esri.PathSymbol3DLayer;
-  export = PathSymbol3DLayer;
+  export default PathSymbol3DLayer;
 }
 
 declare module "esri/symbols/PointSymbol3D" {
   import PointSymbol3D = __esri.PointSymbol3D;
-  export = PointSymbol3D;
+  export default PointSymbol3D;
 }
 
 declare module "esri/symbols/PolygonSymbol3D" {
   import PolygonSymbol3D = __esri.PolygonSymbol3D;
-  export = PolygonSymbol3D;
+  export default PolygonSymbol3D;
 }
 
 declare module "esri/symbols/SimpleFillSymbol" {
   import SimpleFillSymbol = __esri.SimpleFillSymbol;
-  export = SimpleFillSymbol;
+  export default SimpleFillSymbol;
 }
 
 declare module "esri/symbols/SimpleLineSymbol" {
   import SimpleLineSymbol = __esri.SimpleLineSymbol;
-  export = SimpleLineSymbol;
+  export default SimpleLineSymbol;
 }
 
 declare module "esri/symbols/SimpleMarkerSymbol" {
   import SimpleMarkerSymbol = __esri.SimpleMarkerSymbol;
-  export = SimpleMarkerSymbol;
+  export default SimpleMarkerSymbol;
 }
 
 declare module "esri/symbols/Symbol" {
   import Symbol = __esri.Symbol;
-  export = Symbol;
+  export default Symbol;
 }
 
 declare module "esri/symbols/Symbol3D" {
   import Symbol3D = __esri.Symbol3D;
-  export = Symbol3D;
+  export default Symbol3D;
 }
 
 declare module "esri/symbols/Symbol3DLayer" {
   import Symbol3DLayer = __esri.Symbol3DLayer;
-  export = Symbol3DLayer;
+  export default Symbol3DLayer;
 }
 
 declare module "esri/symbols/TextSymbol" {
   import TextSymbol = __esri.TextSymbol;
-  export = TextSymbol;
+  export default TextSymbol;
 }
 
 declare module "esri/symbols/TextSymbol3DLayer" {
   import TextSymbol3DLayer = __esri.TextSymbol3DLayer;
-  export = TextSymbol3DLayer;
+  export default TextSymbol3DLayer;
 }
 
 declare module "esri/tasks/ClosestFacilityTask" {
   import ClosestFacilityTask = __esri.ClosestFacilityTask;
-  export = ClosestFacilityTask;
+  export default ClosestFacilityTask;
 }
 
 declare module "esri/tasks/FindTask" {
   import FindTask = __esri.FindTask;
-  export = FindTask;
+  export default FindTask;
 }
 
 declare module "esri/tasks/GeometryService" {
   import GeometryService = __esri.GeometryService;
-  export = GeometryService;
+  export default GeometryService;
 }
 
 declare module "esri/tasks/Geoprocessor" {
   import Geoprocessor = __esri.Geoprocessor;
-  export = Geoprocessor;
+  export default Geoprocessor;
 }
 
 declare module "esri/tasks/IdentifyTask" {
   import IdentifyTask = __esri.IdentifyTask;
-  export = IdentifyTask;
+  export default IdentifyTask;
 }
 
 declare module "esri/tasks/ImageServiceIdentifyTask" {
   import ImageServiceIdentifyTask = __esri.ImageServiceIdentifyTask;
-  export = ImageServiceIdentifyTask;
+  export default ImageServiceIdentifyTask;
 }
 
 declare module "esri/tasks/Locator" {
   import Locator = __esri.Locator;
-  export = Locator;
+  export default Locator;
 }
 
 declare module "esri/tasks/QueryTask" {
   import QueryTask = __esri.QueryTask;
-  export = QueryTask;
+  export default QueryTask;
 }
 
 declare module "esri/tasks/RouteTask" {
   import RouteTask = __esri.RouteTask;
-  export = RouteTask;
+  export default RouteTask;
 }
 
 declare module "esri/tasks/ServiceAreaTask" {
   import ServiceAreaTask = __esri.ServiceAreaTask;
-  export = ServiceAreaTask;
+  export default ServiceAreaTask;
 }
 
 declare module "esri/tasks/Task" {
   import Task = __esri.Task;
-  export = Task;
+  export default Task;
 }
 
 declare module "esri/tasks/support/AddressCandidate" {
   import AddressCandidate = __esri.AddressCandidate;
-  export = AddressCandidate;
+  export default AddressCandidate;
 }
 
 declare module "esri/tasks/support/AreasAndLengthsParameters" {
   import AreasAndLengthsParameters = __esri.AreasAndLengthsParameters;
-  export = AreasAndLengthsParameters;
+  export default AreasAndLengthsParameters;
 }
 
 declare module "esri/tasks/support/BufferParameters" {
   import BufferParameters = __esri.BufferParameters;
-  export = BufferParameters;
+  export default BufferParameters;
 }
 
 declare module "esri/tasks/support/ClosestFacilityParameters" {
   import ClosestFacilityParameters = __esri.ClosestFacilityParameters;
-  export = ClosestFacilityParameters;
+  export default ClosestFacilityParameters;
 }
 
 declare module "esri/tasks/support/ClosestFacilitySolveResult" {
   import ClosestFacilitySolveResult = __esri.ClosestFacilitySolveResult;
-  export = ClosestFacilitySolveResult;
+  export default ClosestFacilitySolveResult;
 }
 
 declare module "esri/tasks/support/DataFile" {
   import DataFile = __esri.DataFile;
-  export = DataFile;
+  export default DataFile;
 }
 
 declare module "esri/tasks/support/DataLayer" {
   import DataLayer = __esri.DataLayer;
-  export = DataLayer;
+  export default DataLayer;
 }
 
 declare module "esri/tasks/support/Date" {
   import supportDate = __esri.supportDate;
-  export = supportDate;
+  export default supportDate;
 }
 
 declare module "esri/tasks/support/DensifyParameters" {
   import DensifyParameters = __esri.DensifyParameters;
-  export = DensifyParameters;
+  export default DensifyParameters;
 }
 
 declare module "esri/tasks/support/DirectionsFeatureSet" {
   import DirectionsFeatureSet = __esri.DirectionsFeatureSet;
-  export = DirectionsFeatureSet;
+  export default DirectionsFeatureSet;
 }
 
 declare module "esri/tasks/support/DistanceParameters" {
   import DistanceParameters = __esri.DistanceParameters;
-  export = DistanceParameters;
+  export default DistanceParameters;
 }
 
 declare module "esri/tasks/support/FeatureSet" {
   import FeatureSet = __esri.FeatureSet;
-  export = FeatureSet;
+  export default FeatureSet;
 }
 
 declare module "esri/tasks/support/FindParameters" {
   import FindParameters = __esri.FindParameters;
-  export = FindParameters;
+  export default FindParameters;
 }
 
 declare module "esri/tasks/support/FindResult" {
   import FindResult = __esri.FindResult;
-  export = FindResult;
+  export default FindResult;
 }
 
 declare module "esri/tasks/support/GeneralizeParameters" {
   import GeneralizeParameters = __esri.GeneralizeParameters;
-  export = GeneralizeParameters;
+  export default GeneralizeParameters;
 }
 
 declare module "esri/tasks/support/GPMessage" {
   import GPMessage = __esri.GPMessage;
-  export = GPMessage;
+  export default GPMessage;
 }
 
 declare module "esri/tasks/support/IdentifyParameters" {
   import IdentifyParameters = __esri.IdentifyParameters;
-  export = IdentifyParameters;
+  export default IdentifyParameters;
 }
 
 declare module "esri/tasks/support/IdentifyResult" {
   import IdentifyResult = __esri.IdentifyResult;
-  export = IdentifyResult;
+  export default IdentifyResult;
 }
 
 declare module "esri/tasks/support/ImageServiceIdentifyParameters" {
   import ImageServiceIdentifyParameters = __esri.ImageServiceIdentifyParameters;
-  export = ImageServiceIdentifyParameters;
+  export default ImageServiceIdentifyParameters;
 }
 
 declare module "esri/tasks/support/ImageServiceIdentifyResult" {
   import ImageServiceIdentifyResult = __esri.ImageServiceIdentifyResult;
-  export = ImageServiceIdentifyResult;
+  export default ImageServiceIdentifyResult;
 }
 
 declare module "esri/tasks/support/JobInfo" {
   import JobInfo = __esri.JobInfo;
-  export = JobInfo;
+  export default JobInfo;
 }
 
 declare module "esri/tasks/support/LengthsParameters" {
   import LengthsParameters = __esri.LengthsParameters;
-  export = LengthsParameters;
+  export default LengthsParameters;
 }
 
 declare module "esri/tasks/support/LinearUnit" {
   import LinearUnit = __esri.LinearUnit;
-  export = LinearUnit;
+  export default LinearUnit;
 }
 
 declare module "esri/tasks/support/NAMessage" {
   import NAMessage = __esri.NAMessage;
-  export = NAMessage;
+  export default NAMessage;
 }
 
 declare module "esri/tasks/support/OffsetParameters" {
   import OffsetParameters = __esri.OffsetParameters;
-  export = OffsetParameters;
+  export default OffsetParameters;
 }
 
 declare module "esri/tasks/support/ParameterValue" {
   import ParameterValue = __esri.ParameterValue;
-  export = ParameterValue;
+  export default ParameterValue;
 }
 
 declare module "esri/tasks/support/ProjectParameters" {
   import ProjectParameters = __esri.ProjectParameters;
-  export = ProjectParameters;
+  export default ProjectParameters;
 }
 
 declare module "esri/tasks/support/Query" {
   import Query = __esri.Query;
-  export = Query;
+  export default Query;
 }
 
 declare module "esri/tasks/support/RasterData" {
   import RasterData = __esri.RasterData;
-  export = RasterData;
+  export default RasterData;
 }
 
 declare module "esri/tasks/support/RelationParameters" {
   import RelationParameters = __esri.RelationParameters;
-  export = RelationParameters;
+  export default RelationParameters;
 }
 
 declare module "esri/tasks/support/RelationshipQuery" {
   import RelationshipQuery = __esri.RelationshipQuery;
-  export = RelationshipQuery;
+  export default RelationshipQuery;
 }
 
 declare module "esri/tasks/support/RouteParameters" {
   import RouteParameters = __esri.RouteParameters;
-  export = RouteParameters;
+  export default RouteParameters;
 }
 
 declare module "esri/tasks/support/RouteResult" {
   import RouteResult = __esri.RouteResult;
-  export = RouteResult;
+  export default RouteResult;
 }
 
 declare module "esri/tasks/support/ServiceAreaParameters" {
   import ServiceAreaParameters = __esri.ServiceAreaParameters;
-  export = ServiceAreaParameters;
+  export default ServiceAreaParameters;
 }
 
 declare module "esri/tasks/support/ServiceAreaSolveResult" {
   import ServiceAreaSolveResult = __esri.ServiceAreaSolveResult;
-  export = ServiceAreaSolveResult;
+  export default ServiceAreaSolveResult;
 }
 
 declare module "esri/tasks/support/StatisticDefinition" {
   import StatisticDefinition = __esri.StatisticDefinition;
-  export = StatisticDefinition;
+  export default StatisticDefinition;
 }
 
 declare module "esri/tasks/support/TrimExtendParameters" {
   import TrimExtendParameters = __esri.TrimExtendParameters;
-  export = TrimExtendParameters;
+  export default TrimExtendParameters;
 }
 
 declare module "esri/views/MapView" {
   import MapView = __esri.MapView;
-  export = MapView;
+  export default MapView;
 }
 
 declare module "esri/views/SceneView" {
   import SceneView = __esri.SceneView;
-  export = SceneView;
+  export default SceneView;
 }
 
 declare module "esri/views/View" {
   import View = __esri.View;
-  export = View;
+  export default View;
 }
 
 declare module "esri/views/ViewAnimation" {
   import ViewAnimation = __esri.ViewAnimation;
-  export = ViewAnimation;
+  export default ViewAnimation;
 }
 
 declare module "esri/views/layers/LayerView" {
   import LayerView = __esri.LayerView;
-  export = LayerView;
+  export default LayerView;
 }
 
 declare module "esri/views/layers/FeatureLayerView" {
   import FeatureLayerView = __esri.FeatureLayerView;
-  export = FeatureLayerView;
+  export default FeatureLayerView;
 }
 
 declare module "esri/views/layers/GraphicsLayerView" {
   import GraphicsLayerView = __esri.GraphicsLayerView;
-  export = GraphicsLayerView;
+  export default GraphicsLayerView;
 }
 
 declare module "esri/views/layers/ImageryLayerView" {
   import ImageryLayerView = __esri.ImageryLayerView;
-  export = ImageryLayerView;
+  export default ImageryLayerView;
 }
 
 declare module "esri/views/ui/UI" {
   import UI = __esri.UI;
-  export = UI;
+  export default UI;
 }
 
 declare module "esri/views/ui/DefaultUI" {
   import DefaultUI = __esri.DefaultUI;
-  export = DefaultUI;
+  export default DefaultUI;
 }
 
 declare module "esri/webmap/InitialViewProperties" {
   import InitialViewProperties = __esri.InitialViewProperties;
-  export = InitialViewProperties;
+  export default InitialViewProperties;
 }
 
 declare module "esri/webscene/Environment" {
   import Environment = __esri.Environment;
-  export = Environment;
+  export default Environment;
 }
 
 declare module "esri/webscene/InitialViewProperties" {
   import websceneInitialViewProperties = __esri.websceneInitialViewProperties;
-  export = websceneInitialViewProperties;
+  export default websceneInitialViewProperties;
 }
 
 declare module "esri/webscene/Lighting" {
   import Lighting = __esri.Lighting;
-  export = Lighting;
+  export default Lighting;
 }
 
 declare module "esri/webscene/Presentation" {
   import Presentation = __esri.Presentation;
-  export = Presentation;
+  export default Presentation;
 }
 
 declare module "esri/webscene/Slide" {
   import Slide = __esri.Slide;
-  export = Slide;
+  export default Slide;
 }
 
 declare module "esri/widgets/Attribution" {
   import Attribution = __esri.Attribution;
-  export = Attribution;
+  export default Attribution;
 }
 
 declare module "esri/widgets/BasemapToggle" {
   import BasemapToggle = __esri.BasemapToggle;
-  export = BasemapToggle;
+  export default BasemapToggle;
 }
 
 declare module "esri/widgets/Compass" {
   import Compass = __esri.Compass;
-  export = Compass;
+  export default Compass;
 }
 
 declare module "esri/widgets/Home" {
   import Home = __esri.Home;
-  export = Home;
+  export default Home;
 }
 
 declare module "esri/widgets/Legend" {
   import Legend = __esri.Legend;
-  export = Legend;
+  export default Legend;
 }
 
 declare module "esri/widgets/Locate" {
   import Locate = __esri.Locate;
-  export = Locate;
+  export default Locate;
 }
 
 declare module "esri/widgets/NavigationToggle" {
   import NavigationToggle = __esri.NavigationToggle;
-  export = NavigationToggle;
+  export default NavigationToggle;
 }
 
 declare module "esri/widgets/Popup" {
   import Popup = __esri.Popup;
-  export = Popup;
+  export default Popup;
 }
 
 declare module "esri/widgets/Search" {
   import Search = __esri.Search;
-  export = Search;
+  export default Search;
 }
 
 declare module "esri/widgets/Track" {
   import Track = __esri.Track;
-  export = Track;
+  export default Track;
 }
 
 declare module "esri/widgets/Widget" {
   import Widget = __esri.Widget;
-  export = Widget;
+  export default Widget;
 }
 
 declare module "esri/widgets/Zoom" {
   import Zoom = __esri.Zoom;
-  export = Zoom;
+  export default Zoom;
 }
 
 declare module "esri/widgets/Attribution/AttributionViewModel" {
   import AttributionViewModel = __esri.AttributionViewModel;
-  export = AttributionViewModel;
+  export default AttributionViewModel;
 }
 
 declare module "esri/widgets/BasemapToggle/BasemapToggleViewModel" {
   import BasemapToggleViewModel = __esri.BasemapToggleViewModel;
-  export = BasemapToggleViewModel;
+  export default BasemapToggleViewModel;
 }
 
 declare module "esri/widgets/Compass/CompassViewModel" {
   import CompassViewModel = __esri.CompassViewModel;
-  export = CompassViewModel;
+  export default CompassViewModel;
 }
 
 declare module "esri/widgets/Home/HomeViewModel" {
   import HomeViewModel = __esri.HomeViewModel;
-  export = HomeViewModel;
+  export default HomeViewModel;
 }
 
 declare module "esri/widgets/Locate/LocateViewModel" {
   import LocateViewModel = __esri.LocateViewModel;
-  export = LocateViewModel;
+  export default LocateViewModel;
 }
 
 declare module "esri/widgets/NavigationToggle/NavigationToggleViewModel" {
   import NavigationToggleViewModel = __esri.NavigationToggleViewModel;
-  export = NavigationToggleViewModel;
+  export default NavigationToggleViewModel;
 }
 
 declare module "esri/widgets/Popup/PopupViewModel" {
   import PopupViewModel = __esri.PopupViewModel;
-  export = PopupViewModel;
+  export default PopupViewModel;
 }
 
 declare module "esri/widgets/Search/SearchViewModel" {
   import SearchViewModel = __esri.SearchViewModel;
-  export = SearchViewModel;
+  export default SearchViewModel;
 }
 
 declare module "esri/widgets/Track/TrackViewModel" {
   import TrackViewModel = __esri.TrackViewModel;
-  export = TrackViewModel;
+  export default TrackViewModel;
 }
 
 declare module "esri/widgets/Zoom/ZoomViewModel" {
   import ZoomViewModel = __esri.ZoomViewModel;
-  export = ZoomViewModel;
+  export default ZoomViewModel;
 }
 
 declare module "esri/LayersMixin" {
   import LayersMixin = __esri.LayersMixin;
-  export = LayersMixin;
+  export default LayersMixin;
 }
 
 declare module "esri/core/JSONSupporter" {
   import JSONSupporter = __esri.JSONSupporter;
-  export = JSONSupporter;
+  export default JSONSupporter;
 }
 
 declare module "esri/core/Loadable" {
   import Loadable = __esri.Loadable;
-  export = Loadable;
+  export default Loadable;
 }
 
 declare module "esri/core/Promise" {
   import corePromise = __esri.corePromise;
-  export = corePromise;
+  export default corePromise;
 }
 
 declare module "esri/layers/DynamicLayer" {
   import DynamicLayer = __esri.DynamicLayer;
-  export = DynamicLayer;
+  export default DynamicLayer;
 }
 
 declare module "esri/layers/TiledLayer" {
   import TiledLayer = __esri.TiledLayer;
-  export = TiledLayer;
+  export default TiledLayer;
 }
 
 declare module "esri/layers/mixins/ArcGISCachedService" {
   import ArcGISCachedService = __esri.ArcGISCachedService;
-  export = ArcGISCachedService;
+  export default ArcGISCachedService;
 }
 
 declare module "esri/layers/mixins/ArcGISDynamicService" {
   import ArcGISDynamicService = __esri.ArcGISDynamicService;
-  export = ArcGISDynamicService;
+  export default ArcGISDynamicService;
 }
 
 declare module "esri/layers/mixins/ArcGISImageService" {
   import ArcGISImageService = __esri.ArcGISImageService;
-  export = ArcGISImageService;
+  export default ArcGISImageService;
 }
 
 declare module "esri/layers/mixins/ArcGISMapService" {
   import ArcGISMapService = __esri.ArcGISMapService;
-  export = ArcGISMapService;
+  export default ArcGISMapService;
 }
 
 declare module "esri/layers/mixins/PortalLayer" {
   import PortalLayer = __esri.PortalLayer;
-  export = PortalLayer;
+  export default PortalLayer;
 }
 
 declare module "esri/tasks/support/SpatialRelationship" {
   import SpatialRelationship = __esri.SpatialRelationship;
-  export = SpatialRelationship;
+  export default SpatialRelationship;
 }
 
 declare module "esri/views/BreakpointsOwner" {
   import BreakpointsOwner = __esri.BreakpointsOwner;
-  export = BreakpointsOwner;
+  export default BreakpointsOwner;
 }
 
 declare module "esri/views/DOMContainer" {
   import DOMContainer = __esri.DOMContainer;
-  export = DOMContainer;
+  export default DOMContainer;
 }
 
 declare module "esri/config" {
   import config = __esri.config;
-  export = config;
+  export default config;
 }
 
 declare module "esri/kernel" {
   import kernel = __esri.kernel;
-  export = kernel;
+  export default kernel;
 }
 
 declare module "esri/request" {
   import request = __esri.request;
-  export = request.esriRequest;
+  export default request.esriRequest;
 }
 
 declare module "esri/core/lang" {
   import lang = __esri.lang;
-  export = lang;
+  export default lang;
 }
 
 declare module "esri/core/urlUtils" {
   import urlUtils = __esri.urlUtils;
-  export = urlUtils;
+  export default urlUtils;
 }
 
 declare module "esri/core/watchUtils" {
   import watchUtils = __esri.watchUtils;
-  export = watchUtils;
+  export default watchUtils;
 }
 
 declare module "esri/geometry/geometryEngine" {
   import geometryEngine = __esri.geometryEngine;
-  export = geometryEngine;
+  export default geometryEngine;
 }
 
 declare module "esri/geometry/geometryEngineAsync" {
   import geometryEngineAsync = __esri.geometryEngineAsync;
-  export = geometryEngineAsync;
+  export default geometryEngineAsync;
 }
 
 declare module "esri/geometry/support/jsonUtils" {
   import jsonUtils = __esri.jsonUtils;
-  export = jsonUtils;
+  export default jsonUtils;
 }
 
 declare module "esri/geometry/support/webMercatorUtils" {
   import webMercatorUtils = __esri.webMercatorUtils;
-  export = webMercatorUtils;
+  export default webMercatorUtils;
 }
 
 declare module "esri/renderers/support/jsonUtils" {
   import supportJsonUtils = __esri.supportJsonUtils;
-  export = supportJsonUtils;
+  export default supportJsonUtils;
 }
 
 declare module "esri/symbols/support/jsonUtils" {
   import symbolsSupportJsonUtils = __esri.symbolsSupportJsonUtils;
-  export = symbolsSupportJsonUtils;
+  export default symbolsSupportJsonUtils;
 }
 
 declare module "esri/views/3d/externalRenderers" {
   import externalRenderers = __esri.externalRenderers;
-  export = externalRenderers;
+  export default externalRenderers;
 }
