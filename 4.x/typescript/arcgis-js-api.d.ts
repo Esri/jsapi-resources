@@ -4387,6 +4387,10 @@ declare namespace __esri {
     zoom?: number;
   }
 
+  interface PopupManager{
+    enabled: boolean;
+  }
+
   interface View extends Accessor, corePromise, Evented, DOMContainer, BreakpointsOwner {
     allLayerViews: Collection;
     animation: ViewAnimation;
@@ -4403,7 +4407,7 @@ declare namespace __esri {
     type: string;
     ui: DefaultUI;
     updating: boolean;
-    popupManager: boolean;
+    popupManager: PopupManager;
 
     whenLayerView(layer: Layer): IPromise<any>;
   }
