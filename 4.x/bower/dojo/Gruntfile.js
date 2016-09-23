@@ -4,7 +4,6 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-clean');
 
-  var sassFiles = ['src/**/*.scss'];
   grunt.loadNpmTasks('grunt-sass');
 
   grunt.initConfig({
@@ -53,23 +52,14 @@ module.exports = function (grunt) {
       dist: {
         files: [{
           expand: true,
-          src: sassFiles,
+          src: ['src/**/*.scss', '!src/esri/themes/base/**'],
           ext: '.css'
         }]
-      }
-    },
-    watch: {
-      sass: {
-        options: {
-          interval: 5007, // keeps CPU usage low
-          spawn: false
-        },
-        files: sassFiles,
-        tasks: ['sass']
       }
     }
   });
 
   grunt.registerTask('build', ['clean:build', 'dojo', 'copy', 'clean:uncompressed']);
+  grunt.registerTask('styles', ['sass']);
 
 };

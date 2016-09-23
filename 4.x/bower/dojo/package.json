@@ -10,7 +10,7 @@
     "preinstall": "bower install",
     "build": "grunt build",
     "clean": "grunt clean",
-    "sass": "grunt sass --force"
+    "styles": "grunt styles --force"
   },
   "license": "Apache-2.0",
   "devDependencies": {
@@ -18,9 +18,10 @@
     "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-dojo": "^1.1.1",
+    "grunt-sass": "^1.1.0",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.1",
     "gulp-rename": "^1.2.2",
-    "grunt-sass": "^1.1.0"
+    "uglify-js": "^2.7.3"
   }
 }

@@ -11,67 +11,122 @@ This is a sample setup showing how to use [Bower](http://bower.io/) to customize
 # Usage
 * `npm install -g bower` - installs bower globally
 * `npm install` - installs required node and bower packages
-* `npm run sass` - compiles the Sass files
+* `npm run styles` - compiles the Sass files
 
-# Files of interest
+## Structure
 
-* `esri/css/main.scss` - includes all styles
-* `esri/css/view.scss` - includes the minimum amount of styles for a basic map
-* `esri/widgets/css/_ColorVariables.scss`
-* `esri/widgets/css/_CommonVariables.scss`
-
-## Theming
-
-You'll need to open the `_ColorVariables.scss` file. We'll be focusing on the following portion of the file for our changes.
+The following is a simplified look at the themes folder structure:
 
 ```
-//  Main Colors Vars
-$text_color                 : $Calcite_Gray_700;
-$background_color           : $Calcite_Gray_050;
-$anchor_color               : $Calcite_Gray_550;
-$anchor_hover_color         : $Calcite_Gray_700;
-$button_text_color          : $Calcite_Gray_550;
-$button_text_hover_color    : $Calcite_Gray_700;
+esri/
++-- themes/
+    +-- base/
+    |   +-- colors
+    |   +-- fonts
+    |   +-- icons
+    |   +-- images
+    |   +-- widgets
+    |
+    +-- <theme>
+        +-- main.scss
 ```
 
-This is where the colors used by widgets are defined. These values produce the default theme.
+`base` contains the foundation for all themes. Here is where we define variables, functions, mixins, and other helpers, such as color, font, and icon resources.
 
-The variables reference color definitions from the [calcite-colors](https://github.com/Esri/calcite-colors/) repository. Color values can be used too, see the following for more information ([Sass colors](http://sass-lang.com/documentation/file.SASS_REFERENCE.html#colors)). 
+Each theme folder has a `main.scss` file which will produce a matching `css` file when compiled.
 
-![default theme](./sass-default.png)
+## Working with Themes
 
-Let's change the variables to customize the colors to create a different theme.
+Each theme has a `main.scss` and the simplest way to get started is to to define any variable overrides, and then import `esri/themes/base/_core.scss`.
 
-```
-//  Main Colors Vars
-$text_color                 : $Calcite_Highlight_Green_400;
-$background_color           : $Calcite_Highlight_Green_100;
-$anchor_color               : $Calcite_Highlight_Green_350;
-$anchor_hover_color         : $Calcite_Highlight_Green_400;
-$button_text_color          : $Calcite_Highlight_Green_350;
-$button_text_hover_color    : $Calcite_Highlight_Green_400;
-```
+```scss
+/*
+  Theme: My custom theme
+*/
 
-We can then run the npm script
+// variable overrides
+$some_variable_to_override : <overridden value>;
 
-```
-npm run sass 
+// import theme base
+@import "../base/core";
 ```
 
-Presto! Our custom CSS is ready.
+If you want more control, you can also create the theme to your liking and import any base dependencies as needed.
 
-![green theme](./sass-green.png)
+```scss
+@import "../base/mixins";  // mixins are now available for use
 
-Creating a different theme is just a matter of using a different set of colors and repeating the previous steps.
-
-```
-//  Main Colors Vars
-$text_color                 : $Calcite_Highlight_Blue_400;
-$background_color           : $Calcite_Highlight_Blue_100;
-$anchor_color               : $Calcite_Highlight_Blue_350;
-$anchor_hover_color         : $Calcite_Highlight_Blue_400;
-$button_text_color          : $Calcite_Highlight_Blue_350;
-$button_text_hover_color    : $Calcite_Highlight_Blue_400;
+// custom scss goes here
 ```
 
-![blue theme](./sass-blue.png)
+By default `_core.scss` will include the styles for all widget. You can make the output stylesheets leaner by excluding widget styles. Excluding widget styles is now simpler.
+
+```scss
+// exclude non-default widgets
+$include_BasemapToggle    : false;
+$include_ColorPicker      : false;
+$include_HorizontalSlider : false;
+$include_Legend           : false;
+$include_RendererSlider   : false;
+$include_Ripple           : false;
+$include_Search           : false;
+$include_Tags             : false;
+
+// import theme base
+@import "../base/core";
+```
+
+## Example
+
+We'll cover how to create a custom theme in this section.
+
+First, we'll create our main theme file (`main.scss`) and place it under `esri/themes/skinny-green-latte/`
+
+![custom theme setup](./custom-theme-setup.png)
+
+Then we import our core dependencies.
+
+```scss
+// import theme base
+@import "../base/core";
+```
+
+Running `npm run styles` at this point would produce the light theme (default).
+
+![default theme](./default-theme.png)
+
+This is because `_core.scss` is the base for the default theme.
+
+In order to customize our theme, we can override variables that affect color and font/button sizes.
+
+```scss
+/*
+  Theme: Skinny Green Latte
+*/
+
+// variable overrides
+$button_width               : 28px;
+$button_height              : 28px;
+
+$text_size                  : 12px;
+
+$text_color                 : #fff;
+$background_color           : #00704a;
+$anchor_color               : #00704a;
+$anchor_hover_color         : #000;
+$button_text_color          : #fff;
+$button_text_hover_color    : #000;
+
+// import theme base
+@import "../base/core";
+```
+
+If we run `npm run styles` now, our custom theme would be compiled and ready to use!
+
+![skinny-green-latte theme](./skinny-green-latte-theme.png)
+
+All you need to do now is to import the output `main.css` in your application.
+
+```html
+<link rel="stylesheet" href="./esri/themes/skinny-green-latte/main.css">
+```

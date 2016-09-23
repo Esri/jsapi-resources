@@ -9,6 +9,11 @@
  */
 
 var profile = {
+  optimizeOptions: {
+    languageIn: "ECMASCRIPT5"
+  },
+  //dojoBootText: "require.boot && require.apply(null, require.boot);",
+  insertAbsMids: 0,
   // `basePath` is relative to the directory containing this profile file; in this case, it is being set to the
   // src/ directory, which is the same place as the `baseUrl` directory in the loader configuration.
   basePath: './src',
@@ -22,6 +27,7 @@ var profile = {
   // Excludes tests, demos, and original template files from being included in the built version.
   mini: true,
 
+  internStrings: true,
   // Uses Closure Compiler or "uglify" as the JavaScript minifier. This can also be set to "shrinksafe" to use ShrinkSafe,
   // though ShrinkSafe is deprecated and not recommended.
   // This option defaults to "" (no compression) if not provided.
@@ -103,17 +109,14 @@ var profile = {
         'dojox/gfx/shape',
 
         // esri stuff for 3D maps
+
         'esri/layers/FeatureLayer',
+        'esri/layers/TileLayer',
         'esri/layers/support/LabelClass',
         'esri/layers/graphics/controllers/SnapshotController',
-        'esri/portal/creators/TiledServiceLayerCreator',
-        'esri/portal/creators/TiledElevationServiceLayerCreator',
-        'esri/portal/creators/layersCreator',
+        'esri/portal/support/layersCreator',
         'esri/views/3d/layers/TiledLayerView3D',
         'esri/views/layers/GraphicsLayerView',
-        'esri/views/3d/layers/GraphicsLayerView3D',
-        'esri/views/3d/layers/graphics/TextureCollection',
-        'esri/views/3d/layers/graphics/SymbolConverter',
         'esri/views/3d/webgl-engine/lib/FloatingBoxLocalOriginFactory',
         'esri/views/3d/webgl-engine/lib/Layer',
         'esri/views/3d/webgl-engine/lib/MaterialCollection',
@@ -171,6 +174,7 @@ var profile = {
     "dojo-v1x-i18n-Api": 1,
     "dom": 1,
     "host-browser": 1,
+    "host-webworker": -1,
     "extend-dojo": 1
   },
   defaultConfig: {
