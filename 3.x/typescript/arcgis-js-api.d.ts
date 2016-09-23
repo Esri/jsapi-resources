@@ -15184,7 +15184,7 @@ declare module "esri/tasks/PrintTask" {
      */
     execute(printParameters: PrintParameters, callback?: Function, errback?: Function): any;
     /** Fired when the print operation is complete. */
-    on(type: "complete", listener: (event: { url: string; target: PrintTask }) => void): esri.Handle;
+    on(type: "complete", listener: (event: { result: { url: string; }; target: PrintTask }) => void): esri.Handle;
     /** Fired when an error occurs while executing the print task. */
     on(type: "error", listener: (event: { error: Error; target: PrintTask }) => void): esri.Handle;
     on(type: string, listener: (event: any) => void): esri.Handle;
