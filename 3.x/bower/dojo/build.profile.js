@@ -101,7 +101,8 @@ var profile = {
         'dojox/gfx/filters',
         'dojox/gfx/svgext',
         'dojox/gfx/shape',
-        'esri/dijit/Attribution'
+        'esri/dijit/Attribution',
+        'esri/IdentityManager'
       ],
       // You can define the locale for your application if you like
       includeLocales: ['en-us']
