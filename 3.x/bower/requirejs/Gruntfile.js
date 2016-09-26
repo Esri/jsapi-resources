@@ -14,7 +14,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: 'src/',
-          src: ['esri/**'],
+          src: ['esri/**', 'dijit/templates/**', 'dijit/form/templates/**'],
           dest: './dist/'
         }, {
           expand: true,
@@ -89,14 +89,75 @@ module.exports = function (grunt) {
            */
           include: [
             'requirejs/require',
-            'esri/dijit/Attribution'
+            'esri/dijit/Attribution',
+            'esri/IdentityManager'
           ],
           exclude: [
             'dojo/domReady',
             'dojo/has',
             'xstyle',
             'dgrid',
-            'dojo/i18n' // some methods not available with RequireJS
+            'dojo/i18n', // some methods not available with RequireJS
+            'esri/layers/VectorTileLayer'
+          ],
+          inlineText: true,
+          //optimize: 'none',
+          optimize: 'uglify2',
+          paths: {
+            'moment/templates': 'empty:',
+            'dgrid': 'empty:',
+            'xstyle': 'empty:',
+            'esri/moment': 'empty:',
+            'esri/layers/GraphicsLayer': 'empty:',
+            'dojo/query': 'empty:', // becasue css selector engine is dynamically loaded
+            'dojox/gfx': 'empty:', // because this dynamically loads a renderer
+            'dojo/i18n': 'i18n/i18n', // only needed to get build working
+            'dojo/text': 'text/text',
+            'dojo/domReady': 'domReady/domReady'
+          },
+          fileExclusionRegExp: /test|tests|min|src/g,
+          throwWhen: { optimize: false  }
+        }
+      },
+      vtlayer: {
+        options: {
+          cwd: './',
+          baseUrl: './src',
+          name: 'esri/layers/VectorTileLayerImpl',
+          out: './dist/esri/layers/VectorTileLayerImpl.js',
+          locale: 'en-us',
+          // has.js is equivalent, but doesn't seem to work
+          // during RequireJS Optimizer build process
+          has: {
+            'config-selectorEngine': 'acme',
+            'dojo-trace-api': 0,
+            'dojo-log-api': 0,
+            'dojo-publish-privates': 0,
+            'dojo-sync-loader': 0,
+            'dojo-xhr-factory': 0,
+            'dojo-test-sniff': 0,
+            'dom': 1,
+            'extend-esri': 0,
+            'dojo-has-api': 1,
+            'dojo-undef-api': 0
+          },
+          /*
+           * What's important when setting up paths and using exclude is
+           * that you exclude any plugins that may throw error in build process.
+           * This will usually include dojo/i18n, but could also include dojo/domReady,
+           * dojo/has or dojo/text. You will notice that the paths are mapped to the
+           * RequireJS counterpart, but not included in build. These plugins are not always
+           * interchangeable between Dojo and RequireJS, so they must be loaded dynamically.
+           * This is a limitation to how the RequireJS optimizer tries to run the plugins in
+           * a node environment.
+           */
+          exclude: [
+            'dojo/domReady',
+            'dojo/has',
+            'xstyle',
+            'dgrid',
+            'dojo/i18n', // some methods not available with RequireJS
+            'esri/layers/VectorTileLayer'
           ],
           inlineText: true,
           //optimize: 'none',
@@ -136,5 +197,5 @@ module.exports = function (grunt) {
     }
   });
 
-  grunt.registerTask('build', ['clean', 'requirejs:support', 'requirejs:single', 'requirejs:esricss', 'requirejs:dijitcss', 'copy']);
+  grunt.registerTask('build', ['clean', 'requirejs:support', 'copy', 'requirejs:single', 'requirejs:vtlayer', 'requirejs:esricss', 'requirejs:dijitcss']);
 };
