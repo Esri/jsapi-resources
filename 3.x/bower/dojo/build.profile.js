@@ -9,6 +9,8 @@
  */
 
 var profile = {
+  insertAbsMids: 0,
+  internStrings: true,
   // `basePath` is relative to the directory containing this profile file; in this case, it is being set to the
   // src/ directory, which is the same place as the `baseUrl` directory in the loader configuration.
   basePath: './src',
@@ -103,6 +105,14 @@ var profile = {
       ],
       // You can define the locale for your application if you like
       includeLocales: ['en-us']
+    },
+    'esri/layers/VectorTileLayerImpl': {
+      include: [
+        'esri/jsapi'
+      ],
+      exclude: [
+        'dojo/dojo'
+      ]
     }
   },
   // Providing hints to the build system allows code to be conditionally removed on a more granular level than simple
@@ -152,6 +162,7 @@ var profile = {
     "dojo-v1x-i18n-Api": 1,
     "dom": 1,
     "host-browser": 1,
+    "host-webworker": -1,
     "extend-dojo": 1
   },
   defaultConfig: {
