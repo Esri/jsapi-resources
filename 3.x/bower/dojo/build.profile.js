@@ -108,11 +108,9 @@ var profile = {
     },
     'esri/layers/VectorTileLayerImpl': {
       include: [
-        'esri/jsapi'
+        'esri/layers/VectorTileLayerImpl'
       ],
-      exclude: [
-        'dojo/dojo'
-      ]
+      includeLocales: ['en-us']
     }
   },
   // Providing hints to the build system allows code to be conditionally removed on a more granular level than simple
@@ -162,7 +160,6 @@ var profile = {
     "dojo-v1x-i18n-Api": 1,
     "dom": 1,
     "host-browser": 1,
-    "host-webworker": -1,
     "extend-dojo": 1
   },
   defaultConfig: {
