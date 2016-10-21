@@ -3201,6 +3201,22 @@ declare namespace __esri {
 
   }
 
+  interface FindTask extends Task {
+    gdbVersion: string;
+
+    execute(params: FindParameters): IPromise<any>;
+  }
+
+  interface FindTaskConstructor {
+    new(properties?: FindTaskProperties): FindTask;
+  }
+
+  export const FindTask: FindTaskConstructor;
+
+  interface FindTaskProperties extends TaskProperties {
+    gdbVersion?: string;
+  }
+
   interface GeometryService extends Task {
     areasAndLengths(areasAndLengthsParameters: AreasAndLengthsParameters): IPromise<any>;
     autoComplete(polygons: Polygon[], polylines: Polyline[]): IPromise<any>;
@@ -3260,6 +3276,22 @@ declare namespace __esri {
     outSpatialReference?: SpatialReferenceProperties;
     processSpatialReference?: SpatialReferenceProperties;
     updateDelay?: number;
+  }
+
+  interface IdentifyTask extends Task {
+    gdbVersion: string;
+
+    execute(params: IdentifyParameters): IPromise<any>;
+  }
+
+  interface IdentifyTaskConstructor {
+    new(properties?: IdentifyTaskProperties): IdentifyTask;
+  }
+
+  export const IdentifyTask: IdentifyTaskConstructor;
+
+  interface IdentifyTaskProperties extends TaskProperties {
+    gdbVersion?: string;
   }
 
   interface ImageServiceIdentifyTask extends Task {
@@ -3721,6 +3753,60 @@ declare namespace __esri {
     spatialReference?: SpatialReferenceProperties;
   }
 
+  interface FindParameters extends Accessor {
+    contains: boolean;
+    geometryPrecision: number;
+    layerIds: number[];
+    maxAllowableOffset: number;
+    outSpatialReference: SpatialReference;
+    returnGeometry: boolean;
+    searchFields: string[];
+    searchText: string;
+
+    toJSON(): any;
+  }
+
+  interface FindParametersConstructor {
+    new(properties?: FindParametersProperties): FindParameters;
+  }
+
+  export const FindParameters: FindParametersConstructor;
+
+  interface FindParametersProperties {
+    contains?: boolean;
+    geometryPrecision?: number;
+    layerIds?: number[];
+    maxAllowableOffset?: number;
+    outSpatialReference?: SpatialReferenceProperties;
+    returnGeometry?: boolean;
+    searchFields?: string[];
+    searchText?: string;
+  }
+
+  interface FindResult extends JSONSupport {
+    displayFieldName: string;
+    feature: Graphic;
+    foundFieldName: string;
+    layerId: number;
+    layerName: string;
+  }
+
+  interface FindResultConstructor {
+    new(properties?: FindResultProperties): FindResult;
+
+    fromJSON(json: any): FindResult;
+  }
+
+  export const FindResult: FindResultConstructor;
+
+  interface FindResultProperties {
+    displayFieldName?: string;
+    feature?: GraphicProperties;
+    foundFieldName?: string;
+    layerId?: number;
+    layerName?: string;
+  }
+
   interface GeneralizeParameters extends Accessor {
     deviationUnit: string;
     geometries: Geometry[];
@@ -3757,6 +3843,66 @@ declare namespace __esri {
   interface GPMessageProperties {
     description?: string;
     type?: string;
+  }
+
+  interface IdentifyParameters extends Accessor {
+    dpi: number;
+    geometry: Geometry;
+    geometryPrecision: number;
+    height: number;
+    layerIds: number[];
+    layerOption: string;
+    mapExtent: Extent;
+    maxAllowableOffset: number;
+    returnGeometry: boolean;
+    spatialReference: SpatialReference;
+    tolerance: number;
+    width: number;
+
+    toJSON(): any;
+  }
+
+  interface IdentifyParametersConstructor {
+    new(properties?: IdentifyParametersProperties): IdentifyParameters;
+  }
+
+  export const IdentifyParameters: IdentifyParametersConstructor;
+
+  interface IdentifyParametersProperties {
+    dpi?: number;
+    geometry?: GeometryProperties;
+    geometryPrecision?: number;
+    height?: number;
+    layerIds?: number[];
+    layerOption?: string;
+    mapExtent?: ExtentProperties;
+    maxAllowableOffset?: number;
+    returnGeometry?: boolean;
+    spatialReference?: SpatialReferenceProperties;
+    tolerance?: number;
+    width?: number;
+  }
+
+  interface IdentifyResult extends JSONSupport {
+    displayFieldName: string;
+    feature: Graphic;
+    layerId: number;
+    layerName: string;
+  }
+
+  interface IdentifyResultConstructor {
+    new(properties?: IdentifyResultProperties): IdentifyResult;
+
+    fromJSON(json: any): IdentifyResult;
+  }
+
+  export const IdentifyResult: IdentifyResultConstructor;
+
+  interface IdentifyResultProperties {
+    displayFieldName?: string;
+    feature?: GraphicProperties;
+    layerId?: number;
+    layerName?: string;
   }
 
   interface ImageServiceIdentifyParameters extends Accessor {
@@ -4917,6 +5063,7 @@ declare namespace __esri {
     popupOpenOnSelect: boolean;
     popupTemplate: PopupTemplate;
     resultGraphic: Graphic;
+    resultGraphicEnabled: boolean;
     results: any[];
     searchAllEnabled: boolean;
     searchTerm: string;
@@ -5148,6 +5295,7 @@ declare namespace __esri {
     popupOpenOnSelect: boolean;
     popupTemplate: PopupTemplate;
     resultGraphic: Graphic;
+    resultGraphicEnabled: boolean;
     results: any[];
     searchAllEnabled: boolean;
     searchTerm: string;
@@ -5185,6 +5333,7 @@ declare namespace __esri {
     popupOpenOnSelect?: boolean;
     popupTemplate?: PopupTemplateProperties;
     resultGraphic?: GraphicProperties;
+    resultGraphicEnabled?: boolean;
     results?: any[];
     searchAllEnabled?: boolean;
     searchTerm?: string;
@@ -5332,8 +5481,6 @@ declare namespace __esri {
   interface ArcGISCachedService {
     maxScale: number;
     minScale: number;
-    resampling: boolean;
-    supportsBlankTile: boolean;
     tileInfo: TileInfo;
 
     fromJSON(json: any): any;
@@ -5351,8 +5498,6 @@ declare namespace __esri {
   interface ArcGISCachedServiceProperties {
     maxScale?: number;
     minScale?: number;
-    resampling?: boolean;
-    supportsBlankTile?: boolean;
     tileInfo?: TileInfoProperties;
   }
 
@@ -6498,6 +6643,11 @@ declare module "esri/tasks/ClosestFacilityTask" {
   export = ClosestFacilityTask;
 }
 
+declare module "esri/tasks/FindTask" {
+  import FindTask = __esri.FindTask;
+  export = FindTask;
+}
+
 declare module "esri/tasks/GeometryService" {
   import GeometryService = __esri.GeometryService;
   export = GeometryService;
@@ -6506,6 +6656,11 @@ declare module "esri/tasks/GeometryService" {
 declare module "esri/tasks/Geoprocessor" {
   import Geoprocessor = __esri.Geoprocessor;
   export = Geoprocessor;
+}
+
+declare module "esri/tasks/IdentifyTask" {
+  import IdentifyTask = __esri.IdentifyTask;
+  export = IdentifyTask;
 }
 
 declare module "esri/tasks/ImageServiceIdentifyTask" {
@@ -6603,6 +6758,16 @@ declare module "esri/tasks/support/FeatureSet" {
   export = FeatureSet;
 }
 
+declare module "esri/tasks/support/FindParameters" {
+  import FindParameters = __esri.FindParameters;
+  export = FindParameters;
+}
+
+declare module "esri/tasks/support/FindResult" {
+  import FindResult = __esri.FindResult;
+  export = FindResult;
+}
+
 declare module "esri/tasks/support/GeneralizeParameters" {
   import GeneralizeParameters = __esri.GeneralizeParameters;
   export = GeneralizeParameters;
@@ -6611,6 +6776,16 @@ declare module "esri/tasks/support/GeneralizeParameters" {
 declare module "esri/tasks/support/GPMessage" {
   import GPMessage = __esri.GPMessage;
   export = GPMessage;
+}
+
+declare module "esri/tasks/support/IdentifyParameters" {
+  import IdentifyParameters = __esri.IdentifyParameters;
+  export = IdentifyParameters;
+}
+
+declare module "esri/tasks/support/IdentifyResult" {
+  import IdentifyResult = __esri.IdentifyResult;
+  export = IdentifyResult;
 }
 
 declare module "esri/tasks/support/ImageServiceIdentifyParameters" {
