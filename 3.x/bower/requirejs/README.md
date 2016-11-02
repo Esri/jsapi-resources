@@ -1,7 +1,7 @@
 # Bower Sample application
 ======
 
-This is a sample application showing how to use [bower](http://bower.io/) to build your [ArcGIS API for JavaScript](https://developers.arcgis.com/javascript/3/) application.
+This is a sample application showing how to use [Bower](http://bower.io/) to build your [ArcGIS API for JavaScript](https://developers.arcgis.com/javascript/3/) application.
 It provides a Gruntfile for build scenario using RequireJS.
 
 # Requirements

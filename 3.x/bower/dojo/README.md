@@ -7,12 +7,10 @@ It provides a Gruntfile for build scenario using Dojo.
 # Requirements
 * [node & npm](https://nodejs.org/)
 * [bower](http://bower.io/)
-* [grunt](http://gruntjs.com/)
 * [java 7 or greater](https://java.com/en/download/) - for [Closure Compiler](https://github.com/google/closure-compiler) used during build
 
 # Usage
 * `npm install -g bower` - installs bower
-* `npm install -g grunt-cli` - installs global grunt
 * `npm install` - installs required node and bower packages
 * `npm run clean` - removes built files from `dist` directory
 * `npm run build` - run the Dojo build on application
