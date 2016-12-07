@@ -1,14 +1,13 @@
 # Sass
-======
 
 This is a sample setup showing how to use [Bower](http://bower.io/) to customize the CSS for your [ArcGIS API for JavaScript](https://developers.arcgis.com/javascript/) application. It provides a Gruntfile needed to compile Sass.
 
-# Requirements
+## Requirements
 * [node & npm](https://nodejs.org/)
 * [bower](http://bower.io/)
 * [grunt](http://gruntjs.com/)
 
-# Usage
+## Usage
 * `npm install -g bower` - installs bower globally
 * `npm install` - installs required node and bower packages
 * `npm run styles` - compiles the Sass files
