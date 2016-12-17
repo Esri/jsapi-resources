@@ -3019,11 +3019,11 @@ declare namespace __esri {
   }
 
   interface SimpleMarkerSymbol extends MarkerSymbol {
-    color: Color;
-    outline: SimpleLineSymbol;
-    path: string;
-    size: number;
-    style: string;
+    color?: Color | string;
+    outline?: SimpleLineSymbol;
+    path?: string;
+    size?: number | string;
+    style?: string;
 
     clone(): SimpleMarkerSymbol;
   }
@@ -3037,10 +3037,10 @@ declare namespace __esri {
   export const SimpleMarkerSymbol: SimpleMarkerSymbolConstructor;
 
   interface SimpleMarkerSymbolProperties extends MarkerSymbolProperties {
-    color?: Color;
+    color?: Color | string;
     outline?: SimpleLineSymbolProperties;
     path?: string;
-    size?: number;
+    size?: number | string;
     style?: string;
   }
 
