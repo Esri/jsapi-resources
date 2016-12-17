@@ -442,18 +442,18 @@ declare namespace __esri {
   }
 
   export interface MapViewConstraints {
-    lods: LOD[];
-    minScale: number;
-    maxScale: number;
-    minZoom: number;
-    maxZoom: number;
-    snapToZoom: boolean;
-    rotationEnabled: boolean;
-    effectiveLODs: number;
-    effectiveMinZoom: number;
-    effectiveMaxZoom: number;
-    effectiveMinScale: number;
-    effectiveMaxScale: number;
+    lods?: LOD[];
+    minScale?: number;
+    maxScale?: number;
+    minZoom?: number;
+    maxZoom?: number;
+    snapToZoom?: boolean;
+    rotationEnabled?: boolean;
+    effectiveLODs?: number;
+    effectiveMinZoom?: number;
+    effectiveMaxZoom?: number;
+    effectiveMinScale?: number;
+    effectiveMaxScale?: number;
   }
 
   export interface MapViewGoToOptions {
@@ -7180,7 +7180,7 @@ declare module "esri/kernel" {
 
 declare module "esri/request" {
   import request = __esri.request;
-  export = request.esriRequest;
+  export = request;
 }
 
 declare module "esri/core/lang" {
