@@ -3315,7 +3315,7 @@ declare namespace __esri {
 
     addressesToLocations(params: LocatorAddressesToLocationsParams): IPromise<any>;
     addressToLocations(params: LocatorAddressToLocationsParams, address?: any, outFields?: string[]): IPromise<any>;
-    locationToAddress(location: Point, distance: number): IPromise<any>;
+    locationToAddress(location: Point, distance?: number): IPromise<any>;
     suggestLocations(params: LocatorSuggestLocationsParams): any;
   }
 
