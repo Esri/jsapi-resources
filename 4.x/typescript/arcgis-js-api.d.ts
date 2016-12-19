@@ -442,18 +442,18 @@ declare namespace __esri {
   }
 
   export interface MapViewConstraints {
-    lods: LOD[];
-    minScale: number;
-    maxScale: number;
-    minZoom: number;
-    maxZoom: number;
-    snapToZoom: boolean;
-    rotationEnabled: boolean;
-    effectiveLODs: number;
-    effectiveMinZoom: number;
-    effectiveMaxZoom: number;
-    effectiveMinScale: number;
-    effectiveMaxScale: number;
+    lods?: LOD[];
+    minScale?: number;
+    maxScale?: number;
+    minZoom?: number;
+    maxZoom?: number;
+    snapToZoom?: boolean;
+    rotationEnabled?: boolean;
+    effectiveLODs?: number;
+    effectiveMinZoom?: number;
+    effectiveMaxZoom?: number;
+    effectiveMinScale?: number;
+    effectiveMaxScale?: number;
   }
 
   export interface MapViewGoToOptions {
@@ -3019,11 +3019,11 @@ declare namespace __esri {
   }
 
   interface SimpleMarkerSymbol extends MarkerSymbol {
-    color: Color;
-    outline: SimpleLineSymbol;
-    path: string;
-    size: number;
-    style: string;
+    color?: Color | string;
+    outline?: SimpleLineSymbol;
+    path?: string;
+    size?: number | string;
+    style?: string;
 
     clone(): SimpleMarkerSymbol;
   }
@@ -3037,10 +3037,10 @@ declare namespace __esri {
   export const SimpleMarkerSymbol: SimpleMarkerSymbolConstructor;
 
   interface SimpleMarkerSymbolProperties extends MarkerSymbolProperties {
-    color?: Color;
+    color?: Color | string;
     outline?: SimpleLineSymbolProperties;
     path?: string;
-    size?: number;
+    size?: number | string;
     style?: string;
   }
 
@@ -3315,7 +3315,7 @@ declare namespace __esri {
 
     addressesToLocations(params: LocatorAddressesToLocationsParams): IPromise<any>;
     addressToLocations(params: LocatorAddressToLocationsParams, address?: any, outFields?: string[]): IPromise<any>;
-    locationToAddress(location: Point, distance: number): IPromise<any>;
+    locationToAddress(location: Point, distance?: number): IPromise<any>;
     suggestLocations(params: LocatorSuggestLocationsParams): any;
   }
 
@@ -7180,7 +7180,7 @@ declare module "esri/kernel" {
 
 declare module "esri/request" {
   import request = __esri.request;
-  export = request.esriRequest;
+  export = request;
 }
 
 declare module "esri/core/lang" {
