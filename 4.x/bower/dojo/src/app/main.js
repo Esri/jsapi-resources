@@ -9,7 +9,8 @@ define([
   Search, SearchVM
 ) {
   var map = new Map({
-    basemap: "streets"
+    basemap: "streets-night-vector",
+    ground: "world-elevation"
   });
 
   var view = new SceneView({

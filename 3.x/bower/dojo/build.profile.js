@@ -13,13 +13,13 @@ var profile = {
   internStrings: true,
   // `basePath` is relative to the directory containing this profile file; in this case, it is being set to the
   // src/ directory, which is the same place as the `baseUrl` directory in the loader configuration.
-  basePath: './src',
+  basePath: "./src",
 
   // Builds a new release.
-  action: 'release',
+  action: "release",
 
   // Strips all comments and whitespace from CSS files and inlines @imports where possible.
-  cssOptimize: 'comments',
+  cssOptimize: "comments",
 
   // Excludes tests, demos, and original template files from being included in the built version.
   mini: true,
@@ -27,31 +27,32 @@ var profile = {
   // Uses Closure Compiler or "uglify" as the JavaScript minifier. This can also be set to "shrinksafe" to use ShrinkSafe,
   // though ShrinkSafe is deprecated and not recommended.
   // This option defaults to "" (no compression) if not provided.
-  optimize: 'closure',
+  optimize: "closure",
 
-  // We're building layers, so we need to set the minifier to use for those, too.
+  // We"re building layers, so we need to set the minifier to use for those, too.
   // This defaults to "shrinksafe" if not provided.
-  layerOptimize: 'closure',
+  layerOptimize: "closure",
 
   // A list of packages that will be built. The same packages defined in the loader should be defined here in the
   // build profile.
   packages: [
-    // 'app' is a sample path for your application
+    // "app" is a sample path for your application
     // set this accordingly
-    'app',
-    'dijit',
-    'dojo',
-    'dojox',
-    'dstore',
-    'dgrid',
-    'xstyle',
-    'put-selector',
-    'esri', {
-      name: 'moment',
-      location: 'moment',
-      main: 'moment',
+    "app",
+    "dijit",
+    "dojo",
+    "dojox",
+    "dstore",
+    "dgrid",
+    "dgrid1",
+    "xstyle",
+    "put-selector",
+    "esri", {
+      name: "moment",
+      location: "moment",
+      main: "moment",
       trees: [
-          // don't bother with .hidden, tests, min, src, and templates
+          // don"t bother with .hidden, tests, min, src, and templates
           [".", ".", /(\/\.)|(~$)|(test|txt|src|min|templates)/]
       ],
       resourceTags: {
@@ -72,12 +73,12 @@ var profile = {
   // Strips all calls to console functions within the code. You can also set this to "warn" to strip everything
   // but console.error, and any other truthy value to strip everything but console.warn and console.error.
   // This defaults to "normal" (strip all but warn and error) if not provided.
-  stripConsole: 'none', // if set to "all" will remove all console messages, include warnings and errors.
+  stripConsole: "none", // if set to "all" will remove all console messages, include warnings and errors.
 
   // The default selector engine is not included by default in a dojo.js build in order to make mobile builds
   // smaller. We add it back here to avoid that extra HTTP request. There is also an "acme" selector available; if
   // you use that, you will need to set the `selectorEngine` property in index.html, too.
-  selectorEngine: 'acme',
+  selectorEngine: "acme",
 
   // Any module in an application can be converted into a "layer" module, which consists of the original module +
   // additional dependencies built into the same file. Using layers allows applications to reduce the number of HTTP
@@ -86,7 +87,7 @@ var profile = {
     // This is the main loader module. It is a little special because it is treated like an AMD module even though
     // it is actually just plain JavaScript. There is some extra magic in the build system specifically for this
     // module ID.
-    'dojo/dojo': {
+    "dojo/dojo": {
       // By default, the build system will try to include `dojo/main` in the built `dojo/dojo` layer, which adds
       // a bunch of stuff we do not want or need. We want the initial script load to be as small and quick to
       // load as possible, so we configure it as a custom, bootable base.
@@ -94,24 +95,24 @@ var profile = {
       customBase: true,
       include: [
         // include the app, set accordingly for your application
-        'app/main',
+        "app/main",
         // dependencies of esri/map that will be requested if not included
-        'dojox/gfx/path',
-        'dojox/gfx/svg',
-        'dojox/gfx/filters',
-        'dojox/gfx/svgext',
-        'dojox/gfx/shape',
-        'esri/dijit/Attribution',
-        'esri/IdentityManager'
+        "dojox/gfx/path",
+        "dojox/gfx/svg",
+        "dojox/gfx/filters",
+        "dojox/gfx/svgext",
+        "dojox/gfx/shape",
+        "esri/dijit/Attribution",
+        "esri/IdentityManager"
       ],
       // You can define the locale for your application if you like
-      includeLocales: ['en-us']
+      includeLocales: ["en-us"]
     },
-    'esri/layers/VectorTileLayerImpl': {
+    "esri/layers/VectorTileLayerImpl": {
       include: [
-        'esri/layers/VectorTileLayerImpl'
+        "esri/layers/VectorTileLayerImpl"
       ],
-      includeLocales: ['en-us']
+      includeLocales: ["en-us"]
     }
   },
   // Providing hints to the build system allows code to be conditionally removed on a more granular level than simple
@@ -121,22 +122,22 @@ var profile = {
   // <http://dojotoolkit.org/reference-guide/dojo/has.html>.
   staticHasFeatures: {
     // The trace & log APIs are used for debugging the loader, so we do not need them in the build.
-    'dojo-trace-api': 0,
-    'dojo-log-api': 0,
+    "dojo-trace-api": 0,
+    "dojo-log-api": 0,
 
     // This causes normally private loader data to be exposed for debugging. In a release build, we do not need
     // that either.
-    'dojo-publish-privates': 0,
+    "dojo-publish-privates": 0,
 
     // This application is pure AMD, so get rid of the legacy loader.
-    'dojo-sync-loader': 0,
+    "dojo-sync-loader": 0,
 
     // `dojo-xhr-factory` relies on `dojo-sync-loader`, which we have removed.
-    'dojo-xhr-factory': 0,
+    "dojo-xhr-factory": 0,
 
     // We are not loading tests in production, so we can get rid of some test sniffing code.
-    'dojo-test-sniff': 0,
-    'extend-esri': 0,
+    "dojo-test-sniff": 0,
+    "extend-esri": 0,
 
     "config-deferredInstrumentation": 0,
     "config-dojo-loader-catches": 0,
@@ -165,16 +166,16 @@ var profile = {
   },
   defaultConfig: {
     parseOnLoad: true,
-    deps: ['app/main'],
+    deps: ["app/main"],
     hasCache: {
-      'extend-esri': 0,
-      'dojo-has-api': 1,
-      'dojo-undef-api': 0
+      "extend-esri": 0,
+      "dojo-has-api": 1,
+      "dojo-undef-api": 0
     },
     packages: [{
-      name: 'moment',
-      location: 'moment',
-      main: 'moment'
+      name: "moment",
+      location: "moment",
+      main: "moment"
     }]
   }
 };

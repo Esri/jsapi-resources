@@ -2,6 +2,7 @@ node_modules/
 dist/
 
 dgrid/
+dgrid1/
 dijit/
 dojo/src/dojo/
 dojo/src/dojo-themes/

@@ -4,6 +4,7 @@ dist/
 dgrid/
 dijit/
 dojo/src/dojo/
+dojo/src/dojo-themes/
 dojox/
 domReady/
 dstore/
@@ -13,6 +14,7 @@ i18n
 put-selector/
 requirejs/src/requirejs/
 requirejs/src/dojo/
+requirejs/src/dojo-themes/
 text/
 util/
 xstyle/

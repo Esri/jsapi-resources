@@ -12,10 +12,11 @@
   },
   "license": "Apache-2.0",
   "devDependencies": {
-    "grunt": "^0.4.5",
-    "grunt-contrib-clean": "^0.6.0",
-    "grunt-contrib-copy": "^0.8.0",
-    "grunt-contrib-requirejs": "^0.4.4",
-    "uglify-js": "^2.4.23"
+    "grunt": "^1.0.0",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-requirejs": "^1.0.0",
+    "uglify-js": "^2.4.23",
+    "grunt-sass": "^2.0.0"
   }
 }

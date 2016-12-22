@@ -9,14 +9,12 @@
     "i18n": "requirejs/i18n#~2.0.6"
   },
   "dependencies": {
-    "esri": "arcgis-js-api#4.1.0",
+    "esri": "arcgis-js-api#4.2.0",
     "requirejs": "~2.3.2"
   },
   "resolutions": {
-    "dgrid": "1.1.0-esri",
-    "dstore": "v1.1.1",
-    "dojo": "v1.11.2/esri-3.18.0",
-    "dijit": "v1.11.2/esri-3.18.0",
-    "dojox": "v1.11.2/esri-3.18.0"
+    "dojo": "v1.11.2/esri-3.19.0",
+    "dijit": "v1.11.2/esri-3.19.0",
+    "dojox": "v1.11.2/esri-3.19.0"
   }
 }
