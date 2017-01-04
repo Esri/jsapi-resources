@@ -381,6 +381,25 @@ declare namespace __esri {
     label: string;
   }
 
+  export interface PointCloudClassBreaksRendererColorClassBreakInfos {
+    minValue: number;
+    maxValue: number;
+    color: Color;
+    label: string;
+  }
+
+  export interface PointCloudStretchRendererStops {
+    value: number;
+    label: string;
+    color: Color;
+  }
+
+  export interface PointCloudUniqueValueRendererColorUniqueValueInfos {
+    values: number[];
+    color: Color;
+    label: string;
+  }
+
   export interface FillSymbol3DLayerOutline {
     color: Color | string;
     size: number | string;
@@ -673,6 +692,12 @@ declare namespace __esri {
     id: string;
   }
 
+  export interface ColorSliderValues {
+    color: Color;
+    value: number;
+    label: string;
+  }
+
   export interface LegendLayerInfos {
     title: string;
     layer: Layer;
@@ -790,6 +815,11 @@ declare namespace __esri {
     allowImageDataAccess?: boolean;
   }
 
+  export interface urlUtilsAddProxyRuleRule {
+    proxyUrl: string;
+    urlPrefix: string;
+  }
+
   export interface decoratorsPropertyPropertyMetadata {
     dependsOn?: string[];
     type?: Function;
@@ -798,9 +828,208 @@ declare namespace __esri {
     aliasOf?: string;
   }
 
-  export interface urlUtilsAddProxyRuleRule {
-    proxyUrl: string;
-    urlPrefix: string;
+  export interface colorCreateContinuousRendererParams {
+    layer: FeatureLayer | SceneLayer;
+    field: string;
+    normalizationField?: string;
+    basemap?: string | Basemap;
+    theme?: string;
+    colorScheme?: any;
+    legendOptions?: colorCreateContinuousRendererParamsLegendOptions;
+    statistics?: any;
+    minValue?: number;
+    maxValue?: number;
+    defaultSymbolEnabled?: boolean;
+    view?: SceneView;
+    symbolType?: string;
+  }
+
+  export interface colorCreateContinuousRendererParamsLegendOptions {
+    title: string;
+  }
+
+  export interface colorCreateVisualVariableParams {
+    layer: FeatureLayer | SceneLayer;
+    field: string;
+    normalizationField?: string;
+    basemap?: string | Basemap;
+    theme?: string;
+    colorScheme?: any;
+    legendOptions?: colorCreateVisualVariableParamsLegendOptions;
+    statistics?: any;
+    minValue?: number;
+    maxValue?: number;
+    view?: SceneView;
+    worldScale?: boolean;
+  }
+
+  export interface colorCreateVisualVariableParamsLegendOptions {
+    title: string;
+  }
+
+  export interface locationCreateRendererParams {
+    layer: FeatureLayer | SceneLayer;
+    basemap?: string | Basemap;
+    locationScheme?: any | any | any;
+    view?: SceneView;
+    symbolType?: string;
+  }
+
+  export interface sizeCreateContinuousRendererParams {
+    layer: FeatureLayer | SceneLayer;
+    field: string;
+    normalizationField?: string;
+    basemap?: string | Basemap;
+    sizeScheme?: any | any | any;
+    legendOptions?: sizeCreateContinuousRendererParamsLegendOptions;
+    statistics?: any;
+    minValue?: number;
+    maxValue?: number;
+    defaultSymbolEnabled?: boolean;
+    view?: SceneView;
+    symbolType?: string;
+  }
+
+  export interface sizeCreateContinuousRendererParamsLegendOptions {
+    title: string;
+  }
+
+  export interface sizeCreateVisualVariableParams {
+    layer: FeatureLayer | SceneLayer;
+    field: string;
+    normalizationField?: string;
+    basemap?: string | Basemap;
+    sizeScheme?: any | any | any;
+    legendOptions?: sizeCreateVisualVariableParamsLegendOptions;
+    statistics?: any;
+    minValue?: number;
+    maxValue?: number;
+    view?: SceneView;
+    worldScale?: boolean;
+  }
+
+  export interface sizeCreateVisualVariableParamsLegendOptions {
+    title: string;
+  }
+
+  export interface univariateColorSizeCreateContinuousRendererParams {
+    layer: FeatureLayer | SceneLayer;
+    basemap?: string | Basemap;
+    field: string;
+    normalizationField?: string;
+    statistics?: any;
+    minValue?: number;
+    maxValue?: number;
+    defaultSymbolEnabled?: boolean;
+    colorOptions?: univariateColorSizeCreateContinuousRendererParamsColorOptions;
+    sizeOptions?: univariateColorSizeCreateContinuousRendererParamsSizeOptions;
+    view?: SceneView;
+    symbolType?: string;
+  }
+
+  export interface univariateColorSizeCreateContinuousRendererParamsColorOptions {
+    theme?: string;
+    colorScheme?: any;
+    legendOptions?: univariateColorSizeCreateContinuousRendererParamsColorOptionsLegendOptions;
+  }
+
+  export interface univariateColorSizeCreateContinuousRendererParamsColorOptionsLegendOptions {
+    title: string;
+  }
+
+  export interface univariateColorSizeCreateContinuousRendererParamsSizeOptions {
+    sizeScheme?: any | any | any;
+    legendOptions?: univariateColorSizeCreateContinuousRendererParamsSizeOptionsLegendOptions;
+  }
+
+  export interface univariateColorSizeCreateContinuousRendererParamsSizeOptionsLegendOptions {
+    title: string;
+  }
+
+  export interface univariateColorSizeCreateVisualVariablesParams {
+    layer: FeatureLayer | SceneLayer;
+    basemap?: string | Basemap;
+    field: string;
+    normalizationField?: string;
+    statistics?: any;
+    minValue?: number;
+    maxValue?: number;
+    colorOptions?: univariateColorSizeCreateVisualVariablesParamsColorOptions;
+    sizeOptions?: univariateColorSizeCreateVisualVariablesParamsSizeOptions;
+    view?: SceneView;
+    worldScale?: boolean;
+  }
+
+  export interface univariateColorSizeCreateVisualVariablesParamsColorOptions {
+    theme?: string;
+    colorScheme?: any;
+    legendOptions?: univariateColorSizeCreateVisualVariablesParamsColorOptionsLegendOptions;
+  }
+
+  export interface univariateColorSizeCreateVisualVariablesParamsColorOptionsLegendOptions {
+    title: string;
+  }
+
+  export interface univariateColorSizeCreateVisualVariablesParamsSizeOptions {
+    sizeScheme?: any | any | any;
+    legendOptions?: univariateColorSizeCreateVisualVariablesParamsSizeOptionsLegendOptions;
+  }
+
+  export interface univariateColorSizeCreateVisualVariablesParamsSizeOptionsLegendOptions {
+    title: string;
+  }
+
+  export interface classBreaksClassBreaksParams {
+    layer: FeatureLayer | SceneLayer;
+    field?: string;
+    normalizationField?: string;
+    classificationMethod?: string;
+    standardDeviationInterval?: number;
+    minValue?: number;
+    maxValue?: number;
+    numClasses?: number;
+  }
+
+  export interface histogramHistogramParams {
+    layer: FeatureLayer | SceneLayer;
+    field?: string;
+    normalizationField?: string;
+    classificationMethod?: string;
+    standardDeviationInterval?: number;
+    minValue?: number;
+    maxValue?: number;
+    numBins?: number;
+  }
+
+  export interface summaryStatisticsSummaryStatisticsParams {
+    layer: FeatureLayer | SceneLayer;
+    field?: string;
+    normalizationField?: string;
+    features?: Graphic[];
+    minValue?: number;
+    maxValue?: number;
+  }
+
+  export interface colorGetSchemesParams {
+    basemap: string | Basemap;
+    geometryType: string;
+    theme: string;
+    view?: SceneView;
+    worldScale?: boolean;
+  }
+
+  export interface locationGetSchemesParams {
+    basemap: string | Basemap;
+    geometryType: string;
+    view?: SceneView;
+    worldScale?: boolean;
+  }
+
+  export interface sizeGetSchemesParams {
+    basemap: string | Basemap;
+    geometryType: string;
+    view?: SceneView;
+    worldScale?: boolean;
   }
 
   interface Evented {
@@ -1147,6 +1376,18 @@ declare namespace __esri {
   interface CollectionProperties {
     length?: number;
   }
+
+  interface Connection {
+    broadcast(methodName: string, data?: any, buffers?: any[]): IPromise<any>[];
+    close(): void;
+    invoke(methodName: string, data?: any, buffers?: any[]): IPromise<any>;
+  }
+
+  interface ConnectionConstructor {
+    new(client: any, id: number): Connection;
+  }
+
+  export const Connection: ConnectionConstructor;
 
   interface Circle extends Polygon {
     center: Point | number[];
@@ -1798,6 +2039,24 @@ declare namespace __esri {
 
   interface OpenStreetMapLayerProperties extends WebTileLayerProperties {
 
+  }
+
+  interface PointCloudLayer extends Layer, SceneService, PortalLayer {
+    fields: Field[];
+    renderer: PointCloudRenderer;
+  }
+
+  interface PointCloudLayerConstructor {
+    new(properties?: PointCloudLayerProperties): PointCloudLayer;
+
+    fromJSON(json: any): PointCloudLayer;
+  }
+
+  export const PointCloudLayer: PointCloudLayerConstructor;
+
+  interface PointCloudLayerProperties extends LayerProperties, SceneServiceProperties, PortalLayerProperties {
+    fields?: FieldProperties[];
+    renderer?: PointCloudRendererProperties;
   }
 
   interface SceneLayer extends Layer, SceneService, PortalLayer {
@@ -2491,7 +2750,7 @@ declare namespace __esri {
     typeKeywords: string[];
     url: string;
 
-    addRating(rating: number | any): IPromise<any>;
+    addRating(rating: number | PortalRating): IPromise<any>;
     deleteRating(): IPromise<any>;
     fetchData(responseType?: string): IPromise<any>;
     fetchRating(): IPromise<any>;
@@ -2536,6 +2795,22 @@ declare namespace __esri {
     type?: string;
     typeKeywords?: string[];
     url?: string;
+  }
+
+  interface PortalRating extends Accessor {
+    created: Date;
+    rating: number;
+  }
+
+  interface PortalRatingConstructor {
+    new(properties?: PortalRatingProperties): PortalRating;
+  }
+
+  export const PortalRating: PortalRatingConstructor;
+
+  interface PortalRatingProperties {
+    created?: Date;
+    rating?: number;
   }
 
   interface PortalQueryParams extends Accessor {
@@ -2755,6 +3030,106 @@ declare namespace __esri {
     uniqueValueInfos?: UniqueValueRendererUniqueValueInfos[];
     valueExpression?: string;
     valueExpressionTitle?: string;
+  }
+
+  interface PointCloudRenderer extends Accessor, JSONSupport {
+    pointsPerInch: number;
+  }
+
+  interface PointCloudRendererConstructor {
+    new(properties?: PointCloudRendererProperties): PointCloudRenderer;
+
+    fromJSON(json: any): PointCloudRenderer;
+  }
+
+  export const PointCloudRenderer: PointCloudRendererConstructor;
+
+  interface PointCloudRendererProperties {
+    pointsPerInch?: number;
+  }
+
+  interface PointCloudClassBreaksRenderer extends PointCloudRenderer {
+    colorClassBreakInfos: PointCloudClassBreaksRendererColorClassBreakInfos[];
+    field: string;
+    fieldTransformType: string;
+    type: string;
+  }
+
+  interface PointCloudClassBreaksRendererConstructor {
+    new(properties?: PointCloudClassBreaksRendererProperties): PointCloudClassBreaksRenderer;
+
+    fromJSON(json: any): PointCloudClassBreaksRenderer;
+  }
+
+  export const PointCloudClassBreaksRenderer: PointCloudClassBreaksRendererConstructor;
+
+  interface PointCloudClassBreaksRendererProperties extends PointCloudRendererProperties {
+    colorClassBreakInfos?: PointCloudClassBreaksRendererColorClassBreakInfos[];
+    field?: string;
+    fieldTransformType?: string;
+    type?: string;
+  }
+
+  interface PointCloudRGBRenderer extends PointCloudRenderer {
+    field: string;
+    type: string;
+  }
+
+  interface PointCloudRGBRendererConstructor {
+    new(properties?: PointCloudRGBRendererProperties): PointCloudRGBRenderer;
+
+    fromJSON(json: any): PointCloudRGBRenderer;
+  }
+
+  export const PointCloudRGBRenderer: PointCloudRGBRendererConstructor;
+
+  interface PointCloudRGBRendererProperties extends PointCloudRendererProperties {
+    field?: string;
+    type?: string;
+  }
+
+  interface PointCloudStretchRenderer extends PointCloudRenderer {
+    field: string;
+    fieldTransformType: string;
+    stops: PointCloudStretchRendererStops[];
+    type: string;
+  }
+
+  interface PointCloudStretchRendererConstructor {
+    new(properties?: PointCloudStretchRendererProperties): PointCloudStretchRenderer;
+
+    fromJSON(json: any): PointCloudStretchRenderer;
+  }
+
+  export const PointCloudStretchRenderer: PointCloudStretchRendererConstructor;
+
+  interface PointCloudStretchRendererProperties extends PointCloudRendererProperties {
+    field?: string;
+    fieldTransformType?: string;
+    stops?: PointCloudStretchRendererStops[];
+    type?: string;
+  }
+
+  interface PointCloudUniqueValueRenderer extends PointCloudRenderer {
+    colorUniqueValueInfos: PointCloudUniqueValueRendererColorUniqueValueInfos[];
+    field: string;
+    fieldTransformType: string;
+    type: string;
+  }
+
+  interface PointCloudUniqueValueRendererConstructor {
+    new(properties?: PointCloudUniqueValueRendererProperties): PointCloudUniqueValueRenderer;
+
+    fromJSON(json: any): PointCloudUniqueValueRenderer;
+  }
+
+  export const PointCloudUniqueValueRenderer: PointCloudUniqueValueRendererConstructor;
+
+  interface PointCloudUniqueValueRendererProperties extends PointCloudRendererProperties {
+    colorUniqueValueInfos?: PointCloudUniqueValueRendererColorUniqueValueInfos[];
+    field?: string;
+    fieldTransformType?: string;
+    type?: string;
   }
 
   interface ExtrudeSymbol3DLayer extends Symbol3DLayer {
@@ -5070,6 +5445,46 @@ declare namespace __esri {
     viewModel?: BasemapToggleViewModelProperties;
   }
 
+  interface ColorSlider extends Accessor {
+    handlesVisible: boolean;
+    histogram: any;
+    histogramVisible: boolean;
+    histogramWidth: number;
+    labelsVisible: boolean;
+    maxValue: number;
+    minValue: number;
+    numHandles: number;
+    statistics: any;
+    statisticsVisible: boolean;
+    syncedHandles: boolean;
+    ticksVisible: boolean;
+    values: ColorSliderValues[];
+    visualVariable: any;
+  }
+
+  interface ColorSliderConstructor {
+    new(properties?: ColorSliderProperties): ColorSlider;
+  }
+
+  export const ColorSlider: ColorSliderConstructor;
+
+  interface ColorSliderProperties {
+    handlesVisible?: boolean;
+    histogram?: any;
+    histogramVisible?: boolean;
+    histogramWidth?: number;
+    labelsVisible?: boolean;
+    maxValue?: number;
+    minValue?: number;
+    numHandles?: number;
+    statistics?: any;
+    statisticsVisible?: boolean;
+    syncedHandles?: boolean;
+    ticksVisible?: boolean;
+    values?: ColorSliderValues[];
+    visualVariable?: any;
+  }
+
   interface Compass extends Accessor {
     view: SceneView | MapView;
     viewModel: CompassViewModel;
@@ -5106,6 +5521,26 @@ declare namespace __esri {
     view?: MapView | SceneView;
     viewModel?: HomeViewModelProperties;
     viewpoint?: ViewpointProperties;
+  }
+
+  interface LayerList extends Widget {
+    createActionsFunction: Function;
+    view: SceneView | MapView;
+    viewModel: LayerListViewModel;
+
+    render(): any;
+  }
+
+  interface LayerListConstructor {
+    new(properties?: LayerListProperties): LayerList;
+  }
+
+  export const LayerList: LayerListConstructor;
+
+  interface LayerListProperties extends WidgetProperties {
+    createActionsFunction?: Function;
+    view?: SceneView | MapView;
+    viewModel?: LayerListViewModelProperties;
   }
 
   interface Legend extends Accessor {
@@ -5184,7 +5619,6 @@ declare namespace __esri {
     title: string;
     view: MapView | SceneView;
     viewModel: PopupViewModel;
-    visible: boolean;
 
     clear(): void;
     close(): void;
@@ -5217,7 +5651,26 @@ declare namespace __esri {
     title?: string;
     view?: MapView | SceneView;
     viewModel?: PopupViewModelProperties;
-    visible?: boolean;
+  }
+
+  interface Print extends Widget {
+    printServiceUrl: string;
+    view: MapView;
+    viewModel: PrintViewModel;
+
+    render(): any;
+  }
+
+  interface PrintConstructor {
+    new(properties?: PrintProperties): Print;
+  }
+
+  export const Print: PrintConstructor;
+
+  interface PrintProperties extends WidgetProperties {
+    printServiceUrl?: string;
+    view?: MapViewProperties;
+    viewModel?: PrintViewModelProperties;
   }
 
   interface Search extends Accessor, Evented {
@@ -5280,6 +5733,46 @@ declare namespace __esri {
     viewModel?: SearchViewModelProperties;
   }
 
+  interface SizeSlider extends Accessor {
+    handlesVisible: boolean;
+    histogram: any;
+    histogramVisible: boolean;
+    histogramWidth: number;
+    labelsVisible: boolean;
+    maxSize: number;
+    maxValue: number;
+    minSize: number;
+    minValue: number;
+    statistics: any;
+    statisticsVisible: boolean;
+    ticksVisible: boolean;
+    values: number[];
+    visualVariable: any;
+  }
+
+  interface SizeSliderConstructor {
+    new(properties?: SizeSliderProperties): SizeSlider;
+  }
+
+  export const SizeSlider: SizeSliderConstructor;
+
+  interface SizeSliderProperties {
+    handlesVisible?: boolean;
+    histogram?: any;
+    histogramVisible?: boolean;
+    histogramWidth?: number;
+    labelsVisible?: boolean;
+    maxSize?: number;
+    maxValue?: number;
+    minSize?: number;
+    minValue?: number;
+    statistics?: any;
+    statisticsVisible?: boolean;
+    ticksVisible?: boolean;
+    values?: number[];
+    visualVariable?: any;
+  }
+
   interface Track extends Accessor {
     geolocationOptions: any;
     goToLocationEnabled: boolean;
@@ -5307,8 +5800,50 @@ declare namespace __esri {
     viewModel?: TrackViewModelProperties;
   }
 
+  interface UnivariateColorSizeSlider extends Accessor {
+    handlesVisible: boolean;
+    histogram: any;
+    histogramVisible: boolean;
+    histogramWidth: number;
+    labelsVisible: boolean;
+    maxSize: number;
+    maxValue: number;
+    minSize: number;
+    minValue: number;
+    statistics: any;
+    statisticsVisible: boolean;
+    ticksVisible: boolean;
+    values: number[];
+    visualVariables: any[];
+  }
+
+  interface UnivariateColorSizeSliderConstructor {
+    new(properties?: UnivariateColorSizeSliderProperties): UnivariateColorSizeSlider;
+  }
+
+  export const UnivariateColorSizeSlider: UnivariateColorSizeSliderConstructor;
+
+  interface UnivariateColorSizeSliderProperties {
+    handlesVisible?: boolean;
+    histogram?: any;
+    histogramVisible?: boolean;
+    histogramWidth?: number;
+    labelsVisible?: boolean;
+    maxSize?: number;
+    maxValue?: number;
+    minSize?: number;
+    minValue?: number;
+    statistics?: any;
+    statisticsVisible?: boolean;
+    ticksVisible?: boolean;
+    values?: number[];
+    visualVariables?: any[];
+  }
+
   interface Widget extends Accessor, Evented {
+    container: string;
     destroyed: boolean;
+    id: string;
 
     destroy(): void;
     postInitialize(): void;
@@ -5323,7 +5858,9 @@ declare namespace __esri {
   export const Widget: WidgetConstructor;
 
   interface WidgetProperties {
+    container?: string;
     destroyed?: boolean;
+    id?: string;
   }
 
   interface Zoom extends Accessor {
@@ -5418,6 +5955,28 @@ declare namespace __esri {
     viewpoint?: ViewpointProperties;
   }
 
+  interface LayerListViewModel extends Accessor {
+    createActionsFunction: Function;
+    operationalItems: Collection;
+    state: string;
+    view: SceneView | MapView;
+
+    triggerAction(actionIndex: number): void;
+  }
+
+  interface LayerListViewModelConstructor {
+    new(properties?: LayerListViewModelProperties): LayerListViewModel;
+  }
+
+  export const LayerListViewModel: LayerListViewModelConstructor;
+
+  interface LayerListViewModelProperties {
+    createActionsFunction?: Function;
+    operationalItems?: Collection;
+    state?: string;
+    view?: SceneView | MapView;
+  }
+
   interface LocateViewModel extends Accessor, Evented, GeolocationPositioning {
     state: string;
 
@@ -5452,6 +6011,26 @@ declare namespace __esri {
     navigationMode?: string;
     state?: string;
     view?: SceneViewProperties;
+  }
+
+  interface PrintViewModel extends Accessor {
+    printServiceUrl: string;
+    updateDelay: number;
+    view: MapView;
+
+    print(printTemplate: PrintTemplate): IPromise<any>;
+  }
+
+  interface PrintViewModelConstructor {
+    new(properties?: PrintViewModelProperties): PrintViewModel;
+  }
+
+  export const PrintViewModel: PrintViewModelConstructor;
+
+  interface PrintViewModelProperties {
+    printServiceUrl?: string;
+    updateDelay?: number;
+    view?: MapViewProperties;
   }
 
   interface PopupViewModel extends Accessor, Evented {
@@ -6009,22 +6588,19 @@ declare namespace __esri {
   export const request: typeof __requestMapped.esriRequest;
 
 
-  interface decorators {
-    aliasOf(propertyName: string): Function;
-    cast(propertyName: string): Function;
-    cast(classFunction: Function): void;
-    declared<T>(baseClass: T, ...mixinClasses: any[]): T;
-    property(propertyMetadata?: decoratorsPropertyPropertyMetadata): Function;
-    subclass(declaredClass?: string): Function;
-  }
-
-  export const decorators: decorators;
-
   interface lang {
     clone(elem: any): any;
   }
 
   export const lang: lang;
+
+  interface promiseUtils {
+    eachAlways(promises: IPromise<any>[]): IPromise<any>[];
+    reject(error?: any): IPromise<any>;
+    resolve(value?: any): IPromise<any>;
+  }
+
+  export const promiseUtils: promiseUtils;
 
   interface urlUtils {
     addProxyRule(rule: urlUtilsAddProxyRuleRule): number;
@@ -6055,6 +6631,23 @@ declare namespace __esri {
   }
 
   export const watchUtils: watchUtils;
+
+  interface decorators {
+    aliasOf(propertyName: string): Function;
+    cast(propertyName: string): Function;
+    cast(classFunction: Function): void;
+    declared<T>(baseClass: T, ...mixinClasses: any[]): T;
+    property(propertyMetadata?: decoratorsPropertyPropertyMetadata): Function;
+    subclass(declaredClass?: string): Function;
+  }
+
+  export const decorators: decorators;
+
+  interface workers {
+    open(client: any, modulePath: string): IPromise<any>;
+  }
+
+  export const workers: workers;
 
   interface geometryEngine {
     buffer(geometry: Geometry | Geometry[], distance: number | number[], unit: string | number, unionResults?: boolean): Polygon | Polygon[];
@@ -6156,11 +6749,89 @@ declare namespace __esri {
 
   export const webMercatorUtils: webMercatorUtils;
 
+  interface color {
+    createContinuousRenderer(params: colorCreateContinuousRendererParams): IPromise<any>;
+    createVisualVariable(params: colorCreateVisualVariableParams): IPromise<any>;
+  }
+
+  export const color: color;
+
+  interface location {
+    createRenderer(params: locationCreateRendererParams): IPromise<any>;
+  }
+
+  export const location: location;
+
+  interface size {
+    createContinuousRenderer(params: sizeCreateContinuousRendererParams): IPromise<any>;
+    createVisualVariable(params: sizeCreateVisualVariableParams): IPromise<any>;
+  }
+
+  export const size: size;
+
+  interface univariateColorSize {
+    createContinuousRenderer(params: univariateColorSizeCreateContinuousRendererParams): IPromise<any>;
+    createVisualVariables(params: univariateColorSizeCreateVisualVariablesParams): IPromise<any>;
+  }
+
+  export const univariateColorSize: univariateColorSize;
+
+  interface classBreaks {
+    classBreaks(params: classBreaksClassBreaksParams): IPromise<any>;
+  }
+
+  export const classBreaks: classBreaks;
+
+  interface histogram {
+    histogram(params: histogramHistogramParams): IPromise<any>;
+  }
+
+  export const histogram: histogram;
+
+  interface summaryStatistics {
+    summaryStatistics(params: summaryStatisticsSummaryStatisticsParams): IPromise<any>;
+  }
+
+  export const summaryStatistics: summaryStatistics;
+
+  interface symbologyColor {
+    cloneScheme(scheme: any): any;
+    flipColors(scheme: any): any;
+    getSchemes(params: colorGetSchemesParams): any;
+    getThemes(basemap?: string | Basemap): any[];
+  }
+
+  export const symbologyColor: symbologyColor;
+
+  interface symbologyLocation {
+    cloneScheme(scheme: any | any | any): any | any | any;
+    getSchemes(params: locationGetSchemesParams): any;
+  }
+
+  export const symbologyLocation: symbologyLocation;
+
+  interface symbologySize {
+    cloneScheme(scheme: any | any | any): any;
+    getSchemes(params: sizeGetSchemesParams): any;
+  }
+
+  export const symbologySize: symbologySize;
+
   interface supportJsonUtils {
     fromJSON(json: any): Renderer;
   }
 
   export const supportJsonUtils: supportJsonUtils;
+
+  interface Action {
+    className: string;
+    id: string;
+    image: string;
+    title: string;
+    visible: boolean;
+  }
+
+  export const Action: Action;
 
   interface symbolsSupportJsonUtils {
     fromJSON(json: any): Symbol;
@@ -6188,6 +6859,21 @@ declare namespace __esri {
   }
 
   export const widget: widget;
+
+  interface ListItem {
+    actionsOpen: boolean;
+    actionsSections: Collection;
+    children: Collection;
+    error: Error;
+    open: boolean;
+    title: string;
+    updating: boolean;
+    visibilityMode: string;
+    visible: boolean;
+    visibleAtCurrentScale: boolean;
+  }
+
+  export const ListItem: ListItem;
 }
 
 declare module "esri" {
@@ -6317,6 +7003,12 @@ declare module "esri" {
 
   export import UniqueValueRendererUniqueValueInfos = __esri.UniqueValueRendererUniqueValueInfos;
 
+  export import PointCloudClassBreaksRendererColorClassBreakInfos = __esri.PointCloudClassBreaksRendererColorClassBreakInfos;
+
+  export import PointCloudStretchRendererStops = __esri.PointCloudStretchRendererStops;
+
+  export import PointCloudUniqueValueRendererColorUniqueValueInfos = __esri.PointCloudUniqueValueRendererColorUniqueValueInfos;
+
   export import FillSymbol3DLayerOutline = __esri.FillSymbol3DLayerOutline;
 
   export import IconSymbol3DLayerOutline = __esri.IconSymbol3DLayerOutline;
@@ -6407,6 +7099,8 @@ declare module "esri" {
 
   export import SlideVisibleLayers = __esri.SlideVisibleLayers;
 
+  export import ColorSliderValues = __esri.ColorSliderValues;
+
   export import LegendLayerInfos = __esri.LegendLayerInfos;
 
   export import PopupDockOptions = __esri.PopupDockOptions;
@@ -6431,9 +7125,59 @@ declare module "esri" {
 
   export import requestEsriRequestOptions = __esri.requestEsriRequestOptions;
 
+  export import urlUtilsAddProxyRuleRule = __esri.urlUtilsAddProxyRuleRule;
+
   export import decoratorsPropertyPropertyMetadata = __esri.decoratorsPropertyPropertyMetadata;
 
-  export import urlUtilsAddProxyRuleRule = __esri.urlUtilsAddProxyRuleRule;
+  export import colorCreateContinuousRendererParams = __esri.colorCreateContinuousRendererParams;
+
+  export import colorCreateContinuousRendererParamsLegendOptions = __esri.colorCreateContinuousRendererParamsLegendOptions;
+
+  export import colorCreateVisualVariableParams = __esri.colorCreateVisualVariableParams;
+
+  export import colorCreateVisualVariableParamsLegendOptions = __esri.colorCreateVisualVariableParamsLegendOptions;
+
+  export import locationCreateRendererParams = __esri.locationCreateRendererParams;
+
+  export import sizeCreateContinuousRendererParams = __esri.sizeCreateContinuousRendererParams;
+
+  export import sizeCreateContinuousRendererParamsLegendOptions = __esri.sizeCreateContinuousRendererParamsLegendOptions;
+
+  export import sizeCreateVisualVariableParams = __esri.sizeCreateVisualVariableParams;
+
+  export import sizeCreateVisualVariableParamsLegendOptions = __esri.sizeCreateVisualVariableParamsLegendOptions;
+
+  export import univariateColorSizeCreateContinuousRendererParams = __esri.univariateColorSizeCreateContinuousRendererParams;
+
+  export import univariateColorSizeCreateContinuousRendererParamsColorOptions = __esri.univariateColorSizeCreateContinuousRendererParamsColorOptions;
+
+  export import univariateColorSizeCreateContinuousRendererParamsColorOptionsLegendOptions = __esri.univariateColorSizeCreateContinuousRendererParamsColorOptionsLegendOptions;
+
+  export import univariateColorSizeCreateContinuousRendererParamsSizeOptions = __esri.univariateColorSizeCreateContinuousRendererParamsSizeOptions;
+
+  export import univariateColorSizeCreateContinuousRendererParamsSizeOptionsLegendOptions = __esri.univariateColorSizeCreateContinuousRendererParamsSizeOptionsLegendOptions;
+
+  export import univariateColorSizeCreateVisualVariablesParams = __esri.univariateColorSizeCreateVisualVariablesParams;
+
+  export import univariateColorSizeCreateVisualVariablesParamsColorOptions = __esri.univariateColorSizeCreateVisualVariablesParamsColorOptions;
+
+  export import univariateColorSizeCreateVisualVariablesParamsColorOptionsLegendOptions = __esri.univariateColorSizeCreateVisualVariablesParamsColorOptionsLegendOptions;
+
+  export import univariateColorSizeCreateVisualVariablesParamsSizeOptions = __esri.univariateColorSizeCreateVisualVariablesParamsSizeOptions;
+
+  export import univariateColorSizeCreateVisualVariablesParamsSizeOptionsLegendOptions = __esri.univariateColorSizeCreateVisualVariablesParamsSizeOptionsLegendOptions;
+
+  export import classBreaksClassBreaksParams = __esri.classBreaksClassBreaksParams;
+
+  export import histogramHistogramParams = __esri.histogramHistogramParams;
+
+  export import summaryStatisticsSummaryStatisticsParams = __esri.summaryStatisticsSummaryStatisticsParams;
+
+  export import colorGetSchemesParams = __esri.colorGetSchemesParams;
+
+  export import locationGetSchemesParams = __esri.locationGetSchemesParams;
+
+  export import sizeGetSchemesParams = __esri.sizeGetSchemesParams;
 }
 
 declare module "esri/core/Evented" {
@@ -6499,6 +7243,11 @@ declare module "esri/core/Accessor" {
 declare module "esri/core/Collection" {
   import Collection = __esri.Collection;
   export = Collection;
+}
+
+declare module "esri/core/workers/Connection" {
+  import Connection = __esri.Connection;
+  export = Connection;
 }
 
 declare module "esri/geometry/Circle" {
@@ -6626,6 +7375,11 @@ declare module "esri/layers/OpenStreetMapLayer" {
   export = OpenStreetMapLayer;
 }
 
+declare module "esri/layers/PointCloudLayer" {
+  import PointCloudLayer = __esri.PointCloudLayer;
+  export = PointCloudLayer;
+}
+
 declare module "esri/layers/SceneLayer" {
   import SceneLayer = __esri.SceneLayer;
   export = SceneLayer;
@@ -6751,6 +7505,11 @@ declare module "esri/portal/PortalItem" {
   export = PortalItem;
 }
 
+declare module "esri/portal/PortalRating" {
+  import PortalRating = __esri.PortalRating;
+  export = PortalRating;
+}
+
 declare module "esri/portal/PortalQueryParams" {
   import PortalQueryParams = __esri.PortalQueryParams;
   export = PortalQueryParams;
@@ -6784,6 +7543,31 @@ declare module "esri/renderers/SimpleRenderer" {
 declare module "esri/renderers/UniqueValueRenderer" {
   import UniqueValueRenderer = __esri.UniqueValueRenderer;
   export = UniqueValueRenderer;
+}
+
+declare module "esri/renderers/PointCloudRenderer" {
+  import PointCloudRenderer = __esri.PointCloudRenderer;
+  export = PointCloudRenderer;
+}
+
+declare module "esri/renderers/PointCloudClassBreaksRenderer" {
+  import PointCloudClassBreaksRenderer = __esri.PointCloudClassBreaksRenderer;
+  export = PointCloudClassBreaksRenderer;
+}
+
+declare module "esri/renderers/PointCloudRGBRenderer" {
+  import PointCloudRGBRenderer = __esri.PointCloudRGBRenderer;
+  export = PointCloudRGBRenderer;
+}
+
+declare module "esri/renderers/PointCloudStretchRenderer" {
+  import PointCloudStretchRenderer = __esri.PointCloudStretchRenderer;
+  export = PointCloudStretchRenderer;
+}
+
+declare module "esri/renderers/PointCloudUniqueValueRenderer" {
+  import PointCloudUniqueValueRenderer = __esri.PointCloudUniqueValueRenderer;
+  export = PointCloudUniqueValueRenderer;
 }
 
 declare module "esri/symbols/ExtrudeSymbol3DLayer" {
@@ -7266,6 +8050,11 @@ declare module "esri/widgets/BasemapToggle" {
   export = BasemapToggle;
 }
 
+declare module "esri/widgets/ColorSlider" {
+  import ColorSlider = __esri.ColorSlider;
+  export = ColorSlider;
+}
+
 declare module "esri/widgets/Compass" {
   import Compass = __esri.Compass;
   export = Compass;
@@ -7274,6 +8063,11 @@ declare module "esri/widgets/Compass" {
 declare module "esri/widgets/Home" {
   import Home = __esri.Home;
   export = Home;
+}
+
+declare module "esri/widgets/LayerList" {
+  import LayerList = __esri.LayerList;
+  export = LayerList;
 }
 
 declare module "esri/widgets/Legend" {
@@ -7296,14 +8090,29 @@ declare module "esri/widgets/Popup" {
   export = Popup;
 }
 
+declare module "esri/widgets/Print" {
+  import Print = __esri.Print;
+  export = Print;
+}
+
 declare module "esri/widgets/Search" {
   import Search = __esri.Search;
   export = Search;
 }
 
+declare module "esri/widgets/SizeSlider" {
+  import SizeSlider = __esri.SizeSlider;
+  export = SizeSlider;
+}
+
 declare module "esri/widgets/Track" {
   import Track = __esri.Track;
   export = Track;
+}
+
+declare module "esri/widgets/UnivariateColorSizeSlider" {
+  import UnivariateColorSizeSlider = __esri.UnivariateColorSizeSlider;
+  export = UnivariateColorSizeSlider;
 }
 
 declare module "esri/widgets/Widget" {
@@ -7336,6 +8145,11 @@ declare module "esri/widgets/Home/HomeViewModel" {
   export = HomeViewModel;
 }
 
+declare module "esri/widgets/LayerList/LayerListViewModel" {
+  import LayerListViewModel = __esri.LayerListViewModel;
+  export = LayerListViewModel;
+}
+
 declare module "esri/widgets/Locate/LocateViewModel" {
   import LocateViewModel = __esri.LocateViewModel;
   export = LocateViewModel;
@@ -7344,6 +8158,11 @@ declare module "esri/widgets/Locate/LocateViewModel" {
 declare module "esri/widgets/NavigationToggle/NavigationToggleViewModel" {
   import NavigationToggleViewModel = __esri.NavigationToggleViewModel;
   export = NavigationToggleViewModel;
+}
+
+declare module "esri/widgets/Print/PrintViewModel" {
+  import PrintViewModel = __esri.PrintViewModel;
+  export = PrintViewModel;
 }
 
 declare module "esri/widgets/Popup/PopupViewModel" {
@@ -7466,14 +8285,14 @@ declare module "esri/request" {
   export = request;
 }
 
-declare module "esri/core/accessorSupport/decorators" {
-  import decorators = __esri.decorators;
-  export = decorators;
-}
-
 declare module "esri/core/lang" {
   import lang = __esri.lang;
   export = lang;
+}
+
+declare module "esri/core/promiseUtils" {
+  import promiseUtils = __esri.promiseUtils;
+  export = promiseUtils;
 }
 
 declare module "esri/core/urlUtils" {
@@ -7484,6 +8303,16 @@ declare module "esri/core/urlUtils" {
 declare module "esri/core/watchUtils" {
   import watchUtils = __esri.watchUtils;
   export = watchUtils;
+}
+
+declare module "esri/core/accessorSupport/decorators" {
+  import decorators = __esri.decorators;
+  export = decorators;
+}
+
+declare module "esri/core/workers" {
+  import workers = __esri.workers;
+  export = workers;
 }
 
 declare module "esri/geometry/geometryEngine" {
@@ -7506,9 +8335,64 @@ declare module "esri/geometry/support/webMercatorUtils" {
   export = webMercatorUtils;
 }
 
+declare module "esri/renderers/smartMapping/creators/color" {
+  import color = __esri.color;
+  export = color;
+}
+
+declare module "esri/renderers/smartMapping/creators/location" {
+  import location = __esri.location;
+  export = location;
+}
+
+declare module "esri/renderers/smartMapping/creators/size" {
+  import size = __esri.size;
+  export = size;
+}
+
+declare module "esri/renderers/smartMapping/creators/univariateColorSize" {
+  import univariateColorSize = __esri.univariateColorSize;
+  export = univariateColorSize;
+}
+
+declare module "esri/renderers/smartMapping/statistics/classBreaks" {
+  import classBreaks = __esri.classBreaks;
+  export = classBreaks;
+}
+
+declare module "esri/renderers/smartMapping/statistics/histogram" {
+  import histogram = __esri.histogram;
+  export = histogram;
+}
+
+declare module "esri/renderers/smartMapping/statistics/summaryStatistics" {
+  import summaryStatistics = __esri.summaryStatistics;
+  export = summaryStatistics;
+}
+
+declare module "esri/renderers/smartMapping/symbology/color" {
+  import symbologyColor = __esri.symbologyColor;
+  export = symbologyColor;
+}
+
+declare module "esri/renderers/smartMapping/symbology/location" {
+  import symbologyLocation = __esri.symbologyLocation;
+  export = symbologyLocation;
+}
+
+declare module "esri/renderers/smartMapping/symbology/size" {
+  import symbologySize = __esri.symbologySize;
+  export = symbologySize;
+}
+
 declare module "esri/renderers/support/jsonUtils" {
   import supportJsonUtils = __esri.supportJsonUtils;
   export = supportJsonUtils;
+}
+
+declare module "esri/support/Action" {
+  import Action = __esri.Action;
+  export = Action;
 }
 
 declare module "esri/symbols/support/jsonUtils" {
@@ -7524,4 +8408,9 @@ declare module "esri/views/3d/externalRenderers" {
 declare module "esri/widgets/support/widget" {
   import widget = __esri.widget;
   export = widget;
+}
+
+declare module "esri/widgets/LayerList/ListItem" {
+  import ListItem = __esri.ListItem;
+  export = ListItem;
 }
