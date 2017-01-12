@@ -2,10 +2,8 @@
 
 The [arcgis-js-api.d.ts](arcgis-js-api.d.ts) file provides type definitions for ArcGIS API for JavaScript.
 
-The [typings][10] tool may be used to install this using the command:  
-`typings install --global github:Esri/jsapi-resources/3.x/typescript/arcgis-js-api.d.ts`
-
-A copy of this file is also available at [DefinitelyTyped][1] and [NuGet][2].
+A copy of this file is also available at [DefinitelyTyped][1] and may be installed using the command:  
+`npm install --save @types/arcgis-js-api@3`
 
 ## Requirements
 
@@ -25,8 +23,7 @@ Switch to the `gh-pages` branch to see the JavaScript output files.
 * Type definitions for many other libraries are available [here][9].
 
 
-[1]: https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/arcgis-js-api
-[2]: http://www.nuget.org/packages/arcgis-js-api.TypeScript.DefinitelyTyped/
+[1]: https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/arcgis-js-api/v3
 [3]: http://www.typescriptlang.org/
 [4]: https://esri.github.io/jsapi-resources/typescript/demo.html
 [5]: https://github.com/Microsoft/TypeScript/wiki
@@ -34,4 +31,3 @@ Switch to the `gh-pages` branch to see the JavaScript output files.
 [7]: https://www.sitepen.com/blog/2013/12/31/definitive-guide-to-typescript/
 [8]: https://github.com/dojo/typings
 [9]: https://github.com/DefinitelyTyped/DefinitelyTyped
-[10]: https://github.com/typings/typings
