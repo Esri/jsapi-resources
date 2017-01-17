@@ -2,7 +2,10 @@
   "name": "demo",
   "version": "1.0.0",
   "description": "Demo application using TypeScript with ArcGIS API 4 for JavaScript",
-  "repository": "https://github.com/Esri/jsapi-resources/tree/master/4.x/typescript/demo",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Esri/jsapi-resources.git"
+  },
   "scripts": {
     "dev": "tsc -w",
     "lint": "tslint './app/*.ts'"
