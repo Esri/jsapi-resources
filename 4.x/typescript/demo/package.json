@@ -8,7 +8,7 @@
   },
   "keywords": ["esri", "typescript"],
   "author": "Rene Rubalcava <rrubalcava@esri.com>",
-  "license": "MIT",
+  "license": "Apache 2.0",
   "devDependencies": {
     "tslint": "^4.2.0",
     "typescript": "^2.1.4"
