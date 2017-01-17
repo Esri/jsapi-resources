@@ -1,8 +1,7 @@
 {
   "name": "demo",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Demo application using TypeScript ArcGIS API 4 for JavaScript",
   "scripts": {
     "dev": "tsc -w .",
     "lint": "tslint './app/*.ts'"
@@ -11,10 +10,10 @@
   "author": "Rene Rubalcava <rrubalcava@esri.com>",
   "license": "Apache 2.0",
   "devDependencies": {
-    "tslint": "^4.2.0",
-    "typescript": "^2.1.4"
+    "tslint": "^4.2.0"
   },
   "dependencies": {
+    "typescript": "^2.1.4",
     "@types/arcgis-js-api": "^4.2.0"
   }
 }
