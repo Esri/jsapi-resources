@@ -1,0 +1,19 @@
+{
+  "name": "demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsc -w -p ."
+  },
+  "keywords": ["esri", "typescript"],
+  "author": "Rene Rubalcava <rrubalcava@esri.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "tslint": "^4.2.0",
+    "typescript": "^2.1.4"
+  },
+  "dependencies": {
+    "@types/arcgis-js-api": "^4.2.0"
+  }
+}
