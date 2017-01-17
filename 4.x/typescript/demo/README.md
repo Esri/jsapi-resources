@@ -2,6 +2,7 @@
 
 ## Usage
 
-Clone the repo and run `npm install`
+Clone the repo and run `npm install`.
 
-To start working run `npm run dev`
+* `npm run dev` - Compile TypeScript and watch for file changes.
+* `npm run lint` - Run TSLint on TypeScript files.

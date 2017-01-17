@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "tsc -w -p ."
+    "dev": "tsc -w .",
+    "lint": "tslint './app/*.ts'"
   },
   "keywords": ["esri", "typescript"],
   "author": "Rene Rubalcava <rrubalcava@esri.com>",
