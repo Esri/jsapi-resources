@@ -8,7 +8,8 @@
     "target": "es5",
     "experimentalDecorators": true,
     "preserveConstEnums": true,
-    "suppressImplicitAnyIndexErrors": true
+    "suppressImplicitAnyIndexErrors": true,
+    "types": [ "arcgis-js-api" ]
   },
   "include": [
     "./app/*"
