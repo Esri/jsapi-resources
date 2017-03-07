@@ -7849,7 +7849,7 @@ declare namespace __esri {
   export const DOMContainer: DOMContainerConstructor;
 
   interface DOMContainerProperties {
-    container?: string;
+    container?: string | Node;
     height?: number;
     popup?: Popup;
     resizing?: boolean;
