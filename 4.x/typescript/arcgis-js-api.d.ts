@@ -626,7 +626,7 @@ declare namespace __esri {
     intensity: number;
   }
 
-  export interface LocatorSource {
+  export interface LocatorSource extends SearchSource {
     categories: string[];
     countryCode: string;
     localSearchOptions: any;
@@ -636,7 +636,7 @@ declare namespace __esri {
     singleLineFieldName: string;
   }
 
-  export interface FeatureLayerSource {
+  export interface FeatureLayerSource extends SearchSource {
     displayField: string;
     exactMatch: boolean;
     featureLayer: FeatureLayer;
@@ -1539,7 +1539,7 @@ declare namespace __esri {
     updateLocationEnabled?: boolean;
   }
 
-  export interface SearchSources {
+  export interface SearchSource {
     autoNavigate: boolean;
     resultGraphicEnabled: boolean;
     resultSymbol: Symbol;
@@ -6917,7 +6917,7 @@ declare namespace __esri {
     searching: boolean;
     searchTerm: string;
     selectedResult: any;
-    sources: SearchSources;
+    sources: Collection<SearchSource>;
     suggestions: any[];
     suggestionsEnabled: boolean;
     view: MapView | SceneView;
@@ -6954,7 +6954,7 @@ declare namespace __esri {
     searching?: boolean;
     searchTerm?: string;
     selectedResult?: any;
-    sources?: Collection<SearchSources>;
+    sources?: Collection<SearchSource>;
     suggestions?: any[];
     suggestionsEnabled?: boolean;
     view?: MapView | SceneView;
@@ -8674,7 +8674,7 @@ declare module "esri" {
 
   export import PopupOpenOptions = __esri.PopupOpenOptions;
 
-  export import SearchSources = __esri.SearchSources;
+  export import SearchSources = __esri.SearchSource;
 
   export import SearchViewModelSources = __esri.SearchViewModelSources;
 
