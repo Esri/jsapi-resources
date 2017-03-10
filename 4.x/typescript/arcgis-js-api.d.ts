@@ -650,15 +650,15 @@ declare namespace __esri {
 
   export type WatchCallback = (newValue: any, oldValue: any, propertyName: string, target: Accessor) => void;
 
-  export type ItemCallback = (item: any, index: number) => void;
+  export type ItemCallback<T> = (item: T, index: number) => void;
 
-  export type ItemTestCallback = (item: any, index: number) => boolean;
+  export type ItemTestCallback<T> = (item: T, index: number) => boolean;
 
-  export type ItemMapCallback = (item: any, index: number) => any;
+  export type ItemMapCallback<T> = (item: T, index: number) => any;
 
-  export type ItemReduceCallback = (previousValue: any, currentValue: any, index: number) => any;
+  export type ItemReduceCallback<T> = (previousValue: T, currentValue: T, index: number) => any;
 
-  export type ItemCompareCallback = (firstItem: any, secondItem: any) => number;
+  export type ItemCompareCallback<T> = (firstItem: T, secondItem: T) => number;
 
   export type EventAttachedCallback = (target: any, propName: string, obj: Accessor, eventName: string) => void;
 
@@ -1509,7 +1509,7 @@ declare namespace __esri {
     height: number;
   }
 
-  export interface SlideVisibleLayers extends Collection {
+  export interface SlideVisibleLayers extends Collection<any> {
     id: string;
   }
 
@@ -1539,7 +1539,7 @@ declare namespace __esri {
     updateLocationEnabled?: boolean;
   }
 
-  export interface SearchSources extends Collection {
+  export interface SearchSources {
     autoNavigate: boolean;
     resultGraphicEnabled: boolean;
     resultSymbol: Symbol;
@@ -1883,11 +1883,11 @@ declare namespace __esri {
   export const Evented: EventedConstructor;
 
   interface Basemap extends Accessor, Loadable, JSONSupport {
-    baseLayers: Collection;
+    baseLayers: Collection<TileLayer>;
     id: string;
     loaded: boolean;
     portalItem: PortalItem;
-    referenceLayers: Collection;
+    referenceLayers: Collection<TiledLayer>;
     thumbnailUrl: string;
     title: string;
 
@@ -1906,11 +1906,11 @@ declare namespace __esri {
   export const Basemap: BasemapConstructor;
 
   interface BasemapProperties extends LoadableProperties {
-    baseLayers?: Collection;
+    baseLayers?: Collection<TileLayer>;
     id?: string;
     loaded?: boolean;
     portalItem?: PortalItemProperties;
-    referenceLayers?: Collection;
+    referenceLayers?: Collection<TiledLayer>;
     thumbnailUrl?: string;
     title?: string;
   }
@@ -1999,7 +1999,7 @@ declare namespace __esri {
   }
 
   interface Ground extends Accessor {
-    layers: Collection;
+    layers: Collection<ElevationLayer>;
 
     clone(): Ground;
     queryElevation(geometry: Point | Multipoint | Polyline, options?: GroundQueryElevationOptions): IPromise<any>;
@@ -2012,11 +2012,11 @@ declare namespace __esri {
   export const Ground: GroundConstructor;
 
   interface GroundProperties {
-    layers?: Collection;
+    layers?: Collection<ElevationLayer>;
   }
 
   interface Map extends Accessor, LayersMixin {
-    allLayers: Collection;
+    allLayers: Collection<Layer>;
     basemap: Basemap;
     ground: Ground;
   }
@@ -2028,13 +2028,13 @@ declare namespace __esri {
   export const Map: MapConstructor;
 
   interface MapProperties extends LayersMixinProperties {
-    allLayers?: Collection;
+    allLayers?: Collection<Layer>;
     basemap?: BasemapProperties;
     ground?: GroundProperties;
   }
 
   interface PopupTemplate extends Accessor, JSONSupport {
-    actions: Collection;
+    actions: Collection<Accessor>;
     content: string;
     fieldInfos: PopupTemplateFieldInfos[];
     overwriteActions: boolean;
@@ -2052,7 +2052,7 @@ declare namespace __esri {
   export const PopupTemplate: PopupTemplateConstructor;
 
   interface PopupTemplateProperties {
-    actions?: Collection;
+    actions?: Collection<Accessor>;
     content?: string | any[] | Function;
     fieldInfos?: PopupTemplateFieldInfos[];
     overwriteActions?: boolean;
@@ -2160,53 +2160,57 @@ declare namespace __esri {
 
 
 
-  interface Collection extends Accessor, Evented {
+  interface Collection<T> extends Accessor, Evented {
     length: number;
 
-    add(item: any, index?: number): void;
-    addMany(items: any[] | Collection, index?: number): void;
-    clone(): Collection;
-    concat(value: any[] | Collection): Collection;
-    every(callback: ItemTestCallback): boolean;
-    filter(callback: ItemTestCallback): Collection;
-    find(callback: ItemTestCallback): any;
-    findIndex(callback: ItemTestCallback): number;
-    flatten(callback: ItemCallback): Collection;
-    forEach(callback: ItemCallback): void;
-    getItemAt(index: number): any;
-    includes(searchElement: any): boolean;
-    indexOf(searchElement: any, fromIndex?: number): number;
+    add(item: T, index?: number): void;
+    addMany(items: T[] | Collection<T>, index?: number): void;
+    clone(): Collection<T>;
+    concat(value: T[] | Collection<T>): Collection<T>;
+    every(callback: ItemTestCallback<T>): boolean;
+    filter(callback: ItemTestCallback<T>): Collection<T>;
+    find(callback: ItemTestCallback<T>): T;
+    findIndex(callback: ItemTestCallback<T>): number;
+    flatten(callback: ItemCallback<T>): Collection<T>;
+    forEach(callback: ItemCallback<T>): void;
+    getItemAt(index: number): T;
+    includes(searchElement: T): boolean;
+    indexOf(searchElement: T, fromIndex?: number): number;
     join(separator?: string): string;
-    lastIndexOf(searchElement: any, fromIndex?: number): number;
-    map(callback: ItemMapCallback): Collection;
-    pop(): any;
-    push(item: any): number;
-    reduce(callback: ItemReduceCallback): any;
-    reduceRight(callback: ItemReduceCallback, initialValue?: any): any;
-    remove(item: any): void;
+    lastIndexOf(searchElement: T, fromIndex?: number): number;
+    map(callback: ItemMapCallback<T>): Collection<T>;
+    pop(): T;
+    push(item: T): number;
+    reduce(callback: ItemReduceCallback<T>): any;
+    reduceRight(callback: ItemReduceCallback<T>, initialValue?: any): any;
+    remove(item: T): void;
     removeAll(): void;
-    removeAt(index: number): any;
-    removeMany(items: any[] | Collection): any;
-    reorder(item: any, index: number): any;
-    reverse(): Collection;
-    shift(): any;
-    slice(begin?: number, end?: number): Collection;
-    some(callback: ItemCallback): boolean;
-    sort(compareFunction?: ItemCompareCallback): void;
-    splice(start: number, deleteCount: number, items: any): any[];
-    toArray(): any[];
-    unshift(items: any): number;
+    removeAt(index: number): T;
+    removeMany(items: any[] | Collection<T>): T;
+    reorder(item: any, index: number): T;
+    reverse(): Collection<T>;
+    shift(): T;
+    slice(begin?: number, end?: number): Collection<T>;
+    some(callback: ItemCallback<T>): boolean;
+    sort(compareFunction?: ItemCompareCallback<T>): void;
+    splice(start: number, deleteCount: number, items: T | T[]): any[];
+    toArray(): T[];
+    unshift(items: T | T[] | Collection<T>): number;
   }
 
-  interface CollectionConstructor {
-    new(properties?: CollectionProperties): Collection;
+  interface CollectionConstructor<T> {
+    new(properties?: CollectionProperties): Collection<T>;
 
 
     isCollection(value: any): boolean;
-    ofType(type: any): any;
+    ofType(type: T): Collection<T>;
   }
 
-  export const Collection: CollectionConstructor;
+  export const Collection: {
+      new <T>(properties?: CollectionProperties): Collection<T>;
+      isCollection(value: any): boolean;
+      ofType<T>(type: T): Collection<T>;
+  }
 
   interface CollectionProperties {
     length?: number;
@@ -2732,7 +2736,7 @@ declare namespace __esri {
     renderer: Renderer;
     returnM: boolean;
     returnZ: boolean;
-    source: Collection;
+    source: Collection<Graphic>;
     spatialReference: SpatialReference;
     token: string;
     url: string;
@@ -2776,7 +2780,7 @@ declare namespace __esri {
     renderer?: RendererProperties;
     returnM?: boolean;
     returnZ?: boolean;
-    source?: Collection;
+    source?: Collection<Graphic>;
     spatialReference?: SpatialReferenceProperties;
     token?: string;
     url?: string;
@@ -2805,7 +2809,7 @@ declare namespace __esri {
 
   interface GraphicsLayer extends Layer, ScaleRangeLayer {
     elevationInfo: GraphicsLayerElevationInfo;
-    graphics: Collection;
+    graphics: Collection<Graphic>;
 
     add(graphic: Graphic): void;
     addMany(graphics: Graphic[]): void;
@@ -2822,7 +2826,7 @@ declare namespace __esri {
 
   interface GraphicsLayerProperties extends LayerProperties, ScaleRangeLayerProperties {
     elevationInfo?: GraphicsLayerElevationInfo;
-    graphics?: Collection;
+    graphics?: Collection<Graphic>;
   }
 
   interface GroupLayer extends Layer, LayersMixin, JSONSupport, PortalLayer {
@@ -3390,7 +3394,7 @@ declare namespace __esri {
     popupTemplate: PopupTemplate;
     renderer: Renderer;
     source: any | any;
-    sublayers: Collection;
+    sublayers: Collection<Sublayer>;
     title: string;
     url: string;
     visible: boolean;
@@ -3418,7 +3422,7 @@ declare namespace __esri {
     popupTemplate?: PopupTemplateProperties;
     renderer?: RendererProperties;
     source?: any | any;
-    sublayers?: Collection;
+    sublayers?: Collection<Sublayer>;
     title?: string;
     url?: string;
     visible?: boolean;
@@ -4491,8 +4495,8 @@ declare namespace __esri {
   }
 
   interface Symbol3D extends Symbol {
-    styleOrigin: Symbol3DStyleOrigin;
-    symbolLayers: Collection;
+      styleOrigin: Symbol3DStyleOrigin;
+      symbolLayers: Collection<Symbol3DLayer>;
   }
 
   interface Symbol3DConstructor {
@@ -4505,7 +4509,7 @@ declare namespace __esri {
 
   interface Symbol3DProperties extends SymbolProperties {
     styleOrigin?: Symbol3DStyleOrigin;
-    symbolLayers?: Collection;
+    symbolLayers?: Collection<Symbol3DLayer>;
   }
 
   interface Symbol3DLayer extends Accessor, JSONSupport {
@@ -6233,11 +6237,11 @@ declare namespace __esri {
   }
 
   interface View extends Accessor, corePromise, BreakpointsOwner, DOMContainer {
-    allLayerViews: Collection;
+    allLayerViews: Collection<LayerView>;
     animation: ViewAnimation;
-    graphics: Collection;
+    graphics: Collection<Graphic>;
     interacting: boolean;
-    layerViews: Collection;
+    layerViews: Collection<LayerView>;
     map: Map;
     padding: ViewPadding;
     ready: boolean;
@@ -6256,11 +6260,11 @@ declare namespace __esri {
   export const View: ViewConstructor;
 
   interface ViewProperties extends BreakpointsOwnerProperties, DOMContainerProperties {
-    allLayerViews?: Collection;
+    allLayerViews?: Collection<LayerView>;
     animation?: ViewAnimationProperties;
-    graphics?: Collection;
+    graphics?: Collection<Graphic>;
     interacting?: boolean;
-    layerViews?: Collection;
+    layerViews?: Collection<LayerView>;
     map?: MapProperties;
     padding?: ViewPadding;
     ready?: boolean;
@@ -6489,7 +6493,7 @@ declare namespace __esri {
   }
 
   interface Presentation extends Accessor {
-    slides: Collection;
+    slides: Collection<Slide>;
 
     clone(): Presentation;
   }
@@ -6501,7 +6505,7 @@ declare namespace __esri {
   export const Presentation: PresentationConstructor;
 
   interface PresentationProperties {
-    slides?: Collection;
+    slides?: Collection<Slide>;
   }
 
   interface Slide extends Accessor {
@@ -6719,7 +6723,7 @@ declare namespace __esri {
 
   interface LayerList extends Widget {
     createActionsFunction: Function;
-    operationalItems: Collection;
+    operationalItems: Collection<ListItem>;
     view: MapView | SceneView;
     viewModel: LayerListViewModel;
 
@@ -6735,7 +6739,7 @@ declare namespace __esri {
 
   interface LayerListProperties extends WidgetProperties {
     createActionsFunction?: Function;
-    operationalItems?: Collection;
+    operationalItems?: Collection<ListItem>;
     view?: MapView | SceneView;
     viewModel?: LayerListViewModelProperties;
   }
@@ -6803,7 +6807,7 @@ declare namespace __esri {
   }
 
   interface Popup extends Accessor, Widgette, Evented {
-    actions: Collection;
+    actions: Collection<Action>;
     content: string;
     currentDockPosition: string;
     dockEnabled: boolean;
@@ -6835,7 +6839,7 @@ declare namespace __esri {
   export const Popup: PopupConstructor;
 
   interface PopupProperties extends WidgetteProperties {
-    actions?: Collection;
+    actions?: Collection<Action>;
     content?: string | any;
     currentDockPosition?: string;
     dockEnabled?: boolean;
@@ -6950,7 +6954,7 @@ declare namespace __esri {
     searching?: boolean;
     searchTerm?: string;
     selectedResult?: any;
-    sources?: SearchSources;
+    sources?: Collection<SearchSources>;
     suggestions?: any[];
     suggestionsEnabled?: boolean;
     view?: MapView | SceneView;
@@ -7125,7 +7129,7 @@ declare namespace __esri {
 
   interface BasemapGalleryViewModel extends Accessor {
     activeBasemap: Basemap;
-    items: Collection;
+    items: Collection<BasemapGalleryItem>;
     source: LocalBasemapsSource | PortalBasemapsSource;
     state: string;
     view: MapView | SceneView;
@@ -7141,7 +7145,7 @@ declare namespace __esri {
 
   interface BasemapGalleryViewModelProperties {
     activeBasemap?: BasemapProperties;
-    items?: Collection;
+    items?: Collection<BasemapGalleryItem>;
     source?: LocalBasemapsSource | PortalBasemapsSource;
     state?: string;
     view?: MapView | SceneView;
@@ -7229,7 +7233,7 @@ declare namespace __esri {
 
   interface LayerListViewModel extends Accessor {
     createActionsFunction: Function;
-    operationalItems: Collection;
+    operationalItems: Collection<ListItem>;
     state: string;
     view: MapView | SceneView;
 
@@ -7244,15 +7248,15 @@ declare namespace __esri {
 
   interface LayerListViewModelProperties {
     createActionsFunction?: Function;
-    operationalItems?: Collection;
+    operationalItems?: Collection<ListItem>;
     state?: string;
     view?: MapView | SceneView;
   }
 
   interface ListItem {
     actionsOpen: boolean;
-    actionsSections: Collection;
-    children: Collection;
+    actionsSections: Collection<Action>;
+    children: Collection<ListItem>;
     error: Error;
     layer: Layer;
     open: boolean;
@@ -7329,7 +7333,7 @@ declare namespace __esri {
   }
 
   interface PopupViewModel extends Accessor, Evented {
-    actions: Collection;
+    actions: Collection<Accessor>;
     content: string;
     featureCount: number;
     features: Graphic[];
@@ -7355,7 +7359,7 @@ declare namespace __esri {
   export const PopupViewModel: PopupViewModelConstructor;
 
   interface PopupViewModelProperties {
-    actions?: Collection;
+    actions?: Collection<Accessor>;
     content?: string | any;
     featureCount?: number;
     features?: GraphicProperties[];
@@ -7605,16 +7609,16 @@ declare namespace __esri {
   }
 
   interface ArcGISDynamicMapService {
-    allSublayers: Collection;
+    allSublayers: Collection<Layer>;
     dpi: number;
     gdbVersion: string;
     imageFormat: string;
     imageMaxHeight: number;
     imageMaxWidth: number;
     imageTransparency: boolean;
-    sublayers: Collection;
+    sublayers: Collection<Layer>;
 
-    createServiceSublayers(): Collection;
+    createServiceSublayers(): Collection<Layer>;
     findSublayerById(id: number): Sublayer;
     getExportImageParameters(options: ArcGISDynamicMapServiceGetExportImageParametersOptions): any;
   }
@@ -7626,14 +7630,14 @@ declare namespace __esri {
   export const ArcGISDynamicMapService: ArcGISDynamicMapServiceConstructor;
 
   interface ArcGISDynamicMapServiceProperties {
-    allSublayers?: Collection;
+    allSublayers?: Collection<Layer>;
     dpi?: number;
     gdbVersion?: string;
     imageFormat?: string;
     imageMaxHeight?: number;
     imageMaxWidth?: number;
     imageTransparency?: boolean;
-    sublayers?: Collection;
+    sublayers?: Collection<Layer>;
   }
 
   interface ArcGISImageService {
@@ -7790,7 +7794,7 @@ declare namespace __esri {
   }
 
   interface LayersMixin {
-    layers: Collection;
+    layers: Collection<Layer>;
 
     add(layers: Layer, index?: number): void;
     addMany(layers: Layer[], index?: number): void;
@@ -7808,7 +7812,7 @@ declare namespace __esri {
   export const LayersMixin: LayersMixinConstructor;
 
   interface LayersMixinProperties {
-    layers?: Collection;
+    layers?: Collection<Layer>;
   }
 
   interface BreakpointsOwner {
@@ -8209,14 +8213,14 @@ declare namespace __esri {
   export const BasemapGalleryItem: BasemapGalleryItem;
 
   interface LocalBasemapsSource {
-    basemaps: Collection;
+    basemaps: Collection<Basemap>;
     state: string;
   }
 
   export const LocalBasemapsSource: LocalBasemapsSource;
 
   interface PortalBasemapsSource {
-    basemaps: Collection;
+    basemaps: Collection<Basemap>;
     filterFunction: Function;
     portal: Portal;
     state: string;
