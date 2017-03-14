@@ -627,23 +627,23 @@ declare namespace __esri {
   }
 
   export interface LocatorSource extends SearchSource {
-    categories: string[];
-    countryCode: string;
-    localSearchOptions: any;
-    locationToAddressDistance: number;
-    searchTemplate: string;
+    categories?: string[];
+    countryCode?: string;
+    localSearchOptions?: any;
+    locationToAddressDistance?: number;
+    searchTemplate?: string;
     locator: Locator;
-    singleLineFieldName: string;
+    singleLineFieldName?: string;
   }
 
   export interface FeatureLayerSource extends SearchSource {
-    displayField: string;
-    exactMatch: boolean;
+    displayField?: string;
+    exactMatch?: boolean;
     featureLayer: FeatureLayer;
-    searchFields: string[];
-    searchQueryParams: any;
-    suggestQueryParams: any;
-    suggestionTemplate: string;
+    searchFields?: string[];
+    searchQueryParams?: any;
+    suggestQueryParams?: any;
+    suggestionTemplate?: string;
   }
 
   export type GetHeader = (headerName: string) => string;
@@ -1540,24 +1540,24 @@ declare namespace __esri {
   }
 
   export interface SearchSource {
-    autoNavigate: boolean;
-    resultGraphicEnabled: boolean;
-    resultSymbol: Symbol;
-    popupEnabled: boolean;
-    suggestionsEnabled: boolean;
-    popup: Popup;
-    maxResults: number;
-    maxSuggestions: number;
-    minSuggestCharacters: number;
-    name: string;
-    outFields: string[];
-    placeholder: string;
-    prefix: string;
-    searchExtent: Extent[];
-    popupOpenOnSelect: boolean;
-    suffix: string;
-    withinViewEnabled: boolean;
-    zoomScale: number;
+    autoNavigate?: boolean;
+    resultGraphicEnabled?: boolean;
+    resultSymbol?: Symbol;
+    popupEnabled?: boolean;
+    suggestionsEnabled?: boolean;
+    popup?: Popup;
+    maxResults?: number;
+    maxSuggestions?: number;
+    minSuggestCharacters?: number;
+    name?: string;
+    outFields?: string[];
+    placeholder?: string;
+    prefix?: string;
+    searchExtent?: Extent[];
+    popupOpenOnSelect?: boolean;
+    suffix?: string;
+    withinViewEnabled?: boolean;
+    zoomScale?: number;
   }
 
   export interface SearchViewModelSources {
@@ -8674,7 +8674,7 @@ declare module "esri" {
 
   export import PopupOpenOptions = __esri.PopupOpenOptions;
 
-  export import SearchSources = __esri.SearchSource;
+  export import SearchSource = __esri.SearchSource;
 
   export import SearchViewModelSources = __esri.SearchViewModelSources;
 
