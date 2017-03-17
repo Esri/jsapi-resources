@@ -4749,10 +4749,10 @@ declare namespace __esri {
     countryCode: string;
     outSpatialReference: SpatialReference;
 
-    addressesToLocations(params: LocatorAddressesToLocationsParams, requestOptions?: any): IPromise<any>;
-    addressToLocations(params: LocatorAddressToLocationsParams, requestOptions?: any): IPromise<any>;
-    locationToAddress(location: Point, distance?: number, requestOptions?: any): IPromise<any>;
-    suggestLocations(params: LocatorSuggestLocationsParams, requestOptions?: any): IPromise<any>;
+    addressesToLocations(params: LocatorAddressesToLocationsParams, requestOptions?: any): IPromise<AddressCandidate[]>;
+    addressToLocations(params: LocatorAddressToLocationsParams, requestOptions?: any): IPromise<AddressCandidate[]>;
+    locationToAddress(location: Point, distance?: number, requestOptions?: any): IPromise<{address:AddressCandidate}>;
+    suggestLocations(params: LocatorSuggestLocationsParams, requestOptions?: any): IPromise<SuggestionResult[]>;
   }
 
   interface LocatorConstructor {
@@ -4765,6 +4765,12 @@ declare namespace __esri {
     categories?: string[];
     countryCode?: string;
     outSpatialReference?: SpatialReferenceProperties;
+  }
+
+  interface SuggestionResult {
+    isCollection: boolean;
+    magicKey: string;
+    text: string;
   }
 
   interface QueryTask extends Task {
