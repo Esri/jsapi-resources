@@ -23,7 +23,7 @@ Switch to the `gh-pages` branch to see the JavaScript output files.
 * Type definitions for many other libraries are available [here][9].
 
 
-[1]: https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/arcgis-js-api/v3
+[1]: https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/arcgis-js-api/v3
 [3]: http://www.typescriptlang.org/
 [4]: https://esri.github.io/jsapi-resources/typescript/demo.html
 [5]: https://github.com/Microsoft/TypeScript/wiki

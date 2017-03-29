@@ -18,7 +18,7 @@ A copy of this file is also available at [DefinitelyTyped][1] and may be install
 * Type definitions for many other libraries are available [here][9].
 
 
-[1]: https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/arcgis-js-api
+[1]: https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/arcgis-js-api
 [3]: http://www.typescriptlang.org/
 [5]: https://github.com/Microsoft/TypeScript/wiki
 [6]: https://github.com/Microsoft/TypeScript/wiki/TypeScript-Editor-Support
