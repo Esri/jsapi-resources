@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "license": "Apache-2.0",
   "dependencies": {
-    "esri": "arcgis-js-api#3.20.0"
+    "esri": "arcgis-js-api#3.20.1"
   },
   "resolutions": {
     "dojo": "v1.12.1/esri-3.20.0",
