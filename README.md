@@ -27,7 +27,7 @@ Refer to the README files in each subdirectory of this repo for specific instruc
 
 ## Contributing
 
-Please see our [guidelines for contributing](contributing).
+Please see our [guidelines for contributing](CONTRIBUTING.md).
 
 ## Licensing
 Copyright 2017 Esri
