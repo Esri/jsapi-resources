@@ -26,10 +26,13 @@ Refer to the README files in each subdirectory of this repo for specific instruc
 * [TypeScript](http://www.typescriptlang.org/)
 
 ## Contributing
-Anyone and everyone is welcome to contribute. We accept pull requests. Feel free to:  
-* Report issues
-* Contribute code
-* Improve documentation
+
+Esri welcomes contributions from anyone and everyone. Please see our [guidelines for contributing](https://github.com/esri/contributing).
+
+We use issues and pull requests to address problems found in the [ArcGIS API for Javascript](http://js.arcgis.com/) here.  If you're asking for help please utilize the supplementary resources below.
+
+* Contact [Esri Tech Support](https://support.esri.com/contact-tech-support)
+* Ask the Esri community on [GeoNet](https://geonet.esri.com/community/developers/web-developers/arcgis-api-for-javascript).
 
 ## Licensing
 Copyright 2017 Esri
