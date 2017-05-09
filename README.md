@@ -17,8 +17,8 @@ A collection of resources for developers using the [ArcGIS API for JavaScript](h
 **OAuth**
 * [HTML for handling callbacks](./oauth/README.md)
 
-## Instructions  
-Refer to the README files in each subdirectory of this repo for specific instructions on how to use a particular resource.  
+## Instructions
+Refer to the README files in each subdirectory of this repo for specific instructions on how to use a particular resource.
 
 ## Resources
 * [ArcGIS API for JavaScript](https://js.arcgis.com)
@@ -26,10 +26,8 @@ Refer to the README files in each subdirectory of this repo for specific instruc
 * [TypeScript](http://www.typescriptlang.org/)
 
 ## Contributing
-Anyone and everyone is welcome to contribute. We accept pull requests. Feel free to:  
-* Report issues
-* Contribute code
-* Improve documentation
+
+Please see our [guidelines for contributing](CONTRIBUTING.md).
 
 ## Licensing
 Copyright 2017 Esri
