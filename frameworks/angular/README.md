@@ -4,7 +4,7 @@ Below are links to tools that will help you use the [ArcGIS API for JavaScript] 
 
 ## Reusable Libraries
 
-### [angular2-esri-loader](https://github.com/tomwayson/angular2-esri-loader)
+### [angular-esri-loader](https://github.com/tomwayson/angular-esri-loader)
 An Angular service to help you load modules from the ArcGIS API for JavaScript (either 3.x or 4.x) using the [esri-loader](https://github.com/tomwayson/esri-loader) library
 
 ###  [angular2-esri4-components](https://github.com/kgs916/angular2-esri4-components)
