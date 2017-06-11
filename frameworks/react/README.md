@@ -7,6 +7,9 @@ Below are links to tools that will help you use the [ArcGIS API for JavaScript] 
 ### [esri-loader](https://github.com/Esri/esri-loader)
 A tiny library to help load ArcGIS API for JavaScript modules in non-Dojo applications (not specific to React)
 
+### [esri-loader-react](https://github.com/davetimmins/esri-loader-react)
+A React component wrapper around esri-loader
+
 ### [arcgis-react-redux-legend](https://github.com/davetimmins/arcgis-react-redux-legend)
 Legend control for ArcGIS JS v4 using React and Redux
 <br /> [View it live](https://davetimmins.com/arcgis-react-redux-legend/)
