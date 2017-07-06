@@ -106,10 +106,7 @@ var profile = {
         /** enforce some modules loading */
         /** not included because dom is -1 */
         "dojo/io/script",
-        "dojo/io/iframe",
-        "dojo/request/script",
-        "dojo/request/iframe",
-        "dojo/NodeList-dom",
+        "dojo/_base/browser",
 
         // esri stuff for 3D maps
         "esri/portal/support/layersCreator",
