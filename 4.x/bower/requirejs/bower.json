@@ -9,7 +9,7 @@
     "i18n": "requirejs/i18n#~2.0.6"
   },
   "dependencies": {
-    "esri": "https://devtopia.esri.com/rene8209/arcgis-js-api-bower.git#4master",
+    "esri": "arcgis-js-api#4.4.0",
     "requirejs": "~2.3.2"
   },
   "resolutions": {

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "license": "Apache-2.0",
   "dependencies": {
-    "esri": "https://devtopia.esri.com/rene8209/arcgis-js-api-bower.git#master"
+    "esri": "arcgis-js-api#3.21.0"
   },
   "resolutions": {
     "dojo": "v1.12.2/esri-3.21.0",
