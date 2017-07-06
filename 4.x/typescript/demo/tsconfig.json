@@ -4,7 +4,7 @@
     "noImplicitAny": true,
     "sourceMap": true,
     "jsx": "react",
-    "reactNamespace": "jsxFactory",
+    "jsxFactory": "tsx",
     "target": "es5",
     "experimentalDecorators": true,
     "preserveConstEnums": true,

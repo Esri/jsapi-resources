@@ -126,6 +126,15 @@ module.exports = function (grunt) {
             "dojo/text": "text/text",
             "dojo/domReady": "domReady/domReady"
           },
+          packages: [
+            "dojo",
+            "dijit",
+            "dojox",
+            "dgrid",
+            "dgrid1",
+            "xstyle",
+            "esri"
+          ],
           throwWhen: { optimize: false  }
         }
       },

@@ -1,12 +1,10 @@
 define([
   "esri/Map",
   "esri/views/SceneView",
-  "esri/widgets/Search",
-  "esri/widgets/Search/SearchViewModel",
-  "dojo/domReady!"
+  "esri/widgets/Search"
 ], function (
   Map, SceneView,
-  Search, SearchVM
+  Search
 ) {
   var map = new Map({
     basemap: "streets-night-vector",
@@ -21,10 +19,6 @@ define([
   });
 
   var searchWidget = new Search({
-    viewModel: new SearchVM({
-      view: view
-    })
+    view: view
   }, "searchDiv");
-
-  searchWidget.startup();
 });
