@@ -2165,7 +2165,7 @@ declare module "esri" {
     /** Length of label description. */
     maxLabelLength?: number;
     /** Number of visible rows. */
-    rows?: number;
+    rows?: number | string;
     /** Tooltip content contains the template name and description. */
     showTooltip?: boolean;
     /** HTML style attributes for the widget. */
