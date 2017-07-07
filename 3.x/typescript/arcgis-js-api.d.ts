@@ -2153,7 +2153,7 @@ declare module "esri" {
   }
   export interface TemplatePickerOptions {
     /** Number of visible columns. */
-    columns?: number;
+    columns?: number | string;
     /** Defines the text to be displayed when the template picker does not have any templates to display. */
     emptyMessage?: string;
     /** Array of input feature layers. */
