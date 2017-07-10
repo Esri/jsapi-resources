@@ -12,7 +12,7 @@ A React component wrapper around esri-loader
 
 ### [arcgis-react-redux-legend](https://github.com/davetimmins/arcgis-react-redux-legend)
 Legend control for ArcGIS JS v4 using React and Redux
-<br /> [View it live](https://davetimmins.com/arcgis-react-redux-legend/)
+<br /> [View it live](https://davetimmins.github.io/arcgis-react-redux-legend/)
 
 ## Example Applications
 
@@ -26,7 +26,7 @@ Example of how to lazy load the ArcGIS API for JavaScript in a react-router appl
 
 ### [create-react-app-esri-loader]( https://github.com/davetimmins/create-react-app-esri-loader/)
 Create React apps with no build configuration. Extended to add the ArcGIS JS API via esri-loader
-<br /> [View it live](https://davetimmins.com/create-react-app-esri-loader/)
+<br /> [View it live](https://davetimmins.github.io/create-react-app-esri-loader/)
 
 ## Additional Resources
 - [React Widgets Sample](https://developers.arcgis.com/javascript/latest/sample-code/widgets-frameworks-react/index.html)
