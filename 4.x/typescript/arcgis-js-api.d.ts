@@ -2766,7 +2766,7 @@ declare namespace __esri {
 
   interface Collection extends Accessor, Evented {
     length: number;
-
+    items: any[];
     add(item: any, index?: number): void;
     addMany(items: any[] | Collection, index?: number): void;
     clone(): this;
