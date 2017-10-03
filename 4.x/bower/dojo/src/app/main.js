@@ -19,6 +19,7 @@ define([
   });
 
   var searchWidget = new Search({
-    view: view
-  }, "searchDiv");
+    view: view,
+    container: "searchDiv"
+  });
 });

@@ -35,7 +35,8 @@ module.exports = function (grunt) {
       compile: {
         options: {
           baseUrl: ".",
-          appDir: "."
+          appDir: ".",
+          preserveLicenseComments: false,
         }
       },
       support: {
@@ -45,16 +46,19 @@ module.exports = function (grunt) {
           optimize: "uglify2",
           optimizeCss: "standard.keepLines.keepWhitespace",
           throwWhen: { optimize: false  },
+          preserveLicenseComments: false,
           paths: {
             "esri": "empty:",
             "dojo": "empty:",
+            "dojo-themes": "empty:",
             "dijit": "empty:",
             "dojox": "empty:",
             "dgrid": "empty:",
             "dstore": "empty:",
-            "moment": "empty:"
+            "moment": "empty:",
+            "moment/templates": "empty:",
           },
-          fileExclusionRegExp: /test|tests|esri|min|src|templates|demo|demos/g
+          fileExclusionRegExp: /test|tests|esri|min|src|demo|demos/g
         }
       },
       single: {
@@ -63,6 +67,7 @@ module.exports = function (grunt) {
           baseUrl: "./src",
           name: "app/main",
           out: "./dist/app/main.js",
+          preserveLicenseComments: false,
           //locale: "en-en",
           // has.js is equivalent, but doesn"t seem to work
           // during RequireJS Optimizer build process
@@ -91,23 +96,16 @@ module.exports = function (grunt) {
            */
           include: [
             "requirejs/require",
-            "dojo/io/script",
-            "dojo/io/iframe",
+            "dojo/_base/browser",
+            "esri/core/request/script",
             "dojo/errors/RequestError",
             "dojo/errors/RequestTimeoutError",
 
-            "dojo/NodeList-dom",
-            "esri/portal/support/layersCreator",
-            "esri/views/3d/layers/VectorTileLayerView3D",
-            "esri/views/3d/layers/ElevationLayerView3D",
-            "esri/views/3d/webgl-engine/lib/FloatingBoxLocalOriginFactory",
-            "esri/views/3d/webgl-engine/lib/Layer",
-            "esri/views/3d/webgl-engine/lib/MaterialCollection",
-            "esri/views/3d/webgl-engine/lib/Octree",
-            "esri/views/3d/webgl-engine/lib/TextTextureAtlas"
+            "dojo/NodeList-dom"
           ],
           exclude: [
             "dojo/domReady",
+            "esri/views/SceneView",
             "dojo/has",
             "dgrid",
             "dojo/i18n", // some methods not available with RequireJS
@@ -131,8 +129,6 @@ module.exports = function (grunt) {
             "dijit",
             "dojox",
             "dgrid",
-            "dgrid1",
-            "xstyle",
             "esri"
           ],
           throwWhen: { optimize: false  }

@@ -96,6 +96,7 @@ var profile = {
       boot: true,
       customBase: true,
       include: [
+        "dojo/domReady",
         // include the app, set accordingly for your application
         "app/main",
         // dependencies of esri/map that will be requested if not included
@@ -105,8 +106,8 @@ var profile = {
 
         /** enforce some modules loading */
         /** not included because dom is -1 */
-        "dojo/io/script",
         "dojo/_base/browser",
+        "esri/core/request/script",
 
         // esri stuff for 3D maps
         "esri/portal/support/layersCreator",
@@ -117,9 +118,14 @@ var profile = {
         "esri/views/3d/webgl-engine/lib/MaterialCollection",
         "esri/views/3d/webgl-engine/lib/Octree",
         "esri/views/3d/webgl-engine/lib/TextTextureAtlas"
-      ],
+      ]
       // You can define the locale for your application if you like
-      includeLocales: ["en-us"]
+      // includeLocales: ["en-us"]
+    },
+    "esri/identity/IdentityManager": {
+      include: [
+        "esri/identity/IdentityManager"
+      ]
     },
     "esri/views/2d/layers/VectorTileLayerView2D": {
       include: [
