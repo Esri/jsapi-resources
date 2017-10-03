@@ -95,8 +95,17 @@ var profile = {
       customBase: true,
       include: [
         // include the app, set accordingly for your application
-        "app/main",
         // dependencies of esri/map that will be requested if not included
+        "dojo/text",
+        "dojo/i18n",
+        "dojo/request/script"
+      ],
+      // You can define the locale for your application if you like
+      includeLocales: ["en-us"]
+    },
+    "app/main": {
+      include: [
+        "app/main",
         "dojox/gfx/path",
         "dojox/gfx/svg",
         "dojox/gfx/filters",
@@ -104,9 +113,7 @@ var profile = {
         "dojox/gfx/shape",
         "esri/dijit/Attribution",
         "esri/IdentityManager"
-      ],
-      // You can define the locale for your application if you like
-      includeLocales: ["en-us"]
+      ]
     },
     "esri/layers/VectorTileLayerImpl": {
       include: [
@@ -166,7 +173,6 @@ var profile = {
   },
   defaultConfig: {
     parseOnLoad: true,
-    deps: ["app/main"],
     hasCache: {
       "extend-esri": 0,
       "dojo-has-api": 1,
