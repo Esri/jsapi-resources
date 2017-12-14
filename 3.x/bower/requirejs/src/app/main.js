@@ -1,27 +1,28 @@
 define([
   "esri/map",
-  "esri/dijit/Popup", "esri/dijit/PopupTemplate",
+  "esri/dijit/PopupTemplate",
   "esri/layers/FeatureLayer",
-  "esri/dijit/Measurement",
-  "dojo/domReady!"
+  "esri/dijit/Measurement"
 ], function (
-  Map, Popup, PopupTemplate, FeatureLayer, Measurement
+  Map, PopupTemplate, FeatureLayer, Measurement
 ) {
-  var popup = new Popup({}, document.createElement("div"));
+
   var map = new Map("map-area", {
     basemap: "streets-vector",
-    center: [-82.44109, 35.6122],
-    zoom: 15,
-    minZoom: 7,
-    infoWindow: popup
+    center: [ -73.92872, 40.71321 ],
+    zoom: 11,
+    minZoom: 7
   });
-  var popupTemplate = new PopupTemplate({
-    title: "Trees",
-    description: "{*}"
-  });
-  var featureLayer = new FeatureLayer("https://services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/Landscape_Trees/FeatureServer/0", {
-    outFields: ["*"],
-    infoTemplate: popupTemplate
+
+  var featureLayer = new FeatureLayer("https://services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/nyc_parks_gardens_hist_sites/FeatureServer/0", {
+    outFields: [ "facname", "proptype", "factype", "address" ],
+    featureReduction: {
+      type: "cluster"
+    },
+    infoTemplate: new PopupTemplate({
+      title: "{facname}",
+      description: "{proptype} {factype} on {address}."
+    })
   });
 
   map.addLayer(featureLayer);
