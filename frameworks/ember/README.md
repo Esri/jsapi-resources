@@ -23,8 +23,7 @@ Set of promise-based, Ember Services for working with ArcGIS Enterprise API
 
 ## Example Applications
 
-### [esrijs4-vm-ember](https://github.com/odoe/esrijs4-vm-ember)
-Using ErsiJS 4.0 View Models with [Ember]
+Most of the above Ember addons include dummy applications that demonstrate how to use them in an Ember application. Follow the "View it live" link under each to see them in action.
 
 ## Additional Resources
  - [Working with Frameworks](../)
