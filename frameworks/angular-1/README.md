@@ -16,6 +16,7 @@ A simple example of how to roll your own AngularJS directive to show an Esri map
 Ionic app demonstrating how to use the Esri ArcGIS API for JavaScript
 
 ## Additional Resources
+ - [2016 DevSummit Presentation on Angular and the ArcGIS API for JavaScript](https://jwasilgeo.github.io/esri-jsapi-and-angular-whats-next-dev-summit-2016/#/)
  - [Angular 1 Widgets Sample](https://developers.arcgis.com/javascript/latest/sample-code/widgets-frameworks-angular/index.html)
  - [Using the ArcGIS API for JavaScript with Angular (2 and above)](../angular)
  - [Working with Frameworks](../)
