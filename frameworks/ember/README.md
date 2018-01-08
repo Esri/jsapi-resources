@@ -27,8 +27,8 @@ Most of the above Ember addons include dummy applications that demonstrate how t
 
 ## Additional Resources
  - [Working with Frameworks](../)
- - [Awesome ArcGIS: Ember ](https://github.com/hhkaos/awesome-arcgis/tree/master/front-end/technologies/ember)
- - [Ember]
-
-[ArcGIS API for JavaScript]:https://developers.arcgis.com/javascript/
-[Ember]:http://emberjs.com/
+ - [Awesome ArcGIS: Ember ](https://esri-es.github.io/awesome-arcgis/front-end/technologies/ember/)
+ - [EmberJS experts](https://esri-es.github.io/arcgis-experts/?topic=EmberJS)
+ - ['ember' search at ArcGIS Search](https://esri-es.github.io/arcgis-search/?search=emberjs)
+ - [ArcGIS API for JavaScript](https://developers.arcgis.com/javascript/)
+ - [Ember](http://emberjs.com/)
