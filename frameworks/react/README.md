@@ -31,8 +31,8 @@ Create React apps with no build configuration. Extended to add the ArcGIS JS API
 ## Additional Resources
 - [React Widgets Sample](https://developers.arcgis.com/javascript/latest/sample-code/widgets-frameworks-react/index.html)
 - [Using the ArcGIS API for JavaScript with Frameworks](../)
-- [Awesome ArcGIS: React ](https://github.com/hhkaos/awesome-arcgis/tree/master/front-end/technologies/react)
-- [React]
-
-[ArcGIS API for JavaScript]:https://developers.arcgis.com/javascript/
-[React]:https://facebook.github.io/react/
+- [Awesome ArcGIS: React ](https://esri-es.github.io/awesome-arcgis/front-end/technologies/react/)
+- [React experts](https://esri-es.github.io/arcgis-experts/?topic=React)
+- ['React' search at ArcGIS Search](https://esri-es.github.io/arcgis-search/?search=react)
+- [ArcGIS API for JavaScript](https://developers.arcgis.com/javascript/)
+- [React](https://facebook.github.io/react/)

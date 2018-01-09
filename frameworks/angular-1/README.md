@@ -20,8 +20,8 @@ Ionic app demonstrating how to use the Esri ArcGIS API for JavaScript
  - [Angular 1 Widgets Sample](https://developers.arcgis.com/javascript/latest/sample-code/widgets-frameworks-angular/index.html)
  - [Using the ArcGIS API for JavaScript with Angular (2 and above)](../angular)
  - [Working with Frameworks](../)
- - [Awesome ArcGIS: Angular ](https://github.com/hhkaos/awesome-arcgis/tree/master/front-end/technologies/angular)
- - [Angular 1]
-
-[ArcGIS API for JavaScript]:https://developers.arcgis.com/javascript/
-[Angular 1]:https://angularjs.org/
+ - [Awesome ArcGIS: Angular ](https://esri-es.github.io/awesome-arcgis/front-end/technologies/angular/)
+ - [Angular experts](https://esri-es.github.io/arcgis-experts/?topic=AngularJS)
+ - ['angular' search at ArcGIS Search](https://esri-es.github.io/arcgis-search/?search=angular)
+ - [ArcGIS API for JavaScript](https://developers.arcgis.com/javascript/)
+ - [Angular 1](https://angularjs.org/)

@@ -25,10 +25,17 @@ Set of promise-based, Ember Services for working with ArcGIS Enterprise API
 
 Most of the above Ember addons include dummy applications that demonstrate how to use them in an Ember application. Follow the "View it live" link under each to see them in action.
 
+## Presentations
+
+|Event|Title|Authors|Video|Slides|
+|---|---|---|---|---|
+|[DevSummit](http://www.esri.com/events/devsummit) 2017|Audacious Enterprise GIS Apps with EmberJs|[David Bouwman](https://esri-es.github.io/arcgis-experts/#expert=dave-bouwman) & [Mike Juniper](https://esri-es.github.io/arcgis-experts/#expert=mike-juniper)|[Video](https://youtu.be/7Bvr7cEQNCg)|n.a.|
+|[DevSummit](http://www.esri.com/events/devsummit) 2016|ArcGIS API for JavaScript Using it with EmberJS|[Frederic Aubry](https://esri-es.github.io/arcgis-experts/#expert=frederic-aubry) & [Rene Rubalcava](https://esri-es.github.io/arcgis-experts/#expert=rene-rubalcava)|[Video](http://www.esri.com/videos/watch?videoid=5026&channelid=LegacyVideo&isLegacy=true&title=arcgis-api-for-javascript-using-it-with-emberjs)|[Slides](http://proceedings.esri.com/library/userconf/devsummit16/papers/dev_int_186.pdf)
+
 ## Additional Resources
  - [Working with Frameworks](../)
- - [Awesome ArcGIS: Ember ](https://github.com/hhkaos/awesome-arcgis/tree/master/front-end/technologies/ember)
- - [Ember]
-
-[ArcGIS API for JavaScript]:https://developers.arcgis.com/javascript/
-[Ember]:http://emberjs.com/
+ - [Awesome ArcGIS: Ember ](https://esri-es.github.io/awesome-arcgis/front-end/technologies/ember/)
+ - [EmberJS experts](https://esri-es.github.io/arcgis-experts/?topic=EmberJS)
+ - ['ember' search at ArcGIS Search](https://esri-es.github.io/arcgis-search/?search=emberjs)
+ - [ArcGIS API for JavaScript](https://developers.arcgis.com/javascript/)
+ - [Ember](http://emberjs.com/)

@@ -37,10 +37,10 @@ Shows how to load ArcGIS modules in an Angular application that uses [systemjs-p
 - [2017 DevSummit Presentation on Angular and the ArcGIS API for JavaScript](https://jwasilgeo.github.io/presentations/2017/angular-and-the-arcgis-api-for-javascript/#/)
 - [Using the ArcGIS API for JavaScript with Angular 1](../angular-1)
 - [Using the ArcGIS API for JavaScript with Frameworks](../)
-- [Awesome ArcGIS: Angular ](https://github.com/hhkaos/awesome-arcgis/tree/master/front-end/technologies/angular)
-- [Angular]
-
-[ArcGIS API for JavaScript]:https://developers.arcgis.com/javascript/
-[Angular]:https://angular.io/
-[Angular CLI]:https://github.com/angular/angular-cli
-[systemjs-plugin-dojo]:https://github.com/beginor/systemjs-plugin-dojo
+- [Awesome ArcGIS: Angular ](https://esri-es.github.io/awesome-arcgis/front-end/technologies/angular/)
+- [Angular experts](https://esri-es.github.io/arcgis-experts/?topic=AngularJS)
+- ['angular' search at ArcGIS Search](https://esri-es.github.io/arcgis-search/?search=angular)
+- [ArcGIS API for JavaScript](https://developers.arcgis.com/javascript/)
+- [Angular](https://angular.io/)
+- [Angular CLI](https://github.com/angular/angular-cli)
+- [systemjs-plugin-dojo](https://github.com/beginor/systemjs-plugin-dojo)
