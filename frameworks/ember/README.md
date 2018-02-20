@@ -21,6 +21,10 @@ A set of Promise based Ember services for working with ArcGIS Server services
 Set of promise-based, Ember Services for working with ArcGIS Enterprise API
 <br />[View it live](https://eapsprod.surge.sh)
 
+### [ember-arcgis-portal-components](https://github.com/Esri/ember-arcgis-portal-components)
+Ember UI components for interacting with items, groups and layers in ArcGIS Online and Enterprise
+<br />[View it live](https://esri.github.io/ember-arcgis-portal-components/)
+
 ## Example Applications
 
 Most of the above Ember addons include dummy applications that demonstrate how to use them in an Ember application. Follow the "View it live" link under each to see them in action.

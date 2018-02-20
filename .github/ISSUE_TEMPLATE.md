@@ -1,6 +1,6 @@
 <!--
 
-Generic requests for assistance with the [ArcGIS API for Javascript](http://js.arcgis.com)are better off made through the following avenues.
+Generic requests for assistance with the [ArcGIS API for Javascript](http://js.arcgis.com) are better off made through the following avenues.
 
 * Esri Tech Support - https://support.esri.com/contact-tech-support
 * the Esri community on GeoNet - https://geonet.esri.com/community/developers/web-developers/arcgis-api-for-javascript
