@@ -19,7 +19,7 @@ The [ArcGIS API for JavaScript Samples ](https://developers.arcgis.com/javascrip
 
 These additional examples demonstrate this approach by creating components from each of these frameworks and using them in an ArcGIS API for JavaScript app:
 
- - [Angular 2](http://odoe.net/blog/angular-2-with-arcgis-js-api/)
+ - [Angular (v2+)](http://odoe.net/blog/angular-2-with-arcgis-js-api/)
  - [Vue.js](http://odoe.net/blog/using-vuejs-arcgis-api-javascript/)
  - [React](https://geonet.esri.com/people/odoe/blog/2015/04/01/esrijs-with-reactjs-updated)
 
