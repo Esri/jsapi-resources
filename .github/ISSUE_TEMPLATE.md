@@ -9,4 +9,7 @@ We welcome feedback and questions related to the TypeScript definitions and othe
 
 -->
 
-- [ ] I am reporting an issue with TypeScript definitions or another resource in this repository.
+I am reporting an issue with 
+
+- [ ] TypeScript definitions
+- [ ] another resource in this repository
