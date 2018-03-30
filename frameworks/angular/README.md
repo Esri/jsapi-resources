@@ -37,8 +37,9 @@ Shows how to load ArcGIS modules in an Angular application that uses [systemjs-p
 
 |Event|Title|Authors|Video|Slides|
 |---|---|---|---|---|
-|[DevSummit](http://www.esri.com/events/devsummit) 2017|Angular and the ArcGIS API for JavaScript|[Andy Gup](https://esri-es.github.io/arcgis-experts/?topic=AngularJS#expert=andy-gup) & [Jacob Wasilkowski](https://esri-es.github.io/arcgis-experts/?topic=AngularJS#expert=jacob-wasilkowski)|[Video](https://youtu.be/-xoHdXfB8Y4)|[Slides](https://jwasilgeo.github.io/presentations/2017/angular-and-the-arcgis-api-for-javascript/#/)|
-|[DevSummit](http://www.esri.com/events/devsummit) 2016|ArcGIS API for JavaScript and AngularJS: What's New and What's Next|[Tom Wayson](https://esri-es.github.io/arcgis-experts/?topic=AngularJS#expert=tom-wayson) & [Jacob Wasilkowski](https://esri-es.github.io/arcgis-experts/?topic=AngularJS#expert=jacob-wasilkowski)||[Slides](https://jwasilgeo.github.io/esri-jsapi-and-angular-whats-next-dev-summit-2016/#/)|
+|[DevSummit](http://www.esri.com/events/devsummit) 2018|Angular and the ArcGIS API for JavaScript|[Andy Gup](https://esri-es.github.io/arcgis-experts/?topic=AngularJS#expert=andy-gup) & [Sean Olson](https://github.com/sean-olson-e) & [Jacob Wasilkowski](https://github.com/jwasilgeo)||[Slides](https://sean-olson-e.github.io/Angular-and-the-ArcGIS-API-for-JavaScript/#/)|
+|[DevSummit](http://www.esri.com/events/devsummit) 2017|Angular and the ArcGIS API for JavaScript|[Andy Gup](https://esri-es.github.io/arcgis-experts/?topic=AngularJS#expert=andy-gup) & [Jacob Wasilkowski](https://github.com/jwasilgeo)|[Video](https://youtu.be/-xoHdXfB8Y4)|[Slides](https://jwasilgeo.github.io/presentations/2017/angular-and-the-arcgis-api-for-javascript/#/)|
+|[DevSummit](http://www.esri.com/events/devsummit) 2016|ArcGIS API for JavaScript and AngularJS: What's New and What's Next|[Tom Wayson](https://esri-es.github.io/arcgis-experts/?topic=AngularJS#expert=tom-wayson) & [Jacob Wasilkowski](https://github.com/jwasilgeo)||[Slides](https://jwasilgeo.github.io/esri-jsapi-and-angular-whats-next-dev-summit-2016/#/)|
 
 ## Additional Resources
 - [Using the ArcGIS API for JavaScript with Angular 1](../angular-1)
