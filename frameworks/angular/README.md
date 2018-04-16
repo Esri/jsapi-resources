@@ -22,14 +22,6 @@ A simple example of an extensible Angular component using Angular CLI.
 ### [ionic2-esri-map](https://github.com/andygup/ionic2-esri-map)
 Prototype app demonstrating how to use Ionic2 with the ArcGIS API for JavaScript
 
-### [angular2-esri-playground](https://github.com/jwasilgeo/angular2-esri-playground)
-Esri-playground: Angular 2 & Esri 4 using [SystemJS](https://github.com/systemjs/systemjs) via [esri-system-js](https://github.com/Esri/esri-system-js)
-<br />[View it live](http://jwasilgeo.github.io/angular2-esri-playground/)
-
-### [angular2-esri-example](https://github.com/tomwayson/angular2-esri-example)
-Example app using the ArcGIS API for JavaScript v3 in an Angular2 app
-<br />[View it live](http://tomwayson.github.io/angular2-esri-example/)
-
 ### [ng2-esri-demo](https://github.com/beginor/ng2-esri-demo)
 Shows how to load ArcGIS modules in an Angular application that uses [systemjs-plugin-dojo].
 
