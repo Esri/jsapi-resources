@@ -1,35 +1,64 @@
 define([
   "esri/map",
-  "esri/dijit/PopupTemplate",
-  "esri/layers/FeatureLayer",
-  "esri/dijit/Measurement"
-], function (
-  Map, PopupTemplate, FeatureLayer, Measurement
-) {
+  "esri/urlUtils",
+  "esri/arcgis/utils",
+  "esri/dijit/ColorInfoSlider"
+], function(Map, urlUtils, arcgisUtils, ColorInfoSlider) {
+  // if accessing webmap from a portal outside of ArcGIS Online, uncomment and replace path with portal URL
+  // arcgisUtils.arcgisUrl = "https://devext.arcgis.com/sharing/content/items";
 
-  var map = new Map("map-area", {
-    basemap: "streets-vector",
-    center: [ -73.92872, 40.71321 ],
-    zoom: 11,
-    minZoom: 7
-  });
+  arcgisUtils
+    .createMap("a5b3d1196239447a880f3e47e5ed467a", "mapDiv")
+    .then(function(response) {
+      var map = response.map;
+      var zipCodeLayerId = map.graphicsLayerIds[0];
+      var zipCodeLayer = map.getLayer(zipCodeLayerId);
 
-  var featureLayer = new FeatureLayer("https://services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/nyc_parks_gardens_hist_sites/FeatureServer/0", {
-    outFields: [ "facname", "proptype", "factype", "address" ],
-    featureReduction: {
-      type: "cluster"
-    },
-    infoTemplate: new PopupTemplate({
-      title: "{facname}",
-      description: "{proptype} {factype} on {address}."
-    })
-  });
+      var renderer = zipCodeLayer.renderer;
+      var authoringColorInfo = renderer.authoringInfo.visualVariables[0];
+      var colorVisualVariable = renderer.visualVariables.filter(function(vv) {
+        return vv.type === authoringColorInfo.type;
+      })[0];
 
-  map.addLayer(featureLayer);
-  map.on("load", function() {
-    var measurement = new Measurement({
-      map: map
-    }, document.getElementById("measureDiv"));
-    measurement.startup();
-  });
+      document.getElementById("title").innerHTML =
+        colorVisualVariable.valueExpressionTitle;
+
+      var sliderMin = 40; // statistical min is 0, but 40 allows us to zoom to the histogram
+      var sliderMax = authoringColorInfo.maxSliderValue;
+
+      zipCodeLayer
+        .addPlugin("esri/plugins/FeatureLayerStatistics")
+        .then(function() {
+          zipCodeLayer.statisticsPlugin
+            .getHistogram({
+              valueExpression: colorVisualVariable.valueExpression,
+              // querying with matching SQL expression gets histogram for full dataset
+              sqlExpression: "( ACSNRETINC / (ACSNRETINC + ACSRETINC) ) * 100",
+              sqlWhere: "ACSNRETINC + ACSRETINC > 0", // avoid dividing by 0
+              numBins: 30,
+              minValue: sliderMin,
+              maxValue: sliderMax
+            })
+            .then(function(histogram) {
+              var colorInfoSlider = new ColorInfoSlider(
+                {
+                  colorInfo: colorVisualVariable,
+                  minValue: sliderMin,
+                  maxValue: sliderMax,
+                  histogram: histogram,
+                  handles: [0, 2, 4],
+                  primaryHandle: 2
+                },
+                "colorSliderElement"
+              );
+              colorInfoSlider.startup();
+
+              // reset renderer for each slider change
+              colorInfoSlider.on("data-change", function(event) {
+                zipCodeLayer.renderer.setVisualVariables([event.colorInfo]);
+                zipCodeLayer.redraw();
+              });
+            });
+        });
+    });
 });

@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "module": "amd",
+    "lib": ["dom", "es2015.promise", "es5", "es6"],
+    "target": "es5",
+    "noImplicitAny": true,
+    "removeComments": true,
+    "jsx": "react",
+    "moduleResolution": "node",
+    "isolatedModules": false,
+    "experimentalDecorators": true,
+    "noEmitHelpers": true,
+    "declaration": false,
+    "noLib": false,
+    "preserveConstEnums": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "strictNullChecks": true,
+
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "noEmitOnError": false,
+    "noUnusedLocals": true,
+    "importHelpers": true,
+    "skipLibCheck": true
+  },
+  "types": [
+    "arcgis-js-api",
+    "moment"
+  ],
+  "include": [
+    "src/*"
+  ]
+}

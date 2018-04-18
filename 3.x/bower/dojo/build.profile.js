@@ -120,6 +120,12 @@ var profile = {
         "esri/layers/VectorTileLayerImpl"
       ],
       includeLocales: ["en-us"]
+    },
+    "esri/layers/support/webglDeps": {
+      include: [
+        "esri/layers/support/webglDeps"
+      ],
+      includeLocales: ["en-us"]
     }
   },
   // Providing hints to the build system allows code to be conditionally removed on a more granular level than simple
@@ -167,14 +173,14 @@ var profile = {
     "dojo-timeout-api": 0,
     "dojo-undef-api": 0,
     "dojo-v1x-i18n-Api": 1,
-    "dom": 1,
+    "dom": -1,
     "host-browser": 1,
     "extend-dojo": 1
   },
   defaultConfig: {
     parseOnLoad: true,
     hasCache: {
-      "extend-esri": 0,
+      "extend-esri": 1,
       "dojo-has-api": 1,
       "dojo-undef-api": 0
     },

@@ -7,61 +7,42 @@
     <link rel="stylesheet" href="dijit/themes/nihilo/nihilo.css">
     <link rel="stylesheet" href="esri/css/esri.css">
     <style>
-      html, body, #map {
-        height: 100%;
-        width: 100%;
-        margin: 0;
-        padding: 0;
-      }
-
-      body {
-        background-color: #FFF;
-        overflow: hidden;
-      }
-
-      #banner {
-        position: fixed;
-        z-index: 999;
-        top: 0;
-        right: 0;
-        padding: 2em;
-        background-color: #EDA959;
-        color: #fff;
-        font-family: sans-serif;
-      }
-
-      #map-area {
-        position: absolute;
-        right: 0;
-        left: 0;
-        top: 0;
-        bottom: 0;
-      }
-
-      #measureDiv {
-        position: absolute;
-        z-index: 999;
-        bottom: 1em;
-        left: 1em;
-        height: 250px;
-        width: 300px;
-        padding: 1em;
-        background-color: rgba(229, 241, 249, 0.75);
-        border: #007AC2 2px solid;
-        font-family: sans-serif;
-      }
+    html, body, #mapDiv{
+      padding:0;
+      margin:0;
+      height:100%;
+      width: 100%;
+    }
+    #infoDiv {
+      height: 320px;
+      z-index: 2;
+      padding: 10px;
+      width: 250px;
+      background-color: white;
+      position: absolute;
+      left: 20px;
+      bottom: 20px;
+      font-family: Verdana, Helvetica, sans-serif;
+      font-size: 16px;
+      color: #444;
+      text-align: center;
+    }
     </style>
   </head>
   <body class="nihilo">
-    <div id="banner">Unbuilt Application</div>
-    <div id="measureDiv"></div>
-    <div id="map-area"></div>
-
+    <div id="mapDiv"></div>
+    <div id="infoDiv">
+        <span id="title"></span>
+        <div id="colorSliderElement"></div>
+    </div>
     <script>
       // set up your dojoConfig
       window.dojoConfig = {
         baseUrl: '.',
-        deps: ['app/main'],
+        isDebug: 1,
+        has: {
+          "esri-featurelayer-webgl": 1
+        },
         packages: [
           'app',
           'dijit',
@@ -82,6 +63,7 @@
 
     <!-- Can use Dojo loader directly -->
     <script src="dojo/dojo.js"></script>
+    <script>require(["app/main"]);</script>
 
   </body>
 </html>
