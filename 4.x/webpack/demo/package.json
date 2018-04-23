@@ -27,7 +27,7 @@
     "build": "webpack --mode production"
   },
   "dependencies": {
-    "@arcgis/webpack-plugin": "^1.0.0",
+    "@arcgis/webpack-plugin": "^4.7.0",
     "calcite-web": "github:Esri/calcite-web#v1.0.0-rc.8",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
