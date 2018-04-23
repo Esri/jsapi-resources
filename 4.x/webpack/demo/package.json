@@ -22,7 +22,6 @@
   },
   "license": "Apache-2.0",
   "scripts": {
-    "dll": "webpack --config library.webpack.config.js",
     "start": "webpack-dev-server --mode development --open",
     "build": "webpack --mode production"
   },
