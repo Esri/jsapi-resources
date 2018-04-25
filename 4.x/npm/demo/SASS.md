@@ -1,15 +1,13 @@
 # Sass
 
-This is a sample setup showing how to use [Bower](http://bower.io/) to customize the CSS for your [ArcGIS API for JavaScript](https://developers.arcgis.com/javascript/) application. It provides a Gruntfile needed to compile Sass.
+This is a sample setup showing how to use [npm](https://www.npmjs.com/) to customize the CSS for your [ArcGIS API for JavaScript](https://developers.arcgis.com/javascript/) application. It provides a Gruntfile needed to compile Sass.
 
 ## Requirements
 * [node & npm](https://nodejs.org/)
-* [bower](http://bower.io/)
 * [grunt](http://gruntjs.com/)
 
 ## Usage
-* `npm install -g bower` - installs bower globally
-* `npm install` - installs required node and bower packages
+* `npm install` - installs required node and Grunt packages
 * `npm run styles` - compiles the Sass files
 
 ## Structure
@@ -79,7 +77,7 @@ $include_Tags             : false;
 
 We'll cover how to create a custom theme in this section.
 
-First, we'll create our main theme file (`main.scss`) and place it under `esri/themes/skinny-green-latte/`
+First, we'll create our main theme file (`main.scss`) and place it under `node_modules/arcgis-js-api/themes/skinny-green-latte/`
 
 ![custom theme setup](./custom-theme-setup.png)
 
