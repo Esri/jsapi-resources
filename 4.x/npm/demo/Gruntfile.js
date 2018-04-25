@@ -52,7 +52,7 @@ module.exports = function (grunt) {
       dist: {
         files: [{
           expand: true,
-          src: ['src/**/*.scss', '!src/esri/themes/base/**'],
+          src: ['node_modules/arcgis-js-api/themes/**/*.scss', '!node_modules/arcgis-js-api/themes/base/**'],
           ext: '.css'
         }]
       }
