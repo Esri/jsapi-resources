@@ -4,6 +4,9 @@ Below are links to tools that will help you use the [ArcGIS API for JavaScript] 
 
 ## Reusable Libraries
 
+### [@arcgis/webpack-plugin](https://github.com/Esri/arcgis-webpack-plugin)
+A [webpack](https://webpack.js.org/) plugin for the ArcGIS API for JavaScript (not specific to Angular)
+
 ### [esri-loader](https://github.com/Esri/esri-loader)
 A tiny library to help load ArcGIS API for JavaScript modules in non-Dojo applications (not specific to Angular)
 
