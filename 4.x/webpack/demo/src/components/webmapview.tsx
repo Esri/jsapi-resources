@@ -1,17 +1,17 @@
 import WebMap = require("esri/WebMap");
-import MapView = require("esri/views/SceneView");
+import SceneView = require("esri/views/SceneView");
 import * as React from "react";
 
 interface ComponentProps {
   webmap: WebMap;
-  onload: (view: MapView) => void;
+  onload: (view: SceneView) => void;
 }
 
 export class WebMapComponent extends React.Component<ComponentProps, {}> {
   mapDiv: any;
 
   componentDidMount() {
-    const view = new MapView({
+    const view = new SceneView({
       map: this.props.webmap,
       container: this.mapDiv
     });

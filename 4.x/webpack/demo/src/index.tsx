@@ -1,5 +1,7 @@
 import "./config";
 
+import "@dojo/shim/Promise";
+
 import FeatureLayer = require("esri/layers/FeatureLayer");
 import WebMap = require("esri/WebMap");
 
