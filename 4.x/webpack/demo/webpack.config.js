@@ -34,6 +34,25 @@ module.exports = {
         exclude: /node_modules/
       },
       {
+        test: /\.(jpe?g|png|gif|webp)$/,
+        loader: "url-loader",
+        options: {
+          // Inline files smaller than 10 kB (10240 bytes)
+          limit: 10 * 1024,
+        }
+      },
+      {
+        test: /\.(wsv|ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "build/[name].[ext]"
+            }
+          }
+        ]
+      },
+      {
         test: /\.scss$/,
         use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
       }
@@ -41,7 +60,9 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(["dist"]),
-    new ArcGISPlugin(),
+    new ArcGISPlugin({
+      useAssetLoaders: false
+    }),
     new HtmlWebPackPlugin({
       template: "./src/index.html",
       filename: "./index.html",
