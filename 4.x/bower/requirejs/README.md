@@ -1,6 +1,10 @@
 # Bower Sample application
 ======
 
+[![deprecated](http://badges.github.io/stability-badges/dist/deprecated.svg)](http://github.com/badges/stability-badges)
+
+> Building the ArcGIS API 4 for JavaScript with the r.js optimizer is no longer viable. Please use the Dojo build system or webpack.
+
 This is a sample application showing how to use [Bower](http://bower.io/) to build your [ArcGIS API for JavaScript](https://developers.arcgis.com/javascript/) application.
 It provides a Gruntfile for build scenario using RequireJS.
 
