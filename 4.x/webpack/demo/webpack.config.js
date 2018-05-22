@@ -61,7 +61,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(["dist"]),
     new ArcGISPlugin({
-      useAssetLoaders: false
+      useDefaultAssetLoaders: false
     }),
     new HtmlWebPackPlugin({
       template: "./src/index.html",
