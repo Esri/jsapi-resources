@@ -1,0 +1,20 @@
+{
+  "extends": [
+    "tslint:latest",
+    "tslint-eslint-rules",
+    "tslint-config-prettier"
+  ],
+  "rules": {
+    "interface-name": [false],
+    "member-access": [
+      true,
+      "no-public"
+    ],
+    "no-empty": false,
+    "no-submodule-imports": false,
+    "object-literal-sort-keys": false,
+    "one-line": [false],
+    "trailing-comma": [false],
+    "no-implicit-dependencies": false
+  }
+}

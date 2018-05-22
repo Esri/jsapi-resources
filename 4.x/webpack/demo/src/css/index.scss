@@ -1,3 +1,7 @@
+$blue: #0079c1;
+$gray: #efefef;
+$white: #fff;
+
 html,
 body,
 #app {
@@ -18,12 +22,25 @@ header.top-nav {
   z-index: 1;
   background-color: $blue;
   width: 100%;
+  position: relative;
+  font-weight: 400;
+  font-style: normal;
+  border-bottom: 1px solid $gray;
 }
 
 @media (max-width: 600px) {
   .toolbar-title {
     display: none;
   }
+}
+
+.top-nav-title {
+  float: left;
+  margin-right: 1.5rem;
+  padding-top: 1.125rem;
+  padding-bottom: 1.25rem;
+  line-height: 1.5rem;
+  margin-left: 1rem;
 }
 
 .top-nav-title,

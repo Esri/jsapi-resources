@@ -8,10 +8,10 @@ const webpack = require("webpack");
 
 module.exports = {
   entry: {
-    index: "./src/index.tsx"
+    index: ["./src/css/main.scss", "./src/index.ts"]
   },
   output: {
-    filename: "[name].bundle.js",
+    filename: "[name].[chunkhash].js",
     publicPath: ""
   },
   module: {
@@ -34,59 +34,48 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /\.(jpe?g|png|gif|webp)$/,
-        loader: "url-loader",
-        options: {
-          // Inline files smaller than 10 kB (10240 bytes)
-          limit: 10 * 1024,
-        }
-      },
-      {
-        test: /\.(wsv|ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
-        use: [
-          {
-            loader: "file-loader",
-            options: {
-              name: "build/[name].[ext]"
-            }
-          }
-        ]
-      },
-      {
         test: /\.scss$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          {
+            loader: "resolve-url-loader",
+            options: { includeRoot: true }
+          },
+          "sass-loader?sourceMap"
+        ]
       }
     ]
   },
   plugins: [
     new CleanWebpackPlugin(["dist"]),
-    new ArcGISPlugin({
-      useDefaultAssetLoaders: false
-    }),
+
+    new ArcGISPlugin(),
+
     new HtmlWebPackPlugin({
+      title: "ArcGIS Template Application",
       template: "./src/index.html",
       filename: "./index.html",
-      chunksSortMode: "none"
+      favicon: "./src/assets/favicon.ico",
+      chunksSortMode: "none",
+      inlineSource: ".(css)$"
     }),
+
     new MiniCssExtractPlugin({
-      filename: "[name].css",
+      filename: "[name].[chunkhash].css",
       chunkFilename: "[id].css"
     })
   ],
   resolve: {
-    modules: [path.resolve(__dirname, "/src"), "node_modules/"],
-    extensions: [".ts", ".tsx", ".js", ".scss"]
+    modules: [
+      path.resolve(__dirname, "/src"),
+      path.resolve(__dirname, "node_modules/")
+    ],
+    extensions: [".ts", ".tsx", ".js", ".scss", ".css"]
   },
-  externals: [
-    (context, request, callback) => {
-      if (/pe-wasm$/.test(request)) {
-        return callback(null, "amd " + request);
-      }
-      callback();
-    }
-  ],
   node: {
     process: false,
-    global: false
+    global: false,
+    fs: "empty"
   }
 };
