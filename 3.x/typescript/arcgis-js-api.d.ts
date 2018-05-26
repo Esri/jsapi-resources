@@ -10728,7 +10728,7 @@ declare module "esri/layers/LOD" {
     /** ID for each level. */
     level: number;
     /** String to be used when constructing URL to access a tile from this LOD. */
-    levelValue: string;
+    levelValue?: string;
     /** Resolution in map units of each pixel in a tile for each level. */
     resolution: number;
     /** Scale for each level. */
