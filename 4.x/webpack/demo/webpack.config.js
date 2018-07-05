@@ -2,9 +2,9 @@ const ArcGISPlugin = require("@arcgis/webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
 const path = require("path");
-const webpack = require("webpack");
 
 module.exports = {
   entry: {
@@ -13,6 +13,15 @@ module.exports = {
   output: {
     filename: "[name].[chunkhash].js",
     publicPath: ""
+  },
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: false
+      })
+    ]
   },
   module: {
     rules: [

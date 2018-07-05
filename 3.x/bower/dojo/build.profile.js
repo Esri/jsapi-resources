@@ -9,6 +9,9 @@
  */
 
 var profile = {
+  optimizeOptions: {
+    languageIn: "ECMASCRIPT5"
+  },
   insertAbsMids: 0,
   internStrings: true,
   // `basePath` is relative to the directory containing this profile file; in this case, it is being set to the
@@ -99,9 +102,9 @@ var profile = {
         "dojo/text",
         "dojo/i18n",
         "dojo/request/script"
-      ],
+      ]
       // You can define the locale for your application if you like
-      includeLocales: ["en-us"]
+      // includeLocales: ["en-us"]
     },
     "app/main": {
       include: [
@@ -112,20 +115,24 @@ var profile = {
         "dojox/gfx/svgext",
         "dojox/gfx/shape",
         "esri/dijit/Attribution",
-        "esri/IdentityManager"
+        "esri/IdentityManager",
+        "esri/layers/ArcGISDynamicMapServiceLayer",
+        "esri/layers/LayerDrawingOptions",
+        "esri/tasks/ClassificationDefinition",
+        "esri/plugins/FeatureLayerStatistics"
       ]
     },
     "esri/layers/VectorTileLayerImpl": {
       include: [
         "esri/layers/VectorTileLayerImpl"
       ],
-      includeLocales: ["en-us"]
+      // includeLocales: ["en-us"]
     },
     "esri/layers/support/webglDeps": {
       include: [
         "esri/layers/support/webglDeps"
       ],
-      includeLocales: ["en-us"]
+      // includeLocales: ["en-us"]
     }
   },
   // Providing hints to the build system allows code to be conditionally removed on a more granular level than simple
@@ -179,15 +186,70 @@ var profile = {
   },
   defaultConfig: {
     parseOnLoad: true,
+    baseUrl: "dojo",
+    async: 1,
     hasCache: {
-      "extend-esri": 1,
+      // these are the values given above, not-built client code may test for these so they need to be available
+      "dojo-built": 1,
+      "dojo-loader": 1,
+      "dojo-undef-api": 0,
+      dom: 1,
+      "host-browser": 1,
+
+      // Disable deferred instrumentation by default in the built version.
+      "config-deferredInstrumentation": 0,
+
+      // Dojo loader has built-in "has" api. Since dojoConfig is used
+      // by Dojo loader, we can set the default here.
       "dojo-has-api": 1,
-      "dojo-undef-api": 0
+
+      // default
+      "config-selectorEngine": "lite",
+
+      "esri-featurelayer-webgl": 1
     },
-    packages: [{
-      name: "moment",
-      location: "moment",
-      main: "moment"
-    }]
+    packages: [
+      {
+        name: "app",
+        location: "../app"
+      },
+      {
+        name: "dijit",
+        location: "../dijit"
+      },
+      {
+        name: "dojox",
+        location: "../dojox"
+      },
+      {
+        name: "dstore",
+        location: "../dstore"
+      },
+      {
+        name: "dgrid",
+        location: "../dgrid"
+      },
+      {
+        name: "dgrid1",
+        location: "../dgrid1"
+      },
+      {
+        name: "xstyle",
+        location: "../xstyle"
+      },
+      {
+        name: "put-selector",
+        location: "../put-selector"
+      },
+      {
+        name: "esri",
+        location: "../esri"
+      },
+      {
+        name: "moment",
+        location: "../moment",
+        main: "moment"
+      }
+    ]
   }
 };

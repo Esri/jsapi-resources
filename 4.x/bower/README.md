@@ -2,7 +2,7 @@
 
 [![deprecated](http://badges.github.io/stability-badges/dist/deprecated.svg)](http://github.com/badges/stability-badges)
 
-**DEPRECATED:** - Please use the [npm](../npm) or [Webpack](../webpack) methods to build your apps. 
+** NO LONGER SUPPORTED:** - Please use the [npm](../npm) or [Webpack](../webpack) methods to build your apps. 
 
 These are the recommended build tools for using the [arcgis-js-api](https://github.com/Esri/arcgis-js-api) Bower installation.
 You can read more about Bower [here](http://bower.io/).

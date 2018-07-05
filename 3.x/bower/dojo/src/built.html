@@ -7,33 +7,34 @@
     <link rel="stylesheet" href="dijit/themes/nihilo/nihilo.css">
     <link rel="stylesheet" href="esri/css/esri.css">
     <style>
-    html, body, #mapDiv{
-      padding:0;
-      margin:0;
-      height:100%;
-      width: 100%;
-    }
-    #infoDiv {
-      height: 320px;
-      z-index: 2;
-      padding: 10px;
-      width: 250px;
-      background-color: white;
-      position: absolute;
-      left: 20px;
-      bottom: 20px;
-      font-family: Verdana, Helvetica, sans-serif;
-      font-size: 16px;
-      color: #444;
-      text-align: center;
-    }
-    </style>
-  </head>
-  <body class="nihilo">
-    <div id="banner">Built Application</div>
-    <div id="measureDiv"></div>
-    <div id="map-area"></div>
-
+      html, body, #mapDiv{
+        padding:0;
+        margin:0;
+        height:100%;
+        width: 100%;
+      }
+      #infoDiv {
+        height: 320px;
+        z-index: 2;
+        padding: 10px;
+        width: 250px;
+        background-color: white;
+        position: absolute;
+        left: 20px;
+        bottom: 20px;
+        font-family: Verdana, Helvetica, sans-serif;
+        font-size: 16px;
+        color: #444;
+        text-align: center;
+      }
+      </style>
+    </head>
+    <body class="nihilo">
+      <div id="mapDiv"></div>
+      <div id="infoDiv">
+          <span id="title"></span>
+          <div id="colorSliderElement"></div>
+      </div>
     <!-- Can use Dojo loader directly -->
     <!-- The build profile is set up to include the dojoConfig, so no need to define your own -->
     <script src="dojo/dojo.js"></script>

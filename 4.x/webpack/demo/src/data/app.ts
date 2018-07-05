@@ -3,14 +3,32 @@ import TileLayer from "esri/layers/TileLayer";
 import VectorTileLayer from "esri/layers/VectorTileLayer";
 import EsriMap from "esri/Map";
 
+const labelClass = {
+  symbol: {
+    type: "text",
+    color: "white",
+    haloColor: "black",
+    haloSize: 2,
+    font: {
+      size: 10,
+      weight: "bold"
+    }
+  },
+  labelPlacement: "above-center",
+  labelExpressionInfo: {
+    expression: "'Pop: ' + Text($feature.POP2012, '#,###')"
+  }
+};
+
 export const featureLayer = new FeatureLayer({
   portalItem: {
     id: "b234a118ab6b4c91908a1cf677941702"
   },
+  labelingInfo: [labelClass],
   outFields: ["NAME", "STATE_NAME", "VACANT", "HSE_UNITS"],
   title: "U.S. counties",
   opacity: 0.8
-});
+} as any);
 
 export const map = new EsriMap({
   basemap: {
