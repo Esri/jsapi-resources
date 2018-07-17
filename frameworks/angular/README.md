@@ -20,7 +20,7 @@ A [SystemJS](https://github.com/systemjs/systemjs) plugin for loading Dojo modul
 
 ### [angular-cli-esri-map](https://github.com/Esri/angular-cli-esri-map)
 A simple example of an extensible Angular component using Angular CLI.
-<br/> [View it live](https://esri.github.io/angular-cli-esri-map/dist/)
+<br/> [View it live](https://stackblitz.com/edit/angular-cli-esri-map2)
 
 ### [ionic2-esri-map](https://github.com/andygup/ionic2-esri-map)
 Prototype app demonstrating how to use Ionic2 with the ArcGIS API for JavaScript
