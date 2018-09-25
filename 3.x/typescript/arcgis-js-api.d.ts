@@ -10403,7 +10403,7 @@ declare module "esri/layers/Field" {
     /** The alias name for the field. */
     alias: string;
     /** Domain associated with the field. */
-    domain: Domain;
+    domain?: Domain;
     /** Indicates whether the field is editable. */
     editable: boolean;
     /** The field length */
