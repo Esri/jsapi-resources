@@ -88,23 +88,29 @@ var profile = {
     },
     {
       name:     "@dojo",
-      location: "./../node_modules/@dojo",
+      location: DIR + "/@dojo",
       resourceTags: {
         miniExclude: function(filename, mid) {
           if (filename.slice(-4) === ".mjs") {
             return true;
           }
+          if (
+            filename.indexOf("@dojo/framework/node_modules/") > -1 ||
+            filename.indexOf("@dojo/framework/shim/util/") > -1 ||
+            filename.indexOf("@dojo/framework/testing/") > -1
+          ) {
+            return true;
+          }
           return [
-            "@dojo/core/request/providers/node",
-            "@dojo/shim/browser", // requires pepjs and intersection-observer
-            "@dojo/shim/util/amd"
+            "@dojo/framework/core/request/providers/node",
+            "@dojo/framework/shim/browser" // requires pepjs, intersection-observer, and web-animations-js
           ].indexOf(mid) > -1;
         }
       }
     },
     {
       name:     "cldrjs",
-      location: "./../node_modules/cldrjs",
+      location: DIR + "/cldrjs",
       main:     "dist/cldr",
       resourceTags: {
         miniExclude: function(filename, mid) {
@@ -115,7 +121,7 @@ var profile = {
     },
     {
       name:     "globalize",
-      location: "./../node_modules/globalize",
+      location: DIR + "/globalize",
       main:     "dist/globalize",
       resourceTags: {
         miniExclude: function(filename, mid) {
@@ -128,7 +134,7 @@ var profile = {
     },
     {
       name:     "maquette",
-      location: "./../node_modules/maquette",
+      location: DIR + "/maquette",
       main:     "dist/maquette.umd",
       resourceTags: {
         miniExclude: function(filename, mid) {
@@ -139,7 +145,7 @@ var profile = {
     },
     {
       name:     "maquette-jsx",
-      location: "./../node_modules/maquette-jsx",
+      location: DIR + "/maquette-jsx",
       main:     "dist/maquette-jsx.umd",
       resourceTags: {
         miniExclude: function(filename, mid) {
@@ -149,7 +155,7 @@ var profile = {
     },
     {
       name:     "maquette-css-transitions",
-      location: "./../node_modules/maquette-css-transitions",
+      location: DIR + "/maquette-css-transitions",
       main:     "dist/maquette-css-transitions.umd",
       resourceTags: {
         miniExclude: function(filename, mid) {
@@ -159,7 +165,7 @@ var profile = {
     },
     {
       name:     "tslib",
-      location: "./../node_modules/tslib",
+      location: DIR + "/tslib",
       main:     "tslib",
       resourceTags: {
         miniExclude: function(filename, mid) {
@@ -202,11 +208,12 @@ var profile = {
         /** enforce some modules loading */
         /** not included because dom is -1 */
         "dojo/_base/browser",
-        "esri/core/request/script",
 
         // esri stuff for 3D maps
         "esri/portal/support/layersCreator",
-        "esri/views/3d/layers/VectorTileLayerView3D"
+        "esri/views/3d/layers/VectorTileLayerView3D",
+        "esri/layers/graphics/sources/FeatureLayerSource",
+        "esri/layers/graphics/sources/MemorySource"
       ]
       // You can define the locale for your application if you like
       // includeLocales: ["en-us"]
@@ -226,7 +233,7 @@ var profile = {
         "esri/views/MapView",
         "esri/views/2d/layers/GraphicsLayerView2D",
         "esri/views/2d/layers/FeatureLayerView2D",
-        "esri/views/2d/layers/TiledLayerView2D"
+        "esri/views/2d/layers/TileLayerView2D"
       ],
       exclude: [
         "esri/widgets/support/widget"
@@ -293,6 +300,14 @@ var profile = {
     "esri/layers/graphics/sources/support/CSVSourceWorker": {
       include: [
         "esri/layers/graphics/sources/support/CSVSourceWorker"
+      ],
+      exclude: [
+        "esri/core/workers/RemoteClient"
+      ]
+    },
+    "esri/layers/graphics/sources/support/MemorySourceWorker": {
+      include: [
+        "esri/layers/graphics/sources/support/MemorySourceWorker"
       ],
       exclude: [
         "esri/core/workers/RemoteClient"
@@ -430,8 +445,17 @@ var profile = {
     "host-browser": -1,
     "extend-dojo": 1,
     "extend-esri": 0,
-    
-    "esri-webpack": 0
+
+    // For CDN and downloadable builds.
+    // This flag is only for NPM installed versions of the API when
+    // used for custom builds in Webpack.
+    "esri-webpack": 0,
+
+    // for WebGL instance count debugging
+    "esri-webgl-debug": 0,
+
+    // Used to stabilize WebGL feature layer and vector tile layer during screenshot testing.
+    "stable-symbol-rendering": 0
   },
   defaultConfig: {
     baseUrl: "dojo",
@@ -494,6 +518,14 @@ var profile = {
         location: "../moment",
         main: "moment"
       }
-    ]
+    ],
+    map: {
+      globalize: {
+        "cldr": "cldrjs/dist/cldr",
+        "cldr/event": "cldrjs/dist/cldr/event",
+        "cldr/supplemental": "cldrjs/dist/cldr/supplemental",
+        "cldr/unresolved": "cldrjs/dist/cldr/unresolved"
+      }
+    }
   }
 };

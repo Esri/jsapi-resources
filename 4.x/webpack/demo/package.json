@@ -22,10 +22,10 @@
     "tslint-config-prettier": "^1.15.0",
     "tslint-eslint-rules": "^5.4.0",
     "tslint-plugin-prettier": "^1.3.0",
-    "typescript": "^3.0.1",
+    "typescript": "^3.0.3",
     "uglifyjs-webpack-plugin": "^1.3.0",
-    "webpack": "^4.17.1",
-    "webpack-cli": "^3.1.0",
+    "webpack": "^4.20.1",
+    "webpack-cli": "~3.1.1",
     "webpack-dev-server": "^3.1.6"
   },
   "license": "Apache-2.0",
@@ -37,7 +37,7 @@
     "lint": "tslint --fix \"src/**/*.ts?(x)\""
   },
   "dependencies": {
-    "@arcgis/webpack-plugin": "^4.8.2"
+    "@arcgis/webpack-plugin": "~4.9.0"
   },
   "arcgis": {
     "type": "jsapi"
