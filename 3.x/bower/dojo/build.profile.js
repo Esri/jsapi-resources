@@ -133,6 +133,12 @@ var profile = {
         "esri/layers/support/webglDeps"
       ],
       // includeLocales: ["en-us"]
+    },
+    "esri/layers/support/pbfDeps": {
+      include: [
+        "esri/layers/support/pbfDeps"
+      ],
+      // includeLocales: ["en-us"]
     }
   },
   // Providing hints to the build system allows code to be conditionally removed on a more granular level than simple

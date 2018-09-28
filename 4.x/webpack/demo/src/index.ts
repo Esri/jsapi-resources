@@ -1,6 +1,6 @@
 import "./config";
 
-import "@dojo/shim/Promise";
+import "@dojo/framework/shim/Promise";
 
 import App from "./widgets/App";
 
