@@ -7,7 +7,7 @@ A copy of this file is also available at [DefinitelyTyped][1] and may be install
 
 ## Requirements
 
-* [TypeScript][3] 2.3+
+* [TypeScript][3] 2.7+
 
 ## Resources
 
