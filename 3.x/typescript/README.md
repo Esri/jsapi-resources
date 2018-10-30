@@ -28,6 +28,6 @@ Switch to the `gh-pages` branch to see the JavaScript output files.
 [4]: https://esri.github.io/jsapi-resources/typescript/demo.html
 [5]: https://github.com/Microsoft/TypeScript/wiki
 [6]: https://github.com/Microsoft/TypeScript/wiki/TypeScript-Editor-Support
-[7]: https://www.sitepen.com/blog/2013/12/31/definitive-guide-to-typescript/
+[7]: https://www.sitepen.com/blog/2018/10/29/update-the-definitive-typescript-guide/
 [8]: https://github.com/dojo/typings
 [9]: https://github.com/DefinitelyTyped/DefinitelyTyped

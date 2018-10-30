@@ -22,6 +22,6 @@ A copy of this file is also available at [DefinitelyTyped][1] and may be install
 [3]: http://www.typescriptlang.org/
 [5]: https://github.com/Microsoft/TypeScript/wiki
 [6]: https://github.com/Microsoft/TypeScript/wiki/TypeScript-Editor-Support
-[7]: https://www.sitepen.com/blog/2013/12/31/definitive-guide-to-typescript/
+[7]: https://www.sitepen.com/blog/2018/10/29/update-the-definitive-typescript-guide/
 [8]: https://github.com/dojo/typings
 [9]: https://github.com/DefinitelyTyped/DefinitelyTyped
