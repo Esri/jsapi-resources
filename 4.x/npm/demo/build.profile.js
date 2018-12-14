@@ -221,8 +221,6 @@ var profile = {
         /** enforce some modules loading */
         /** not included because dom is -1 */
         "dojo/_base/browser",
-
-        "dojo/_base/browser",
         "dojo/request", // used by dojo/text
 
         "esri/Map",
@@ -231,7 +229,6 @@ var profile = {
         "esri/layers/graphics/sources/MemorySource",
         "esri/layers/TileLayer",
         "esri/layers/FeatureLayer",
-        "esri/plugins/popupManager",
         "esri/portal/support/layersCreator",
         "esri/views/layers/LayerView",
         "esri/views/View",
@@ -242,7 +239,10 @@ var profile = {
         // for workers
         "esri/config",
         "esri/kernel",
-        "esri/core/unitUtils"
+        "esri/core/unitUtils",
+        "esri/core/workers/RemoteClient",
+        "esri/core/workers/request",
+        "esri/views/vectorTiles/WorkerTileHandler"
       ]
       // You can define the locale for your application if you like
       // includeLocales: ["en-us"]
@@ -255,11 +255,18 @@ var profile = {
     "esri/views/MapView": {
       include: [
         "esri/views/MapView",
-        "esri/views/2d/layers/GraphicsLayerView2D",
         "esri/views/2d/layers/TileLayerView2D"
       ],
       exclude: [
         "esri/widgets/support/widget"
+      ],
+    },
+    "esri/views/2d/RenderingCore2D": {
+      include: [
+        "esri/views/2d/RenderingCore2D"
+      ],
+      exclude: [
+        "esri/views/MapView"
       ]
     },
     "esri/views/SceneView": {
@@ -302,13 +309,19 @@ var profile = {
       include: [
         "esri/views/2d/layers/VectorTileLayerView2D"
       ],
-      exclude: [ "esri/views/MapView" ]
+      exclude: [
+        "esri/views/MapView",
+        "esri/views/2d/RenderingCore2D"
+      ]
     },
     "esri/views/2d/layers/FeatureLayerView2D": {
       include: [
         "esri/views/2d/layers/FeatureLayerView2D"
       ],
-      exclude: [ "esri/views/MapView" ]
+      exclude: [
+        "esri/views/MapView",
+        "esri/views/2d/RenderingCore2D"
+      ]
     },
     "esri/views/2d/layers/features/tileRenderers/SymbolTileRenderer": {
       include: [
@@ -316,6 +329,7 @@ var profile = {
       ],
       exclude: [
         "esri/views/MapView",
+        "esri/views/2d/RenderingCore2D",
         "esri/views/2d/layers/FeatureLayerView2D"
       ]
     },
@@ -325,6 +339,7 @@ var profile = {
       ],
       exclude: [
         "esri/views/MapView",
+        "esri/views/2d/RenderingCore2D",
         "esri/views/2d/layers/FeatureLayerView2D"
       ]
     },
@@ -332,12 +347,18 @@ var profile = {
       include: [
         "esri/widgets/LayerList"
       ],
-      
       exclude: [ "esri/views/MapView" ]
     },
     "esri/widgets/Legend": {
       include: [
-        "esri/widgets/Legend"
+        "esri/widgets/Legend",
+        "dojox/gfx/svg",
+        "dojox/gfx/shape",
+        "dojox/gfx/path",
+        "esri/portal/support/layersLoader",
+        "esri/layers/GroupLayer",
+        "esri/portal/support/jsonContext",
+        "esri/views/2d/layers/features/tileRenderers/SymbolTileRenderer"
       ],
       exclude: [ "esri/views/MapView" ]
     },
@@ -358,17 +379,11 @@ var profile = {
     "esri/layers/graphics/sources/support/CSVSourceWorker": {
       include: [
         "esri/layers/graphics/sources/support/CSVSourceWorker"
-      ],
-      exclude: [
-        "esri/core/workers/RemoteClient"
       ]
     },
     "esri/layers/graphics/sources/support/MemorySourceWorker": {
       include: [
         "esri/layers/graphics/sources/support/MemorySourceWorker"
-      ],
-      exclude: [
-        "esri/core/workers/RemoteClient"
       ]
     },
     "esri/views/2d/layers/features/Pipeline": {
@@ -377,41 +392,26 @@ var profile = {
         "esri/views/2d/layers/features/controllers/OnDemandController",
         "esri/views/2d/layers/features/controllers/MemoryController",
         "esri/views/2d/layers/features/processors/SymbolProcessor"
-      ],
-      exclude: [
-        "esri/core/workers/RemoteClient"
+      ]
+    },
+    "esri/tasks/operations/PBFWorker": {
+      include: [
+        "esri/tasks/operations/PBFWorker"
       ]
     },
     "esri/views/3d/layers/PointCloudWorker": {
       include: [
         "esri/views/3d/layers/PointCloudWorker"
-      ],
-      exclude: [
-        "esri/core/workers/RemoteClient"
       ]
     },
     "esri/views/3d/layers/SceneLayerWorker": {
       include: [
         "esri/views/3d/layers/SceneLayerWorker"
-      ],
-      exclude: [
-        "esri/core/workers/RemoteClient"
       ]
     },
     "esri/views/3d/webgl-engine/lib/edgeRendering/EdgeProcessingWorker": {
       include: [
         "esri/views/3d/webgl-engine/lib/edgeRendering/EdgeProcessingWorker"
-      ],
-      exclude: [
-        "esri/core/workers/RemoteClient"
-      ]
-    },
-    "esri/views/vectorTiles/WorkerTileHandler": {
-      include: [
-        "esri/views/vectorTiles/WorkerTileHandler"
-      ],
-      exclude: [
-        "esri/core/workers/RemoteClient"
       ]
     }
   },

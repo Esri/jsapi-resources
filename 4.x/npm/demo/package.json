@@ -25,6 +25,6 @@
     "uglify-js": "^2.7.5"
   },
   "dependencies": {
-    "arcgis-js-api": "~4.9.3"
+    "arcgis-js-api": "~4.10.0"
   }
 }

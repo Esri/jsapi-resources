@@ -139,6 +139,12 @@ var profile = {
         "esri/layers/support/pbfDeps"
       ],
       // includeLocales: ["en-us"]
+    },
+    "esri/layers/rasterLib/tile/RasterWorker": {
+      include: [
+        "esri/layers/rasterLib/tile/RasterWorker"
+      ],
+      // includeLocales: ["en-us"]
     }
   },
   // Providing hints to the build system allows code to be conditionally removed on a more granular level than simple
