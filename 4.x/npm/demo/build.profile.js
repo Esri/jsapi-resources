@@ -94,8 +94,14 @@ var profile = {
         [".", ".", /(\/\.)|(~$)|(test|txt|src|min|templates)/]
       ],
       resourceTags: {
-        amd: function(filename, mid) {
-          return /\.js$/.test(filename);
+        minExclude: function(filename, mid) {
+          if (mid.indexOf("/min/") > -1 || mid.indexOf("/src/") > -1) {
+            return true;
+          }
+          return [
+            "moment/ender",
+            "moment/package"
+          ].indexOf(mid) > -1;
         }
       }
     },
