@@ -89,10 +89,7 @@ var profile = {
       name: "moment",
       location: DIR + "/moment",
       main: "moment",
-      trees: [
-        // don"t bother with .hidden, tests, min, src, and templates
-        [".", ".", /(\/\.)|(~$)|(test|txt|src|min|templates)/]
-      ],
+      packageJson: {},
       resourceTags: {
         minExclude: function(filename, mid) {
           if (mid.indexOf("/min/") > -1 || mid.indexOf("/src/") > -1) {
