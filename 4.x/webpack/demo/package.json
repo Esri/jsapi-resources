@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "devDependencies": {
     "@theintern/istanbul-loader": "^1.0.0-beta.2",
-    "@types/arcgis-js-api": "^4.9.0",
+    "@types/arcgis-js-api": "~4.10.0",
     "@types/sinon": "^5.0.5",
     "clean-webpack-plugin": "^0.1.19",
     "copy-webpack-plugin": "4.5.2",
@@ -37,7 +37,7 @@
     "lint": "tslint --fix \"src/**/*.ts?(x)\""
   },
   "dependencies": {
-    "@arcgis/webpack-plugin": "~4.10.0"
+    "@arcgis/webpack-plugin": "~4.10.5"
   },
   "arcgis": {
     "type": "jsapi"
