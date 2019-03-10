@@ -1,4 +1,3 @@
-import "@dojo/framework/shim/Promise";
 import esriConfig from "esri/config";
 
 const DEFAULT_WORKER_URL = "https://js.arcgis.com/4.10/";

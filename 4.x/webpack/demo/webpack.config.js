@@ -8,7 +8,7 @@ const path = require("path");
 
 module.exports = {
   entry: {
-    index: ["./src/css/main.scss", "./src/index.ts"]
+    index: ["./src/css/main.scss", "@dojo/framework/shim/Promise", "./src/index.ts"]
   },
   output: {
     filename: "[name].[chunkhash].js",
