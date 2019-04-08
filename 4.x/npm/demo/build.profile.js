@@ -12,7 +12,9 @@ const DIR = "./../node_modules/";
 
 var profile = {
   optimizeOptions: {
-    languageIn: "ECMASCRIPT5"
+    languageIn: "ECMASCRIPT5",
+    checkSuspiciousCode: false,
+    uselessCode: "OFF"
   },
 
   // `basePath` is relative to the directory containing this profile file; in this case, it is being set to the
@@ -83,7 +85,7 @@ var profile = {
       trees: [
         // don"t bother with .hidden, tests, min, src, and templates
         [".", ".", /(\/\.)|(~$)|(node_modules)/]
-      ],
+      ]
     },
     {
       name: "moment",
@@ -91,7 +93,7 @@ var profile = {
       main: "moment",
       packageJson: {},
       resourceTags: {
-        minExclude: function(filename, mid) {
+        miniExclude: function(filename, mid) {
           if (mid.indexOf("/min/") > -1 || mid.indexOf("/src/") > -1) {
             return true;
           }
@@ -103,7 +105,7 @@ var profile = {
       }
     },
     {
-      name:     "@dojo",
+      name: "@dojo",
       location: DIR + "/@dojo",
       resourceTags: {
         miniExclude: function(filename, mid) {
@@ -117,77 +119,118 @@ var profile = {
           ) {
             return true;
           }
-          return [
-            "@dojo/framework/core/request/providers/node",
-            "@dojo/framework/shim/browser" // requires pepjs, intersection-observer, and web-animations-js
-          ].indexOf(mid) > -1;
+          return (
+            [
+              "@dojo/framework/shim/browser", // requires pepjs, intersection-observer, and web-animations-js
+              "@dojo/framework/shim/pointerEvents",
+              "@dojo/framework/shim/ResizeObserver",
+              "@dojo/framework/shim/WebAnimations",
+              "@dojo/framework/widget-core/meta/Resize",
+              "@dojo/framework/widget-core/meta/WebAnimation"
+            ].indexOf(mid) > -1
+          );
         }
       }
     },
     {
-      name:     "cldrjs",
+      name: "cldrjs",
       location: DIR + "/cldrjs",
-      main:     "dist/cldr",
+      main: "dist/cldr",
       resourceTags: {
         miniExclude: function(filename, mid) {
-          return mid.indexOf("/node_main") > -1 ||
-              mid.indexOf("/doc/") > -1;
+          return mid.indexOf("/node_main") > -1 || mid.indexOf("/doc/") > -1;
         }
       }
     },
     {
-      name:     "globalize",
+      name: "globalize",
       location: DIR + "/globalize",
-      main:     "dist/globalize",
+      main: "dist/globalize",
       resourceTags: {
         miniExclude: function(filename, mid) {
-          return mid.indexOf("/CONTRIBUTING") > -1 ||
-              mid.indexOf("/node-main") > -1 ||
-              mid.indexOf("/doc/") > -1 ||
-              mid.indexOf("/examples/") > -1;
+          return (
+            mid.indexOf("/CONTRIBUTING") > -1 ||
+            mid.indexOf("/node-main") > -1 ||
+            mid.indexOf("/doc/") > -1 ||
+            mid.indexOf("/examples/") > -1
+          );
         }
       }
     },
     {
-      name:     "maquette",
+      name: "maquette",
       location: DIR + "/maquette",
-      main:     "dist/maquette.umd",
+      main: "dist/maquette.umd",
       resourceTags: {
         miniExclude: function(filename, mid) {
-          return mid.indexOf("/polyfills/") > -1 ||
-                 mid.indexOf("/dist/") > -1 && filename.indexOf(".umd.js") === -1;
+          return (
+            mid.indexOf("/polyfills/") > -1 ||
+            (mid.indexOf("/dist/") > -1 && filename.indexOf(".umd.js") === -1)
+          );
         }
       }
     },
     {
-      name:     "maquette-jsx",
+      name: "maquette-jsx",
       location: DIR + "/maquette-jsx",
-      main:     "dist/maquette-jsx.umd",
+      main: "dist/maquette-jsx.umd",
       resourceTags: {
         miniExclude: function(filename, mid) {
-          return mid.indexOf("/dist/") > -1 && filename.indexOf(".umd.js") === -1;
+          return (
+            mid.indexOf("/dist/") > -1 && filename.indexOf(".umd.js") === -1
+          );
         }
       }
     },
     {
-      name:     "maquette-css-transitions",
+      name: "maquette-css-transitions",
       location: DIR + "/maquette-css-transitions",
-      main:     "dist/maquette-css-transitions.umd",
+      main: "dist/maquette-css-transitions.umd",
       resourceTags: {
         miniExclude: function(filename, mid) {
-          return mid.indexOf("/dist/") > -1 && filename.indexOf(".umd.js") === -1;
+          return (
+            mid.indexOf("/dist/") > -1 && filename.indexOf(".umd.js") === -1
+          );
         }
       }
     },
     {
-      name:     "tslib",
+      name: "tslib",
       location: DIR + "/tslib",
-      main:     "tslib",
+      main: "tslib",
       resourceTags: {
         miniExclude: function(filename, mid) {
-          return mid.indexOf("/tslib.es6") > -1 ||
-              mid.indexOf("/tslib.html") > -1 ||
-              mid.indexOf("/docs/") > -1;
+          return (
+            mid.indexOf("/tslib.es6") > -1 ||
+            mid.indexOf("/tslib.html") > -1 ||
+            mid.indexOf("/docs/") > -1
+          );
+        }
+      }
+    },
+    {
+      name: "intersection-observer",
+      location: DIR + "./intersection-observer",
+      main: "intersection-observer",
+      resourceTags: {
+        miniExclude: function(filename, mid) {
+          if (filename.slice(-5) === ".html") {
+            return true;
+          }
+          return mid.indexOf("-test") > -1;
+        }
+      }
+    },
+    {
+      name: "whatwg-fetch",
+      location: DIR + "./whatwg-fetch",
+      main: "dist/fetch.umd",
+      resourceTags: {
+        miniExclude: function(filename, mid) {
+          if (filename.slice(-5) === ".flow") {
+            return true;
+          }
+          return filename.indexOf("/fetch.js") > -1;
         }
       }
     }
@@ -196,7 +239,7 @@ var profile = {
   // this is also set on defaultConfig at the bottom of this file
   map: {
     globalize: {
-      "cldr": "cldrjs/dist/cldr",
+      cldr: "cldrjs/dist/cldr",
       "cldr/event": "cldrjs/dist/cldr/event",
       "cldr/supplemental": "cldrjs/dist/cldr/supplemental",
       "cldr/unresolved": "cldrjs/dist/cldr/unresolved"
@@ -233,6 +276,7 @@ var profile = {
         "esri/layers/TileLayer",
         "esri/layers/FeatureLayer",
         "esri/portal/support/layersCreator",
+        "esri/portal/support/layersLoader",
         "esri/views/layers/LayerView",
         "esri/views/View",
         "esri/views/ViewAnimation",
@@ -251,27 +295,38 @@ var profile = {
       // includeLocales: ["en-us"]
     },
     "esri/identity/IdentityManager": {
-      include: [
-        "esri/identity/IdentityManager"
-      ]
+      include: ["esri/identity/IdentityManager"]
     },
+    //--------------------------------------------------------------------------
+    //
+    //  Map
+    //
+    //--------------------------------------------------------------------------
+
+    "esri/WebMap": {
+      include: ["esri/WebMap"]
+    },
+
     "esri/views/MapView": {
-      include: [
-        "esri/views/MapView",
-        "esri/views/2d/layers/TileLayerView2D"
-      ],
-      exclude: [
-        "esri/widgets/support/widget"
-      ],
+      include: ["esri/views/MapView", "esri/views/2d/layers/TileLayerView2D"],
+      exclude: ["esri/widgets/support/widget"]
     },
+
     "esri/views/2d/RenderingCore2D": {
-      include: [
-        "esri/views/2d/RenderingCore2D"
-      ],
-      exclude: [
-        "esri/views/MapView"
-      ]
+      include: ["esri/views/2d/RenderingCore2D"],
+      exclude: ["esri/views/MapView"]
     },
+
+    //--------------------------------------------------------------------------
+    //
+    //  Scene
+    //
+    //--------------------------------------------------------------------------
+
+    "esri/WebScene": {
+      include: ["esri/WebScene"]
+    },
+
     "esri/views/SceneView": {
       include: [
         "esri/views/SceneView",
@@ -284,48 +339,60 @@ var profile = {
         "esri/views/3d/layers/SceneLayerGraphicsView3D",
         "esri/views/3d/layers/TiledLayerView3D"
       ],
-      exclude: [
-        "esri/widgets/support/widget"
-      ]
+      exclude: ["esri/widgets/support/widget"]
     },
-    "esri/WebMap": {
-      include: [
-        "esri/WebMap"
-      ]
+
+    "esri/views/3d/interactive/editingTools": {
+      include: ["esri/views/3d/interactive/editingTools"],
+      exclude: ["esri/views/SceneView"]
     },
-    "esri/WebScene": {
-      include: [
-        "esri/WebScene"
-      ]
+
+    //--------------------------------------------------------------------------
+    //
+    //  Layers
+    //
+    //--------------------------------------------------------------------------
+
+    "esri/layers/TileLayer": {
+      include: ["esri/layers/TileLayer"]
     },
+
     "esri/layers/MapImageLayer": {
-      include: [
-        "esri/layers/MapImageLayer"
-      ]
+      include: ["esri/layers/MapImageLayer"]
     },
+
     "esri/layers/VectorTileLayer": {
-      include: [
-        "esri/layers/VectorTileLayer"
-      ]
+      include: ["esri/layers/VectorTileLayer"]
     },
+
+    "esri/layers/graphics/sources/support/MemorySourceWorker": {
+      include: ["esri/layers/graphics/sources/support/MemorySourceWorker"]
+    },
+
+    "esri/layers/graphics/sources/support/CSVSourceWorker": {
+      include: ["esri/layers/graphics/sources/support/CSVSourceWorker"]
+    },
+
+    "esri/layers/graphics/sources/geojson/GeoJSONSourceWorker": {
+      include: ["esri/layers/graphics/sources/geojson/GeoJSONSourceWorker"]
+    },
+
+    //--------------------------------------------------------------------------
+    //
+    //  LayerView2D
+    //
+    //--------------------------------------------------------------------------
+
     "esri/views/2d/layers/VectorTileLayerView2D": {
-      include: [
-        "esri/views/2d/layers/VectorTileLayerView2D"
-      ],
-      exclude: [
-        "esri/views/MapView",
-        "esri/views/2d/RenderingCore2D"
-      ]
+      include: ["esri/views/2d/layers/VectorTileLayerView2D"],
+      exclude: ["esri/views/MapView", "esri/views/2d/RenderingCore2D"]
     },
+
     "esri/views/2d/layers/FeatureLayerView2D": {
-      include: [
-        "esri/views/2d/layers/FeatureLayerView2D"
-      ],
-      exclude: [
-        "esri/views/MapView",
-        "esri/views/2d/RenderingCore2D"
-      ]
+      include: ["esri/views/2d/layers/FeatureLayerView2D"],
+      exclude: ["esri/views/MapView", "esri/views/2d/RenderingCore2D"]
     },
+
     "esri/views/2d/layers/features/tileRenderers/SymbolTileRenderer": {
       include: [
         "esri/views/2d/layers/features/tileRenderers/SymbolTileRenderer"
@@ -346,39 +413,44 @@ var profile = {
         "esri/views/2d/layers/FeatureLayerView2D"
       ]
     },
+
+    //--------------------------------------------------------------------------
+    //
+    //  Widget
+    //
+    //--------------------------------------------------------------------------
+
+    "esri/widgets/Editor": {
+      include: ["esri/widgets/Editor", "dojox/gfx/svg"],
+      exclude: ["esri/views/MapView"]
+    },
+
+    "esri/widgets/Feature": {
+      include: ["esri/widgets/Feature"],
+      exclude: ["esri/views/MapView"]
+    },
+
     "esri/widgets/LayerList": {
-      include: [
-        "esri/widgets/LayerList"
-      ],
-      exclude: [ "esri/views/MapView" ]
+      include: ["esri/widgets/LayerList"],
+      exclude: ["esri/views/MapView"]
     },
+
     "esri/widgets/Legend": {
-      include: [
-        "esri/widgets/Legend",
-        "dojox/gfx/svg",
-        "dojox/gfx/shape",
-        "dojox/gfx/path",
-        "esri/portal/support/layersLoader",
-        "esri/layers/GroupLayer",
-        "esri/portal/support/jsonContext",
-        "esri/views/2d/layers/features/tileRenderers/SymbolTileRenderer"
-      ],
-      exclude: [ "esri/views/MapView" ]
+      include: ["esri/widgets/Legend", "dojox/gfx/svg"],
+      exclude: ["esri/views/MapView"]
     },
+
     "esri/widgets/Search": {
-      include: [
-        "esri/widgets/Search"
-      ],
-      exclude: [ "esri/views/MapView" ]
+      include: ["esri/widgets/Search"],
+      exclude: ["esri/views/MapView"]
     },
-    // used by workers
-    "esri/core/workers/RemoteClient": {
-      include: [
-        "esri/core/workers/RemoteClient",
-        // add files here that most workers will need
-        "esri/core/workers/request"
-      ]
-    },
+
+    //--------------------------------------------------------------------------
+    //
+    //  Workers
+    //
+    //--------------------------------------------------------------------------
+
     "esri/layers/graphics/sources/support/CSVSourceWorker": {
       include: [
         "esri/layers/graphics/sources/support/CSVSourceWorker"
@@ -389,6 +461,10 @@ var profile = {
         "esri/layers/graphics/sources/support/MemorySourceWorker"
       ]
     },
+
+    "esri/layers/support/LercWorker": {
+      include: ["esri/layers/support/LercWorker"]
+    },
     "esri/views/2d/layers/features/Pipeline": {
       include: [
         "esri/views/2d/layers/features/Pipeline",
@@ -398,19 +474,13 @@ var profile = {
       ]
     },
     "esri/tasks/operations/PBFWorker": {
-      include: [
-        "esri/tasks/operations/PBFWorker"
-      ]
+      include: ["esri/tasks/operations/PBFWorker"]
     },
     "esri/views/3d/layers/PointCloudWorker": {
-      include: [
-        "esri/views/3d/layers/PointCloudWorker"
-      ]
+      include: ["esri/views/3d/layers/PointCloudWorker"]
     },
     "esri/views/3d/layers/SceneLayerWorker": {
-      include: [
-        "esri/views/3d/layers/SceneLayerWorker"
-      ]
+      include: ["esri/views/3d/layers/SceneLayerWorker"]
     },
     "esri/views/3d/webgl-engine/lib/edgeRendering/EdgeProcessingWorker": {
       include: [
@@ -454,15 +524,15 @@ var profile = {
     "native-response-type": 1,
     "native-xhr2-blob": 1,
     "dom-parser": 1,
-    "activex": 0,
+    activex: 0,
     "script-readystatechange": 1,
     "ie-event-behavior": 0,
-    "MSPointer": 0,
+    MSPointer: 0,
     "touch-action": 1,
     "dom-quirks": 0,
     "array-extensible": 1,
     "console-as-object": 1,
-    "jscript": 0,
+    jscript: 0,
     "event-focusin": 1,
     "events-mouseenter": 1,
     "events-mousewheel": 1,
@@ -473,17 +543,17 @@ var profile = {
     "dom-attributes-explicit": 1,
 
     // unsupported browsers
-    "air": 0,
-    "wp": 0,
-    "khtml": 0,
-    "wii": 0,
-    "quirks": 0,
-    "bb": 0,
-    "msapp": 0,
-    "opr": 0,
-    "android": 0,
+    air: 0,
+    wp: 0,
+    khtml: 0,
+    wii: 0,
+    quirks: 0,
+    bb: 0,
+    msapp: 0,
+    opr: 0,
+    android: 0,
 
-    "svg": 1,
+    svg: 1,
 
     // Deferred Instrumentation is disabled by default in the built version
     // of the API but we still want to enable users to activate it.
@@ -510,7 +580,7 @@ var profile = {
     //"dojo-undef-api": 0,
     "dojo-v1x-i18n-Api": 1, // we still need i18n.getLocalization
     "dojo-xhr-factory": 0,
-    "dom": -1,
+    dom: -1,
     "host-browser": -1,
     "extend-dojo": 1,
     "extend-esri": 0,
@@ -523,6 +593,9 @@ var profile = {
     // for WebGL instance count debugging
     "esri-webgl-debug": 0,
 
+    "esri-feature-tiles-debug": 0,
+    "esri-feature-highlight-debug": 0,
+
     // Used to stabilize WebGL feature layer and vector tile layer during screenshot testing.
     "stable-symbol-rendering": 0
   },
@@ -534,7 +607,7 @@ var profile = {
       "dojo-built": 1,
       "dojo-loader": 1,
       "dojo-undef-api": 0,
-      "dom": -1,
+      dom: -1,
       "host-browser": -1,
 
       // Disable deferred instrumentation by default in the built version.
@@ -555,9 +628,24 @@ var profile = {
       "esri-built": 0
     },
     aliases: [
-      [/^webgl-engine/, function(){return "esri/views/3d/webgl-engine";}],
-      [/^engine/, function(){return "esri/views/3d/webgl-engine";}],
-      [/^esri-hydra/, function(){return "esri";}]
+      [
+        /^webgl-engine/,
+        function() {
+          return "esri/views/3d/webgl-engine";
+        }
+      ],
+      [
+        /^engine/,
+        function() {
+          return "esri/views/3d/webgl-engine";
+        }
+      ],
+      [
+        /^esri-hydra/,
+        function() {
+          return "esri";
+        }
+      ]
     ],
     packages: [
       {
@@ -592,7 +680,7 @@ var profile = {
     ],
     map: {
       globalize: {
-        "cldr": "cldrjs/dist/cldr",
+        cldr: "cldrjs/dist/cldr",
         "cldr/event": "cldrjs/dist/cldr/event",
         "cldr/supplemental": "cldrjs/dist/cldr/supplemental",
         "cldr/unresolved": "cldrjs/dist/cldr/unresolved"

@@ -1,33 +1,49 @@
-import FeatureLayer from "esri/layers/FeatureLayer";
+import GeoJSONLayer from "esri/layers/GeoJSONLayer";
 import TileLayer from "esri/layers/TileLayer";
 import VectorTileLayer from "esri/layers/VectorTileLayer";
 import EsriMap from "esri/Map";
 
-const labelClass = {
-  symbol: {
-    type: "text",
-    color: "white",
-    haloColor: "black",
-    haloSize: 2,
-    font: {
-      size: 10,
-      weight: "bold"
-    }
-  },
-  labelPlacement: "above-center",
-  labelExpressionInfo: {
-    expression: "'Pop: ' + Text($feature.POP2012, '#,###')"
-  }
+const url =
+  "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson";
+
+const template = {
+  title: "Earthquake Info",
+  content: "Magnitude {mag} {type} hit {place} on {time:DateString}"
 };
 
-export const featureLayer = new FeatureLayer({
-  portalItem: {
-    id: "b234a118ab6b4c91908a1cf677941702"
+const renderer = {
+  type: "simple",
+  field: "mag",
+  symbol: {
+    type: "simple-marker",
+    color: "orange",
+    outline: {
+      color: "white"
+    }
   },
-  labelingInfo: [labelClass],
-  outFields: ["NAME", "STATE_NAME", "VACANT", "HSE_UNITS"],
-  title: "U.S. counties",
-  opacity: 0.8
+  visualVariables: [
+    {
+      type: "size",
+      field: "mag",
+      stops: [
+        {
+          value: 2.5,
+          size: "4px"
+        },
+        {
+          value: 8,
+          size: "40px"
+        }
+      ]
+    }
+  ]
+};
+
+export const layer = new GeoJSONLayer({
+  url,
+  copyright: "USGS Earthquakes",
+  popupTemplate: template,
+  renderer
 } as any);
 
 export const map = new EsriMap({
@@ -47,5 +63,5 @@ export const map = new EsriMap({
       })
     ]
   },
-  layers: [featureLayer]
+  layers: [layer]
 });

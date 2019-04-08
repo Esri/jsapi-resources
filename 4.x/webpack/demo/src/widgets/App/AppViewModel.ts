@@ -1,6 +1,6 @@
 import Accessor from "esri/core/Accessor";
 import { whenOnce } from "esri/core/watchUtils";
-import FeatureLayer from "esri/layers/FeatureLayer";
+import GeoJSONLayer from "esri/layers/GeoJSONLayer";
 import EsriMap from "esri/Map";
 import MapView from "esri/views/MapView";
 import Expand from "esri/widgets/Expand";
@@ -15,7 +15,7 @@ import {
 export interface AppParams {
   appName: string;
   map: EsriMap;
-  featureLayer: FeatureLayer;
+  layer: GeoJSONLayer;
   view: MapView;
 }
 
@@ -25,7 +25,7 @@ class AppViewModel extends declared(Accessor) {
 
   @property() map: EsriMap;
 
-  @property() featureLayer: FeatureLayer;
+  @property() layer: GeoJSONLayer;
 
   @property() view: MapView;
 
@@ -41,8 +41,8 @@ class AppViewModel extends declared(Accessor) {
     });
     this.view.ui.add(expand, "top-right");
 
-    this.featureLayer.when(() => {
-      this.view.goTo({ target: this.featureLayer.fullExtent });
+    this.layer.when(() => {
+      this.view.goTo({ target: this.layer.fullExtent });
     });
   }
 }

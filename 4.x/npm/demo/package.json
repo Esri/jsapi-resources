@@ -13,18 +13,20 @@
   },
   "license": "Apache-2.0",
   "devDependencies": {
-    "grunt": "^1.0.0",
-    "grunt-contrib-clean": "^1.0.0",
+    "grunt": "^1.0.4",
+    "grunt-contrib-clean": "^2.0.0",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-dojo": "^1.1.1",
-    "grunt-sass": "^2.0.0",
-    "gulp": "^3.9.1",
-    "gulp-clean": "^0.3.1",
+    "grunt-sass": "^3.0.2",
+    "gulp": "^4.0.0",
+    "gulp-clean": "^0.4.0",
     "gulp-rename": "^1.2.2",
-    "node-sass": "~4.7.2",
-    "uglify-js": "^2.7.5"
+    "node-sass": "~4.11.0",
+    "uglify-js": "^3.5.3"
   },
   "dependencies": {
-    "arcgis-js-api": "~4.10.0"
+    "arcgis-js-api": "~4.11.1",
+    "intersection-observer": "^0.5.1",
+    "whatwg-fetch": "^3.0.0"
   }
 }
