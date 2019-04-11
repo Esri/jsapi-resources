@@ -22,12 +22,12 @@
     "noEmitOnError": false,
     "noUnusedLocals": true,
     "importHelpers": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "types": [
+      "arcgis-js-api",
+      "moment"
+    ]
   },
-  "types": [
-    "arcgis-js-api",
-    "moment"
-  ],
   "include": [
     "src/*"
   ]
