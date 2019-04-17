@@ -1,18 +1,13 @@
-import EsriMap = require("esri/Map");
-import MapView = require("esri/views/MapView");
-import Basemap = require("esri/Basemap");
-import Point = require("esri/geometry/Point");
+import EsriMap from "esri/Map";
+import MapView from "esri/views/MapView";
 
 const map = new EsriMap({
-  basemap: "streets" as any as Basemap
+  basemap: "streets"
 });
 
 const view = new MapView({
   map: map,
   container: "viewDiv",
-  center: new Point({
-    x: -118.244,
-    y: 34.052
-  }),
+  center: [-118.244, 34.052],
   zoom: 12
 });

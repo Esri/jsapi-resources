@@ -2,7 +2,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
-    <title>ArcGIS JSAPI 4 TypeScript Demo</title>
+    <title>ArcGIS JSAPI 4.11 TypeScript Demo</title>
     <style>
       html,
       body,
@@ -13,19 +13,19 @@
         width: 100%;
       }
     </style>
-    <link rel="stylesheet" href="https://js.arcgis.com/4.6/esri/css/main.css">
+    <link rel="stylesheet" href="https://js.arcgis.com/4.11/esri/themes/light/main.css">
     <script>
-      var locationPath = location.pathname.replace(/\/[^\/]+$/, "/");
+      var locationPath = location.pathname.replace(/\/[^\/]+$/, "");
       window.dojoConfig = {
         packages: [
           {
             name: "app",
-            location: locationPath + "app"
+            location: locationPath + "/app"
           }
         ]
       };
     </script>
-    <script src="https://js.arcgis.com/4.6/"></script>
+    <script src="https://js.arcgis.com/4.11"></script>
   </head>
   <body>
     <div id="viewDiv"></div>
