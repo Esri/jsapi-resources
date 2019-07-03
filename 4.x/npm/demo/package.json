@@ -18,15 +18,15 @@
     "grunt-contrib-copy": "^1.0.0",
     "grunt-dojo": "^1.1.1",
     "grunt-sass": "^3.0.2",
-    "gulp": "^4.0.0",
+    "gulp": "^4.0.2",
     "gulp-clean": "^0.4.0",
     "gulp-rename": "^1.2.2",
-    "node-sass": "~4.11.0",
-    "uglify-js": "^3.5.3"
+    "node-sass": "~4.12.0",
+    "uglify-js": "^3.6.0"
   },
   "dependencies": {
-    "arcgis-js-api": "~4.11.1",
-    "intersection-observer": "^0.5.1",
+    "arcgis-js-api": "~4.12.0",
+    "intersection-observer": "^0.7.0",
     "whatwg-fetch": "^3.0.0"
   }
 }

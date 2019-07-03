@@ -16,6 +16,9 @@ A tiny library to help load ArcGIS API for JavaScript modules in non-Dojo applic
 Demonstrate how you can add the ArcGIS API 4 for JS to a vue-cli / Nuxt.js app.
 <br /> [Blog post](http://odoe.net/blog/arcgis-api-4-for-js-with-vue-cli-and-nuxt/) | [Video](https://youtu.be/hqJzzgM8seo)
 
+## [arcgis-webpack-vue-calcite](https://github.com/crackernutter/arcgis-webpack-vue-calcite)
+Using `@arcgis/webpack-plugin` with vue-cli. Thanks to [Jay Gregory](https://github.com/crackernutter)!
+
 ### Other Vue.js applications applications using esri-loader
 See this list of additional [Vue.js applications that use esri-loader](https://github.com/Esri/esri-loader#vuejs)
 

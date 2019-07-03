@@ -1,8 +1,8 @@
 const ArcGISPlugin = require("@arcgis/webpack-plugin");
-const CleanWebpackPlugin = require("clean-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 
 const path = require("path");
 
@@ -16,10 +16,15 @@ module.exports = {
   },
   optimization: {
     minimizer: [
-      new UglifyJsPlugin({
+      new TerserPlugin({
         cache: true,
         parallel: true,
-        sourceMap: false
+        sourceMap: false,
+        terserOptions: {
+          output: {
+            comments: false
+          }
+        }
       })
     ]
   },
@@ -57,9 +62,13 @@ module.exports = {
     ]
   },
   plugins: [
-    new CleanWebpackPlugin(["dist"]),
+    new CleanWebpackPlugin(),
 
-    new ArcGISPlugin(),
+    new ArcGISPlugin({
+      features: {
+        "3d": false
+      }
+    }),
 
     new HtmlWebPackPlugin({
       title: "ArcGIS Template Application",

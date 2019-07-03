@@ -289,7 +289,7 @@ var profile = {
         "esri/core/unitUtils",
         "esri/core/workers/RemoteClient",
         "esri/core/workers/request",
-        "esri/views/vectorTiles/WorkerTileHandler"
+        "esri/views/2d/engine/vectorTiles/WorkerTileHandler"
       ]
       // You can define the locale for your application if you like
       // includeLocales: ["en-us"]
@@ -330,7 +330,6 @@ var profile = {
     "esri/views/SceneView": {
       include: [
         "esri/views/SceneView",
-        "esri/layers/graphics/controllers/SnapshotController",
         "esri/layers/SceneLayer",
         "esri/views/3d/layers/ElevationLayerView3D",
         "esri/views/3d/layers/FeatureLayerView3D",
