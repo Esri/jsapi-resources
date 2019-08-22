@@ -7,6 +7,7 @@ It provides a Gruntfile for build scenario using RequireJS.
 # Requirements
 * [node & npm](https://nodejs.org/)
 * [bower](http://bower.io/)
+* [git](https://git-scm.com/)
 
 # Usage
 * `npm install -g bower` - installs bower
