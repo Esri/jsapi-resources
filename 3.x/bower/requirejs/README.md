@@ -10,7 +10,6 @@ It provides a Gruntfile for build scenario using RequireJS.
 * [git](https://git-scm.com/)
 
 # Usage
-* `npm install -g bower` - installs bower
 * `npm install` - installs required node and bower packages
 * `npm run clean` - removes built files from `dist` directory
 * `npm run build` - run the RequireJS optimizer on application
