@@ -6,7 +6,6 @@
     "url": "https://github.com/Esri/jsapi-resources/3.x/bower/requirejs"
   },
   "scripts": {
-    "postinstall": "bower install",
     "build": "grunt build",
     "clean": "grunt clean"
   },
@@ -18,6 +17,13 @@
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-requirejs": "^1.0.0",
     "uglify-js": "^2.4.23",
-    "grunt-sass": "^2.0.0"
+    "grunt-sass": "^2.0.0",
+    "text": "requirejs/text#2.0.14",
+    "domReady": "requirejs/domReady#2.0.1",
+    "has": "phiggins42/has.js#master",
+    "i18n": "requirejs/i18n#~2.0.6"
+  },
+  "dependencies": {
+    "requirejs": "~2.3.2"
   }
 }

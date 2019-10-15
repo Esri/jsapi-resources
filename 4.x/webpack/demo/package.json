@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "devDependencies": {
     "@theintern/istanbul-loader": "^1.0.0-beta.2",
-    "@types/arcgis-js-api": "~4.11.0",
     "@types/sinon": "^7.0.13",
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "~5.0.3",
@@ -31,14 +30,14 @@
   "license": "Apache-2.0",
   "scripts": {
     "start": "webpack-dev-server --mode development --open",
-    "build": "webpack --mode production",
+    "build": "webpack --mode production --display-origins --display-provided-exports --display-reasons --json > stats.json",
+    "profile": "webpack --profile --json > stats.json",
     "serve": "webpack-dev-server --mode production --open --https --compress",
     "prettier": "prettier --write \"src/**/*.ts?(x)\"",
     "lint": "tslint --fix \"src/**/*.ts?(x)\""
   },
   "dependencies": {
-    "@arcgis/webpack-plugin": "~4.12.0",
-    "outdated": "^0.1.1"
+    "@arcgis/webpack-plugin": "~4.13.0"
   },
   "arcgis": {
     "type": "jsapi"
