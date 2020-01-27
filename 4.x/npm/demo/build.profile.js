@@ -270,23 +270,31 @@ var profile = {
         "dojo/request", // used by dojo/text
 
         "esri/Map",
+        "esri/geometry",
         "esri/Viewpoint",
-        "esri/layers/graphics/sources/FeatureLayerSource",
-        "esri/layers/graphics/sources/MemorySource",
-        "esri/layers/TileLayer",
-        "esri/layers/FeatureLayer",
+  
+        "esri/layers/Layer",
+        "esri/layers/mixins/OperationalLayer",
+        "esri/layers/mixins/PortalLayer",
+        "esri/layers/mixins/ScaleRangeLayer",
+        "esri/layers/mixins/RefreshableLayer",
+  
         "esri/portal/support/layersCreator",
-        "esri/portal/support/layersLoader",
-        "esri/views/layers/LayerView",
+  
+        "esri/layers/FeatureLayer",
+        "esri/layers/graphics/sources/MemorySource",
+        "esri/layers/graphics/sources/FeatureLayerSource",
+  
         "esri/views/View",
         "esri/views/ViewAnimation",
+        "esri/views/layers/LayerView",
+  
         "esri/widgets/Widget",
         "esri/widgets/support/widget",
 
         // for workers
         "esri/config",
         "esri/kernel",
-        "esri/core/unitUtils",
         "esri/core/workers/RemoteClient",
         "esri/core/workers/request",
         "esri/views/2d/engine/vectorTiles/WorkerTileHandler"
@@ -295,154 +303,282 @@ var profile = {
       // includeLocales: ["en-us"]
     },
     "esri/identity/IdentityManager": {
-      include: ["esri/identity/IdentityManager"]
-    },
-    //--------------------------------------------------------------------------
-    //
-    //  Map
-    //
-    //--------------------------------------------------------------------------
-
-    "esri/WebMap": {
-      include: ["esri/WebMap"]
-    },
-
-    "esri/views/MapView": {
-      include: ["esri/views/MapView", "esri/views/2d/layers/TileLayerView2D"],
-      exclude: ["esri/widgets/support/widget"]
-    },
-
-    "esri/views/2d/RenderingCore2D": {
-      include: ["esri/views/2d/RenderingCore2D"],
-      exclude: ["esri/views/MapView"]
-    },
-
-    //--------------------------------------------------------------------------
-    //
-    //  Scene
-    //
-    //--------------------------------------------------------------------------
-
-    "esri/WebScene": {
-      include: ["esri/WebScene"]
-    },
-
-    "esri/views/SceneView": {
       include: [
-        "esri/views/SceneView",
-        "esri/layers/SceneLayer",
-        "esri/views/3d/layers/ElevationLayerView3D",
-        "esri/views/3d/layers/FeatureLayerView3D",
-        "esri/views/3d/layers/PointCloudLayerView3D",
-        "esri/views/3d/layers/SceneLayerView3D",
-        "esri/views/3d/layers/SceneLayerGraphicsView3D",
-        "esri/views/3d/layers/TiledLayerView3D"
-      ],
-      exclude: ["esri/widgets/support/widget"]
-    },
-
-    "esri/views/3d/interactive/editingTools": {
-      include: ["esri/views/3d/interactive/editingTools"],
-      exclude: ["esri/views/SceneView"]
-    },
-
-    //--------------------------------------------------------------------------
-    //
-    //  Layers
-    //
-    //--------------------------------------------------------------------------
-
-    "esri/layers/TileLayer": {
-      include: ["esri/layers/TileLayer"]
-    },
-
-    "esri/layers/MapImageLayer": {
-      include: ["esri/layers/MapImageLayer"]
-    },
-
-    "esri/layers/VectorTileLayer": {
-      include: ["esri/layers/VectorTileLayer"]
-    },
-
-    "esri/layers/graphics/sources/support/MemorySourceWorker": {
-      include: ["esri/layers/graphics/sources/support/MemorySourceWorker"]
-    },
-
-    "esri/layers/graphics/sources/support/CSVSourceWorker": {
-      include: ["esri/layers/graphics/sources/support/CSVSourceWorker"]
-    },
-
-    "esri/layers/graphics/sources/geojson/GeoJSONSourceWorker": {
-      include: ["esri/layers/graphics/sources/geojson/GeoJSONSourceWorker"]
-    },
-
-    //--------------------------------------------------------------------------
-    //
-    //  LayerView2D
-    //
-    //--------------------------------------------------------------------------
-
-    "esri/views/2d/layers/VectorTileLayerView2D": {
-      include: ["esri/views/2d/layers/VectorTileLayerView2D"],
-      exclude: ["esri/views/MapView", "esri/views/2d/RenderingCore2D"]
-    },
-
-    "esri/views/2d/layers/FeatureLayerView2D": {
-      include: ["esri/views/2d/layers/FeatureLayerView2D"],
-      exclude: ["esri/views/MapView", "esri/views/2d/RenderingCore2D"]
-    },
-
-    "esri/views/2d/layers/features/tileRenderers/SymbolTileRenderer": {
-      include: [
-        "esri/views/2d/layers/features/tileRenderers/SymbolTileRenderer"
-      ],
-      exclude: [
-        "esri/views/MapView",
-        "esri/views/2d/RenderingCore2D",
-        "esri/views/2d/layers/FeatureLayerView2D"
+        "esri/identity/IdentityManager"
       ]
     },
-    "esri/views/2d/layers/features/tileRenderers/HeatmapTileRenderer": {
+  
+    "esri/support/arcadeUtils": {
       include: [
-        "esri/views/2d/layers/features/tileRenderers/HeatmapTileRenderer"
-      ],
-      exclude: [
-        "esri/views/MapView",
-        "esri/views/2d/RenderingCore2D",
-        "esri/views/2d/layers/FeatureLayerView2D"
+        "esri/support/arcadeUtils"
       ]
     },
-
-    //--------------------------------------------------------------------------
-    //
-    //  Widget
-    //
-    //--------------------------------------------------------------------------
-
-    "esri/widgets/Editor": {
-      include: ["esri/widgets/Editor", "dojox/gfx/svg"],
-      exclude: ["esri/views/MapView"]
+  
+    "esri/views/webgl": {
+      include: [
+        "esri/views/webgl"
+      ]
     },
-
-    "esri/widgets/Feature": {
-      include: ["esri/widgets/Feature"],
-      exclude: ["esri/views/MapView"]
+  
+    "esri/core/sql/WhereClause": {
+      include: [
+        "esri/core/sql/WhereClause"
+      ]
     },
+  //--------------------------------------------------------------------------
+  //
+  //  Map
+  //
+  //--------------------------------------------------------------------------
 
-    "esri/widgets/LayerList": {
-      include: ["esri/widgets/LayerList"],
-      exclude: ["esri/views/MapView"]
-    },
+  "esri/WebMap": {
+    include: [
+      "esri/WebMap"
+    ]
+  },
 
-    "esri/widgets/Legend": {
-      include: ["esri/widgets/Legend", "dojox/gfx/svg"],
-      exclude: ["esri/views/MapView"]
-    },
+  "esri/views/MapView": {
+    include: [
+      "esri/views/MapView",
 
-    "esri/widgets/Search": {
-      include: ["esri/widgets/Search"],
-      exclude: ["esri/views/MapView"]
-    },
+      // Force modules used by FLV2D that are included in engine build layer.
+      // Since the FLV2D build layer exclude that build layer we need to enforce.
+      "esri/core/libs/gl-matrix-2/mat4",
+      "esri/core/libs/gl-matrix-2/mat4f32",
+      "esri/core/libs/gl-matrix-2/vec3f32",
+      "esri/core/libs/gl-matrix-2/vec4f32",
+      "esri/layers/graphics/featureConversionUtils",
+      "esri/views/2d/arcade/utils",
+      "esri/geometry/support/quantizationUtils"
+    ],
+    exclude: [
+      "esri/widgets/support/widget"
+    ]
+  },
+
+  "esri/views/2d/mapViewDeps": {
+    include: [
+      "esri/views/2d/mapViewDeps"
+    ],
+    exclude: [
+      "esri/views/MapView",
+      "esri/views/2d/engine",
+      "esri/views/webgl"
+    ]
+  },
+
+  "esri/views/2d/engine": {
+    include: [
+      "esri/views/2d/engine"
+    ],
+    exclude: [
+      "esri/views/MapView",
+      "esri/views/webgl"
+    ]
+  },
+
+  //--------------------------------------------------------------------------
+  //
+  //  Scene
+  //
+  //--------------------------------------------------------------------------
+
+  "esri/WebScene": {
+    include: [
+      "esri/WebScene"
+    ]
+  },
+
+  "esri/views/SceneView": {
+    include: [
+      "esri/views/SceneView",
+      "esri/layers/SceneLayer",
+      "esri/views/3d/layers/ElevationLayerView3D",
+      "esri/views/3d/layers/FeatureLayerView3D",
+      "esri/views/3d/layers/PointCloudLayerView3D",
+      "esri/views/3d/layers/SceneLayerView3D",
+      "esri/views/3d/layers/SceneLayerGraphicsView3D",
+      "esri/views/3d/layers/TiledLayerView3D"
+    ],
+    exclude: [
+      "esri/widgets/support/widget"
+    ]
+  },
+
+  "esri/views/3d/interactive/editingTools": {
+    include: [
+      "esri/views/3d/interactive/editingTools"
+    ],
+    exclude: [
+      "esri/views/SceneView"
+    ]
+  },
+
+  //--------------------------------------------------------------------------
+  //
+  //  Layers
+  //
+  //--------------------------------------------------------------------------
+
+  "esri/layers/TileLayer": {
+    include: [
+      "esri/layers/TileLayer"
+    ]
+  },
+
+  "esri/layers/MapImageLayer": {
+    include: [
+      "esri/layers/MapImageLayer"
+    ]
+  },
+
+  "esri/layers/VectorTileLayer": {
+    include: [
+      "esri/layers/VectorTileLayer"
+    ]
+  },
+
+  "esri/layers/ImageryLayer": {
+    include: [
+      "esri/layers/ImageryLayer"
+    ]
+  },
+
+  "esri/layers/graphics/sources/support/MemorySourceWorker": {
+    include: [
+      "esri/layers/graphics/sources/support/MemorySourceWorker"
+    ]
+  },
+
+  "esri/layers/graphics/sources/support/CSVSourceWorker": {
+    include: [
+      "esri/layers/graphics/sources/support/CSVSourceWorker"
+    ]
+  },
+
+  "esri/layers/graphics/sources/geojson/GeoJSONSourceWorker": {
+    include: [
+      "esri/layers/graphics/sources/geojson/GeoJSONSourceWorker"
+    ]
+  },
+
+  //--------------------------------------------------------------------------
+  //
+  //  LayerView2D
+  //
+  //--------------------------------------------------------------------------
+
+  "esri/views/2d/layers/TileLayerView2D": {
+    include: [
+      "esri/views/2d/layers/TileLayerView2D"
+    ],
+    exclude: [
+      "esri/views/MapView",
+      "esri/views/2d/engine",
+      "esri/views/webgl"
+    ]
+  },
+
+  "esri/views/2d/layers/VectorTileLayerView2D": {
+    include: [
+      "esri/views/2d/layers/VectorTileLayerView2D"
+    ],
+    exclude: [
+      "esri/views/MapView",
+      "esri/views/2d/engine",
+      "esri/views/webgl"
+    ]
+  },
+
+  "esri/views/2d/layers/FeatureLayerView2D": {
+    include: [
+      "esri/views/2d/layers/FeatureLayerView2D"
+    ],
+    exclude: [
+      "esri/views/MapView",
+      "esri/views/2d/engine",
+      "esri/views/webgl"
+    ]
+  },
+
+  "esri/views/2d/layers/ImageryLayerView2D": {
+    include: [
+      "esri/views/2d/layers/ImageryLayerView2D"
+    ],
+    exclude: [
+      "esri/views/MapView",
+      "esri/views/2d/engine",
+      "esri/views/webgl"
+    ]
+  },
+
+  "esri/views/2d/layers/features/tileRenderers/SymbolTileRenderer": {
+    include: [
+      "esri/views/2d/layers/features/tileRenderers/SymbolTileRenderer"
+    ],
+    exclude: [
+      "esri/views/2d/layers/FeatureLayerView2D",
+      "esri/views/MapView",
+      "esri/views/2d/engine",
+      "esri/views/webgl"
+    ]
+  },
+
+  "esri/views/2d/layers/features/tileRenderers/HeatmapTileRenderer": {
+    include: [
+      "esri/views/2d/layers/features/tileRenderers/HeatmapTileRenderer"
+    ],
+    exclude: [
+      "esri/views/2d/layers/FeatureLayerView2D",
+      "esri/views/MapView",
+      "esri/views/2d/engine",
+      "esri/views/webgl"
+    ]
+  },
+
+  //--------------------------------------------------------------------------
+  //
+  //  Widget
+  //
+  //--------------------------------------------------------------------------,
+
+  "esri/widgets/Editor": {
+    include: [
+      "esri/widgets/Editor",
+      "dojox/gfx/svg"
+    ]
+  },
+
+  "esri/widgets/Feature": {
+    include: [
+      "esri/widgets/Feature"
+    ]
+  },
+
+  "esri/widgets/LayerList": {
+    include: [
+      "esri/widgets/LayerList"
+    ]
+  },
+
+  "esri/widgets/Legend": {
+    include: [
+      "esri/widgets/Legend",
+      "dojox/gfx/svg"
+    ]
+  },
+
+  "esri/widgets/Search": {
+    include: [
+      "esri/widgets/Search"
+    ]
+  },
+
+  "esri/widgets/Sketch": {
+    include: [
+      "esri/widgets/Sketch"
+    ]
+  },
 
     //--------------------------------------------------------------------------
     //
@@ -450,40 +586,46 @@ var profile = {
     //
     //--------------------------------------------------------------------------
 
-    "esri/layers/graphics/sources/support/CSVSourceWorker": {
-      include: [
-        "esri/layers/graphics/sources/support/CSVSourceWorker"
-      ]
-    },
-    "esri/layers/graphics/sources/support/MemorySourceWorker": {
-      include: [
-        "esri/layers/graphics/sources/support/MemorySourceWorker"
-      ]
-    },
-
     "esri/layers/support/LercWorker": {
-      include: ["esri/layers/support/LercWorker"]
+      include: [
+        "esri/layers/support/LercWorker"
+      ]
     },
     "esri/views/2d/layers/features/Pipeline": {
       include: [
         "esri/views/2d/layers/features/Pipeline",
         "esri/views/2d/layers/features/controllers/OnDemandController",
-        "esri/views/2d/layers/features/controllers/MemoryController",
         "esri/views/2d/layers/features/processors/SymbolProcessor"
       ]
     },
     "esri/tasks/operations/PBFWorker": {
-      include: ["esri/tasks/operations/PBFWorker"]
+      include: [
+        "esri/tasks/operations/PBFWorker"
+      ]
     },
     "esri/views/3d/layers/PointCloudWorker": {
-      include: ["esri/views/3d/layers/PointCloudWorker"]
+      include: [
+        "esri/views/3d/layers/PointCloudWorker"
+      ]
+    },
+    "esri/layers/support/RasterWorker": {
+      include: [
+        "esri/layers/support/RasterWorker"
+      ]
     },
     "esri/views/3d/layers/SceneLayerWorker": {
-      include: ["esri/views/3d/layers/SceneLayerWorker"]
+      include: [
+        "esri/views/3d/layers/SceneLayerWorker"
+      ]
     },
     "esri/views/3d/webgl-engine/lib/edgeRendering/EdgeProcessingWorker": {
       include: [
         "esri/views/3d/webgl-engine/lib/edgeRendering/EdgeProcessingWorker"
+      ]
+    },
+    "esri/geometry/support/meshUtils/ElevationSamplerWorker": {
+      include: [
+        "esri/geometry/support/meshUtils/ElevationSamplerWorker"
       ]
     }
   },
@@ -523,15 +665,15 @@ var profile = {
     "native-response-type": 1,
     "native-xhr2-blob": 1,
     "dom-parser": 1,
-    activex: 0,
+    "activex": 0,
     "script-readystatechange": 1,
     "ie-event-behavior": 0,
-    MSPointer: 0,
+    "MSPointer": 0,
     "touch-action": 1,
     "dom-quirks": 0,
     "array-extensible": 1,
     "console-as-object": 1,
-    jscript: 0,
+    "jscript": 0,
     "event-focusin": 1,
     "events-mouseenter": 1,
     "events-mousewheel": 1,
@@ -542,17 +684,17 @@ var profile = {
     "dom-attributes-explicit": 1,
 
     // unsupported browsers
-    air: 0,
-    wp: 0,
-    khtml: 0,
-    wii: 0,
-    quirks: 0,
-    bb: 0,
-    msapp: 0,
-    opr: 0,
-    android: 0,
+    "air": 0,
+    "wp": 0,
+    "khtml": 0,
+    "wii": 0,
+    "quirks": 0,
+    "bb": 0,
+    "msapp": 0,
+    "opr": 0,
+    "android": 0,
 
-    svg: 1,
+    "svg": 1,
 
     // Deferred Instrumentation is disabled by default in the built version
     // of the API but we still want to enable users to activate it.
@@ -579,10 +721,13 @@ var profile = {
     //"dojo-undef-api": 0,
     "dojo-v1x-i18n-Api": 1, // we still need i18n.getLocalization
     "dojo-xhr-factory": 0,
-    dom: -1,
+    "dom": -1,
     "host-browser": -1,
     "extend-dojo": 1,
     "extend-esri": 0,
+
+    // Used to denote non-final release version in esri/kernel
+    "esri-next": 1,
 
     // For CDN and downloadable builds.
     // This flag is only for NPM installed versions of the API when
@@ -591,12 +736,19 @@ var profile = {
 
     // for WebGL instance count debugging
     "esri-webgl-debug": 0,
+    "esri-2d-debug": 0,
 
     "esri-feature-tiles-debug": 0,
     "esri-feature-highlight-debug": 0,
 
     // Used to stabilize WebGL feature layer and vector tile layer during screenshot testing.
-    "stable-symbol-rendering": 0
+    "stable-symbol-rendering": 0,
+
+    // Used to output tile processing performance info
+    "esri-tiles-performance": 0,
+
+    // this is set to true in dojo-config.js
+    "esri-validate-shaders": 0
   },
   defaultConfig: {
     baseUrl: "dojo",
@@ -606,8 +758,8 @@ var profile = {
       "dojo-built": 1,
       "dojo-loader": 1,
       "dojo-undef-api": 0,
-      dom: -1,
-      "host-browser": -1,
+      "dom": 1,
+      "host-browser": 1,
 
       // Disable deferred instrumentation by default in the built version.
       "config-deferredInstrumentation": 0,
@@ -618,8 +770,8 @@ var profile = {
 
       // default
       "config-selectorEngine": "lite",
-
-      "esri-featurelayer-webgl": 1,
+      
+      "esri-console-log-version": 0,
 
       "esri-promise-compatibility": 1,
       "esri-promise-compatibility-deprecation-warnings": 1,
