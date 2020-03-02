@@ -7,9 +7,10 @@ A collection of resources for developers using the [ArcGIS API for JavaScript](h
 * [TypeScript - Class and interface definitions](./3.x/typescript/README.md)
 
 **ArcGIS API for JavaScript 4.x**
-* [Bower Build - Create custom builds of the API](./4.x/bower/README.md)
-* [Sass - Create custom Sass builds for the widgets](./4.x/bower/dojo/SASS.md)
+* [npm Build - Create local builds of the API](./4.x/npm/README.md)
+* [Webpack - Create custom builds of the API](./4.x/webpack/README.md)
 * [TypeScript - Class and interface definitions](./4.x/typescript/README.md)
+* [Working with Frameworks](./frameworks/README.md)
 
 **Coding Standards**
 * [JSHint options for the JS API](./jshint/README.md)
