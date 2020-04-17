@@ -13,6 +13,7 @@
   },
   "license": "Apache-2.0",
   "devDependencies": {
+    "dojo-util": "github:Esri/dojo-util#v1.14.2/esri-3.28.0",
     "grunt": "^1.0.4",
     "grunt-contrib-clean": "^2.0.0",
     "grunt-contrib-copy": "^1.0.0",
