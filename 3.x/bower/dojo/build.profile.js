@@ -145,7 +145,13 @@ var profile = {
         "esri/layers/rasterLib/tile/RasterWorker"
       ],
       // includeLocales: ["en-us"]
-    }
+    },
+    "esri/layers/RasterXLayer": {
+      include: [
+        "esri/layers/RasterXLayer"
+      ],
+      // includeLocales: ["en-us"]
+    },
   },
   // Providing hints to the build system allows code to be conditionally removed on a more granular level than simple
   // module dependencies can allow. This is especially useful for creating tiny mobile builds. Keep in mind that dead
