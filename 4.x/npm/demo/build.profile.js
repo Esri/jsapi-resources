@@ -158,19 +158,6 @@ var profile = {
       }
     },
     {
-      name: "maquette",
-      location: DIR + "/maquette",
-      main: "dist/maquette.umd",
-      resourceTags: {
-        miniExclude: function(filename, mid) {
-          return (
-            mid.indexOf("/polyfills/") > -1 ||
-            (mid.indexOf("/dist/") > -1 && filename.indexOf(".umd.js") === -1)
-          );
-        }
-      }
-    },
-    {
       name: "maquette-jsx",
       location: DIR + "/maquette-jsx",
       main: "dist/maquette-jsx.umd",
@@ -814,10 +801,6 @@ var profile = {
       {
         name: "dstore",
         location: "../dojo-dstore"
-      },
-      {
-        name: "dgrid",
-        location: "../dgrid"
       },
       {
         name: "esri",
