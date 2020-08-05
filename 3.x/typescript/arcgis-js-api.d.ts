@@ -18206,7 +18206,7 @@ declare module "esri/workers/WorkerClient" {
   export = WorkerClient;
 }
 
-declare module "sri/dijit/geoenrichment/ReportPlayer/PlayerZoomBehaviors" {
+declare module "esri/dijit/geoenrichment/ReportPlayer/PlayerZoomBehaviors" {
   /** Enumerator of available zoom behavior options for the ReportPlayer. */
   class PlayerZoomBehaviors {
     /** The Report Player zooms in to fit a full page in the viewable area. */
