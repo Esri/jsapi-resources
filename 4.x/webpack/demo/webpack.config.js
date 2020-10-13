@@ -8,7 +8,7 @@ const path = require("path");
 
 module.exports = {
   entry: {
-    index: ["./src/css/main.scss", "@dojo/framework/shim/Promise", "./src/index.ts"]
+    index: ["./src/index.ts"]
   },
   output: {
     filename: "[name].[chunkhash].js",
@@ -35,7 +35,8 @@ module.exports = {
         loader: "ts-loader",
         options: {
           transpileOnly: true
-        }
+        },
+        exclude: /node_modules/
       },
       {
         test: /\.html$/,
@@ -48,15 +49,23 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /\.scss$/,
+        test: /\.(sa|sc|c)ss$/,
         use: [
           MiniCssExtractPlugin.loader,
-          "css-loader",
+          'css-loader',
           {
-            loader: "resolve-url-loader",
-            options: { includeRoot: true }
+              loader: 'resolve-url-loader',
+              options: { includeRoot: true },
           },
-          "sass-loader?sourceMap"
+          {
+              loader: 'sass-loader',
+              options: {
+                  sourceMap: true,
+                  sassOptions: {
+                    includePaths: [path.resolve('node_modules')]
+                  }
+              },
+          }
         ]
       }
     ]
@@ -66,15 +75,15 @@ module.exports = {
 
     new ArcGISPlugin({
       features: {
-        "3d": false
-      }
+        '3d': false
+      },
     }),
 
     new HtmlWebPackPlugin({
       title: "ArcGIS Template Application",
-      template: "./src/index.html",
-      filename: "./index.html",
-      favicon: "./src/assets/favicon.ico",
+      template: "src/index.html",
+      filename: "index.html",
+      favicon: "src/assets/favicon.ico",
       chunksSortMode: "none",
       inlineSource: ".(css)$"
     }),
@@ -89,7 +98,10 @@ module.exports = {
       path.resolve(__dirname, "/src"),
       path.resolve(__dirname, "node_modules/")
     ],
-    extensions: [".ts", ".tsx", ".js", ".scss", ".css"]
+    extensions: [".ts", ".tsx", ".js", ".scss", ".css"],
+    alias: {
+      "esri": path.resolve(__dirname, 'node_modules/arcgis-js-api/')
+    }
   },
   node: {
     process: false,

@@ -16,8 +16,7 @@ define([
   if (!has("dojo-built")) {
     esriConfig.workers.loaderConfig = {
       paths: {
-        "esri": "../arcgis-js-api",
-        "dstore": "../dojo-dstore"
+        "esri": "../arcgis-js-api"
       }
     };
   }
