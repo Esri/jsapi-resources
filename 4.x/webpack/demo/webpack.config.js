@@ -8,7 +8,7 @@ const path = require("path");
 
 module.exports = {
   entry: {
-    index: ["./src/index.ts"]
+    index: ["./src/css/main.scss", "./src/index.ts"]
   },
   output: {
     filename: "[name].[chunkhash].js",
@@ -49,7 +49,7 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /\.(sa|sc|c)ss$/,
+        test: /\.scss$/,
         use: [
           MiniCssExtractPlugin.loader,
           'css-loader',
