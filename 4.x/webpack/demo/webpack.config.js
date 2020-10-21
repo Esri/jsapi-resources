@@ -73,11 +73,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
 
-    new ArcGISPlugin({
-      features: {
-        '3d': false
-      },
-    }),
+    new ArcGISPlugin(),
 
     new HtmlWebPackPlugin({
       title: "ArcGIS Template Application",

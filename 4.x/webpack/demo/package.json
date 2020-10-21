@@ -17,10 +17,6 @@
     "terser-webpack-plugin": "^4.2.2",
     "ts-loader": "^8.0.4",
     "tslib": "^2.0.1",
-    "tslint": "^6.1.3",
-    "tslint-config-prettier": "^1.15.0",
-    "tslint-eslint-rules": "^5.4.0",
-    "tslint-plugin-prettier": "^2.0.1",
     "typescript": "^4.0.3",
     "webpack": "^4.20.1",
     "webpack-cli": "~3.3.5",
@@ -32,8 +28,7 @@
     "build": "webpack --mode development",
     "profile": "webpack --profile --json > stats.json",
     "serve": "webpack-dev-server --mode production --open --https --compress",
-    "prettier": "prettier --write \"src/**/*.ts?(x)\"",
-    "lint": "tslint --fix \"src/**/*.ts?(x)\""
+    "prettier": "prettier --write \"src/**/*.ts?(x)\""
   },
   "dependencies": {
     "@arcgis/webpack-plugin": "~4.17.3"
