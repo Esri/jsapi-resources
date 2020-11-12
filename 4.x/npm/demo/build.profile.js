@@ -12,9 +12,10 @@ const DIR = "./../node_modules/";
 
 var profile = {
   optimizeOptions: {
-    languageIn: "ECMASCRIPT6",
+    languageIn: "ECMASCRIPT_2019",
+    languageOut: "NO_TRANSPILE",
     checkSuspiciousCode: false,
-    uselessCode: "OFF",
+    uselessCode: "OFF"
   },
 
   // `basePath` is relative to the directory containing this profile file; in this case, it is being set to the
@@ -60,21 +61,7 @@ var profile = {
       trees: [
         // don"t bother with .hidden, tests, min, src, and templates
         [".", ".", /(\/\.)|(~$)|(node_modules)/],
-      ],
-    },
-    {
-      name: "moment",
-      location: DIR + "/moment",
-      main: "moment",
-      packageJson: {},
-      resourceTags: {
-        miniExclude: function (filename, mid) {
-          if (mid.indexOf("/min/") > -1 || mid.indexOf("/src/") > -1) {
-            return true;
-          }
-          return ["moment/ender", "moment/package"].indexOf(mid) > -1;
-        },
-      },
+      ]
     },
     {
       name: "@dojo",
@@ -208,14 +195,8 @@ var profile = {
       boot: true,
       customBase: true,
       include: [
-        "dojo/domReady",
         // include the app, set accordingly for your application
         "app/main",
-
-        /** enforce some modules loading */
-        /** not included because dom is -1 */
-        "dojo/_base/browser",
-        "dojo/request", // used by dojo/text
 
         "esri/Map",
         "esri/geometry",
@@ -226,8 +207,6 @@ var profile = {
         "esri/layers/mixins/PortalLayer",
         "esri/layers/mixins/ScaleRangeLayer",
         "esri/layers/mixins/RefreshableLayer",
-
-        "esri/portal/support/layersCreator",
 
         "esri/layers/FeatureLayer",
         "esri/layers/graphics/sources/MemorySource",
