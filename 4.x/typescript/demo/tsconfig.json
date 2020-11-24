@@ -6,10 +6,12 @@
     "sourceMap": true,
     "jsx": "react",
     "jsxFactory": "tsx",
-    "target": "es5",
+    "target": "es2019",
     "experimentalDecorators": true,
     "preserveConstEnums": true,
-    "suppressImplicitAnyIndexErrors": true
+    "suppressImplicitAnyIndexErrors": true,
+    "importHelpers": true,
+    "moduleResolution": "node"
   },
   "include": [
     "./app/*"
