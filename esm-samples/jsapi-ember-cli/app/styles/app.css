@@ -1,0 +1,10 @@
+@import 'esri/themes/dark/main.css';
+
+html,
+body,
+.map-root {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
