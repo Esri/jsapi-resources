@@ -8,25 +8,17 @@ const path = require("path");
 
 module.exports = {
   entry: {
-    index: ["./src/css/main.scss", "./src/index.ts"]
+    index: ["./src/css/main.css", "./src/index.ts"]
   },
   output: {
+    path: path.resolve(__dirname, "dist"),
     filename: "[name].[chunkhash].js",
     publicPath: ""
   },
-  optimization: {
-    minimizer: [
-      new TerserPlugin({
-        cache: true,
-        parallel: true,
-        sourceMap: false,
-        terserOptions: {
-          output: {
-            comments: false
-          }
-        }
-      })
-    ]
+  devServer: {
+    contentBase: path.join(__dirname, "dist"),
+    compress: true,
+    port: 3001,
   },
   module: {
     rules: [
@@ -49,23 +41,10 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /\.scss$/,
+        test: /\.css$/,
         use: [
           MiniCssExtractPlugin.loader,
-          'css-loader',
-          {
-              loader: 'resolve-url-loader',
-              options: { includeRoot: true },
-          },
-          {
-              loader: 'sass-loader',
-              options: {
-                  sourceMap: true,
-                  sassOptions: {
-                    includePaths: [path.resolve('node_modules')]
-                  }
-              },
-          }
+          'css-loader'
         ]
       }
     ]
@@ -98,10 +77,5 @@ module.exports = {
     alias: {
       "esri": path.resolve(__dirname, 'node_modules/arcgis-js-api/')
     }
-  },
-  node: {
-    process: false,
-    global: false,
-    fs: "empty"
   }
 };
