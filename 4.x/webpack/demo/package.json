@@ -36,8 +36,7 @@
     "start": "webpack serve --mode development",
     "build": "webpack --mode production",
     "prettier": "prettier --write \"src/**/*.ts?(x)\"",
-    "lint": "eslint --fix \"src/**/*.ts?(x)\"",
-    "test": "jest --coverage"
+    "lint": "eslint --fix \"src/**/*.ts?(x)\""
   },
   "lint-staged": {
     "*.{ts,tsx}": [
@@ -45,6 +44,24 @@
       "eslint --fix"
     ]
   },
+  "eslintConfig": {
+		"parser": "@typescript-eslint/parser",
+		"plugins": [
+			"@typescript-eslint"
+		],
+		"extends": [
+			"eslint:recommended",
+			"plugin:@typescript-eslint/eslint-recommended",
+			"plugin:@typescript-eslint/recommended",
+			"prettier/@typescript-eslint",
+			"plugin:prettier/recommended"
+		]
+	},
+	"prettier": {
+		"singleQuote": true,
+		"tabWidth": 4,
+		"useTabs": true
+	},
   "arcgis": {
     "type": "jsapi"
   },
