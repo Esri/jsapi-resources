@@ -1,8 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 html,
-body,
-app-root,
-.esri-view {
+body {
   padding: 0;
   margin: 0;
   height: 100%;
