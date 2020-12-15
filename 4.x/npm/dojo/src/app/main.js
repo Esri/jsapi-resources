@@ -21,10 +21,10 @@ define([
     };
   }
 
-  var url =
+  const url =
         "https://arcgis.github.io/arcgis-samples-javascript/sample-data/hurricanes.csv";
 
-  var csvLayer = new CSVLayer({
+  const csvLayer = new CSVLayer({
     title: "Hurricanes",
     url: url,
     copyright: "NOAA",
@@ -57,10 +57,7 @@ define([
     }
   });
 
-  var map = new WebMap({
-    // contains a basemap with a South Pole Stereographic projection
-    // the CSVLayer coordinates will re-project client-side
-    // with the Projection Engine to match the view's Spatial Reference
+  const map = new WebMap({
     basemap: {
       portalItem: {
         id: "3113eacc129942b4abde490a51aeb33f"
@@ -69,7 +66,7 @@ define([
     layers: [csvLayer]
   });
 
-  var view = new MapView({
+  const view = new MapView({
     container: "viewDiv",
     map: map,
     highlightOptions: {
@@ -85,17 +82,17 @@ define([
     }
   });
 
-  var legendExpand = new Expand({
+  const legendExpand = new Expand({
     view: view,
     content: new Legend({
-      view: view,
+      view,
       style: "card"
     })
   });
   view.ui.add(legendExpand, "top-left");
 
   function createUniqueValueInfos() {
-    var fireflyImages = [
+    const fireflyImages = [
       "cat1.png",
       "cat2.png",
       "cat3.png",
@@ -103,10 +100,10 @@ define([
       "cat5.png"
     ];
 
-    var baseUrl =
+    const baseUrl =
       "https://arcgis.github.io/arcgis-samples-javascript/sample-data/";
 
-    return fireflyImages.map(function(url, i) {
+    return fireflyImages.map((url, i) => {
       return {
         value: i + 1, // Category number
         symbol: {
