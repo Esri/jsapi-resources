@@ -7,7 +7,6 @@ It provides a [Gruntfile](Gruntfile.js).
 
 # Requirements
 * [node & npm](https://nodejs.org/)
-* [java 8 or greater](https://java.com/en/download/) - for [Closure Compiler](https://github.com/google/closure-compiler) used during build
 
 # Usage
 * `npm install` - installs required packages

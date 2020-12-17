@@ -1,6 +1,6 @@
 # arcgis-js-api build tools
 
-These are the recommended dojo and requirejs build configurations for using the [arcgis-js-api](https://github.com/Esri/arcgis-js-api) using npm.
+These are the recommended Dojo and Requirejs build configurations for using the [arcgis-js-api](https://github.com/Esri/arcgis-js-api) using npm.
 You can read more about npm [here](https://www.npmjs.com/).
 
 ## Why

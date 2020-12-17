@@ -59,8 +59,7 @@
 	},
 	"prettier": {
 		"singleQuote": true,
-		"tabWidth": 4,
-		"useTabs": true
+		"tabWidth": 4
 	},
   "arcgis": {
     "type": "jsapi"

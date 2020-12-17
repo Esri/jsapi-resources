@@ -9,7 +9,11 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "browserslist": "> 0.25%, not dead",
+  "browserslist": [
+    "last 1 chrome version",
+    "last 1 firefox version",
+    "last 1 safari version"
+  ],
   "dependencies": {
     "arcgis-js-api": "~4.18.0",
     "r.js": "^1.0.3",
