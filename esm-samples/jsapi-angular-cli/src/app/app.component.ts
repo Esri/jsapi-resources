@@ -79,7 +79,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
     this.zone.runOutsideAngular(() => {
       // Initialize MapView and return an instance of MapView
-      this.initializeMap().then((mapView) => {
+      this.initializeMap().then(() => {
         // The map has been initialized
         this.zone.run(() => {
           console.log('mapView ready: ');
