@@ -11,7 +11,7 @@
   "license": "ISC",
   "browserslist": "> 0.25%, not dead",
   "dependencies": {
-    "arcgis-js-api": "^4.18.0-next.20201112",
+    "arcgis-js-api": "~4.18.0",
     "r.js": "^1.0.3",
     "requirejs": "^2.3.6",
     "terser": "^5.3.8"

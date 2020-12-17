@@ -2,7 +2,7 @@
   "name": "demo",
   "version": "0.0.1",
   "devDependencies": {
-    "@arcgis/webpack-plugin": "^4.18.0-next.20201201",
+    "@arcgis/webpack-plugin": "~4.18.0",
     "@types/sinon": "^9.0.7",
     "@typescript-eslint/eslint-plugin": "^4.9.0",
     "@typescript-eslint/parser": "^4.9.0",
@@ -66,6 +66,6 @@
     "type": "jsapi"
   },
   "dependencies": {
-    "arcgis-js-api": "^4.18.0-next.20201201"
+    "arcgis-js-api": "~4.18.0"
   }
 }
