@@ -70,7 +70,6 @@ export class AppComponent implements OnInit, OnDestroy {
     return this.view.when();
   }
 
-  // tslint:disable-next-line:use-lifecycle-interface
   ngOnInit(): any {
 
     // Set this property when using routes in order to resolve the /assets correctly.
@@ -90,7 +89,6 @@ export class AppComponent implements OnInit, OnDestroy {
     });
   }
 
-  // tslint:disable-next-line:use-lifecycle-interface
   ngOnDestroy(): void {
     if (this.view) {
       // destroy the map view
