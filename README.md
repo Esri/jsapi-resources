@@ -7,8 +7,8 @@ A collection of resources for developers using the [ArcGIS API for JavaScript](h
 * [TypeScript - Class and interface definitions](./3.x/typescript/README.md)
 
 **ArcGIS API for JavaScript 4.x**
-* [npm Build - Create local builds of the API](./4.x/npm/README.md)
 * [Webpack - Create custom builds of the API](./4.x/webpack/README.md)
+* [AMD Builds - Create local builds of the API](./4.x/amd/README.md)
 * [TypeScript - Class and interface definitions](./4.x/typescript/README.md)
 * [Working with Frameworks](./frameworks/README.md)
 

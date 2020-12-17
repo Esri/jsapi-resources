@@ -4,7 +4,7 @@
   "private": true,
   "description": "",
   "repository": {
-    "url": "https://github.com/Esri/jsapi-resources/4.x/npm/dojo"
+    "url": "https://github.com/Esri/jsapi-resources/4.x/amd/dojo"
   },
   "scripts": {
     "build": "grunt build",
