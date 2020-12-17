@@ -23,7 +23,7 @@ var profile = {
   basePath: "./src",
 
   action: "release",
-  optimize: "closure", // requires Java 7 or later: https://github.com/google/closure-compiler/wiki/FAQ
+  optimize: "closure", // requires Java 8 or later: https://github.com/google/closure-compiler/wiki/FAQ
   layerOptimize: "closure",
   useSourceMaps: false,
   cssOptimize: "comments",

@@ -7,7 +7,7 @@ It provides a [Gruntfile](Gruntfile.js), [gulpfile](gulpfile.js), and a [makefil
 
 # Requirements
 * [node & npm](https://nodejs.org/)
-* [java 7 or greater](https://java.com/en/download/) - for [Closure Compiler](https://github.com/google/closure-compiler) used during build
+* [java 8 or greater](https://java.com/en/download/) - for [Closure Compiler](https://github.com/google/closure-compiler) used during build
 
 # Usage
 * `npm install` - installs required packages
