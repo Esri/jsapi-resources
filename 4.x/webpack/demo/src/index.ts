@@ -1,117 +1,72 @@
-import "./config";
+/// <reference types="arcgis-js-api" />
 
-import FeatureLayer from "esri/layers/FeatureLayer";
-import ArcGISMap from "esri/Map";
-import DictionaryRenderer from "esri/renderers/DictionaryRenderer";
-import MapView from "esri/views/MapView";
+import ArcGISMap from 'esri/Map';
+import MapView from 'esri/views/MapView';
 
-/**
- * Initialize application
- */
+import FeatureLayer from 'esri/layers/FeatureLayer';
+import Expand from 'esri/widgets/Expand';
+
+import FeatureFilter from 'esri/views/layers/support/FeatureFilter';
+
+let floodLayerView: __esri.FeatureLayerView;
+
+// flash flood warnings layer
+const layer = new FeatureLayer({
+    portalItem: {
+        id: 'f9e348953b3848ec8b69964d5bceae02',
+    },
+    outFields: ['SEASON'],
+});
+
 const map = new ArcGISMap({
-  basemap: "gray-vector"
+    basemap: 'gray-vector',
+    layers: [layer],
 });
 
 const view = new MapView({
-  map,
-  container: "app",
-  extent: {
-    spatialReference: {
-      wkid: 102100
-    },
-    xmax: -13581772,
-    xmin: -13584170,
-    ymax: 4436367,
-    ymin: 4435053
-  }
+    map: map,
+    container: 'viewDiv',
+    center: [-98, 40],
+    zoom: 4,
 });
 
+const seasonsElement = document.getElementById('seasons-filter') as HTMLElement;
 
-const popupTemplate = {
-  // autocasts as new PopupTemplate()
-  title: "station: {Station_Name}",
-  content: [
-    {
-      // It is also possible to set the fieldInfos outside of the content
-      // directly in the popupTemplate. If no fieldInfos is specifically set
-      // in the content, it defaults to whatever may be set within the popupTemplate.
-      type: "fields",
-      fieldInfos: [
-        {
-          fieldName: "Fuel_Type_Code",
-          label: "Fuel type"
-        },
-        {
-          fieldName: "EV_Network",
-          label: "EV network"
-        },
-        {
-          fieldName: "EV_Connector_Types",
-          label: "EV connection types"
-        },
-        {
-          fieldName: "Station_Name",
-          label: "Station Name"
+// click event handler for seasons choices
+seasonsElement.addEventListener('click', filterBySeason);
+
+// User clicked on Winter, Spring, Summer or Fall
+// set an attribute filter on flood warnings layer view
+// to display the warnings issued in that season
+function filterBySeason(event: Event) {
+    const selectedSeason = (event?.target as HTMLElement).getAttribute(
+        'data-season'
+    );
+    floodLayerView.filter = new FeatureFilter({
+        where: "Season = '" + selectedSeason + "'",
+    });
+}
+
+view.whenLayerView(layer).then(function (layerView) {
+    // flash flood warnings layer loaded
+    // get a reference to the flood warnings layerview
+    floodLayerView = layerView;
+
+    // set up UI items
+    seasonsElement.style.visibility = 'visible';
+    const seasonsExpand = new Expand({
+        view: view,
+        content: seasonsElement,
+        expandIconClass: 'esri-icon-filter',
+        group: 'top-left',
+    });
+    //clear the filters when user closes the expand widget
+    seasonsExpand.watch('expanded', function () {
+        if (!seasonsExpand.expanded) {
+            // set it to an empty filter
+            floodLayerView.filter = new FeatureFilter();
         }
-      ]
-    }
-  ]
-};
-
-const scale = 36112;
-const layer1 = new FeatureLayer({
-  url:
-    "https://services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/Alternative_Fuel_Station_March2018/FeatureServer",
-  outFields: ["*"],
-  popupTemplate,
-  renderer: new DictionaryRenderer({
-    url:
-      "https://jsapi.maps.arcgis.com/sharing/rest/content/items/30cfbf36efd64ccf92136201d9e852af",
-    fieldMap: {
-      fuel_type: "Fuel_Type_Code"
-    },
-    config: {
-      show_label: "false"
-    },
-    visualVariables: [
-      {
-        type: "size",
-        valueExpression: "$view.scale",
-        stops: [
-          { value: scale / 2, size: 20 },
-          { value: scale * 2, size: 15 },
-          { value: scale * 4, size: 10 },
-          { value: scale * 8, size: 5 },
-          { value: scale * 16, size: 2 },
-          { value: scale * 32, size: 1 }
-        ]
-      } as any
-    ]
-  }),
-  minScale: 0,
-  maxScale: 10000
+    });
+    view.ui.add(seasonsExpand, 'top-left');
+    view.ui.add('titleDiv', 'top-right');
 });
-
-const layer2 = new FeatureLayer({
-  url:
-    "https://services1.arcgis.com/4yjifSiIG17X0gW4/arcgis/rest/services/Alternative_Fuel_Station_March2018/FeatureServer",
-  outFields: ["*"],
-  popupTemplate,
-  renderer: new DictionaryRenderer({
-    url:
-      "https://jsapi.maps.arcgis.com/sharing/rest/content/items/30cfbf36efd64ccf92136201d9e852af",
-    fieldMap: {
-      fuel_type: "Fuel_Type_Code",
-      connector_types: "EV_Connector_Types",
-      network: "EV_Network",
-      name: "Station_Name"
-    },
-    config: {
-      show_label: "true"
-    }
-  }),
-  minScale: 10000,
-  maxScale: 0
-});
-
-map.addMany([layer1, layer2]);
