@@ -4,7 +4,7 @@
     <title>ArcGIS JS API Dojo Build Sample</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="initial-scale=1.0 maximum-scale=1.0">
-    <link rel="stylesheet" href="./../node_modules/arcgis-js-api/css/main.css">
+    <link rel="stylesheet" href="./../node_modules/arcgis-js-api/assets/esri/themes/dark/main.css">
     <style>
       html, body, #map {
         height: 100%;
@@ -102,18 +102,13 @@
           location: "../maquette-jsx",
           main: "dist/maquette-jsx.umd"
         });
-        addPkgIfNotPresent({
-          name: "tslib",
-          location: "../tslib",
-          main: "tslib"
-        });
 
         config.packages = packages;
       })();
     })();
     </script>
     <script src="../node_modules/dojo/dojo.js"></script>
-    <script>require(["app/main"]);</script>
+    <script>require(["app/config", "app/main"]);</script>
 
   </body>
 </html>
