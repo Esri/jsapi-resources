@@ -88,24 +88,6 @@
           location: "../arcgis-js-api"
         });
         addPkgIfNotPresent({
-          name: "@dojo",
-          location: "../@dojo"
-        });
-        addPkgIfNotPresent({
-          name: "dstore",
-          location: "../dojo-dstore"
-        });
-        addPkgIfNotPresent({
-          name: "cldrjs",
-          location: "../cldrjs",
-          main: "dist/cldr"
-        });
-        addPkgIfNotPresent({
-          name: "globalize",
-          location: "../globalize",
-          main: "dist/globalize"
-        });
-        addPkgIfNotPresent({
           name: "maquette",
           location: "../maquette",
           main: "dist/maquette.umd"
@@ -123,21 +105,9 @@
 
         config.packages = packages;
       })();
-
-      // configure map.globalize
-      var map = config.map || {};
-      if (!map.globalize) {
-        map.globalize = {
-          "cldr": "cldrjs/dist/cldr",
-          "cldr/event": "cldrjs/dist/cldr/event",
-          "cldr/supplemental": "cldrjs/dist/cldr/supplemental",
-          "cldr/unresolved": "cldrjs/dist/cldr/unresolved"
-        };
-        config.map = map;
-      }
     })();
     </script>
-    <script src="../node_modules/dojo/dojo.js"></script>
+    <script src="../node_modules/requirejs/requirejs.js"></script>
     <script>require(["app/main"]);</script>
 
   </body>
