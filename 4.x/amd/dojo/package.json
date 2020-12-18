@@ -13,7 +13,7 @@
   },
   "license": "Apache-2.0",
   "devDependencies": {
-    "dojo-util": "github:dojo/util#1.16.3",
+    "dojo-util": "^1.16.3",
     "grunt": "^1.0.4",
     "grunt-cli": "^1.3.2",
     "grunt-contrib-clean": "^2.0.0",
@@ -28,7 +28,6 @@
   },
   "dependencies": {
     "arcgis-js-api": "~4.18.0",
-    "dojo": "^1.16.3",
-    "whatwg-fetch": "^3.0.0"
+    "dojo": "^1.16.3"
   }
 }
