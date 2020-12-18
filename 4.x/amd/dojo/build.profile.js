@@ -373,58 +373,7 @@ var profile = {
           // don"t bother with .hidden, tests, min, src, and templates
           [".", ".", /(\/\.)|(~$)|(node_modules)/],
         ]
-      },
-      {
-        name: "maquette-jsx",
-        location: DIR + "/maquette-jsx",
-        main: "dist/maquette-jsx.umd",
-        resourceTags: {
-          miniExclude: function (filename, mid) {
-            return (
-              mid.indexOf("/dist/") > -1 && filename.indexOf(".umd.js") === -1
-            );
-          },
-        },
-      },
-      {
-        name: "maquette-css-transitions",
-        location: DIR + "/maquette-css-transitions",
-        main: "dist/maquette-css-transitions.umd",
-        resourceTags: {
-          miniExclude: function (filename, mid) {
-            return (
-              mid.indexOf("/dist/") > -1 && filename.indexOf(".umd.js") === -1
-            );
-          },
-        },
-      },
-      {
-        name: "tslib",
-        location: DIR + "/tslib",
-        main: "tslib",
-        resourceTags: {
-          miniExclude: function (filename, mid) {
-            return (
-              mid.indexOf("/tslib.es6") > -1 ||
-              mid.indexOf("/tslib.html") > -1 ||
-              mid.indexOf("/docs/") > -1
-            );
-          },
-        },
-      },
-      {
-        name: "whatwg-fetch",
-        location: DIR + "./whatwg-fetch",
-        main: "dist/fetch.umd",
-        resourceTags: {
-          miniExclude: function (filename, mid) {
-            if (filename.slice(-5) === ".flow") {
-              return true;
-            }
-            return filename.indexOf("/fetch.js") > -1;
-          },
-        },
-      },
+      }
     ],
 
     defaultConfig: {
