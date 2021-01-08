@@ -1,7 +1,7 @@
 {
   "private": true,
   "dependencies": {
-    "@arcgis/core": "^4.18.0"
+    "@arcgis/core": "^4.18.1"
   },
   "devDependencies": {
     "@arcgis/webpack-plugin": "4.18.0-next.20201029",
