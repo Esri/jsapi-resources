@@ -1,7 +1,7 @@
 {
   "private": true,
   "dependencies": {
-    "@arcgis/core": "^4.18.0",
+    "@arcgis/core": "^4.18.1",
     "abort-controller": "^3.0.0",
     "cross-fetch": "^3.0.6"
   },
