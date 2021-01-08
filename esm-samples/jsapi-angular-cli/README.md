@@ -51,7 +51,7 @@ import config from "@arcgis/core/config.js";
 
 ## Development server
 
-Run `ng serve --open` for a dev server that will automatically open a browser window. The app will automatically reload if you change any of the source files.
+Run `ng serve --open` for a dev server that will automatically open a browser window. The app will automatically reload if you change any of the source files. You need to install [Angular CLI](https://cli.angular.io/) before you can compile the app. 
 
 ## Code scaffolding
 
