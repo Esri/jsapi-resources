@@ -1,6 +1,6 @@
 jsapi-resources
 ===============
-A collection of resources for developers using the [ArcGIS API for JavaScript](https://js.arcgis.com) to create local builds.
+A collection of resources for developers using the [ArcGIS API for JavaScript](https://js.arcgis.com).
 
 ### ArcGIS API for JavaScript 3.x
 * [Bower - Create custom builds of the API](./3.x/bower/README.md)
