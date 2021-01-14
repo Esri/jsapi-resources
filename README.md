@@ -2,20 +2,21 @@ jsapi-resources
 ===============
 A collection of resources for developers using the [ArcGIS API for JavaScript](https://js.arcgis.com).
 
-**ArcGIS API for JavaScript 3.x**
+### ArcGIS API for JavaScript 3.x
 * [Bower - Create custom builds of the API](./3.x/bower/README.md)
 * [TypeScript - Class and interface definitions](./3.x/typescript/README.md)
 
-**ArcGIS API for JavaScript 4.x**
+### ArcGIS API for JavaScript 4.x
+
+#### ES modules (ESM)
+* [ESM samples - Create local builds with frameworks and module bundlers](./esm-samples/)
+
+#### AMD modules
 * [Webpack - Create custom builds of the API](./4.x/webpack/README.md)
-* [AMD Builds - Create local builds of the API](./4.x/amd/README.md)
+* [Dojo and RequireJS - Create local builds of the API](./4.x/amd/README.md)
 * [TypeScript - Class and interface definitions](./4.x/typescript/README.md)
-* [Working with Frameworks](./frameworks/README.md)
 
-**Coding Standards**
-* [JSHint options for the JS API](./jshint/README.md)
-
-**OAuth**
+### OAuth
 * [HTML for handling callbacks](./oauth/README.md)
 
 ## Instructions
@@ -31,7 +32,7 @@ Refer to the README files in each subdirectory of this repo for specific instruc
 Please see our [guidelines for contributing](CONTRIBUTING.md).
 
 ## Licensing
-Copyright 2017 Esri
+Copyright 2021 Esri
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
