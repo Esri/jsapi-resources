@@ -1,6 +1,12 @@
-# ArcGIS JSAPI Integration
+# ArcGIS API for JavaScript with Angular CLI
 
-## ArcGIS JS API notes
+**Note:** we currently recommend setting `buildOptimizer: false` in `angular.json`. This prevents WebGL errors such as `WebGL: INVALID_OPERATION` and `WebGL: INVALID_ENUM`. It may increase your on-disk and loaded application size.
+
+---
+
+## jsapi-angular-cli
+
+This repo demonstrates how to use [@arcgis/core](https://www.npmjs.com/package/@arcgis/core) ES modules with Angular 11. 
 
 **Step 1** - Run `npm install`. 
 
