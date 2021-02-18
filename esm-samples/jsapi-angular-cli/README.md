@@ -51,7 +51,7 @@ import esriConfig from "@arcgis/core/config.js";
   . . .
 
   ngOnInit(): any {
-    esriConfig.assetsPath = "/assets"; //assuming assets are in /assets
+    esriConfig.assetsPath = "./assets"; //assuming assets are in /assets
   }
 ```
 
