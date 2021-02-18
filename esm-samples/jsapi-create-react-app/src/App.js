@@ -3,10 +3,15 @@ import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 import ArcGISMap from "@arcgis/core/Map";
 import DictionaryRenderer from "@arcgis/core/renderers/DictionaryRenderer";
 import MapView from "@arcgis/core/views/MapView";
+import esriConfig from '@arcgis/core/config.js';
 
 import "./App.css";
 
 function App() {
+
+  // Required: Set this property to insure assets resolve correctly.
+  esriConfig.assetsPath = './assets'; 
+
   const mapDiv = useRef(null);
 
   useEffect(() => {

@@ -11,7 +11,7 @@ import WebMap from '@arcgis/core/WebMap';
 import MapView from '@arcgis/core/views/MapView';
 import Bookmarks from '@arcgis/core/widgets/Bookmarks';
 import Expand from '@arcgis/core/widgets/Expand';
-import config from '@arcgis/core/config.js';
+import esriConfig from '@arcgis/core/config.js';
 
 @Component({
   selector: 'app-root',
@@ -72,10 +72,9 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit(): any {
 
-    // Set this property when using routes in order to resolve the /assets correctly.
+    // Required: Set this property to insure assets resolve correctly.
     // IMPORTANT: the directory path may be different between your product app and your dev app
-    // config.assetsPath = "/assets";
-    config.assetsPath = 'assets/';
+    esriConfig.assetsPath = '/assets';
 
     this.zone.runOutsideAngular(() => {
       // Initialize MapView and return an instance of MapView

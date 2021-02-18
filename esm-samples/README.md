@@ -26,9 +26,9 @@ const view = new MapView({
 });
 ```
 
-## Copy assets
+## Copy assets and set assetsPath
 
-Make sure to copy the API’s assets, which includes styles, images, fonts, and localization files from the `@arcgis/core/assets` folder to your build directory. A simple way to accomplish this is to configure an NPM script that runs during your build process. For example, use npm to install `ncp` and configure a script in `package.json` to copy the assets folder. Here’s a React example:
+Copy the API’s assets, which includes styles, images, fonts, and localization files from the `@arcgis/core/assets` folder to your build directory. A simple way to accomplish this is to configure an NPM script that runs during your build process. For example, use npm to install `ncp` and configure a script in `package.json` to copy the assets folder. Here’s a React example:
 
 ```js
 
@@ -42,13 +42,12 @@ Make sure to copy the API’s assets, which includes styles, images, fonts, and 
 }
 ```
 
-When assets are loaded from paths that are different than the default location (e.g. `./assets`), set [`config.assetsPath`](https://developers.arcgis.com/javascript/latest/api-reference/esri-config.html#assetsPath) to insure the paths are correctly resolved. Examples include when using multiple routes in Angular, or when you need to relocate the assets because of project requirements.
+Be sure to set [`config.assetsPath`](https://developers.arcgis.com/javascript/latest/api-reference/esri-config.html#assetsPath) to the same path where you copied the assets to insure they are correctly resolved, for example:
 
 ```js
-import config from '@arcgis/core/config.js';
+import esriConfig from '@arcgis/core/config.js';
 
-// Assets have been moved from the default location
-config.assetsPath = '/public/assets';
+esriConfig.assetsPath = './assets';
 ```
 
 ## Configure CSS

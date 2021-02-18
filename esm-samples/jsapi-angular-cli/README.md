@@ -43,15 +43,15 @@ To use the CSS at a component-level, set a CSS link in `index.html`:
   <link rel="stylesheet" href="assets/esri/themes/dark/main.css">
 ```
 
-**Step 4** Working with Routes - when building routes, set the base url for the `/assets` folder. Development and deployment will require setting different urls. 
+**Step 4** Set the base url for the assets folder so they are correctly resolved. 
 
 ```javascript
-import config from "@arcgis/core/config.js";
+import esriConfig from "@arcgis/core/config.js";
 
   . . .
 
   ngOnInit(): any {
-    config.assetsPath = "/assets"; //assuming assets are in /assets
+    esriConfig.assetsPath = "/assets"; //assuming assets are in /assets
   }
 ```
 
