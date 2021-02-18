@@ -42,7 +42,7 @@ Copy the API’s assets, which includes styles, images, fonts, and localization 
 }
 ```
 
-Be sure to set [`config.assetsPath`](https://developers.arcgis.com/javascript/latest/api-reference/esri-config.html#assetsPath) to the same path where you copied the assets to insure they are correctly resolved, for example:
+Be sure to set [`config.assetsPath`](https://developers.arcgis.com/javascript/latest/api-reference/esri-config.html#assetsPath) to insure the assets are correctly resolved, for example:
 
 ```js
 import esriConfig from '@arcgis/core/config.js';
