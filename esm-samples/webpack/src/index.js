@@ -1,3 +1,5 @@
+import esriConfig from "@arcgis/core/config.js";
+
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 
 import WebMap from "@arcgis/core/WebMap";
@@ -8,6 +10,9 @@ import DotDensityRenderer from "@arcgis/core/renderers/DotDensityRenderer";
 import Expand from "@arcgis/core/widgets/Expand";
 import Bookmarks from "@arcgis/core/widgets/Bookmarks";
 import Legend from "@arcgis/core/widgets/Legend";
+
+// Required: Set this property to insure assets resolve correctly.
+esriConfig.assetsPath = "./assets"; 
 
 const map = new WebMap({
   portalItem: {

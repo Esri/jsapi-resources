@@ -13,6 +13,14 @@ Integrating React with [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/co
 }
 ```
 
+Be sure to set [`config.assetsPath`](https://developers.arcgis.com/javascript/latest/api-reference/esri-config.html#assetsPath) so that the assets are correctly resolved, for example:
+
+```js
+import esriConfig from '@arcgis/core/config.js';
+
+esriConfig.assetsPath = './assets'; 
+```
+
 There were recent versions of `create-react-app` that would attempt to inject babel helpers into ArcGIS API for JavaScript code during the build, but would not copy the helper files. We were able to prevent this by letting the build only build for modern browsers.
 
 ```json

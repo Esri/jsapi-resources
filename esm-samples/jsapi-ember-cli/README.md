@@ -2,6 +2,14 @@
 
 This repo integrates [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core) using [embroider](https://github.com/embroider-build/embroider).
 
+Be sure to set [`config.assetsPath`](https://developers.arcgis.com/javascript/latest/api-reference/esri-config.html#assetsPath) so that the assets are correctly resolved, for example:
+
+```js
+import esriConfig from '@arcgis/core/config.js';
+
+esriConfig.assetsPath = './assets'; 
+```
+
 To prevent runtime errors in production builds make sure target browsers do not include IE 11.
 
 ```js

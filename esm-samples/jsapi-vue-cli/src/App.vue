@@ -7,6 +7,7 @@ import WebMap from "@arcgis/core/WebMap";
 import MapView from "@arcgis/core/views/MapView";
 import Bookmarks from "@arcgis/core/widgets/Bookmarks";
 import Expand from "@arcgis/core/widgets/Expand";
+import esriConfig from '@arcgis/core/config.js';
 
 export default {
   name: 'App',
@@ -16,6 +17,9 @@ export default {
         id: "aa1d3f80270146208328cf66d022e09c",
       },
     });
+
+    // Set this property to insure assets resolve correctly.
+    esriConfig.assetsPath = './assets'; 
 
     const view = new MapView({
       container: this.$el,

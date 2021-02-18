@@ -2,10 +2,15 @@ import FeatureLayer from '@arcgis/core/layers/FeatureLayer';
 import ArcGISMap from '@arcgis/core/Map';
 import DictionaryRenderer from '@arcgis/core/renderers/DictionaryRenderer';
 import MapView from '@arcgis/core/views/MapView';
+import esriConfig from '@arcgis/core/config.js';
 
 /**
  * Initialize application
  */
+
+// Required: Set this property to insure assets resolve correctly.
+esriConfig.assetsPath = './assets'; 
+
 const map = new ArcGISMap({
   basemap: 'gray-vector'
 });

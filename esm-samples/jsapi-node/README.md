@@ -29,6 +29,14 @@ require("cross-fetch/polyfill");
 
 You can find native ESM samples in the [native-esm folder](./native-esm).
 
+Be sure to set [`config.assetsPath`](https://developers.arcgis.com/javascript/latest/api-reference/esri-config.html#assetsPath) so that the assets are correctly resolved, for example:
+
+```js
+import esriConfig from '@arcgis/core/config.js';
+
+esriConfig.assetsPath = "node_modules/@arcgis/core/assets"; // relative to when running in root
+```
+
 ## IdentityManager
 
 You will also want to disable the [`IdentityManager`](https://developers.arcgis.com/javascript/latest/api-reference/esri-config.html#request) so it doesn't attempt to load DOM related JavaScript.
