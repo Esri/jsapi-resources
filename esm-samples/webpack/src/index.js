@@ -12,7 +12,7 @@ import Bookmarks from "@arcgis/core/widgets/Bookmarks";
 import Legend from "@arcgis/core/widgets/Legend";
 
 // Required: Set this property to insure assets resolve correctly.
-esriConfig.assetsPath = "./assets"; // relative to when running in root
+esriConfig.assetsPath = "./assets"; 
 
 const map = new WebMap({
   portalItem: {

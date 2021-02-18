@@ -73,8 +73,8 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit(): any {
 
     // Required: Set this property to insure assets resolve correctly.
-    // IMPORTANT: the directory path may be different between your product app and your dev app
-    esriConfig.assetsPath = './assets';
+    // IMPORTANT: the directory path may be different between your production app and your dev app
+    esriConfig.assetsPath = '/assets';
 
     this.zone.runOutsideAngular(() => {
       // Initialize MapView and return an instance of MapView
