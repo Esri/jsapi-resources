@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no" />
+  <title>ESM CDN</title>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.18/esri/themes/light/main.css" />
+
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+  <script type="module">
+
+    import WebMap from 'https://js.arcgis.com/4.18/@arcgis/core/WebMap.js';
+    import MapView from 'https://js.arcgis.com/4.18/@arcgis/core/views/MapView.js';
+    import Bookmarks from 'https://js.arcgis.com/4.18/@arcgis/core/widgets/Bookmarks.js';
+    import Expand from 'https://js.arcgis.com/4.18/@arcgis/core/widgets/Expand.js';
+
+    const webmap = new WebMap({
+      portalItem: {
+        id: 'aa1d3f80270146208328cf66d022e09c',
+      },
+    });
+
+    const view = new MapView({
+      container: "viewDiv",
+      map: webmap
+    });
+
+    const bookmarks = new Bookmarks({
+      view,
+      // allows bookmarks to be added, edited, or deleted
+      editingEnabled: true,
+    });
+
+    const bkExpand = new Expand({
+      view,
+      content: bookmarks,
+      expanded: true,
+    });
+
+    // Add the widget to the top-right corner of the view
+    view.ui.add(bkExpand, 'top-right');
+
+    // bonus - how many bookmarks in the webmap?
+    webmap.when(() => {
+      if (webmap.bookmarks && webmap.bookmarks.length) {
+        console.log('Bookmarks: ', webmap.bookmarks.length);
+      } else {
+        console.log('No bookmarks in this webmap.');
+      }
+    });
+  </script>
+</head>
+
+<body>
+  <div id="viewDiv"></div>
+</body>
+
+</html>
