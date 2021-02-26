@@ -10,7 +10,7 @@ import esriConfig from '@arcgis/core/config.js';
 esriConfig.assetsPath = './assets'; 
 ```
 
-The `rollup.config.js` file handles the copying of the API's assets.
+The `rollup.config.js` file handles the copying of the API's assets for watch and build.
 
 ```js
 
