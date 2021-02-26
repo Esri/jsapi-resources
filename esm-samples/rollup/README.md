@@ -21,7 +21,7 @@ plugins: [
     copy({
       // Copy the ArcGIS APi for JavaScript assets
       targets: [
-        { src: './node_modules/@arcgis/core/assets/*', dest: './public/assets'},
+        { src: './node_modules/@arcgis/core/assets', dest: './public'},
       ],
       copyOnce: true
     }), 
