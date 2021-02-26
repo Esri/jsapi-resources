@@ -14,9 +14,9 @@
     "serve": "^11.3.2"
   },
   "scripts": {
-    "build": "rollup -c",
+    "build": "npm run copy && rollup -c",
     "copy": "ncp ./node_modules/@arcgis/core/assets ./public/assets",
-    "watch": "rollup -c -w",
+    "watch": "npm run copy && rollup -c -w",
     "dev": "npm-run-all --parallel start watch",
     "start": "serve public",
     "postinstall": "npm run copy"
