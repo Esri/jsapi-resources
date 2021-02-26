@@ -1,120 +1,197 @@
-import FeatureLayer from '@arcgis/core/layers/FeatureLayer';
-import ArcGISMap from '@arcgis/core/Map';
-import DictionaryRenderer from '@arcgis/core/renderers/DictionaryRenderer';
-import MapView from '@arcgis/core/views/MapView';
-import esriConfig from '@arcgis/core/config.js';
+import esriConfig from "@arcgis/core/config.js";
 
-/**
- * Initialize application
- */
+import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
+
+import WebMap from "@arcgis/core/WebMap";
+import MapView from "@arcgis/core/views/MapView";
+
+import DotDensityRenderer from "@arcgis/core/renderers/DotDensityRenderer";
+
+import Expand from "@arcgis/core/widgets/Expand";
+import Bookmarks from "@arcgis/core/widgets/Bookmarks";
+import Legend from "@arcgis/core/widgets/Legend";
 
 // Required: Set this property to insure assets resolve correctly.
-esriConfig.assetsPath = './assets'; 
+esriConfig.assetsPath = "./assets";
 
-const map = new ArcGISMap({
-  basemap: 'gray-vector'
+const map = new WebMap({
+  portalItem: {
+    id: "56b5bd522c52409c90d902285732e9f1",
+  },
 });
 
 const view = new MapView({
-  map,
-  container: 'viewDiv',
-  extent: {
-    spatialReference: {
-      wkid: 102100
+  container: "viewDiv",
+  map: map,
+  highlightOptions: {
+    fillOpacity: 0,
+    color: [50, 50, 50],
+  },
+  popup: {
+    dockEnabled: true,
+    dockOptions: {
+      position: "top-right",
+      breakpoint: false,
     },
-    xmax: -13581772,
-    xmin: -13584170,
-    ymax: 4436367,
-    ymin: 4435053
-  }
+  },
+  constraints: {
+    maxScale: 35000,
+  },
 });
 
-
-const popupTemplate = {
-  // autocasts as new PopupTemplate()
-  title: 'station: {Station_Name}',
-  content: [
-    {
-      // It is also possible to set the fieldInfos outside of the content
-      // directly in the popupTemplate. If no fieldInfos is specifically set
-      // in the content, it defaults to whatever may be set within the popupTemplate.
-      type: 'fields',
-      fieldInfos: [
-        {
-          fieldName: 'Fuel_Type_Code',
-          label: 'Fuel type'
-        },
-        {
-          fieldName: 'EV_Network',
-          label: 'EV network'
-        },
-        {
-          fieldName: 'EV_Connector_Types',
-          label: 'EV connection types'
-        },
-        {
-          fieldName: 'Station_Name',
-          label: 'Station Name'
-        }
-      ]
-    }
-  ]
-};
-
-const scale = 36112;
-const layer1 = new FeatureLayer({
-  url:
-    'https://services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/Alternative_Fuel_Station_March2018/FeatureServer',
-  outFields: ['*'],
-  popupTemplate,
-  renderer: new DictionaryRenderer({
-    url:
-      'https://jsapi.maps.arcgis.com/sharing/rest/content/items/30cfbf36efd64ccf92136201d9e852af',
-    fieldMap: {
-      fuel_type: 'Fuel_Type_Code'
+view.when().then(function () {
+  const dotDensityRenderer = new DotDensityRenderer({
+    dotValue: 100,
+    outline: null,
+    referenceScale: 577790, // 1:577,790 view scale
+    legendOptions: {
+      unit: "people",
     },
-    config: {
-      show_label: 'false'
-    },
-    visualVariables: [
+    attributes: [
       {
-        type: 'size',
-        valueExpression: '$view.scale',
-        stops: [
-          { value: scale / 2, size: 20 },
-          { value: scale * 2, size: 15 },
-          { value: scale * 4, size: 10 },
-          { value: scale * 8, size: 5 },
-          { value: scale * 16, size: 2 },
-          { value: scale * 32, size: 1 }
-        ]
-      }
-    ]
-  }),
-  minScale: 0,
-  maxScale: 10000
-});
+        field: "B03002_003E",
+        color: "#f23c3f",
+        label: "White (non-Hispanic)",
+      },
+      {
+        field: "B03002_012E",
+        color: "#e8ca0d",
+        label: "Hispanic",
+      },
+      {
+        field: "B03002_004E",
+        color: "#00b6f1",
+        label: "Black or African American",
+      },
+      {
+        field: "B03002_006E",
+        color: "#32ef94",
+        label: "Asian",
+      },
+      {
+        field: "B03002_005E",
+        color: "#ff7fe9",
+        label: "American Indian/Alaskan Native",
+      },
+      {
+        field: "B03002_007E",
+        color: "#e2c4a5",
+        label: "Pacific Islander/Hawaiian Native",
+      },
+      {
+        field: "B03002_008E",
+        color: "#ff6a00",
+        label: "Other race",
+      },
+      {
+        field: "B03002_009E",
+        color: "#96f7ef",
+        label: "Two or more races",
+      },
+    ],
+  });
 
-const layer2 = new FeatureLayer({
-  url:
-    'https://services1.arcgis.com/4yjifSiIG17X0gW4/arcgis/rest/services/Alternative_Fuel_Station_March2018/FeatureServer',
-  outFields: ['*'],
-  popupTemplate,
-  renderer: new DictionaryRenderer({
-    url:
-      'https://jsapi.maps.arcgis.com/sharing/rest/content/items/30cfbf36efd64ccf92136201d9e852af',
-    fieldMap: {
-      fuel_type: 'Fuel_Type_Code',
-      connector_types: 'EV_Connector_Types',
-      network: 'EV_Network',
-      name: 'Station_Name'
+  // Add renderer to the layer and define a popup template
+  const url =
+    "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/ACS_Population_by_Race_and_Hispanic_Origin_Boundaries/FeatureServer/2";
+  const layer = new FeatureLayer({
+    url: url,
+    minScale: 20000000,
+    maxScale: 35000,
+    title: "Current Population Estimates (ACS)",
+    popupTemplate: {
+      title: "{County}, {State}",
+      content: [
+        {
+          type: "fields",
+          fieldInfos: [
+            {
+              fieldName: "B03002_003E",
+              label: "White (non-Hispanic)",
+              format: {
+                digitSeparator: true,
+                places: 0,
+              },
+            },
+            {
+              fieldName: "B03002_012E",
+              label: "Hispanic",
+              format: {
+                digitSeparator: true,
+                places: 0,
+              },
+            },
+            {
+              fieldName: "B03002_004E",
+              label: "Black or African American",
+              format: {
+                digitSeparator: true,
+                places: 0,
+              },
+            },
+            {
+              fieldName: "B03002_006E",
+              label: "Asian",
+              format: {
+                digitSeparator: true,
+                places: 0,
+              },
+            },
+            {
+              fieldName: "B03002_005E",
+              label: "American Indian/Alaskan Native",
+              format: {
+                digitSeparator: true,
+                places: 0,
+              },
+            },
+            {
+              fieldName: "B03002_007E",
+              label: "Pacific Islander/Hawaiian Native",
+              format: {
+                digitSeparator: true,
+                places: 0,
+              },
+            },
+            {
+              fieldName: "B03002_008E",
+              label: "Other race",
+              format: {
+                digitSeparator: true,
+                places: 0,
+              },
+            },
+            {
+              fieldName: "B03002_009E",
+              label: "Two or more races",
+              format: {
+                digitSeparator: true,
+                places: 0,
+              },
+            },
+          ],
+        },
+      ],
     },
-    config: {
-      show_label: 'true'
-    }
-  }),
-  minScale: 10000,
-  maxScale: 0
-});
+    renderer: dotDensityRenderer,
+  });
 
-map.addMany([layer1, layer2]);
+  map.add(layer);
+
+  view.ui.add(
+    [
+      new Expand({
+        view: view,
+        content: new Legend({ view: view }),
+        group: "top-left",
+        expanded: true,
+      }),
+      new Expand({
+        view: view,
+        content: new Bookmarks({ view: view }),
+        group: "top-left",
+      }),
+    ],
+    "top-left"
+  );
+});
