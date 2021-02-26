@@ -9,3 +9,23 @@ import esriConfig from '@arcgis/core/config.js';
 
 esriConfig.assetsPath = './assets'; 
 ```
+
+The `rollup.config.js` file handles the copying of the API's assets for watch and build.
+
+```js
+
+import copy from 'rollup-plugin-copy';
+
+plugins: [
+  ...
+    copy({
+      // Copy the ArcGIS APi for JavaScript assets
+      targets: [
+        { src: './node_modules/@arcgis/core/assets', dest: './public'},
+      ],
+      copyOnce: true
+    }), 
+  ...
+]
+
+```
