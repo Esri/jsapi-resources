@@ -23,11 +23,6 @@
               "moment"
             ],
             "assets": [
-              {
-                "glob": "**/*",
-                "input": "node_modules/@arcgis/core/assets",
-                "output": "/assets/"
-              },
               "src/favicon.ico",
               "src/assets"
             ],
