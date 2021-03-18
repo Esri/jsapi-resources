@@ -3,15 +3,13 @@ import {
   OnInit,
   ViewChild,
   ElementRef,
-  OnDestroy,
-  NgZone
+  OnDestroy
 } from '@angular/core';
 
 import WebMap from '@arcgis/core/WebMap';
 import MapView from '@arcgis/core/views/MapView';
 import Bookmarks from '@arcgis/core/widgets/Bookmarks';
 import Expand from '@arcgis/core/widgets/Expand';
-import esriConfig from '@arcgis/core/config.js';
 
 @Component({
   selector: 'app-root',
@@ -19,14 +17,10 @@ import esriConfig from '@arcgis/core/config.js';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit, OnDestroy {
-  private view: any = null;
+  public view: any = null;
 
   // The <div> where we will place the map
   @ViewChild('mapViewNode', { static: true }) private mapViewEl: ElementRef;
-
-  title = 'ng-cli';
-
-  constructor(private zone: NgZone) { }
 
   initializeMap(): Promise<any> {
     const container = this.mapViewEl.nativeElement;
@@ -71,20 +65,10 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): any {
-
-    // Required: Set this property to insure assets resolve correctly.
-    // IMPORTANT: the directory path may be different between your production app and your dev app
-    esriConfig.assetsPath = './assets';
-
-    this.zone.runOutsideAngular(() => {
-      // Initialize MapView and return an instance of MapView
-      this.initializeMap().then(() => {
-        // The map has been initialized
-        this.zone.run(() => {
-          console.log('mapView ready: ');
-        });
-      });
-
+    // Initialize MapView and return an instance of MapView
+    this.initializeMap().then(() => {
+      // The map has been initialized
+        console.log('The map is ready.');
     });
   }
 
