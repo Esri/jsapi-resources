@@ -7,7 +7,7 @@ This repo demonstrates how to use [@arcgis/core](https://www.npmjs.com/package/@
 
 * We are aware of a general issue with `Unhandled Promise Rejection` errors. They aren't specific to Angular and shouldn't affect ArcGIS JS API functionality. Upgrade to `11.2.5`+ and switch the `tsconfig.target` to es2017.
 
-* if you are seeing CommonJS or AMD dependency warnings you can supress them in your build output thought a property setting in `angular.json`. Suppressing won't affect functionality.
+* if you are seeing CommonJS or AMD dependency warnings you can supress them in your build output thought a property setting in `angular.json`. Suppressing won't affect functionality. Also, consider upgrading by running `npm i @arcgis/core@latest`.
 
 *angular.json*
 
