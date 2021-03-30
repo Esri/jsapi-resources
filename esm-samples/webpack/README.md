@@ -2,12 +2,20 @@
 
 This repo demonstrates how to use the [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core) esm modules with webpack.
 
-This repo also uses the [`@arcgis/webpack-plugin@next`](https://www.npmjs.com/package/@arcgis/webpack-plugin) webpack plugin to copy assets and help to minimize your deployed application size. You can read the updated `@arcgis/webpack-plugin` documentation [here](https://github.com/Esri/arcgis-webpack-plugin/tree/update-for-esm). The plugin assists with the copying of the API's assets.
+## Get Started
 
-Be sure to set [`config.assetsPath`](https://developers.arcgis.com/javascript/latest/api-reference/esri-config.html#assetsPath) so that the assets are correctly resolved, for example:
+**Step 1** - Run `npm install`. 
 
-```js
-import esriConfig from '@arcgis/core/config.js';
+**Step 2** Configure CSS. Choose a [theme](https://developers.arcgis.com/javascript/latest/guide/styling/index.html#themes) then apply it to your css. Here's a component CSS example:
 
-esriConfig.assetsPath = './assets'; 
+*index.css*
+
+```css
+@import 'https://js.arcgis.com/4.19/@arcgis/core/assets/esri/themes/light/main.css';
 ```
+
+For additional information, see the [Build with ES modules](https://developers.arcgis.com/javascript/latest/es-modules/) Guide topic in the SDK.
+
+## Commands
+
+For a list of all available `npm` commands see the scripts in `package.json`. 
