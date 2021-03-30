@@ -8,10 +8,10 @@ This repo integrates [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core
 
 **Step 2** Configure CSS. Choose a [theme](https://developers.arcgis.com/javascript/latest/guide/styling/index.html#themes) then apply it to your css. Here's a component CSS example:
 
-*index.html*
+*app.css*
 
-```html
-  <link rel="stylesheet" href="https://js.arcgis.com/4.19/@arcgis/core/assets/esri/themes/dark/main.css">
+```css
+@import 'https://js.arcgis.com/4.19/@arcgis/core/assets/esri/themes/light/main.css';
 ```
 
 For additional information, see the [Build with ES modules](https://developers.arcgis.com/javascript/latest/es-modules/) Guide topic in the SDK.
@@ -20,8 +20,9 @@ For additional information, see the [Build with ES modules](https://developers.a
 
 To prevent runtime errors in production builds make sure target browsers do not include IE 11.
 
+*./config/targets.js*
+
 ```js
-// ./config/targets.js
 'use strict';
 
 const browsers = [
