@@ -1,49 +1,26 @@
 # ArcGIS API for JavaScript with Vue CLI
 
-Integrating Vue with [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core) does not require much manual configuration. The one requirement is having to copy the `@arcgis/core/assets` folder to the build. CRA does not provide a clear method to do this during the build so, you can use [`ncp`](https://www.npmjs.com/package/ncp) to copy the files to the build directory.
+This repo demonstrates how to use [@arcgis/core](https://www.npmjs.com/package/@arcgis/core) ES modules with Vue.js. 
 
-```json
-// package.json
-{
-  "scripts": {
-    "copy": "ncp ./node_modules/@arcgis/core/assets ./public/assets",
-    "postinstall": "npm run copy",
-    ...
-  },
-}
+## Get Started
+
+**Step 1** - Run `npm install`. 
+
+**Step 2** Configure CSS. Choose a [theme](https://developers.arcgis.com/javascript/latest/guide/styling/index.html#themes) then apply it to your css. Here's a component CSS example:
+
+*App.vue*
+
+```css
+<style>
+  @import 'https://js.arcgis.com/4.19/@arcgis/core/assets/esri/themes/light/main.css';
+</style>
 ```
 
-Be sure to set [`config.assetsPath`](https://developers.arcgis.com/javascript/latest/api-reference/esri-config.html#assetsPath) so that the assets are correctly resolved, for example:
+For additional information, see the [Build with ES modules](https://developers.arcgis.com/javascript/latest/es-modules/) Guide topic in the SDK.
 
-```js
-import esriConfig from '@arcgis/core/config.js';
+## Commands
 
-esriConfig.assetsPath = './assets'; 
-```
-
----
-
-# vue-cli
-
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
+For a list of all available `npm` commands see the scripts in `package.json`. 
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
