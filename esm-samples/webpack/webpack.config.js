@@ -4,7 +4,6 @@ const webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const ArcGISPlugin = require('@arcgis/webpack-plugin');
 
 module.exports = {
   entry: {
@@ -46,7 +45,6 @@ module.exports = {
         return data;
       },
     ),    
-    new ArcGISPlugin({ locales: ['en'] }),
     new HtmlWebPackPlugin({
       title: 'ArcGIS API  for JavaScript',
       template: './public/index.html',
