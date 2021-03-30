@@ -1,12 +1,9 @@
 import commonjs from "@rollup/plugin-commonjs";
-import copy from 'rollup-plugin-copy';
 import del from "rollup-plugin-delete";
+import serve from "rollup-plugin-serve";
+import livereload from "rollup-plugin-livereload";
 import resolve from "@rollup/plugin-node-resolve";
 import { terser } from "rollup-plugin-terser";
-
-// `npm run build` -> `production` is true
-// `npm run dev` -> `production` is false
-const production = !process.env.ROLLUP_WATCH;
 
 export default {
   input: "src/main.js",
@@ -16,17 +13,14 @@ export default {
     format: "es"
   },
   plugins: [
-    del({ targets: ["public/chunks", "public/assets"], runOnce: true, verbose: true }),
-    copy({
-      // Copy the ArcGIS API for JavaScript assets
-      targets: [
-        { src: './node_modules/@arcgis/core/assets', dest: './public'},
-      ],
-      copyOnce: true
-    }),    
+    del({ targets: ["public/chunks"], runOnce: true, verbose: true }),
     resolve(),
+    serve("public"),
+    livereload({
+      watch: "public/main.js"
+    }),
     commonjs(), 
-    production && terser()
+    terser()
   ],
   preserveEntrySignatures: false
 };
