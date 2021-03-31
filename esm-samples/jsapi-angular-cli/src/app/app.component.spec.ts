@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
@@ -12,13 +12,13 @@ describe('AppComponent', () => {
     }).compileComponents();
   }));
 
-  it(`should create'`, () => {
+  it('should create', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app).toBeTruthy();    
+    expect(app).toBeTruthy();
   });
 
-  it(`verify view`, () => {
+  it('verify view', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app.view).toBeDefined();
