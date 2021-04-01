@@ -3,7 +3,6 @@ import del from "rollup-plugin-delete";
 import serve from "rollup-plugin-serve";
 import livereload from "rollup-plugin-livereload";
 import resolve from "@rollup/plugin-node-resolve";
-import { terser } from "rollup-plugin-terser";
 
 export default {
   input: "src/main.js",
@@ -17,10 +16,9 @@ export default {
     resolve(),
     serve("public"),
     livereload({
-      watch: "public/main.js"
+      watch: "src"
     }),
-    commonjs(), 
-    terser()
+    commonjs()
   ],
   preserveEntrySignatures: false
 };

@@ -5,7 +5,7 @@ This repo demonstrates how to use [@arcgis/core](https://www.npmjs.com/package/@
 ---
 **Known issues**
 
-* We are aware of a general issue with `Unhandled Promise Rejection` errors. They aren't specific to Angular and shouldn't affect ArcGIS JS API functionality. Upgrade to `11.2.5`+ and switch the `tsconfig.target` to es2017.
+* To prevent `Unhandled Promise Rejection` errors when using Angular with Zone.js, upgrade to Angular `11.2.5`+ and switch the `tsconfig.target` to `es2017`+.
 
 * if you are seeing CommonJS or AMD dependency warnings you can supress them in your build output thought a property setting in `angular.json`. Suppressing won't affect functionality. Also, consider upgrading by running `npm i @arcgis/core@latest`.
 
@@ -22,12 +22,12 @@ This repo demonstrates how to use [@arcgis/core](https://www.npmjs.com/package/@
 
 **Step 1** - Run `npm install`. 
 
-**Step 2** Configure CSS. Choose a [theme](https://developers.arcgis.com/javascript/latest/guide/styling/index.html#themes) then apply it to your css. Here's a component CSS example:
+**Step 2** Configure CSS. Here's a component CSS example:
 
 *index.html*
 
 ```html
-  <link rel="stylesheet" href="https://js.arcgis.com/4.19/@arcgis/core/assets/esri/themes/dark/main.css">
+  <link rel="stylesheet" href="https://js.arcgis.com/4.19/@arcgis/core/assets/esri/themes/light/main.css">
 ```
 
 For additional information, see the [Build with ES modules](https://developers.arcgis.com/javascript/latest/es-modules/) Guide topic in the SDK.

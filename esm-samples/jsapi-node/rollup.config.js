@@ -1,5 +1,4 @@
 import commonjs from "@rollup/plugin-commonjs";
-import copy from "rollup-plugin-copy";
 import del from "rollup-plugin-delete";
 import resolve from "@rollup/plugin-node-resolve";
 
@@ -12,12 +11,7 @@ export default {
   },
   external: ["whatwg-fetch"],
   plugins: [
-    del({ targets: ["public/chunks", "public/assets"], runOnce: true, verbose: true }),
-    copy({
-      // Copy the ArcGIS API for JavaScript assets
-      targets: [{ src: "./node_modules/@arcgis/core/assets", dest: "./public" }],
-      copyOnce: true
-    }),
+    del({ targets: ["public/*"], runOnce: true, verbose: true }),
     resolve(),
     commonjs()
   ],

@@ -8,10 +8,10 @@ For additional information, see the [Build with ES modules](https://developers.a
 
 **Step 1** - Run `npm install`. 
 
-**Step 2** Configure CSS. Choose a [theme](https://developers.arcgis.com/javascript/latest/guide/styling/index.html#themes) then apply it to your css. Here's a React example:
+**Step 2** Configure CSS. Here's a React example:
 
 *index.js*
 
 ```js
-@import "https://js.arcgis.com/4.19/@arcgis/core/assets/esri/themes/dark/main.css";
+@import "https://js.arcgis.com/4.19/@arcgis/core/assets/esri/themes/light/main.css";
 ```

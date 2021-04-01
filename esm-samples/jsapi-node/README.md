@@ -4,11 +4,11 @@ Integrating Node.js with [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/
 
 ## Working with assets
 
-Working with the ArcGIS API for JavaScript's ES modules in Node.js requires configuring the APIs assets, since the application will be running on a local server and not in a web app. The assets include styles, images, fonts, and localization files. Be sure to set [`config.assetsPath`](https://developers.arcgis.com/javascript/latest/api-reference/esri-config.html#assetsPath) so that the assets are correctly resolved, for example:
+When working with certain modules in ArcGIS API for JavaScript, Node.js may require configuring the APIs assets. The assets include images, web workers, web assembly and localization files. Be sure to set [`config.assetsPath`](https://developers.arcgis.com/javascript/latest/api-reference/esri-config.html#assetsPath) so that the assets are correctly resolved, for example:
 
 ```js
 import esriConfig from '@arcgis/core/config.js';
-esriConfig.assetsPath = "./public/assets"; // relative to when running in root
+esriConfig.assetsPath = "node_modules/@arcgis/core/assets"; // relative to when running in root
 ```
 
 An example can be found in [`projection.js`](https://github.com/Esri/jsapi-resources/blob/master/esm-samples/jsapi-node/src/projection.js#L6).
@@ -30,7 +30,7 @@ You can find native ESM samples in the [/native-esm](./native-esm) folder.
 
 ## IdentityManager
 
-You will also want to disable [`IdentityManager`](https://developers.arcgis.com/javascript/latest/api-reference/esri-identity-IdentityManager.html) the using [`config.request`](https://developers.arcgis.com/javascript/latest/api-reference/esri-config.html#request) so it doesn't attempt to load DOM-related JavaScript.
+You will also want to disable the [`IdentityManager`](https://developers.arcgis.com/javascript/latest/api-reference/esri-identity-IdentityManager.html) using [`config.request`](https://developers.arcgis.com/javascript/latest/api-reference/esri-config.html#request) so it doesn't attempt to load DOM-related JavaScript.
 
 ```js
 import esriConfig from "@arcgis/core/config.js";

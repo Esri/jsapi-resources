@@ -6,7 +6,7 @@ This repo integrates [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core
 
 **Step 1** - Run `npm install`. 
 
-**Step 2** Configure CSS. Choose a [theme](https://developers.arcgis.com/javascript/latest/guide/styling/index.html#themes) then apply it to your css. Here's a component CSS example:
+**Step 2** Configure CSS. Here's an Ember example:
 
 *app.css*
 

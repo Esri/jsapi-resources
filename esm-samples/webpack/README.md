@@ -6,7 +6,7 @@ This repo demonstrates how to use the [`@arcgis/core`](https://www.npmjs.com/pac
 
 **Step 1** - Run `npm install`. 
 
-**Step 2** Configure CSS. Choose a [theme](https://developers.arcgis.com/javascript/latest/guide/styling/index.html#themes) then apply it to your css. Here's a component CSS example:
+**Step 2** Configure CSS. Here's a basic CSS example:
 
 *index.css*
 

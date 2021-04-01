@@ -10,11 +10,9 @@
   "devDependencies": {
     "@rollup/plugin-commonjs": "^16.0.0",
     "@rollup/plugin-node-resolve": "^10.0.0",
-    "rimraf": "^3.0.2",
     "rollup": "^2.44.0"
   },
   "scripts": {
-    "build": "rollup -c",
-    "clean": "rimraf dist"
+    "build": "rollup -c"
   }
 }
