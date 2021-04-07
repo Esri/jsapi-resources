@@ -13,7 +13,7 @@ npm install @arcgis/core
 Then use `import` statements to load individual modules.
 
 ```js
-import WebMap from '@arcgis/core/Map';
+import Map from '@arcgis/core/Map';
 import MapView from '@arcgis/core/views/MapView';
 
 const map = new Map({
