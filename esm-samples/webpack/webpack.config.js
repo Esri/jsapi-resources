@@ -35,6 +35,22 @@ module.exports = {
           'css-loader'
         ]
       },
+      {
+        test: /\.(ttf|eot|svg|png|jpg|gif|ico)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        use: [
+          {
+            loader: 'file-loader'
+          }
+        ]
+      },
+      {
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [
+          {
+            loader: 'file-loader'
+          }
+        ]
+      },
     ]
   },
   plugins: [
