@@ -1,6 +1,18 @@
-# Recenter custom widget App
+# Recenter custom widget
 
 This tutorial goes over creating a custom widget that displays the [MapView.center](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-MapView.html#center)'s X/Y coordinates in addition to its [MapView.scale](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-MapView.html#scale). In addition to displaying coordinates and scale, the view can also be recentered by clicking on the widget.
+
+For the full code sample, please refer to the [completed-source- files](completed-source-files) folder. This includes the custom widget's `.tsx` file, it's generated `.js` file, and the `index.html` file using the widget.
+
+## Before you begin
+
+If this is the first time creating a custom widget, please refer to the either the introductory [demo](../demo) app located within this repository or the [Create a custom widget sample](https://developers.arcgis.com/javascript/latest/sample-code/widgets-custom-widget/) sample in the ArcGIS API for JavaScript SDK. Both provide steps on how to get started and the basic fundamentals of creating widgets in the API.
+
+This tutorial will assume that all the necessary [requirements](https://developers.arcgis.com/javascript/latest/custom-widget/#development-requirements) are installed.
+
+Also, for a detailed discussion on setting up TypeScript within your environment, please refer to the [TypeScript Setup guide topic](https://developers.arcgis.com/javascript/latest/typescript-setup/) within the ArcGIS API for JavaScript SDK.
+
+The proceeding steps will begin with implementing the widget in the .tsx file.
 
 ## Usage
 
@@ -67,7 +79,7 @@ const CSS = {
 
 #### Extend Widget base class with constructor logic
 
-Now in the _Recenter.tsx_ file, add the following lines of code.
+Now in the [Recenter.tsx](app/Recenter.tsx) file, add the following lines of code.
 
 ```ts
 @subclass("esri.widgets.Recenter")
@@ -197,7 +209,7 @@ Now that the widget's code is implemented, compile the _.tsx_ file to its underl
 
 In the command prompt, browse to the location of this sample directory and type`tsc`.
 
-This compiles any specified _.tsx_ files within the _tsconfig.json_'s files to their equivalent _.js_ files. You should now have a new _Recenter.js_ file generated in the same directory as its _.tsx_ file, in addition to a _Recenter.js.map_ [sourcemap](https://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) file.
+This compiles any specified _.tsx_ files within the _tsconfig.json_'s files to their equivalent _.js_ files. You should now have a new _Recenter.js_ file generated in the same directory as its _.tsx_ file, in addition to a _Recenter.js.map_ [sourcemap](https://jaxenter.com/javascript-source-maps-170126.html) file.
 
 ### 3. Add the widget to the application
 
@@ -225,13 +237,13 @@ The widget references the \`.recenter-tool' class.  Add a style element that ref
 
 #### Add the custom widget reference
 
-Once you've created the custom widget, you need to load it. This comes down to telling Dojo's module loader how to resolve the path for your widget which means mapping a module identifier to a file on your web server. On the SitePen blog, there's a [post](https://www.sitepen.com/blog/2013/06/20/dojo-faq-what-is-the-difference-packages-vs-paths-vs-aliases/) discussing the differences between aliases, paths and packages which may help alleviate any questions specific to this.
+Once you've created the custom widget, you need to load it. This comes down to telling Dojo's module loader how to resolve the path for your widget which means mapping a module identifier to a file on your web server. Sitepen has [documentation](https://dojotoolkit.org/reference-guide/1.10/loader/amd.html) and [tutorials](https://dojotoolkit.org/documentation/tutorials/1.10/dojo_config/index.html) on working with the Dojo loader.
 
 Add a script element that handles loading this custom widget as seen below.
 
 ```js
 <script>
-var locationPath = location.pathname.replace(/\/[^\/]+$/, "");
+const locationPath = location.pathname.replace(/\/[^\/]+$/, "");
 window.dojoConfig = {
   packages: [
     {
@@ -246,7 +258,7 @@ window.dojoConfig = {
 
 #### Reference and use the custom widget
 
-Now that Dojo knows where to find modules in the _app_ folder, `require` can be used to load it along with other modules used by the application.
+Now that Dojo knows where to find modules in the [app](app) folder, `require` can be used to load it along with other modules used by the application.
 
 Here's a require block that loads the `app/Recenter` module in addition to some others.
 
