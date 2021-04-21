@@ -6,7 +6,7 @@
     "url": "https://github.com/Esri/jsapi-resources/3.x/bower/dojo"
   },
   "scripts": {
-    "preinstall": "bower install",
+    "postinstall": "bower install",
     "build": "grunt build",
     "clean": "grunt clean"
   },
