@@ -24,8 +24,7 @@
     "importHelpers": true,
     "skipLibCheck": true,
     "types": [
-      "arcgis-js-api",
-      "moment"
+      "arcgis-js-api"
     ]
   },
   "include": [
