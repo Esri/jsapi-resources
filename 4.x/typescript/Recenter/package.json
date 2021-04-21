@@ -6,7 +6,7 @@
   },
   "keywords": [],
   "author": "Esri",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "dependencies": {
     "@types/arcgis-js-api": "^4.19.0"
   }
