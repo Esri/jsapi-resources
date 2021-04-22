@@ -1,1 +1,5 @@
-export default class MapView {};
+export default class MapView {
+    ui = {
+        add(){}
+    };
+}

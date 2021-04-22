@@ -5,73 +5,45 @@ This repo demonstrates how to use [@arcgis/core](https://www.npmjs.com/package/@
 ---
 **Known issues**
 
-* It's currently recommended to set `buildOptimizer: false` in `angular.json`. This prevents WebGL errors such as `WebGL: INVALID_OPERATION` and `WebGL: INVALID_ENUM`. It may increase your on-disk and loaded application size.
+* To prevent `Unhandled Promise Rejection` errors when using Angular with Zone.js, upgrade to Angular `11.2.5`+ and switch the `tsconfig.target` to `es2017`+.
 
-* We are aware of a general issue with `Unhandled Promise Rejection` errors. They aren't specific to Angular and shouldn't affect ArcGIS JS API functionality. 
+* if you are seeing CommonJS or AMD dependency warnings you can supress them in your build output thought a property setting in `angular.json`. Suppressing won't affect functionality. Also, consider upgrading by running `npm i @arcgis/core@latest`.
 
+*angular.json*
+
+```json
+  "allowedCommonJsDependencies": [
+    "moment"
+  ],
+```
 ---
 
 ## Get Started
 
 **Step 1** - Run `npm install`. 
 
-**Step 2** Copy assets - There are several small changes to this repo that enable the JS API to work. In `angular.json` copy the JS API assets folder to `/assets`. And, under build > options > allowedCommonJsDependencies you can add `moment` to the array to suppress `CommonJS or AMD dependencies` warnings in dev builds.
+**Step 2** Configure CSS. Here's a component CSS example:
 
-```json
-  "allowedCommonJsDependencies": [
-    "moment"
-  ],
-  "assets": [
-    {
-      "glob": "**/*",
-      "input": "node_modules/@arcgis/core/assets",
-      "output": "/assets/"
-    },
-    "src/favicon.ico",
-    "src/assets"
-  ],
+*index.html*
 
+```html
+  <link rel="stylesheet" href="https://js.arcgis.com/4.19/@arcgis/core/assets/esri/themes/light/main.css">
 ```
 
-**Step 3** Configure CSS. Choose a [theme](https://developers.arcgis.com/javascript/latest/guide/styling/index.html#themes) and then configure your code to copy the theme files from `@arcgis/core/assets/esri/themes/` into your project.  If you want to apply the CSS globally then add it to `angular.json` and it will automatically be accessible for any components using the JS API:
+For additional information, see the [Build with ES modules](https://developers.arcgis.com/javascript/latest/es-modules/) Guide topic in the SDK.
 
-```json
-  "styles": [
-    "src/styles.scss",
-    "node_modules/@arcgis/core/assets/esri/themes/light/main.css"
-  ],
-```
+## Commands
 
-To use the CSS at a component-level, set a CSS link in `index.html`:
+For a list of all available `npm` commands see the scripts in `package.json`. 
 
-```javascript
-  <link rel="stylesheet" href="assets/esri/themes/dark/main.css">
-```
-
-**Step 4** Set the base url for the assets folder so they are correctly resolved. When working with routes, use a path that is not relative to the page's path, e.g. `/assets`.
-
-```javascript
-import esriConfig from "@arcgis/core/config.js";
-
-  . . .
-
-  ngOnInit(): any {
-    esriConfig.assetsPath = "/assets"; //assuming assets are in /assets
-  }
-```
-
-## Development server
+### Development server
 
 Run `ng serve --open` for a dev server that will automatically open a browser window. The app will automatically reload if you change any of the source files. You need to install [Angular CLI](https://cli.angular.io/) before you can compile the app. 
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
+### Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Further help
+### Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).

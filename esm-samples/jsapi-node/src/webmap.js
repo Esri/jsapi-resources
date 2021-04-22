@@ -12,5 +12,5 @@ webmap.load()
         console.log(webmap.portalItem.description);
     })
     .catch((error) => {
-        console.log(error);
+        console.error(error);
     });

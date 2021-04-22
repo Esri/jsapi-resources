@@ -1,8 +1,7 @@
 import commonjs from "@rollup/plugin-commonjs";
 import del from "rollup-plugin-delete";
-import serve from "rollup-plugin-serve";
-import livereload from "rollup-plugin-livereload";
 import resolve from "@rollup/plugin-node-resolve";
+import { terser } from "rollup-plugin-terser";
 
 export default {
   input: "src/main.js",
@@ -14,11 +13,8 @@ export default {
   plugins: [
     del({ targets: ["public/chunks"], runOnce: true, verbose: true }),
     resolve(),
-    serve("public"),
-    livereload({
-      watch: "src"
-    }),
-    commonjs()
+    commonjs(), 
+    terser()
   ],
   preserveEntrySignatures: false
 };

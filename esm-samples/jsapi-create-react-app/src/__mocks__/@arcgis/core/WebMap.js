@@ -1,3 +1,3 @@
 export default class Map {
-    addMany() {}
+    when(){}
 };

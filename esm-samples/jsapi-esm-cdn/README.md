@@ -6,4 +6,4 @@ For best performance either build the ES modules locally or use [AMD modules via
 
 ## Configuration
 
-None. There is also no need to set `config.assetsPath`.
+None. 
