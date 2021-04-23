@@ -32,6 +32,10 @@ This repo demonstrates how to use [@arcgis/core](https://www.npmjs.com/package/@
 
 For additional information, see the [Build with ES modules](https://developers.arcgis.com/javascript/latest/es-modules/) Guide topic in the SDK.
 
+## Requirements
+
+* If you are using Zone.js, the minimum version is `0.10.2 (2019-08-13)` or greater.
+
 ## Commands
 
 For a list of all available `npm` commands see the scripts in `package.json`. 
