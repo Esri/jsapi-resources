@@ -3,4 +3,4 @@
 // load `fetch` and AbortController polyfills
 require("cross-fetch/polyfill");
 require("abort-controller/polyfill");
-require("./dist/request");
+require("./public/webmap");

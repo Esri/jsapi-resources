@@ -4,13 +4,9 @@ import WebMap from '@arcgis/core/WebMap';
 import MapView from '@arcgis/core/views/MapView';
 import Bookmarks from '@arcgis/core/widgets/Bookmarks';
 import Expand from '@arcgis/core/widgets/Expand';
-import esriConfig from '@arcgis/core/config.js';
 
 export default class MapComponent extends Component {
   registerMapElement(element) {
-
-    // Required: Set this property to insure assets resolve correctly.
-    esriConfig.assetsPath = './assets';     
 
     const webmap = new WebMap({
       portalItem: {

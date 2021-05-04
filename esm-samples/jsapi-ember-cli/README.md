@@ -2,18 +2,27 @@
 
 This repo integrates [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core) using [embroider](https://github.com/embroider-build/embroider).
 
-Be sure to set [`config.assetsPath`](https://developers.arcgis.com/javascript/latest/api-reference/esri-config.html#assetsPath) so that the assets are correctly resolved, for example:
+## Get Started
 
-```js
-import esriConfig from '@arcgis/core/config.js';
+**Step 1** - Run `npm install`. 
 
-esriConfig.assetsPath = './assets'; 
+**Step 2** Configure CSS. Here's an Ember example:
+
+*app.css*
+
+```css
+@import 'https://js.arcgis.com/4.19/@arcgis/core/assets/esri/themes/light/main.css';
 ```
+
+For additional information, see the [Build with ES modules](https://developers.arcgis.com/javascript/latest/es-modules/) Guide topic in the SDK.
+
+## Misc.
 
 To prevent runtime errors in production builds make sure target browsers do not include IE 11.
 
+*./config/targets.js*
+
 ```js
-// ./config/targets.js
 'use strict';
 
 const browsers = [
@@ -39,7 +48,6 @@ module.exports = {
 # ember-cli-app
 
 This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
 
 ## Prerequisites
 

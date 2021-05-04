@@ -3,26 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve --open --port 3001 --host localhost",
-    "build": "ncp ./node_modules/@arcgis/core/assets ./public/assets && vue-cli-service build",
-    "postinstall": "ncp ./node_modules/@arcgis/core/assets ./public/assets"
+    "serve": "vue-cli-service serve --open --port 3001 --host web.local",
+    "build": "vue-cli-service build"
   },
   "dependencies": {
-    "@arcgis/core": "^4.18.1",
-    "@vue/cli": "^4.5.11",
-    "core-js": "^3.6.5"
+    "@arcgis/core": "^4.19.0",
+    "core-js": "^3.6.5",
+    "vue": "^3.0.0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^4.5.11",
-    "@vue/cli-plugin-eslint": "^4.5.11",
-    "@vue/cli-service": "^4.5.11",
-    "@vue/compiler-sfc": "^3.0.0",
+    "@vue/cli-plugin-babel": "^4.5.12",
+    "@vue/cli-plugin-eslint": "^4.5.12",
+    "@vue/cli-service": "^4.5.12",
+    "@vue/compiler-sfc": "^3.0.9",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^7.0.0-0",
-    "moment-locales-webpack-plugin": "^1.2.0",
-    "ncp": "^2.0.0",
-    "webpack-cli": "^3.3.12"
+    "eslint-plugin-vue": "^7.0.0-0"
   },
   "eslintConfig": {
     "root": true,

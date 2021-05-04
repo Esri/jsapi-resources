@@ -1,10 +1,8 @@
 const path = require('path');
 
-const webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const ArcGISPlugin = require('@arcgis/webpack-plugin');
 
 module.exports = {
   entry: {
@@ -38,15 +36,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new CleanWebpackPlugin(),
-    new webpack.ContextReplacementPlugin(
-      /\/@arcgis\/core\//,
-      (data) => {
-        delete data.dependencies[0].critical;
-        return data;
-      },
-    ),    
-    new ArcGISPlugin({ locales: ['en'] }),
+    new CleanWebpackPlugin(),   
     new HtmlWebPackPlugin({
       title: 'ArcGIS API  for JavaScript',
       template: './public/index.html',

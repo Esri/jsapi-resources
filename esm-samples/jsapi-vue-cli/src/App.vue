@@ -7,7 +7,6 @@ import WebMap from "@arcgis/core/WebMap";
 import MapView from "@arcgis/core/views/MapView";
 import Bookmarks from "@arcgis/core/widgets/Bookmarks";
 import Expand from "@arcgis/core/widgets/Expand";
-import esriConfig from '@arcgis/core/config.js';
 
 export default {
   name: 'App',
@@ -17,9 +16,6 @@ export default {
         id: "aa1d3f80270146208328cf66d022e09c",
       },
     });
-
-    // Set this property to insure assets resolve correctly.
-    esriConfig.assetsPath = './assets'; 
 
     const view = new MapView({
       container: this.$el,
@@ -54,6 +50,7 @@ export default {
 </script>
 
 <style>
+@import 'https://js.arcgis.com/4.19/@arcgis/core/assets/esri/themes/light/main.css';
 html,
 body,
 #app {
@@ -67,11 +64,9 @@ body,
   width: 100%;
   height: 100%;
 }
-
 .mapdiv {
   padding: 0;
   margin: 0;
   height: 100%;
 }
-
 </style>

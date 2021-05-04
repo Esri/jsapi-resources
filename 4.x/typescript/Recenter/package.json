@@ -1,0 +1,13 @@
+{
+  "name": "Recenter",
+  "version": "2.0.0",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Esri",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@types/arcgis-js-api": "^4.19.0"
+  }
+}
