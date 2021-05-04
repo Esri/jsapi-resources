@@ -485,6 +485,8 @@ var profile = {
 
     layers,
 
+    maxOptimizationProcesses: 2,
+
     optimizeOptions: {
       languageIn: "ECMASCRIPT_2019",
       languageOut: "NO_TRANSPILE",

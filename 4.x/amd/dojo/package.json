@@ -13,7 +13,7 @@
   },
   "license": "Apache-2.0",
   "devDependencies": {
-    "dojo-util": "^1.16.3",
+    "dojo-util": "git+https://github.com/Esri/dojo-util.git#1.16.3-esri",
     "grunt": "^1.0.4",
     "grunt-cli": "^1.3.2",
     "grunt-contrib-clean": "^2.0.0",
@@ -26,7 +26,7 @@
     "sass": "^1.30.0"
   },
   "dependencies": {
-    "arcgis-js-api": "~4.18.0",
+    "arcgis-js-api": "~4.19.1",
     "dojo": "^1.16.3"
   }
 }
