@@ -57,12 +57,20 @@ module.exports = function (grunt) {
             esri: '../node_modules/arcgis-js-api',
             'regenerator-runtime': '../node_modules/regenerator-runtime'
           },
+          normalizeDirDefines: "skip",
           throwWhen: { optimize: false },
           optimize: 'none',
+          findNestedDependencies: true,
+          generateSourceMaps: false,
+          uglify2: {
+            output: {
+              beautify: false
+            }
+          },
           onBuildRead(moduleName, path, content) {
             return babel.transform(content, {
               presets: ['@babel/preset-env'],
-              plugins: ['@babel/plugin-transform-regenerator']
+              // plugins: [ '@babel/plugin-transform-regenerator']
             }).code;
           },
           include: [
