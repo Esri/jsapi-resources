@@ -1,4 +1,3 @@
-const ArcGISPlugin = require('@arcgis/webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -18,6 +17,19 @@ module.exports = {
         contentBase: path.join(__dirname, 'dist'),
         compress: true,
         port: 3001,
+    },
+    // Optimize output in production only.
+    optimization: {
+        minimize: true,
+        splitChunks: {
+            minChunks: Infinity,
+            chunks: 'all',
+            cacheGroups: {
+                defaultVendors: {
+                    reuseExistingChunk: true,
+                },
+            },
+        }
     },
     module: {
         rules: [
@@ -56,8 +68,6 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin(),
 
-        new ArcGISPlugin(),
-
         new HtmlWebPackPlugin({
             title: 'ArcGIS Template Application',
             template: 'src/index.html',
@@ -79,6 +89,7 @@ module.exports = {
         ],
         extensions: ['.ts', '.tsx', '.js', '.scss', '.css'],
         alias: {
+            // arcgis-js-api/ to esri/
             esri: path.resolve(__dirname, 'node_modules/arcgis-js-api/'),
         },
     },
