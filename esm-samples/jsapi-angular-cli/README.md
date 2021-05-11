@@ -36,7 +36,7 @@ For additional information, see the [Build with ES modules](https://developers.a
 
 ## Requirements
 
-* If you are using Zone.js, the minimum version is `0.11.4 (October 29, 2020)` or greater.
+* If you are using Zone.js, the minimum version is `0.11.4 (February 10, 2021)` or greater.
 
 ## Commands
 
