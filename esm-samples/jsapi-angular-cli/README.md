@@ -5,7 +5,9 @@ This repo demonstrates how to use [@arcgis/core](https://www.npmjs.com/package/@
 ---
 **Known issues**
 
-* To prevent `Unhandled Promise Rejection` errors when using Angular with Zone.js, upgrade to Angular `11.2.5`+ and switch the `tsconfig.target` to `es2017`+.
+## Known issues
+
+* To prevent `Unhandled Promise Rejection` errors when using Angular with Zone.js, upgrade to Angular `11.2.5` or greater, Zone.js `0.11.4`or greater, and switch the `tsconfig.target` to `es2017` or greater.
 
 * if you are seeing CommonJS or AMD dependency warnings you can supress them in your build output thought a property setting in `angular.json`. Suppressing won't affect functionality. Also, consider upgrading by running `npm i @arcgis/core@latest`.
 
@@ -34,7 +36,7 @@ For additional information, see the [Build with ES modules](https://developers.a
 
 ## Requirements
 
-* If you are using Zone.js, the minimum version is `0.10.2 (2019-08-13)` or greater.
+* If you are using Zone.js, the minimum version is `0.11.4 (October 29, 2020)` or greater.
 
 ## Commands
 
