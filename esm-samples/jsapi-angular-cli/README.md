@@ -46,7 +46,7 @@ Run `ng serve --open` for a dev server that will automatically open a browser wi
 
 ### Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. 
 
 ### Further help
 
