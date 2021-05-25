@@ -14,7 +14,9 @@ npm run build
 
 ## TypeScript Typings
 
-You can use the typings included with `arcgis-js-api` two ways.
+Currently, due to limitations in TypeScript, the APIs [autocasting](https://developers.arcgis.com/javascript/latest/programming-patterns/#autocasting) functionality works best in non-TypeScript applications. No changes are required if you are already using the API without any TypeScript build errors. 
+
+You can use the typings included with `arcgis-js-api` two ways. 
 
 ### Include a `///` directive in your main TypeScript file.
 ```ts
@@ -26,11 +28,8 @@ You can use the typings included with `arcgis-js-api` two ways.
 ```json
 // tsconfig.json
 {
-  "compilerOptions": {},
-  "include": [
-    "node_modules/arcgis-js-api/index.d.ts",
-    "src/**/*.ts",
-    "src/**/*.tsx"
-  ]
+  "compilerOptions": {
+    "types": ["arcgis-js-api"]
+  },
 }
 ```

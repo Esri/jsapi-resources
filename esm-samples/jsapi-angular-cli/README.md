@@ -36,6 +36,10 @@ For additional information, see the [Build with ES modules](https://developers.a
 
 * If you are using Zone.js, the minimum version is `0.11.4 (February 10, 2021)` or greater.
 
+## TypeScript
+
+Currently, due to limitations in TypeScript, the APIs [autocasting](https://developers.arcgis.com/javascript/latest/programming-patterns/#autocasting) functionality works best in non-TypeScript applications. No changes are required if you are already using the API without any TypeScript build errors.
+
 ## Commands
 
 For a list of all available `npm` commands see the scripts in `package.json`. 

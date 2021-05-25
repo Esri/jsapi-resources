@@ -5,23 +5,20 @@ The [arcgis-js-api.d.ts](arcgis-js-api.d.ts) file provides type definitions for 
 A copy of this file is also available at [DefinitelyTyped][1] and may be installed using the command:  
 `npm install --save @types/arcgis-js-api`
 
+Currently, due to limitations in TypeScript, the APIs [autocasting](https://developers.arcgis.com/javascript/latest/programming-patterns/#autocasting) functionality works best in non-TypeScript applications. No changes are required if you are already using the API without any TypeScript build errors.
+
 ## Requirements
 
-* [TypeScript][3] 2.7+
+* [TypeScript][2] 2.7+
 
 ## Resources
 
-* [Microsoft TypeScript Wiki][5]
-* [TypeScript Editor Support][6]
-* [The Definitive TypeScript Guide][7] from SitePen
-* Type definitions for Dojo are available [here][8].
-* Type definitions for many other libraries are available [here][9].
-
+* [TypeScript Editor Support][3]
+* [Type definitions for Dojo][4].
+* Type definitions for many other libraries are available [here][5].
 
 [1]: https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/arcgis-js-api
-[3]: http://www.typescriptlang.org/
-[5]: https://github.com/Microsoft/TypeScript/wiki
-[6]: https://github.com/Microsoft/TypeScript/wiki/TypeScript-Editor-Support
-[7]: https://www.sitepen.com/blog/2018/10/29/update-the-definitive-typescript-guide/
-[8]: https://github.com/dojo/typings
-[9]: https://github.com/DefinitelyTyped/DefinitelyTyped
+[2]: http://www.typescriptlang.org/
+[3]: https://github.com/Microsoft/TypeScript/wiki/TypeScript-Editor-Support
+[4]: https://github.com/dojo/typings
+[5]: https://github.com/DefinitelyTyped/DefinitelyTyped
