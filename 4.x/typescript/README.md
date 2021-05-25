@@ -14,11 +14,9 @@ Currently, due to limitations in TypeScript, the APIs [autocasting](https://deve
 ## Resources
 
 * [TypeScript Editor Support][3]
-* [Type definitions for Dojo][4].
-* Type definitions for many other libraries are available [here][5].
+* Type definitions for many other libraries are available [here][4].
 
 [1]: https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/arcgis-js-api
 [2]: http://www.typescriptlang.org/
 [3]: https://github.com/Microsoft/TypeScript/wiki/TypeScript-Editor-Support
-[4]: https://github.com/dojo/typings
-[5]: https://github.com/DefinitelyTyped/DefinitelyTyped
+[4]: https://github.com/DefinitelyTyped/DefinitelyTyped

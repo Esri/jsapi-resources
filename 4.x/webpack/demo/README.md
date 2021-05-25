@@ -24,7 +24,7 @@ You can use the typings included with `arcgis-js-api` two ways.
 /// <reference types="arcgis-js-api" />
 ```
 
-### Or add to the `include` of your `tsconfig.json`.
+### Or add to `types` in `tsconfig.json`.
 ```json
 // tsconfig.json
 {
