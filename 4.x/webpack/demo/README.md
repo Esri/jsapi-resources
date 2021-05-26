@@ -1,6 +1,11 @@
-# Sample using @arcgis/webpack-plugin
+[![deprecated](http://badges.github.io/stability-badges/dist/deprecated.svg)](http://github.com/badges/stability-badges)
+
+
+# Sample using @arcgis/webpack-plugin (Deprecated)
 
 ## Usage
+
+**Deprecation Notice**: if you are planning on building a new application, we recommend using the [@arcgis/core](https://developers.arcgis.com/javascript/latest/es-modules/) ES modules, here is a [sample application](https://github.com/Esri/jsapi-resources/tree/master/esm-samples/webpack).
 
 ```
 npm install
