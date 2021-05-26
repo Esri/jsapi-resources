@@ -22,10 +22,7 @@
     "noEmitOnError": false,
     "noUnusedLocals": true,
     "importHelpers": true,
-    "skipLibCheck": true,
-    "types": [
-      "arcgis-js-api"
-    ]
+    "skipLibCheck": true
   },
   "include": [
     "src/**/*"

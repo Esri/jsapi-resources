@@ -1,4 +1,3 @@
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
@@ -12,6 +11,7 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].[chunkhash].js',
         publicPath: '',
+        clean: true
     },
     devServer: {
         contentBase: path.join(__dirname, 'dist'),
@@ -66,8 +66,6 @@ module.exports = {
         ],
     },
     plugins: [
-        new CleanWebpackPlugin(),
-
         new HtmlWebPackPlugin({
             title: 'ArcGIS Template Application',
             template: 'src/index.html',
