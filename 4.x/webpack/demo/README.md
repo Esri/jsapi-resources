@@ -24,12 +24,15 @@ You can use the typings included with `arcgis-js-api` two ways.
 /// <reference types="arcgis-js-api" />
 ```
 
-### Or add to `types` in `tsconfig.json`.
+### Or add to the `include` of your `tsconfig.json`.
 ```json
 // tsconfig.json
 {
-  "compilerOptions": {
-    "types": ["arcgis-js-api"]
-  },
+  "compilerOptions": {},
+  "include": [
+    "node_modules/arcgis-js-api/index.d.ts",
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ]
 }
 ```
