@@ -12,7 +12,6 @@ A collection of resources for developers using the [ArcGIS API for JavaScript](h
 * [ESM samples - Create local builds with frameworks and module bundlers](./esm-samples/)
 
 #### AMD modules
-* [Webpack - Create custom builds of the API](./4.x/webpack/README.md)
 * [Dojo and RequireJS - Create local builds of the API](./4.x/amd/README.md)
 * [TypeScript - Class and interface definitions](./4.x/typescript/README.md)
 
