@@ -16,8 +16,8 @@ const webmap = new WebMap({
 webmap
   .load()
   .then(() => {
-    console.log(webmap.portalItem.description);
+    console.log("portalItem description: ", webmap.portalItem.description);
   })
   .catch((error) => {
-    console.log(error);
+    console.error(error);
   });

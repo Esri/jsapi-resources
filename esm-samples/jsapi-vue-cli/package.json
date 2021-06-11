@@ -7,18 +7,19 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
-    "@arcgis/core": "^4.19.0",
+    "@arcgis/core": "^4.20.0",
     "core-js": "^3.6.5",
-    "vue": "^3.0.0"
+    "vue": "^3.1.1"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^4.5.12",
-    "@vue/cli-plugin-eslint": "^4.5.12",
-    "@vue/cli-service": "^4.5.12",
-    "@vue/compiler-sfc": "^3.0.9",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^7.0.0-0"
+    "@babel/eslint-parser": "^7.14.5",
+    "@vue/cli": "^4.5.13",
+    "@vue/cli-plugin-babel": "^4.5.13",
+    "@vue/cli-plugin-eslint": "^4.5.13",
+    "@vue/cli-service": "^4.5.13",
+    "@vue/compiler-sfc": "^3.1.1",
+    "eslint": "^7.28.0",
+    "eslint-plugin-vue": "^7.10.0"
   },
   "eslintConfig": {
     "root": true,
@@ -30,7 +31,7 @@
       "eslint:recommended"
     ],
     "parserOptions": {
-      "parser": "babel-eslint"
+      "parser": "@babel/eslint-parser"
     },
     "rules": {}
   },

@@ -4,14 +4,14 @@ This repo integrates [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core
 
 ## Get Started
 
-**Step 1** - Run `npm install`. 
+**Step 1** - Run `npm install` and then start adding modules.
 
 **Step 2** Configure CSS. Here's an Ember example:
 
 *app.css*
 
 ```css
-@import 'https://js.arcgis.com/4.19/@arcgis/core/assets/esri/themes/light/main.css';
+@import 'https://js.arcgis.com/4.20/@arcgis/core/assets/esri/themes/light/main.css';
 ```
 
 For additional information, see the [Build with ES modules](https://developers.arcgis.com/javascript/latest/es-modules/) Guide topic in the SDK.

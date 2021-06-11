@@ -17,8 +17,8 @@ esriRequest(url, {
   },
 })
   .then((response) => {
-    console.log(response.data);
+    console.log("Response data: ", response.data);
   })
   .catch((error) => {
-    console.log(error);
+    console.error(error);
   });
