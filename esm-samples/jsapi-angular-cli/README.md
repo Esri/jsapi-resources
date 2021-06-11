@@ -40,7 +40,7 @@ For additional information, see the [Build with ES modules](https://developers.a
 
 Currently, due to limitations in TypeScript, the APIs [autocasting](https://developers.arcgis.com/javascript/latest/programming-patterns/#autocasting) functionality works best in non-TypeScript applications. No changes are required if you are already using the API without any TypeScript build errors.
 
-Minimum required version is `~4.2.3`.
+Required version is `~4.2.3`.
 
 ## Commands
 
