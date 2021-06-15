@@ -45,7 +45,7 @@ import config from "@arcgis/core/config";
 import * as workers from "@arcgis/core/core/workers";
 
 // configure where RemoteClient is located
-config.workers.workerPath = ".//RemoteClient.js";
+config.workers.workerPath = "./RemoteClient.js";
 
 // what loader to use, in this case SystemJS
 config.workers.loaderUrl = "https://cdn.jsdelivr.net/npm/systemjs@6.10.0/dist/s.min.js";

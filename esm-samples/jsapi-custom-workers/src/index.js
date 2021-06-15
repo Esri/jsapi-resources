@@ -8,7 +8,7 @@ import * as colorRendererCreator from "@arcgis/core/smartMapping/renderers/color
 import Legend from "@arcgis/core/widgets/Legend";
 import * as workers from "@arcgis/core/core/workers";
 
-config.workers.workerPath = ".//RemoteClient.js";
+config.workers.workerPath = "./RemoteClient.js";
 
 config.workers.loaderUrl = "https://cdn.jsdelivr.net/npm/systemjs@6.10.0/dist/s.min.js";
 

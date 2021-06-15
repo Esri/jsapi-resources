@@ -11,7 +11,6 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     chunkFilename: 'chunks/[id].js',
-    publicPath: '',
     clean: true
   },
   devServer: {
