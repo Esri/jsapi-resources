@@ -104,3 +104,15 @@ For additional information, see the [Build with ES modules](https://developers.a
 ## Commands
 
 For a list of all available `npm` commands see the scripts in `package.json`. 
+
+### development
+
+```
+npm run dev
+```
+
+### production
+
+```
+npm run build
+```
