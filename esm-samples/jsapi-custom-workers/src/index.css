@@ -1,0 +1,10 @@
+@import "https://js.arcgis.com/4.19/@arcgis/core/assets/esri/themes/dark/main.css";
+html,
+body,
+#viewDiv {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(50, 50, 50);
+}
