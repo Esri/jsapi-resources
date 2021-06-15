@@ -47,5 +47,7 @@ module.exports = {
       filename: "[name].[chunkhash].css",
       chunkFilename: "[id].css"
     })
-  ]
+  ],
+  // temporary fix for non-api related warning
+  ignoreWarnings: [/Failed to parse source map/]
 };

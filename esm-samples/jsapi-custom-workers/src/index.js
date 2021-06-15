@@ -40,7 +40,6 @@ const legend = new Legend({ view });
 view.ui.add(legend, "top-right");
 
 view.when(async () => {
-  // todo bad stuff
   const [cityLayerView, frsLayerView] = await Promise.all([
     view.whenLayerView(cityLayer),
     view.whenLayerView(frsLayer)
