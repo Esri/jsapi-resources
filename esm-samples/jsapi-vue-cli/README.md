@@ -4,7 +4,7 @@ This repo demonstrates how to use [@arcgis/core](https://www.npmjs.com/package/@
 
 ## Get Started
 
-**Step 1** - Run `npm install`. 
+**Step 1** - Run `npm install` and then start adding modules
 
 **Step 2** Configure CSS. Here's a Vue example:
 
@@ -12,7 +12,7 @@ This repo demonstrates how to use [@arcgis/core](https://www.npmjs.com/package/@
 
 ```css
 <style>
-  @import 'https://js.arcgis.com/4.19/@arcgis/core/assets/esri/themes/light/main.css';
+  @import 'https://js.arcgis.com/4.20/@arcgis/core/assets/esri/themes/light/main.css';
 </style>
 ```
 

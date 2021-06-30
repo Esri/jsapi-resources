@@ -1,6 +1,6 @@
 # ArcGIS API for JavaScript with Angular CLI
 
-This repo demonstrates how to use [@arcgis/core](https://www.npmjs.com/package/@arcgis/core) ES modules with Angular 11. 
+This repo demonstrates how to use [@arcgis/core](https://www.npmjs.com/package/@arcgis/core) ES modules with Angular 12. 
 
 ---
 ## Known issues
@@ -20,14 +20,14 @@ This repo demonstrates how to use [@arcgis/core](https://www.npmjs.com/package/@
 
 ## Get Started
 
-**Step 1** - Run `npm install`. 
+**Step 1** - Run `npm install` and then start adding modules.
 
-**Step 2** Configure CSS. Here's a component CSS example:
+**Step 2** Configure CSS.
 
-*index.html*
+*styles.css*
 
-```html
-  <link rel="stylesheet" href="https://js.arcgis.com/4.19/@arcgis/core/assets/esri/themes/light/main.css">
+```css
+  @import 'https://js.arcgis.com/4.20/@arcgis/core/assets/esri/themes/light/main.css';
 ```
 
 For additional information, see the [Build with ES modules](https://developers.arcgis.com/javascript/latest/es-modules/) Guide topic in the SDK.
@@ -39,6 +39,8 @@ For additional information, see the [Build with ES modules](https://developers.a
 ## TypeScript
 
 Currently, due to limitations in TypeScript, the APIs [autocasting](https://developers.arcgis.com/javascript/latest/programming-patterns/#autocasting) functionality works best in non-TypeScript applications. No changes are required if you are already using the API without any TypeScript build errors.
+
+Required version is `~4.2.3`.
 
 ## Commands
 
