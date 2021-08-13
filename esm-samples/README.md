@@ -1,8 +1,8 @@
 # @arcgis/core (ES modules)
 
-The sample projects in this directory integrate the [@arcgis/core](https://www.npmjs.com/package/@arcgis/core) build of the ArcGIS API for JavaScript with various frameworks, module bundlers and build tools. @arcgis/core uses ES modules and is installed locally using NPM.
+The sample projects in this directory integrate the [@arcgis/core](https://www.npmjs.com/package/@arcgis/core) build of the ArcGIS API for JavaScript with various frameworks, module bundlers and build tools. @arcgis/core is installed locally using NPM.
 
-For Typescript users, the type definitions are included with the API. There is no need for a separate install.
+For TypeScript users, the type definitions are included with the API. There is no need for a separate install.
 
 For additional information, see the [Build with ES modules](https://developers.arcgis.com/javascript/latest/es-modules/) Guide topic in the SDK.
 
