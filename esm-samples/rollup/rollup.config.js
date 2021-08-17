@@ -16,7 +16,7 @@ export default {
     resolve(),
     serve("public"),
     livereload({
-      watch: "src"
+      watch: "public/main.js"
     }),
     commonjs()
   ],
