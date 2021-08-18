@@ -11,6 +11,7 @@ export default {
     dir: "public",
     format: "es"
   },
+  treeshake: false,
   plugins: [
     del({ targets: ["public/chunks"], runOnce: true, verbose: true }),
     resolve(),
