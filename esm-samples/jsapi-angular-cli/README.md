@@ -29,7 +29,7 @@ This repo demonstrates how to use [@arcgis/core](https://www.npmjs.com/package/@
 *styles.css*
 
 ```css
-  @import 'https://js.arcgis.com/4.20/@arcgis/core/assets/esri/themes/light/main.css';
+  @import 'https://js.arcgis.com/4.21/@arcgis/core/assets/esri/themes/light/main.css';
 ```
 
 For additional information, see the [Build with ES modules](https://developers.arcgis.com/javascript/latest/es-modules/) Guide topic in the SDK.
@@ -42,7 +42,7 @@ For additional information, see the [Build with ES modules](https://developers.a
 
 Currently, due to limitations in TypeScript, the APIs [autocasting](https://developers.arcgis.com/javascript/latest/programming-patterns/#autocasting) functionality works best in non-TypeScript applications. No changes are required if you are already using the API without any TypeScript build errors.
 
-Required version is `~4.2.3`.
+Minimum required version is `~4.2.3`.
 
 ## Commands
 
