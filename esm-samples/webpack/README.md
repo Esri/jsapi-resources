@@ -2,6 +2,10 @@
 
 This repo demonstrates how to use the [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core) ES modules with webpack.
 
+
+## Known Issues
+- ``webpack-dev-server`` had a [breaking change](https://github.com/webpack/webpack-dev-server/blob/master/CHANGELOG.md#-breaking-changes-4) in ``4.0.0`` which removed ``contentBase`` in favor of the ``static`` option. This sample has been changed accordingly.
+
 ## Get Started
 
 **Step 1** - Run `npm install` and then start adding modules.
