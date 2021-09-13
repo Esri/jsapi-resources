@@ -1,6 +1,6 @@
 # ArcGIS API for JavaScript with create-react-app
 
-This repo demonstrates how to use [@arcgis/core](https://www.npmjs.com/package/@arcgis/core) ES modules with `create-react-app`. 
+This repo demonstrates how to use [@arcgis/core](https://www.npmjs.com/package/@arcgis/core) ES modules with `create-react-app`.
 
 ## Get Started
 
@@ -11,14 +11,14 @@ This repo demonstrates how to use [@arcgis/core](https://www.npmjs.com/package/@
 *index.css*
 
 ```css
-@import 'https://js.arcgis.com/4.20/@arcgis/core/assets/esri/themes/light/main.css';
+@import 'https://js.arcgis.com/4.21/@arcgis/core/assets/esri/themes/light/main.css';
 ```
 
 For additional information, see the [Build with ES modules](https://developers.arcgis.com/javascript/latest/es-modules/) Guide topic in the SDK.
 
 ## Commands
 
-For a list of all available `npm` commands see the scripts in `package.json`. 
+For a list of all available `npm` commands see the scripts in `package.json`.
 
 ## Misc.
 
@@ -51,7 +51,7 @@ module.exports = function override(config, env) {
   // May vary based on version of create-react-app being used.
   config.module.rules[2].oneOf[2].exclude = /(@babel(?:\/|\\{1,2})runtime|node_modules)/;
   return config;
-} 
+}
 ```
 
 ---
