@@ -10,11 +10,10 @@ module.exports = {
   node: false,
   output: {
     path: path.join(__dirname, 'dist'),
-    chunkFilename: 'chunks/[id].js',
-    clean: true
+    chunkFilename: 'chunks/[id].js'
   },
   devServer: {
-    static: './dist',
+    static: path.join(__dirname, 'dist'),
     compress: true,
     port: 3001,
   },
