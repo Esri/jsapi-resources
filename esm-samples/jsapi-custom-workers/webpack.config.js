@@ -14,7 +14,7 @@ module.exports = {
     clean: true
   },
   devServer: {
-    contentBase: path.join(__dirname, 'dist'),
+    static: './dist',
     compress: true,
     port: 3001,
   },
@@ -46,7 +46,5 @@ module.exports = {
       filename: "[name].[chunkhash].css",
       chunkFilename: "[id].css"
     })
-  ],
-  // temporary fix for non-api related warning
-  ignoreWarnings: [/Failed to parse source map/]
+  ]
 };
