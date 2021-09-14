@@ -20,7 +20,7 @@
     "@angular/platform-browser": "~12.1.4",
     "@angular/platform-browser-dynamic": "~12.1.4",
     "@angular/router": "~12.1.4",
-    "@arcgis/core": "^4.20.0",
+    "@arcgis/core": "^4.21.0",
     "rxjs": "^6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.4"
