@@ -12,11 +12,15 @@ This repo demonstrates how to use [@arcgis/core](https://www.npmjs.com/package/@
 
 ```css
 <style>
-  @import 'https://js.arcgis.com/4.20/@arcgis/core/assets/esri/themes/light/main.css';
+  @import 'https://js.arcgis.com/4.21/@arcgis/core/assets/esri/themes/light/main.css';
 </style>
 ```
 
 For additional information, see the [Build with ES modules](https://developers.arcgis.com/javascript/latest/es-modules/) Guide topic in the SDK.
+
+## Production builds
+
+Be sure to correctly set the build path in `vue.config.js`. For more information see the [Deployment](https://cli.vuejs.org/guide/deployment.html#deployment) guide.
 
 ## Commands
 
