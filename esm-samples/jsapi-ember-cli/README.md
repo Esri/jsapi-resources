@@ -2,6 +2,13 @@
 
 This repo integrates [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core) using [embroider](https://github.com/embroider-build/embroider).
 
+---
+**NOTE**
+
+This sample is no longer being maintained. We will try our best to answer any questions you have on the [github issues](https://github.com/Esri/jsapi-resources/issues) page. 
+
+---
+
 ## Get Started
 
 **Step 1** - Run `npm install` and then start adding modules.
