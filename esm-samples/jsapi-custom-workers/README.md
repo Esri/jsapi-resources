@@ -65,7 +65,7 @@ config.workers.loaderUrl = "https://cdn.jsdelivr.net/npm/systemjs@6.10.0/dist/s.
 
   const jsonFeatures = await spatialJoin.invoke("doSpatialJoin", [features1, features2]);
   // Results are returned as JSON, so you can rehydrate to Graphics again
-  const features = jsonFeatures.map(a => Graphic.fromJSON(a));
+  const features = jsonFeatures.map((a) => Graphic.fromJSON(a));
 ```
 
 As you can see, the provided worker framework provides a Promise-based layer on top of workers for easier use. Web workers can only pass native JavaScript objects back and forth. But you can load modules from `@arcgis/core` inside your worker.
@@ -76,8 +76,8 @@ import Graphic from "@arcgis/core/Graphic";
 
 export function doSpatialJoin([f1, f2]) {
   // Rehydrate Graphics
-	const features1 = f1.map(a => Graphic.fromJSON(a));
-	const features2 = f2.map(a => Graphic.fromJSON(a));
+	const features1 = f1.map((a) => Graphic.fromJSON(a));
+	const features2 = f2.map((a) => Graphic.fromJSON(a));
 	const features = [];
 	let temp = [...features1];
 	let temp2 = [];
