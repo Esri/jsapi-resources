@@ -18,6 +18,7 @@ export default {
     });
 
     const view = new MapView({
+      // https://v3.vuejs.org/api/instance-properties.html#el
       container: this.$el,
       map: webmap,
     });
