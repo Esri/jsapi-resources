@@ -6,7 +6,7 @@
 import WebMap from "@arcgis/core/WebMap";
 import MapView from "@arcgis/core/views/MapView";
 import Bookmarks from "@arcgis/core/widgets/Bookmarks";
-import Expand from "@arcgis/core/widgets/Expand";
+import Expand from "@arcgis/core/widgets/Expand"; 
 
 export default {
   name: 'App',
@@ -49,24 +49,6 @@ export default {
 }
 </script>
 
-<style>
-@import 'https://js.arcgis.com/4.21/@arcgis/core/assets/esri/themes/light/main.css';
-html,
-body,
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  padding: 0;
-  margin: 0;
-  width: 100%;
-  height: 100%;
-}
-.mapdiv {
-  padding: 0;
-  margin: 0;
-  height: 100%;
-}
+<style scoped>
+  @import './main.css';
 </style>
