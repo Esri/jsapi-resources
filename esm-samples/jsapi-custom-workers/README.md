@@ -1,10 +1,13 @@
 # ArcGIS API for JavaScript with custom workers
 
-This repo demonstrates how to use the [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core) esm modules with custom workers.
+This repo demonstrates using [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core) ES modules with custom workers.
+
+## Known Issues
+- `webpack-dev-server` had a [breaking change](https://github.com/webpack/webpack-dev-server/blob/master/CHANGELOG.md#-breaking-changes-4) in `4.0.0` which removed `contentBase` in favor of the `static` option. This sample has been changed accordingly.
 
 ## Building workers
 
-The key to using custom workers is that you need to build the workers separately from your main build. In this demo we use Rollup to build the workers and webpack to build the main application.
+The key to using custom workers is building the workers separately from your main build. In this demo we use Rollup to build the workers and webpack to build the main application.
 
 ```js
 // rollup.worker.config.js
@@ -16,7 +19,7 @@ const production = !process.env.ROLLUP_WATCH;
 
 export default {
   input: {
-    // JSAPI RemoteClient for using workers
+    // ArcGIS JS API RemoteClient for using workers
     RemoteClient: "@arcgis/core/core/workers/RemoteClient.js",
     // User custom worker
     SpatialJoin: "./src/spatial-join-worker.js"
@@ -24,7 +27,7 @@ export default {
   output: {
     chunkFileNames: "chunks/worker/[name]-[hash].js",
     dir: "dist",
-    // can use loader of choice, but System works well
+    // You can use the loader of your own choice, but System works well
     // in a production environment
     format: "system",
     exports: "named"
@@ -62,19 +65,19 @@ config.workers.loaderUrl = "https://cdn.jsdelivr.net/npm/systemjs@6.10.0/dist/s.
 
   const jsonFeatures = await spatialJoin.invoke("doSpatialJoin", [features1, features2]);
   // Results are returned as JSON, so you can rehydrate to Graphics again
-  const features = jsonFeatures.map(a => Graphic.fromJSON(a));
+  const features = jsonFeatures.map((a) => Graphic.fromJSON(a));
 ```
 
-As you can see, the provided worker framework provides a Promise based layer on top of workers for easier use. Web workers can only pass native JavaScript objects back and forth. But you can load modules from `@arcgis/core` inside your worker.
+As you can see, the provided worker framework provides a Promise-based layer on top of workers for easier use. Web workers can only pass native JavaScript objects back and forth. But you can load modules from `@arcgis/core` inside your worker.
 
 ```js
 // spatial-join-worker.js
 import Graphic from "@arcgis/core/Graphic";
 
 export function doSpatialJoin([f1, f2]) {
-    // rehydrate Graphics
-	const features1 = f1.map(a => Graphic.fromJSON(a));
-	const features2 = f2.map(a => Graphic.fromJSON(a));
+  // Rehydrate Graphics
+	const features1 = f1.map((a) => Graphic.fromJSON(a));
+	const features2 = f2.map((a) => Graphic.fromJSON(a));
 	const features = [];
 	let temp = [...features1];
 	let temp2 = [];
@@ -89,7 +92,7 @@ export function doSpatialJoin([f1, f2]) {
 				temp.splice(i, 1);
 			}
 		}
-        // convert graphics to JSON objects
+    // Convert graphics to JSON objects
 		features.push(graphic.toJSON());
 	}
     return features;

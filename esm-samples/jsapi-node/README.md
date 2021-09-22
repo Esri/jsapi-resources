@@ -13,6 +13,8 @@ esriConfig.assetsPath = "node_modules/@arcgis/core/assets"; // relative to when 
 
 An example can be found in [`projection.js`](https://github.com/Esri/jsapi-resources/blob/master/esm-samples/jsapi-node/src/projection.js#L6).
 
+More information can be found in the [Workding with assets](https://developers.arcgis.com/javascript/latest/es-modules/#working-with-assets) guide topic.
+
 ## Polyfills
 
 Because Node does not have a native `fetch` or `abort-controller`, you will need to load polyfills:

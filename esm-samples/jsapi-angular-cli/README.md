@@ -5,6 +5,8 @@ This repo demonstrates how to use [@arcgis/core](https://www.npmjs.com/package/@
 ---
 ## Known issues
 
+* If you are seeing `404` errors in the console after updating Angular `12.1.x` dependencies, you should try clearing your browser cache. This is an Angular caching issue. 
+
 * There is an optimization bug affecting production builds at Angular `12.2.x`. It is recommended to stay at Angular `12.1.x` until Angular 13 is ready. For more information: https://github.com/Esri/feedback-js-api-next/issues/131.
 
 * To prevent `Unhandled Promise Rejection` errors when using Angular with Zone.js, upgrade to Angular `11.2.5` or greater, Zone.js `0.11.4`or greater, and switch the `tsconfig.target` to `es2017` or greater.
@@ -29,7 +31,7 @@ This repo demonstrates how to use [@arcgis/core](https://www.npmjs.com/package/@
 *styles.css*
 
 ```css
-  @import 'https://js.arcgis.com/4.20/@arcgis/core/assets/esri/themes/light/main.css';
+  @import 'https://js.arcgis.com/4.21/@arcgis/core/assets/esri/themes/light/main.css';
 ```
 
 For additional information, see the [Build with ES modules](https://developers.arcgis.com/javascript/latest/es-modules/) Guide topic in the SDK.
@@ -42,7 +44,7 @@ For additional information, see the [Build with ES modules](https://developers.a
 
 Currently, due to limitations in TypeScript, the APIs [autocasting](https://developers.arcgis.com/javascript/latest/programming-patterns/#autocasting) functionality works best in non-TypeScript applications. No changes are required if you are already using the API without any TypeScript build errors.
 
-Required version is `~4.2.3`.
+Minimum required version is `~4.2.3`.
 
 ## Commands
 
