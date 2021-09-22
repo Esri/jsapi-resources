@@ -15,5 +15,5 @@ For additional information, see the [Build with ES modules](https://developers.a
 *index.js*
 
 ```js
-@import "https://js.arcgis.com/4.20/@arcgis/core/assets/esri/themes/light/main.css";
+@import "https://js.arcgis.com/4.21/@arcgis/core/assets/esri/themes/light/main.css";
 ```
