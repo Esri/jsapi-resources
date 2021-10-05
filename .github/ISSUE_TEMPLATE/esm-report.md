@@ -10,7 +10,7 @@ assignees: ''
 <!--
 STEP 1: Are you in the right place?
 
-- Is this a bug related to @arcgis/core ES modules?
+- Are you using a local build of @arcgis/core ES modules? 
 
 - Have you already searched [open](https://github.com/Esri/jsapi-resources/issues) and [closed](https://github.com/Esri/jsapi-resources/issues?q=is%3Aissue+is%3Aclosed) issues on this repo? 
 
@@ -21,7 +21,9 @@ If you answered yes, then you're in the right place, please delete this comment 
 
 **@arcgis/core version**
 
-Which version of `@arcgis/core`? Run `npm ls @arcgis/core` in a terminal window.
+Which version of `@arcgis/core`, for example `@arcgis/core@4.21.2`? Run `npm ls @arcgis/core` in a terminal window. 
+
+Questions related to `next` releases of `@arcgis/core` need to be addressed on the [feedback-js-api-next](https://github.com/Esri/feedback-js-api-next) repo. 
 
 **Framework and build tools** 
 Which version of framework and build tools are you using? E.g. Angular 12.1.2, Webpack 5.53. 
