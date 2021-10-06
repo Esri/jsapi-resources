@@ -1,4 +1,4 @@
 contact_links:
   - name: Esri Support
     url: https://support.esri.com/
-    about: Bugs with the API and not related to this repository
+    about: Bugs with the API not related to this repository

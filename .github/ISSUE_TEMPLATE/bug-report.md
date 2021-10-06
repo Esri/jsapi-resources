@@ -7,23 +7,10 @@ assignees: ''
 
 ---
 
-<!--
-STEP 1: Are you in the right place?
-
-- Are you reporting an issue for a resource in this github repository that is not related to @arcgis/core?
-
-- Have you already searched [open](https://github.com/Esri/jsapi-resources/issues) and [closed](https://github.com/Esri/jsapi-resources/issues?q=is%3Aissue+is%3Aclosed) issues on this repo? 
-
-- Is this a bug specifically for https://js.arcgis.com/next (and cannot be reproduced in earlier versions)? 
-
-If you answered yes, then you're in the right place, please delete this comment and file an issue right here!
-
--->
-
 **Describe the bug**
 A clear and concise description of the bug and the exact error message from the browsers console. 
 
-If applicable, add screenshots to help explain your problem, and include HTTP request request/response information if REST requests are failing. 
+If applicable, add screenshots and HTTP request/response information. 
 
 If this issue has been posted elsewhere, please add a reference here.
 
