@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve --open --port 3001 --host localhost",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build --modern"
   },
   "dependencies": {
     "@arcgis/core": "^4.21.0",
@@ -33,10 +33,5 @@
       "parser": "babel-eslint"
     },
     "rules": {}
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
-  ]
+  }
 }
