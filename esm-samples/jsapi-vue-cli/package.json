@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve --open --port 3001 --host localhost",
-    "build": "vue-cli-service build --modern"
+    "build": "vue-cli-service build"
   },
   "dependencies": {
     "@arcgis/core": "^4.21.0",
