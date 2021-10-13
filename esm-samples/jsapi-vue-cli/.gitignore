@@ -2,6 +2,7 @@
 node_modules
 package-lock.json
 /dist
+vue.config.js
 
 
 # local env files
