@@ -5,6 +5,11 @@ import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 import Legend from "@arcgis/core/widgets/Legend";
 import MapView from "@arcgis/core/views/MapView";
 import WebMap from "@arcgis/core/WebMap";
+// import "@esri/calcite-components/dist/calcite.js";
+// import "@esri/calcite-components";
+// import "@esri/calcite-components/dist/calcite/calcite.css";
+
+import { applyPolyfills, defineCustomElements } from "@esri/calcite-components/dist/loader";
 
 const map = new WebMap({
   portalItem: {
@@ -32,6 +37,14 @@ const view = new MapView({
 });
 
 view.when().then(function () {
+  // Apply polyfills and then define the custom elements
+  // polyfills are not needed if you don't support IE11 or Edge
+  applyPolyfills().then(() => {
+    defineCustomElements(window);
+  });
+
+  document.getElementById("test").innerHTML = "<div><calcite-button icon-start='apps'>button</calcite-button></div>";
+
   const dotDensityRenderer = new DotDensityRenderer({
     dotValue: 100,
     outline: null,

@@ -1,5 +1,6 @@
 import esriConfig from "@arcgis/core/config.js";
 import esriRequest from "@arcgis/core/request.js";
+import Portal from "@arcgis/core/portal/Portal";
 
 esriConfig.request.useIdentity = false;
 
