@@ -1,6 +1,6 @@
 # ArcGIS API for JavaScript with Angular CLI
 
-This repo demonstrates how to use [@arcgis/core](https://www.npmjs.com/package/@arcgis/core) ES modules with Angular 12. 
+This repo demonstrates how to use [@arcgis/core](https://www.npmjs.com/package/@arcgis/core) ES modules with Angular 13. 
 
 ---
 ## Known issues
@@ -44,7 +44,9 @@ For additional information, see the [Build with ES modules](https://developers.a
 
 Currently, due to limitations in TypeScript, the APIs [autocasting](https://developers.arcgis.com/javascript/latest/programming-patterns/#autocasting) functionality works best in non-TypeScript applications. No changes are required if you are already using the API without any TypeScript build errors.
 
-Minimum required version is `~4.2.3`.
+This sample implements strict class initalization, for more information visit the [TypeScript documentation](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-7.html#strict-class-initialization) page.
+
+Minimum required version is `~4.4.2`.
 
 ## Commands
 

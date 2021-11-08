@@ -3,7 +3,7 @@ import {
   OnInit,
   ViewChild,
   ElementRef,
-  OnDestroy
+  OnDestroy,
 } from '@angular/core';
 
 import WebMap from '@arcgis/core/WebMap';
@@ -20,7 +20,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public view: any = null;
 
   // The <div> where we will place the map
-  @ViewChild('mapViewNode', { static: true }) private mapViewEl: ElementRef;
+  @ViewChild('mapViewNode', { static: true }) private mapViewEl!: ElementRef;
 
   initializeMap(): Promise<any> {
     const container = this.mapViewEl.nativeElement;
