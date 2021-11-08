@@ -1,6 +1,6 @@
 import {
   Component,
-  OnInit,
+  AfterViewInit,
   ViewChild,
   ElementRef,
   OnDestroy
@@ -16,11 +16,11 @@ import Expand from '@arcgis/core/widgets/Expand';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements AfterViewInit, OnDestroy {
   public view: any = null;
 
   // The <div> where we will place the map
-  @ViewChild('mapViewNode', { static: true }) private mapViewEl: ElementRef;
+  @ViewChild('mapViewNode', { static: true }) private mapViewEl!: ElementRef;
 
   initializeMap(): Promise<any> {
     const container = this.mapViewEl.nativeElement;
@@ -64,7 +64,7 @@ export class AppComponent implements OnInit, OnDestroy {
     return this.view.when();
   }
 
-  ngOnInit(): any {
+  ngAfterViewInit(): any {
     // Initialize MapView and return an instance of MapView
     this.initializeMap().then(() => {
       // The map has been initialized

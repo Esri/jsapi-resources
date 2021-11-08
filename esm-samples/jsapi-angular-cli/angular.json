@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ng-cli": {
+    "jsapi-angular-cli": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -22,9 +22,6 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "allowedCommonJsDependencies": [
-              "moment"
-            ],            
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -71,10 +68,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "ng-cli:build:production"
+              "browserTarget": "jsapi-angular-cli:build:production"
             },
             "development": {
-              "browserTarget": "ng-cli:build:development"
+              "browserTarget": "jsapi-angular-cli:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -82,7 +79,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ng-cli:build"
+            "browserTarget": "jsapi-angular-cli:build"
           }
         },
         "test": {
@@ -105,5 +102,5 @@
       }
     }
   },
-  "defaultProject": "ng-cli"
+  "defaultProject": "jsapi-angular-cli"
 }
