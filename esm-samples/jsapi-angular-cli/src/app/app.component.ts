@@ -1,9 +1,9 @@
 import {
   Component,
-  AfterViewInit,
+  OnInit,
   ViewChild,
   ElementRef,
-  OnDestroy
+  OnDestroy,
 } from '@angular/core';
 
 import WebMap from '@arcgis/core/WebMap';
@@ -16,7 +16,7 @@ import Expand from '@arcgis/core/widgets/Expand';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements AfterViewInit, OnDestroy {
+export class AppComponent implements OnInit, OnDestroy {
   public view: any = null;
 
   // The <div> where we will place the map
@@ -64,7 +64,7 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     return this.view.when();
   }
 
-  ngAfterViewInit(): any {
+  ngOnInit(): any {
     // Initialize MapView and return an instance of MapView
     this.initializeMap().then(() => {
       // The map has been initialized
