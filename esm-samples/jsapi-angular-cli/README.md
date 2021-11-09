@@ -5,13 +5,13 @@ This repo demonstrates how to use [@arcgis/core](https://www.npmjs.com/package/@
 ---
 ## Known issues
 
+* There is an optimization bug affecting production builds at Angular `12.2.x`. It is recommended to use Angular `12.1.x` or upgrade to Angular 13. For more information: https://github.com/Esri/feedback-js-api-next/issues/131.
+
 * If you are seeing `404` errors in the console after updating Angular `12.1.x` dependencies, you should try clearing your browser cache. This is an Angular caching issue. 
 
-* There is an optimization bug affecting production builds at Angular `12.2.x`. It is recommended to stay at Angular `12.1.x` until Angular 13 is ready. For more information: https://github.com/Esri/feedback-js-api-next/issues/131.
+* To prevent `Unhandled Promise Rejection` errors when using Angular with Zone.js, upgrade to Angular 13, Zone.js `0.11.4`or greater, and switch the `tsconfig.target` to `es2017` or greater.
 
-* To prevent `Unhandled Promise Rejection` errors when using Angular with Zone.js, upgrade to Angular `11.2.5` or greater, Zone.js `0.11.4`or greater, and switch the `tsconfig.target` to `es2017` or greater.
-
-* if you are seeing CommonJS or AMD dependency warnings you can supress them in your build output thought a property setting in `angular.json`. Suppressing won't affect functionality. Also, consider upgrading by running `npm i @arcgis/core@latest`.
+* If you are seeing CommonJS or AMD dependency warnings you can supress them in your build output through a property setting in `angular.json`, this won't affect functionality. Also, consider upgrading by running `npm i @arcgis/core@latest`.
 
 *angular.json*
 
