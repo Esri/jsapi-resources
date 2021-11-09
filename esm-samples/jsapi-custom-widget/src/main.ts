@@ -1,6 +1,6 @@
 import './style.css'
 
-import EsriMap from "@arcgis/core/Map";
+import ArcGISMap from "@arcgis/core/Map";
 import MapView from "@arcgis/core/views/MapView";
 import * as intl from "@arcgis/core/intl";
 
@@ -29,7 +29,7 @@ const loader = {
 
 intl.registerMessageBundleLoader(loader);
 
-const map = new EsriMap({
+const map = new ArcGISMap({
   basemap: "streets-vector"
 });
 
