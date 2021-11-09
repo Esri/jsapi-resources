@@ -26,7 +26,7 @@ Custom widgets are built using `.tsx`, which allows using [JSX](https://www.type
 
 ## Working with message bundles
 
-A message bundle is an object containing strings that you wish to be rendered within the widget. In this sample the strings are being used for localized translations. These bundles are identified by a unique string, such as `bundleId`. For this sample there are two separate JSON files that contain the bundles, one contains a string for English and the contains a string for French. 
+A message bundle is an object containing strings that you wish to be rendered within the widget. In this sample the strings are being used for localized translations. These bundles are identified by a unique string, such as `bundleId`. For this sample there are two separate JSON files that contain the bundles, one contains a string for English and the other contains a string for French. 
 
 The sample uses a [`MessageBundleLoader`](https://developers.arcgis.com/javascript/latest/api-reference/esri-intl.html#MessageBundleLoader) object, and it fetches the translation strings in the user's locale:
 
