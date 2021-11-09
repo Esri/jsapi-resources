@@ -58,7 +58,7 @@ For more information on working with locales and registering message bundles ref
 
 ## Folder structure
 
-The custom widget in this repo uses the following folder structure. This is important as it relates to setting various paths that refer to the `/public` folder. Vite treats `public` as a special directory. If you are implementating internationalization and using a framework other than Vite, the `public` folder in this repo may be handled differently by other frameworks. The [Vite guide](https://vitejs.dev/guide/assets.html#the-public-directory) has more information on this topic.
+The custom widget in this repo uses the following folder structure. This is important as it relates to setting various paths that refer to the `/public` folder. Vite treats `public` as a special directory. If you are implementating message bundles and using a framework other than Vite, the `public` folder in this repo may be handled differently by other frameworks. The [Vite guide](https://vitejs.dev/guide/assets.html#the-public-directory) has more information on this topic.
 
 ```sh
 root-folder/
