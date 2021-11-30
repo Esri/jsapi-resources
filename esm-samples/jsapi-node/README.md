@@ -13,7 +13,7 @@ esriConfig.assetsPath = "node_modules/@arcgis/core/assets"; // relative to when 
 
 An example can be found in [`projection.js`](https://github.com/Esri/jsapi-resources/blob/master/esm-samples/jsapi-node/src/projection.js#L6).
 
-More information can be found in the [Workding with assets](https://developers.arcgis.com/javascript/latest/es-modules/#working-with-assets) guide topic.
+More information can be found in the [Working with assets](https://developers.arcgis.com/javascript/latest/es-modules/#working-with-assets) guide topic.
 
 ## Polyfills
 
@@ -24,7 +24,7 @@ require("cross-fetch/polyfill");
 require("abort-controller/polyfill");
 ```
 
-An example can be found in the [webmap.js](https://github.com/Esri/jsapi-resources/blob/master/esm-samples/jsapi-node/webmap.js#L4-L5) file.
+An example can be found in the [test-webmap.js](https://github.com/Esri/jsapi-resources/blob/master/esm-samples/jsapi-node/test-webmap.js#L4-L5) file.
 
 ## Native ESM samples
 
