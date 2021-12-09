@@ -14,7 +14,7 @@ This repo demonstrates how to use [@arcgis/core](https://www.npmjs.com/package/@
 
 ```css
 <style>
-  @import 'https://js.arcgis.com/4.21/@arcgis/core/assets/esri/themes/light/main.css';
+  @import 'https://js.arcgis.com/4.22/@arcgis/core/assets/esri/themes/light/main.css';
 </style>
 ```
 

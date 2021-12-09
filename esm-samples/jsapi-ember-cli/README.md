@@ -5,7 +5,7 @@ This repo integrates [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core
 ---
 **NOTE**
 
-This sample is no longer being maintained. We will try our best to answer any questions you have on the [github issues](https://github.com/Esri/jsapi-resources/issues) page. 
+This sample has been deprecated at 4.22. We will try our best to answer any questions you have on the [github issues](https://github.com/Esri/jsapi-resources/issues) page. 
 
 ---
 
