@@ -1,0 +1,5 @@
+node_modules
+package-lock.json
+public/assets
+public/chunks
+public/*.js
