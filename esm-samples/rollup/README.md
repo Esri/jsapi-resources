@@ -39,15 +39,13 @@ This example can also be used with TypeScript sources. The following steps conve
 ```json
 {
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
     "allowUnreachableCode": false,
     "declaration": false,
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
-    "importsNotUsedAsValues": "preserve",
     "lib": ["dom", "es2020"],
-    "module": "esnext",
+    "module": "es2020",
     "moduleResolution": "node",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
