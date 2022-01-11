@@ -65,19 +65,3 @@ This example can also be used with TypeScript sources. The following steps conve
 }
 ```
 6. Use `npm run build` and `npm run build:prod` as before
-
-Because TypeScript involves the extra step of transpilation, the watch feature doesn't appear to be possible, and so you might want to delete the following lines in rollup.config.js:
-```js
-import serve from "rollup-plugin-serve";
-import livereload from "rollup-plugin-livereload";
-serve("public"),
-livereload({
-  watch: "public/main.js"
-}),
-```
-and the following line in package.json: `"watch": "rollup -c -w"`
-(including the trailing comma on the previous line) and run
-```
-npm uninstall -D rollup-plugin-livereload
-npm uninstall -D rollup-plugin-serve
-```
