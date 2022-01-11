@@ -25,15 +25,15 @@ This example can also be used with TypeScript sources. The following steps conve
 
 1. Rename src/main.js to src/main.ts
 2. Change npm packages
-	1. `npm uninstall -D @rollup/plugin-commonjs`
-	2. `npm install -D @rollup/plugin-typescript`
-	3. `npm install -D tslib`
-	4. `npm install -D typescript`
+ 1. `npm uninstall -D @rollup/plugin-commonjs`
+ 2. `npm install -D @rollup/plugin-typescript`
+ 3. `npm install -D tslib`
+ 4. `npm install -D typescript`
 3. Edit rollup.config.js
-	1. Change the line `import commonjs from "@rollup/plugin-commonjs";` to `import typescript from "@rollup/plugin-typescript";`
-	2. Change `input: "src/main.js",` to `input: "src/main.ts",`
-	3. Add `generatedCode: "es2015",` as an `output` parameter
-	4. Replace the `plugins` line `commonjs()` with `typescript()`
+ 1. Change the line `import commonjs from "@rollup/plugin-commonjs";` to `import typescript from "@rollup/plugin-typescript";`
+ 2. Change `input: "src/main.js",` to `input: "src/main.ts",`
+ 3. Add `generatedCode: "es2015",` as an `output` parameter
+ 4. Replace the `plugins` line `commonjs()` with `typescript()`
 4. Edit rollup.config.prod.js and make the same changes
 5. Add the file `tsconfig.json` to the folder containing `package.json`:
 ```json
@@ -53,7 +53,7 @@ This example can also be used with TypeScript sources. The following steps conve
     "noUnusedParameters": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
-    "strict": false,
+    "strict": true,
     "target": "es2020"
   },
   "include": [
@@ -64,4 +64,4 @@ This example can also be used with TypeScript sources. The following steps conve
   ]
 }
 ```
-6. Use `npm run build` and `npm run build:prod` as before
+6. Use `npm run build` and `npm run build:prod` as before, but note that the watch feature of `npm run build` will not catch your TypeScript changes; you need to use `npm run watch` instead.
