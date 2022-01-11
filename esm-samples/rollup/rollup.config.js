@@ -9,7 +9,8 @@ export default {
   output: {
     chunkFileNames: "chunks/[name]-[hash].js",
     dir: "public",
-    format: "es"
+    format: "es",
+    generatedCode: "es2015"
   },
   treeshake: false,
   plugins: [
