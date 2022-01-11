@@ -32,8 +32,7 @@ This example can also be used with TypeScript sources. The following steps conve
 3. Edit rollup.config.js
  1. Change the line `import commonjs from "@rollup/plugin-commonjs";` to `import typescript from "@rollup/plugin-typescript";`
  2. Change `input: "src/main.js",` to `input: "src/main.ts",`
- 3. Add `generatedCode: "es2015",` as an `output` parameter
- 4. Replace the `plugins` line `commonjs()` with `typescript()`
+ 3. Replace the `plugins` line `commonjs()` with `typescript()`
 4. Edit rollup.config.prod.js and make the same changes
 5. Add the file `tsconfig.json` to the folder containing `package.json`:
 ```json

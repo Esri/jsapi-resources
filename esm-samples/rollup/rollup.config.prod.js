@@ -8,7 +8,8 @@ export default {
   output: {
     chunkFileNames: "chunks/[name]-[hash].js",
     dir: "public",
-    format: "es"
+    format: "es",
+    generatedCode: "es2015"
   },
   plugins: [
     del({ targets: ["public/chunks"], runOnce: true, verbose: true }),
