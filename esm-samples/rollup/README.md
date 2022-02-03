@@ -61,4 +61,4 @@ This example can also be used with TypeScript sources. The following steps conve
   ]
 }
 ```
-6. Use `npm run build` and `npm run build:prod` as before, but note that the watch feature of `npm run build` will not catch your TypeScript changes; you need to use `npm run watch` instead.
+6. Note that the watch feature of `npm start` will not catch your TypeScript changes; you need to use `npm run watch` instead.

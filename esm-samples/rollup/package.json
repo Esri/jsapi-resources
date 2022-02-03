@@ -13,8 +13,8 @@
     "rollup-plugin-terser": "^7.0.2"
   },
   "scripts": {
-    "build": "rollup -c rollup.config.js",
-    "build:prod": "rollup -c rollup.config.prod.js",
+    "start": "rollup -c rollup.config.js",
+    "build": "rollup -c rollup.config.prod.js",
     "watch": "rollup -c -w"
   }
 }
