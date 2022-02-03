@@ -9,23 +9,27 @@ const exec = promisify(require("child_process").exec);
 const EXAMPLES_PATH = "../../esm-samples";
 
 const buildInfo = {
-  "jsapi-angular-cli": {}, // build fails on my machine
+  "jsapi-angular-cli": {
+    buildDirectory: "dist",
+    bundleDirectory: "./",
+    title: "Angular 13"
+  },
   "jsapi-create-react-app": {
     buildDirectory: "build",
-    mainBundle: "static/js/main.*.chunk.js", // wrong main bundle file?
+    bundleDirectory: "static/js",
     title: "CRA 17.0"
   },
   "jsapi-custom-widget": {
     buildDirectory: "dist",
-    mainBundle: "assets/vendor.*.js",
+    bundleDirectory: "assets",
     title: "Custom Widget (Vite 2.6)"
   },
   "jsapi-custom-workers": {
     buildDirectory: "dist",
-    mainBundle: "index.js",
+    bundleDirectory: "./",
     title: "Custom Workers (Rollup + Webpack)"
   },
-  "jsapi-ember-cli": {}, // build fails on my machine
+  "jsapi-ember-cli": {}, // Deprecated
   "jsapi-esm-cdn": {}, // N/A
   "jsapi-node": {
     buildDirectory: "public",
@@ -33,17 +37,17 @@ const buildInfo = {
   },
   "jsapi-vue-cli": {
     buildDirectory: "dist",
-    mainBundle: "js/app.*.js", // wrong main bundle file?
+    bundleDirectory: "js",
     title: "Vue 3.2 (Webpack 4 - default)"
   },
   "rollup": {
     buildDirectory: "public",
-    mainBundle: "main.js",
+    bundleDirectory: "./",
     title: "Rollup 2.60"
   },
   "webpack": {
     buildDirectory: "dist",
-    mainBundle: "index.js",
+    bundleDirectory: "./",
     title: "Webpack 5.64"
   }
 };
@@ -61,19 +65,19 @@ const getDirectories = async (directoriesPath) =>
     const version = JSON.parse(await readFile(packageFile, "utf8")).dependencies["@arcgis/core"].replace(/\^|\~/, "");
 
     console.log(`current version: ${version}`);
-    const outputPath = resolve(__dirname, "../build-sizes");
-    const stream = createWriteStream(`${outputPath}/${version}.csv`);
+    const outputPath = resolve(__dirname, "../build-sizes", `${version}.csv`);
+    const stream = createWriteStream(outputPath);
     stream.write("Sample,Main bundle size,On-disk size\n");
 
     for (example of exampleDirs) {
       const buildDir = buildInfo[example]?.buildDirectory;
-      const bundleFile = buildInfo[example]?.mainBundle;
+      const bundleDir = buildInfo[example]?.bundleDirectory;
       const exampleTitle = buildInfo[example]?.title;
 
       if (!!buildDir) {
         const examplePath = resolve(__dirname, EXAMPLES_PATH, example);
         const buildPath = resolve(examplePath, buildDir);
-
+        if (bundleDir) console.log(resolve(buildPath, bundleDir));
         console.log(`${example}: installing deps`);
         await exec(`npm i --prefix ${examplePath}`);
 
@@ -83,12 +87,22 @@ const getDirectories = async (directoriesPath) =>
         console.log(`${example}: calculating size`);
         const buildSize = (await exec(`du -sh ${buildPath} | cut -f1`)).stdout.trim();
         const fileCount = (await exec(`find ${buildPath} -type f | wc -l`)).stdout.trim();
-        const bundleSize = !!bundleFile
-          ? (await exec(`du -sh ${resolve(buildPath, bundleFile)} | cut -f1`)).stdout.trim()
+        const mainBundleSize = !!bundleDir
+          ? Number(
+              (
+                await exec(
+                  // largest js bundle file
+                  `du -a --exclude="*.map" ${resolve(buildPath, bundleDir)}/ | sort -n -r | sed -n 2p | cut -f1`
+                )
+              ).stdout.trim() / 1000 // convert kb to mb
+            )
+              .toFixed(1)
+              .toString()
+              .concat("M")
           : "N/A";
         const title = !!exampleTitle ? exampleTitle : example.replace(/^jsapi-/, "");
 
-        stream.write(`${title},${bundleSize},${buildSize} (${fileCount} files)\n`);
+        stream.write(`${title},${mainBundleSize},${buildSize} (${fileCount} files)\n`);
       }
     }
   } catch (err) {
