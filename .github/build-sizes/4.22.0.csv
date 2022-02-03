@@ -1,9 +1,1 @@
 Sample,Main bundle size,On-disk size
-Angular 13,1.7M,8.2M (207 files)
-CRA 17.0,1.7M,40M (394 files)
-Custom Widget (Vite 2.6),1.3M,7.4M (270 files)
-Custom Workers (Rollup + Webpack),11.9M,14M (450 files)
-Node (Rollup 2.60),N/A,5.8M (228 files)
-Vue 3.2 (Webpack 4 - default),1.7M,37M (363 files)
-Rollup 2.60,6.2M,7.6M (269 files)
-Webpack 5.64,6.6M,8.1M (196 files)

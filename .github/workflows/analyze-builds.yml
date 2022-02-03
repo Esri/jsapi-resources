@@ -1,0 +1,30 @@
+name: Analyze Sample Builds
+on:
+  push:
+    branches: [master]
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: check for package changes
+        id: build
+        run: |
+          current_branch=$(git rev-parse --abbrev-ref HEAD)
+          # list of all package.json files changed
+          packages_changed=$(git diff --name-only "$current_branch" $(git merge-base "$current_branch" origin/master) | grep "**/package.json")
+          echo "package.json files changed: $packages_changed"
+          # skip if no packages are changed
+          if [ -z "$packages_changed" ]; then
+            echo "no package.json files changed, skipping build analysis"
+          else
+            echo "analyzing builds"
+            echo "::set-output name=skip::false"
+          fi
+      - uses: actions/setup-node@v2
+        with:
+          node-version: lts/*
+      - if: steps.build.outputs.skip == 'false'
+        run: node ./.github/scripts/analyze-builds.js
