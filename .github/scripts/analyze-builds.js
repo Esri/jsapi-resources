@@ -91,8 +91,13 @@ const getDirectories = async (directoriesPath) =>
         const fileCount = (await exec(`find ${buildPath} -type f | wc -l`)).stdout.trim();
         const mainBundleSize = Number(
           (
-            await exec(`du -a --exclude="*.map" ${resolve(buildPath, bundleDir)}/ | sort -n -r | sed -n 2p | cut -f1`)
-          ).stdout.trim() / 1000 // convert kb to mb
+            await exec(
+              `find ${resolve(
+                buildPath,
+                bundleDir
+              )} -name '*.js' -type f -printf '%s\t%p\n' | sort -nr | head -1 | cut -f1`
+            )
+          ).stdout.trim() /  1e+6 // convert bytes to megabytes
         )
           .toFixed(1)
           .toString()
