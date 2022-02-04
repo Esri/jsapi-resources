@@ -1,1 +1,6 @@
 Sample,Main bundle size,On-disk size
+Angular 13.2.1,1.7M,8.2M (207 files)
+CRA 4.0.3,1.7M,40M (394 files)
+Vue 3.2.23,1.7M,37M (363 files)
+Rollup 2.60.2,1.6M,7.6M (269 files)
+Webpack 5.64.1,1.7M,8.1M (196 files)
