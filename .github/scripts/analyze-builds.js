@@ -61,6 +61,20 @@ const getDirectories = async (directoriesPath) =>
     const stream = createWriteStream(outputPath);
     stream.write("Sample,Main bundle size,On-disk size\n");
 
+    console.log("Installing dependencies and building samples");
+    await Promise.all(
+      sampleDirs.map((sample) =>
+        !!SAMPLES_INFO[sample]?.name
+          ? exec(
+              `npm i --prefix ${resolve(SAMPLES_PATH, sample)} && npm run build --prefix ${resolve(
+                SAMPLES_PATH,
+                sample
+              )}`
+            )
+          : null
+      )
+    );
+
     for (sample of sampleDirs) {
       const buildDir = SAMPLES_INFO[sample]?.buildDirectory;
       const bundleDir = SAMPLES_INFO[sample]?.bundleDirectory;
@@ -77,12 +91,6 @@ const getDirectories = async (directoriesPath) =>
         const packageVersion = (
           !!isDevDep ? packageFile.devDependencies[packageName] : packageFile.dependencies[packageName]
         ).replace(/\^|\~/, "");
-
-        console.log(`${sampleName}: installing deps`);
-        await exec(`npm i --prefix ${samplePath}`);
-
-        console.log(`${sampleName}: building`);
-        await exec(`npm run build --prefix ${samplePath}`);
 
         console.log(`${sampleName}: calculating size`);
         const buildSize = (await exec(`du -sh ${buildPath} | cut -f1`)).stdout.trim();
