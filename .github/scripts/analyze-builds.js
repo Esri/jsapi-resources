@@ -57,9 +57,9 @@ const getDirectories = async (directoriesPath) =>
     ).dependencies["@arcgis/core"].replace(/\^|\~/, ""); // remove semver range
 
     console.log(`ArcGIS JSAPI:  v${jsapiVersion}`);
-    const outputPath = resolve(__dirname, "../build-metrics", `${jsapiVersion}.csv`);
+    const outputPath = resolve(__dirname, "../../esm-samples/.metrics", `${jsapiVersion}.csv`);
     const stream = createWriteStream(outputPath);
-    stream.write("Sample,Main bundle size,On-disk size\n");
+    stream.write("Sample,Main bundle size (MB),On-disk size (MB), On-disk files\n");
 
     console.log("Installing dependencies and building samples");
     await Promise.all(
@@ -93,7 +93,7 @@ const getDirectories = async (directoriesPath) =>
         ).replace(/\^|\~/, "");
 
         console.log(`${sampleName}: calculating size`);
-        const buildSize = (await exec(`du -sh ${buildPath} | cut -f1`)).stdout.trim();
+        const buildSize = (await exec(`du -sh ${buildPath} | cut -f1`)).stdout.trim().replace(/[a-z]/i, "");
         const fileCount = (await exec(`find ${buildPath} -type f | wc -l`)).stdout.trim();
         const mainBundleSize = Number(
           (
@@ -106,10 +106,9 @@ const getDirectories = async (directoriesPath) =>
           ).stdout.trim() / 1e6 // convert bytes to megabytes
         )
           .toFixed(1)
-          .toString()
-          .concat("M");
+          .toString();
 
-        stream.write(`${sampleName} ${packageVersion},${mainBundleSize},${buildSize} (${fileCount} files)\n`);
+        stream.write(`${sampleName} ${packageVersion},${mainBundleSize},${buildSize},${fileCount}\n`);
       }
     }
   } catch (err) {
