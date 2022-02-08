@@ -1,4 +1,4 @@
-name: ESM Sample Build Metrics
+name: ESM Sample Metrics
 on:
   pull_request:
     branches: [master]
