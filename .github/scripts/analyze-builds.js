@@ -52,10 +52,27 @@ const getDirectories = async (directoriesPath) =>
   try {
     const sampleDirs = await getDirectories(SAMPLES_PATH);
 
-    const jsapiVersion = JSON.parse(
-      await readFile(resolve(__dirname, SAMPLES_PATH, sampleDirs[0], "package.json"), "utf8")
-    ).dependencies["@arcgis/core"].replace(/\^|\~/, ""); // remove semver range
+    const jsapiVersions = new Set(
+      (
+        await Promise.all(
+          sampleDirs.map(
+            async (sample) =>
+              !!SAMPLES_INFO[sample] &&
+              JSON.parse(await readFile(resolve(__dirname, SAMPLES_PATH, sample, "package.json"), "utf8")).dependencies[
+                "@arcgis/core"
+              ].replace(/\^|\~/, "") // remove semver range
+          )
+        )
+      ).filter((version) => !!version)
+    );
 
+    if (jsapiVersions.size !== 1) {
+      console.log("ArcGIS JSAPI versions: ", jsapiVersions);
+      console.warn("The samples have different versions of @arcgis/core, skipping build");
+      return;
+    }
+
+    const [jsapiVersion] = jsapiVersions;
     console.log(`ArcGIS JSAPI:  v${jsapiVersion}`);
     const outputPath = resolve(__dirname, "../../esm-samples/.metrics", `${jsapiVersion}.csv`);
     const stream = createWriteStream(outputPath);
@@ -63,50 +80,50 @@ const getDirectories = async (directoriesPath) =>
 
     console.log("Installing dependencies and building samples");
     await Promise.all(
-      sampleDirs.map((sample) =>
-        !!SAMPLES_INFO[sample]?.name
-          ? exec(
-              `npm i --prefix ${resolve(SAMPLES_PATH, sample)} && npm run build --prefix ${resolve(
-                SAMPLES_PATH,
-                sample
-              )}`
-            )
-          : null
+      sampleDirs.map(
+        async (sample) =>
+          !!SAMPLES_INFO[sample] &&
+          (await exec(
+            `npm i --prefix ${resolve(SAMPLES_PATH, sample)} && npm run build --prefix ${resolve(SAMPLES_PATH, sample)}`
+          ))
       )
     );
 
     for (sample of sampleDirs) {
-      const buildDir = SAMPLES_INFO[sample]?.buildDirectory;
-      const bundleDir = SAMPLES_INFO[sample]?.bundleDirectory;
-      const sampleName = SAMPLES_INFO[sample]?.name;
-      const packageName = SAMPLES_INFO[sample]?.package;
-      const isDevDep = SAMPLES_INFO[sample]?.devDep;
-
-      if (!!buildDir) {
-        const samplePath = resolve(SAMPLES_PATH, sample);
-        const buildPath = resolve(samplePath, buildDir);
-
-        const packageFile = JSON.parse(await readFile(resolve(samplePath, "package.json"), "utf8"));
+      if (!!SAMPLES_INFO[sample]) {
+        const sampleName = SAMPLES_INFO[sample]?.name;
+        const packageName = SAMPLES_INFO[sample]?.package;
+        const packageFile = JSON.parse(await readFile(resolve(SAMPLES_PATH, sample, "package.json"), "utf8"));
+        const buildPath = resolve(SAMPLES_PATH, sample, SAMPLES_INFO[sample]?.buildDirectory);
 
         const packageVersion = (
-          !!isDevDep ? packageFile.devDependencies[packageName] : packageFile.dependencies[packageName]
+          !!SAMPLES_INFO[sample]?.devDep
+            ? packageFile.devDependencies[packageName]
+            : packageFile.dependencies[packageName]
         ).replace(/\^|\~/, "");
 
         console.log(`${sampleName}: calculating size`);
-        const buildSize = (await exec(`du -sh ${buildPath} | cut -f1`)).stdout.trim().replace(/[a-z]/i, "");
-        const fileCount = (await exec(`find ${buildPath} -type f | wc -l`)).stdout.trim();
+
+        const buildSize = Number(
+          (await exec(`du -sb ${buildPath} | cut -f1`)).stdout.trim() / 1e6 // convert bytes to megabytes
+        )
+          .toFixed(2)
+          .toString();
+
         const mainBundleSize = Number(
           (
             await exec(
               `find ${resolve(
                 buildPath,
-                bundleDir
+                SAMPLES_INFO[sample]?.bundleDirectory
               )} -name '*.js' -type f -printf "%s\t%p\n" | sort -nr | head -1 | cut -f1`
             )
-          ).stdout.trim() / 1e6 // convert bytes to megabytes
+          ).stdout.trim() / 1e6
         )
-          .toFixed(1)
+          .toFixed(2)
           .toString();
+
+        const fileCount = (await exec(`find ${buildPath} -type f | wc -l`)).stdout.trim();
 
         stream.write(`${sampleName} ${packageVersion},${mainBundleSize},${buildSize},${fileCount}\n`);
       }
