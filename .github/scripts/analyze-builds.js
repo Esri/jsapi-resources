@@ -81,52 +81,52 @@ const getDirectories = async (directoriesPath) =>
     console.log("Installing dependencies and building samples");
     await Promise.all(
       sampleDirs.map(
-        async (sample) =>
+        (sample) =>
           !!SAMPLES_INFO[sample] &&
-          (await exec(
+          promisify(require("child_process").exec)(
             `npm i --prefix ${resolve(SAMPLES_PATH, sample)} && npm run build --prefix ${resolve(SAMPLES_PATH, sample)}`
-          ))
+          )
       )
     );
 
     for (sample of sampleDirs) {
-      if (!!SAMPLES_INFO[sample]) {
-        const sampleName = SAMPLES_INFO[sample]?.name;
-        const packageName = SAMPLES_INFO[sample]?.package;
-        const packageFile = JSON.parse(await readFile(resolve(SAMPLES_PATH, sample, "package.json"), "utf8"));
-        const buildPath = resolve(SAMPLES_PATH, sample, SAMPLES_INFO[sample]?.buildDirectory);
+      if (!SAMPLES_INFO[sample]) continue;
 
-        const packageVersion = (
-          !!SAMPLES_INFO[sample]?.devDep
-            ? packageFile.devDependencies[packageName]
-            : packageFile.dependencies[packageName]
-        ).replace(/\^|\~/, "");
+      const sampleName = SAMPLES_INFO[sample]?.name;
+      const packageName = SAMPLES_INFO[sample]?.package;
+      const packageFile = JSON.parse(await readFile(resolve(SAMPLES_PATH, sample, "package.json"), "utf8"));
+      const buildPath = resolve(SAMPLES_PATH, sample, SAMPLES_INFO[sample]?.buildDirectory);
 
-        console.log(`${sampleName}: calculating size`);
+      const packageVersion = (
+        !!SAMPLES_INFO[sample]?.devDep
+          ? packageFile.devDependencies[packageName]
+          : packageFile.dependencies[packageName]
+      ).replace(/\^|\~/, "");
 
-        const buildSize = Number(
-          (await exec(`du -sb ${buildPath} | cut -f1`)).stdout.trim() / 1e6 // convert bytes to megabytes
-        )
-          .toFixed(2)
-          .toString();
+      console.log(`${sampleName}: calculating size`);
 
-        const mainBundleSize = Number(
-          (
-            await exec(
-              `find ${resolve(
-                buildPath,
-                SAMPLES_INFO[sample]?.bundleDirectory
-              )} -name '*.js' -type f -printf "%s\t%p\n" | sort -nr | head -1 | cut -f1`
-            )
-          ).stdout.trim() / 1e6
-        )
-          .toFixed(2)
-          .toString();
+      const buildSize = Number(
+        (await exec(`du -sb ${buildPath} | cut -f1`)).stdout.trim() / 1e6 // convert bytes to megabytes
+      )
+        .toFixed(2)
+        .toString();
 
-        const fileCount = (await exec(`find ${buildPath} -type f | wc -l`)).stdout.trim();
+      const mainBundleSize = Number(
+        (
+          await exec(
+            `find ${resolve(
+              buildPath,
+              SAMPLES_INFO[sample]?.bundleDirectory
+            )} -name '*.js' -type f -printf "%s\t%p\n" | sort -nr | head -1 | cut -f1`
+          )
+        ).stdout.trim() / 1e6
+      )
+        .toFixed(2)
+        .toString();
 
-        stream.write(`${sampleName} ${packageVersion},${mainBundleSize},${buildSize},${fileCount}\n`);
-      }
+      const fileCount = (await exec(`find ${buildPath} -type f | wc -l`)).stdout.trim();
+
+      stream.write(`${sampleName} ${packageVersion},${mainBundleSize},${buildSize},${fileCount}\n`);
     }
   } catch (err) {
     console.error(err);

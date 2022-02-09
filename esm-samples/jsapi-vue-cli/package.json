@@ -7,7 +7,7 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
-    "@arcgis/core": "^4.22.0",
+    "@arcgis/core": "^4.22.2",
     "core-js": "^3.19.2",
     "vue": "^3.2.23"
   },
