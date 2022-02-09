@@ -78,24 +78,14 @@ const getDirectories = async (directoriesPath) =>
     const stream = createWriteStream(outputPath);
     stream.write("Sample,Main bundle size (MB),On-disk size (MB), On-disk files\n");
 
-    console.log("Installing dependencies and building samples");
-    await Promise.all(
-      sampleDirs.map(
-        (sample) =>
-          !!SAMPLES_INFO[sample] &&
-          promisify(require("child_process").exec)(
-            `npm i --prefix ${resolve(SAMPLES_PATH, sample)} && npm run build --prefix ${resolve(SAMPLES_PATH, sample)}`
-          )
-      )
-    );
-
     for (sample of sampleDirs) {
       if (!SAMPLES_INFO[sample]) continue;
 
       const sampleName = SAMPLES_INFO[sample]?.name;
       const packageName = SAMPLES_INFO[sample]?.package;
       const packageFile = JSON.parse(await readFile(resolve(SAMPLES_PATH, sample, "package.json"), "utf8"));
-      const buildPath = resolve(SAMPLES_PATH, sample, SAMPLES_INFO[sample]?.buildDirectory);
+      const samplePath = resolve(SAMPLES_PATH, sample);
+      const buildPath = resolve(samplePath, SAMPLES_INFO[sample]?.buildDirectory);
 
       const packageVersion = (
         !!SAMPLES_INFO[sample]?.devDep
@@ -103,14 +93,13 @@ const getDirectories = async (directoriesPath) =>
           : packageFile.dependencies[packageName]
       ).replace(/\^|\~/, "");
 
-      console.log(`${sampleName}: calculating size`);
+      console.log(`${sampleName}: installing deps`);
+      await exec(`npm i --prefix ${samplePath}`);
 
-      const buildSize = Number(
-        (await exec(`du -sb ${buildPath} | cut -f1`)).stdout.trim() / 1e6 // convert bytes to megabytes
-      )
-        .toFixed(2)
-        .toString();
+      console.log(`${sampleName}: building`);
+      await exec(`npm run build --prefix ${samplePath}`);
 
+      console.log(`${sampleName}: calculating build sizes`);
       const mainBundleSize = Number(
         (
           await exec(
@@ -119,8 +108,12 @@ const getDirectories = async (directoriesPath) =>
               SAMPLES_INFO[sample]?.bundleDirectory
             )} -name '*.js' -type f -printf "%s\t%p\n" | sort -nr | head -1 | cut -f1`
           )
-        ).stdout.trim() / 1e6
+        ).stdout.trim() / 1e6 // convert bytes to megabytes
       )
+        .toFixed(2)
+        .toString();
+
+      const buildSize = Number((await exec(`du -sb ${buildPath} | cut -f1`)).stdout.trim() / 1e6)
         .toFixed(2)
         .toString();
 
