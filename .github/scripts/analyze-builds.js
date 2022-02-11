@@ -21,11 +21,11 @@ const SAMPLES_INFO = {
     buildDirectory: "build",
     bundleDirectory: "static/js"
   },
-  "jsapi-vue-cli": {
+  "jsapi-vue": {
     name: "Vue",
     package: "vue",
     buildDirectory: "dist",
-    bundleDirectory: "js"
+    bundleDirectory: "assets"
   },
   "rollup": {
     name: "Rollup",

@@ -1,21 +1,17 @@
-# ArcGIS API for JavaScript with Vue CLI
+# ArcGIS API for JavaScript with Vue and Vite
 
-This repo demonstrates how to use [@arcgis/core](https://www.npmjs.com/package/@arcgis/core) ES modules with Vue.js. 
-
-**NOTE:** This sample uses a non-standard `.browserslistrc` file for performance and browser support reasons. 
+This repo demonstrates how to use [@arcgis/core](https://www.npmjs.com/package/@arcgis/core) ES modules with [Vite](https://vitejs.dev/guide/) using a [Vue.js](https://vuejs.org/) template. 
 
 ## Get Started
 
 **Step 1** - Run `npm install` and then start adding modules.
 
-**Step 2** Configure CSS. Here's a Vue example:
+**Step 2** Configure CSS.
 
-*App.vue*
+*main.css*
 
 ```css
-<style>
   @import 'https://js.arcgis.com/4.22/@arcgis/core/assets/esri/themes/light/main.css';
-</style>
 ```
 
 For additional information, see the [Build with ES modules](https://developers.arcgis.com/javascript/latest/es-modules/) Guide topic in the SDK.
