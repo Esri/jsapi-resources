@@ -1,6 +1,6 @@
 Sample,Main bundle size (MB),On-disk size (MB), On-disk files
 Angular 13.2.1,1.71,8.05,207
-CRA 5.0.0,1.70,27.78,419
+CRA 5.0.0,1.70,27.77,419
 Vue 3.2.25,1.49,7.32,268
 Rollup 2.60.2,1.56,7.33,269
 Webpack 5.64.1,1.67,8.04,196

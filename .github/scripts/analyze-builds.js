@@ -5,6 +5,7 @@ const {
   promises: { readdir, readFile }
 } = require("fs");
 const exec = promisify(require("child_process").exec);
+const calculateBuildSize = require("./build-size.js");
 
 const SAMPLES_PATH = resolve(__dirname, "../../esm-samples");
 
@@ -85,7 +86,6 @@ const getDirectories = async (directoriesPath) =>
       const packageName = SAMPLES_INFO[sample]?.package;
       const packageFile = JSON.parse(await readFile(resolve(SAMPLES_PATH, sample, "package.json"), "utf8"));
       const samplePath = resolve(SAMPLES_PATH, sample);
-      const buildPath = resolve(samplePath, SAMPLES_INFO[sample]?.buildDirectory);
 
       const packageVersion = (
         !!SAMPLES_INFO[sample]?.devDep
@@ -100,24 +100,11 @@ const getDirectories = async (directoriesPath) =>
       await exec(`npm run build --prefix ${samplePath}`);
 
       console.log(`${sampleName}: calculating build sizes`);
-      const mainBundleSize = Number(
-        (
-          await exec(
-            `find ${resolve(
-              buildPath,
-              SAMPLES_INFO[sample]?.bundleDirectory
-            )} -name '*.js' -type f -printf "%s\t%p\n" | sort -nr | head -1 | cut -f1`
-          )
-        ).stdout.trim() / 1e6 // convert bytes to megabytes
-      )
-        .toFixed(2)
-        .toString();
-
-      const buildSize = Number((await exec(`du -sb ${buildPath} | cut -f1`)).stdout.trim() / 1e6)
-        .toFixed(2)
-        .toString();
-
-      const fileCount = (await exec(`find ${buildPath} -type f | wc -l`)).stdout.trim();
+      const { mainBundleSize, buildSize, fileCount } = await calculateBuildSize(
+        SAMPLES_INFO[sample].buildDirectory,
+        SAMPLES_INFO[sample].bundleDirectory,
+        samplePath
+      );
 
       stream.write(`${sampleName} ${packageVersion},${mainBundleSize},${buildSize},${fileCount}\n`);
     }
