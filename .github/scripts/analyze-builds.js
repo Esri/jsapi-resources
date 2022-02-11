@@ -25,7 +25,7 @@ const SAMPLES_INFO = {
     name: "Vue",
     package: "vue",
     buildDirectory: "dist",
-    bundleDirectory: "js"
+    bundleDirectory: "assets"
   },
   "rollup": {
     name: "Rollup",
