@@ -1,27 +1,6 @@
-.DS_Store
-node_modules
 package-lock.json
-/dist
-vue.config.js
-
-
-# local env files
-.env.local
-.env.*.local
-
-# Log files
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-
-# Editor directories and files
-.idea
-.vscode
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-
-public/assets
+node_modules
+.DS_Store
+dist
+dist-ssr
+*.local
