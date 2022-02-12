@@ -13,34 +13,29 @@ const SAMPLES_INFO = {
   "jsapi-angular-cli": {
     name: "Angular",
     package: "@angular/core",
-    buildDirectory: "dist",
-    bundleDirectory: "./"
+    buildPath: "dist" // relative path from the sample's root directory
   },
   "jsapi-create-react-app": {
     name: "CRA",
     package: "react-scripts",
-    buildDirectory: "build",
-    bundleDirectory: "static/js"
+    buildPath: "build"
   },
   "jsapi-vue": {
     name: "Vue",
     package: "vue",
-    buildDirectory: "dist",
-    bundleDirectory: "assets"
+    buildPath: "dist"
   },
   "rollup": {
     name: "Rollup",
     package: "rollup",
     devDep: true,
-    buildDirectory: "public",
-    bundleDirectory: "./"
+    buildPath: "public"
   },
   "webpack": {
     name: "Webpack",
     package: "webpack",
     devDep: true,
-    buildDirectory: "dist",
-    bundleDirectory: "./"
+    buildPath: "dist"
   }
 };
 
@@ -51,12 +46,12 @@ const getDirectories = async (directoriesPath) =>
 
 (async () => {
   try {
-    const sampleDirs = await getDirectories(SAMPLES_PATH);
+    const sampleDirectories = await getDirectories(SAMPLES_PATH);
 
     const jsapiVersions = new Set(
       (
         await Promise.all(
-          sampleDirs.map(
+          sampleDirectories.map(
             async (sample) =>
               !!SAMPLES_INFO[sample] &&
               JSON.parse(await readFile(resolve(__dirname, SAMPLES_PATH, sample, "package.json"), "utf8")).dependencies[
@@ -79,14 +74,13 @@ const getDirectories = async (directoriesPath) =>
     const stream = createWriteStream(outputPath);
     stream.write("Sample,Main bundle size (MB),On-disk size (MB), On-disk files\n");
 
-    for (sample of sampleDirs) {
+    for (sample of sampleDirectories) {
       if (!SAMPLES_INFO[sample]) continue;
 
       const sampleName = SAMPLES_INFO[sample]?.name;
       const packageName = SAMPLES_INFO[sample]?.package;
       const samplePath = resolve(SAMPLES_PATH, sample);
-      const buildPath = SAMPLES_INFO[sample].buildDirectory;
-      const bundlePath = SAMPLES_INFO[sample].bundleDirectory;
+      const buildPath = SAMPLES_INFO[sample]?.buildPath;
       const packageFile = JSON.parse(await readFile(resolve(samplePath, "package.json"), "utf8"));
 
       const packageVersion = (
@@ -102,13 +96,12 @@ const getDirectories = async (directoriesPath) =>
       await exec(`npm run build --prefix ${samplePath}`);
 
       console.log(`${sampleName}: calculating build sizes`);
-      const { mainBundleSize, buildSize, fileCount } = await calculateBuildSize({
+      const { mainBundleSize, buildSize, buildFileCount } = await calculateBuildSize({
         samplePath,
-        buildPath,
-        bundlePath
+        buildPath
       });
 
-      stream.write(`${sampleName} ${packageVersion},${mainBundleSize},${buildSize},${fileCount}\n`);
+      stream.write(`${sampleName} ${packageVersion},${mainBundleSize},${buildSize},${buildFileCount}\n`);
     }
   } catch (err) {
     console.error(err);
