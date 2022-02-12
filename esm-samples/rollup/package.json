@@ -15,8 +15,6 @@
   "scripts": {
     "start": "rollup -c rollup.config.js",
     "build": "rollup -c rollup.config.prod.js",
-    "build:size": "node ../../.github/scripts/build-size.js public",
-    "postbuild": "npm run build:size",
     "watch": "rollup -c -w"
   }
 }
