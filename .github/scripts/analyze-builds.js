@@ -4,8 +4,7 @@ const {
   createWriteStream,
   promises: { readdir, readFile }
 } = require("fs");
-const exec = require("util").promisify(require("child_process").exec);
-const calculateBuildSize = require("./build-size.js");
+const { calculateBuildSize, execLogErr } = require("./build-size.js");
 
 const SAMPLES_PATH = resolve(__dirname, "../../esm-samples");
 
@@ -39,6 +38,11 @@ const SAMPLES_INFO = {
   }
 };
 
+// emphasis the install/build/calculate-size step logs
+const logStep = (message) => {
+  console.log(`${"-".repeat(message.length + 8)}\n|-> ${message} <-|\n${"-".repeat(message.length + 8)}`);
+};
+
 const getDirectories = async (directoriesPath) =>
   (await readdir(directoriesPath, { withFileTypes: true }))
     .filter((dirent) => dirent.isDirectory() && dirent.name.charAt(0) !== ".")
@@ -64,7 +68,7 @@ const getDirectories = async (directoriesPath) =>
 
     if (jsapiVersions.size !== 1) {
       console.log("ArcGIS JSAPI versions: ", jsapiVersions);
-      console.warn("The samples have different versions of @arcgis/core, skipping build");
+      console.error("The samples have different versions of @arcgis/core, skipping build");
       return;
     }
 
@@ -89,13 +93,13 @@ const getDirectories = async (directoriesPath) =>
           : packageFile.dependencies[packageName]
       ).replace(/\^|\~/, "");
 
-      console.log(`${sampleName}: installing deps`);
-      await exec(`npm i --prefix ${samplePath}`);
+      logStep(`${sampleName}: installing deps`);
+      console.log(await execLogErr(`npm i --prefix ${samplePath}`));
 
-      console.log(`${sampleName}: building`);
-      await exec(`npm run build --prefix ${samplePath}`);
+      logStep(`${sampleName}: building`);
+      console.log(await execLogErr(`npm run build --prefix ${samplePath}`));
 
-      console.log(`${sampleName}: calculating build sizes`);
+      logStep(`${sampleName}: calculating build sizes`);
       const { mainBundleSize, buildSize, buildFileCount } = await calculateBuildSize({
         samplePath,
         buildPath
