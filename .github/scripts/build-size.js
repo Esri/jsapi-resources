@@ -5,13 +5,14 @@ const exec = require("util").promisify(require("child_process").exec);
 /**
  * Executes a bash command, logs stderr, and returns stdout
  * @param {string} command - bash command
- * @returns {string} the command's stdout
+ * @returns {Promise<string>} the command's stdout
  */
-const execLogErr = async (command) => {
-  const { stdout, stderr } = await exec(command);
-  !!stderr && console.error("stderr:\n", stderr);
-  return stdout;
-};
+const execLogErr = async (command) =>
+  new Promise((resolve) => {
+    const { stdout, stderr } = await exec(command);
+    !!stderr && console.error("stderr:\n", stderr);
+    resolve(stdout);
+  });
 
 /**
  * Emphasizes a message in the console
@@ -27,9 +28,10 @@ const logHeader = (message) => {
  * The build sizes are logged when the script is ran via CLI.
  * @param {string} samplePath - relative path to the sample's root directory ("$PWD" default)
  * @param {string} buildPath - relative path from samplePath to the build directory
- * @returns {number} mainBundleSize - size in megabytes of the largest JavaScript bundle file
- * @returns {number} buildSize - size in megabytes of all files in the build directory
- * @returns {number} fileCount - count of all files in the build directory
+ * @returns {Promise<{ mainBundleSize, buildSize, buildFileCount}>} build sizes
+ * mainBundleSize - size in megabytes of the largest JavaScript bundle file
+ * buildSize - size in megabytes of all files in the build directory
+ * buildFileCount - count of all files in the build directory
  */
 const calculateBuildSize = async ({ samplePath, buildPath }) => {
   const sample = !!samplePath ? resolve(__dirname, samplePath) : process.env.PWD;

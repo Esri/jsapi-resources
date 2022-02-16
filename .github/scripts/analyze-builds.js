@@ -89,10 +89,13 @@ const getDirectories = async (directoriesPath) =>
       ).replace(/\^|\~/, "");
 
       logHeader(`${sampleName}: installing deps`);
-      console.log(await execLogErr(`npm i --prefix ${samplePath}`));
+
+      const installOut = await execLogErr(`npm i --prefix ${samplePath}`);
+      console.log(installOut);
 
       logHeader(`${sampleName}: building`);
-      console.log(await execLogErr(`npm run build --prefix ${samplePath}`));
+      const buildOut = await execLogErr(`npm run build --prefix ${samplePath}`);
+      console.log(buildOut);
 
       logHeader(`${sampleName}: calculating build sizes`);
       const { mainBundleSize, buildSize, buildFileCount } = await calculateBuildSize({
