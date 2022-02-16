@@ -4,7 +4,7 @@ const {
   createWriteStream,
   promises: { readdir, readFile }
 } = require("fs");
-const { calculateBuildSize, execLogErr } = require("./build-size.js");
+const { calculateBuildSize, execLogErr, logHeader } = require("./build-size.js");
 
 const SAMPLES_PATH = resolve(__dirname, "../../esm-samples");
 
@@ -36,11 +36,6 @@ const SAMPLES_INFO = {
     devDep: true,
     buildPath: "dist"
   }
-};
-
-// emphasis the install/build/calculate-size step logs
-const logStep = (message) => {
-  console.log(`${"-".repeat(message.length + 8)}\n|-> ${message} <-|\n${"-".repeat(message.length + 8)}`);
 };
 
 const getDirectories = async (directoriesPath) =>
@@ -93,13 +88,13 @@ const getDirectories = async (directoriesPath) =>
           : packageFile.dependencies[packageName]
       ).replace(/\^|\~/, "");
 
-      logStep(`${sampleName}: installing deps`);
+      logHeader(`${sampleName}: installing deps`);
       console.log(await execLogErr(`npm i --prefix ${samplePath}`));
 
-      logStep(`${sampleName}: building`);
+      logHeader(`${sampleName}: building`);
       console.log(await execLogErr(`npm run build --prefix ${samplePath}`));
 
-      logStep(`${sampleName}: calculating build sizes`);
+      logHeader(`${sampleName}: calculating build sizes`);
       const { mainBundleSize, buildSize, buildFileCount } = await calculateBuildSize({
         samplePath,
         buildPath

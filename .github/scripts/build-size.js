@@ -14,6 +14,15 @@ const execLogErr = async (command) => {
 };
 
 /**
+ * Emphasizes a message in the console
+ * @param {string} message - text to log
+ */
+const logHeader = (message) => {
+  const length = message.length + 8;
+  console.log(`${"-".repeat(length)}\n|-> ${message} <-|\n${"-".repeat(length)}`);
+};
+
+/**
  * Takes an object containing build information and returns an object containing build sizes.
  * The build sizes are logged when the script is ran via CLI.
  * @param {string} samplePath - relative path to the sample's root directory ("$PWD" default)
@@ -49,9 +58,12 @@ if (require.main === module) {
         samplePath
       });
 
+      const headerText = "Sample Build Metrics";
+      logHeader(headerText);
       console.log(
-        `Main bundle size (MB): ${mainBundleSize}\nOn-disk size (MB): ${buildSize}\nOn-disk files: ${buildFileCount}\n`
+        `Main bundle size (MB): ${mainBundleSize}\nOn-disk size (MB): ${buildSize}\nOn-disk files: ${buildFileCount}`
       );
+      console.log("-".repeat(headerText.length + 8));
     } catch (err) {
       console.error(err);
       process.exitCode = 1;
@@ -61,3 +73,4 @@ if (require.main === module) {
 
 module.exports.calculateBuildSize = calculateBuildSize;
 module.exports.execLogErr = execLogErr;
+module.exports.logHeader = logHeader;
