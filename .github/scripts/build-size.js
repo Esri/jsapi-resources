@@ -7,12 +7,11 @@ const exec = require("util").promisify(require("child_process").exec);
  * @param {string} command - bash command
  * @returns {Promise<string>} the command's stdout
  */
-const execLogErr = async (command) =>
-  new Promise((resolve) => {
-    const { stdout, stderr } = await exec(command);
-    !!stderr && console.error("stderr:\n", stderr);
-    resolve(stdout);
-  });
+const execLogErr = async (command) => {
+  const { stdout, stderr } = await exec(command);
+  !!stderr && console.error("stderr:\n", stderr);
+  return stdout;
+};
 
 /**
  * Emphasizes a message in the console
