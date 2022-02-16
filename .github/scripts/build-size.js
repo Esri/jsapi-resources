@@ -18,8 +18,8 @@ const execLogErr = async (command) => {
  * @param {string} message - text to log
  */
 const logHeader = (message) => {
-  const length = message.length + 8;
-  console.log(`${"-".repeat(length)}\n|-> ${message} <-|\n${"-".repeat(length)}`);
+  const line = "-".repeat(message.length + 8);
+  console.log(`${line}\n|-> ${message} <-|\n${line}`);
 };
 
 /**
