@@ -4,8 +4,7 @@ const {
   createWriteStream,
   promises: { readdir, readFile }
 } = require("fs");
-const exec = require("util").promisify(require("child_process").exec);
-const calculateBuildSize = require("./build-size.js");
+const { calculateBuildSize, execLogErr, logHeader } = require("./build-size.js");
 
 const SAMPLES_PATH = resolve(__dirname, "../../esm-samples");
 
@@ -64,7 +63,7 @@ const getDirectories = async (directoriesPath) =>
 
     if (jsapiVersions.size !== 1) {
       console.log("ArcGIS JSAPI versions: ", jsapiVersions);
-      console.warn("The samples have different versions of @arcgis/core, skipping build");
+      console.error("The samples have different versions of @arcgis/core, skipping build");
       return;
     }
 
@@ -89,13 +88,16 @@ const getDirectories = async (directoriesPath) =>
           : packageFile.dependencies[packageName]
       ).replace(/\^|\~/, "");
 
-      console.log(`${sampleName}: installing deps`);
-      await exec(`npm i --prefix ${samplePath}`);
+      logHeader(`${sampleName}: installing deps`);
 
-      console.log(`${sampleName}: building`);
-      await exec(`npm run build --prefix ${samplePath}`);
+      const installOut = await execLogErr(`npm i --prefix ${samplePath}`);
+      console.log(installOut);
 
-      console.log(`${sampleName}: calculating build sizes`);
+      logHeader(`${sampleName}: building`);
+      const buildOut = await execLogErr(`npm run build --prefix ${samplePath}`);
+      console.log(buildOut);
+
+      logHeader(`${sampleName}: calculating build sizes`);
       const { mainBundleSize, buildSize, buildFileCount } = await calculateBuildSize({
         samplePath,
         buildPath
