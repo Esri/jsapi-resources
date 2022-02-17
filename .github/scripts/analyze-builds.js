@@ -117,7 +117,10 @@ const execLogErr = async (command) => {
       logHeader(`${sampleName}: calculating build sizes`);
       const { mainBundleSize, buildSize, buildFileCount } = await getBuildSizes(buildPath);
 
-      stream.write(`${sampleName} ${packageVersion},${mainBundleSize},${buildSize},${buildFileCount}\n`);
+      const mainBundleSizeMB = (mainBundleSize / 1024 ** 2).toFixed(2);
+      const buildSizeMB = (buildSize / 1024 ** 2).toFixed(2);
+
+      stream.write(`${sampleName} ${packageVersion},${mainBundleSizeMB},${buildSizeMB},${buildFileCount}\n`);
     }
   } catch (err) {
     console.error(err);
