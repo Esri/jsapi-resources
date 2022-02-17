@@ -4,7 +4,8 @@ const {
   createWriteStream,
   promises: { readdir, readFile }
 } = require("fs");
-const { calculateBuildSize, execLogErr, logHeader } = require("./build-size.js");
+const exec = require("util").promisify(require("child_process").exec);
+const { getBuildSizes, logHeader } = require("./build-size.js");
 
 const SAMPLES_PATH = resolve(__dirname, "../../esm-samples");
 
@@ -38,10 +39,26 @@ const SAMPLES_INFO = {
   }
 };
 
-const getDirectories = async (directoriesPath) =>
-  (await readdir(directoriesPath, { withFileTypes: true }))
+/**
+ * Get the names of a directory's subdirectories (not recursive)
+ * @param {string} directoryPath - path to the root directory
+ * @returns {Promise<string[]>} subdirectory names
+ */
+const getDirectories = async (directoryPath) =>
+  (await readdir(directoryPath, { withFileTypes: true }))
     .filter((dirent) => dirent.isDirectory() && dirent.name.charAt(0) !== ".")
     .map((dirent) => dirent.name);
+
+/**
+ * Executes a bash command, logs stderr, and returns stdout
+ * @param {string} command - bash command
+ * @returns {Promise<string>} the command's stdout
+ */
+const execLogErr = async (command) => {
+  const { stdout, stderr } = await exec(command);
+  !!stderr && console.error("stderr:\n", stderr);
+  return stdout;
+};
 
 (async () => {
   try {
@@ -68,18 +85,18 @@ const getDirectories = async (directoriesPath) =>
     }
 
     const [jsapiVersion] = jsapiVersions;
-    console.log(`ArcGIS JSAPI:  v${jsapiVersion}`);
+    logHeader(`ArcGIS JSAPI:  v${jsapiVersion}`);
     const outputPath = resolve(__dirname, "../../esm-samples/.metrics", `${jsapiVersion}.csv`);
     const stream = createWriteStream(outputPath);
     stream.write("Sample,Main bundle size (MB),On-disk size (MB), On-disk files\n");
 
-    for (sample of sampleDirectories) {
+    for (const sample of sampleDirectories) {
       if (!SAMPLES_INFO[sample]) continue;
 
       const sampleName = SAMPLES_INFO[sample]?.name;
       const packageName = SAMPLES_INFO[sample]?.package;
       const samplePath = resolve(SAMPLES_PATH, sample);
-      const buildPath = SAMPLES_INFO[sample]?.buildPath;
+      const buildPath = resolve(samplePath, SAMPLES_INFO[sample]?.buildPath);
       const packageFile = JSON.parse(await readFile(resolve(samplePath, "package.json"), "utf8"));
 
       const packageVersion = (
@@ -98,10 +115,7 @@ const getDirectories = async (directoriesPath) =>
       console.log(buildOut);
 
       logHeader(`${sampleName}: calculating build sizes`);
-      const { mainBundleSize, buildSize, buildFileCount } = await calculateBuildSize({
-        samplePath,
-        buildPath
-      });
+      const { mainBundleSize, buildSize, buildFileCount } = await getBuildSizes(buildPath);
 
       stream.write(`${sampleName} ${packageVersion},${mainBundleSize},${buildSize},${buildFileCount}\n`);
     }

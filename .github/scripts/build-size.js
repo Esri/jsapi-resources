@@ -1,17 +1,8 @@
 #!/usr/bin/env node
 const { resolve } = require("path");
-const exec = require("util").promisify(require("child_process").exec);
-
-/**
- * Executes a bash command, logs stderr, and returns stdout
- * @param {string} command - bash command
- * @returns {Promise<string>} the command's stdout
- */
-const execLogErr = async (command) => {
-  const { stdout, stderr } = await exec(command);
-  !!stderr && console.error("stderr:\n", stderr);
-  return stdout;
-};
+const {
+  promises: { readdir, stat }
+} = require("fs");
 
 /**
  * Emphasizes a message in the console
@@ -23,28 +14,53 @@ const logHeader = (message) => {
 };
 
 /**
- * Takes an object containing build information and returns an object containing build sizes.
- * The build sizes are logged when the script is ran via CLI.
- * @param {string} samplePath - relative path to the sample's root directory ("$PWD" default)
- * @param {string} buildPath - relative path from samplePath to the build directory
- * @returns {Promise<{ mainBundleSize, buildSize, buildFileCount}>} build sizes
- * mainBundleSize - size in megabytes of the largest JavaScript bundle file
- * buildSize - size in megabytes of all files in the build directory
- * buildFileCount - count of all files in the build directory
+ * Returns all files in a directory (recursively)
+ * @param {string} buildPath - path to the build directory
+ * @returns {Promise<{path: string, name: string}>} file path and name
  */
-const calculateBuildSize = async ({ samplePath, buildPath }) => {
-  const sample = !!samplePath ? resolve(__dirname, samplePath) : process.env.PWD;
-  const build = resolve(sample, buildPath);
+const getFiles = async (buildPath) => {
+  const entries = await readdir(buildPath, { withFileTypes: true });
+  const files = entries
+    .filter((file) => !file.isDirectory())
+    .map((file) => ({ ...file, path: resolve(buildPath, file.name) }));
+  const directories = entries.filter((folder) => folder.isDirectory());
 
-  const mainBundleSize = Number(
-    // recursively find the largest js file in the build directory
-    (await execLogErr(`find ${build} -name '*.js' -type f -printf "%s\t%p\n" | sort -nr | head -1 | cut -f1`)).trim() /
-      1e6 // convert bytes to megabytes
+  for (const directory of directories) {
+    const subdirectoryFiles = await getFiles(resolve(buildPath, directory.name));
+    files.push(...subdirectoryFiles);
+  }
+  return files;
+};
+
+/**
+ * Provides sizes for an application's production build
+ * @param {string} buildPath - path from the current working directory to the build directory
+ * @returns {Promise<{ mainBundleSize: string, buildSize:string , buildFileCount: string}>}
+ * - mainBundleSize - size in megabytes of the largest JavaScript bundle file
+ * - buildSize - size in megabytes of all files in the build directory
+ * - buildFileCount - count of all files in the build directory
+ */
+const getBuildSizes = async (buildPath) => {
+  const build = resolve(process.cwd(), buildPath);
+
+  const buildFiles = await getFiles(build);
+
+  const mainBundleSize = (
+    Math.max(
+      ...(await Promise.all(
+        buildFiles.filter((file) => /.js$/.test(file.name)).map(async (file) => (await stat(file.path)).size)
+      ))
+    ) / 1024**2 // bytes to megabytes
   ).toFixed(2);
 
-  const buildSize = Number((await execLogErr(`du -sb ${build} | cut -f1`)).trim() / 1e6).toFixed(2);
+  const buildSize = (
+    (await Promise.all(buildFiles.map(async (file) => (await stat(file.path)).size))).reduce(
+      (count, fileSize) => count + fileSize,
+      0
+    ) / 1024**2
+  ).toFixed(2);
 
-  const buildFileCount = Number((await execLogErr(`find ${build} -type f | wc -l`)).trim());
+  const buildFileCount = buildFiles.length;
 
   return { mainBundleSize, buildSize, buildFileCount };
 };
@@ -52,14 +68,17 @@ const calculateBuildSize = async ({ samplePath, buildPath }) => {
 if (require.main === module) {
   (async () => {
     try {
-      const [buildPath, samplePath] = process.argv.splice(2);
+      const [buildPath] = process.argv.splice(2);
 
-      const { mainBundleSize, buildSize, buildFileCount } = await calculateBuildSize({
-        buildPath,
-        samplePath
-      });
+      if (!buildPath) {
+        throw new Error(
+          "Error: Invalid or missing arguments. The path from the current working directory to the production build directory is a required."
+        );
+      }
 
-      const headerText = "Sample Build Metrics";
+      const { mainBundleSize, buildSize, buildFileCount } = await getBuildSizes(buildPath);
+
+      const headerText = "Application Build Sizes";
       logHeader(headerText);
       console.log(
         `Main bundle size (MB): ${mainBundleSize}\nOn-disk size (MB): ${buildSize}\nOn-disk files: ${buildFileCount}`
@@ -72,6 +91,4 @@ if (require.main === module) {
   })();
 }
 
-module.exports.calculateBuildSize = calculateBuildSize;
-module.exports.execLogErr = execLogErr;
-module.exports.logHeader = logHeader;
+module.exports = { getBuildSizes, logHeader };

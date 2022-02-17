@@ -2,16 +2,15 @@
 
 The scripts in this directory are used to analyze ESM sample build metrics.
 
-## Build size
+## Build sizes
 
-The `build-size.js` script exports a function which calculates build size for a sample. The function takes an object parameter with two properties, and returns an object with three properties.
+The `build-size.js` script exports an asynchronous function which provides build sizes for a sample.
 
 #### Parameter properties
 
-| Property   | Description                                                    | Type   |
-| ---------- | -------------------------------------------------------------- | ------ |
-| samplePath | relative path to the sample's root directory (default is $PWD) | string |
-| buildPath  | relative path from samplePath to the sample's build directory  | string |
+| Property  | Description                                                                      | Type   |
+| --------- | -------------------------------------------------------------------------------- | ------ |
+| buildPath | relative path from the current working directory to the sample's build directory | string |
 
 #### Return properties
 
@@ -21,14 +20,33 @@ The `build-size.js` script exports a function which calculates build size for a 
 | buildSize      | size in megabytes of all files in the build directory   | number |
 | fileCount      | count of all files in the build directory               | number |
 
+### Using the function
+
+Here is an example of how to use the asynchronous function:
+
+```js
+const { getBuildSizes } = require("./build-size.js");
+
+(async () => {
+    try {
+        const buildSizes = await getBuildSizes("your-app/build-path");
+        console.log(buildSizes)
+        ...
+    } catch (err) {
+        console.error(err);
+        process.exitCode = 1;
+    }
+})();
+```
+
 ### Running from CLI
 
-You can also run the script via the command line. When running from the CLI, the [parameter property](#parameter-properties) `buildPath` is the first argument, and `samplePath` the second. The script will log the three [return properties](#return-properties) to the console when ran from the CLI.
+You can also run the script via the command line. When running from the CLI, the `buildPath` property is an argument. The script will log the three [return properties](#return-properties) to the console.
 
-For example, your current working directory is `.github/scripts`. You want to analyze the build size of the [react sample](https://github.com/Esri/jsapi-resources/tree/master/esm-samples/jsapi-create-react-app), which is already built, and the build directory is named `build`. To get the size, you can run:
+For example, your current working directory is `.github/scripts`. You want to analyze the build sizes of the [react sample](https://github.com/Esri/jsapi-resources/tree/master/esm-samples/jsapi-create-react-app), which is already built, and the build directory is named `build`. To get the size, you can run:
 
 ```bash
-node build-size.js build ../../esm-samples/jsapi-create-react-app
+node build-size.js ../../esm-samples/jsapi-create-react-app/build
 ```
 
 And the output to the console is:
@@ -41,22 +59,22 @@ On-disk files: 419
 
 ### Running from NPM script
 
-You can analyze the size after every build by utilizing a sample's NPM scripts. For example, you can add a couple NPM scripts to `esm-samples/jsapi-create-react-app/package.json`:
+You can analyze the sizes after every build by utilizing a sample's NPM scripts. For example, you can add a couple NPM scripts to `esm-samples/jsapi-create-react-app/package.json`:
 
 ```diff
 ...
  "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-+   "build:size": "node ../../.github/scripts/build-size.js build",
-+   "postbuild": "npm run build:size",
++   "build:sizes": "node ../../.github/scripts/build-size.js build",
++   "postbuild": "npm run build:sizes",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
 ...
 ```
 
-After running `npm run build`, the size will be logged to the console. Note that the `samplePath` argument is not required when running from an NPM script, since it defaults to the current working directory.
+After running `npm run build`, the sizes will be logged to the console. Note that the `buildPath` argument is the name of of the build directory, since the current working directory is the application's root when running an NPM script.
 
 <!-- add "Headless performance" doc here when done  -->
 
@@ -93,7 +111,7 @@ If a sample does not have an info item it will be skipped, so you can fine tune 
 
 ### Script output
 
-The script will create a CSV file containing sample metrics in [`esm-samples/.metrics`](https://github.com/Esri/jsapi-resources/tree/master/esm-samples/.metrics). The the output filename is the version of the ArcGIS JSAPI used in the samples. The CSV contains the name of the samples with the version of the main packages and the [return properties](#return-properties) from the [build size script](#build-size).
+The script will create a CSV file containing sample metrics in [`esm-samples/.metrics`](https://github.com/Esri/jsapi-resources/tree/master/esm-samples/.metrics). The the output filename is the version of the ArcGIS JSAPI used in the samples. The CSV contains the name of the samples with the version of the main packages and the [return properties](#return-properties) from the [build sizes script](#build-sizes).
 
 ### Running from GitHub Action
 
