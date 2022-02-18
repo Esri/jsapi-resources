@@ -15,7 +15,7 @@ const logHeader = (message) => {
 
 /**
  * Returns all files in a directory (recursively)
- * @param {string} directoryPath - path to the build directory
+ * @param {string} directoryPath - path from the current working directory to the directory containing the files
  * @returns {Promise<{path: string, name: string}[]>} file path and name
  */
 const getFiles = async (directoryPath) => {
@@ -23,6 +23,7 @@ const getFiles = async (directoryPath) => {
   const files = entries
     .filter((file) => !file.isDirectory())
     .map((file) => ({ ...file, path: resolve(directoryPath, file.name) }));
+
   const directories = entries.filter((folder) => folder.isDirectory());
 
   for (const directory of directories) {
@@ -34,10 +35,10 @@ const getFiles = async (directoryPath) => {
 
 /**
  * Formats bytes to a human readable size
- * @param {number} bytes - the byte file size to convert
- * @param {number} [decimals=2] - number of decimal points to round
+ * @param {number} bytes - bytes to format into human readable size
+ * @param {number} [decimals=2] - decimal precision for rounding
  * @param {boolean} [binary=true] - binary or decimal conversion
- * @returns human readable file size with units
+ * @returns {string} human readable file size with units
  */
 
 const formatBytes = (bytes, decimals = 2, binary = true) => {
@@ -45,7 +46,7 @@ const formatBytes = (bytes, decimals = 2, binary = true) => {
 
   const unitSizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
   const k = binary ? 1024 : 1000; // binary vs decimal conversion
-  const d = decimals < 0 ? 0 : decimals;
+  const d = !decimals || decimals < 0 ? 0 : decimals; // no negative decimal precision
   const i = Math.floor(Math.log(bytes) / Math.log(k));
 
   return `${parseFloat((bytes / Math.pow(k, i)).toFixed(d))} ${unitSizes[i]}`;
@@ -80,6 +81,7 @@ const getBuildSizes = async (buildPath) => {
   return { mainBundleSize, buildSize, buildFileCount };
 };
 
+// only runs from the CLI
 if (require.main === module) {
   (async () => {
     try {

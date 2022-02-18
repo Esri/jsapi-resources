@@ -64,6 +64,7 @@ const execLogErr = async (command) => {
   try {
     const sampleDirectories = await getDirectories(SAMPLES_PATH);
 
+    // unique ArcGIS JSAPI versions from all the samples
     const jsapiVersions = new Set(
       (
         await Promise.all(
@@ -91,7 +92,7 @@ const execLogErr = async (command) => {
     stream.write("Sample,Main bundle size (MB),On-disk size (MB), On-disk files\n");
 
     for (const sample of sampleDirectories) {
-      if (!SAMPLES_INFO[sample]) continue;
+      if (!SAMPLES_INFO[sample]) continue; // skip samples with no info item
 
       const sampleName = SAMPLES_INFO[sample]?.name;
       const packageName = SAMPLES_INFO[sample]?.package;
@@ -106,17 +107,17 @@ const execLogErr = async (command) => {
       ).replace(/\^|\~/, "");
 
       logHeader(`${sampleName}: installing deps`);
-
-      const installOut = await execLogErr(`npm i --prefix ${samplePath}`);
+      const installOut = await execLogErr(`cd ${samplePath} && npm i`);
       console.log(installOut);
 
       logHeader(`${sampleName}: building`);
-      const buildOut = await execLogErr(`npm run build --prefix ${samplePath}`);
+      const buildOut = await execLogErr(`cd ${samplePath} && npm run build`);
       console.log(buildOut);
 
       logHeader(`${sampleName}: calculating build sizes`);
       const { mainBundleSize, buildSize, buildFileCount } = await getBuildSizes(buildPath);
 
+      // convert bytes to megabytes
       const mainBundleSizeMB = (mainBundleSize / 1024 ** 2).toFixed(2);
       const buildSizeMB = (buildSize / 1024 ** 2).toFixed(2);
 

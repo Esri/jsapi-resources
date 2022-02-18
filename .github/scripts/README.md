@@ -109,7 +109,7 @@ Formats bytes to a human readable size.
 | Parameter           | Description                                            | Type    |
 | ------------------- | ------------------------------------------------------ | ------- |
 | bytes               | bytes to format into human readable size               | number  |
-| decimals (optional) | number of decimal points for rounding (default is `2`) | number  |
+| decimals (optional) | decimal precision for rounding(default is `2`) | number  |
 | binary (optional)   | binary or decimal conversion (default is `true`)       | boolean |
 
 
