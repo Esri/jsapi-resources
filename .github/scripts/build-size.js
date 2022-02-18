@@ -40,7 +40,6 @@ const getFiles = async (directoryPath) => {
  * @param {boolean} [binary=true] - binary or decimal conversion
  * @returns {string} human readable file size with units
  */
-
 const formatBytes = (bytes, decimals = 2, binary = true) => {
   if (bytes === 0) return "0 Bytes";
 
@@ -53,6 +52,21 @@ const formatBytes = (bytes, decimals = 2, binary = true) => {
 };
 
 /**
+ * Filters files by filetype
+ * @param {{path: string, name: string}[]} files - files from the `getFiles` function
+ * @param {string} type - file type, e.g. "js", "css", "tsx", etc.
+ * @returns {{path: string, name: string}[]} - files filtered by filetype
+ */
+const filterFilesByType = (files, type) => files.filter((file) => new RegExp(`.${type}$`, "i").test(file.name));
+
+/**
+ * Gets file sizes
+ * @param {{path: string, name: string}[]} files - files from the `getFiles` function
+ * @returns {Promise<number[]>} sizes of the files
+ */
+const getFileSizes = async (files) => await Promise.all(files.map(async (file) => (await stat(file.path)).size));
+
+/**
  * Provides sizes for an application's production build
  * @param {string} buildPath - path from the current working directory to the build directory
  * @returns {Promise<{ mainBundleSize: number, buildSize:number, buildFileCount: number}>}
@@ -62,20 +76,12 @@ const formatBytes = (bytes, decimals = 2, binary = true) => {
  */
 const getBuildSizes = async (buildPath) => {
   const build = resolve(process.cwd(), buildPath);
-
   const buildFiles = await getFiles(build);
 
-  const mainBundleSize = Math.max(
-    ...(await Promise.all(
-      buildFiles.filter((file) => /.js$/.test(file.name)).map(async (file) => (await stat(file.path)).size)
-    ))
-  );
-
-  const buildSize = (await Promise.all(buildFiles.map(async (file) => (await stat(file.path)).size))).reduce(
-    (count, fileSize) => count + fileSize,
-    0
-  );
-
+  // largest javascript file
+  const mainBundleSize = Math.max(...(await getFileSizes(filterFilesByType(buildFiles, "js"))));
+  // sum of file sizes
+  const buildSize = (await getFileSizes(buildFiles)).reduce((count, fileSize) => count + fileSize, 0);
   const buildFileCount = buildFiles.length;
 
   return { mainBundleSize, buildSize, buildFileCount };
@@ -89,7 +95,7 @@ if (require.main === module) {
 
       if (!buildPath) {
         throw new Error(
-          "Error: Invalid or missing arguments. The path from the current working directory to the production build directory is a required."
+          "Error: Invalid or missing arguments. The path from the current working directory to the production build directory is required."
         );
       }
 
@@ -115,4 +121,4 @@ if (require.main === module) {
   })();
 }
 
-module.exports = { getBuildSizes, formatBytes, getFiles, logHeader };
+module.exports = { getBuildSizes, formatBytes, getFiles, getFileSizes, filterFilesByType, logHeader };
