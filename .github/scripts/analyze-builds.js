@@ -7,7 +7,8 @@ const {
 const exec = require("util").promisify(require("child_process").exec);
 const { getBuildSizes, logHeader } = require("./build-size.js");
 
-const SAMPLES_PATH = resolve(__dirname, "../../esm-samples");
+const SAMPLES_PATH = resolve(__dirname, "..", "..", "esm-samples");
+const METRICS_PATH = resolve(SAMPLES_PATH, ".metrics");
 
 const SAMPLES_INFO = {
   "jsapi-angular-cli": {
@@ -87,7 +88,7 @@ const execLogErr = async (command) => {
 
     const [jsapiVersion] = jsapiVersions;
     logHeader(`ArcGIS JSAPI:  v${jsapiVersion}`);
-    const outputPath = resolve(__dirname, "../../esm-samples/.metrics", `${jsapiVersion}.csv`);
+    const outputPath = resolve(METRICS_PATH, `${jsapiVersion}.csv`);
     const stream = createWriteStream(outputPath);
     stream.write("Sample,Main bundle size (MB),On-disk size (MB), On-disk files\n");
 
