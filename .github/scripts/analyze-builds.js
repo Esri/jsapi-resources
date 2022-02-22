@@ -65,28 +65,29 @@ const execLogErr = async (command) => {
   try {
     const sampleDirectories = await getDirectories(SAMPLES_PATH);
 
-    // unique ArcGIS JSAPI versions from all the samples
-    const jsapiVersions = new Set(
-      (
-        await Promise.all(
-          sampleDirectories.map(
-            async (sample) =>
-              !!SAMPLES_INFO[sample] &&
-              JSON.parse(await readFile(resolve(__dirname, SAMPLES_PATH, sample, "package.json"), "utf8")).dependencies[
-                "@arcgis/core"
-              ].replace(/\^|\~/, "") // remove semver range
-          )
+    const jsapiVersions = (
+      await Promise.all(
+        sampleDirectories.map(
+          async (sample) =>
+            // only check versions of relevant samples
+            !!SAMPLES_INFO[sample] &&
+            JSON.parse(await readFile(resolve(__dirname, SAMPLES_PATH, sample, "package.json"), "utf8")).dependencies[
+              "@arcgis/core"
+            ].replace(/\^|\~/, "") // remove semver range
         )
-      ).filter((version) => !!version)
-    );
+      )
+    ).filter((version) => !!version);
 
-    if (jsapiVersions.size !== 1) {
-      console.log("ArcGIS JSAPI versions: ", jsapiVersions);
+    // unique ArcGIS JSAPI versions from the relevant samples
+    const jsapiVersionsUnique = new Set(jsapiVersions);
+
+    if (jsapiVersionsUnique.size !== 1) {
+      console.log("ArcGIS JSAPI versions: ", jsapiVersionsUnique);
       console.error("The samples have different versions of @arcgis/core, skipping build");
       return;
     }
 
-    const [jsapiVersion] = jsapiVersions;
+    const [jsapiVersion] = jsapiVersionsUnique;
     logHeader(`ArcGIS JSAPI:  v${jsapiVersion}`);
     const outputPath = resolve(METRICS_PATH, `${jsapiVersion}.csv`);
     const stream = createWriteStream(outputPath);

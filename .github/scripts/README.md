@@ -48,7 +48,7 @@ And the output to the console is:
 -------------------------------
 |-> Application Build Sizes <-|
 -------------------------------
-Main bundle size: 1.62 MB
+Main js bundle size: 1.62 MB
 On-disk size: 26.45 MB
 On-disk files: 419
 -------------------------------
@@ -81,69 +81,87 @@ After running `npm run build`, the sizes will be logged to the console. Note tha
 
 Descriptions, parameters, and return values for the [`build-size.js`](https://github.com/Esri/jsapi-resources/blob/master/.github/scripts/build-size.js) script's exported functions.
 
+<details>
+
+---
+
 #### getBuildSizes
 
 Provides sizes for an application's production build.
 
-| Parameter | Description                                                                  | Type   |
-| --------- | ---------------------------------------------------------------------------- | ------ |
-| buildPath | path from the current working directory to the application's build directory | string |
+| Parameter      | Description                                      | Type     |
+| -------------- | ------------------------------------------------ | -------- |
+| buildPath      | path to the application's build directory        | `string` |
+| bundleFileType | type of the bundle files, e.g. "js", "css", etc. | `string` |
 
-The function returns a `Promise` which resolves an object with three properties (`Promise<{ mainBundleSize: number, buildSize:number, buildFileCount: number}>`).
+The function returns a `Promise` which resolves an object with three properties.
 
-| Return Property | Description                                         | Type   |
-| --------------- | --------------------------------------------------- | ------ |
-| mainBundleSize  | size in bytes of the largest JavaScript bundle file | number |
-| buildSize       | size in bytes of all files in the build directory   | number |
-| buildFileCount  | count of all files in the build directory           | number |
+| Return Property | Description                                       | Type     |
+| --------------- | ------------------------------------------------- | -------- |
+| mainBundleSize  | size in bytes of the largest bundle file by type  | `number` |
+| buildSize       | size in bytes of all files in the build directory | `number` |
+| buildFileCount  | count of all files in the build directory         | `number` |
+
+---
 
 #### formatBytes
 
 Formats bytes to a human readable size.
 
-| Parameter           | Description                                      | Type    |
-| ------------------- | ------------------------------------------------ | ------- |
-| bytes               | bytes to format into human readable size         | number  |
-| decimals (optional) | decimal precision for rounding(default is `2`)   | number  |
-| binary (optional)   | binary or decimal conversion (default is `true`) | boolean |
+| Parameter           | Description                                      | Type      |
+| ------------------- | ------------------------------------------------ | --------- |
+| bytes               | bytes to format into human readable size         | `number`  |
+| decimals (optional) | decimal precision for rounding (default is `2`)  | `number`  |
+| binary (optional)   | binary or decimal conversion (default is `true`) | `boolean` |
 
-The function returns a human readable size with units (`string`).
+The function returns a human readable size with units.
+
+---
 
 #### getFiles
 
-Returns all files in a directory (recursively).
+Returns all files in a directory (recursive).
 
-| Parameter     | Description                                                                   | Type   |
-| ------------- | ----------------------------------------------------------------------------- | ------ |
-| directoryPath | path from the current working directory to the directory containing the files | string |
+| Parameter     | Description                                | Type     |
+| ------------- | ------------------------------------------ | -------- |
+| directoryPath | path to the directory containing the files | `string` |
 
-The function returns a `Promise` which resolves an array of objects with two properties (`Promise<{path: string, name: string}[]>`).
+The function returns a `Promise` which resolves an array of objects with two properties.
 
-| Return Property | Description               | Type   |
-| --------------- | ------------------------- | ------ |
-| path            | absolute path of the file | string |
-| name            | name of the file          | string |
+| Return Property | Description               | Type     |
+| --------------- | ------------------------- | -------- |
+| path            | absolute path of the file | `string` |
+| name            | name of the file          | `string` |
+
+---
 
 #### filterFilesByType
 
-Filters files by filetype.
+Filters files by type.
 
-| Parameter | Description                                     | Type                           |
-| --------- | ----------------------------------------------- | ------------------------------ |
-| files     | files from the [`getFiles`](#getfiles) function | {path: string, name: string}[] |
-| type      | file type, e.g. "js", "css", "tsx", etc.        | string                         |
+| Parameter | Description                                     | Type                             |
+| --------- | ----------------------------------------------- | -------------------------------- |
+| files     | files from the [`getFiles`](#getfiles) function | `{path: string, name: string}[]` |
+| type      | file type, e.g. "js", "css", "tsx", etc.        | `string`                         |
 
-The function returns the files filtered by type (`{path: string, name: string}[]`).
+The function returns the files filtered by type.
+
+---
 
 #### getFileSizes
 
 Gets file sizes.
 
-| Parameter | Description                                     | Type                           |
-| --------- | ----------------------------------------------- | ------------------------------ |
-| files     | files from the [`getFiles`](#getfiles) function | {path: string, name: string}[] |
+| Parameter | Description                                     | Type                             |
+| --------- | ----------------------------------------------- | -------------------------------- |
+| files     | files from the [`getFiles`](#getfiles) function | `{path: string, name: string}[]` |
 
-The function returns a `Promise` which resolves an array of file sizes (`Promise<numbers[]>`).
+The function returns a `Promise` which resolves an array of file sizes.
+
+
+</details>
+
+---
 
 ## Analyze builds
 
