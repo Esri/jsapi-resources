@@ -4,9 +4,11 @@ const {
   createWriteStream,
   promises: { readdir, readFile }
 } = require("fs");
-const { calculateBuildSize, execLogErr, logHeader } = require("./build-size.js");
+const exec = require("util").promisify(require("child_process").exec);
+const { getBuildSizes, logHeader } = require("./build-size.js");
 
-const SAMPLES_PATH = resolve(__dirname, "../../esm-samples");
+const SAMPLES_PATH = resolve(__dirname, "..", "..", "esm-samples");
+const METRICS_PATH = resolve(SAMPLES_PATH, ".metrics");
 
 const SAMPLES_INFO = {
   "jsapi-angular-cli": {
@@ -38,48 +40,66 @@ const SAMPLES_INFO = {
   }
 };
 
-const getDirectories = async (directoriesPath) =>
-  (await readdir(directoriesPath, { withFileTypes: true }))
+/**
+ * Get the names of a directory's subdirectories (not recursive)
+ * @param {string} directoryPath - path to the root directory
+ * @returns {Promise<string[]>} subdirectory names
+ */
+const getDirectories = async (directoryPath) =>
+  (await readdir(directoryPath, { withFileTypes: true }))
     .filter((dirent) => dirent.isDirectory() && dirent.name.charAt(0) !== ".")
     .map((dirent) => dirent.name);
+
+/**
+ * Executes a bash command, logs stderr, and returns stdout
+ * @param {string} command - bash command
+ * @returns {Promise<string>} the command's stdout
+ */
+const execLogErr = async (command) => {
+  const { stdout, stderr } = await exec(command);
+  !!stderr && console.error("stderr:\n", stderr);
+  return stdout;
+};
 
 (async () => {
   try {
     const sampleDirectories = await getDirectories(SAMPLES_PATH);
 
-    const jsapiVersions = new Set(
-      (
-        await Promise.all(
-          sampleDirectories.map(
-            async (sample) =>
-              !!SAMPLES_INFO[sample] &&
-              JSON.parse(await readFile(resolve(__dirname, SAMPLES_PATH, sample, "package.json"), "utf8")).dependencies[
-                "@arcgis/core"
-              ].replace(/\^|\~/, "") // remove semver range
-          )
+    const jsapiVersions = (
+      await Promise.all(
+        sampleDirectories.map(
+          async (sample) =>
+            // only check versions of relevant samples
+            !!SAMPLES_INFO[sample] &&
+            JSON.parse(await readFile(resolve(__dirname, SAMPLES_PATH, sample, "package.json"), "utf8")).dependencies[
+              "@arcgis/core"
+            ].replace(/\^|\~/, "") // remove semver range
         )
-      ).filter((version) => !!version)
-    );
+      )
+    ).filter((version) => !!version);
 
-    if (jsapiVersions.size !== 1) {
-      console.log("ArcGIS JSAPI versions: ", jsapiVersions);
+    // unique ArcGIS JSAPI versions from the relevant samples
+    const jsapiVersionsUnique = new Set(jsapiVersions);
+
+    if (jsapiVersionsUnique.size !== 1) {
+      console.log("ArcGIS JSAPI versions: ", jsapiVersionsUnique);
       console.error("The samples have different versions of @arcgis/core, skipping build");
       return;
     }
 
-    const [jsapiVersion] = jsapiVersions;
-    console.log(`ArcGIS JSAPI:  v${jsapiVersion}`);
-    const outputPath = resolve(__dirname, "../../esm-samples/.metrics", `${jsapiVersion}.csv`);
+    const [jsapiVersion] = jsapiVersionsUnique;
+    logHeader(`ArcGIS JSAPI:  v${jsapiVersion}`);
+    const outputPath = resolve(METRICS_PATH, `${jsapiVersion}.csv`);
     const stream = createWriteStream(outputPath);
     stream.write("Sample,Main bundle size (MB),On-disk size (MB), On-disk files\n");
 
-    for (sample of sampleDirectories) {
-      if (!SAMPLES_INFO[sample]) continue;
+    for (const sample of sampleDirectories) {
+      if (!SAMPLES_INFO[sample]) continue; // skip samples with no info item
 
       const sampleName = SAMPLES_INFO[sample]?.name;
       const packageName = SAMPLES_INFO[sample]?.package;
       const samplePath = resolve(SAMPLES_PATH, sample);
-      const buildPath = SAMPLES_INFO[sample]?.buildPath;
+      const buildPath = resolve(samplePath, SAMPLES_INFO[sample]?.buildPath);
       const packageFile = JSON.parse(await readFile(resolve(samplePath, "package.json"), "utf8"));
 
       const packageVersion = (
@@ -89,21 +109,21 @@ const getDirectories = async (directoriesPath) =>
       ).replace(/\^|\~/, "");
 
       logHeader(`${sampleName}: installing deps`);
-
-      const installOut = await execLogErr(`npm i --prefix ${samplePath}`);
+      const installOut = await execLogErr(`cd ${samplePath} && npm i`);
       console.log(installOut);
 
       logHeader(`${sampleName}: building`);
-      const buildOut = await execLogErr(`npm run build --prefix ${samplePath}`);
+      const buildOut = await execLogErr(`cd ${samplePath} && npm run build`);
       console.log(buildOut);
 
       logHeader(`${sampleName}: calculating build sizes`);
-      const { mainBundleSize, buildSize, buildFileCount } = await calculateBuildSize({
-        samplePath,
-        buildPath
-      });
+      const { mainBundleSize, buildSize, buildFileCount } = await getBuildSizes(buildPath);
 
-      stream.write(`${sampleName} ${packageVersion},${mainBundleSize},${buildSize},${buildFileCount}\n`);
+      // convert bytes to megabytes
+      const mainBundleSizeMB = (mainBundleSize / 1024 ** 2).toFixed(2);
+      const buildSizeMB = (buildSize / 1024 ** 2).toFixed(2);
+
+      stream.write(`${sampleName} ${packageVersion},${mainBundleSizeMB},${buildSizeMB},${buildFileCount}\n`);
     }
   } catch (err) {
     console.error(err);

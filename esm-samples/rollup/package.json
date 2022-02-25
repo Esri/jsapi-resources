@@ -1,7 +1,7 @@
 {
   "private": true,
   "dependencies": {
-    "@arcgis/core": "^4.22.2"
+    "@arcgis/core": "^4.22.0"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^21.0.1",

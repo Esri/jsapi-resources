@@ -2,67 +2,170 @@
 
 The scripts in this directory are used to analyze ESM sample build metrics.
 
-## Build size
+## Build sizes
 
-The `build-size.js` script exports a function which calculates build size for a sample. The function takes an object parameter with two properties, and returns an object with three properties.
+The [`build-size.js`](https://github.com/Esri/jsapi-resources/blob/master/.github/scripts/build-size.js) provides sizes of production builds to assist with optimization. The script has been published to an NPM packaged named [`build-sizes`](https://www.npmjs.com/package/build-sizes) so you can use it in your applications.
 
-#### Parameter properties
+### Using the function
 
-| Property   | Description                                                    | Type   |
-| ---------- | -------------------------------------------------------------- | ------ |
-| samplePath | relative path to the sample's root directory (default is $PWD) | string |
-| buildPath  | relative path from samplePath to the sample's build directory  | string |
+The script exports a [few functions](#reference). Here is a usage example:
 
-#### Return properties
+```js
+const { getBuildSizes, formatBytes } = require("./build-sizes.js");
 
-| Property       | Description                                             | Type   |
-| -------------- | ------------------------------------------------------- | ------ |
-| mainBundleSize | size in megabytes of the largest JavaScript bundle file | number |
-| buildSize      | size in megabytes of all files in the build directory   | number |
-| fileCount      | count of all files in the build directory               | number |
+(async () => {
+  try {
+    const { mainBundleSize, buildSize, buildFileCount } = await getBuildSizes("your-app/build-path");
+
+    console.log(
+      "Main bundle size: ",
+      formatBytes(mainBundleSize),
+      "\nOn-disk size: ",
+      formatBytes(buildSize),
+      "\nOn-disk files: ",
+      buildFileCount
+    );
+  } catch (err) {
+    console.error(err);
+    process.exitCode = 1;
+  }
+})();
+```
 
 ### Running from CLI
 
-You can also run the script via the command line. When running from the CLI, the [parameter property](#parameter-properties) `buildPath` is the first argument, and `samplePath` the second. The script will log the three [return properties](#return-properties) to the console when ran from the CLI.
+You can also run the script via the command line. When running from the CLI, the script requires the path to the build directory as an argument. The script will log the three return properties to the console. More information in the [function's reference](#getbuildsizes)
 
-For example, your current working directory is `.github/scripts`. You want to analyze the build size of the [react sample](https://github.com/Esri/jsapi-resources/tree/master/esm-samples/jsapi-create-react-app), which is already built, and the build directory is named `build`. To get the size, you can run:
+For example, your current working directory is `.github/scripts`. You want to analyze the build sizes of the [react sample](https://github.com/Esri/jsapi-resources/tree/master/esm-samples/jsapi-create-react-app), which is already built, and the build directory is named `build`. To get the size, you can run:
 
 ```bash
-node build-size.js build ../../esm-samples/jsapi-create-react-app
+node build-size.js ../../esm-samples/jsapi-create-react-app/build
 ```
 
 And the output to the console is:
 
 ```
-Main bundle size (MB): 1.70
-On-disk size (MB): 27.77
+-------------------------------
+|-> Application Build Sizes <-|
+-------------------------------
+Main js bundle size: 1.62 MB
+On-disk size: 26.45 MB
 On-disk files: 419
+-------------------------------
 ```
+
+Other common directory names used by frameworks for production builds are `dist` and `public`.
 
 ### Running from NPM script
 
-You can analyze the size after every build by utilizing a sample's NPM scripts. For example, you can add a couple NPM scripts to `esm-samples/jsapi-create-react-app/package.json`:
+You can get the sizes after every build by utilizing a sample's NPM scripts. For example, you can add a couple NPM scripts to `esm-samples/jsapi-create-react-app/package.json`:
 
 ```diff
 ...
  "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-+   "build:size": "node ../../.github/scripts/build-size.js build",
-+   "postbuild": "npm run build:size",
++   "build:sizes": "node ../../.github/scripts/build-size.js build",
++   "postbuild": "npm run build:sizes",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
 ...
 ```
 
-After running `npm run build`, the size will be logged to the console. Note that the `samplePath` argument is not required when running from an NPM script, since it defaults to the current working directory.
+After running `npm run build`, the sizes will be logged to the console. Note that the `buildPath` argument is the name of of the build directory, since the current working directory is the application's root when running an NPM script.
 
 <!-- add "Headless performance" doc here when done  -->
 
+### Reference
+
+Descriptions, parameters, and return values for the [`build-size.js`](https://github.com/Esri/jsapi-resources/blob/master/.github/scripts/build-size.js) script's exported functions.
+
+<details>
+
+---
+
+#### getBuildSizes
+
+Provides sizes for an application's production build.
+
+| Parameter      | Description                                      | Type     |
+| -------------- | ------------------------------------------------ | -------- |
+| buildPath      | path to the application's build directory        | `string` |
+| bundleFileType | type of the bundle files, e.g. "js", "css", etc. | `string` |
+
+The function returns a `Promise` which resolves an object with three properties.
+
+| Return Property | Description                                       | Type     |
+| --------------- | ------------------------------------------------- | -------- |
+| mainBundleSize  | size in bytes of the largest bundle file by type  | `number` |
+| buildSize       | size in bytes of all files in the build directory | `number` |
+| buildFileCount  | count of all files in the build directory         | `number` |
+
+---
+
+#### formatBytes
+
+Formats bytes to a human readable size.
+
+| Parameter           | Description                                      | Type      |
+| ------------------- | ------------------------------------------------ | --------- |
+| bytes               | bytes to format into human readable size         | `number`  |
+| decimals (optional) | decimal precision for rounding (default is `2`)  | `number`  |
+| binary (optional)   | binary or decimal conversion (default is `true`) | `boolean` |
+
+The function returns a human readable size with units.
+
+---
+
+#### getFiles
+
+Returns all files in a directory (recursive).
+
+| Parameter     | Description                                | Type     |
+| ------------- | ------------------------------------------ | -------- |
+| directoryPath | path to the directory containing the files | `string` |
+
+The function returns a `Promise` which resolves an array of objects with two properties.
+
+| Return Property | Description               | Type     |
+| --------------- | ------------------------- | -------- |
+| path            | absolute path of the file | `string` |
+| name            | name of the file          | `string` |
+
+---
+
+#### filterFilesByType
+
+Filters files by type.
+
+| Parameter | Description                                     | Type                             |
+| --------- | ----------------------------------------------- | -------------------------------- |
+| files     | files from the [`getFiles`](#getfiles) function | `{path: string, name: string}[]` |
+| type      | file type, e.g. "js", "css", "tsx", etc.        | `string`                         |
+
+The function returns the files filtered by type.
+
+---
+
+#### getFileSizes
+
+Gets file sizes.
+
+| Parameter | Description                                     | Type                             |
+| --------- | ----------------------------------------------- | -------------------------------- |
+| files     | files from the [`getFiles`](#getfiles) function | `{path: string, name: string}[]` |
+
+The function returns a `Promise` which resolves an array of file sizes.
+
+
+</details>
+
+---
+
 ## Analyze builds
 
-The `analyze-builds.js` script uses `build-size.js` <!-- and `headless-performance.js` --> to analyze ESM samples and creates a CSV containing the metrics. To run the script from the repo's root directory:
+The [`analyze-builds.js`](https://github.com/Esri/jsapi-resources/blob/master/.github/scripts/analyze-builds.js) script uses [`build-size.js`](https://github.com/Esri/jsapi-resources/blob/master/.github/scripts/build-size.js) <!-- and `headless-performance.js` --> to analyze ESM samples and creates a CSV containing the metrics. To run the script from the repo's root directory:
 
 ```bash
 node .github/scripts/analyze-builds.js
@@ -79,7 +182,7 @@ The script requires some information about the samples. The [sample info is stor
 | devDep (optional) | is the main package a devDependency (default is `false`)              | boolean |
 | buildPath         | relative path from the sample's root directory to the build directory | string  |
 
-For example, the angular sample is in the `jsapi-angular-cli` directory. You want to name the sample `Angular`, the main angular package is `@angular/core` (and it isn't a devDependency), and the build path from the sample's root directory is `dist`. The sample's info is:
+For example, the angular sample is in the [`jsapi-angular-cli`](https://github.com/Esri/jsapi-resources/tree/master/esm-samples/jsapi-angular-cli) directory. You want to name the sample `Angular`, the main angular package is `@angular/core` (and it isn't a devDependency), and the build path from the sample's root directory is `dist`. The sample's info is:
 
 ```js
 "jsapi-angular-cli": {
@@ -93,7 +196,7 @@ If a sample does not have an info item it will be skipped, so you can fine tune 
 
 ### Script output
 
-The script will create a CSV file containing sample metrics in [`esm-samples/.metrics`](https://github.com/Esri/jsapi-resources/tree/master/esm-samples/.metrics). The the output filename is the version of the ArcGIS JSAPI used in the samples. The CSV contains the name of the samples with the version of the main packages and the [return properties](#return-properties) from the [build size script](#build-size).
+The script will create a CSV file containing sample metrics in [`esm-samples/.metrics`](https://github.com/Esri/jsapi-resources/tree/master/esm-samples/.metrics). The the output filename is the version of the ArcGIS JSAPI used in the samples. The CSV contains the name of the samples with the version of the main packages and the return properties from the [build sizes script](#build-sizes).
 
 ### Running from GitHub Action
 

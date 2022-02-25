@@ -1,17 +1,8 @@
 #!/usr/bin/env node
 const { resolve } = require("path");
-const exec = require("util").promisify(require("child_process").exec);
-
-/**
- * Executes a bash command, logs stderr, and returns stdout
- * @param {string} command - bash command
- * @returns {Promise<string>} the command's stdout
- */
-const execLogErr = async (command) => {
-  const { stdout, stderr } = await exec(command);
-  !!stderr && console.error("stderr:\n", stderr);
-  return stdout;
-};
+const {
+  promises: { readdir, stat }
+} = require("fs");
 
 /**
  * Emphasizes a message in the console
@@ -23,48 +14,126 @@ const logHeader = (message) => {
 };
 
 /**
- * Takes an object containing build information and returns an object containing build sizes.
- * The build sizes are logged when the script is ran via CLI.
- * @param {string} samplePath - relative path to the sample's root directory ("$PWD" default)
- * @param {string} buildPath - relative path from samplePath to the build directory
- * @returns {Promise<{ mainBundleSize, buildSize, buildFileCount}>} build sizes
- * mainBundleSize - size in megabytes of the largest JavaScript bundle file
- * buildSize - size in megabytes of all files in the build directory
- * buildFileCount - count of all files in the build directory
+ * Returns all files in a directory (recursive).
+ * @param {string} directoryPath - path to the directory containing the files
+ * @returns {Promise<File[]>} all files in the directory and subdirectories
  */
-const calculateBuildSize = async ({ samplePath, buildPath }) => {
-  const sample = !!samplePath ? resolve(__dirname, samplePath) : process.env.PWD;
-  const build = resolve(sample, buildPath);
+const getFiles = async (directoryPath) => {
+  const entries = await readdir(directoryPath, { withFileTypes: true });
+  const files = entries
+    .filter((file) => !file.isDirectory())
+    .map((file) => ({ ...file, path: resolve(directoryPath, file.name) }));
 
-  const mainBundleSize = Number(
-    // recursively find the largest js file in the build directory
-    (await execLogErr(`find ${build} -name '*.js' -type f -printf "%s\t%p\n" | sort -nr | head -1 | cut -f1`)).trim() /
-      1e6 // convert bytes to megabytes
-  ).toFixed(2);
+  const directories = entries.filter((folder) => folder.isDirectory());
 
-  const buildSize = Number((await execLogErr(`du -sb ${build} | cut -f1`)).trim() / 1e6).toFixed(2);
+  for (const directory of directories) {
+    // recursive calls for subdirectories
+    const subdirectoryFiles = await getFiles(resolve(directoryPath, directory.name));
+    files.push(...subdirectoryFiles);
+  }
+  return files;
+};
 
-  const buildFileCount = Number((await execLogErr(`find ${build} -type f | wc -l`)).trim());
+/**
+ * Formats bytes to a human readable size.
+ * @param {number} bytes - bytes to format
+ * @param {number} [decimals=2] - decimal precision for rounding
+ * @param {boolean} [binary=true] - binary or decimal conversion
+ * @returns {string} human readable file size with units
+ */
+const formatBytes = (bytes, decimals = 2, binary = true) => {
+  if (!bytes) return "0 B";
+
+  const unitSizes = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+  const k = binary ? 1024 : 1000; // binary vs decimal conversion
+  const d = !decimals || decimals < 0 ? 0 : decimals; // no negative decimal precision
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+
+  return `${parseFloat((bytes / Math.pow(k, i)).toFixed(d))} ${unitSizes[i]}`;
+};
+
+/**
+ * Filters files by file type. Use {@link getFiles} to retrieve your build files.
+ * @param {File[]} files - files to filter
+ * @param {string} type - file type, e.g. "js", "tsx", etc.
+ * @returns {File[]} files filtered by file type
+ */
+const filterFilesByType = (files, type) => files.filter((file) => new RegExp(`.${type}$`, "i").test(file.name));
+
+/**
+ * Gets file sizes in bytes. Use {@link getFiles} to retrieve your build files.
+ * @param {File[]} files - files to measure
+ * @returns {Promise<number[]>} sizes of the files in bytes
+ */
+const getFileSizes = async (files) => await Promise.all(files.map(async (file) => (await stat(file.path)).size));
+
+/**
+ * Provides sizes for an application's production build.
+ * @param {string} buildPath - path to the build directory
+ * @param {string} [bundleFileType="js"] - type of bundle files, e.g. "js", "css", etc.
+ * @returns {Promise<BuildSizes>} build sizes
+ */
+const getBuildSizes = async (buildPath, bundleFileType = "js") => {
+  const build = resolve(process.cwd(), buildPath);
+  const buildFiles = await getFiles(build);
+  const filteredBuildFiles = filterFilesByType(buildFiles, bundleFileType);
+  const allFileSizes = await getFileSizes(buildFiles);
+  const filteredFileSizes = await getFileSizes(filteredBuildFiles);
+
+  // largest file size by type
+  const mainBundleSize = filteredFileSizes.length ? Math.max(...filteredFileSizes) : 0;
+
+  // sum of all file sizes
+  const buildSize = allFileSizes.reduce((count, fileSize) => count + fileSize, 0);
+
+  const buildFileCount = buildFiles.length;
 
   return { mainBundleSize, buildSize, buildFileCount };
 };
 
+/**
+ * File information used for determining type and size.
+ * @typedef {Object} File
+ * @property {string} name - file name
+ * @property {string} path - file path
+ * @see {@link getFiles}
+ * @see {@link getFileSizes}
+ * @see {@link filterFilesByType}
+ */
+
+/**
+ * The primary output of the script.
+ * @typedef {Object} BuildSizes
+ * @property {number} mainBundleSize - size in bytes of the largest bundle file by type
+ * @property {number} buildSize - size in bytes of all files in the build directory
+ * @property {number} buildFileCount - count of all files in the build directory
+ * @see {@link getBuildSizes}
+ */
+
+// only runs from the CLI
 if (require.main === module) {
   (async () => {
     try {
-      const [buildPath, samplePath] = process.argv.splice(2);
+      const [buildPath, bundleFileType] = process.argv.splice(2);
 
-      const { mainBundleSize, buildSize, buildFileCount } = await calculateBuildSize({
-        buildPath,
-        samplePath
-      });
+      if (!buildPath) {
+        throw new Error("Error: Invalid or missing arguments. The path to the build directory is required.");
+      }
 
-      const headerText = "Sample Build Metrics";
+      const { mainBundleSize, buildSize, buildFileCount } = await getBuildSizes(buildPath, bundleFileType || "js");
+
+      const headerText = "Application Build Sizes";
       logHeader(headerText);
+
       console.log(
-        `Main bundle size (MB): ${mainBundleSize}\nOn-disk size (MB): ${buildSize}\nOn-disk files: ${buildFileCount}`
+        `\nMain ${bundleFileType || "js"} bundle size:`,
+        formatBytes(mainBundleSize),
+        "\nOn-disk build size:",
+        formatBytes(buildSize),
+        "\nOn-disk build files:",
+        buildFileCount,
+        `\n${"-".repeat(headerText.length + 8)}`
       );
-      console.log("-".repeat(headerText.length + 8));
     } catch (err) {
       console.error(err);
       process.exitCode = 1;
@@ -72,6 +141,4 @@ if (require.main === module) {
   })();
 }
 
-module.exports.calculateBuildSize = calculateBuildSize;
-module.exports.execLogErr = execLogErr;
-module.exports.logHeader = logHeader;
+module.exports = { getBuildSizes, formatBytes, getFiles, getFileSizes, filterFilesByType, logHeader };
