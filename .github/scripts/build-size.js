@@ -329,7 +329,7 @@ if (require.main === module) {
 
       // make logs look nice
       const title = "|> Application Build Sizes <|";
-      const line = "~".repeat(title.length);
+      const line = "-".repeat(title.length);
       const bundle = `Main ${type.toUpperCase()} bundle`;
       const underline = (text) => `\x1b[4m${text}\x1b[0m`;
 
@@ -446,15 +446,15 @@ ${options}
 
 Examples
   # simplest usage with sane defaults
-  build-sizes dist
+  node build-size.js dist
 
   # size of the largest css file with tweaked the number formatting
-  build-sizes dist --filetype=css --binary --decimals=1
+  node build-size.js dist --filetype=css --binary --decimals=1
 
   # same as above, but use a flag for path when it's not the first argument
-  build-sizes -f=css -b -d=1 -p=dist
+  node build-size.js -f=css -b -d=1 -p=dist
 
   # save the build sizes to a csv
-  build-sizes dist --outfile=data/build-sizes.csv`;
+  node build-size.js dist --outfile=metrics.csv`;
   }
 }
