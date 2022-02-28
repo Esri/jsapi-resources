@@ -5,7 +5,7 @@ const {
   promises: { readdir, readFile }
 } = require("fs");
 const exec = require("util").promisify(require("child_process").exec);
-const { getBuildSizes, logHeader } = require("./build-size.js");
+const { getBuildSizes } = require("./build-size.js");
 
 const SAMPLES_PATH = resolve(__dirname, "..", "..", "esm-samples");
 const METRICS_PATH = resolve(SAMPLES_PATH, ".metrics");
@@ -51,6 +51,15 @@ const getDirectories = async (directoryPath) =>
     .map((dirent) => dirent.name);
 
 /**
+ * Emphasizes a message in the console
+ * @param {string} message - text to log
+ */
+const logHeader = (message) => {
+  const line = "-".repeat(message.length + 8);
+  console.log(`${line}\n|-> ${message} <-|\n${line}`);
+};
+
+/**
  * Executes a bash command, logs stderr, and returns stdout
  * @param {string} command - bash command
  * @returns {Promise<string>} the command's stdout
@@ -91,7 +100,9 @@ const execLogErr = async (command) => {
     logHeader(`ArcGIS JSAPI:  v${jsapiVersion}`);
     const outputPath = resolve(METRICS_PATH, `${jsapiVersion}.csv`);
     const stream = createWriteStream(outputPath);
-    stream.write("Sample,Main bundle size (MB),On-disk size (MB), On-disk files\n");
+    stream.write(
+      "Sample,Build size (MB),Build on-disk size (MB),Build file count,Main bundle file,Main bundle size (MB),Main bundle gzipped size (MB),Main bundle brotli compressed size (MB)\n"
+    );
 
     for (const sample of sampleDirectories) {
       if (!SAMPLES_INFO[sample]) continue; // skip samples with no info item
@@ -117,13 +128,26 @@ const execLogErr = async (command) => {
       console.log(buildOut);
 
       logHeader(`${sampleName}: calculating build sizes`);
-      const { mainBundleSize, buildSize, buildFileCount } = await getBuildSizes(buildPath);
+      const {
+        mainBundleName,
+        mainBundleSize,
+        mainBundleSizeGzip,
+        mainBundleSizeBrotli,
+        buildSize,
+        buildSizeOnDisk,
+        buildFileCount
+      } = await getBuildSizes(buildPath);
 
       // convert bytes to megabytes
       const mainBundleSizeMB = (mainBundleSize / 1024 ** 2).toFixed(2);
+      const mainBundleSizeGzipMB = (mainBundleSizeGzip / 1024 ** 2).toFixed(2);
+      const mainBundleSizeBrotliMB = (mainBundleSizeBrotli / 1024 ** 2).toFixed(2);
       const buildSizeMB = (buildSize / 1024 ** 2).toFixed(2);
+      const buildSizeOnDiskMB = (buildSizeOnDisk / 1024 ** 2).toFixed(2);
 
-      stream.write(`${sampleName} ${packageVersion},${mainBundleSizeMB},${buildSizeMB},${buildFileCount}\n`);
+      stream.write(
+        `${sampleName} ${packageVersion},${buildSizeMB},${buildSizeOnDiskMB},${buildFileCount},${mainBundleName},${mainBundleSizeMB},${mainBundleSizeGzipMB},${mainBundleSizeBrotliMB}\n`
+      );
     }
   } catch (err) {
     console.error(err);
