@@ -17,8 +17,6 @@ const execBash = promisify(exec);
  * @returns {string} human readable file size with units
  */
 const formatBytes = (bytes, decimals = 2, binary = false) => {
-  // I prefer human readable sizes.
-  // Don't like it? byte me!
   try {
     if (!bytes) return "0 B";
     const k = binary ? 1024 : 1000;
@@ -327,12 +325,13 @@ if (require.main === module) {
       // remove loading animation
       toggleLoadingAnimation();
 
-      // make logs look nice
+      // underlines cli text using ansi codes
+      const underline = (text) => `\x1b[4m${text}\x1b[0m`;
+
+      // log sizes to console
       const title = "|> Application Build Sizes <|";
       const line = "-".repeat(title.length);
       const bundle = `Main ${type.toUpperCase()} bundle`;
-      const underline = (text) => `\x1b[4m${text}\x1b[0m`;
-
       console.log(
         `\n${line}\n${title}\n${line}`,
         `\n${underline("Build")}`,
@@ -382,8 +381,8 @@ if (require.main === module) {
   }
 
   /**
-   * Creates an animation interval on the first run,
-   * and clears the interval on any subsequent executions
+   * Uses ANSI Codes to creates an animation interval on the first run.
+   * Clears the interval on any subsequent executions.
    * @private
    * @since v3.1.0
    */
@@ -400,6 +399,7 @@ if (require.main === module) {
         if (count % 11 === 0)
           // delete line, send cursor back to start, add emoji
           process.stdout.write(`\u001B[2K\r${["🔨 ", "📏 "][count % 2]}`);
+        // add the ... animation
         else process.stdout.write(".");
         count += 1;
       }, 100);
@@ -435,7 +435,7 @@ if (require.main === module) {
 Usage: build-sizes <path> [options]
 
 Repository
-  https://github.com/benelan/build-sizes
+  https://github.com/Esri/jsapi-resources/tree/master/.github/scripts
 
 Arguments
   path [required]
