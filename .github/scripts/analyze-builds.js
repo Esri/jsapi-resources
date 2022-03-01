@@ -101,7 +101,7 @@ const execLogErr = async (command) => {
     const outputPath = resolve(METRICS_PATH, `${jsapiVersion}.csv`);
     const stream = createWriteStream(outputPath);
     stream.write(
-      "Sample,Build size (MB),Build on-disk size (MB),Build file count,Main bundle file,Main bundle size (MB),Main bundle gzipped size (MB),Main bundle brotli compressed size (MB)\n"
+      "Sample,Build size (MB),Build file count,Main bundle file,Main bundle size (MB),Main bundle gzipped size (MB),Main bundle brotli compressed size (MB)\n"
     );
 
     for (const sample of sampleDirectories) {
@@ -134,7 +134,6 @@ const execLogErr = async (command) => {
         mainBundleSizeGzip,
         mainBundleSizeBrotli,
         buildSize,
-        buildSizeOnDisk,
         buildFileCount
       } = await getBuildSizes(buildPath);
 
@@ -143,10 +142,9 @@ const execLogErr = async (command) => {
       const mainBundleSizeGzipMB = (mainBundleSizeGzip / 1024 ** 2).toFixed(2);
       const mainBundleSizeBrotliMB = (mainBundleSizeBrotli / 1024 ** 2).toFixed(2);
       const buildSizeMB = (buildSize / 1024 ** 2).toFixed(2);
-      const buildSizeOnDiskMB = (buildSizeOnDisk / 1024 ** 2).toFixed(2);
 
       stream.write(
-        `${sampleName} ${packageVersion},${buildSizeMB},${buildSizeOnDiskMB},${buildFileCount},${mainBundleName},${mainBundleSizeMB},${mainBundleSizeGzipMB},${mainBundleSizeBrotliMB}\n`
+        `${sampleName} ${packageVersion},${buildSizeMB},${buildFileCount},${mainBundleName},${mainBundleSizeMB},${mainBundleSizeGzipMB},${mainBundleSizeBrotliMB}\n`
       );
     }
   } catch (err) {

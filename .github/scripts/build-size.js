@@ -2,11 +2,9 @@
 const { resolve } = require("path");
 const { readdir, stat, readFile, appendFile, writeFile } = require("fs/promises");
 const { promisify } = require("util");
-const { exec } = require("child_process");
 const { gzip, brotliCompress } = require("zlib");
 const compressGzip = promisify(gzip);
 const compressBrotli = promisify(brotliCompress);
-const execBash = promisify(exec);
 
 /**
  * Formats bytes to a human readable size.
@@ -20,7 +18,7 @@ const formatBytes = (bytes, decimals = 2, binary = false) => {
   try {
     if (!bytes) return "0 B";
     const k = binary ? 1024 : 1000;
-    const n = binary ? [~~(Math.log10(bytes) / 3)] : ~~(Math.log2(bytes) / 10);
+    const n = binary ? ~~(Math.log10(bytes) / 3) : ~~(Math.log2(bytes) / 10);
     return (bytes / Math.pow(k, n)).toFixed(decimals) + " " + ("KMGTPEZY"[n - 1] || "") + "B";
   } catch (err) {
     help(
@@ -136,10 +134,6 @@ const getBuildSizes = async (buildPath, bundleFileType = "js") => {
     // sum of all file sizes
     const buildSize = buildFiles.reduce((count, file) => count + file.size, 0);
 
-    // the du command is not available on windows
-    const buildSizeOnDisk =
-      process.platform !== "win32" ? Number((await execBash(`du -sb ${build} | cut -f1`)).stdout.trim()) : NaN;
-
     const buildFileCount = buildFiles.length;
 
     return {
@@ -148,7 +142,6 @@ const getBuildSizes = async (buildPath, bundleFileType = "js") => {
       mainBundleSizeGzip,
       mainBundleSizeBrotli,
       buildSize,
-      buildSizeOnDisk,
       buildFileCount
     };
   } catch (err) {
@@ -218,7 +211,7 @@ const saveBuildSizes = async (buildSizes, outputPath) => {
 function help(...messages) {
   messages && console.error(...messages);
   console.error(
-    "\nAdd the -h or --help flag for usage information when on the CLI.\nCheck out the documentation when using the exported functions:\nhttps://benelan.github.io/build-sizes/global.html"
+    "\nAdd the -h or --help flag for usage information when on the CLI.\n\nCheck out the documentation when using the exported functions:\nhttps://benelan.github.io/build-sizes/global.html\n"
   );
   process.exit(1);
 }
@@ -243,7 +236,6 @@ function help(...messages) {
  * @property {number} mainBundleSizeGzip - size in bytes of the main bundle file compressed with gzip
  * @property {number} mainBundleSizeBrotli - size in bytes of the main bundle file  compressed with brotli
  * @property {number} buildSize - size in bytes of all files in the build directory
- * @property {number} buildSizeOnDisk -  on-disk size in bytes of the build directory. Not available on Windows.
  * @property {number} buildFileCount - count of all files in the build directory
  * @see {@link getBuildSizes}
  * @see {@link saveBuildSizes}
@@ -318,7 +310,6 @@ if (require.main === module) {
         mainBundleSizeGzip,
         mainBundleSizeBrotli,
         buildSize,
-        buildSizeOnDisk,
         buildFileCount
       } = buildSizes;
 
@@ -339,9 +330,6 @@ if (require.main === module) {
         buildFileCount,
         "\n --> size:",
         formatBytes(buildSize, decimals, binary),
-        buildSizeOnDisk // uses the unix du command
-          ? `\n --> on-disk size: ${formatBytes(buildSizeOnDisk, decimals, binary)}`
-          : "", // not supported on Windows
         `\n${line}`,
         `\n${underline(bundle)}`,
         `\n --> name:`,
