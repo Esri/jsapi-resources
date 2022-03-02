@@ -6,9 +6,9 @@ The scripts in this directory are used to analyze ESM sample build metrics.
 
 The [`build-size.js`](https://github.com/Esri/jsapi-resources/blob/master/.github/scripts/build-size.js) provides sizes of production builds to assist with optimization. The script has been published to an NPM packaged named [`build-sizes`](https://www.npmjs.com/package/build-sizes) so you can use it in your applications.
 
-### Using the function
+### Using the functions
 
-The script exports a [few functions](#reference). Here is a usage example:
+The script exports functions, [documented here](https://benelan.github.io/build-sizes/global.html). They are available as both CommonJS and ECMAScript modules. Here is a small usage example:
 
 ```js
 const { getBuildSizes, formatBytes } = require("./build-sizes.js");
@@ -20,9 +20,9 @@ const { getBuildSizes, formatBytes } = require("./build-sizes.js");
     console.log(
       "Main bundle size: ",
       formatBytes(mainBundleSize),
-      "\nOn-disk size: ",
+      "\nBuild size: ",
       formatBytes(buildSize),
-      "\nOn-disk files: ",
+      "\nBuild file count: ",
       buildFileCount
     );
   } catch (err) {
@@ -32,9 +32,9 @@ const { getBuildSizes, formatBytes } = require("./build-sizes.js");
 })();
 ```
 
-### Running from CLI
+### Using the CLI
 
-You can also run the script via the command line. When running from the CLI, the script requires the path to the build directory as an argument. The script will log the three return properties to the console. More information in the [function's reference](#getbuildsizes)
+You can also run the script via the command line. When running from the CLI, the script requires the path (absolute or relative) to the build directory as an argument. The script will log the sizes to the console.
 
 For example, your current working directory is `.github/scripts`. You want to analyze the build sizes of the [react sample](https://github.com/Esri/jsapi-resources/tree/master/esm-samples/jsapi-create-react-app), which is already built, and the build directory is named `build`. To get the size, you can run:
 
@@ -45,16 +45,69 @@ node build-size.js ../../esm-samples/jsapi-create-react-app/build
 And the output to the console is:
 
 ```
--------------------------------
-|-> Application Build Sizes <-|
--------------------------------
-Main js bundle size: 1.62 MB
-On-disk size: 26.45 MB
-On-disk files: 419
--------------------------------
+-----------------------------
+|> Application Build Sizes <|
+-----------------------------
+Build
+ --> file count: 419
+ --> size: 27.73 MB
+-----------------------------
+Main JS bundle
+ --> name: main.6e924e92.js
+ --> size: 1.70 MB
+ --> gzip size: 462.92 KB
+ --> brotli size: 375.26 KB
+-----------------------------
+
 ```
 
-Other common directory names used by frameworks for production builds are `dist` and `public`.
+There are also options that you can provide with flags. For example, you can specify a filetype for the largest bundle size (default is "js"):
+
+```bash
+node build-size.js ../../esm-samples/jsapi-create-react-app/build --filetype=css
+```
+
+Providing the `-h` or `--help` flag will log usage information to the console, copy/pasted here for convenience:
+
+<details>
+
+#### Arguments
+**path [required]**
+- Path to the build directory
+
+#### Options
+
+**-b, --binary  [boolean]**
+- Convert bytes to human readable format in base 2 instead of base 10
+
+**-d, --decimals**
+- Number of decimal places for rounding bytes to a human readable format (default is 2)
+
+**-f, --filetype**
+- Filetype of the main bundle (default is js)
+
+**-o, --outfile**
+- Path to a file for saving build sizes as CSV data
+
+**-p, --path [required]**
+- Path to the build directory (also available as argument)
+
+#### Examples
+
+`node build-size.js dist`
+- Simplest usage with sane defaults
+
+`node build-size.js dist --filetype=css --binary --decimals=1`
+- Size of the largest css file with tweaked number formatting
+
+`node build-size.js -f=css -b -d=1 -p=dist`
+- Same as above, but use a flag for path when it's not the first argument
+
+`node build-size.js dist --outfile=metrics.csv`
+- Save the build sizes to a csv
+
+</details>
+
 
 ### Running from NPM script
 
@@ -77,91 +130,6 @@ After running `npm run build`, the sizes will be logged to the console. Note tha
 
 <!-- add "Headless performance" doc here when done  -->
 
-### Reference
-
-Descriptions, parameters, and return values for the [`build-size.js`](https://github.com/Esri/jsapi-resources/blob/master/.github/scripts/build-size.js) script's exported functions.
-
-<details>
-
----
-
-#### getBuildSizes
-
-Provides sizes for an application's production build.
-
-| Parameter      | Description                                      | Type     |
-| -------------- | ------------------------------------------------ | -------- |
-| buildPath      | path to the application's build directory        | `string` |
-| bundleFileType | type of the bundle files, e.g. "js", "css", etc. | `string` |
-
-The function returns a `Promise` which resolves an object with three properties.
-
-| Return Property | Description                                       | Type     |
-| --------------- | ------------------------------------------------- | -------- |
-| mainBundleSize  | size in bytes of the largest bundle file by type  | `number` |
-| buildSize       | size in bytes of all files in the build directory | `number` |
-| buildFileCount  | count of all files in the build directory         | `number` |
-
----
-
-#### formatBytes
-
-Formats bytes to a human readable size.
-
-| Parameter           | Description                                      | Type      |
-| ------------------- | ------------------------------------------------ | --------- |
-| bytes               | bytes to format into human readable size         | `number`  |
-| decimals (optional) | decimal precision for rounding (default is `2`)  | `number`  |
-| binary (optional)   | binary or decimal conversion (default is `true`) | `boolean` |
-
-The function returns a human readable size with units.
-
----
-
-#### getFiles
-
-Returns all files in a directory (recursive).
-
-| Parameter     | Description                                | Type     |
-| ------------- | ------------------------------------------ | -------- |
-| directoryPath | path to the directory containing the files | `string` |
-
-The function returns a `Promise` which resolves an array of objects with two properties.
-
-| Return Property | Description               | Type     |
-| --------------- | ------------------------- | -------- |
-| path            | absolute path of the file | `string` |
-| name            | name of the file          | `string` |
-
----
-
-#### filterFilesByType
-
-Filters files by type.
-
-| Parameter | Description                                     | Type                             |
-| --------- | ----------------------------------------------- | -------------------------------- |
-| files     | files from the [`getFiles`](#getfiles) function | `{path: string, name: string}[]` |
-| type      | file type, e.g. "js", "css", "tsx", etc.        | `string`                         |
-
-The function returns the files filtered by type.
-
----
-
-#### getFileSizes
-
-Gets file sizes.
-
-| Parameter | Description                                     | Type                             |
-| --------- | ----------------------------------------------- | -------------------------------- |
-| files     | files from the [`getFiles`](#getfiles) function | `{path: string, name: string}[]` |
-
-The function returns a `Promise` which resolves an array of file sizes.
-
-
-</details>
-
----
 
 ## Analyze builds
 
