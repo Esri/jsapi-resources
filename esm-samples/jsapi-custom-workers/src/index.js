@@ -10,7 +10,7 @@ import * as workers from "@arcgis/core/core/workers";
 
 config.workers.workerPath = "./RemoteClient.js";
 
-config.workers.loaderUrl = "https://cdn.jsdelivr.net/npm/systemjs@6.11.0/dist/s.min.js";
+config.workers.loaderUrl = "https://cdn.jsdelivr.net/npm/systemjs@6.12.1/dist/s.min.js";
 
 const button1 = document.getElementById("btn-1");
 
