@@ -1,9 +1,11 @@
 name: ESM Sample Metrics
 on:
   pull_request:
+    types: [opened, reopened, synchronize, unlabeled]
     branches: [master]
 jobs:
   analyze:
+    if: github.event.label.name != 'draft'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
