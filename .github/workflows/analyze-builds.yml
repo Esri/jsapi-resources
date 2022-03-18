@@ -1,7 +1,7 @@
 name: ESM Sample Metrics
 on:
   pull_request:
-    types: [opened, reopened, synchronize, unlabeled]
+    types: [opened, reopened, synchronize, labeled, unlabeled]
     branches: [master]
 jobs:
   analyze:
