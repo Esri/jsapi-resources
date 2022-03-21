@@ -12,6 +12,9 @@
               opener.dispatchEvent(new CustomEvent("arcgis:auth:hash", { detail: location.hash }));
             }
             close();
+          } else if (location.search) {
+            opener.dispatchEvent(new CustomEvent("arcgis:auth:location:search", { detail: location.search }));
+            close();
           }
         } else {
           close();
