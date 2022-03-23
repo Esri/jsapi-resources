@@ -1,9 +1,10 @@
-@import 'https://js.arcgis.com/4.22/@arcgis/core/assets/esri/themes/light/main.css';
+@import 'https://js.arcgis.com/4.23/@arcgis/core/assets/esri/themes/light/main.css';
+
 #viewDiv {
   padding: 0;
   margin: 0;
-  height: 400px;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
 }
 
 #widgetTitle {  
