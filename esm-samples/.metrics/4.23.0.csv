@@ -1,0 +1,6 @@
+Sample,Build size (MB),Build file count,Main bundle file,Main bundle size (MB),Main bundle gzipped size (MB),Main bundle brotli compressed size (MB)
+Angular 13.2.5,7.99,212,main.0194f084adacce85.js,1.67,0.47,0.38
+CRA 5.0.0,27.63,431,main.3cca49f6.js,1.67,0.45,0.37
+Vue 3.2.31,7.20,279,vendor.e8f1f97b.js,1.46,0.41,0.34
+Rollup 2.70.1,7.07,280,main.js,1.40,0.38,0.31
+Webpack 5.70.0,8.01,205,index.js,1.51,0.40,0.33
