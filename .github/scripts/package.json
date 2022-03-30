@@ -1,0 +1,11 @@
+{
+  "name": "analysis",
+  "description": "Run analysis against ESM samples",
+  "version": "0.0.1",
+  "dependencies": {
+    "puppeteer": "^13.5.1"
+  },
+  "devDependencies": {
+    "express": "^4.17.3"
+  }
+}
