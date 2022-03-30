@@ -5,7 +5,7 @@ on:
     branches: [master]
 jobs:
   analyze:
-    if: "!contains(github.event.pull_request.labels.*.name, 'draft')"
+    if: "!contains(github.event.pull_request.labels.*.name, 'draft') && github.actor!='dependabot-preview[bot]'"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
