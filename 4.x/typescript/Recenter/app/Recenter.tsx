@@ -1,11 +1,9 @@
 import { subclass, property } from "esri/core/accessorSupport/decorators";
-import Widget = require("esri/widgets/Widget");
-import watchUtils = require("esri/core/watchUtils");
-
+import Widget from "esri/widgets/Widget";
+import watchUtils from "esri/core/watchUtils";
 import { tsx } from "esri/widgets/support/widget";
-
-import Point = require("esri/geometry/Point");
-import MapView = require("esri/views/MapView");
+import Point from "esri/geometry/Point";
+import MapView from "esri/views/MapView";
 
 type Coordinates = Point | number[] | any;
 
@@ -31,7 +29,6 @@ interface RecenterParams extends __esri.WidgetProperties {
   view: MapView,
   initialCenter: number[]
 }
-
 
 @subclass("esri.widgets.Recenter")
 class Recenter extends Widget {
