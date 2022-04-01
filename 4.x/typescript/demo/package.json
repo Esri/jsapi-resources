@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Demo application using TypeScript with ArcGIS API 4 for JavaScript",
   "scripts": {
-    "dev": "tsc -w"
+    "dev": "tsc -w",
+    "build": "tsc"
   },
   "dependencies": {
     "arcgis-js-api": "^4.23.0"
