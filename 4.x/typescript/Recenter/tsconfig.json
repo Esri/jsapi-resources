@@ -1,18 +1,17 @@
 {
   "compilerOptions": {
-    "module": "amd",
-    "noImplicitAny": true,
     "esModuleInterop": true,
-    "lib":["DOM","ES2020"],
+    "experimentalDecorators": true,    
+    "importHelpers": true,
     "jsx": "react",
     "jsxFactory": "tsx",
-    "target": "ES5",
-    "allowSyntheticDefaultImports": true,    
-    "experimentalDecorators": true,
+    "lib": ["DOM","ES2020"],    
+    "module": "amd",
+    "moduleResolution": "node",    
+    "noImplicitAny": true,
     "preserveConstEnums": true,    
     "suppressImplicitAnyIndexErrors": true,
-    "moduleResolution": "node",
-    "importHelpers": true
+    "target": "ES5"
   },
   "include": [
     "./app/*"

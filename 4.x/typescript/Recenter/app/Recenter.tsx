@@ -1,6 +1,6 @@
 import { subclass, property } from "esri/core/accessorSupport/decorators";
 import Widget from "esri/widgets/Widget";
-import {init} from "esri/core/watchUtils";
+import { init } from "esri/core/watchUtils";
 import { tsx } from "esri/widgets/support/widget";
 import Point from "esri/geometry/Point";
 import MapView from "esri/views/MapView";
@@ -34,7 +34,6 @@ interface RecenterParams extends __esri.WidgetProperties {
 class Recenter extends Widget {
   constructor(params?: RecenterParams) {
     super(params);
-    // this._onViewChange = this._onViewChange.bind(this);
   }
 
   override postInitialize() {

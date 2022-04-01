@@ -101,7 +101,7 @@ The [postInitialize](https://developers.arcgis.com/javascript/latest/api-referen
 Add the following code to handle this,
 
 ```ts
-@override postInitialize() {
+override postInitialize() {
   watchUtils.init(this, "view.center, view.interacting, view.scale", () => this._onViewChange());
 }
 ```
@@ -146,7 +146,7 @@ Now, you will add both public and private methods to the widget.
 ```ts
 
 // Public method
-@override render() {
+override render() {
   const {x, y, scale} = this.state;
   const styles: Style = {
     textShadow: this.state.interacting ? '-1px 0 red, 0 1px red, 1px 0 red, 0 -1px red' : ''
@@ -263,7 +263,7 @@ Now that the API knows where to find modules in the [app](app) folder, `require`
 require([
   "esri/Map",
   "esri/views/MapView",
-  "app/Recenter", // References the custmo widget's module
+  "app/Recenter", // References the custom widget's module
   "esri/layers/VectorTileLayer"
 ],
 (Map, MapView, Recenter, VectorTileLayer) => {
