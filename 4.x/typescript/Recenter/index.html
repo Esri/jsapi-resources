@@ -4,8 +4,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no" />
 
-    <title>Custom Recenter Widget | Sample | ArcGIS API for JavaScript 4.19</title>
-    <link rel="stylesheet" href="https://js.arcgis.com/4.19/esri/themes/light/main.css" />
+    <title>Custom Recenter Widget</title>
+    <link rel="stylesheet" href="https://js.arcgis.com/4.23/esri/themes/light/main.css" />
 
     <style>
       html,
@@ -42,13 +42,13 @@
         ]
       };
     </script>
-    <script src="https://js.arcgis.com/4.19/"></script>
+    <script src="https://js.arcgis.com/4.23/"></script>
     <script>
       require(["esri/Map", "esri/Basemap", "esri/views/MapView", "app/Recenter", "esri/layers/VectorTileLayer"],(
         Map,
         Basemap,
         MapView,
-        { default: Recenter },
+        Recenter,
         VectorTileLayer
       ) => {
         let map, view;

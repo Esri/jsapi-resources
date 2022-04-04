@@ -1,12 +1,12 @@
-# Recenter custom widget
+# Recenter custom widget (AMD)
 
-This tutorial goes over creating a custom widget that displays the [MapView.center](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-MapView.html#center)'s X/Y coordinates in addition to its [MapView.scale](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-MapView.html#scale). In addition to displaying coordinates and scale, the view can also be recentered by clicking on the widget.
+This tutorial goes over creating a custom widget using the APIs AMD modules. The widget displays the [MapView.center](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-MapView.html#center)'s X/Y coordinates in addition to its [MapView.scale](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-MapView.html#scale). The view can also be recentered by clicking on the widget.
 
-For the full code sample, please refer to the [completed-source- files](completed-source-files) folder. This includes the custom widget's `.tsx` file, it's generated `.js` file, and the `index.html` file using the widget.
+> :warning: **NOTE:** It is recommended to use @arcgis/core ES modules for all new projects. An example of a custom widget using ES modules is in the [esm-samples directory](../../../esm-samples/jsapi-custom-widget/).
 
 ## Before you begin
 
-If this is the first time creating a custom widget, please refer to the either the introductory [demo](../demo) app located within this repository or the [Create a custom widget sample](https://developers.arcgis.com/javascript/latest/sample-code/widgets-custom-widget/) sample in the ArcGIS API for JavaScript SDK. Both provide steps on how to get started and the basic fundamentals of creating widgets in the API.
+If this is your first time creating a custom widget, please refer to the either the introductory [demo](../demo) app located within this repository for steps on how to get started with the API when using TypeScript.
 
 This tutorial will assume that all the necessary [requirements](https://developers.arcgis.com/javascript/latest/custom-widget/#development-requirements) are installed.
 
@@ -23,7 +23,7 @@ The proceeding steps will begin with implementing the widget in the .tsx file.
 import {subclass, property} from "esri/core/accessorSupport/decorators";
 
 import Widget = require("esri/widgets/Widget");
-import * as watchUtils from "esri/core/watchUtils";
+import { init } from "esri/core/watchUtils";
 
 import { tsx } from "esri/widgets/support/widget";
 
@@ -90,7 +90,7 @@ class Recenter extends Widget {
   }
 ```
 
-Here, we are extending the [Widget][https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Widget.html) base class.The [@subclass](https://developers.arcgis.com/javascript/latest/api-reference/esri-core-accessorSupport-decorators.html#subclass) decorator is for constructing subclasses off of a given base class.
+Here, we are extending the [Widget][https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Widget.html) base class.The [@subclass](https://developers.arcgis.com/javascript/latest/api-reference/esri-core-accessorSupport-decorators.html#subclass) decorator is for constructing subclasses off of a given base class. The [Custom Widget guide topic](https://developers.arcgis.com/javascript/latest/custom-widget/#subclass) has more information on using @subclass.
 
 The constructor logic is binding the `_onViewChange()` method to `this` widget instance.
 
@@ -101,7 +101,7 @@ The [postInitialize](https://developers.arcgis.com/javascript/latest/api-referen
 Add the following code to handle this,
 
 ```ts
-postInitialize() {
+override postInitialize() {
   watchUtils.init(this, "view.center, view.interacting, view.scale", () => this._onViewChange());
 }
 ```
@@ -146,7 +146,7 @@ Now, you will add both public and private methods to the widget.
 ```ts
 
 // Public method
-render() {
+override render() {
   const {x, y, scale} = this.state;
   const styles: Style = {
     textShadow: this.state.interacting ? '-1px 0 red, 0 1px red, 1px 0 red, 0 -1px red' : ''
@@ -183,7 +183,7 @@ private _defaultCenter() {
 }
 ```
 
-The [render()](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Widget.html#render) method is the only required member of the API that must be implemented. This method must return a valid UI representation. [JSX](https://www.typescriptlang.org/docs/handbook/jsx.html) is used to define the UI. With this said, it is important to note that we are not using [React](https://reactjs.org/). The transpiled JSX is processed using a custom [JSX factory](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-support-widget.html#tsx) therefore there is no direct equivalency between implementing a custom Widget and a React component.
+The [render()](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Widget.html#render) method is the only required member of the API that must be implemented and overriden with the custom functionality. This method must return a valid UI representation. [JSX](https://www.typescriptlang.org/docs/handbook/jsx.html) is used to define the UI. With this said, it is important to note that we are not using [React](https://reactjs.org/). The transpiled JSX is processed using a custom [JSX factory](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-support-widget.html#tsx) therefore there is no direct equivalency between implementing a custom Widget and a React component.
 
 The snippet above creates a `style` variable of type `Style`. The `textShadow` property updates to the specified string value upon interaction. In addition, three variables: `x`, `y`, and `scale` are set to the values of `this.state`.
 
@@ -200,16 +200,14 @@ The UI is rendered based on the specified `div` element attributes:
 At the very end of the code page, add a line to [export](https://www.typescriptlang.org/docs/handbook/modules.html#export--and-import--require) the object into an easily-consumable external module.
 
 ```ts
-export default Recenter;
+export = Recenter;
 ```
 
 ### 2. Compiling the TSX file
 
-Now that the widget's code is implemented, compile the _.tsx_ file to its underlying JavaScript implementation.
+Now that the widget's code is implemented, use the TypeScript compiler to compile the _.tsx_ file to its underlying JavaScript implementation. 
 
-In the command prompt, browse to the location of this sample directory and type`tsc`.
-
-This compiles any specified _.tsx_ files within the _tsconfig.json_'s files to their equivalent _.js_ files. You should now have a new _Recenter.js_ file generated in the same directory as its _.tsx_ file, in addition to a _Recenter.js.map_ [sourcemap](https://jaxenter.com/javascript-source-maps-170126.html) file.
+In the command prompt, browse to the location of this sample directory and type `npm run build`. This compiles any specified _.tsx_ files within the _tsconfig.json_'s files to their equivalent _.js_ files. You should now have a new _Recenter.js_ file generated in the same directory as its _.tsx_ file.
 
 ### 3. Add the widget to the application
 
@@ -217,7 +215,7 @@ Now that you generated the underlying _.js_ file for the widget, it can be added
 
 #### Add CSS
 
-The widget references the \`.recenter-tool' class.  Add a style element that references this class as seen below.
+The widget references the `.recenter-tool' class.  Add a style element that references this class as seen below.
 
 ```css
 .recenter-tool {
@@ -237,12 +235,13 @@ The widget references the \`.recenter-tool' class.  Add a style element that ref
 
 #### Add the custom widget reference
 
-Once you've created the custom widget, you need to load it. This comes down to telling Dojo's module loader how to resolve the path for your widget which means mapping a module identifier to a file on your web server. Sitepen has [documentation](https://dojotoolkit.org/reference-guide/1.10/loader/amd.html) and [tutorials](https://dojotoolkit.org/documentation/tutorials/1.10/dojo_config/index.html) on working with the Dojo loader.
+Once you've created the custom widget, you need to load it. This comes down to telling the API's AMD module loader how to resolve the path for your widget which means mapping a module identifier to a file on your web server. Sitepen has [documentation](https://dojotoolkit.org/reference-guide/1.10/loader/amd.html) and [tutorials](https://dojotoolkit.org/documentation/tutorials/1.10/dojo_config/index.html) on working with the Dojo loader.
 
-Add a script element that handles loading this custom widget as seen below.
+Add a script element that handles loading the custom widget:
 
 ```js
 <script>
+// Find the absolute URL of the page where the app is running
 const locationPath = location.pathname.replace(/\/[^\/]+$/, "");
 window.dojoConfig = {
   packages: [
@@ -258,23 +257,21 @@ window.dojoConfig = {
 
 #### Reference and use the custom widget
 
-Now that Dojo knows where to find modules in the [app](app) folder, `require` can be used to load it along with other modules used by the application.
-
-Here's a require block that loads the `app/Recenter` module in addition to some others.
+Now that the API knows where to find modules in the [app](app) folder, `require` can be used to load the `app/Recenter` module along with other modules used by the application.
 
 ```js
 require([
   "esri/Map",
   "esri/views/MapView",
-  "app/Recenter",
+  "app/Recenter", // References the custom widget's module
   "esri/layers/VectorTileLayer"
 ],
-(Map, MapView, { default: Recenter }, VectorTileLayer) => {
+(Map, MapView, Recenter, VectorTileLayer) => {
   let map, view;
 })
 ```
 
-The pertinent code snippet within this file is when the `Recenter` widget is instantiated as seen below.
+Last, initialize the `Recenter` widget then add it to the `view.ui` to place the widget at the `top-right` of the map.
 
 ```js
 const recenter = new Recenter({
