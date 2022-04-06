@@ -175,10 +175,20 @@ const saveBuildSizes = async (buildSizes, outputPath) => {
       .format(Date.now())
       .replace(",", " at");
 
-    // convert build-sizes output into csv header and row
-    const header = ["Version", "Timestamp", ...Object.keys(buildSizes), "(File sizes in bytes)"].join(",").concat("\n");
+    const buildSizeKeys = [];
+    const buildSizeValues = [];
 
-    const row = [version, timestamp, ...Object.values(buildSizes)].join(",").concat("\n");
+    for (const [key, value] of Object.entries(buildSizes)) {
+      buildSizeKeys.push(key);
+      // all size properties need to have "size" in the name
+      // or else they won't be converted from byte to megabyte
+      buildSizeValues.push(/size/i.test(key) ? (value / 1024 ** 2).toFixed(2) : value);
+    }
+
+    // convert build-sizes output into csv header and row
+    const header = ["Version", "Timestamp", ...buildSizeKeys, "(File sizes in megabytes)"].join(",").concat("\n");
+
+    const row = [version, timestamp, ...buildSizeValues].join(",").concat("\n");
 
     try {
       // write csv header if outfile doesn't exist
@@ -304,14 +314,8 @@ if (require.main === module) {
       // save build sizes if outfile is provided
       if (outfile) saveBuildSizes(buildSizes, outfile);
 
-      const {
-        mainBundleName,
-        mainBundleSize,
-        mainBundleSizeGzip,
-        mainBundleSizeBrotli,
-        buildSize,
-        buildFileCount
-      } = buildSizes;
+      const { mainBundleName, mainBundleSize, mainBundleSizeGzip, mainBundleSizeBrotli, buildSize, buildFileCount } =
+        buildSizes;
 
       // remove loading animation
       toggleLoadingAnimation();
