@@ -136,7 +136,7 @@ const getPerformanceInfo = async (buildPath, sampleName) => {
 const getBuildSizes = async (buildPath, bundleFileType = "js") => {
   try {
     const build = resolve(process.cwd(), buildPath);
-    const buildFiles = await getFiles(build);    
+    const buildFiles = await getFiles(build);
     const filteredBuildFiles = filterFilesByType(buildFiles, bundleFileType);
 
     // the file with the largest size by type
@@ -499,6 +499,6 @@ Examples
   node build-size.js dist -pe
 
   # save the build sizes to a csv
-  node build-size.js dist --outfile=metrics.csv`;  
+  node build-size.js dist --outfile=metrics.csv`;
   }
 }
