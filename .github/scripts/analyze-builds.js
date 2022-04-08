@@ -6,6 +6,7 @@ const {
 } = require("fs");
 const exec = require("util").promisify(require("child_process").exec);
 const { getBuildSizes } = require("./build-size.js");
+const browserPerformanceTest = require("./build-perf");
 
 const SAMPLES_PATH = resolve(__dirname, "..", "..", "esm-samples");
 const METRICS_PATH = resolve(SAMPLES_PATH, ".metrics");
@@ -101,7 +102,7 @@ const execLogErr = async (command) => {
     const outputPath = resolve(METRICS_PATH, `${jsapiVersion}.csv`);
     const stream = createWriteStream(outputPath);
     stream.write(
-      "Sample,Build size (MB),Build file count,Main bundle file,Main bundle size (MB),Main bundle gzipped size (MB),Main bundle brotli compressed size (MB)\n"
+      "Sample,Build size (MB),Build file count,Main bundle file,Main bundle size (MB),Main bundle gzipped size (MB),Main bundle brotli compressed size (MB),Load time (ms), Total runtime (ms), Loaded size (MB), JS heap size (MB)\n"
     );
 
     for (const sample of sampleDirectories) {
@@ -143,9 +144,17 @@ const execLogErr = async (command) => {
       const mainBundleSizeBrotliMB = (mainBundleSizeBrotli / 1024 ** 2).toFixed(2);
       const buildSizeMB = (buildSize / 1024 ** 2).toFixed(2);
 
-      stream.write(
-        `${sampleName} ${packageVersion},${buildSizeMB},${buildFileCount},${mainBundleName},${mainBundleSizeMB},${mainBundleSizeGzipMB},${mainBundleSizeBrotliMB}\n`
-      );
+      logHeader(`${sampleName}: calculating performance info`);   
+      // Creating a single object due to duplication of sampleName.
+      const perfResults = await browserPerformanceTest(buildPath, sampleName);
+      // convert bytes to megabytes
+      const pageTotalMB = (perfResults.pageTotalBytes / 1024 ** 2).toFixed(2);
+      const JSHeapUsedSizeMB = (perfResults.JSHeapUsedSizeBytes / 1024 ** 2).toFixed(2);
+
+      const output = `${sampleName} ${packageVersion},${buildSizeMB},${buildFileCount},${mainBundleName},${mainBundleSizeMB},${mainBundleSizeGzipMB},${mainBundleSizeBrotliMB},${perfResults.elapsedRuntimeMS},${perfResults.totalScriptTimeMS},${pageTotalMB},${JSHeapUsedSizeMB}\n`;
+
+      console.log("Writing results to CSV:", output);
+      stream.write(output);
     }
   } catch (err) {
     console.error(err);

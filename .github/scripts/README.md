@@ -4,7 +4,7 @@ The scripts in this directory are used to analyze ESM sample build metrics.
 
 ## Build sizes
 
-The [`build-size.js`](https://github.com/Esri/jsapi-resources/blob/master/.github/scripts/build-size.js) provides sizes of production builds to assist with optimization. The script has been published to an NPM packaged named [`build-sizes`](https://www.npmjs.com/package/build-sizes) so you can use it in your applications.
+The [`build-size.js`](https://github.com/Esri/jsapi-resources/blob/master/.github/scripts/build-size.js) script provides sizes of production builds to assist with optimization. The script has been published to an NPM packaged named [`build-sizes`](https://www.npmjs.com/package/build-sizes) so you can use it in your applications.
 
 ### Using the functions
 
@@ -61,7 +61,27 @@ Main JS bundle
 
 ```
 
-There are also options that you can provide with flags. For example, you can specify a filetype for the largest bundle size (default is "js"):
+There are also options that you can provide with flags. For example, you can tell the script to run a browser performance analysis against the build using the `-r` argument:
+
+```bash
+node build-size.js ../../esm-samples/jsapi-create-react-app/build -r
+```
+
+In addition to the build size information, the output will also include the following:
+
+```
+-----------------------------
+|> Application Performance <|
+----------------------------- 
+ --> bundle name: vendor.4332238d.js 
+ --> load time (ms): 1630 
+ --> script runtime (ms): 5733 
+ --> app load size: 3.80 MB 
+ --> jsheap size: 21.38 MB 
+-----------------------------
+```
+
+Another example, you can specify a filetype for the largest bundle size (default is "js"):
 
 ```bash
 node build-size.js ../../esm-samples/jsapi-create-react-app/build --filetype=css
@@ -91,6 +111,9 @@ Providing the `-h` or `--help` flag will log usage information to the console, c
 
 **-p, --path [required]**
 - Path to the build directory (also available as argument)
+
+**-r, -runtime**
+- Include a snapshot of runtime performance information
 
 #### Examples
 
@@ -130,10 +153,9 @@ After running `npm run build`, the sizes will be logged to the console. Note tha
 
 <!-- add "Headless performance" doc here when done  -->
 
-
 ## Analyze builds
 
-The [`analyze-builds.js`](https://github.com/Esri/jsapi-resources/blob/master/.github/scripts/analyze-builds.js) script uses [`build-size.js`](https://github.com/Esri/jsapi-resources/blob/master/.github/scripts/build-size.js) <!-- and `headless-performance.js` --> to analyze ESM samples and creates a CSV containing the metrics. To run the script from the repo's root directory:
+The [`analyze-builds.js`](https://github.com/Esri/jsapi-resources/blob/master/.github/scripts/analyze-builds.js) script uses [`build-size.js`](https://github.com/Esri/jsapi-resources/blob/master/.github/scripts/build-size.js) and [`build-perf.js`](https://github.com/Esri/jsapi-resources/blob/master/.github/scripts/build-perf.js) to analyze ESM samples and creates a CSV containing the metrics. To run the script from the repo's root directory:
 
 ```bash
 node .github/scripts/analyze-builds.js
@@ -165,6 +187,17 @@ If a sample does not have an info item it will be skipped, so you can fine tune 
 ### Script output
 
 The script will create a CSV file containing sample metrics in [`esm-samples/.metrics`](https://github.com/Esri/jsapi-resources/tree/master/esm-samples/.metrics). The the output filename is the version of the ArcGIS JSAPI used in the samples. The CSV contains the name of the samples with the version of the main packages and the return properties from the [build sizes script](#build-sizes).
+
+### Performance analysis
+
+[`build-perf.js`](https://github.com/Esri/jsapi-resources/blob/master/.github/scripts/build-perf.js) is a helper library that uses puppeteer and a lightweight web server to extract browser performance metrics.
+
+The library provides the following information:
+  * `elapsedRuntimeMS` - runtime in milliseconds derived from the applications last HTTP request
+  * `JSHeapUsedSizBytes` - JSHeapUsedSize as reported by puppeteer
+  * `pageTotalBytes` - total number of bytes calculated using the http response object. 
+  * `sampleName` - name of the sample or bundle  
+  * `totalScriptTimeMS` - approximate internal runtime of the library script in milliseconds. Useful for comparing against the `elapsedRuntimeMS`. Should not be used as an indicator of application performance, it's most useful for troubleshooting. 
 
 ### Running from GitHub Action
 
