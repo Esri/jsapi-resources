@@ -1,11 +1,9 @@
 import { subclass, property } from "esri/core/accessorSupport/decorators";
-import Widget = require("esri/widgets/Widget");
-import watchUtils = require("esri/core/watchUtils");
-
+import Widget from "esri/widgets/Widget";
+import { init } from "esri/core/watchUtils";
 import { tsx } from "esri/widgets/support/widget";
-
-import Point = require("esri/geometry/Point");
-import MapView = require("esri/views/MapView");
+import Point from "esri/geometry/Point";
+import MapView from "esri/views/MapView";
 
 type Coordinates = Point | number[] | any;
 
@@ -32,17 +30,14 @@ interface RecenterParams extends __esri.WidgetProperties {
   initialCenter: number[]
 }
 
-
 @subclass("esri.widgets.Recenter")
 class Recenter extends Widget {
   constructor(params?: RecenterParams) {
     super(params);
-    this._onViewChange = this._onViewChange.bind(this);
   }
 
-  postInitialize() {
-    watchUtils.init(this, "view.center, view.interacting, view.scale", () => this._onViewChange());
-
+  override postInitialize() {
+    init(this, "view.center, view.interacting, view.scale", () => this._onViewChange());
   }
 
   //--------------------------------------------------------------------
@@ -77,7 +72,7 @@ class Recenter extends Widget {
   //
   //-------------------------------------------------------------------
 
-  render() {
+  override render() {
     const { x, y, scale } = this.state;
     const styles: Style = {
       textShadow: this.state.interacting ? '-1px 0 red, 0 1px red, 1px 0 red, 0 -1px red' : ''
@@ -116,4 +111,4 @@ class Recenter extends Widget {
   }
 }
 
-export default Recenter;
+export = Recenter;
