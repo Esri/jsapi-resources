@@ -109,8 +109,8 @@ const getFileSizeBrotli = (filePath) =>
 
 /**
  * Provides performance information from an applications's production build
- * @param {*} buildPath 
- * @param {*} sampleInfo 
+ * @param {string} buildPath 
+ * @param {string} sampleName 
  * @returns {object} peformance information 
  */
 const getPerformanceInfo = async (buildPath, sampleName) => {
