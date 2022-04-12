@@ -110,7 +110,7 @@ const capturePageMetrics = async (page, sampleName) => {
  * @private
  * @param {string} path
  * @param {number} port
- * @returns WebServer WebServer isntance
+ * @returns WebServer WebServer instance
  */
 const startWebServer = (path, port) => {
   webserver = new WebServer(path, port);
