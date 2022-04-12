@@ -2,7 +2,7 @@ import EsriMap from "esri/Map";
 import MapView from "esri/views/MapView";
 
 const map = new EsriMap({
-  basemap: "streets"
+  basemap: "streets-vector"
 });
 
 const view = new MapView({

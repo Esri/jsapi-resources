@@ -1,13 +1,13 @@
 {
-  "name": "Recenter",
-  "version": "2.0.0",
+  "name": "recenter",
+  "version": "3.0.0",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "tsc -w",
+    "build": "tsc"
   },
-  "keywords": [],
-  "author": "Esri",
-  "license": "Apache-2.0",
   "dependencies": {
-    "@types/arcgis-js-api": "^4.19.0"
+    "@types/arcgis-js-api": "^4.23.0",
+    "tslib": "^2.3.1",
+    "typescript": "^4.6.2"
   }
 }
