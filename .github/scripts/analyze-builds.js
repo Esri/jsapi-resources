@@ -105,7 +105,7 @@ const execLogErr = async (command) => {
       "Sample,Build size (MB),Build file count,Main bundle file,Main bundle size (MB),Main bundle gzipped size (MB),Main bundle brotli compressed size (MB),Load time (ms), Total runtime (ms), Loaded size (MB), JS heap size (MB)\n"
     );
 
-    for (const sample of sampleDirectories) {
+    for (const [itemCount, sample] of sampleDirectories.entries()) {
       if (!SAMPLES_INFO[sample]) continue; // skip samples with no info item
 
       const sampleName = SAMPLES_INFO[sample]?.name;
@@ -155,6 +155,10 @@ const execLogErr = async (command) => {
 
       console.log("Writing results to CSV:", output);
       stream.write(output);
+
+      if (itemCount === sampleDirectories.length - 1) {
+        console.log("\x1b[33m%s\x1b[0m", "JOB COMPLETE");
+      }
     }
   } catch (err) {
     console.error(err);

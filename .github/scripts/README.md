@@ -120,6 +120,9 @@ Providing the `-h` or `--help` flag will log usage information to the console, c
 `node build-size.js dist`
 - Simplest usage with sane defaults
 
+`node build-size.js dist -r`
+- Simplest usage with sane defaults and performance information
+
 `node build-size.js dist --filetype=css --binary --decimals=1`
 - Size of the largest css file with tweaked number formatting
 
@@ -197,7 +200,7 @@ The library provides the following information:
   * `JSHeapUsedSizBytes` - JSHeapUsedSize as reported by puppeteer
   * `pageTotalBytes` - total number of bytes calculated using the http response object. 
   * `sampleName` - name of the sample or bundle  
-  * `totalScriptTimeMS` - approximate internal runtime of the library script in milliseconds. Useful for comparing against the `elapsedRuntimeMS`. Should not be used as an indicator of application performance, it's most useful for troubleshooting. 
+  * `totalScriptTimeMS` - approximate internal runtime of the library script in milliseconds. Useful for comparing against the `elapsedRuntimeMS`. Should not be used as an indicator of application performance, it's most useful for troubleshooting differences in runtime and determining if the platform itself caused a slowdown. 
 
 ### Running from GitHub Action
 

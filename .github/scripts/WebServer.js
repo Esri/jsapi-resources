@@ -3,12 +3,12 @@ const express = require("express");
 
 let server;
 
-/**
- * A lightweight webserver
- * @param {string} path absolute path to the folder
- * @param {number} port launch the webserver on this port
- */
 class WebServer {
+  /**
+   * A lightweight webserver
+   * @param {string} path
+   * @param {number} port
+   */
   constructor(path, port) {
     this.path = path;
     this.port = port;
@@ -27,7 +27,7 @@ class WebServer {
 
   /**
    * Stop the server
-   * @returns {Promise} resolve or reject. Rejection returns the error message.
+   * @returns {Promise} Close server or throw an error
    */
   stop() {
     return new Promise((resolve, reject) => {
@@ -37,7 +37,7 @@ class WebServer {
       server.on("clientError", (err, socket) => {
         console.log(err);
         socket.end(err.code);
-        reject(err);        
+        reject(err);
       });
       server.close();
     });

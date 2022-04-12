@@ -5,9 +5,13 @@ const WebServer = require("./WebServer");
 let go, webserver;
 let pageTotalBytes = 0;
 let performanceMarkStart, performanceMarkEnd;
-const TEST_URL = "http://localhost:3000";
-const PORT = 3000; // PORT number needs to match TEST_URL port
+const PORT = 3000; // Used for both WebServer and TEST_URL
+const TEST_URL = "http://localhost:" + PORT;
 
+/**
+ * Use HTTP response object to calculate total data transferred
+ * @param {Object} response 
+ */
 const addResponseSize = async (response) => {
   try {
     const buffer = await response.buffer();
@@ -46,7 +50,7 @@ const errorLogging = (page) => {
  */
 const pageSetup = async (page) => {
   // Setting a fixed viewport size lets us standardize all the perf tests
-  await page.setViewport({ width: 1280, height: 800 });
+  await page.setViewport({ width: 1280, height: 720 });
 
   // Timestamp for tracking the internal performance of 'this' script
   performanceMarkStart = performance.now();
@@ -60,7 +64,7 @@ const pageSetup = async (page) => {
  * @private
  * @param {Page} page An instance of puppeteer's page
  * @param {string} sampleName
- * @returns {object}
+ * @returns {object} Performance information
  */
 const capturePageMetrics = async (page, sampleName) => {
   const rawPerfEntries = await page.evaluate(() => {
@@ -76,6 +80,9 @@ const capturePageMetrics = async (page, sampleName) => {
       allPerformanceEntries[allPerformanceEntries.length - 1].duration
   );
 
+  // Finalize the self.performance numbers for this script
+  performanceMarkEnd = performance.now();
+
   const totalScriptTimeMS = Math.round(performanceMarkEnd - performanceMarkStart);
   const pageMetrics = await page.metrics();
   const JSHeapUsedSizeBytes = pageMetrics.JSHeapUsedSize;
@@ -85,8 +92,8 @@ const capturePageMetrics = async (page, sampleName) => {
    * elapsedRuntimeMS - runtime in milliseconds derived from the applications last HTTP request
    * pageTotalBytes - total number of bytes calculated using the http response object
    * JSHeapUsedSizeBytes - JSHeapUsedSize as reported by puppeteer
-   * totalScriptTimeMS - approximate internal runtime of the library script in milliseconds. 
-   * Useful for comparing against the `elapsedRuntimeMS`. Should not be used as an indicator of 
+   * totalScriptTimeMS - approximate internal runtime of the library script in milliseconds.
+   * Useful for comparing against the `elapsedRuntimeMS`. Should not be used as an indicator of
    * application performance, it's most useful for troubleshooting.
    */
   return {
@@ -103,7 +110,7 @@ const capturePageMetrics = async (page, sampleName) => {
  * @private
  * @param {string} path
  * @param {number} port
- * @returns WebServer
+ * @returns WebServer WebServer isntance
  */
 const startWebServer = (path, port) => {
   webserver = new WebServer(path, port);
@@ -138,9 +145,6 @@ const browserPerformanceTest = async (path, sampleName = "") => {
     console.log("Waiting for page load...");
     // Did the root CSS for the View get injected into the DOM
     await page.waitForSelector(".esri-view-root");
-
-    // Finalize the self.performance numbers for this script
-    performanceMarkEnd = performance.now();
 
     const pageMetrics = await capturePageMetrics(page, sampleName);
 
