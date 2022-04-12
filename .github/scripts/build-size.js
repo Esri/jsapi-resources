@@ -363,14 +363,13 @@ if (require.main === module) {
       if (outfile) saveBuildSizes(buildSizes, outfile);
 
       const {
-        mainBundleName, 
+        mainBundleName,
         mainBundleSize,
         mainBundleSizeGzip,
         mainBundleSizeBrotli,
         buildSize,
         buildFileCount
-      } =
-        buildSizes;
+      } = buildSizes;
 
       // remove loading animation
       toggleLoadingAnimation();

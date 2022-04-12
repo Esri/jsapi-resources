@@ -200,7 +200,7 @@ The library provides the following information:
   * `JSHeapUsedSizBytes` - JSHeapUsedSize as reported by puppeteer
   * `pageTotalBytes` - total number of bytes calculated using the http response object. 
   * `sampleName` - name of the sample or bundle  
-  * `totalScriptTimeMS` - approximate internal runtime of the library script in milliseconds. Useful for comparing against the `elapsedRuntimeMS`. Should not be used as an indicator of application performance, it's most useful for troubleshooting differences in runtime and determining if the platform itself caused a slowdown. 
+  * `totalScriptTimeMS` - approximate internal runtime of the library script in milliseconds. Useful for comparing against the `elapsedRuntimeMS`. Should not be used as an indicator of application performance, it's most useful for troubleshooting differences between runtime and determining if the platform itself caused a slowdown. 
 
 ### Running from GitHub Action
 
