@@ -503,7 +503,7 @@ Examples
   node build-size.js -f=css -b -d=1 -p=dist
 
   # get performance information in addition to build size
-  node build-size.js dist -pe
+  node build-size.js dist -r
 
   # save the build sizes to a csv
   node build-size.js dist --outfile=metrics.csv`;
