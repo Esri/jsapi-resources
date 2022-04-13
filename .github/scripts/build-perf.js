@@ -44,7 +44,7 @@ const errorLogging = (page) => {
 
 /**
  * Configure how the page is set up.
- * The height and widgeth of the viewport can affect performance
+ * The height and width of the viewport can affect performance
  * @private
  * @param {Page} page An instance of puppeteer's Page
  */
@@ -80,12 +80,12 @@ const capturePageMetrics = async (page, sampleName) => {
       allPerformanceEntries[allPerformanceEntries.length - 1].duration
   );
 
-  // Finalize the self.performance numbers for this script
-  performanceMarkEnd = performance.now();
-
-  const totalScriptTimeMS = Math.round(performanceMarkEnd - performanceMarkStart);
   const pageMetrics = await page.metrics();
   const JSHeapUsedSizeBytes = pageMetrics.JSHeapUsedSize;
+
+  // Finalize the self.performance numbers for this script
+  performanceMarkEnd = performance.now();
+  const totalScriptTimeMS = Math.round(performanceMarkEnd - performanceMarkStart);
 
   /**
    * sampleName - name of the sample or bundle
