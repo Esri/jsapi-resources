@@ -5,6 +5,7 @@ const { promisify } = require("util");
 const { gzip, brotliCompress } = require("zlib");
 const compressGzip = promisify(gzip);
 const compressBrotli = promisify(brotliCompress);
+const browserPerformanceTest = require("./build-perf");
 
 /**
  * Formats bytes to a human readable size.
@@ -105,6 +106,26 @@ const getFileSizeBrotli = (filePath) =>
     .catch((err) =>
       help(err, "\n\nOccurred while getting brotli compressed file size.", "Double check the file path:\n   ", filePath)
     );
+
+/**
+ * Provides performance information from an applications's production build
+ * @param {string} buildPath 
+ * @param {string} sampleName 
+ * @returns {object} performance information 
+ */
+const getPerformanceInfo = async (buildPath, sampleName) => {
+  try {
+    return await browserPerformanceTest(buildPath, sampleName);
+  } catch (err) {
+    help(
+      err,
+      "\n\nOccurred while getting performance info.",
+      "Double check the inputs:",
+      "\n    build path:",
+      resolve(buildPath)
+    );
+  }  
+}
 
 /**
  * Provides sizes for an application's production build.
@@ -282,6 +303,9 @@ if (require.main === module) {
     path: {
       description: "Path to the build directory (also available as argument)",
       required: true
+    },
+    runtime: {
+      description: "Include a snapshot of runtime performance information"
     }
   };
 
@@ -308,8 +332,34 @@ if (require.main === module) {
       const decimals = options["d"] || options["decimals"] || FLAG_INFO["decimals"].default;
       const binary = options["b"] || options["binary"] || FLAG_INFO["binary"].default;
       const outfile = options["o"] || options["outfile"]; // no default
+      const runtime = options["r"] || options["runtime"]; // no default
 
       const buildSizes = await getBuildSizes(path, type);
+
+      const line = "-".repeat(title.length);
+      const bundle = `Main ${type.toUpperCase()} bundle`;      
+
+      if(runtime) {
+        const performanceInfo = await getPerformanceInfo(path, buildSizes.mainBundleName);
+
+        // log sizes to console
+        const title = "|> Application Performance <|";
+        
+        console.log(
+          `\n${line}\n${title}\n${line}`,
+          `\n --> bundle name:`,
+          performanceInfo.sampleName,
+          `\n --> load time (ms):`,
+          performanceInfo.elapsedRuntimeMS,
+          `\n --> script runtime (ms):`,
+          performanceInfo.totalScriptTimeMS,
+          `\n --> app load size:`,
+          formatBytes(performanceInfo.pageTotalBytes, decimals, binary),
+          `\n --> jsheap size:`,
+          formatBytes(performanceInfo.JSHeapUsedSizeBytes, decimals, binary),
+          `\n${line}\n`
+        );
+      }
 
       // save build sizes if outfile is provided
       if (outfile) saveBuildSizes(buildSizes, outfile);
@@ -325,8 +375,7 @@ if (require.main === module) {
 
       // log sizes to console
       const title = "|> Application Build Sizes <|";
-      const line = "-".repeat(title.length);
-      const bundle = `Main ${type.toUpperCase()} bundle`;
+
       console.log(
         `\n${line}\n${title}\n${line}`,
         `\n${underline("Build")}`,
@@ -445,6 +494,9 @@ Examples
 
   # same as above, but use a flag for path when it's not the first argument
   node build-size.js -f=css -b -d=1 -p=dist
+
+  # get performance information in addition to build size
+  node build-size.js dist -r
 
   # save the build sizes to a csv
   node build-size.js dist --outfile=metrics.csv`;

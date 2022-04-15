@@ -37,6 +37,11 @@ jobs:
         with:
           node-version: lts/*
       - if: steps.build.outputs.skip == 'false'
+        name: install dependencies for sample metrics script
+        run: | 
+          cd ./.github/scripts/
+          npm i
+      - if: steps.build.outputs.skip == 'false'
         name: run sample metrics script
         run: node ./.github/scripts/analyze-builds.js
       - name: push sample metrics analysis
