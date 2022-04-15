@@ -135,16 +135,16 @@ const browserPerformanceTest = async (path, sampleName = "") => {
   // Load the app!
   // networkidle0 means consider loading completed when there are
   // no more than 0 network connections for at least 500 ms.
-  console.log("Launching browser...");
+  console.log("Waiting for page load...");
   go = await page.goto(TEST_URL, {
     waitUntil: "networkidle0"
   });
 
   // Check for HTTP page not found errors
   if (go?.status() !== 404) {
-    console.log("Waiting for page load...");
     // Did the root CSS for the View get injected into the DOM
     await page.waitForSelector(".esri-view-root");
+    console.log("Page loaded. Capturing metrics...");
 
     const pageMetrics = await capturePageMetrics(page, sampleName);
 
