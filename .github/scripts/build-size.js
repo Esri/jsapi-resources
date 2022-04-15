@@ -336,13 +336,15 @@ if (require.main === module) {
 
       const buildSizes = await getBuildSizes(path, type);
 
+      const line = "-".repeat(title.length);
+      const bundle = `Main ${type.toUpperCase()} bundle`;      
+
       if(runtime) {
         const performanceInfo = await getPerformanceInfo(path, buildSizes.mainBundleName);
 
         // log sizes to console
         const title = "|> Application Performance <|";
-        const line = "-".repeat(title.length);
-        const bundle = `Main ${type.toUpperCase()} bundle`;
+        
         console.log(
           `\n${line}\n${title}\n${line}`,
           `\n --> bundle name:`,
@@ -373,8 +375,6 @@ if (require.main === module) {
 
       // log sizes to console
       const title = "|> Application Build Sizes <|";
-      const line = "-".repeat(title.length);
-      const bundle = `Main ${type.toUpperCase()} bundle`;
 
       console.log(
         `\n${line}\n${title}\n${line}`,
