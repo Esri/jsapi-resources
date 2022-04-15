@@ -11,7 +11,11 @@ For additional information, see the [Build with ES modules](https://developers.a
 
 ### Bundle size
 
-Bundle size is dependant on multiple factors and can vary depending on framework, module bundler, transpiling and related configurations. The compile process can output several hundred or more bundles on-disk due to using dynamic imports. At runtime, your application will typically only load a small portion of the bundles depending on the `@arcgis/core` functionality used. The functionality used can also affect the size of largest bundle. 
+Bundle size is dependant on multiple factors and will vary depending on framework, module bundler, transpiling and related configurations. The compile process can output several hundred or more bundles on-disk due to using dynamic imports. At runtime, your application will typically only load a portion of the bundles depending on the `@arcgis/core` functionality used. The functionality used can also affect the size of largest bundle. 
+
+### Performance metrics
+
+These performance indicators will vary depending on the device or virtual machine that runs the script. The calculations are dependant on many hardware and software factors including CPU load, memory usage and internet speed during the time window that the script is running.
 
 ### TypeScript
 

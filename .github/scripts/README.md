@@ -191,6 +191,8 @@ If a sample does not have an info item it will be skipped, so you can fine tune 
 
 The script will create a CSV file containing sample metrics in [`esm-samples/.metrics`](https://github.com/Esri/jsapi-resources/tree/master/esm-samples/.metrics). The the output filename is the version of the ArcGIS JSAPI used in the samples. The CSV contains the name of the samples with the version of the main packages and the return properties from the [build sizes script](#build-sizes).
 
+Bundle size is dependant on multiple factors and will vary depending on framework, module bundler, transpiling and related configurations. The compile process can output several hundred or more bundles on-disk due to using dynamic imports. At runtime, your application will typically only load a portion of the bundles depending on the `@arcgis/core` functionality used. The functionality used can also affect the size of largest bundle. 
+
 ### Performance analysis
 
 [`build-perf.js`](https://github.com/Esri/jsapi-resources/blob/master/.github/scripts/build-perf.js) is a helper library that uses puppeteer and a lightweight web server to extract browser performance metrics.
@@ -201,6 +203,8 @@ The library provides the following information:
   * `pageTotalBytes` - total number of bytes calculated using the http response object. 
   * `sampleName` - name of the sample or bundle  
   * `totalScriptTimeMS` - approximate internal runtime of the library script in milliseconds. Useful for comparing against the `elapsedRuntimeMS`. Should not be used as an indicator of application performance, it's most useful for troubleshooting differences between runtime and determining if the platform itself caused a slowdown. 
+
+These performance indicators will vary depending on the device or virtual machine that runs the script. The calculations are dependant on many hardware and software factors including CPU load, memory usage and internet speed during the time window that the script is running. For example, the numbers you see using a GitHub action may be significantly different from when you run the scripts locally on your development machine.
 
 ### Running from GitHub Action
 
