@@ -22,7 +22,6 @@ Refer to the README files in each subdirectory of this repo for specific instruc
 
 ## Resources
 * [ArcGIS API for JavaScript](https://js.arcgis.com)
-* [JSHint](http://www.jshint.com/)
 * [TypeScript](http://www.typescriptlang.org/)
 
 ## Contributing
@@ -30,7 +29,7 @@ Refer to the README files in each subdirectory of this repo for specific instruc
 Please see our [guidelines for contributing](CONTRIBUTING.md).
 
 ## Licensing
-Copyright 2021 Esri
+Copyright 2022 Esri
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
