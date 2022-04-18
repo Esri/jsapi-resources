@@ -4,11 +4,11 @@ The scripts in this directory are used to analyze ESM sample build metrics.
 
 ## Build sizes
 
-The [`build-size.js`](https://github.com/Esri/jsapi-resources/blob/master/.github/scripts/build-size.js) script provides sizes of production builds to assist with optimization. The script has been published to an NPM packaged named [`build-sizes`](https://www.npmjs.com/package/build-sizes) so you can use it in your applications.
+The [`build-size.js`](https://github.com/Esri/jsapi-resources/blob/master/.github/scripts/build-size.js) script provides sizes of production builds to assist with optimization of your app. The script has been published to an NPM packaged named [`build-sizes`](https://www.npmjs.com/package/build-sizes) so you can use it in your applications.
 
 ### Using the functions
 
-The script exports functions, [documented here](https://benelan.github.io/build-sizes/global.html). They are available as both CommonJS and ECMAScript modules. Here is a small usage example:
+The script exports functions, [documented here](https://benelan.github.io/build-sizes/global.html). Here is a small usage example:
 
 ```js
 const { getBuildSizes, formatBytes } = require("./build-sizes.js");
@@ -61,13 +61,13 @@ Main JS bundle
 
 ```
 
-There are also options that you can provide with flags. For example, you can tell the script to run a browser performance analysis against the build using the `-r` argument:
+There are also options that you can set with flags. For example, you can tell the script to run a browser performance analysis against the build using the `-r` argument:
 
 ```bash
 node build-size.js ../../esm-samples/jsapi-create-react-app/build -r
 ```
 
-In addition to the build size information, the output will also include the following:
+Now, in addition to the build size information the output will also include the following:
 
 ```
 -----------------------------
@@ -158,7 +158,7 @@ After running `npm run build`, the sizes will be logged to the console. Note tha
 
 ## Analyze builds
 
-The [`analyze-builds.js`](https://github.com/Esri/jsapi-resources/blob/master/.github/scripts/analyze-builds.js) script uses [`build-size.js`](https://github.com/Esri/jsapi-resources/blob/master/.github/scripts/build-size.js) and [`build-perf.js`](https://github.com/Esri/jsapi-resources/blob/master/.github/scripts/build-perf.js) to analyze ESM samples and creates a CSV containing the metrics. To run the script from the repo's root directory:
+The [`analyze-builds.js`](analyze-builds.js) script uses [`build-size.js`](build-size.js) and [`build-perf.js`](build-perf.js) to analyze ESM samples and creates a CSV containing the metrics. To run the script from the repo's root directory:
 
 ```bash
 node .github/scripts/analyze-builds.js
@@ -191,26 +191,26 @@ If a sample does not have an info item it will be skipped, so you can fine tune 
 
 The script will create a CSV file containing sample metrics in [`esm-samples/.metrics`](https://github.com/Esri/jsapi-resources/tree/master/esm-samples/.metrics). The the output filename is the version of the ArcGIS JSAPI used in the samples. The CSV contains the name of the samples with the version of the main packages and the return properties from the [build sizes script](#build-sizes).
 
-Bundle size is dependant on multiple factors and will vary depending on framework, module bundler, transpiling and related configurations. The compile process can output several hundred or more bundles on-disk due to using dynamic imports. At runtime, your application will typically only load a portion of the bundles depending on the `@arcgis/core` functionality used. The functionality used can also affect the size of largest bundle. 
+Bundle size is dependant on multiple factors and will vary based on framework, module bundler, transpiling and related configurations. The compile process can output several hundred or more bundles on-disk due to using dynamic imports. At runtime, your application will typically only load a portion of the bundles depending on the `@arcgis/core` functionality used. The functionality used can also affect the size of largest bundle. 
 
 ### Performance analysis
 
-[`build-perf.js`](https://github.com/Esri/jsapi-resources/blob/master/.github/scripts/build-perf.js) is a helper library that uses puppeteer and a lightweight web server to extract browser performance metrics.
+[`build-perf.js`](build-perf.js) is a helper library that uses [puppeteer](https://github.com/puppeteer/puppeteer) and [express](https://github.com/expressjs/express), which a lightweight web server to extract browser performance metrics.
 
 The library provides the following information:
-  * `elapsedRuntimeMS` - runtime in milliseconds derived from the applications last HTTP request
-  * `JSHeapUsedSizeBytes` - JSHeapUsedSize as reported by puppeteer
+  * `elapsedRuntimeMS` - runtime in milliseconds derived from the applications last HTTP request.
+  * `JSHeapUsedSizeBytes` - JSHeapUsedSize as reported by puppeteer.
   * `pageTotalBytes` - total number of bytes calculated using the http response object. 
-  * `sampleName` - name of the sample or bundle  
-  * `totalScriptTimeMS` - approximate internal runtime of the library script in milliseconds. Useful for comparing against the `elapsedRuntimeMS`. Should not be used as an indicator of application performance, it's most useful for troubleshooting differences between runtime and determining if the platform itself caused a slowdown. 
+  * `sampleName` - name of the sample or bundle.
+  * `totalScriptTimeMS` - approximate internal runtime of the library script in milliseconds. Useful for comparing against the `elapsedRuntimeMS`. Should not be used as an indicator of application performance, it's most useful for troubleshooting differences between runtime and determining if the platform itself caused a slowdown.
 
-These performance indicators will vary depending on the device or virtual machine that runs the script. The calculations are dependant on many hardware and software factors including CPU load, memory usage and internet speed during the time window that the script is running. For example, the numbers you see using a GitHub action may be significantly different from when you run the scripts locally on your development machine.
+These performance indicators will vary depending on the device or virtual machine that runs the script. They are best used for analysing trends over time, and they should be run on the same device in order to keep as many of the variables constant as possible. The calculations are dependant on many hardware and software factors including CPU load, memory usage and internet speed during the time window that the script is running. For example, the numbers you see using a GitHub action may be significantly different from when you run the scripts locally on your development machine.
 
 ### Running from GitHub Action
 
-There is a GitHub Action [workflow set up](https://github.com/Esri/jsapi-resources/blob/master/.github/workflows/analyze-builds.yml) to automatically analyze sample metrics. The workflow is [triggered by pull requests](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#pull_request) to `master`. The workflow will run if a pull request is created, synchronized, or reopened.
+There is a GitHub Action [workflow set up](../workflows/analyze-builds.yml) to automatically analyze sample metrics. The workflow is [triggered by pull requests](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#pull_request) to `master`. The workflow will run if a pull request is created, synchronized, or reopened.
 
-The logs for the workflow runs can be found [here](https://github.com/Esri/jsapi-resources/actions/workflows/analyze-builds.yml). The workflow is required to pass in order to merge a pull request. More info on pull request checks [here](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/collaborating-on-repositories-with-code-quality-features/about-status-checks).
+The workflow is required to pass in order to merge a pull request. The GitHub Docs have more information on [workflow run logs](https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/using-workflow-run-logs). And, here is information on viewing the GitHub Action [status](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/collaborating-on-repositories-with-code-quality-features/about-status-checks) if you are running the action on a repository that you own.
 
 #### Workflow conditions
 
@@ -228,4 +228,4 @@ If the conditions are not met, the workflow will skip analyzing the samples and 
 
 If the [conditions](#workflow-conditions) are met, the samples will be analyzed. Since the script takes a while, [auto merge](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/incorporating-changes-from-a-pull-request/automatically-merging-a-pull-request) has been turned on in the repo.
 
-The workflow will create the [script output](#script-output), and if there are any changes, it pushes to the pull request branch and the pull request check passes. If there are any build errors the PR check will fail and you won't be able to merge until it is fixed. You can check the [logs](https://github.com/Esri/jsapi-resources/actions/workflows/analyze-builds.yml) to see what happened.
+The workflow will create the [script output](#script-output), and if there are any changes it pushes to the pull request branch and the pull request check passes. If there are any build errors the PR check will fail and you won't be able to merge until it is fixed. You can check the [run logs](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/collaborating-on-repositories-with-code-quality-features/about-status-checks) to see what happened if you are running the GitHub action on a repository that you own.
