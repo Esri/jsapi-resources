@@ -3,12 +3,11 @@
   "version": "1.0.0",
   "license": "Apache-2.0",
   "dependencies": {
-    "esri": "arcgis-js-api#3.36.0",
-    "dijit-themes": "https://github.com/dojo/dijit-themes.git#1.14.0"
+    "esri": "arcgis-js-api#3.40.0"
   },
   "resolutions": {
-    "dojo": "v1.14.2/esri-3.28.0",
-    "dijit": "v1.14.2/esri-3.28.0",
-    "dojox": "v1.14.2/esri-3.28.0"
+    "dojo": "v1.16.4/esri-3.38.0",
+    "dijit": "v1.16.4/esri-3.38.0",
+    "dojox": "v1.16.4/esri-3.38.0"
   }
 }
