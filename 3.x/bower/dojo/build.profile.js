@@ -55,8 +55,8 @@ var profile = {
       location: "moment",
       main: "moment",
       trees: [
-          // don"t bother with .hidden, tests, min, src, and templates
-          [".", ".", /(\/\.)|(~$)|(test|txt|src|min|templates)/]
+        // don"t bother with .hidden, tests, min, src, and templates
+        [".", ".", /(\/\.)|(~$)|(dist|test|txt|src|min|templates|ts3.1-typing-tests|ts3.1-typing)/]
       ],
       resourceTags: {
         amd: function(filename, mid){
