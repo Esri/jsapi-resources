@@ -7,7 +7,7 @@
   },
   "scripts": {
     "postinstall": "bower install",
-    "build": "grunt build",
+    "build": "grunt build --force",
     "clean": "grunt clean"
   },
   "license": "Apache-2.0",
