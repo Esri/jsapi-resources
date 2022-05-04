@@ -8,10 +8,10 @@ This repo demonstrates how to use [@arcgis/core](https://www.npmjs.com/package/@
 
 **Step 2** Configure CSS. Here's a React example:
 
-*index.css*
+_index.css_
 
 ```css
-@import 'https://js.arcgis.com/4.23/@arcgis/core/assets/esri/themes/light/main.css';
+@import "https://js.arcgis.com/4.23/@arcgis/core/assets/esri/themes/light/main.css";
 ```
 
 For additional information, see the [Build with ES modules](https://developers.arcgis.com/javascript/latest/es-modules/) Guide topic in the SDK.
@@ -37,11 +37,14 @@ If you run into issues with babel helpers injected into ArcGIS API for JavaScrip
       "Firefox ESR"
     ],
     "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
+      "last 1 Chrome version",
+      "last 1 Firefox version",
+      "last 2 Edge major versions",
+      "last 2 Safari major versions",
+      "last 2 iOS major versions",
+      "Firefox ESR"
     ]
-  },
+  }
 }
 ```
 
@@ -54,7 +57,7 @@ module.exports = function override(config, env) {
   // May vary based on version of create-react-app being used.
   config.module.rules[2].oneOf[2].exclude = /(@babel(?:\/|\\{1,2})runtime|node_modules)/;
   return config;
-}
+};
 ```
 
 ---
