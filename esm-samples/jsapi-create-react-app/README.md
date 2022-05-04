@@ -29,17 +29,21 @@ If you run into issues with babel helpers injected into ArcGIS API for JavaScrip
 {
   "browserslist": {
     "production": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
+      "last 1 Chrome version",
+      "last 1 Firefox version",
+      "last 2 Edge major versions",
+      "last 2 Safari major versions",
+      "last 2 iOS major versions",
+      "Firefox ESR"
     ],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
+  }
 }
+
 ```
 
 If you run in to issues with this method, you can use [react-app-rewired](https://www.npmjs.com/package/react-app-rewired).
