@@ -24,8 +24,9 @@ For a list of all available `npm` commands see the scripts in `package.json`.
 
 If you run into issues with babel helpers injected into ArcGIS API for JavaScript code during the build using `create-react-app`, but helpers not being copied to the build, you can try using the following browserslist configuration.
 
+_package.json_
+
 ```json
-// package.json
 {
   "browserslist": {
     "production": [
