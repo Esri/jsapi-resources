@@ -40,7 +40,7 @@ jobs:
         name: install dependencies for sample metrics script
         run: |
           cd ./.github/scripts/
-          npm i
+          npm ci
       - if: steps.build.outputs.skip == 'false'
         name: run sample metrics script
         run: node ./.github/scripts/analyze-builds.js
