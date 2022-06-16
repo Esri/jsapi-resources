@@ -1,11 +1,11 @@
 # ArcGIS API for JavaScript with Angular CLI
 
-This repo demonstrates how to use [@arcgis/core](https://www.npmjs.com/package/@arcgis/core) ES modules with Angular 13. 
+This repo demonstrates how to use [@arcgis/core](https://www.npmjs.com/package/@arcgis/core) ES modules with Angular. 
 
 ---
 ## Known issues
 
-* There is an optimization bug affecting production builds at Angular `12.2.x`. It is recommended to upgrade to Angular 13. For more information: https://github.com/Esri/feedback-js-api-next/issues/131.
+* There is an optimization bug affecting production builds at Angular `12.2.x`. It is recommended to upgrade to Angular 13+. For more information: https://github.com/Esri/feedback-js-api-next/issues/131.
 
 * If you are seeing `404` errors in the console after updating Angular `12.1.x` dependencies, you should try clearing your browser cache. This is an Angular caching issue. 
 
@@ -31,7 +31,7 @@ This repo demonstrates how to use [@arcgis/core](https://www.npmjs.com/package/@
 *styles.css*
 
 ```css
-  @import 'https://js.arcgis.com/4.23/@arcgis/core/assets/esri/themes/light/main.css';
+  @import 'https://js.arcgis.com/4.24/@arcgis/core/assets/esri/themes/light/main.css';
 ```
 
 For additional information, see the [Build with ES modules](https://developers.arcgis.com/javascript/latest/es-modules/) Guide topic in the SDK.
