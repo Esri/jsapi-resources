@@ -50,9 +50,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
     // Add the widget to the top-right corner of the view
     view.ui.add(bkExpand, 'top-right');
-    view.on("pointer-move", () => {
-      console.log("Click");
-    })
 
     // bonus - how many bookmarks in the webmap?
     webmap.when(() => {
