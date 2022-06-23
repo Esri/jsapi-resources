@@ -4,6 +4,7 @@ const WebServer = require("./WebServer");
 
 let go, webserver;
 let pageTotalBytes = 0;
+let totalJSRequests = 0;
 let performanceMarkStart, performanceMarkEnd;
 const PORT = 3000; // Used for both WebServer and TEST_URL
 const TEST_URL = "http://localhost:" + PORT;
@@ -13,6 +14,12 @@ const TEST_URL = "http://localhost:" + PORT;
  * @param {Object} response 
  */
 const addResponseSize = async (response) => {
+  const url = response.url();
+  const str = url.substring(url.length - 3, url.length);
+  if (str === ".js") {
+    totalJSRequests++;
+  }
+
   try {
     const buffer = await response.buffer();
     pageTotalBytes += buffer.length;
@@ -95,13 +102,15 @@ const capturePageMetrics = async (page, sampleName) => {
    * totalScriptTimeMS - approximate internal runtime of the library script in milliseconds.
    * Useful for comparing against the `elapsedRuntimeMS`. Should not be used as an indicator of
    * application performance, it's most useful for troubleshooting.
+   * totalJSRequests - total number of JavaScript files requested by the app
    */
   return {
     sampleName,
     elapsedRuntimeMS,
     pageTotalBytes,
     JSHeapUsedSizeBytes,
-    totalScriptTimeMS
+    totalScriptTimeMS,
+    totalJSRequests
   };
 };
 

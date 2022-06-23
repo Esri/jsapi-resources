@@ -1,6 +1,6 @@
 # @arcgis/core (ES modules)
 
-The sample projects in this directory demonstrate using [@arcgis/core](https://www.npmjs.com/package/@arcgis/core) ES modules with various frameworks, module bundlers and build tools. `@arcgis/core` is installed using NPM, and is intended for use in local builds that you host.
+The sample projects in this directory demonstrate using [@arcgis/core](https://www.npmjs.com/package/@arcgis/core) ES modules with various frameworks, module bundlers and build tools. `@arcgis/core` is installed using [NPM](https://docs.npmjs.com/downloading-and-installing-packages-locally), and is intended for use in local builds that you host.
 
 ### Get Started
 
@@ -19,4 +19,4 @@ The performance indicators will vary depending on the device or virtual machine 
 
 ### TypeScript
 
-For TypeScript users, the type definitions are included with the API. There is no need for a separate install.
+For TypeScript users, the type definitions are included when you install the API. There is no need for a separate install.

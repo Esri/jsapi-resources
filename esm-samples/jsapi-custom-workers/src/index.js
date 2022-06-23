@@ -3,7 +3,7 @@ import Graphic from "@arcgis/core/Graphic";
 import ArcGISMap from "@arcgis/core/Map";
 import MapView from "@arcgis/core/views/MapView";
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
-import { whenFalseOnce } from "@arcgis/core/core/watchUtils";
+import { whenOnce } from "@arcgis/core/core/reactiveUtils";
 import * as colorRendererCreator from "@arcgis/core/smartMapping/renderers/color";
 import Legend from "@arcgis/core/widgets/Legend";
 import * as workers from "@arcgis/core/core/workers";
@@ -55,7 +55,7 @@ async function runJoin() {
     view.whenLayerView(cityLayer),
     view.whenLayerView(frsLayer)
   ]);
-  await whenFalseOnce(view, "updating");
+  await whenOnce(() => !view.updating);
   const query = {
     returnGeometry: true
   };
@@ -88,6 +88,7 @@ async function runJoin() {
 
   joinLayer.renderer = renderer;
   map.add(joinLayer);
+  console.log("Join complete");
 }
 
 async function createLayer(layer, source, extraFields) {

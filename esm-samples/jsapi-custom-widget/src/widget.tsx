@@ -1,5 +1,5 @@
 import { subclass, property } from "@arcgis/core/core/accessorSupport/decorators";
-import { init } from "@arcgis/core/core/watchUtils";
+import { watch } from "@arcgis/core/core/reactiveUtils";
 
 import { tsx, messageBundle } from "@arcgis/core/widgets/support/widget";
 
@@ -41,9 +41,19 @@ class Recenter extends Widget {
   }
 
   postInitialize() {
-    init(this, "view.center, view.interacting, view.scale", () =>
-      this._onViewChange()
-    );
+
+    // Set initial State
+    this.state = {
+      x: 0,
+      y: 0,
+      interacting: false,
+      scale: 0
+    };        
+
+    watch(() => [this.view?.center, this.view?.interacting],
+    () => {
+      this._onViewChange();
+    });
   }
 
   //--------------------------------------------------------------------

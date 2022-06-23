@@ -7,11 +7,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@arcgis/core": "^4.23.0",
-    "vue": "^3.2.31"
+    "@arcgis/core": "~4.24.0",
+    "vue": "^3.2.37"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^2.2.4",
-    "vite": "^2.8.6"
+    "@vitejs/plugin-vue": "^2.3.3",
+    "vite": "^2.9.12"
   }
 }

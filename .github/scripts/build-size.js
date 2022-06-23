@@ -353,6 +353,8 @@ if (require.main === module) {
           performanceInfo.elapsedRuntimeMS,
           `\n --> script runtime (ms):`,
           performanceInfo.totalScriptTimeMS,
+          `\n --> total JS requests:`,
+          performanceInfo.totalJSRequests,
           `\n --> app load size:`,
           formatBytes(performanceInfo.pageTotalBytes, decimals, binary),
           `\n --> jsheap size:`,

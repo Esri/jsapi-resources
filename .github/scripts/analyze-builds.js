@@ -151,7 +151,7 @@ const execLogErr = async (command) => {
       const pageTotalMB = (perfResults.pageTotalBytes / 1024 ** 2).toFixed(2);
       const JSHeapUsedSizeMB = (perfResults.JSHeapUsedSizeBytes / 1024 ** 2).toFixed(2);
 
-      const output = `${sampleName} ${packageVersion},${buildSizeMB},${buildFileCount},${mainBundleName},${mainBundleSizeMB},${mainBundleSizeGzipMB},${mainBundleSizeBrotliMB},${perfResults.elapsedRuntimeMS},${perfResults.totalScriptTimeMS},${pageTotalMB},${JSHeapUsedSizeMB}\n`;
+      const output = `${sampleName} ${packageVersion},${buildSizeMB},${buildFileCount},${mainBundleName},${mainBundleSizeMB},${mainBundleSizeGzipMB},${mainBundleSizeBrotliMB},${perfResults.elapsedRuntimeMS},${perfResults.totalScriptTimeMS},${pageTotalMB},${perfResults.totalJSRequests},${JSHeapUsedSizeMB}\n`;
 
       console.log("Writing results to CSV:", output);
       stream.write(output);
