@@ -102,7 +102,7 @@ const execLogErr = async (command) => {
     const outputPath = resolve(METRICS_PATH, `${jsapiVersion}.csv`);
     const stream = createWriteStream(outputPath);
     stream.write(
-      "Sample,Build size (MB),Build file count,Main bundle file,Main bundle size (MB),Main bundle gzipped size (MB),Main bundle brotli compressed size (MB),Load time (ms), Total runtime (ms), Loaded size (MB), JS heap size (MB)\n"
+      "Sample,Build size (MB),Build file count,Main bundle file,Main bundle size (MB),Main bundle gzipped size (MB),Main bundle brotli compressed size (MB),Load time (ms),Total runtime (ms),Loaded size (MB),Total JS requests,JS heap size (MB)\n"
     );
 
     for (const [itemCount, sample] of sampleDirectories.entries()) {
