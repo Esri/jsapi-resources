@@ -12,13 +12,13 @@ The following information is required if you are reporting an issue or a bug. Be
 **@arcgis/core version**
 
 <!--
-  Which version of `@arcgis/core`, for example `@arcgis/core@4.24.2`? Run `npm ls @arcgis/core` in a terminal window.
+  Which version of `@arcgis/core`, for example `@arcgis/core@4.24.7`? Run `npm ls @arcgis/core` in a terminal window.
   Questions related to `next` releases of `@arcgis/core` need to be addressed on the https://github.com/Esri/feedback-js-api-next repo.
 -->
 
 **Github repository link** 
 
-<!-- We require a link to a github repo, codepen or equivalent so that we can install and reproduce the issue locally. Our ES module samples make a great template: https://github.com/Esri/jsapi-resources/tree/master/esm-samples -->
+<!-- We require a link to a github repo, codepen or equivalent so that we can install and reproduce the issue locally. Our ES module samples make a great starter template: https://github.com/Esri/jsapi-resources/tree/master/esm-samples -->
 
 **Framework and build tools**
 <!-- Which version of framework and build tools are you using? E.g. Angular 14.0, Webpack 5.73.  -->
@@ -39,7 +39,7 @@ The following information is required if you are reporting an issue or a bug. Be
 
 **Browser (check https://whatismybrowser.com/)**
  - Browser:
-      <!-- [e.g. "Chrome 101 on Windows 10"] -->
+      <!-- [e.g. "Chrome 103 on Windows 11"] -->
 
 
 **Operating System (check https://whatsmyos.com):**
