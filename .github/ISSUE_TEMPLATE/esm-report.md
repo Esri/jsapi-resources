@@ -16,9 +16,9 @@ The following information is required if you are reporting an issue or a bug. Be
   Questions related to `next` releases of `@arcgis/core` need to be addressed on the https://github.com/Esri/feedback-js-api-next repo.
 -->
 
-**Github repository link** 
+**Repro link** 
 
-<!-- We require a link to a github repo, codepen or equivalent so that we can install and reproduce the issue locally. Our ES module samples make a great starter template: https://github.com/Esri/jsapi-resources/tree/master/esm-samples -->
+<!-- We require a link to a GitHub repository, codepen or equivalent so that we can install and reproduce the issue locally. Our ES module samples make a great starter template: https://github.com/Esri/jsapi-resources/tree/master/esm-samples -->
 
 **Framework and build tools**
 <!-- Which version of framework and build tools are you using? E.g. Angular 14.0, Webpack 5.73.  -->
