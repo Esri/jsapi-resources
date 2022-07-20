@@ -3,7 +3,9 @@
 This repo demonstrates how to use the [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core) ES modules with webpack.
 
 ## Known Issues
-- [July 2022] If you are using Webpack `4`, and you recently upgraded to ArcGIS API for JavaScript `4.24`+ and experiencing `Module parse failed: Unexpected token` errors during your build process, then try the following steps. At API version `4.24` we introduced [optional chaining](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining) and [nullish coalescing operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing_operator), and these steps will help to resolve the errors:
+- [July 2022] If you are using Webpack `4` and experiencing `Module parse failed: Unexpected token` errors during your build process after upgrading to ArcGIS API for JavaScript `4.24`+, then try the following steps. 
+
+API version `4.24` is the first version to use [optional chaining](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining) and [nullish coalescing operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing_operator). These steps will help resolve the errors:
    - Install or upgrade these depedencies:
    
    ```json
