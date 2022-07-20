@@ -15,7 +15,7 @@ This repo demonstrates how to use the [`@arcgis/core`](https://www.npmjs.com/pac
 
    - Add the following to your Webpack config:
 
-   ```json
+   ```
     module: {
       rules: [
         {
