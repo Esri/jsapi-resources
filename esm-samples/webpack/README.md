@@ -5,10 +5,18 @@ This repo demonstrates how to use the [`@arcgis/core`](https://www.npmjs.com/pac
 ## Known Issues
 - [July 2022] If you are using Webpack `4` and experiencing `Module parse failed: Unexpected token` errors during your build process after upgrading to ArcGIS API for JavaScript `4.24`+, then try the following steps. 
 
-  API version `4.24` is the first version to use ES2020 [optional chaining](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining) and [nullish coalescing operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing_operator). These steps can help resolve parsing errors with older versions of Webpack:
+  API version `4.24` is the first version to use ES2020 [optional chaining](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining) and [nullish coalescing](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing_operator) operators. These steps can help resolve parsing errors with older versions of Webpack:
 
    - Install or upgrade these depedencies:
+
+   _Command-line_
+
+   ```
+     npm install -D @babel/core @babel/plugin-proposal-nullish-coalescing-operator @babel/plugin-proposal-optional-chaining babel-loader
+   ```
    
+   _package.json_
+
    ```json
     "@babel/core": "^7.18.9",
     "@babel/plugin-proposal-nullish-coalescing-operator": "^7.18.6",
@@ -17,6 +25,8 @@ This repo demonstrates how to use the [`@arcgis/core`](https://www.npmjs.com/pac
    ```
 
    - Add the following to your Webpack config:
+
+   _webpack.config.js_
 
    ```
     module: {
