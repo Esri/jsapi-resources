@@ -25,5 +25,5 @@ jobs:
           delete-branch: false
           
           # Run the processor in debug mode without actually performing any operations on live issues.
-          debug-only: true # optional, default is false
+          # debug-only: true # optional, default is false
           
