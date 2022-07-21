@@ -15,7 +15,7 @@ This repo demonstrates how to use the [`@arcgis/core`](https://www.npmjs.com/pac
      npm install -D @babel/core @babel/plugin-proposal-nullish-coalescing-operator @babel/plugin-proposal-optional-chaining babel-loader
    ```
    
-    _package.json_
+     _package.json_
 
    ```json
     "@babel/core": "^7.18.9",
