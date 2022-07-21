@@ -1,0 +1,28 @@
+name: "Close stale issues"
+
+# Controls when the workflow will run. 
+on:
+  schedule:
+  # https://crontab.guru
+  # 5pm Pacific Time
+    - cron: "0 0 * * *"
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+jobs:
+  # stale:
+  stale-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/stale@v5
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          stale-issue-message: "This issue has been automatically marked as stale because it has not had recent activity. It will be closed if no further activity occurs. If you need additional assistance please contact Esri Technical Support. Thank you for your contributions."
+          close-issue-message: "This issue has been automatically closed due to inactivity. If you need additional assistance please contact Esri Technical Support."
+          stale-pr-message: "This PR has been automatically marked as stale because it has not had recent activity. It will be closed if no further activity occurs. If you need additional assistance please contact Esri Technical Support. Thank you for your contributions."
+          close-pr-message: "This PR has been automatically closed due to inactivity. If you need additional assistance please contact Esri Technical Support."          
+          days-before-stale: 365          
+          days-before-close: 31
+          delete-branch: false
+          
+          # Run the processor in debug mode without actually performing any operations on live issues.
+          debug-only: true # optional, default is false
