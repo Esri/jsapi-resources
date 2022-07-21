@@ -15,7 +15,7 @@ This repo demonstrates how to use the [`@arcgis/core`](https://www.npmjs.com/pac
      npm install -D @babel/core @babel/plugin-proposal-nullish-coalescing-operator @babel/plugin-proposal-optional-chaining babel-loader
    ```
    
-     _package.json_
+    _package.json_
 
    ```json
     "@babel/core": "^7.18.9",
@@ -29,31 +29,31 @@ This repo demonstrates how to use the [`@arcgis/core`](https://www.npmjs.com/pac
      _webpack.config.js_
 
    ```
-    module: {
-      rules: [
-        {
-          test: /\.m?js$/,
-          exclude: {
-            and: [/node_modules/], // exclude libraries in node_modules ...
-            not: [
-              // except for ones that needs to be transpiled because they use modern syntax
-              /@arcgis[\\/]core/
-            ]
-          },
-          use: {
-            loader: "babel-loader",
-            options: {
-              plugins: [
-                // these are required by Webpack 4 since @arcgis/core@4.24
-                ["@babel/plugin-proposal-nullish-coalescing-operator", { loose: true }],
-                ["@babel/plugin-proposal-optional-chaining", { loose: true }]
+      module: {
+        rules: [
+          {
+            test: /\.m?js$/,
+            exclude: {
+              and: [/node_modules/], // exclude libraries in node_modules ...
+              not: [
+                // except for ones that needs to be transpiled because they use modern syntax
+                /@arcgis[\\/]core/
               ]
+            },
+            use: {
+              loader: "babel-loader",
+              options: {
+                plugins: [
+                  // these are required by Webpack 4 since @arcgis/core@4.24
+                  ["@babel/plugin-proposal-nullish-coalescing-operator", { loose: true }],
+                  ["@babel/plugin-proposal-optional-chaining", { loose: true }]
+                ]
+              }
             }
           }
-        }
-      ]
-    }
-  };
+        ]
+      }
+    };
    ```
 
 - `webpack-dev-server` had a [breaking change](https://github.com/webpack/webpack-dev-server/blob/master/CHANGELOG.md#-breaking-changes-4) in `4.0.0` which removed `contentBase` in favor of the `static` option. This sample has been changed accordingly.
