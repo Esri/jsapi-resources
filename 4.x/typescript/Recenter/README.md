@@ -17,10 +17,11 @@ The proceeding steps will begin with implementing the widget in the .tsx file.
 ## Usage
 
 ### Implement Recenter TSX file
+
 #### Add dependency paths and import statements
 
 ```ts
-import {subclass, property} from "esri/core/accessorSupport/decorators";
+import { subclass, property } from "esri/core/accessorSupport/decorators";
 
 import Widget = require("esri/widgets/Widget");
 import { init } from "esri/core/watchUtils";
@@ -39,7 +40,7 @@ First we're going to create a `Coordinates` type alias. `Coordinates` is an [esr
 type Coordinates = Point | number[] | any;
 ```
 
-Next, we will create a few [Typescript interfaces](https://www.typescriptlang.org/docs/handbook/interfaces.html) to aid in reusing object types.
+Next, we will create a few [TypeScript interfaces](https://www.typescriptlang.org/docs/handbook/interfaces.html) to aid in reusing object types.
 
 ```ts
 interface Center {
@@ -57,8 +58,8 @@ interface Style {
 }
 
 interface RecenterParams extends __esri.WidgetProperties {
-  view: MapView,
-  initialCenter: number[]
+  view: MapView;
+  initialCenter: number[];
 }
 ```
 
@@ -90,13 +91,13 @@ class Recenter extends Widget {
   }
 ```
 
-Here, we are extending the [Widget][https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Widget.html) base class.The [@subclass](https://developers.arcgis.com/javascript/latest/api-reference/esri-core-accessorSupport-decorators.html#subclass) decorator is for constructing subclasses off of a given base class. The [Custom Widget guide topic](https://developers.arcgis.com/javascript/latest/custom-widget/#subclass) has more information on using @subclass.
+Here, we are extending the [Widget](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Widget.html) base class.The [@subclass](https://developers.arcgis.com/javascript/latest/api-reference/esri-core-accessorSupport-decorators.html#subclass) decorator is for constructing subclasses off of a given base class. The [Custom Widget guide topic](https://developers.arcgis.com/javascript/latest/custom-widget/#subclass) has more information on using @subclass.
 
 The constructor logic is binding the `_onViewChange()` method to `this` widget instance.
 
 #### Add postInitialize logic
 
-The [postInitialize](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Widget.html#postInitialize) method is called after the widget is created but before the UI is rendered. In this particular case, we will initialize [watchUtils](https://developers.arcgis.com/javascript/latest/api-reference/esri-core-watchUtils.html#init) to watch for changes to the `View's` [center](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-View.html#center), [interacting](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-View.html#interacting), and [scale](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-View.html#scale) properties in which it then calls the  method, `_onViewChange`.
+The [postInitialize](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Widget.html#postInitialize) method is called after the widget is created but before the UI is rendered. In this particular case, we will initialize [watchUtils](https://developers.arcgis.com/javascript/latest/api-reference/esri-core-watchUtils.html#init) to watch for changes to the `View's` [center](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-View.html#center), [interacting](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-View.html#interacting), and [scale](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-View.html#scale) properties in which it then calls the method, `_onViewChange`.
 
 Add the following code to handle this,
 
@@ -205,7 +206,7 @@ export = Recenter;
 
 ### 2. Compiling the TSX file
 
-Now that the widget's code is implemented, use the TypeScript compiler to compile the _.tsx_ file to its underlying JavaScript implementation. 
+Now that the widget's code is implemented, use the TypeScript compiler to compile the _.tsx_ file to its underlying JavaScript implementation.
 
 In the command prompt, browse to the location of this sample directory and type `npm run build`. This compiles any specified _.tsx_ files within the _tsconfig.json_'s files to their equivalent _.js_ files. You should now have a new _Recenter.js_ file generated in the same directory as its _.tsx_ file.
 
@@ -215,7 +216,7 @@ Now that you generated the underlying _.js_ file for the widget, it can be added
 
 #### Add CSS
 
-The widget references the `.recenter-tool' class.  Add a style element that references this class as seen below.
+The widget references the `.recenter-tool' class. Add a style element that references this class as seen below.
 
 ```css
 .recenter-tool {
@@ -228,7 +229,7 @@ The widget references the `.recenter-tool' class.  Add a style element that refe
   z-index: 999;
 }
 
-.recenter-tool>p {
+.recenter-tool > p {
   margin: 0;
 }
 ```
@@ -265,10 +266,9 @@ require([
   "esri/views/MapView",
   "app/Recenter", // References the custom widget's module
   "esri/layers/VectorTileLayer"
-],
-(Map, MapView, Recenter, VectorTileLayer) => {
+], (Map, MapView, Recenter, VectorTileLayer) => {
   let map, view;
-})
+});
 ```
 
 Last, initialize the `Recenter` widget then add it to the `view.ui` to place the widget at the `top-right` of the map.

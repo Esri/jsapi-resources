@@ -2,7 +2,6 @@
   "compilerOptions": {
     "esModuleInterop": true,
     "experimentalDecorators": true,    
-    "importHelpers": true,
     "jsx": "react",
     "jsxFactory": "tsx",
     "lib": ["DOM","ES2020"],    
