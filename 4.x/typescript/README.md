@@ -9,7 +9,7 @@ Currently, due to limitations in TypeScript, the APIs [autocasting](https://deve
 
 ## Requirements
 
-* [TypeScript][2] 2.7+
+* [TypeScript][2] 3.7+
 
 ## Resources
 
