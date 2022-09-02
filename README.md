@@ -23,6 +23,7 @@ Refer to the README files in each subdirectory of this repo for specific instruc
 ## Resources
 * [ArcGIS API for JavaScript](https://js.arcgis.com)
 * [TypeScript](http://www.typescriptlang.org/)
+* [JavaScript Tutorial](https://www.scaler.com/topics/javascript/)
 
 ## Contributing
 
