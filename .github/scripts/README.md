@@ -36,10 +36,10 @@ const { getBuildSizes, formatBytes } = require("./build-sizes.js");
 
 You can also run the script via the command line. When running from the CLI, the script requires the path (absolute or relative) to the build directory as an argument. The script will log the sizes to the console.
 
-For example, your current working directory is `.github/scripts`. You want to analyze the build sizes of the [react sample](https://github.com/Esri/jsapi-resources/tree/master/esm-samples/jsapi-react), which is already built, and the build directory is named `build`. To get the size, you can run:
+For example, your current working directory is `.github/scripts`. You want to analyze the build sizes of the [react sample](https://github.com/Esri/jsapi-resources/tree/master/esm-samples/jsapi-react), which is already built, and the build directory is named `dist`. To get the size, you can run:
 
 ```bash
-node build-size.js ../../esm-samples/jsapi-react/build
+node build-size.js ../../esm-samples/jsapi-react/dist
 ```
 
 And the output to the console is:
