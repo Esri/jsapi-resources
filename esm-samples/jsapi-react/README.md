@@ -6,7 +6,7 @@ This repo demonstrates how to use [@arcgis/core](https://www.npmjs.com/package/@
 
 **Step 1** - Run `npm install` and then start adding modules.
 
-**Step 2** Configure CSS. Here's a React example:
+**Step 2** Configure CSS.
 
 _index.css_
 
@@ -14,7 +14,7 @@ _index.css_
 @import "https://js.arcgis.com/4.24/@arcgis/core/assets/esri/themes/light/main.css";
 ```
 
-For additional information, see the [Build with ES smodules](https://developers.arcgis.com/javascript/latest/es-modules/) Guide topic in the SDK.
+For additional information, see the [Build with ES modules](https://developers.arcgis.com/javascript/latest/es-modules/) Guide topic in the SDK.
 
 ## Commands
 
