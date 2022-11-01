@@ -18,8 +18,8 @@ const SAMPLES_INFO = {
     buildPath: "dist" // relative path from the sample's root directory
   },
   "jsapi-react": {
-    name: "VITE",
-    package: "vite",
+    name: "React",
+    package: "react",
     buildPath: "dist"
   },
   "jsapi-vue": {
