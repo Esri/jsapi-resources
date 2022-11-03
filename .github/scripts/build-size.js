@@ -313,6 +313,7 @@ if (require.main === module) {
 
   (async () => {
     try {
+      let title = "";
       toggleLoadingAnimation();
       const args = process.argv.splice(2);
       // if requested, provide help and exit asap
@@ -343,7 +344,7 @@ if (require.main === module) {
         const performanceInfo = await getPerformanceInfo(path, buildSizes.mainBundleName);
 
         // log sizes to console
-        const title = "|> Application Performance <|";
+        title = "|> Application Performance <|";
         
         console.log(
           `\n${line}\n${title}\n${line}`,
@@ -376,7 +377,7 @@ if (require.main === module) {
       const underline = (text) => `\x1b[4m${text}\x1b[0m`;
 
       // log sizes to console
-      const title = "|> Application Build Sizes <|";
+      title = "|> Application Build Sizes <|";
 
       console.log(
         `\n${line}\n${title}\n${line}`,

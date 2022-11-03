@@ -36,10 +36,10 @@ const { getBuildSizes, formatBytes } = require("./build-sizes.js");
 
 You can also run the script via the command line. When running from the CLI, the script requires the path (absolute or relative) to the build directory as an argument. The script will log the sizes to the console.
 
-For example, your current working directory is `.github/scripts`. You want to analyze the build sizes of the [react sample](https://github.com/Esri/jsapi-resources/tree/master/esm-samples/jsapi-create-react-app), which is already built, and the build directory is named `build`. To get the size, you can run:
+For example, your current working directory is `.github/scripts`. You want to analyze the build sizes of the [react sample](https://github.com/Esri/jsapi-resources/tree/master/esm-samples/jsapi-react), which is already built, and the build directory is named `dist`. To get the size, you can run:
 
 ```bash
-node build-size.js ../../esm-samples/jsapi-create-react-app/build
+node build-size.js ../../esm-samples/jsapi-react/dist
 ```
 
 And the output to the console is:
@@ -64,7 +64,7 @@ Main JS bundle
 There are also options that you can set with flags. For example, you can tell the script to run a browser performance analysis against the build using the `-r` argument:
 
 ```bash
-node build-size.js ../../esm-samples/jsapi-create-react-app/build -r
+node build-size.js ../../esm-samples/jsapi-react/build -r
 ```
 
 Now, in addition to the build size information the output will also include the following:
@@ -84,7 +84,7 @@ Now, in addition to the build size information the output will also include the 
 Another example, you can specify a filetype for the largest bundle size (default is "js"):
 
 ```bash
-node build-size.js ../../esm-samples/jsapi-create-react-app/build --filetype=css
+node build-size.js ../../esm-samples/jsapi-react/build --filetype=css
 ```
 
 Providing the `-h` or `--help` flag will log usage information to the console, copy/pasted here for convenience:
@@ -137,7 +137,7 @@ Providing the `-h` or `--help` flag will log usage information to the console, c
 
 ### Running from NPM script
 
-You can get the sizes after every build by utilizing a sample's NPM scripts. For example, you can add a couple NPM scripts to `esm-samples/jsapi-create-react-app/package.json`:
+You can get the sizes after every build by utilizing a sample's NPM scripts. For example, you can add a couple NPM scripts to `esm-samples/jsapi-react/package.json`:
 
 ```diff
 ...

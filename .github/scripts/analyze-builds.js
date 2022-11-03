@@ -17,10 +17,10 @@ const SAMPLES_INFO = {
     package: "@angular/core",
     buildPath: "dist" // relative path from the sample's root directory
   },
-  "jsapi-create-react-app": {
-    name: "CRA",
-    package: "react-scripts",
-    buildPath: "build"
+  "jsapi-react": {
+    name: "React",
+    package: "react",
+    buildPath: "dist"
   },
   "jsapi-vue": {
     name: "Vue",
@@ -129,14 +129,8 @@ const execLogErr = async (command) => {
       console.log(buildOut);
 
       logHeader(`${sampleName}: calculating build sizes`);
-      const {
-        mainBundleName,
-        mainBundleSize,
-        mainBundleSizeGzip,
-        mainBundleSizeBrotli,
-        buildSize,
-        buildFileCount
-      } = await getBuildSizes(buildPath);
+      const { mainBundleName, mainBundleSize, mainBundleSizeGzip, mainBundleSizeBrotli, buildSize, buildFileCount } =
+        await getBuildSizes(buildPath);
 
       // convert bytes to megabytes
       const mainBundleSizeMB = (mainBundleSize / 1024 ** 2).toFixed(2);
@@ -144,7 +138,7 @@ const execLogErr = async (command) => {
       const mainBundleSizeBrotliMB = (mainBundleSizeBrotli / 1024 ** 2).toFixed(2);
       const buildSizeMB = (buildSize / 1024 ** 2).toFixed(2);
 
-      logHeader(`${sampleName}: calculating performance info`);   
+      logHeader(`${sampleName}: calculating performance info`);
       // Creating a single object due to duplication of sampleName.
       const perfResults = await browserPerformanceTest(buildPath, sampleName);
       // convert bytes to megabytes
