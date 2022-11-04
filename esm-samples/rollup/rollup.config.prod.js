@@ -1,7 +1,7 @@
 import commonjs from "@rollup/plugin-commonjs";
 import del from "rollup-plugin-delete";
 import resolve from "@rollup/plugin-node-resolve";
-import { terser } from "rollup-plugin-terser";
+import terser from "@rollup/plugin-terser";
 
 export default {
   input: "src/main.js",
