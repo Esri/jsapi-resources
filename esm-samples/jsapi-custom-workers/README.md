@@ -68,7 +68,7 @@ config.workers.loaderUrl = "https://cdn.jsdelivr.net/npm/systemjs@6.12.1/dist/s.
   const features = jsonFeatures.map((a) => Graphic.fromJSON(a));
 ```
 
-As you can see, the provided worker framework provides a Promise-based layer on top of workers for easier use. Web workers can only pass native JavaScript objects back and forth. But you can load modules from `@arcgis/core` inside your worker.
+As you can see, the provided worker framework creates a Promise-based layer on top of workers for easier use. Web workers can only pass native JavaScript objects back and forth. But you can load modules from `@arcgis/core` inside your worker.
 
 ```js
 // spatial-join-worker.js
