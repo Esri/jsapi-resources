@@ -23,4 +23,4 @@ If you run the performance metrics script locally, the performance indicators wi
 ### Archived Samples
 
 The following ESM samples have been removed:
-* Ember - available for download under the [Legacy](https://github.com/Esri/jsapi-resources/releases/tag/legacy) tag.
+* `jsapi-ember-cli` and  `jsapi-create-react-app`  - available for download under the [Legacy](https://github.com/Esri/jsapi-resources/releases/tag/legacy) tag.
