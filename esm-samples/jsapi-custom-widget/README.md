@@ -2,6 +2,9 @@
 
 This repo demonstrates creating a custom widget using [@arcgis/core](https://www.npmjs.com/package/@arcgis/core) ES modules with Vite. It also includes a basic example of using message bundles to display custom localized strings. 
 
+## Known issues
+* Custom widgets currently do not work with Vite.js 3.
+
 ## Get Started
 
 **Step 1** - Run `npm install`
