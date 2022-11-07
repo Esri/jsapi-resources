@@ -14,7 +14,7 @@ The key to using custom workers is building the workers separately from your mai
 // rollup.worker.config.js
 import commonjs from "@rollup/plugin-commonjs";
 import resolve from "@rollup/plugin-node-resolve";
-import { terser } from "rollup-plugin-terser";
+import terser from '@rollup/plugin-terser';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -76,26 +76,23 @@ As you can see, the provided worker framework creates a Promise-based layer on t
 import Graphic from "@arcgis/core/Graphic";
 
 export function doSpatialJoin([f1, f2]) {
-  // Rehydrate Graphics
-	const features1 = f1.map((a) => Graphic.fromJSON(a));
-	const features2 = f2.map((a) => Graphic.fromJSON(a));
-	const features = [];
-	let temp = [...features1];
-	let temp2 = [];
-	for (let feat of features2) {
-		const graphic = feat.clone();
-		graphic.attributes.count = 0;
-		temp2 = [...temp];
-		for (let i = 0; i < temp2.length; i++) {
-			const x = temp[i];
-			if ((x && graphic.geometry && x.geometry) && graphic.geometry.contains(x.geometry)) {
-				graphic.attributes.count++;
-				temp.splice(i, 1);
-			}
-		}
-    // Convert graphics to JSON objects
-		features.push(graphic.toJSON());
-	}
+  const features1 = f1.map((a) => Graphic.fromJSON(a));
+  const features2 = f2.map((a) => Graphic.fromJSON(a));
+  const features = [];
+  let temp = [...features1];
+  let temp2 = [];
+  for (let feature of features2) {
+    feature.attributes.count = 0;
+    temp2 = [...temp];
+    for (let i = 0; i < temp2.length; i++) {
+      const x = temp[i];
+      if (x && feature.geometry && x.geometry && feature.geometry.contains(x.geometry)) {
+        feature.attributes.count++;
+        temp.splice(i, 1);
+      }
+    }
+    features.push(feature.toJSON());
+  }
   return features;
 }
 
