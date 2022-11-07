@@ -68,7 +68,6 @@ async function runJoin() {
   const features2 = cityResults.features.map((a) => a.toJSON());
 
   const jsonFeatures = await spatialJoin.invoke("doSpatialJoin", [features1, features2]);
-  console.log(jsonFeatures);
   const features = jsonFeatures.map((a) => Graphic.fromJSON(a));
 
   map.removeMany([cityLayer, frsLayer]);
