@@ -19,3 +19,8 @@ For each release, we track certain metrics including bundle size and web applica
 Bundle size is dependant on multiple factors and will vary based on framework, module bundler, transpiling and related configurations, as well as the ArcGIS API for JavaScript functionality that has been implemented. The compile process can output several hundred or more bundles on-disk due to using dynamic imports. At runtime, your application will typically only load a portion of the bundles depending on what `@arcgis/core` modules are used in your project. 
 
 If you run the performance metrics script locally, the performance indicators will vary depending on the device or virtual machine that runs the script. The metrics are best used for analysing trends over time, and they should always be run on the same device in order to keep as many of the variables constant as possible. The calculations are dependant on many hardware and software factors including CPU load, memory usage and internet speed during the time window that the script is running. For example, the numbers you see using a GitHub action may be significantly different from when you run the scripts locally on your development machine.
+
+### Archived Samples
+
+The following ESM samples have been removed:
+* Ember - available for download under the [Legacy](https://github.com/Esri/jsapi-resources/releases/tag/legacy) tag.
