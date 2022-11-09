@@ -5,7 +5,7 @@ This repo integrates [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core
 ---
 **NOTE**
 
-This sample has been deprecated at 4.22. We will try our best to answer any questions you have on the [github issues](https://github.com/Esri/jsapi-resources/issues) page. 
+This sample has been deprecated at 4.22. We will try our best to answer any questions you have on the [github issues](https://github.com/Esri/jsapi-resources/issues) page.
 
 ---
 
@@ -88,9 +88,8 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 ### Linting
 
-- `npm run lint:hbs`
-- `npm run lint:js`
-- `npm run lint:js -- --fix`
+* `npm run lint`
+* `npm run lint:fix`
 
 ### Building
 
