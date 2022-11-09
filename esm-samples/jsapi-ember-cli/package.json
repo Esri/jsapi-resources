@@ -23,7 +23,7 @@
     "test:ember": "ember test"
   },
   "devDependencies": {
-    "@arcgis/core": "^4.20.0",
+    "@arcgis/core": "^4.25.0-next.20221013",
     "@ember/optional-features": "^2.0.0",
     "@ember/render-modifiers": "^2.0.4",
     "@ember/test-helpers": "^2.8.1",
