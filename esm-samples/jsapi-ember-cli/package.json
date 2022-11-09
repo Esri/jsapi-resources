@@ -23,9 +23,9 @@
     "@arcgis/core": "^4.20.0",
     "@ember/optional-features": "^2.0.0",
     "@ember/render-modifiers": "^1.0.2",
-    "@embroider/compat": "^0.24.1",
-    "@embroider/core": "^0.24.1",
-    "@embroider/webpack": "^0.24.1",
+    "@embroider/compat": "^1.9.0",
+    "@embroider/core": "^1.9.0",
+    "@embroider/webpack": "^1.9.0",
     "@glimmer/component": "^1.0.2",
     "@glimmer/tracking": "^1.0.2",
     "babel-eslint": "^10.1.0",
@@ -54,10 +54,11 @@
     "eslint-plugin-node": "^11.1.0",
     "loader.js": "^4.7.0",
     "npm-run-all": "^4.1.5",
-    "qunit-dom": "^1.5.0"
+    "qunit-dom": "^1.5.0",
+    "webpack": "^5.74.0"
   },
   "engines": {
-    "node": "10.* || >= 12"
+    "node": ">= 12"
   },
   "ember": {
     "edition": "octane"
