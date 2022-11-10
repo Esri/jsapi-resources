@@ -47,7 +47,7 @@ view.when(() => {
   button1.onclick = () => {
     console.log("Running local spatial join operation in a worker...");
     runJoin();
-  }
+  };
 });
 
 async function runJoin() {
@@ -83,7 +83,7 @@ async function runJoin() {
     layer: joinLayer,
     view,
     field: "count",
-    them: "above-and-below"
+    theme: "above-and-below"
   });
 
   joinLayer.renderer = renderer;
@@ -97,7 +97,7 @@ async function createLayer(layer, source, extraFields) {
   // create a Map to hold field info
   const fieldInfosMap = new Map();
 
-  for (const field of [...layer.fields]) {
+  for (const field of [...extraFields, ...layer.fields]) {
     fieldInfosMap.set(field.name, {
       fieldName: field.name,
       label: field.alias || field.name
@@ -109,7 +109,7 @@ async function createLayer(layer, source, extraFields) {
   const featLayer = new FeatureLayer({
     title: "Spatial Join Layer",
     objectIdField: layer.objectIdField,
-    fields: [...new Set([...layer.fields, ...extraFields])],
+    fields: [...new Set([...extraFields, ...layer.fields])],
     geometryType: layer.geometryType,
     source,
     // if schema of two layers is different,
@@ -124,5 +124,6 @@ async function createLayer(layer, source, extraFields) {
       ]
     }
   });
+
   return featLayer;
 }

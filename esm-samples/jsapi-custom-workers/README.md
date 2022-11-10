@@ -3,6 +3,7 @@
 This repo demonstrates using [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core) ES modules with custom workers.
 
 ## Known Issues
+- `@rollup/plugin-terser` has noticeably slower performance compared to `rollup-plugin-terser`. More information available on the [rollup](https://github.com/rollup/plugins/issues/1334) issue.
 - `webpack-dev-server` had a [breaking change](https://github.com/webpack/webpack-dev-server/blob/master/CHANGELOG.md#-breaking-changes-4) in `4.0.0` which removed `contentBase` in favor of the `static` option. This sample has been changed accordingly.
 
 ## Building workers
@@ -13,7 +14,7 @@ The key to using custom workers is building the workers separately from your mai
 // rollup.worker.config.js
 import commonjs from "@rollup/plugin-commonjs";
 import resolve from "@rollup/plugin-node-resolve";
-import { terser } from "rollup-plugin-terser";
+import terser from '@rollup/plugin-terser';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -68,33 +69,30 @@ config.workers.loaderUrl = "https://cdn.jsdelivr.net/npm/systemjs@6.12.1/dist/s.
   const features = jsonFeatures.map((a) => Graphic.fromJSON(a));
 ```
 
-As you can see, the provided worker framework provides a Promise-based layer on top of workers for easier use. Web workers can only pass native JavaScript objects back and forth. But you can load modules from `@arcgis/core` inside your worker.
+As you can see, the provided worker framework creates a Promise-based layer on top of workers for easier use. Web workers can only pass native JavaScript objects back and forth. But you can load modules from `@arcgis/core` inside your worker.
 
 ```js
 // spatial-join-worker.js
 import Graphic from "@arcgis/core/Graphic";
 
 export function doSpatialJoin([f1, f2]) {
-  // Rehydrate Graphics
-	const features1 = f1.map((a) => Graphic.fromJSON(a));
-	const features2 = f2.map((a) => Graphic.fromJSON(a));
-	const features = [];
-	let temp = [...features1];
-	let temp2 = [];
-	for (let feat of features2) {
-		const graphic = feat.clone();
-		graphic.attributes.count = 0;
-		temp2 = [...temp];
-		for (let i = 0; i < temp2.length; i++) {
-			const x = temp[i];
-			if ((x && graphic.geometry && x.geometry) && graphic.geometry.contains(x.geometry)) {
-				graphic.attributes.count++;
-				temp.splice(i, 1);
-			}
-		}
-    // Convert graphics to JSON objects
-		features.push(graphic.toJSON());
-	}
+  const features1 = f1.map((a) => Graphic.fromJSON(a));
+  const features2 = f2.map((a) => Graphic.fromJSON(a));
+  const features = [];
+  let temp = [...features1];
+  let temp2 = [];
+  for (let feature of features2) {
+    feature.attributes.count = 0;
+    temp2 = [...temp];
+    for (let i = 0; i < temp2.length; i++) {
+      const x = temp[i];
+      if (x && feature.geometry && x.geometry && feature.geometry.contains(x.geometry)) {
+        feature.attributes.count++;
+        temp.splice(i, 1);
+      }
+    }
+    features.push(feature.toJSON());
+  }
   return features;
 }
 
