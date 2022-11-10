@@ -8,7 +8,7 @@ jobs:
     if: "!contains(github.event.pull_request.labels.*.name, 'draft') && github.actor!='dependabot-preview[bot]'"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
           ref: ${{ github.event.pull_request.head.ref }}
@@ -33,9 +33,9 @@ jobs:
           fi
       - if: steps.build.outputs.skip == 'false'
         name: setup node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: lts/*
+          node-version: 16
       - if: steps.build.outputs.skip == 'false'
         name: install dependencies for sample metrics script
         run: |
