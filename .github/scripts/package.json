@@ -3,7 +3,7 @@
   "description": "Run analysis against ESM samples",
   "version": "0.1.0",
   "dependencies": {
-    "puppeteer": "^13.5.1",
-    "express": "^4.17.3"
+    "puppeteer": "^19.2.2",
+    "express": "^4.18.2"
   }
 }
