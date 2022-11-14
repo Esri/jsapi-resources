@@ -6,6 +6,7 @@ import { tsx, messageBundle } from "@arcgis/core/widgets/support/widget";
 import Point from "@arcgis/core/geometry/Point";
 import MapView from "@arcgis/core/views/MapView";
 import Widget from "@arcgis/core/widgets/Widget";
+import Handles from "@arcgis/core/core/Handles";
 
 type Coordinates = Point | number[] | any;
 
@@ -50,10 +51,16 @@ class Recenter extends Widget {
       scale: 0
     };        
 
-    watch(() => [this.view?.center, this.view?.interacting],
+    this._handle = new Handles();
+
+    this._handle.add(watch(() => [this.view?.center, this.view?.interacting],
     () => {
       this._onViewChange();
-    });
+    }));
+  }
+
+  destroy(): void {
+    this._handle.destroy();
   }
 
   //--------------------------------------------------------------------
@@ -94,6 +101,8 @@ class Recenter extends Widget {
   @property()
   @messageBundle("/esm-widget-vite/assets/t9n/widget")
   messages: { title: string; };
+
+  private _handle: Handles;
 
   //-------------------------------------------------------------------
   //
