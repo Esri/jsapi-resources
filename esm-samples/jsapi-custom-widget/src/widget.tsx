@@ -6,8 +6,6 @@ import { tsx, messageBundle } from "@arcgis/core/widgets/support/widget";
 import Point from "@arcgis/core/geometry/Point";
 import MapView from "@arcgis/core/views/MapView";
 import Widget from "@arcgis/core/widgets/Widget";
-// import WatchHandle from "@arcgis/core/core/Accessor";
-// import addHandles from "@arcgis/core/core/HandleOwner";
 import Handles from "@arcgis/core/core/Handles";
 
 type Coordinates = Point | number[] | any;
