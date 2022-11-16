@@ -29,7 +29,7 @@ jobs:
           else
             echo "package.json files changed: $packages_changed"
             echo "analyzing builds"
-            echo "::set-output name=skip::false"
+            echo "skip=false" >> $GITHUB_OUTPUT
           fi
       - if: steps.build.outputs.skip == 'false'
         name: setup node
@@ -47,7 +47,9 @@ jobs:
       - name: push sample metrics analysis
         if: steps.build.outputs.skip == 'false'
         run: |
+          git stash
           git pull
+          git stash pop
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add ./esm-samples/.metrics/*.csv
