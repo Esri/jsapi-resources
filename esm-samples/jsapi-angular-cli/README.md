@@ -4,14 +4,16 @@ This repo demonstrates how to use [@arcgis/core](https://www.npmjs.com/package/@
 
 ---
 ## Known issues
+* Upgrading Angular 15 automatically sets the TypeScript `target` to `ES2022` and `useDefineForClassFields` to `false`. The ArcGIS JS API requires that `useDefinedForClassFields` be set to `false` when using 
+the APIs TypeScript [decorators](https://developers.arcgis.com/javascript/latest/api-reference/esri-core-accessorSupport-decorators.html).
 
 * There is an optimization bug affecting production builds at Angular `12.2.x`. It is recommended to upgrade to Angular 13+. For more information: https://github.com/Esri/feedback-js-api-next/issues/131.
 
 * If you are seeing `404` errors in the console after updating Angular `12.1.x` dependencies, you should try clearing your browser cache. This is an Angular caching issue. 
 
-* To prevent `Unhandled Promise Rejection` errors when using Angular with Zone.js, upgrade to Angular 13, Zone.js `0.11.4`or greater, and switch the `tsconfig.target` to `es2017` or greater.
+* To prevent `Unhandled Promise Rejection` errors when using Angular with Zone.js, upgrade to Angular 13+, Zone.js `0.11.4` or greater, and switch the `tsconfig.target` to `es2017` or greater.
 
-* If you are seeing CommonJS or AMD dependency warnings you can supress them in your build output through a property setting in `angular.json`, this won't affect functionality. Also, consider upgrading by running `npm i @arcgis/core@latest`.
+* If you are seeing CommonJS or AMD dependency warnings you can supress them in your build output through a property setting in `angular.json`, this won't affect functionality. This may not be needed if you upgrade to Angular 15+. Also, consider upgrading to the latest version of the ArcGIS JS API by running `npm i @arcgis/core@latest`.
 
 *angular.json*
 
@@ -46,7 +48,7 @@ Currently, due to limitations in TypeScript, the APIs [autocasting](https://deve
 
 This sample implements strict class initalization, for more information visit the [TypeScript documentation](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-7.html#strict-class-initialization) page.
 
-Minimum required version is `~4.4.2`.
+Check the online Angular documentation for their minimum TypeScript requirements for each release.
 
 ## Commands
 
