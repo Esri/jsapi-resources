@@ -4,8 +4,7 @@ This repo demonstrates how to use [@arcgis/core](https://www.npmjs.com/package/@
 
 ---
 ## Known issues
-* Upgrading Angular 15 automatically sets the TypeScript `target` to `ES2022` and `useDefineForClassFields` to `false`. The ArcGIS JS API requires that `useDefinedForClassFields` be set to `false` when using 
-the APIs TypeScript [decorators](https://developers.arcgis.com/javascript/latest/api-reference/esri-core-accessorSupport-decorators.html).
+* In order to use the APIs TypeScript [decorators](https://developers.arcgis.com/javascript/latest/api-reference/esri-core-accessorSupport-decorators.html), set the [`useDefineForClassFields`](https://www.typescriptlang.org/tsconfig#useDefineForClassFields) option to `false` in `tsconfig.compilerOptions`.
 
 * There is an optimization bug affecting production builds at Angular `12.2.x`. It is recommended to upgrade to Angular 13+. For more information: https://github.com/Esri/feedback-js-api-next/issues/131.
 
