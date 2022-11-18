@@ -2,7 +2,7 @@
 
 The [arcgis-js-api.d.ts](arcgis-js-api.d.ts) file provides type definitions for ArcGIS API for JavaScript version 3.x.
 
-A copy of this file is also available at [DefinitelyTyped][https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/arcgis-js-api/v3] and may be installed using the command:  
+A copy of this file is also available at [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/arcgis-js-api/v3) and may be installed using the command:  
 `npm install --save @types/arcgis-js-api@3`
 
 | :warning:  Sample has been been removed   |
