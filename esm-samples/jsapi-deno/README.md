@@ -2,6 +2,12 @@
 
 Integrating [Deno](https://deno.land/) with [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core) can be done by using [TypeScript](https://www.typescriptlang.org/) with no compile steps.
 
+Please refer to the [Deno installation](https://deno.land/manual@v1.28.2/getting_started/installation) instructions for your environment.
+
+## Usage
+
+The `@arcgis/core` package can be referenced with Deno [npm specifiers](https://deno.land/manual@v1.28.2/node/npm_specifiers). meaning you do not need to manually install the package in your projects.
+
 ## IdentityManager
 
 You will also want to disable the [`IdentityManager`](https://developers.arcgis.com/javascript/latest/api-reference/esri-identity-IdentityManager.html) using [`config.request`](https://developers.arcgis.com/javascript/latest/api-reference/esri-config.html#request) so it doesn't attempt to load DOM-related JavaScript.
