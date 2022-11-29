@@ -6,7 +6,7 @@ Please refer to the [Deno installation](https://deno.land/manual@v1.28.2/getting
 
 ## Usage
 
-The `@arcgis/core` package can be referenced with Deno [npm specifiers](https://deno.land/manual@v1.28.2/node/npm_specifiers). meaning you do not need to manually install the package in your projects.
+The `@arcgis/core` package can be referenced with [npm specifiers](https://deno.land/manual@v1.28.2/node/npm_specifiers), meaning you do not need to manually install the package in your projects.
 
 ## IdentityManager
 
