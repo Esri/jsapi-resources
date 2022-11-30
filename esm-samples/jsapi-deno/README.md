@@ -8,6 +8,10 @@ Please refer to the [Deno installation](https://deno.land/manual@v1.28.2/getting
 
 The `@arcgis/core` package can be referenced with [npm specifiers](https://deno.land/manual@v1.28.2/node/npm_specifiers), meaning you do not need to manually install the package in your projects.
 
+
+## Notes
+
+Currently loading the web assembly files for modules such as [projection](https://developers.arcgis.com/javascript/latest/api-reference/esri-geometry-projection.html) does not work in Deno.
 ## IdentityManager
 
 You will also want to disable the [`IdentityManager`](https://developers.arcgis.com/javascript/latest/api-reference/esri-identity-IdentityManager.html) using [`config.request`](https://developers.arcgis.com/javascript/latest/api-reference/esri-config.html#request) so it doesn't attempt to load DOM-related JavaScript.
