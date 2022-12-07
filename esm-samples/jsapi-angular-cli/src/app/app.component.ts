@@ -10,7 +10,6 @@ import WebMap from '@arcgis/core/WebMap';
 import MapView from '@arcgis/core/views/MapView';
 import Bookmarks from '@arcgis/core/widgets/Bookmarks';
 import Expand from '@arcgis/core/widgets/Expand';
-import { when } from '@arcgis/core/core/reactiveUtils';
 
 @Component({
   selector: 'app-root',
@@ -62,14 +61,6 @@ export class AppComponent implements OnInit, OnDestroy {
       }
     });
 
-    // @ts-expect-error
-    webmap.addHandles(when(
-      () => !this.view.updating,
-      () => {
-        console.log("booyah");
-      }
-    ));
-
     this.view = view;
     return this.view.when();
   }
@@ -78,7 +69,7 @@ export class AppComponent implements OnInit, OnDestroy {
     // Initialize MapView and return an instance of MapView
     this.initializeMap().then(() => {
       // The map has been initialized
-        console.log('The map is ready.');     
+        console.log('The map is ready.');
     });
   }
 
