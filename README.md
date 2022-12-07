@@ -2,7 +2,9 @@ jsapi-resources
 ===============
 A collection of resources for developers using the [ArcGIS Maps SDK for JavaScript](https://js.arcgis.com).
 
-### ArcGIS Maps SDK for JavaScript 4.x
+## ArcGIS Maps SDK for JavaScript
+
+### 4.x
 
 #### ES modules (ESM)
 * [ESM samples - Create local builds with frameworks and module bundlers](./esm-samples/)
@@ -13,7 +15,7 @@ A collection of resources for developers using the [ArcGIS Maps SDK for JavaScri
 ### OAuth
 * [HTML for handling callbacks](./oauth/README.md)
 
-### ArcGIS API for JavaScript 3.x (Legacy)
+### 3.x (Legacy)
 * The version 3.x samples can be downloaded or [checked out](https://git-scm.com/book/en/v2/Git-Basics-Tagging) via the [`legacy` releases tag](https://github.com/Esri/jsapi-resources/releases/tag/legacy). 
 
 ## Instructions
