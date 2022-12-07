@@ -1,4 +1,4 @@
-# ArcGIS API for JavaScript in Node.js
+# ArcGIS Maps SDK for JavaScript in Node.js
 
 Integrating Node.js with [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core) can be done by building the app with [native ES modules in a supported Node version](https://nodejs.org/dist/latest-v14.x/docs/api/esm.html) or by transpiling to CommonJS. This sample contains examples of both approaches.
 

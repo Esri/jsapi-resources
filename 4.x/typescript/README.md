@@ -1,6 +1,6 @@
 # TypeScript
 
-The [arcgis-js-api.d.ts](arcgis-js-api.d.ts) file provides type definitions for ArcGIS API for JavaScript.
+The [arcgis-js-api.d.ts](arcgis-js-api.d.ts) file provides type definitions for ArcGIS Maps SDK for JavaScript.
 
 A copy of this file is also available at [DefinitelyTyped][1] and may be installed using the command:  
 `npm install --save @types/arcgis-js-api`

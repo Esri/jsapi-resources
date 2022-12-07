@@ -1,8 +1,8 @@
 jsapi-resources
 ===============
-A collection of resources for developers using the [ArcGIS API for JavaScript](https://js.arcgis.com).
+A collection of resources for developers using the [ArcGIS Maps SDK for JavaScript](https://js.arcgis.com).
 
-### ArcGIS API for JavaScript 4.x
+### ArcGIS Maps SDK for JavaScript 4.x
 
 #### ES modules (ESM)
 * [ESM samples - Create local builds with frameworks and module bundlers](./esm-samples/)
@@ -20,7 +20,7 @@ A collection of resources for developers using the [ArcGIS API for JavaScript](h
 Refer to the README files in each subdirectory of this repo for specific instructions on how to use a particular resource.
 
 ## Resources
-* [ArcGIS API for JavaScript](https://js.arcgis.com)
+* [ArcGIS Maps SDK for JavaScript](https://js.arcgis.com)
 * [TypeScript](http://www.typescriptlang.org/)
 
 ## Contributing

@@ -1,4 +1,4 @@
-# ArcGIS API for JavaScript with React using Vite
+# ArcGIS Maps SDK for JavaScript with React using Vite
 
 This repo demonstrates how to use [@arcgis/core](https://www.npmjs.com/package/@arcgis/core) ES modules with [React](https://reactjs.org/).
 

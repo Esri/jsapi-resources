@@ -1,6 +1,6 @@
 # npm Sample application
 
-This is a sample application showing how to use [npm](https://www.npmjs.com/) to build your [ArcGIS API for JavaScript](https://developers.arcgis.com/javascript/) application.
+This is a sample application showing how to use [npm](https://www.npmjs.com/) to build your [ArcGIS Maps SDK for JavaScript](https://developers.arcgis.com/javascript/) application.
 It provides multiple types of ways to run your local builds using Dojo.
 
 It provides a [Gruntfile](Gruntfile.js), [gulpfile](gulpfile.js), and a [makefile](makefile).
