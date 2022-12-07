@@ -2,7 +2,7 @@
 
 ## Requirements
 
-* [ArcGIS API for JavaScript](https://js.arcgis.com) 3.10+
+* [ArcGIS Maps SDK for JavaScript](https://js.arcgis.com)
 
 ## Instructions
 
