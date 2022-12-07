@@ -479,7 +479,7 @@ if (require.main === module) {
 Usage: build-sizes <path> [options]
 
 Repository
-  https://github.com/Esri/jsapi-resources/tree/master/.github/scripts
+  https://github.com/Esri/jsapi-resources/tree/main/.github/scripts
 
 Arguments
   path [required]
