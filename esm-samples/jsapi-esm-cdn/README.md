@@ -1,4 +1,4 @@
-# ArcGIS API for JavaScript ES modules via CDN
+# ArcGIS Maps SDK for JavaScript ES modules via CDN
 
 We currently recommend only using the ES modules (ESM) via CDN for testing and prototyping. The ESM CDN build isn't optimized for fast loading. 
 

@@ -1,4 +1,4 @@
-# ArcGIS API for JavaScript in Deno
+# ArcGIS Maps SDK for JavaScript in Deno
 
 Integrating [Deno](https://deno.land/) with [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core) can be done by using [TypeScript](https://www.typescriptlang.org/) with no compile steps.
 

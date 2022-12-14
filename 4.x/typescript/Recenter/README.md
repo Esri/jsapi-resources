@@ -10,7 +10,7 @@ If this is your first time creating a custom widget, please refer to the either 
 
 This tutorial will assume that all the necessary [requirements](https://developers.arcgis.com/javascript/latest/custom-widget/#development-requirements) are installed.
 
-Also, for a detailed discussion on setting up TypeScript within your environment, please refer to the [TypeScript Setup guide topic](https://developers.arcgis.com/javascript/latest/typescript-setup/) within the ArcGIS API for JavaScript SDK.
+Also, for a detailed discussion on setting up TypeScript within your environment, please refer to the [TypeScript Setup guide topic](https://developers.arcgis.com/javascript/latest/typescript-setup/) within the ArcGIS Maps SDK for JavaScript.
 
 The proceeding steps will begin with implementing the widget in the .tsx file.
 

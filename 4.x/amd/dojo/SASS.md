@@ -1,6 +1,6 @@
 # Sass
 
-This is a sample setup showing how to use [npm](https://www.npmjs.com/) to customize the CSS for your [ArcGIS API for JavaScript](https://developers.arcgis.com/javascript/) application. It provides a Gruntfile needed to compile Sass.
+This is a sample setup showing how to use [npm](https://www.npmjs.com/) to customize the CSS for your [ArcGIS Maps SDK for JavaScript](https://developers.arcgis.com/javascript/) application. It provides a Gruntfile needed to compile Sass.
 
 ## Requirements
 * [node & npm](https://nodejs.org/)

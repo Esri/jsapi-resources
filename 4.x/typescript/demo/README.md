@@ -1,6 +1,6 @@
 # Demo App
 
-> TypeScript with the [ArcGIS API 4 for JavaScript](https://developers.arcgis.com/javascript/)
+> TypeScript with the [ArcGIS Maps SDK for JavaScript](https://developers.arcgis.com/javascript/)
 
 ## Usage
 

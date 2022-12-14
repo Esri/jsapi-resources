@@ -16,6 +16,7 @@ import Expand from '@arcgis/core/widgets/Expand';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
+
 export class AppComponent implements OnInit, OnDestroy {
   public view: any = null;
 

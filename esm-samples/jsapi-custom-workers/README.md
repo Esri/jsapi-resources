@@ -1,4 +1,4 @@
-# ArcGIS API for JavaScript with custom workers
+# ArcGIS Maps SDK for JavaScript with custom workers
 
 This repo demonstrates using [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core) ES modules with custom workers.
 
@@ -40,7 +40,7 @@ export default {
 
 ## Using workers
 
-You can then use the workers in your application using the worker framework of the ArcGIS API for JavaScript.
+You can then use the workers in your application using the worker framework of the ArcGIS Maps SDK for JavaScript.
 
 ```js
 // index.js

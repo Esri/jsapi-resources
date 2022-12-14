@@ -39,7 +39,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebPackPlugin({
-      title: 'ArcGIS API  for JavaScript',
+      title: 'ArcGIS Maps SDK  for JavaScript',
       template: './public/index.html',
       filename: './index.html',
       chunksSortMode: 'none',
