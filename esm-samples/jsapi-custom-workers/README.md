@@ -15,7 +15,7 @@ The key to using custom workers is building the workers separately from your mai
 import commonjs from "@rollup/plugin-commonjs";
 import resolve from "@rollup/plugin-node-resolve";
 import terser from '@rollup/plugin-terser';
-[label](https://github.com/rollup/plugins/blob/master/packages/terser/CHANGELOG.md#rollupplugin-terser-changelog)
+
 const production = !process.env.ROLLUP_WATCH;
 
 export default {
