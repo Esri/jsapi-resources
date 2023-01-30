@@ -7,7 +7,7 @@ body:
       label: IMPORTANT
       description: Verify the following requirements have been met before opening an issue.
       options:
-        - label: My question is related to the samples and content within this repository. For all other issues, open a ticket with [Esri Technical Support](https://support.esri.com/) or post your question in the [community forum](https://community.esri.com/t5/arcgis-api-for-javascript/ct-p/arcgis-api-for-javascript) or .
+        - label: My question is related to the samples and content within this repository. For all other issues, open a ticket with [Esri Technical Support](https://support.esri.com/) or post your question in the [community forum](https://community.esri.com/t5/arcgis-api-for-javascript/ct-p/arcgis-api-for-javascript).
           required: true
         - label: I have [checked for existing issues](https://github.com/Esri/jsapi-resources/issues) to avoid duplicates. If someone has already opened an issue for what you are experiencing, please add a 👍 reaction and comment as necessary to the existing issue instead of creating a new one.
           required: true
