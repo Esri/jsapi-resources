@@ -32,19 +32,6 @@ The most common errors are related to project configuration. Most of these types
 *	Package.json – e.g. dependency version mismatches
 *	Maps SDK – e.g. esriConfig, OAuth tokens, API keys
 
-### Bundler/Framework issues
-Bundlers and frameworks do occasionally have their own bugs. If you are working with a major framework or bundler, they have very active communities. Searching for the error message using a general internet search is typically the fastest way to get information and hints.
-* Configuration issues
-* Component issues
-* Syntax errors
-* Life-cycle problems
-
-### Maps SDK issues
-Errors occurring in the Maps SDK typically have one of these types of errors:
-*	Errors that occur at runtime and not during the build process
-*	Errors that occur in a Maps SDK module
-*	Errors that can be reproduced using the Maps SDK in plain JavaScript without a framework
-
 #### Example Configuration issues
 
 **Problem 1:** `404` errors that indicate a file is missing in a production build, but dev build works fine.
@@ -59,7 +46,14 @@ _Potential Resolution:_ These are typically related to transpiling. You may be m
 
 **Problem 3:** Error loading a .wasm or .woff file.
 
-_Potential Resolution:_ Configure your web server with the correct MIME types. See [example](https://developers.arcgis.com/javascript/latest/install-and-set-up/#web-server-hosting-configuration)
+_Potential Resolution:_ Configure your web server with the correct MIME types. See [example](https://developers.arcgis.com/javascript/latest/install-and-set-up/#web-server-hosting-configuration).
+
+### Bundler/Framework issues
+Bundlers and frameworks do occasionally have their own bugs. If you are working with a major framework or bundler, they have very active communities. Searching for the error message using a general internet search is typically the fastest way to get information and hints.
+* Configuration issues
+* Component issues
+* Syntax errors
+* Life-cycle problems
 
 #### Example Bundler/Framework issues
 
@@ -69,6 +63,12 @@ We do come across bugs in module bundlers and frameworks that are unrelated to t
 *	Angular issues: https://github.com/angular/angular-cli/issues 
 *	Rollup issues: https://github.com/rollup/rollup/issues 
 *	Webpack issues: https://github.com/webpack/webpack/issues 
+
+### Maps SDK issues
+Errors occurring in the Maps SDK typically have one of these types of errors:
+*	Errors that occur at runtime and not during the build process
+*	Errors that occur in a Maps SDK module
+*	Errors that can be reproduced using the Maps SDK in plain JavaScript without a framework
 
 #### Example Maps SDK issue
 
