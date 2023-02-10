@@ -76,7 +76,7 @@ Errors occurring in the Maps SDK typically have one of these types of errors:
 
 [Example - ReferenceError: Cannot access “e” before initialization](https://github.com/Esri/jsapi-resources/issues/309). In this case, when the error stack dump was expanded in the browser console, you could see file names that appear to be from the Maps SDK such as _renderLegendForLayer_ and _renderLegendForElement_, these are excellent hints.
 
-Verified errors in production builds can be reported on the [Maps SDK Community site](https://community.esri.com/t5/arcgis-javascript-maps-sdk-questions/bd-p/arcgis-api-for-javascript-questions), or if it’s specifically related to an ES modules sample on this repo, then you can open a github issue [here](https://github.com/Esri/jsapi-resources/issues).
+Verified errors in production builds can be reported on the [Maps SDK Community site](https://community.esri.com/t5/arcgis-javascript-maps-sdk-questions/bd-p/arcgis-api-for-javascript-questions), or if it’s specifically related to an ES modules sample on this repo, then you can open a GitHub issue [here](https://github.com/Esri/jsapi-resources/issues).
 
 **Regressions.** This is when Maps SDK functionality works in one release, and then the same functionality is broken in the next one. It’s important to insure the bugs are related to some other dependency in package.json. When testing for regressions, you will change only the version of @arcgis/core and keep all other dependencies constant. 
 
