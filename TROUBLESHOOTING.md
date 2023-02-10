@@ -64,7 +64,7 @@ We do come across bugs in module bundlers and frameworks that are unrelated to t
 *	Rollup issues: https://github.com/rollup/rollup/issues 
 *	Webpack issues: https://github.com/webpack/webpack/issues 
 
-### Maps SDK issues
+## Maps SDK issues
 Errors occurring in the Maps SDK typically have one of these types of errors:
 *	Errors that occur at runtime and not during the build process
 *	Errors that occur in a Maps SDK module
