@@ -23,7 +23,7 @@ There are four basic steps you can take to help isolate problems.
 
 ## Understand the cause of an issue
 
-With all the various parts in modern build systems, determining where the problem is occurring is critical. There are typically three categories where problems occur: configuration, bundler/framework, or the Maps SDK.
+With all the various parts in modern build systems, determining where the problem is occurring is critical. There are typically three categories where problems occur: configuration, bundler/framework, or the JS Maps SDK.
 
 ### Configuration issues
 The most common errors are related to project configuration. Most of these types of issues look like bugs, but oftentimes they are not:
