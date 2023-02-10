@@ -11,7 +11,7 @@
 
 ## Four triage steps
 
-There are four bsaic steps you can take to help isolate problems.
+There are four basic steps you can take to help isolate problems.
 
 **Step 1 – Review.** Examine the error message and the entire error dump. Most of the time there are clues in the error that will help solve the problem. Take note of when the error happens. Some errors only occur during the build process, others may only show up when you run the app in the browser, or only when the app is deployed to the production environment.
 
@@ -19,7 +19,7 @@ There are four bsaic steps you can take to help isolate problems.
 
 **Step 3 - Reproduce.** Try to reproduce the issue in a simple, focused stand-alone HTML/JavaScript app. This will help determine if the issue is related to the Maps SDK, or not. Sometimes, in the process of trying to reproduce the error you will solve the issue.
 
-**Step 4 – Create a sample.** Always try to provide a simple sample when posting your question to the Esri Community Site. There great online options for sharing samples including [codepen](https://codepen.io/), [github.com](https://github.com/), [codesandbox](https://codesandbox.io/) or [StackBlitz](https://stackblitz.com/) are great for providing reproducible examples. Code snippets often do not provide enough information about a project because they don’t include information on configuration, dependencies or coding patterns. Providing a working sample is essential to allow others to quickly reproduce your issue. Sometimes the process of creating the sample helps solve the problem.
+**Step 4 – Create a sample.** Always try to provide a simple sample when posting your question to the Esri Community Site. There are great online options for sharing samples including [codepen](https://codepen.io/), [github.com](https://github.com/), [codesandbox](https://codesandbox.io/) or [StackBlitz](https://stackblitz.com/). Code snippets often do not provide enough information about a project because they don’t include information on configuration, dependencies or coding patterns. Providing a working sample is essential to allow others to quickly reproduce your issue. Sometimes the process of creating the sample helps solve the problem.
 
 ## Understand the cause of an issue
 
