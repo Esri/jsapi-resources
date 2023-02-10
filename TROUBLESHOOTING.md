@@ -48,7 +48,7 @@ _Potential Resolution:_ These are typically related to transpiling. You may be m
 
 _Potential Resolution:_ Configure your web server with the correct MIME types. See [example](https://developers.arcgis.com/javascript/latest/install-and-set-up/#web-server-hosting-configuration).
 
-### Bundler/Framework issues
+## Bundler/Framework issues
 Bundlers and frameworks do occasionally have their own bugs. If you are working with a major framework or bundler, they have very active communities. Searching for the error message using a general internet search is typically the fastest way to get information and hints.
 * Configuration issues
 * Component issues
