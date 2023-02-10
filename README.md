@@ -21,6 +21,10 @@ A collection of resources for developers using the [ArcGIS Maps SDK for JavaScri
 ## Instructions
 Refer to the README files in each subdirectory of this repo for specific instructions on how to use a particular resource.
 
+## Troubleshooting
+For recommendations on identifying and solving issues in the ES module samples, see the [troubleshooting guide](./TROUBLESHOOTING.md).
+
+
 ## Resources
 * [ArcGIS Maps SDK for JavaScript](https://js.arcgis.com)
 * [TypeScript](http://www.typescriptlang.org/)

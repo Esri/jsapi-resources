@@ -9,7 +9,7 @@ body:
       options:
         - label: My question is related to the samples and content within this repository. For all other issues, open a ticket with [Esri Technical Support](https://support.esri.com/) or post your question in the [community forum](https://community.esri.com/t5/arcgis-api-for-javascript/ct-p/arcgis-api-for-javascript).
           required: true
-        - label: I have [checked for existing issues](https://github.com/Esri/jsapi-resources/issues) to avoid duplicates. If someone has already opened an issue for what you are experiencing, please add a 👍 reaction and comment as necessary to the existing issue instead of creating a new one.
+        - label: I have [checked for existing issues](https://github.com/Esri/jsapi-resources/issues) to avoid duplicates. If someone has already opened an issue for what you are experiencing, please add a 👍 reaction and comment as necessary to the existing issue instead of creating a new one. You can also refer to this repo's [troubleshooting guide](../../TROUBLESHOOTING.md) for hints and suggestions.
           required: true
   - type: textarea
     id: actual
