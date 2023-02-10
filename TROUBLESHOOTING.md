@@ -59,8 +59,8 @@ Bundlers and frameworks do occasionally have their own bugs. If you are working 
 
 We do come across bugs in module bundlers and frameworks that are unrelated to the JS Maps SDK. Sometimes these bugs have already been documented. Sometimes, we recommend you open an issue on the framework or bundler repository, that’s where many examples of these issues can be found, for example:
 
-*	React issues: https://github.com/facebook/react/issues 
 *	Angular issues: https://github.com/angular/angular-cli/issues 
+*	React issues: https://github.com/facebook/react/issues 
 *	Rollup issues: https://github.com/rollup/rollup/issues 
 *	Webpack issues: https://github.com/webpack/webpack/issues 
 
@@ -84,6 +84,6 @@ Most Maps SDK regressions can be re-created in a plain JavaScript application, w
 
 Verified regressions can be reported to[ Esri Technical Support](https://support.esri.com/en/contact-tech-support) or the [Maps SDK Community site](https://community.esri.com/t5/arcgis-javascript-maps-sdk-questions/bd-p/arcgis-api-for-javascript-questions).
 
-**New bugs.** The best practice for verifying these is to re-create them in a simple, plain JavaScript application, without the framework or bundler. The ESM CDN is an easy way to test for these types of issues, here is sample application. 
+**New bugs.** The best practice for verifying these is to re-create them in a simple, plain JavaScript application, without the framework or bundler. The ESM CDN is an easy way to test for these types of issues, here is the [sample application](./esm-samples/jsapi-esm-cdn/). 
 
 Verified bugs can be reported to[ Esri Technical Support](https://support.esri.com/en/contact-tech-support) or the [Maps SDK Community site](https://community.esri.com/t5/arcgis-javascript-maps-sdk-questions/bd-p/arcgis-api-for-javascript-questions).
