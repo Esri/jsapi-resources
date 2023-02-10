@@ -42,7 +42,7 @@ _Potential Resolution:_ Check the bundler or framework documentation on setting 
 
 _Potential Resolution:_ These are typically related to transpiling. You may be missing a needed transpiler plugin or need to upgrade to a newer version of the module bundler. The error messages may point to one or more Maps SDK modules. See [example](https://github.com/Esri/jsapi-resources/issues/424).
 *	Get a screenshot of the full error message
-*	Narrow down an Maps SDK version where the break occurred
+*	Narrow down the Maps SDK version where the break occurred
 
 **Problem 3:** Error loading a .wasm or .woff file.
 
@@ -72,9 +72,9 @@ Errors occurring in the Maps SDK typically have one of these types of errors:
 
 #### Example Maps SDK issue
 
-**Errors in production builds.** While very rare, sometimes the production build process of a framework creates errors that don’t show up in developer builds. These are often related to bundling, minification or transpiling. Look for hints in the error message that might point to functionality inside an Maps SDK module.
+**Errors in production builds.** While very rare, sometimes the production build process of a framework creates errors that don’t show up in developer builds. These are often related to bundling, minification or transpiling. Look for hints in the error message that might point to functionality inside a Maps SDK module.
 
-[Example - ReferenceError: Cannot access “e” before initialization](https://github.com/Esri/jsapi-resources/issues/309). In this case, when the error stack dump was expanded in the browser console, you could see file names that appear to be from the ArcGIS JS API such as _renderLegendForLayer_ and _renderLegendForElement_, these are excellent hints.
+[Example - ReferenceError: Cannot access “e” before initialization](https://github.com/Esri/jsapi-resources/issues/309). In this case, when the error stack dump was expanded in the browser console, you could see file names that appear to be from the Maps SDK such as _renderLegendForLayer_ and _renderLegendForElement_, these are excellent hints.
 
 Verified errors in production builds can be reported on the [Maps SDK Community site](https://community.esri.com/t5/arcgis-javascript-maps-sdk-questions/bd-p/arcgis-api-for-javascript-questions), or if it’s specifically related to an ES modules sample on this repo, then you can open a github issue [here](https://github.com/Esri/jsapi-resources/issues).
 
