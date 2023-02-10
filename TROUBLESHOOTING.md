@@ -29,7 +29,7 @@ With all the various parts in modern build systems, determining where the proble
 The most common errors are related to project configuration. Most of these types of issues look like bugs, but oftentimes they are not:
 *	Module bundler – e.g. webpack and rollup configuration
 *	Framework – e.g. Angular, React configuration
-*	Package.json – e.g. dependency version mismatches
+*	package.json – e.g. dependency version mismatches
 *	Maps SDK – e.g. esriConfig, OAuth tokens, API keys
 
 #### Example Configuration issues
