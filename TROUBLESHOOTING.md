@@ -15,7 +15,7 @@ There are four bsaic steps you can take to help isolate problems.
 
 **Step 1 – Review.** Examine the error message and the entire error dump. Most of the time there are clues in the error that will help solve the problem. Take note of when the error happens. Some errors only occur during the build process, others may only show up when you run the app in the browser, or only when the app is deployed to the production environment.
 
-**Step 2 - Search.** Search for error message on the Esri Community site or the internet, and research what might be causing the issue. This is often the fastest and easiest way to look for answers or get hints on how to solve a problem.
+**Step 2 - Search.** Search for error message on the Esri Community site or the internet, and research what might be causing the issue. This is often the fastest and easiest way to look for answers or get hints on how to solve a problem. Depending on the error, you should consider reviewing the Release notes for [breaking changes](https://developers.arcgis.com/javascript/latest/release-notes/#breaking-changes) or [bug fixes and enhancements](https://developers.arcgis.com/javascript/latest/release-notes/#bug-fixes-and-enhancements).
 
 **Step 3 - Reproduce.** Try to reproduce the issue in a simple, focused stand-alone HTML/JavaScript app. This will help determine if the issue is related to the Maps SDK, or not. Sometimes, in the process of trying to reproduce the error you will solve the issue.
 
@@ -47,20 +47,19 @@ Errors occurring in the Maps SDK typically have one of these types of errors:
 
 #### Example Configuration issues
 
-**Problem 1:** 404 errors that indicate a file is missing in a production build, but dev build works fine.
-Potential Resolution: Check the bundler or framework documentation on setting the base path for production builds.
-Example: https://github.com/Esri/jsapi-resources/issues/436 
+**Problem 1:** `404` errors that indicate a file is missing in a production build, but dev build works fine.
+
+_Potential Resolution:_ Check the bundler or framework documentation on setting the base path for production builds. See [example](https://github.com/Esri/jsapi-resources/issues/436).  
 
 **Problem 2:** Module parse failed: Unexpected token. You may need an appropriate loader to handle this file type. 
-Potential Resolution: These are typically related to transpiling. You may be missing a needed transpiler plugin or need to upgrade to a newer version of the module bundler. The error messages may point to one or more Maps SDK modules. 
+
+_Potential Resolution:_ These are typically related to transpiling. You may be missing a needed transpiler plugin or need to upgrade to a newer version of the module bundler. The error messages may point to one or more Maps SDK modules. See [example](https://github.com/Esri/jsapi-resources/issues/424).
 *	Get a screenshot of the full error message
 *	Narrow down an Maps SDK version where the break occurred
-Example: https://github.com/Esri/jsapi-resources/issues/424 
 
 **Problem 3:** Error loading a .wasm or .woff file.
-Potential Resolution: Configure your web server with the correct MIME types.
-Example: https://developers.arcgis.com/javascript/latest/install-and-set-up/#web-server-hosting-configuration 
 
+_Potential Resolution:_ Configure your web server with the correct MIME types. See [example](https://developers.arcgis.com/javascript/latest/install-and-set-up/#web-server-hosting-configuration)
 
 #### Example Bundler/Framework issues
 
@@ -75,11 +74,11 @@ We do come across bugs in module bundlers and frameworks that are unrelated to t
 
 **Errors in production builds.** While very rare, sometimes the production build process of a framework creates errors that don’t show up in developer builds. These are often related to bundling, minification or transpiling. Look for hints in the error message that might point to functionality inside an Maps SDK module.
 
-Example: https://github.com/Esri/jsapi-resources/issues/309 - ReferenceError: Cannot access “e” before initialization. In this case, when the error stack dump was expanded in the browser console, you could see file names that appear to be from the ArcGIS JS API such as _renderLegendForLayer_ and _renderLegendForElement_, these are excellent hints.
+[Example - ReferenceError: Cannot access “e” before initialization](https://github.com/Esri/jsapi-resources/issues/309). In this case, when the error stack dump was expanded in the browser console, you could see file names that appear to be from the ArcGIS JS API such as _renderLegendForLayer_ and _renderLegendForElement_, these are excellent hints.
 
 Verified errors in production builds can be reported on the [Maps SDK Community site](https://community.esri.com/t5/arcgis-javascript-maps-sdk-questions/bd-p/arcgis-api-for-javascript-questions), or if it’s specifically related to an ES modules sample on this repo, then you can open a github issue [here](https://github.com/Esri/jsapi-resources/issues).
 
-**Regressions.** This is when Maps SDK functionality works in one release, and then broken in the next one. It’s important to insure the bugs are related to some other dependency in package.json. When testing for regressions, you will change only the version of @arcgis/core and keep all other dependencies constant. 
+**Regressions.** This is when Maps SDK functionality works in one release, and then the same functionality is broken in the next one. It’s important to insure the bugs are related to some other dependency in package.json. When testing for regressions, you will change only the version of @arcgis/core and keep all other dependencies constant. 
 
 Most Maps SDK regressions can be re-created in a plain JavaScript application, without the framework or bundler. The ESM CDN is an easy way to test and prototype these types of issues: https://github.com/Esri/jsapi-resources/tree/master/esm-samples/jsapi-esm-cdn. 
 
