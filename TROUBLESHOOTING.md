@@ -1,4 +1,4 @@
-# Triaging issues when using client-side build tools
+# Troubleshooting issues when using client-side build tools
 
 [Client-side build tools](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Understanding_client-side_tools/Overview) involve many interrelated pieces such as frameworks, module bundlers, transpilers, and dependency libraries one of which is the ArcGIS Maps SDK for JavaScript (Maps SDK). Figuring out the cause of errors is often challenging. The goal of this document is to provide guidance for narrowing down the source of problems.
 
