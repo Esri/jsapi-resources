@@ -57,7 +57,7 @@ Bundlers and frameworks do occasionally have their own bugs. If you are working 
 
 #### Example Bundler/Framework issues
 
-We do come across bugs in module bundlers and frameworks that are unrelated to the Maps SDK. Sometimes these bugs have already been documented. Sometimes, we recommend you open an issue on the framework or bundler repository, that’s where many examples of these issues can be found, for example:
+We do come across bugs in module bundlers and frameworks that are unrelated to the JS Maps SDK. Sometimes these bugs have already been documented. Sometimes, we recommend you open an issue on the framework or bundler repository, that’s where many examples of these issues can be found, for example:
 
 *	React issues: https://github.com/facebook/react/issues 
 *	Angular issues: https://github.com/angular/angular-cli/issues 
