@@ -7,7 +7,7 @@
 2.	[Understanding the cause of an issue](#understand-the-cause-of-an-issue)
 3.	[Configuration issues](#configuration-issues)
 4.	[Bundler/Framework issues](#bundlerframework-issues)
-5.	[Maps SDK issues](#maps-sdk-issues)
+5.	[JS Maps SDK issues](#maps-sdk-issues)
 
 ## Four triage steps
 
