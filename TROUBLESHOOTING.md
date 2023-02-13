@@ -1,5 +1,4 @@
 # Troubleshooting issues when using client-side build tools
-
 [Client-side build tools](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Understanding_client-side_tools/Overview) involve many interrelated pieces such as frameworks, module bundlers, transpilers, and dependency libraries - one of which is the ArcGIS Maps SDK for JavaScript (JS Maps SDK). Figuring out the cause of errors is often challenging. The goal of this document is to provide guidance for narrowing down the source of problems.
 
 **Table of Contents**
@@ -10,7 +9,6 @@
 5.	[JS Maps SDK issues](#maps-sdk-issues)
 
 ## Four triage steps
-
 There are four basic steps you can take to help isolate problems.
 
 **Step 1 – Review.** Examine the error message and the entire error dump. Most of the time there are clues in the error that will help solve the problem. Take note of when the error happens. Some errors only occur during the build process, others may only show up when you run the app in the browser, or only when the app is deployed to the production environment.
@@ -22,7 +20,6 @@ There are four basic steps you can take to help isolate problems.
 **Step 4 – Create a sample.** Always try to provide a simple sample when posting your question to the Esri Community Site. There are great online options for sharing samples including [codepen](https://codepen.io/), [github.com](https://github.com/), [codesandbox](https://codesandbox.io/) or [StackBlitz](https://stackblitz.com/). Code snippets often do not provide enough information about a project because they don’t include information on configuration, dependencies or coding patterns. Providing a working sample is essential to allow others to quickly reproduce your issue. Sometimes the process of creating the sample helps solve the problem.
 
 ## Understand the cause of an issue
-
 With all the various parts in modern build systems, determining where the problem is occurring is critical. There are typically three categories where problems occur: configuration, bundler/framework, or the JS Maps SDK.
 
 ## Configuration issues
@@ -33,7 +30,6 @@ The most common errors are related to project configuration. Most of these types
 *	Maps SDK – e.g. esriConfig, OAuth tokens, API keys
 
 #### Example Configuration issues
-
 **Problem 1:** `404` errors that indicate a file is missing in a production build, but dev build works fine.
 
 _Potential Resolution:_ Check the bundler or framework documentation on setting the base path for production builds. See [example](https://github.com/Esri/jsapi-resources/issues/436).  
@@ -56,7 +52,6 @@ Bundlers and frameworks do occasionally have their own bugs. If you are working 
 * Life-cycle problems
 
 #### Example Bundler/Framework issues
-
 We do come across bugs in module bundlers and frameworks that are unrelated to the JS Maps SDK. Sometimes these bugs have already been documented. Sometimes, we recommend you open an issue on the framework or bundler repository, that’s where many examples of these issues can be found, for example:
 
 *	Angular issues: https://github.com/angular/angular-cli/issues 
@@ -71,7 +66,6 @@ Errors occurring in the Maps SDK typically have one of these types of errors:
 *	Errors that can be reproduced using the Maps SDK in plain JavaScript without a framework
 
 #### Example Maps SDK issue
-
 **Errors in production builds.** While very rare, sometimes the production build process of a framework creates errors that don’t show up in developer builds. These are often related to bundling, minification or transpiling. Look for hints in the error message that might point to functionality inside a Maps SDK module.
 
 [Example - ReferenceError: Cannot access “e” before initialization](https://github.com/Esri/jsapi-resources/issues/309). In this case, when the error stack dump was expanded in the browser console, you could see file names that appear to be from the Maps SDK such as _renderLegendForLayer_ and _renderLegendForElement_, these are excellent hints.
