@@ -33,7 +33,7 @@ For recommendations on identifying and solving issues in the ES module samples, 
 Please see our [guidelines for contributing](CONTRIBUTING.md).
 
 ## Licensing
-Copyright 2022 Esri
+Copyright 2023 Esri
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
