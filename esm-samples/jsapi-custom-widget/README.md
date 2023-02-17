@@ -4,10 +4,10 @@ This repo demonstrates creating a custom widget using [@arcgis/core](https://www
 
 | :warning:  Deprecation Notice   |
 |-----------------------------------------|
-| This sample is deprecated and it will be removed in a future release. Refer to the [SDK's FAQ](https://developers.arcgis.com/javascript/latest/faq/#how-are-breaking-changes-managed) for more information on breaking changes. When building custom widgets, it is recommended to use the UI component library of your choice. |
+| This sample is deprecated as of 4.25 and it will be removed in a future release. Refer to the [SDK's FAQ](https://developers.arcgis.com/javascript/latest/faq/#how-are-breaking-changes-managed) for more information on breaking changes. When building custom widgets, it is recommended to use the UI component library of your choice. |
 
 ## Known issues
-* When using Vite 3, [`"useDefineForClassFields": false`](https://www.typescriptlang.org/tsconfig#useDefineForClassFields) needs to be set in `tsconfig.json`. The ArcGIS JS API requires this setting for the widget's property binding to work.
+* When using Vite 3+, [`"useDefineForClassFields": false`](https://www.typescriptlang.org/tsconfig#useDefineForClassFields) needs to be set in `tsconfig.json`. The ArcGIS JS API requires this setting for the widget's property binding to work.
 
 ## Get Started
 
