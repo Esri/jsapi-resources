@@ -1,6 +1,5 @@
 name: Issue
 description: Report an issue with one of the samples in this repository. 
-labels: ["needs triage"]
 body:
   - type: checkboxes
     attributes:
