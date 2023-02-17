@@ -2,7 +2,7 @@
 
 Integrating [Deno](https://deno.land/) with [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core) can be done by using [TypeScript](https://www.typescriptlang.org/) with no compile steps.
 
-Please refer to the [Deno installation](https://deno.land/manual@v1.28.2/getting_started/installation) instructions for your environment.
+Please refer to the [Deno installation](https://deno.land/manual@v1.30.3/getting_started/installation) instructions for your environment.
 
 ## Usage
 
