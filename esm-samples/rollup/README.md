@@ -3,7 +3,7 @@
 This repo demonstrates how to use the [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core) ES modules with rollup.
 
 ## Known Issues
-- [Feb 2023] Updated this sample to `rollup@3.14.0` and set the `output.experimentalDeepDynamicChunkOptimization` flag to `true`. Testing with `4.25.5` demonstrated this update reduced the number of http requests on initial load by approximately 34%. There were also commensurate improvements in browser caching and a small decrease in the initial application load size. Reference this rollup [pull request](https://github.com/rollup/rollup/pull/4837). 
+- If you are using rollup `3.14.0` - `3.16.0`, to improve bundling performance set the `output.experimentalDeepDynamicChunkOptimization` flag to `true`. Reference this rollup [pull request](https://github.com/rollup/rollup/pull/4837). This issue can also be resolved by upgrading to `3.17.0`+.
 - It is recommended to upgrade `@rollup/plugin-terser` to `v0.4.0` or later. Previous versions have noticeably slower performance compared to `rollup-plugin-terser`. More information is available in the plugin's [CHANGELOG](https://github.com/rollup/plugins/blob/master/packages/terser/CHANGELOG.md#v040).
 
 ## Get Started
