@@ -9,8 +9,7 @@ export default {
     chunkFileNames: "chunks/[name]-[hash].js",
     dir: "public",
     format: "es",
-    generatedCode: "es2015",
-    experimentalDeepDynamicChunkOptimization: true
+    generatedCode: "es2015"
   },
   plugins: [
     del({ targets: ["public/chunks"], runOnce: true, verbose: true }),

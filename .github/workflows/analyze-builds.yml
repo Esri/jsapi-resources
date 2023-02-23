@@ -47,11 +47,12 @@ jobs:
       - name: push sample metrics analysis
         if: steps.build.outputs.skip == 'false'
         run: |
-          git stash
-          git pull
-          git stash pop
+          git branch
+          git status
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add ./esm-samples/.metrics/*.csv
+          git status
           git commit -m "ci: analyze esm sample builds" || true
           git push origin ${{ github.event.pull_request.head.ref }}
+          git status
