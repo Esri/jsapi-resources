@@ -134,6 +134,7 @@ const startWebServer = (path, port) => {
  */
 const browserPerformanceTest = async (path, sampleName = "") => {
   pageTotalBytes = 0;
+  totalJSRequests = 0;
   startWebServer(path, PORT);
 
   const browser = await puppeteer.launch({ headless: true });
@@ -151,11 +152,17 @@ const browserPerformanceTest = async (path, sampleName = "") => {
 
   // Check for HTTP page not found errors
   if (go?.status() !== 404) {
-    // Did the root CSS for the View get injected into the DOM
-    await page.waitForSelector(".esri-view-root");
-    console.log("Page loaded. Capturing metrics...");
-
-    const pageMetrics = await capturePageMetrics(page, sampleName);
+    await page.waitForSelector(".esri-view-root")
+    .then( async () => {
+      console.log("waitForSelector SUCCESS.");
+      console.log("Pause for any additional http responses.");
+      await new Promise(r => setTimeout(r, 10000));         
+      console.log("Page loaded. Capturing metrics...");
+      pageMetrics = await capturePageMetrics(page, sampleName);
+    })
+    .catch((err) => {
+      console.error("waitForSelector timeout ERROR: ", err);
+    });
 
     // Clean up by closing the browser
     await browser.close();
