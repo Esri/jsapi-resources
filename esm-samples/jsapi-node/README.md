@@ -3,7 +3,7 @@
 Integrating Node.js with [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core) can be done by building the app with [native ES modules in a supported Node version](https://nodejs.org/dist/latest-v14.x/docs/api/esm.html) or by transpiling to CommonJS. This sample contains examples of both approaches.
 
 ## Known Issues
-* Working with `fetch` - Use Node 18+, or with earlier versions use the `--experiment-fetch` flag. For example, use `node --experimental-fetch test-request.js`. For more information see the [Node.js 18 release notes](https://nodejs.org/en/blog/announcements/v18-release-announce#fetch-experimental).
+* A note about `fetch` - The Maps SDK uses the [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) internally. To accommodate this, use Node 18+, or with earlier versions use the `--experiment-fetch` flag. For example, `node --experimental-fetch test-request.js`. For more information see the [Node.js 18 release notes](https://nodejs.org/en/blog/announcements/v18-release-announce#fetch-experimental).
 
 ## Working with assets
 
