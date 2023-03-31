@@ -1,9 +1,5 @@
 #!/usr/bin/env node
 
-// load `fetch` and AbortController polyfills
-import "cross-fetch/dist/node-polyfill.js";
-import "abort-controller/polyfill.js"; // polyfill.mjs doesn't work since extensions are missing in abort-controller code
-
 import esriConfig from "@arcgis/core/config.js";
 import WebMap from "@arcgis/core/WebMap.js";
 
