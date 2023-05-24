@@ -6,7 +6,7 @@ let server;
 
 // Make sure you already built the appplication you are testing against :-)
 const run = () => {
-  const path = "../../esm-samples/jsapi-custom-widget/dist/";
+  const path = "../../esm-samples/jsapi-angular-cli/dist/";
   server = new WebServer(path, 3000);
   server.start();
 
