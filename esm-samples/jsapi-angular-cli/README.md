@@ -2,6 +2,8 @@
 
 This repo demonstrates how to use [@arcgis/core](https://www.npmjs.com/package/@arcgis/core) ES modules with Angular. 
 
+- *NOTE:* Compatibility with Webpack versions prior to `5.84.0` was deprecated at 4.27.
+
 ---
 ## Known issues
 * In order to use the APIs TypeScript [decorators](https://developers.arcgis.com/javascript/latest/api-reference/esri-core-accessorSupport-decorators.html), set the [`useDefineForClassFields`](https://www.typescriptlang.org/tsconfig#useDefineForClassFields) option to `false` in `tsconfig.compilerOptions`.
