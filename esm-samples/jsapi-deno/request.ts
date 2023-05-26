@@ -1,5 +1,5 @@
 // @deno-types="npm:@arcgis/core/interfaces.d.ts"
-import { Application, Context } from "https://deno.land/x/oak@v11.1.0/mod.ts";
+import { Application, Context } from "https://deno.land/x/oak@v12.5.0/mod.ts";
 import config from "npm:@arcgis/core/config.js";
 import esriRequest from "npm:@arcgis/core/request.js";
 
