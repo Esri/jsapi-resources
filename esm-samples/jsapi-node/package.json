@@ -1,14 +1,14 @@
 {
   "private": true,
   "dependencies": {
-    "@arcgis/core": "~4.26.5",
+    "@arcgis/core": "^4.27.0",
     "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-delete": "^2.0.0"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^24.0.1",
-    "@rollup/plugin-node-resolve": "^15.0.1",
-    "rollup": "^3.17.2"
+    "@rollup/plugin-commonjs": "^25.0.0",
+    "@rollup/plugin-node-resolve": "^15.0.2",
+    "rollup": "^3.23.0"
   },
   "scripts": {
     "build": "rollup -c"
