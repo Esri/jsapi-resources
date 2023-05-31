@@ -3,6 +3,7 @@
 This repo demonstrates how to use the [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core) ES modules with rollup.
 
 ## Known Issues
+- At 4.27, we removed CommonJS dependencies from the sample's build pipeline.
 - If you are using rollup `3.14.0` - `3.16.0`, to improve bundling performance set the `output.experimentalDeepDynamicChunkOptimization` flag to `true`. Reference this rollup [pull request](https://github.com/rollup/rollup/pull/4837). This issue can also be resolved by upgrading to `3.17.0`+.
 - It is recommended to upgrade `@rollup/plugin-terser` to `v0.4.0` or later. Previous versions have noticeably slower performance compared to `rollup-plugin-terser`. More information is available in the plugin's [CHANGELOG](https://github.com/rollup/plugins/blob/master/packages/terser/CHANGELOG.md#v040).
 
@@ -15,7 +16,7 @@ This repo demonstrates how to use the [`@arcgis/core`](https://www.npmjs.com/pac
 *index.html*
 
 ```html
- <link rel="stylesheet" href="https://js.arcgis.com/4.24/@arcgis/core/assets/esri/themes/light/main.css>
+ <link rel="stylesheet" href="https://js.arcgis.com/4.27/@arcgis/core/assets/esri/themes/light/main.css>
 ```
 
 For additional information, see the [Build with ES modules](https://developers.arcgis.com/javascript/latest/es-modules/) Guide topic in the SDK.
@@ -29,16 +30,14 @@ This example can also be used with TypeScript sources. The following steps conve
 
 1. Rename src/main.js to src/main.ts
 2. Change npm packages
- 1. `npm uninstall -D @rollup/plugin-commonjs`
- 2. `npm install -D @rollup/plugin-typescript`
- 3. `npm install -D tslib`
- 4. `npm install -D typescript`
-3. Edit rollup.config.js
- 1. Change the line `import commonjs from "@rollup/plugin-commonjs";` to `import typescript from "@rollup/plugin-typescript";`
+ 1. `npm install -D @rollup/plugin-typescript`
+ 2. `npm install -D tslib`
+ 3. `npm install -D typescript`
+3. Edit both rollup.config.js and rollup.config.prod.js
+ 1. Add `import typescript from "@rollup/plugin-typescript";`
  2. Change `input: "src/main.js",` to `input: "src/main.ts",`
- 3. Replace the `plugins` line `commonjs()` with `typescript()`
-4. Edit rollup.config.prod.js and make the same changes
-5. Add the file `tsconfig.json` to the folder containing `package.json`:
+ 3. Add `typescript()` to the end of the `plugins` array
+4. Create a file called `tsconfig.json` in the root directory of your project:
 ```json
 {
   "compilerOptions": {
@@ -47,7 +46,7 @@ This example can also be used with TypeScript sources. The following steps conve
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
-    "lib": ["dom", "es2020"],
+    "lib": ["dom", "dom.iterable", "es2021"],
     "module": "es2020",
     "moduleResolution": "node",
     "noUnusedLocals": true,
@@ -55,7 +54,7 @@ This example can also be used with TypeScript sources. The following steps conve
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "es2020"
+    "target": "es2021"
   },
   "include": [
     "src"
