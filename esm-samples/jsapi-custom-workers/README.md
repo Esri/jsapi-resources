@@ -12,7 +12,6 @@ The key to using custom workers is building the workers separately from your mai
 
 ```js
 // rollup.worker.config.js
-import commonjs from "@rollup/plugin-commonjs";
 import resolve from "@rollup/plugin-node-resolve";
 import terser from '@rollup/plugin-terser';
 
@@ -33,7 +32,7 @@ export default {
     format: "system",
     exports: "named"
   },
-  plugins: [resolve(), commonjs(), production && terser()],
+  plugins: [resolve(), production && terser()],
   preserveEntrySignatures: "allow-extension"
 };
 ```
