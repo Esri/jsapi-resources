@@ -1,7 +1,7 @@
 {
   "private": true,
   "dependencies": {
-    "@arcgis/core": "^4.27.0",
+    "@arcgis/core": "~4.27.0",
     "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-delete": "^2.0.0"
   },
