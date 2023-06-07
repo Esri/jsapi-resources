@@ -1,4 +1,4 @@
-# Recenter custom widget with React
+# Recenter custom widget with React and Vite
 
 This repo demonstrates creating a custom widget using [@arcgis/core](https://www.npmjs.com/package/@arcgis/core) ES modules with [React](https://react.dev/learn) and [Vite](https://vitejs.dev/guide/#community-templates). The widget is a DOM node created in React and then added to the Map using [View UI](https://next.sites.afd.arcgis.com/javascript/latest/view-ui/). This approach provides seamless integration with your preferred component library, and gives you full control over the user experience and component-life cycle so that it fits your unique requirements.
 
