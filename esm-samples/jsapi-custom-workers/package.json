@@ -2,7 +2,6 @@
   "private": true,
   "devDependencies": {
     "@arcgis/core": "~4.27.0",
-    "@rollup/plugin-commonjs": "^25.0.0",
     "@rollup/plugin-node-resolve": "^15.0.2",
     "@rollup/plugin-terser": "^0.4.3",
     "css-loader": "^6.7.4",
