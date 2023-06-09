@@ -14,14 +14,17 @@ const CenterWidget = ({ view, id }) => {
 
   useEffect(() => {
     // Watch for changes on the View's Extent
-    watch(
+    let handle = watch(
       () => view?.view?.extent,
       (value) => {
         const { latitude, longitude } = value.center;
         // Update the widget's display
         setCenter(`${longitude.toFixed(4)}, ${latitude.toFixed(4)}`);
-    }); 
-  });
+    });
+    // Clean up any handles or event listeners
+    // create in useEffct method
+    return () => handle.remove();
+  }, [view]);
 
  return <div id={id} className="center-widget">Center: {center}</div>;
 };
