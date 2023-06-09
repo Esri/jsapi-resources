@@ -22,7 +22,7 @@ const CenterWidget = ({ view, id }) => {
         setCenter(`${longitude.toFixed(4)}, ${latitude.toFixed(4)}`);
     });
     // Clean up any handles or event listeners
-    // create in useEffct method
+    // created in useEffct method
     return () => handle.remove();
   }, [view]);
 
