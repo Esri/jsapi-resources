@@ -46,7 +46,7 @@ function App() {
         setViewState({view});
       });
     }
-  }, []);
+  }, [mapDiv]);
 
   return <div className="mapDiv" ref={mapDiv}><CenterWidget id={centerWidgetID.current} view={viewState}></CenterWidget></div>;
 }
