@@ -2,11 +2,11 @@
 
 Integrating [Deno](https://deno.land/) with [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core) can be done by using [TypeScript](https://www.typescriptlang.org/) with no compile steps.
 
-Please refer to the [Deno installation](https://deno.land/manual@v1.30.3/getting_started/installation) instructions for your environment.
+Please refer to the [Deno installation](https://deno.com/manual@v1.34.0/getting_started) instructions for your environment.
 
 ## Usage
 
-The `@arcgis/core` package can be referenced with [npm specifiers](https://deno.land/manual@v1.28.2/node/npm_specifiers), meaning you do not need to manually install the package in your projects.
+The `@arcgis/core` package can be referenced with [npm specifiers](https://deno.com/manual@v1.34.0/node/npm_specifiers), meaning you do not need to manually install the package in your projects.
 
 
 ## Notes
@@ -23,7 +23,7 @@ esriConfig.request.useIdentity = false;
 
 ## Deno Server
 
-These samples use the [oak](https://deno.land/x/oak@v11.1.0) middleware for building a server with Deno. Please refer to the oak documentation for more details.
+These samples use the [oak](https://deno.land/x/oak) middleware for building a server with Deno. Please refer to the oak documentation for more details.
 
 ## Commands
 

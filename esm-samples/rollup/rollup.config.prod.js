@@ -1,4 +1,3 @@
-import commonjs from "@rollup/plugin-commonjs";
 import del from "rollup-plugin-delete";
 import resolve from "@rollup/plugin-node-resolve";
 import terser from "@rollup/plugin-terser";
@@ -14,7 +13,6 @@ export default {
   plugins: [
     del({ targets: ["public/chunks"], runOnce: true, verbose: true }),
     resolve(),
-    commonjs(), 
     terser()
   ],
   preserveEntrySignatures: false

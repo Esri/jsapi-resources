@@ -1,4 +1,3 @@
-import commonjs from "@rollup/plugin-commonjs";
 import del from "rollup-plugin-delete";
 import serve from "rollup-plugin-serve";
 import livereload from "rollup-plugin-livereload";
@@ -19,8 +18,7 @@ export default {
     serve("public"),
     livereload({
       watch: "public/main.js"
-    }),
-    commonjs()
+    })
   ],
   preserveEntrySignatures: false
 };

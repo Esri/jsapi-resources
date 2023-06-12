@@ -1,19 +1,10 @@
-@import 'https://js.arcgis.com/4.26/@arcgis/core/assets/esri/themes/light/main.css';
+@import 'https://js.arcgis.com/4.27/@arcgis/core/assets/esri/themes/light/main.css';
 html,
 body,
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  padding: 0;
-  margin: 0;
   width: 100%;
   height: 100%;
 }
 .mapdiv {
-  padding: 0;
-  margin: 0;
-  height: 600px;
+  height: 98vh;
 }

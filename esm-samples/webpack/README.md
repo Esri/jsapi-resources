@@ -2,6 +2,8 @@
 
 This repo demonstrates how to use the [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core) ES modules with webpack.
 
+- *NOTE:* Compatibility with Webpack versions prior to `5.84.0` was deprecated at 4.27.
+
 ## Known Issues
 - [July 2022] If you are using Webpack `4` and experiencing `Module parse failed: Unexpected token. You may need an appropriate loader to handle this file type...` errors during your build process after upgrading to ArcGIS Maps SDK for JavaScript `4.24`+, then try the following steps. 
 
@@ -58,7 +60,7 @@ This repo demonstrates how to use the [`@arcgis/core`](https://www.npmjs.com/pac
     };
    ```
 
-- `webpack-dev-server` had a [breaking change](https://github.com/webpack/webpack-dev-server/blob/master/CHANGELOG.md#-breaking-changes-4) in `4.0.0` which removed `contentBase` in favor of the `static` option. This sample has been changed accordingly.
+- `webpack-dev-server` had a [breaking change](https://github.com/webpack/webpack-dev-server/blob/master/CHANGELOG.md#-breaking-changes-4) in `4.0.0` which removed `contentBase` in favor of the `static` option. This sample was updated accordingly.
 
 ## Get Started
 
@@ -69,7 +71,7 @@ This repo demonstrates how to use the [`@arcgis/core`](https://www.npmjs.com/pac
 *index.css*
 
 ```css
-@import 'https://js.arcgis.com/4.26/@arcgis/core/assets/esri/themes/light/main.css';
+@import 'https://js.arcgis.com/4.27/@arcgis/core/assets/esri/themes/light/main.css';
 ```
 
 For additional information, see the [Build with ES modules](https://developers.arcgis.com/javascript/latest/es-modules/) Guide topic in the SDK.

@@ -1,16 +1,16 @@
-import config from "@arcgis/core/config";
-import Graphic from "@arcgis/core/Graphic";
-import ArcGISMap from "@arcgis/core/Map";
-import MapView from "@arcgis/core/views/MapView";
-import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
-import { whenOnce } from "@arcgis/core/core/reactiveUtils";
-import * as colorRendererCreator from "@arcgis/core/smartMapping/renderers/color";
-import Legend from "@arcgis/core/widgets/Legend";
-import * as workers from "@arcgis/core/core/workers";
+import config from "@arcgis/core/config.js";
+import Graphic from "@arcgis/core/Graphic.js";
+import ArcGISMap from "@arcgis/core/Map.js";
+import MapView from "@arcgis/core/views/MapView.js";
+import FeatureLayer from "@arcgis/core/layers/FeatureLayer.js";
+import { whenOnce } from "@arcgis/core/core/reactiveUtils.js";
+import * as colorRendererCreator from "@arcgis/core/smartMapping/renderers/color.js";
+import Legend from "@arcgis/core/widgets/Legend.js";
+import * as workers from "@arcgis/core/core/workers.js";
 
 config.workers.workerPath = "./RemoteClient.js";
 
-config.workers.loaderUrl = "https://cdn.jsdelivr.net/npm/systemjs@6.12.1/dist/s.min.js";
+config.workers.loaderUrl = "https://cdn.jsdelivr.net/npm/systemjs@6.14.1/dist/s.min.js";
 
 const button1 = document.getElementById("btn-1");
 

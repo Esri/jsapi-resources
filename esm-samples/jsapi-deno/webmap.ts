@@ -1,7 +1,7 @@
 // @deno-types="npm:@arcgis/core/interfaces.d.ts"
-import { Application, Context } from "https://deno.land/x/oak@v11.1.0/mod.ts";
-import config from "npm:@arcgis/core/config.js";
-import WebMap from "npm:@arcgis/core/WebMap.js";
+import { Application, Context } from "https://deno.land/x/oak@v12.5.0/mod.ts";
+import config from "npm:@arcgis/core@4.27/config.js";
+import WebMap from "npm:@arcgis/core@4.27/WebMap.js";
 
 config.request.useIdentity = false;
 

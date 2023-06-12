@@ -1,4 +1,3 @@
-import commonjs from "@rollup/plugin-commonjs";
 import del from "rollup-plugin-delete";
 import resolve from "@rollup/plugin-node-resolve";
 
@@ -9,11 +8,9 @@ export default {
     dir: "public",
     format: "cjs"
   },
-  external: ["whatwg-fetch"],
   plugins: [
     del({ targets: ["public/*"], runOnce: true, verbose: true }),
-    resolve(),
-    commonjs()
+    resolve()
   ],
   preserveEntrySignatures: false
 };
