@@ -3,7 +3,7 @@ import { watch } from '@arcgis/core/core/reactiveUtils';
 import './center-component.css';
 
 /**
- * React component that can be used in ArcGIS JS SDK.
+ * React component that can be used in an ArcGIS JS SDK application.
  * This component dynamically displays the center of the map extent
  * @param {*} view an instance of a `Mapview` or `SceneView`
  * @param {string} id - The `id` of the compenents's parent HTML div element
