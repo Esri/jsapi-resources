@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react';
 import { watch } from '@arcgis/core/core/reactiveUtils';
-import './center-widget.css';
+import './center-component.css';
 
 /**
- * React component that can be used as an ArcGIS JS SDK widget. 
- * This widget dynamically displays the center of the map extent
+ * React component that can be used in an ArcGIS JS SDK application.
+ * This component dynamically displays the center of the map extent
  * @param {*} view an instance of a `Mapview` or `SceneView`
- * @param {string} id - The `id` of the widget's parent HTML div element
- * @returns The widget's HTML div
+ * @param {string} id - The `id` of the components's parent HTML div element
+ * @returns The components's HTML div
  */
-const CenterWidget = ({ view, id }) => {
+const CenterComponent = ({ view, id }) => {
   const [center, setCenter] = useState(null);
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const CenterWidget = ({ view, id }) => {
       () => view?.view?.extent,
       (value) => {
         const { latitude, longitude } = value.center;
-        // Update the widget's display
+        // Update the component's display
         setCenter(`${longitude.toFixed(4)}, ${latitude.toFixed(4)}`);
     });
     // Clean up any handles or event listeners
@@ -26,7 +26,7 @@ const CenterWidget = ({ view, id }) => {
     return () => handle.remove();
   }, [view]);
 
- return <div id={id} className="center-widget">Center: {center}</div>;
+ return <div id={id} className="center-component">Center: {center}</div>;
 };
 
-export default CenterWidget;
+export default CenterComponent;

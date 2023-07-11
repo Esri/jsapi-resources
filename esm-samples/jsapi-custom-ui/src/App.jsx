@@ -3,14 +3,14 @@ import Bookmarks from '@arcgis/core/widgets/Bookmarks.js';
 import Expand from '@arcgis/core/widgets/Expand.js';
 import MapView from "@arcgis/core/views/MapView.js";
 import WebMap from "@arcgis/core/WebMap.js";
-import CenterWidget from "./CenterWidget.jsx";
+import CenterComponent from "./CenterComponent.jsx";
 
 import "./App.css";
 
 function App() {
 
   const [viewState, setViewState] = useState(null);
-  const centerWidgetID = useRef("center-widget");
+  const centerComponentID = useRef("center-component");
   const mapDiv = useRef(null);
 
   useEffect(() => {
@@ -39,8 +39,8 @@ function App() {
 
       // Add the Expand and BookMarks widgets to the top-right corner of the view
       view.ui.add(bkExpand, "top-right");
-      // Add Center widget to the bottom-right corner of the view
-      view.ui.add(document.getElementById(centerWidgetID.current), "bottom-right");
+      // Add Center component to the bottom-right corner of the view
+      view.ui.add(document.getElementById(centerComponentID.current), "bottom-right");
 
       webmap.when(() => {
         setViewState({view});
@@ -48,7 +48,7 @@ function App() {
     }
   }, [mapDiv]);
 
-  return <div className="mapDiv" ref={mapDiv}><CenterWidget id={centerWidgetID.current} view={viewState}></CenterWidget></div>;
+  return <div className="mapDiv" ref={mapDiv}><CenterComponent id={centerComponentID.current} view={viewState}></CenterComponent></div>;
 }
 
 export default App;
