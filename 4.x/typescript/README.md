@@ -1,13 +1,15 @@
 # TypeScript
 
-The [arcgis-js-api.d.ts](arcgis-js-api.d.ts) file provides type definitions for ArcGIS Maps SDK for JavaScript when using AMD modules and it can be downloaded from this repo.
+The [arcgis-js-api.d.ts](arcgis-js-api.d.ts) file provides TypeScript type definitions for ArcGIS Maps SDK for JavaScript when using AMD modules. 
 
-A copy of this file is also currently available at [DefinitelyTyped][1] and may be installed using the command:  
+The `.d.ts` declaration file only provides type information and can be downloaded from this repo. A copy of the file is also currently available at [DefinitelyTyped][1] and may be installed using the command:  
 `npm install --save @types/arcgis-js-api`.
+
+If you are looking to locally install the SDK library, which contains the full SDK functionality along with the type definitions, then refer to the SDK's [Introduction to tooling](https://developers.arcgis.com/javascript/latest/tooling-intro/) guide topic.
 
 ## Known issues
 
-* Currently, due to limitations in TypeScript, the APIs [autocasting](https://developers.arcgis.com/javascript/latest/programming-patterns/#autocasting) functionality works best in non-TypeScript applications. No changes are required if you are already using the API without any TypeScript build errors.
+* Currently, due to limitations in TypeScript, the APIs [autocasting](https://developers.arcgis.com/javascript/latest/programming-patterns/#autocasting) functionality works best in non-TypeScript applications. No changes are required if you are already using the SDK without any TypeScript build errors.
 
 ## Requirements
 
