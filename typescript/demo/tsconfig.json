@@ -8,7 +8,7 @@
     "moduleResolution": "node"
   },
   "include": [
-    "../*.d.ts",
+    "../archive/arcgis-js-api-4.27.d.ts",
     "./app/*"
   ]
 }
