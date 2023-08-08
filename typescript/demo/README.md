@@ -2,7 +2,7 @@
 
 A simple application that demonstrates using TypeScript with the [ArcGIS Maps SDK for JavaScript](https://developers.arcgis.com/javascript/) AMD modules. The TypeScript file `main.ts` is converted to JavaScript, and the `import` statements are converted to AMD by the TypeScript compiler. When you run the application, it uses the SDK's AMD modules from the [ArcGIS CDN](https://developers.arcgis.com/javascript/latest/install-and-set-up/#amd-modules-via-arcgis-cdn).
 
-The [`tsconfig.json`](./tsconfig.json) is configured to use the `arcgis-js-api.d.ts` TypeScript definition file from `./typescript` directory. 
+The [`tsconfig.json`](./tsconfig.json) is configured to use the `arcgis-js-api-4.[xx].d.ts` TypeScript definition file from `./typescript` directory. 
 
 ## Usage
 
