@@ -1,6 +1,0 @@
-{
-    "name": "app",
-    "description": "My Application.",
-    "version": "1.0",
-    "dojoBuild": "package.js"
-}

@@ -1,0 +1,32 @@
+{
+  "name": "arcgis-js-api-sample-app",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "repository": {
+    "url": "https://github.com/Esri/jsapi-resources/4.x/amd/dojo"
+  },
+  "scripts": {
+    "build": "grunt build",
+    "clean": "grunt clean",
+    "styles": "grunt styles --force"
+  },
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "dojo-util": "git+https://github.com/Esri/dojo-util.git#1.16.3-esri",
+    "grunt": "^1.0.4",
+    "grunt-cli": "^1.3.2",
+    "grunt-contrib-clean": "^2.0.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-dojo": "^1.1.1",
+    "grunt-sass": "^3.0.2",
+    "gulp": "^4.0.2",
+    "gulp-clean": "^0.4.0",
+    "gulp-rename": "^1.2.2",
+    "sass": "^1.30.0"
+  },
+  "dependencies": {
+    "arcgis-js-api": "~4.19.1",
+    "dojo": "^1.16.3"
+  }
+}
