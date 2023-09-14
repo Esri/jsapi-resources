@@ -6,6 +6,9 @@ This repo demonstrates how to use [@arcgis/core](https://www.npmjs.com/package/@
 
 ---
 ## Known issues
+
+* Some of the SDKs widgets may not work correctly in Angular 16+. This is due to a Calcite bug affecting the enabling/disabling buttons via two-way data binding: https://github.com/Esri/calcite-design-system/issues/7729. The bug applies to all Calcite versions greater than `1.2.0`. A temporary workaround is to disable zone.js monkey patching of DOM `click` events by setting this flag: `windows.__zone_symbol__UNPATCHED_EVENTS = ['click']`. More information is available in [Issue #481](https://github.com/Esri/jsapi-resources/issues/481#issuecomment-1687048980).
+
 * In order to use the APIs TypeScript [decorators](https://developers.arcgis.com/javascript/latest/api-reference/esri-core-accessorSupport-decorators.html), set the [`useDefineForClassFields`](https://www.typescriptlang.org/tsconfig#useDefineForClassFields) option to `false` in `tsconfig.compilerOptions`.
 
 * If you are seeing CommonJS or AMD dependency warnings you can supress them in your build output through a property setting in `angular.json`, this won't affect functionality. This may not be needed if you upgrade to Angular 15+. Also, consider upgrading to the latest version of the ArcGIS JS API by running `npm i @arcgis/core@latest`.
