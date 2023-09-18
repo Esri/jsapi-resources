@@ -1,6 +1,6 @@
 # ArcGIS Maps SDK for JavaScript in Node.js
 
-Integrating Node.js with [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core) can be done by building the app with native ES modules or by transpiling ES modules to [CommonJS](https://rollupjs.org/configuration-options/#output-format). This sample contains examples of both approaches.
+Integrating Node.js with [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core) can be done by building the app with native ES modules (.mjs) or by transpiling ES modules (.js) to [CommonJS](https://rollupjs.org/configuration-options/#output-format), which is also often referred to as CJS. This sample contains examples of both approaches.
 
 ---
 ## Known Issues
