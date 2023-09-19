@@ -2,7 +2,7 @@ import del from "rollup-plugin-delete";
 import resolve from "@rollup/plugin-node-resolve";
 
 export default {
-  input: ["src/request.js", "src/projection.js", "src/webmap.js"],
+  input: ["src/projection.js", "src/request.mjs", "src/webmap.mjs"],
   output: {
     chunkFileNames: "chunks/[name].js",
     dir: "public",

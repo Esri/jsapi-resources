@@ -1,11 +1,11 @@
 # ArcGIS Maps SDK for JavaScript in Node.js
 
-Integrating Node.js with [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core) can be done by building the app with native ES modules (.mjs) or by transpiling ES modules (.js) to [CommonJS](https://rollupjs.org/configuration-options/#output-format), which is also often referred to as CJS. This sample contains examples of both approaches.
+Integrating Node.js with [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core) can be done by building the app with native ES modules or by transpiling to CommonJS (CJS). This sample contains examples of both approaches.
 
 ---
 ## Known Issues
 
-* Using the SDK's [projection engine](https://developers.arcgis.com/javascript/latest/api-reference/esri-geometry-projection.html) in Node.js requires both transpiling to CommonJS (CJS), and using a local copy of the SDK's assets.
+* Using the SDK's [projection engine](https://developers.arcgis.com/javascript/latest/api-reference/esri-geometry-projection.html) in Node.js requires transpiling to CJS and using a local copy of the SDK's assets.
 
 ---
 
@@ -15,9 +15,8 @@ To run a test app, execute these commands in a terminal window:
 1. `npm install` - install the modules
 2. `npm run build` - run the build script
 3. `node test-projection.js` - run the app and the output will be written to the terminal window.
-4. `node ./native-esm/webmap.mjs` - run one of the native ESM samples.
 
-The source files are in the `/src` directory. Running the build command compiles the files to CJS and outputs them in the  `/public` directory. The [native ESM samples](./native-esm) are not transpiled and can be run as-is.
+The source files are in the `/src` directory. Running the build command transpiles the files to CJS and outputs them in the  `/public` directory. Only `projection.js` requires transpiling because it uses the SDK's projection engine. The `.mjs` files can be run natively, e.g. `node ./src/request.mjs`.
 
 ## Working with assets
 
