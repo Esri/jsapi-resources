@@ -9,4 +9,4 @@ Esri welcomes contributions from anyone and everyone. There are several ways you
 
 __NOTE__: The [arcgis-js-api.d.ts](./typescript/archive) files are automatically created from source code for each release, so there is no need to create a pull requests to update them. However, feel free to report issues related to these files and we'll see if changes can be incorporated into our source code, and the next update of these generated files.
 
-For anything else in this repo, feel free to report issues before submitted a pull request.
+For anything else in this repo, feel free to report issues before submitting a pull request.
