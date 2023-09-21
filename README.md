@@ -1,30 +1,39 @@
 jsapi-resources
 ===============
-A collection of resources for developers using the [ArcGIS Maps SDK for JavaScript](https://js.arcgis.com).
+A collection of resources for developers using the [ArcGIS Maps SDK for JavaScript](https://js.arcgis.com). Refer to the README files in each subdirectory for specific instructions on how to use a particular resource. 
 
-## ArcGIS Maps SDK for JavaScript
+## ES modules (ESM) samples
 
-### 4.x
+The Maps SDK's ES modules are available through the [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core) package on NPM. TypeScript definitions are included in the install.
 
-#### ES modules (ESM)
-* [ESM samples - Create local builds with frameworks and module bundlers](./esm-samples/)
+Below are a collection of samples that provide _proof-of-concept_ for using `@arcgis/core` with a variety of popular JavaScript build tools, frameworks and module bundlers.  
 
-#### AMD modules
-* [TypeScript - Class and interface definitions](./4.x/typescript/README.md)
+* [Angular CLI](./esm-samples/jsapi-angular-cli/)
+* [ArcGIS ESM CDN](./esm-samples/jsapi-esm-cdn/)
+* [Custom workers](./esm-samples/jsapi-custom-workers/)
+* [Custom UI](./esm-samples/jsapi-custom-ui/)
+* [Deno](./esm-samples/jsapi-deno/)
+* [Node.js](./esm-samples/jsapi-node/)
+* [React/Vite](./esm-samples/jsapi-react/)
+* [Rollup.js (no framework)](./esm-samples/rollup/)
+* [Vue.js/Vite](./esm-samples/jsapi-vue/)
+* [Vite/TypeScript](./esm-samples/jsapi-vite-ts/)
+* [Webpack (no framework)](./esm-samples/webpack/)
 
-### OAuth
-* [HTML for handling callbacks](./oauth/README.md)
+## AMD TypeScript declaration files
 
-### 3.x (Legacy)
-* 3.x samples can be downloaded or [checked out](https://git-scm.com/book/en/v2/Git-Basics-Tagging) via the [`legacy` releases tag](https://github.com/Esri/jsapi-resources/releases/tag/legacy). 
+The TypeScript `.d.ts` files for the last several releases of the Maps SDK's AMD modules can be downloaded from this [repo](./4.x/typescript/README.md). Or, you can NPM install the [`arcgis-js-api`](https://www.npmjs.com/package/arcgis-js-api) package and the TypeScript definitions are included.
 
-## Instructions
-Refer to the README files in each subdirectory of this repo for specific instructions on how to use a particular resource.
+## HTML OAuth callback example
 
-## Troubleshooting
-For recommendations on identifying and solving issues in the ES module samples, see the [troubleshooting guide](./TROUBLESHOOTING.md).
+If you have set OAuthInfo's `popup` property to `true`, you'll need to host a callback page on your server. This repo contains an [example callback page](./oauth/). For more information, visit the Maps SDK's [Access secure resources(https://developers.arcgis.com/javascript/latest/secure-resources/)] guide topic.
 
-## Resources
+## 3.x (Legacy) samples
+
+Legacy 3.x Bower and TypeScript samples can be downloaded or [checked out](https://git-scm.com/book/en/v2/Git-Basics-Tagging) via the [`legacy` releases tag](https://github.com/Esri/jsapi-resources/releases/tag/legacy). 
+
+## Additional resources
+
 * [ArcGIS Maps SDK for JavaScript](https://js.arcgis.com)
 * [TypeScript](http://www.typescriptlang.org/)
 
