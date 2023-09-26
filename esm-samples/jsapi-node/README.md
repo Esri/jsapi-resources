@@ -6,10 +6,12 @@ Integrating Node.js with [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/
 ## Known Issues
 
 * Using the SDK's [projection engine](https://developers.arcgis.com/javascript/latest/api-reference/esri-geometry-projection.html) in Node.js requires transpiling to CJS and using a local copy of the SDK's assets.
+* If you are getting the error `TypeError: Cannot read properties of undefined (reading 'bind')`, try upgrading to Node 18.16+ or use the `--experimental-fetch` flag, for example: `node --experimental-fetch test-request.js` or `node --experimental-fetch test-webmap.mjs`.
 
 ---
 
 ## Get Started
+Make sure you are running Node 18.16+ or greater: `node -v`.
 
 To run a test app, execute these commands in a terminal window:
 1. `npm install` - install the modules
