@@ -65,3 +65,7 @@ This example can also be used with TypeScript sources. The following steps conve
 }
 ```
 6. Note that the watch feature of `npm start` will not catch your TypeScript changes; you need to use `npm run watch` instead.
+
+## Experimental
+
+In `rollup.config.prod.js`, you can try fine tuning the [`output.experimentalMinChunkSize`](https://rollupjs.org/configuration-options/#output-experimentalminchunksize). Using a setting of `100_000` with this sample resulted in a roughly 17% reduction in the number of `.js` files requested. Depending on your application and other environment factors such as internet download speeds, this may result in a slight decrease in loading time.
