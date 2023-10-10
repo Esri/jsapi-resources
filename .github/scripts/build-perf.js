@@ -3,8 +3,10 @@ const puppeteer = require("puppeteer");
 const WebServer = require("./WebServer");
 
 let go, webserver;
+let test = 0;
 let pageTotalBytes = 0;
 let totalJSRequests = 0;
+let totalHTTPRequests = 0;
 let performanceMarkStart, performanceMarkEnd;
 const PORT = 3000; // Used for both WebServer and TEST_URL
 const TEST_URL = "http://localhost:" + PORT;
@@ -14,6 +16,7 @@ const TEST_URL = "http://localhost:" + PORT;
  * @param {Object} response 
  */
 const addResponseSize = async (response) => {
+  totalHTTPRequests++;
   const url = response.url();
   const str = url.substring(url.length - 3, url.length);
   if (str === ".js") {
@@ -103,6 +106,7 @@ const capturePageMetrics = async (page, sampleName) => {
    * Useful for comparing against the `elapsedRuntimeMS`. Should not be used as an indicator of
    * application performance, it's most useful for troubleshooting.
    * totalJSRequests - total number of JavaScript files requested by the app
+   * totalRequests = the total number of HTTP requests
    */
   return {
     sampleName,
@@ -110,7 +114,8 @@ const capturePageMetrics = async (page, sampleName) => {
     pageTotalBytes,
     JSHeapUsedSizeBytes,
     totalScriptTimeMS,
-    totalJSRequests
+    totalJSRequests,
+    totalHTTPRequests
   };
 };
 
@@ -137,7 +142,7 @@ const browserPerformanceTest = async (path, sampleName = "") => {
   totalJSRequests = 0;
   startWebServer(path, PORT);
 
-  const browser = await puppeteer.launch({ headless: true });
+  const browser = await puppeteer.launch({ headless: "new", args: ["--use-angle=default"] });
   const page = await browser.newPage();
   errorLogging(page);
   await pageSetup(page);
@@ -171,7 +176,7 @@ const browserPerformanceTest = async (path, sampleName = "") => {
     // Close it because we may need to test multiple directories
     const shutdown = await webserver.stop();
     console.log("Shutting down webserver:", shutdown);
-
+    console.log(pageMetrics);
     return pageMetrics;
   } else {
     console.log("\x1b[41m\x1b[30mERROR page did not load:", path);
@@ -181,4 +186,5 @@ const browserPerformanceTest = async (path, sampleName = "") => {
   }
 };
 
+// browserPerformanceTest("../../esm-samples/jsapi-angular-cli/dist/");
 module.exports = browserPerformanceTest;

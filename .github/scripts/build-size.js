@@ -356,6 +356,8 @@ if (require.main === module) {
           performanceInfo.totalScriptTimeMS,
           `\n --> total JS requests:`,
           performanceInfo.totalJSRequests,
+          `\n --> total HTTP requests:`,
+          performanceInfo.totalHTTPRequests,
           `\n --> app load size:`,
           formatBytes(performanceInfo.pageTotalBytes, decimals, binary),
           `\n --> jsheap size:`,
