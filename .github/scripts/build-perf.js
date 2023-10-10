@@ -176,7 +176,6 @@ const browserPerformanceTest = async (path, sampleName = "") => {
     // Close it because we may need to test multiple directories
     const shutdown = await webserver.stop();
     console.log("Shutting down webserver:", shutdown);
-    console.log(pageMetrics);
     return pageMetrics;
   } else {
     console.log("\x1b[41m\x1b[30mERROR page did not load:", path);
