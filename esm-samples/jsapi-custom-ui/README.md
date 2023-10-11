@@ -6,18 +6,8 @@ The component in this sample is created in [JSX](https://react.dev/learn/writing
 
 ## Get Started
 
-**Step 1** - Run `npm install`
+Run `npm install` and then start adding modules.
 
-**Step 2** Configure CSS. 
+For a list of all available `npm` commands see `scripts` in `package.json`.
 
-*index.css*
-
-```css
-@import 'https://js.arcgis.com/4.28/@arcgis/core/assets/esri/themes/light/main.css';
-```
-
-For additional information, see the [Build with ES modules](https://developers.arcgis.com/javascript/latest/es-modules/) Guide topic in the  SDK.
-
-## Commands
-
-For a list of all available npm script commands, see the scripts in `package.json` or use `npm run`.
+For additional information, see the [Build with ES modules](https://developers.arcgis.com/javascript/latest/es-modules/) Guide topic in the SDK.

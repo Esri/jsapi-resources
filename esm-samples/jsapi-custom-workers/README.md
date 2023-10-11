@@ -99,8 +99,10 @@ export function doSpatialJoin([f1, f2]) {
 
 For more details on using `@arcgis/core/core/workers`, you can review the [documentation](https://developers.arcgis.com/javascript/latest/api-reference/esri-core-workers.html).
 
+## Getting started
+
+Run `npm install` and then start adding modules.
+
+For a list of all available `npm` commands see `scripts` in `package.json`.
+
 For additional information, see the [Build with ES modules](https://developers.arcgis.com/javascript/latest/es-modules/) Guide topic in the SDK.
-
-## Commands
-
-For a list of all available `npm` commands see the scripts in `package.json`. 
