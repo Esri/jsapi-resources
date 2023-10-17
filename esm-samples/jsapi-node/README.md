@@ -12,7 +12,7 @@ Integrating Node.js with [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/
 ---
 
 ## Get Started
-Make sure you are running Node 18.16.1 or greater: `node -v`.
+Make sure you are running Node 18.16.0 or greater: `node -v`.
 
 To run a test app, execute these commands in a terminal window:
 1. `npm install` - install the modules
