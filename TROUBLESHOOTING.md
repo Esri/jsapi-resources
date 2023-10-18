@@ -1,6 +1,8 @@
 # Troubleshooting issues when using client-side build tools
 [Client-side build tools](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Understanding_client-side_tools/Overview) involve many interrelated pieces such as frameworks, module bundlers, transpilers, and dependency libraries - one of which is the ArcGIS Maps SDK for JavaScript (JS Maps SDK). Figuring out the cause of errors is often challenging. The goal of this document is to provide guidance for narrowing down the source of problems.
 
+If an issue with the SDK's functionality can be reproduced in a vanilla JavaScript application, without a framework or bundler, then it's likely to be an issue that can be reported to Esri Technical Support. For all other issues, please continue reading.
+
 **Table of Contents**
 1.	[Four triage steps](#four-triage-steps)
 2.	[Understanding the cause of an issue](#understand-the-cause-of-an-issue)
@@ -24,7 +26,7 @@ With all the various parts in modern build systems, determining where the proble
 
 ## Configuration issues
 The most common errors are related to project configuration. Most of these types of issues look like bugs, but oftentimes they are not:
-*	Module bundler – e.g. webpack and rollup configuration
+*	Module bundler – e.g. webpack or rollup configuration
 *	Framework – e.g. Angular, React configuration
 *	package.json – e.g. dependency version mismatches
 *	Maps SDK – e.g. esriConfig, OAuth tokens, API keys
@@ -40,19 +42,21 @@ _Potential Resolution:_ These are typically related to transpiling. You may be m
 *	Get a screenshot of the full error message
 *	Narrow down the JS Maps SDK version where the break occurred
 
+Also, confirm the [browserslist](https://github.com/browserslist/browserslist) is not supporting older versions of browsers that you don't need. This may be in the framework or bundler's documentation.
+
 **Problem 3:** Error loading a .wasm or .woff file.
 
 _Potential Resolution:_ Configure your web server with the correct MIME types. See [example](https://developers.arcgis.com/javascript/latest/install-and-set-up/#web-server-hosting-configuration).
 
 ## Bundler/Framework issues
-Bundlers and frameworks do occasionally have their own bugs. If you are working with a major framework or bundler, they have very active communities. Searching for the error message using a general internet search is typically the fastest way to get information and hints.
+Bundlers and frameworks oftentimes have their own bugs that are unrelated to the JS Maps SDK. If you are working with a major framework or bundler, they have very active communities. Searching for the error message using a general internet search, or going to the respective repository, is typically the fastest way to get information and hints.
 * Configuration issues
 * Component issues
 * Syntax errors
 * Life-cycle problems
 
 #### Example Bundler/Framework issues
-We do come across bugs in module bundlers and frameworks that are unrelated to the JS Maps SDK. Sometimes these bugs have already been documented. Sometimes, we recommend you open an issue on the framework or bundler repository, that’s where many examples of these issues can be found, for example:
+Sometimes these bugs have already been documented. Depending on the bug, we might recommend you open an issue on the framework or bundler repository. Examples of these issues can be found here:
 
 *	Angular issues: https://github.com/angular/angular-cli/issues 
 *	React issues: https://github.com/facebook/react/issues 
@@ -62,22 +66,22 @@ We do come across bugs in module bundlers and frameworks that are unrelated to t
 ## Maps SDK issues
 Errors occurring in the Maps SDK typically have one of these types of errors:
 *	Errors that occur at runtime and not during the build process
-*	Errors that occur in a Maps SDK module
-*	Errors that can be reproduced using the Maps SDK in plain JavaScript without a framework
+*	Errors that point to a Maps SDK module
+*	Errors that can be reproduced using the Maps SDK in vanilla JavaScript without a framework or bundler
 
 #### Example Maps SDK issue
 **Errors in production builds.** While very rare, sometimes the production build process of a framework creates errors that don’t show up in developer builds. These are often related to bundling, minification or transpiling. Look for hints in the error message that might point to functionality inside a Maps SDK module.
 
-[Example - ReferenceError: Cannot access “e” before initialization](https://github.com/Esri/jsapi-resources/issues/309). In this case, when the error stack dump was expanded in the browser console, you could see file names that appear to be from the Maps SDK such as _renderLegendForLayer_ and _renderLegendForElement_, these are excellent hints.
+[Example - ReferenceError: Cannot access “e” before initialization](https://github.com/Esri/jsapi-resources/issues/309). In this case, when the error stack dump was expanded in the browser console, you could see file names that appear to be from the JS Maps SDK such as _renderLegendForLayer_ and _renderLegendForElement_, these are excellent hints.
 
-Verified errors in production builds can be reported on the [Maps SDK Community site](https://community.esri.com/t5/arcgis-javascript-maps-sdk-questions/bd-p/arcgis-api-for-javascript-questions), or if it’s specifically related to an ES modules sample on this repo, then you can open a GitHub issue [here](https://github.com/Esri/jsapi-resources/issues).
+Verified errors in production builds using build tools can be reported on the [Maps SDK Community site](https://community.esri.com/t5/arcgis-javascript-maps-sdk-questions/bd-p/arcgis-api-for-javascript-questions), or if it’s specifically related to an ES modules sample on this repo, then you can open a GitHub issue [here](https://github.com/Esri/jsapi-resources/issues).
 
-**Regressions.** This is when Maps SDK functionality works in one release, and then the same functionality is broken in the next one. It’s important to insure the bugs are related to some other dependency in package.json. When testing for regressions, you will change only the version of @arcgis/core and keep all other dependencies constant. 
+**Regressions.** This is when JS Maps SDK functionality works in one release, and then the same functionality is broken in the next one. When testing for regressions, you will change only the version of @arcgis/core and keep all other dependencies constant.
 
-Most Maps SDK regressions can be re-created in a plain JavaScript application, without the framework or bundler. The ESM CDN is an easy way to test and prototype these types of issues: https://github.com/Esri/jsapi-resources/tree/master/esm-samples/jsapi-esm-cdn. 
+Most Maps SDK regressions can be re-created in a vanilla JavaScript application, without the framework or bundler. The ESM CDN is an easy way to test and prototype these types of issues: https://github.com/Esri/jsapi-resources/tree/master/esm-samples/jsapi-esm-cdn. 
 
 Verified regressions can be reported to[ Esri Technical Support](https://support.esri.com/en/contact-tech-support) or the [Maps SDK Community site](https://community.esri.com/t5/arcgis-javascript-maps-sdk-questions/bd-p/arcgis-api-for-javascript-questions).
 
-**New bugs.** The best practice for verifying these is to re-create them in a simple, plain JavaScript application, without the framework or bundler. The ESM CDN is an easy way to test for these types of issues, and here is the [sample application](./esm-samples/jsapi-esm-cdn/). 
+**New bugs.** The best practice for verifying these is to re-create them in a simple, vanilla JavaScript application, without the framework or bundler. The ESM CDN is an easy way to test for these types of issues, and here is the [sample application](./esm-samples/jsapi-esm-cdn/). 
 
 Verified bugs can be reported to[ Esri Technical Support](https://support.esri.com/en/contact-tech-support) or the [Maps SDK Community site](https://community.esri.com/t5/arcgis-javascript-maps-sdk-questions/bd-p/arcgis-api-for-javascript-questions).
