@@ -50,7 +50,7 @@ function App() {
         }
       });
     }
-  }, []);
+  }, [mapDiv]);
 
   return <div className="mapDiv" ref={mapDiv}></div>;
 }

@@ -1,7 +1,7 @@
 // @deno-types="npm:@arcgis/core/interfaces.d.ts"
-import { Application, Context } from "https://deno.land/x/oak@v12.5.0/mod.ts";
-import config from "npm:@arcgis/core@4.27/config.js";
-import esriRequest from "npm:@arcgis/core@4.27/request.js";
+import { Application, Context } from "https://deno.land/x/oak@v12.6.1/mod.ts";
+import config from "npm:@arcgis/core@4.28/config.js";
+import esriRequest from "npm:@arcgis/core@4.28/request.js";
 
 config.request.useIdentity = false;
 

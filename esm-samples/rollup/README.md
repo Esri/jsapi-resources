@@ -9,21 +9,11 @@ This repo demonstrates how to use the [`@arcgis/core`](https://www.npmjs.com/pac
 
 ## Get Started
 
-**Step 1** - Run `npm install` and then start adding modules
+Run `npm install` and then start adding modules.
 
-**Step 2** Configure CSS. Here's a basic HTML example:
-
-*index.html*
-
-```html
- <link rel="stylesheet" href="https://js.arcgis.com/4.27/@arcgis/core/assets/esri/themes/light/main.css>
-```
+For a list of all available `npm` commands see `scripts` in `package.json`.
 
 For additional information, see the [Build with ES modules](https://developers.arcgis.com/javascript/latest/es-modules/) Guide topic in the SDK.
-
-## Commands
-
-For a list of all available `npm` commands see the scripts in `package.json`.
 
 ## TypeScript
 This example can also be used with TypeScript sources. The following steps convert the example into a TypeScript starter.
@@ -65,3 +55,7 @@ This example can also be used with TypeScript sources. The following steps conve
 }
 ```
 6. Note that the watch feature of `npm start` will not catch your TypeScript changes; you need to use `npm run watch` instead.
+
+## Experimental
+
+In `rollup.config.prod.js`, you can try fine tuning the [`output.experimentalMinChunkSize`](https://rollupjs.org/configuration-options/#output-experimentalminchunksize). Using a setting of `100_000` with this sample resulted in a roughly 17% reduction in the number of `.js` files requested. Depending on your application and other environment factors such as internet download speeds, this may result in a slight decrease in loading time.

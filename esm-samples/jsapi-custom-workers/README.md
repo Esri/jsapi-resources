@@ -51,7 +51,7 @@ import * as workers from "@arcgis/core/core/workers.js";
 config.workers.workerPath = "./RemoteClient.js";
 
 // what loader to use, in this case SystemJS
-config.workers.loaderUrl = "https://cdn.jsdelivr.net/npm/systemjs@6.14.1/dist/s.min.js";
+config.workers.loaderUrl = "https://cdn.jsdelivr.net/npm/systemjs@6.14.2/dist/s.min.js";
 ...
   const results1= await layerView1.queryFeatures(query);
   const results2 = await layerView2.queryFeatures(query);
@@ -99,20 +99,10 @@ export function doSpatialJoin([f1, f2]) {
 
 For more details on using `@arcgis/core/core/workers`, you can review the [documentation](https://developers.arcgis.com/javascript/latest/api-reference/esri-core-workers.html).
 
+## Getting started
+
+Run `npm install` and then start adding modules.
+
+For a list of all available `npm` commands see `scripts` in `package.json`.
+
 For additional information, see the [Build with ES modules](https://developers.arcgis.com/javascript/latest/es-modules/) Guide topic in the SDK.
-
-## Commands
-
-For a list of all available `npm` commands see the scripts in `package.json`. 
-
-### development
-
-```
-npm run dev
-```
-
-### production
-
-```
-npm run build
-```
