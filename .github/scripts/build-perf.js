@@ -27,7 +27,7 @@ const addResponseSize = async (response) => {
     const buffer = await response.buffer();
     pageTotalBytes += buffer.length;
   } catch (e) {
-    console.log("\x1b[41m\x1b[30mERROR in http response:", e);
+    console.log("ERROR in http response:" + e);
   }
 };
 
@@ -36,19 +36,22 @@ const addResponseSize = async (response) => {
  * @param {Page} page An instance of puppeteer's Page
  */
 const errorLogging = (page) => {
-  page.on("console", (msg) => {
-    const type = msg.type();
-    if (type === "error") {
-      console.log("\x1b[41m\x1b[30mCONSOLE ERROR in puppeteer:", msg);
+  page.on("console", async (msg) => {
+    const args = await Promise.all(msg.args().map(arg => arg.toString()));
+    const type = msg.type().toUpperCase();    
+    let text = "";
+    for (let i = 0; i < args.length; ++i) {
+      text += `[${i}] ${args[i]} `;
     }
+    console.log(`CONSOLE.${type} in puppeteer: ${msg.text()}\n${text} `);
   });
 
   page.on("pageerror", (err) => {
-    console.log("\x1b[41m\x1b[30mERROR pageerror in puppeteer:", err);
+    console.log("ERROR pageerror in puppeteer:", err);
   });
 
   page.on("requestfailed", (err) => {
-    console.log("\x1b[41m\x1b[30mERROR - requestfailed in puppeteer:", err);
+    console.log(`ERROR - requestfailed in puppeteer: ${request.failure().errorText} ${request.url()}`);
   });
 };
 
@@ -140,6 +143,7 @@ const startWebServer = (path, port) => {
 const browserPerformanceTest = async (path, sampleName = "") => {
   pageTotalBytes = 0;
   totalJSRequests = 0;
+  totalHTTPRequests = 0;
   startWebServer(path, PORT);
 
   const browser = await puppeteer.launch({ headless: "new", args: ["--use-angle=default"] });
@@ -157,7 +161,7 @@ const browserPerformanceTest = async (path, sampleName = "") => {
 
   // Check for HTTP page not found errors
   if (go?.status() !== 404) {
-    await page.waitForSelector(".esri-view-root")
+    await page.waitForSelector(".esri-view-root", {visible: true})
     .then( async () => {
       console.log("waitForSelector SUCCESS.");
       console.log("Pause for any additional http responses.");
@@ -176,6 +180,7 @@ const browserPerformanceTest = async (path, sampleName = "") => {
     // Close it because we may need to test multiple directories
     const shutdown = await webserver.stop();
     console.log("Shutting down webserver:", shutdown);
+    console.log(pageMetrics);
     return pageMetrics;
   } else {
     console.log("\x1b[41m\x1b[30mERROR page did not load:", path);
@@ -185,5 +190,5 @@ const browserPerformanceTest = async (path, sampleName = "") => {
   }
 };
 
-// browserPerformanceTest("../../esm-samples/jsapi-angular-cli/dist/");
+// browserPerformanceTest("../../esm-samples/webpack/dist/");
 module.exports = browserPerformanceTest;

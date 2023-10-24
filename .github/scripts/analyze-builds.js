@@ -151,7 +151,7 @@ const execLogErr = async (command) => {
       stream.write(output);
 
       if (itemCount === sampleDirectories.length - 1) {
-        console.log("\x1b[33m%s\x1b[0m", "JOB COMPLETE");
+        console.log("JOB COMPLETE");
       }
     }
   } catch (err) {

@@ -35,7 +35,7 @@ jobs:
         name: setup node
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
       - if: steps.build.outputs.skip == 'false'
         name: install dependencies for sample metrics script
         run: |
