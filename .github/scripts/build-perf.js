@@ -190,5 +190,5 @@ const browserPerformanceTest = async (path, sampleName = "") => {
   }
 };
 
-browserPerformanceTest("../../esm-samples/webpack/dist/");
-// module.exports = browserPerformanceTest;
+// browserPerformanceTest("../../esm-samples/webpack/dist/");
+module.exports = browserPerformanceTest;
