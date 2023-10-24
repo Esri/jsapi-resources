@@ -27,7 +27,7 @@ const addResponseSize = async (response) => {
     const buffer = await response.buffer();
     pageTotalBytes += buffer.length;
   } catch (e) {
-    console.log("\x1b[41m\x1b[30mERROR in http response:", e);
+    console.log("ERROR in http response:" + e);
   }
 };
 
@@ -39,16 +39,16 @@ const errorLogging = (page) => {
   page.on("console", (msg) => {
     const type = msg.type();
     if (type === "error") {
-      console.log("\x1b[41m\x1b[30mCONSOLE ERROR in puppeteer:", msg);
+      console.log("CONSOLE ERROR in puppeteer:", msg);
     }
   });
 
   page.on("pageerror", (err) => {
-    console.log("\x1b[41m\x1b[30mERROR pageerror in puppeteer:", err);
+    console.log("ERROR pageerror in puppeteer:", err);
   });
 
   page.on("requestfailed", (err) => {
-    console.log("\x1b[41m\x1b[30mERROR - requestfailed in puppeteer:", err);
+    console.log("ERROR - requestfailed in puppeteer:", err);
   });
 };
 
@@ -157,7 +157,7 @@ const browserPerformanceTest = async (path, sampleName = "") => {
 
   // Check for HTTP page not found errors
   if (go?.status() !== 404) {
-    await page.waitForSelector(".esri-view-root")
+    await page.waitForSelector(".esri-view-root", {visible: true})
     .then( async () => {
       console.log("waitForSelector SUCCESS.");
       console.log("Pause for any additional http responses.");
@@ -185,5 +185,5 @@ const browserPerformanceTest = async (path, sampleName = "") => {
   }
 };
 
-// browserPerformanceTest("../../esm-samples/jsapi-angular-cli/dist/");
+// browserPerformanceTest("../../esm-samples/webpack/dist/");
 module.exports = browserPerformanceTest;
