@@ -6,6 +6,9 @@ import {
   OnDestroy,
 } from '@angular/core';
 
+import { CommonModule } from '@angular/common';
+import { RouterOutlet } from '@angular/router';
+
 import WebMap from '@arcgis/core/WebMap';
 import MapView from '@arcgis/core/views/MapView';
 import Bookmarks from '@arcgis/core/widgets/Bookmarks';
@@ -13,8 +16,10 @@ import Expand from '@arcgis/core/widgets/Expand';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
+  imports: [CommonModule, RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  styleUrls: ['./app.component.css']
 })
 
 export class AppComponent implements OnInit, OnDestroy {
