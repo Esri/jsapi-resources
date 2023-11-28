@@ -72,7 +72,7 @@ export class AppComponent implements OnInit, OnDestroy {
     // Initialize MapView and return an instance of MapView
     this.initializeMap().then(() => {
       // The map has been initialized
-        console.log('The map is ready.');
+      console.log('The map is ready.');
     });
   }
 
