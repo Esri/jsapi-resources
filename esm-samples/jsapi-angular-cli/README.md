@@ -44,4 +44,3 @@ For a list of all available `npm` commands see `scripts` in `package.json`.
     "moment"
   ],
 ```
----
