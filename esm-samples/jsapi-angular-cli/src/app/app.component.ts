@@ -5,6 +5,8 @@ import {
   ElementRef,
   OnDestroy,
 } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterOutlet } from '@angular/router';
 
 import WebMap from '@arcgis/core/WebMap';
 import MapView from '@arcgis/core/views/MapView';
@@ -13,8 +15,10 @@ import Expand from '@arcgis/core/widgets/Expand';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
+  imports: [CommonModule, RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  styleUrls: ['./app.component.css']
 })
 
 export class AppComponent implements OnInit, OnDestroy {
@@ -32,25 +36,25 @@ export class AppComponent implements OnInit, OnDestroy {
       },
     });
 
-    const view = new MapView({
+    this.view = new MapView({
       container,
       map: webmap
     });
 
     const bookmarks = new Bookmarks({
-      view,
+      view: this.view,
       // allows bookmarks to be added, edited, or deleted
       editingEnabled: true,
     });
 
     const bkExpand = new Expand({
-      view,
+      view: this.view,
       content: bookmarks,
       expanded: true,
     });
 
     // Add the widget to the top-right corner of the view
-    view.ui.add(bkExpand, 'top-right');
+   this.view.ui.add(bkExpand, 'top-right');
 
     // bonus - how many bookmarks in the webmap?
     webmap.when(() => {
@@ -61,7 +65,6 @@ export class AppComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.view = view;
     return this.view.when();
   }
 
@@ -69,7 +72,7 @@ export class AppComponent implements OnInit, OnDestroy {
     // Initialize MapView and return an instance of MapView
     this.initializeMap().then(() => {
       // The map has been initialized
-        console.log('The map is ready.');
+      console.log('The map is ready.');
     });
   }
 
@@ -80,3 +83,4 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   }
 }
+
