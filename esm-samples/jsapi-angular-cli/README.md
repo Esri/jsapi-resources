@@ -29,7 +29,31 @@ For a list of all available `npm` commands see `scripts` in `package.json`.
             ],
 ``` 
 
-* Some of the SDKs widgets may not work correctly in Angular 16+. This is due to a [Calcite bug](https://github.com/Esri/calcite-design-system/issues/7729) affecting the enabling/disabling buttons via two-way data binding. The bug applies to all Calcite versions greater than `1.2.0`. A temporary workaround is to disable zone.js monkey patching of DOM `click` events by setting this flag: `windows.__zone_symbol__UNPATCHED_EVENTS = ['click']`. More information is available in [Issue #481](https://github.com/Esri/jsapi-resources/issues/481#issuecomment-1687048980).
+* Some of the SDKs widgets may not work correctly in Angular 16+. This is due to a [Calcite bug](https://github.com/Esri/calcite-design-system/issues/7729) affecting the enabling/disabling buttons via two-way data binding. The bug applies to all Calcite versions greater than `1.2.0`. A potential workaround is to disable zone.js monkey patching of DOM `click` event. Make the following updates to your app, and be sure to test your application thoroughly for unexpected side effects.
+
+_src/zone-flags.ts_ - add this file to your project:
+
+```ts
+(window as any).__zone_symbol__UNPATCHED_EVENTS = ['click'];
+```
+
+_angular.json_
+
+```json
+  "polyfills": [
+    "src/zone-flags.ts",
+    "zone.js"
+  ],
+```
+
+_tsconfig.app.json_
+
+```json
+  "files": [
+    "src/zone-flags.ts",
+    "src/main.ts"
+  ],
+```
 
 * Currently, due to limitations in TypeScript, the APIs [autocasting](https://developers.arcgis.com/javascript/latest/programming-patterns/#autocasting) functionality works best in non-TypeScript applications. No changes are required if you are already using the API without any TypeScript build errors.
 
