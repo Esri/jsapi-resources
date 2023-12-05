@@ -2,12 +2,18 @@ const path = require('path');
 
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = {
   entry: {
     index: ['./src/index.css', './src/index.js']
   },
   node: false,
+  optimization: {
+    minimizer: [
+      new TerserPlugin({extractComments: false}),
+    ],
+  },  
   output: {
     path: path.join(__dirname, 'dist'),
     chunkFilename: 'chunks/[id].js',
