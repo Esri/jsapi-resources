@@ -1,10 +1,12 @@
-# TypeScript (AMD)
+# TypeScript (AMD) - Deprecated
 
-Download the TypeScript declaration file from the [archive](./archive/) folder. Choose the file that corresponds to the ArCGIS Maps SDK for JavaScript [version](https://developers.arcgis.com/javascript/latest/install-and-set-up/#amd-modules-via-arcgis-cdn) being used in your app. 
+**Deprecation Notice**: The AMD TypeScript declaration files and the [arcgis-js-api](https://www.npmjs.com/package/arcgis-js-api) npm package have been deprecated at 4.29 and will be retired at 4.31. if you are building a new application, we recommend using the [@arcgis/core](https://developers.arcgis.com/javascript/latest/es-modules/) ES modules, here are [sample applications](https://github.com/Esri/jsapi-resources/tree/main/esm-samples) for getting started.
+
+TypeScript declaration files are available for download from the [archive](./archive/) folder. Choose the file that corresponds to the ArCGIS Maps SDK for JavaScript [version](https://developers.arcgis.com/javascript/latest/install-and-set-up/#amd-modules-via-arcgis-cdn) being used in your app. 
 
 > **_NOTE:_**  The [declaration files](https://www.typescriptlang.org/docs/handbook/2/type-declarations.html#dts-files) only provide type information, they do not provide any SDK mapping capabilities. 
 
-You can also get the TypeScript definitions by locally installing the SDK package from NPM. From your project's root directory, run `npm install arcgis-js-api` on the command line. This package contains the full SDK functionality along with the type definitions. Refer to the SDK's [Introduction to tooling](https://developers.arcgis.com/javascript/latest/tooling-intro/) guide topic for additional information.
+You can also get the TypeScript definitions by locally installing the SDK package from deprecated npm package. From your project's root directory, run `npm install arcgis-js-api` on the command line. This package contains the full SDK functionality along with the type definitions. Refer to the SDK's [Introduction to tooling](https://developers.arcgis.com/javascript/latest/tooling-intro/) guide topic for additional information.
 
 ## Known issues
 
@@ -20,7 +22,7 @@ You can also get the TypeScript definitions by locally installing the SDK packag
 * Type definitions for many other libraries are available [here][4].
 
 ## Licensing
-Copyright 2023 Esri
+Copyright 2024 Esri
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

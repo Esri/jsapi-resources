@@ -20,17 +20,17 @@ Below are a collection of samples that provide _proof-of-concept_ for using `@ar
 * [Vite/TypeScript](./esm-samples/jsapi-vite-ts/)
 * [Webpack (no framework)](./esm-samples/webpack/)
 
-## AMD TypeScript declaration files
-
-The TypeScript `.d.ts` files for the last several releases of the Maps SDK's AMD modules can be downloaded from this [repo](./4.x/typescript/README.md). Or, you can NPM install the [`arcgis-js-api`](https://www.npmjs.com/package/arcgis-js-api) package and the TypeScript definitions are included.
-
 ## HTML OAuth callback example
 
 If you have set OAuthInfo's `popup` property to `true`, you'll need to host a callback page on your server. This repo contains an [example callback page](./oauth/). For more information, visit the Maps SDK's [Access secure resources(https://developers.arcgis.com/javascript/latest/secure-resources/)] guide topic.
 
-## 3.x (Legacy) samples
+## AMD TypeScript declaration files (Deprecated)
 
-Legacy 3.x Bower and TypeScript samples can be downloaded or [checked out](https://git-scm.com/book/en/v2/Git-Basics-Tagging) via the [`legacy` releases tag](https://github.com/Esri/jsapi-resources/releases/tag/legacy). 
+The AMD TypeScript `.d.ts` files are deprecated at 4.29 and will be removed at 4.31. The last several releases of the Maps SDK's AMD modules can be downloaded from this [repo](./4.x/typescript/README.md). The NPM `.d.ts` files can be installed via the [`arcgis-js-api`](https://www.npmjs.com/package/arcgis-js-api) package, which is also deprecated at 4.29.
+
+## 3.x samples (Deprecated)
+
+The deprecated 3.x Bower and TypeScript samples can be downloaded or [checked out](https://git-scm.com/book/en/v2/Git-Basics-Tagging) via the [`legacy` releases tag](https://github.com/Esri/jsapi-resources/releases/tag/legacy).
 
 ## Additional resources
 
@@ -42,7 +42,7 @@ Legacy 3.x Bower and TypeScript samples can be downloaded or [checked out](https
 Please see our [guidelines for contributing](CONTRIBUTING.md).
 
 ## Licensing
-Copyright 2023 Esri
+Copyright 2024 Esri
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
