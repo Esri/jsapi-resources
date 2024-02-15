@@ -1,16 +1,8 @@
 @import "https://js.arcgis.com/4.28.10/@arcgis/core/assets/esri/themes/light/main.css";
-@import "@esri/calcite-components/dist/calcite/calcite.css";
 html,
 body {
   width: 100%;
   height: 100%;
   margin: 0px;
   padding: 0px;
-}
-
-calcite-card {
-  border: 2px solid gray;
-  border-radius: 5px;
-  height: 325px;
-  width: 250px;
 }

@@ -5,15 +5,15 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "vite build",
     "preview": "vite preview"
   },
   "devDependencies": {
-    "typescript": "^5.2.2",
     "vite": "^5.1.0"
   },
   "dependencies": {
     "@arcgis/core": "^4.28.10",
-    "@esri/calcite-components": "^2.4.0"
+    "install": "^0.13.0",
+    "npm": "^10.4.0"
   }
 }

@@ -4,27 +4,15 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Access ArcGIS Online items using OAuth 2.0 - Vite + TS</title>
+    <title>Access ArcGIS Online using OAuth 2.0 - Vite + JS</title>
   </head>
   <body>
-    <calcite-shell>
-      <calcite-navigation slot="header">
-        <calcite-navigation-logo
-          slot="logo"
-          heading="OAuth sample"
-          description="Use OAuth to log in to an ArcGIS Organization to view your items."
-        ></calcite-navigation-logo>
-        <calcite-button id="sign-in-button" slot="user">Sign in</calcite-button>
-        <calcite-navigation-user hidden id="nav-user" slot="user">
-          <calcite-tooltip reference-element="nav-user">
-            <span>Click here to sign out.</span>
-          </calcite-tooltip></calcite-navigation-user
-        >
-      </calcite-navigation>
-      <calcite-panel id="item-panel">
-        <div id="item-gallery"></div>
-      </calcite-panel>
-    </calcite-shell>
-    <script type="module" src="/src/main.ts"></script>
+    <div>
+      <h2>OAuth sample</h2>
+      <h3>Use OAuth to log in to an ArcGIS Organization</h3>
+      <p id="user-display">Not signed in.</p>
+      <button id="sign-in-button">Sign in</button>
+    </div>
+    <script type="module" src="/main.js"></script>
   </body>
 </html>
