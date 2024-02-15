@@ -1,6 +1,6 @@
 # ArcGIS Maps SDK for JavaScript with Vue and Vite
 
-This repo demonstrates how to use [@arcgis/core](https://www.npmjs.com/package/@arcgis/core) ES modules with [Vite](https://vitejs.dev/guide/) using a [Vue.js](https://vuejs.org/) template.
+This sample demonstrates how to use [@arcgis/core](https://www.npmjs.com/package/@arcgis/core) ES modules with [Vite](https://vitejs.dev/guide/) using a [Vue.js](https://vuejs.org/) template.
 
 ## Get Started
 

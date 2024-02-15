@@ -1,6 +1,6 @@
 # ArcGIS Maps SDK for JavaScript with Angular CLI
 
-This repo demonstrates how to use [@arcgis/core](https://www.npmjs.com/package/@arcgis/core) ES modules with Angular. 
+This sample demonstrates how to use [@arcgis/core](https://www.npmjs.com/package/@arcgis/core) ES modules with Angular. 
 
 ## Get Started
 

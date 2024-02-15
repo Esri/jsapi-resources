@@ -1,6 +1,6 @@
 # ArcGIS Maps SDK for JavaScript with webpack
 
-This repo demonstrates how to use the [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core) ES modules with webpack.
+This sample demonstrates how to use the [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core) ES modules with webpack.
 
 - *NOTE:* Compatibility with Webpack versions prior to `5.84.0` was deprecated at 4.27.
 

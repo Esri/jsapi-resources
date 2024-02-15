@@ -1,6 +1,6 @@
 # ArcGIS Maps SDK for JavaScript with Vite and TypeScript
 
-This repo demonstrates how to use [@arcgis/core](https://www.npmjs.com/package/@arcgis/core) ES modules with [Vite](https://vitejs.dev/).
+This sample demonstrates how to use [@arcgis/core](https://www.npmjs.com/package/@arcgis/core) ES modules with [Vite](https://vitejs.dev/).
 
 ## Get Started
 

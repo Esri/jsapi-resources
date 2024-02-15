@@ -1,6 +1,6 @@
 # ArcGIS Maps SDK for JavaScript with rollup
 
-This repo demonstrates how to use the [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core) ES modules with rollup.
+This sample demonstrates how to use the [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core) ES modules with rollup.
 
 ## Known Issues
 - At 4.27, we removed CommonJS dependencies from the sample's build pipeline.
