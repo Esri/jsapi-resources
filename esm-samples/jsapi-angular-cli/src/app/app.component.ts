@@ -57,7 +57,7 @@ export class AppComponent implements OnInit, OnDestroy {
    this.view.ui.add(bkExpand, 'top-right');
 
     // bonus - how many bookmarks in the webmap?
-    webmap.when(() => {
+    view.when(() => {
       if (webmap.bookmarks && webmap.bookmarks.length) {
         console.log('Bookmarks: ', webmap.bookmarks.length);
       } else {

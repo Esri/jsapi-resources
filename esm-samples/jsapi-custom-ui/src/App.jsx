@@ -42,7 +42,7 @@ function App() {
       // Add Center component to the bottom-right corner of the view
       view.ui.add(document.getElementById(centerComponentID.current), "bottom-right");
 
-      webmap.when(() => {
+      view.when(() => {
         setViewState({view});
       });
     }
