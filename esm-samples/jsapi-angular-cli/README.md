@@ -6,7 +6,7 @@ This sample demonstrates how to use [@arcgis/core](https://www.npmjs.com/package
 
 Run `npm install` and then start adding functionality.
 
-For a list of all available `npm` commands see `scripts` in `package.json`.
+For a list of all available `npm` commands see `scripts` in `package.json`, e.g. `npm run build`.
 
 ## Known issues
 
@@ -29,7 +29,7 @@ For a list of all available `npm` commands see `scripts` in `package.json`.
             ],
 ``` 
 
-* Some of the SDKs widgets may not work correctly in Angular 16+. This is due to a [Calcite bug](https://github.com/Esri/calcite-design-system/issues/7729) affecting the enabling/disabling buttons via two-way data binding. The bug applies to all Calcite versions greater than `1.2.0`. A potential workaround is to disable zone.js monkey patching of DOM `click` event. Make the following updates to your app, and be sure to test your application thoroughly for unexpected side effects. **This sample has already been updated with this workaround**.
+* Some of the SDKs widgets may not work correctly in Angular 16+. This is due to a [Calcite bug](https://github.com/Esri/calcite-design-system/issues/7729) affecting the enabling/disabling buttons via two-way data binding. The bug applies to all Calcite versions greater than `1.2.0`. A potential workaround is to disable zone.js monkey patching of DOM `click` event. Make the following updates to your app, and be sure to test your application thoroughly for unexpected side effects. **This sample includes this workaround**.
 
 _src/zone-flags.ts_ - add this file to your project:
 

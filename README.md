@@ -22,7 +22,7 @@ Below are a collection of samples that provide _proof-of-concept_ for using `@ar
 
 ## HTML OAuth callback example
 
-If you have set OAuthInfo's `popup` property to `true`, you'll need to host a callback page on your server. This repo contains an [example callback page](./oauth/). For more information, visit the Maps SDK's [Access secure resources(https://developers.arcgis.com/javascript/latest/secure-resources/)] guide topic.
+If you have set OAuthInfo's `popup` property to `true`, you'll need to host a callback page on your server. This sample contains an [example callback page](./oauth/). For more information, visit the Maps SDK's [Access secure resources(https://developers.arcgis.com/javascript/latest/secure-resources/)] guide topic.
 
 ## AMD TypeScript declaration files (Deprecated)
 

@@ -4,7 +4,6 @@ This sample demonstrates using [`@arcgis/core`](https://www.npmjs.com/package/@a
 
 ## Known Issues
 - It is recommended to upgrade `@rollup/plugin-terser` to `v0.4.0` or later. Previous versions have noticeably slower performance compared to `rollup-plugin-terser`. More information is available in the plugin's [CHANGELOG](https://github.com/rollup/plugins/blob/master/packages/terser/CHANGELOG.md#v040).
-- `webpack-dev-server` had a [breaking change](https://github.com/webpack/webpack-dev-server/blob/master/CHANGELOG.md#-breaking-changes-4) in `4.0.0` which removed `contentBase` in favor of the `static` option. This sample has been changed accordingly.
 
 ## Building workers
 
@@ -103,6 +102,6 @@ For more details on using `@arcgis/core/core/workers`, you can review the [docum
 
 Run `npm install` and then start adding modules.
 
-For a list of all available `npm` commands see `scripts` in `package.json`.
+For a list of all available `npm` commands see `scripts` in `package.json`, e.g. `npm run build`.
 
 For additional information, see the [Build with ES modules](https://developers.arcgis.com/javascript/latest/es-modules/) Guide topic in the SDK.
