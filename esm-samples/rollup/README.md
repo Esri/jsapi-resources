@@ -36,7 +36,7 @@ This example can also be used with TypeScript sources. The following steps conve
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
-    "lib": ["dom", "dom.iterable", "es2021"],
+    "lib": ["dom", "dom.iterable", "es2022"],
     "module": "es2020",
     "moduleResolution": "node",
     "noUnusedLocals": true,
