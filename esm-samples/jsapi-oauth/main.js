@@ -57,7 +57,7 @@ const checkSignIn = () => {
 //Create a new OAuthInfo object.
 const info = new OAuthInfo({
   // Swap this ID out with an app ID registered in your ArcGIS Organization.
-  appId: "CdRXRA49BxwgLvIx"
+  appId: "REGISTERED_APP_ID"
   // Add the portalUrl property if using your own portal.
   //portalUrl: "https://<host>:<port>/<webadaptor>",
   // Set the authNamespace property to prevent the user's signed in state
