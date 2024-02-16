@@ -7,29 +7,8 @@ import Portal from "@arcgis/core/portal/Portal";
 // UI elements
 const userDetails = document.getElementById("user-display");
 const signInButton = document.getElementById("sign-in-button");
-signInButton.addEventListener("click", signInOrOut);
-
-//Create a new OAuthInfo object.
-const info = new OAuthInfo({
-  // Swap this ID out with an app ID registered in your ArcGIS Organization.
-  appId: "REGISTERED_CLIENT_ID"
-  // Add the portalUrl property if using your own portal.
-  //portalUrl: "https://<host>:<port>/<webadaptor>",
-  // Set the authNamespace property to prevent the user's signed in state
-  // from being shared with other apps on the same domain with the same authNamespace value.
-  // authNamespace: "portal_oauth_inline",
-  // Set popup to true to show the OAuth sign-in page in a separate popup window.
-  //popup: true
-});
-
-// Add the OAuthInfo to the IdentityManager.
-esriId.registerOAuthInfos([info]);
-
-// Call the checkSignIn function to see if the user is already signed in.
-checkSignIn();
-
 // Function to sign in or out of the portal
-function signInOrOut() {
+const signInOrOut = () => {
   esriId
     .checkSignInStatus(info.portalUrl + "/sharing")
     .then(() => {
@@ -51,10 +30,11 @@ function signInOrOut() {
           checkSignIn();
         });
     });
-}
+};
+signInButton.addEventListener("click", signInOrOut);
 
 // Function to check the current sign in status and display username if signed in.
-function checkSignIn() {
+const checkSignIn = () => {
   esriId
     .checkSignInStatus(info.portalUrl + "/sharing")
     .then(() => {
@@ -72,4 +52,23 @@ function checkSignIn() {
       });
     })
     .catch(() => {});
-}
+};
+
+//Create a new OAuthInfo object.
+const info = new OAuthInfo({
+  // Swap this ID out with an app ID registered in your ArcGIS Organization.
+  appId: "CdRXRA49BxwgLvIx"
+  // Add the portalUrl property if using your own portal.
+  //portalUrl: "https://<host>:<port>/<webadaptor>",
+  // Set the authNamespace property to prevent the user's signed in state
+  // from being shared with other apps on the same domain with the same authNamespace value.
+  // authNamespace: "portal_oauth_inline",
+  // Set popup to true to show the OAuth sign-in page in a separate popup window.
+  //popup: true
+});
+
+// Add the OAuthInfo to the IdentityManager.
+esriId.registerOAuthInfos([info]);
+
+// Call the checkSignIn function to see if the user is already signed in.
+checkSignIn();
