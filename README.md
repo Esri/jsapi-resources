@@ -14,6 +14,7 @@ Below are a collection of samples that provide _proof-of-concept_ for using `@ar
 * [Custom UI](./esm-samples/jsapi-custom-ui/)
 * [Deno](./esm-samples/jsapi-deno/)
 * [Node.js](./esm-samples/jsapi-node/)
+* [OAuth](./esm-samples/jsapi-oauth/)
 * [React/Vite](./esm-samples/jsapi-react/)
 * [Rollup.js (no framework)](./esm-samples/rollup/)
 * [Vue.js/Vite](./esm-samples/jsapi-vue/)
