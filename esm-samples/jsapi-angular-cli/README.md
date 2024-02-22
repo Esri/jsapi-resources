@@ -29,7 +29,7 @@ For a list of all available `npm` commands see `scripts` in `package.json`, e.g.
             ],
 ``` 
 
-* Some of the SDKs widgets may not work correctly in Angular 16+. This is due to a [Calcite bug](https://github.com/Esri/calcite-design-system/issues/7729) affecting the enabling/disabling buttons via two-way data binding. The bug applies to all Calcite versions greater than `1.2.0`. A potential workaround is to disable zone.js monkey patching of DOM `click` event. Make the following updates to your app, and be sure to test your application thoroughly for unexpected side effects. **This sample includes this workaround**.
+* Some of the SDKs widgets may not work correctly in Angular 16+. This is due to an [Angular bug](https://github.com/angular/angular/issues/54581) affecting `.on*` event listeners. A potential workaround is to disable zone.js monkey patching of DOM `click` event. Make the following updates to your app, and be sure to test your application thoroughly for unexpected side effects. **This sample includes this workaround**.
 
 _src/zone-flags.ts_ - add this file to your project:
 
