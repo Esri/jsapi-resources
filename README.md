@@ -20,9 +20,9 @@ Below are a collection of samples that provide _proof-of-concept_ for using `@ar
 * [Vite/TypeScript](./esm-samples/jsapi-vite-ts/)
 * [Webpack (no framework)](./esm-samples/webpack/)
 
-## HTML OAuth callback example
+## HTML OAuth callback
 
-If you have set OAuthInfo's `popup` property to `true`, you'll need to host a callback page on your server. This sample contains an [example callback page](./oauth/). For more information, visit the Maps SDK's [Access secure resources(https://developers.arcgis.com/javascript/latest/secure-resources/)] guide topic.
+If you have set OAuthInfo's `popup` property to `true`, you'll need to host a [callback page](./oauth/) on your server. For more information, visit the Maps SDK's [Access secure resources(https://developers.arcgis.com/javascript/latest/secure-resources/)] guide topic.
 
 ## AMD TypeScript declaration files (Deprecated)
 
