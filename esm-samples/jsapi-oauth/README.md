@@ -1,6 +1,6 @@
 # Accessing ArcGIS Online using OAuth 2.0 with ESM + Vite
 
-This repo demonstrates how to log in to ArcGIS Online or Enterprise using OAuth 2.0 authentication and the [IdentityManager](https://developers.arcgis.com/javascript/latest/api-reference/esri-identity-IdentityManager.html) with [@arcgis/core](https://www.npmjs.com/package/@arcgis/core) ES modules with [Vite](https://vitejs.dev/) .
+This sample demonstrates how to log in to ArcGIS Online or Enterprise using OAuth 2.0 authentication and the [IdentityManager](https://developers.arcgis.com/javascript/latest/api-reference/esri-identity-IdentityManager.html) with [@arcgis/core](https://www.npmjs.com/package/@arcgis/core) ES modules with [Vite](https://vitejs.dev/) .
 
 ## Get Started
 
