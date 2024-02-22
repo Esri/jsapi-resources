@@ -54,10 +54,10 @@ export class AppComponent implements OnInit, OnDestroy {
     });
 
     // Add the widget to the top-right corner of the view
-   this.view.ui.add(bkExpand, 'top-right');
+    this.view.ui.add(bkExpand, 'top-right');
 
     // bonus - how many bookmarks in the webmap?
-    view.when(() => {
+    this.view.when(() => {
       if (webmap.bookmarks && webmap.bookmarks.length) {
         console.log('Bookmarks: ', webmap.bookmarks.length);
       } else {
