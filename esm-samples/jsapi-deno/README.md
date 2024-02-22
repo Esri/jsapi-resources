@@ -12,6 +12,7 @@ The `@arcgis/core` package can be referenced with [npm specifiers](https://docs.
 ## Notes
 
 Currently loading the web assembly files for modules such as [projection](https://developers.arcgis.com/javascript/latest/api-reference/esri-geometry-projection.html) does not work in Deno.
+
 ## IdentityManager
 
 You will also want to disable the [`IdentityManager`](https://developers.arcgis.com/javascript/latest/api-reference/esri-identity-IdentityManager.html) using [`config.request`](https://developers.arcgis.com/javascript/latest/api-reference/esri-config.html#request) so it doesn't attempt to load DOM-related JavaScript.
@@ -23,7 +24,7 @@ esriConfig.request.useIdentity = false;
 
 ## Deno Server
 
-These samples use the [oak](https://deno.land/x/oak) middleware for building a server with Deno. Please refer to the oak documentation for more details.
+These samples use the [oak](https://deno.land/x/oak) middleware for building a server with Deno. Refer to the oak documentation for more details on configuration.
 
 ## Commands
 
