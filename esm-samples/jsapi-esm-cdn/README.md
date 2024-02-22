@@ -2,7 +2,7 @@
 
 We currently recommend only using the ES modules (ESM) via CDN for testing and prototyping. The ESM CDN build is not optimized for fast loading. 
 
-For best performance build the `@arcgis/core` ES modules locally.
+For best performance use the [@arcgis/core](https://www.npmjs.com/package/@arcgis/core) npm package.
 
 ## Configuration
 
