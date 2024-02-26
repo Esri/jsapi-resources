@@ -1,9 +1,8 @@
 @import "https://js.arcgis.com/4.29/@arcgis/core/assets/esri/themes/light/main.css";
 html,
-body,
-#viewDiv {
-  padding: 0;
-  margin: 0;
-  height: 100%;
+body {
   width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
 }

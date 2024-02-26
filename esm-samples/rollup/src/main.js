@@ -30,7 +30,7 @@ const bkExpand = new Expand({
 view.ui.add(bkExpand, "top-right");
 
 // bonus - how many bookmarks in the webmap?
-webmap.when(() => {
+view.when(() => {
   if (webmap.bookmarks && webmap.bookmarks.length) {
     console.log("Bookmarks: ", webmap.bookmarks.length);
   } else {

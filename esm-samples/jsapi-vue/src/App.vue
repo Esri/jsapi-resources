@@ -39,7 +39,7 @@ export default {
     view.ui.add(bkExpand, "top-right");
 
     // bonus - how many bookmarks in the webmap?
-    webmap.when(function () {
+    view.when(function () {
       if (webmap.bookmarks && webmap.bookmarks.length) {
         console.log("Bookmarks: ", webmap.bookmarks.length);
       } else {
