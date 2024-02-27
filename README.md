@@ -23,20 +23,15 @@ Below are a collection of samples that provide _proof-of-concept_ for using `@ar
 
 ## HTML OAuth callback
 
-If you have set OAuthInfo's [`popup`](https://developers.arcgis.com/javascript/latest/api-reference/esri-identity-OAuthInfo.html#popup) property to `true`, you'll need to host a [callback page](./oauth/) on your server. For more information, visit the Maps SDK's [Access secure resources(https://developers.arcgis.com/javascript/latest/secure-resources/)] guide topic.
+If you have set OAuthInfo's [`popup`](https://developers.arcgis.com/javascript/latest/api-reference/esri-identity-OAuthInfo.html#popup) property to `true`, you'll need to host a [callback page](./oauth/) on your server. For more information, visit the Maps SDK's [Access secure resources](https://developers.arcgis.com/javascript/latest/secure-resources/)] guide topic.
 
 ## AMD TypeScript declaration files (Deprecated)
 
-The AMD TypeScript `.d.ts` files are deprecated at 4.29 and will be removed at 4.31. The last several releases of the Maps SDK's AMD modules can be downloaded from this [repo](./4.x/typescript/README.md). The NPM `.d.ts` files can be installed via the [`arcgis-js-api`](https://www.npmjs.com/package/arcgis-js-api) package, which is also deprecated at 4.29.
+The AMD TypeScript `.d.ts` files are deprecated at 4.29 and the final update will be 4.31. The last several files can be downloaded from this [repo](./typescript/README.md). The NPM `.d.ts` files can be installed via the [`arcgis-js-api`](https://www.npmjs.com/package/arcgis-js-api) package, which was also deprecated at 4.29. Use the [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core) package instead.
 
 ## 3.x samples (Deprecated)
 
 The deprecated 3.x Bower and TypeScript samples can be downloaded or [checked out](https://git-scm.com/book/en/v2/Git-Basics-Tagging) via the [`legacy` releases tag](https://github.com/Esri/jsapi-resources/releases/tag/legacy).
-
-## Additional resources
-
-* [ArcGIS Maps SDK for JavaScript](https://js.arcgis.com)
-* [TypeScript](http://www.typescriptlang.org/)
 
 ## Contributing
 
