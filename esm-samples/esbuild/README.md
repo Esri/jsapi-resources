@@ -2,6 +2,8 @@
 
 This sample demonstrates how to use the [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core) ES modules with esbuild.
 
+**Work in progress** - this sample uses esbuild code splitting. It's best used in [HTTP/2](https://developer.mozilla.org/en-US/docs/Glossary/HTTP_2) production environments. For more information: https://esbuild.github.io/api/#splitting.
+
 ## Get Started
 
 Run `npm install` and then start adding modules.

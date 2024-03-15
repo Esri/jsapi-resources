@@ -13,6 +13,7 @@ Below are a collection of samples that provide _proof-of-concept_ for using `@ar
 * [Custom workers](./esm-samples/jsapi-custom-workers/)
 * [Custom UI](./esm-samples/jsapi-custom-ui/)
 * [Deno](./esm-samples/jsapi-deno/)
+* [esbuild (no framework)](./esm-samples/esbuild/)
 * [Node.js](./esm-samples/jsapi-node/)
 * [OAuth](./esm-samples/jsapi-oauth/)
 * [React/Vite](./esm-samples/jsapi-react/)

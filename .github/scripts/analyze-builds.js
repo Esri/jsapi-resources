@@ -27,6 +27,11 @@ const SAMPLES_INFO = {
     package: "vue",
     buildPath: "dist"
   },
+  "esbuild": {
+    name: "esbuild",
+    package: "esbuild",
+    buildPath: "dist"
+  },
   "rollup": {
     name: "Rollup",
     package: "rollup",
