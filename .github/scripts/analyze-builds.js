@@ -30,6 +30,7 @@ const SAMPLES_INFO = {
   "esbuild": {
     name: "esbuild",
     package: "esbuild",
+    devDep: true,    
     buildPath: "dist"
   },
   "rollup": {
