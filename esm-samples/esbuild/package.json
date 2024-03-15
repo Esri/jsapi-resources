@@ -10,7 +10,7 @@
     "esbuild": "^0.20.2"
   },
   "scripts": {
-    "init-dist": "del dist && cpx \"public/**\" dist",
+    "init-dist": "del-cli dist && cpx \"public/**\" dist",
     "build": "npm run init-dist && esbuild src/* --bundle --chunk-names=chunks/[name]-[hash] --format=esm --log-override:empty-glob=debug --splitting --outdir=dist --minify",
     "start": "npm run init-dist && esbuild src/* --bundle --chunk-names=chunks/[name]-[hash] --format=esm --log-override:empty-glob=debug --splitting --outdir=dist --sourcemap --servedir=dist",
     "watch": "npm run init-dist && esbuild src/* --bundle --chunk-names=chunks/[name]-[hash] --format=esm --log-override:empty-glob=debug --splitting --outdir=dist --sourcemap --watch"
