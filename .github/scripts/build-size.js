@@ -6,7 +6,6 @@ const { gzip, brotliCompress } = require("zlib");
 const compressGzip = promisify(gzip);
 const compressBrotli = promisify(brotliCompress);
 const browserPerformanceTest = require("./build-perf");
-const { exit } = require("process");
 
 /**
  * Formats bytes to a human readable size.
