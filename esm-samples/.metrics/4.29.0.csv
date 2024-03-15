@@ -1,6 +1,7 @@
 Sample,Build size (MB),Build file count,Main bundle file,Main bundle size (MB),Main bundle gzipped size (MB),Main bundle brotli compressed size (MB),Load time (ms),Total runtime (ms),Loaded size (MB),Total JS requests,Total HTTP requests,JS heap size (MB)
-Angular 17.2.0,9.96,320,main.7a7a685ba4e491e9.js,1.61,0.45,0.37,3619,14384,5.85,73,183,27.99
-React 18.2.0,7.85,437,index-CF2YXzrb.js,1.47,0.42,0.34,2533,13569,5.31,158,265,26.72
-Vue 3.4.19,7.76,437,index-CGr6MFq6.js,1.38,0.39,0.32,2558,14291,5.23,158,268,25.00
-Rollup 4.12.0,7.57,436,main.js,1.29,0.35,0.28,2571,14317,5.09,158,267,23.21
-Webpack 5.90.3,10.18,314,index.js,1.41,0.38,0.30,3744,13424,5.57,66,175,28.27
+esbuild 0.20.2,8.94,807,Lyr3DWasmPerSceneView-5GBH4YYK.js,0.71,0.20,0.16,2710,14676,5.24,407,517,23.80
+Angular 17.2.0,9.96,320,main.7a7a685ba4e491e9.js,1.61,0.45,0.37,2961,13638,5.85,73,183,32.01
+React 18.2.0,7.85,437,index-CF2YXzrb.js,1.47,0.42,0.34,2398,14227,5.32,158,269,26.42
+Vue 3.4.19,7.76,437,index-CGr6MFq6.js,1.38,0.39,0.32,2435,13613,5.23,158,269,26.86
+Rollup 4.12.0,7.57,436,main.js,1.29,0.35,0.28,2274,14341,5.09,158,267,23.55
+Webpack 5.90.3,10.18,314,index.js,1.41,0.38,0.30,3132,13795,5.57,66,176,25.90
