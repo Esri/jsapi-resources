@@ -6,6 +6,7 @@ const { gzip, brotliCompress } = require("zlib");
 const compressGzip = promisify(gzip);
 const compressBrotli = promisify(brotliCompress);
 const browserPerformanceTest = require("./build-perf");
+const { exit } = require("process");
 
 /**
  * Formats bytes to a human readable size.
@@ -143,10 +144,7 @@ const getBuildSizes = async (buildPath, bundleFileType, mainFileName) => {
 
     // the file with the largest size by type
     const mainBundleFile = mainFileName
-      ? filteredBuildFiles.find((file) => mainFileName === file.name)
-      : filteredBuildFiles.length
-        ? filteredBuildFiles.reduce((max, file) => (max.size > file.size ? max : file))
-        : null;
+      ? filteredBuildFiles.find((file) => mainFileName === file.name) : null;
 
     // the largest file size by type
     const mainBundleSize = mainBundleFile ? mainBundleFile.size : 0;
