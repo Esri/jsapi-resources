@@ -15,34 +15,40 @@ const SAMPLES_INFO = {
   "jsapi-angular-cli": {
     name: "Angular",
     package: "@angular/core",
+    mainFileName: null,
     buildPath: "dist" // relative path from the sample's root directory
   },
   "jsapi-react": {
     name: "React",
     package: "react",
+    mainFileName: null,
     buildPath: "dist"
   },
   "jsapi-vue": {
     name: "Vue",
     package: "vue",
+    mainFileName: null,    
     buildPath: "dist"
   },
   "esbuild": {
     name: "esbuild",
     package: "esbuild",
-    devDep: true,    
+    devDep: true,
+    mainFileName: "index.js",  
     buildPath: "dist"
   },
   "rollup": {
     name: "Rollup",
     package: "rollup",
     devDep: true,
+    mainFileName: null,
     buildPath: "public"
   },
   "webpack": {
     name: "Webpack",
     package: "webpack",
     devDep: true,
+    mainFileName: null,    
     buildPath: "dist"
   }
 };
@@ -116,6 +122,7 @@ const execLogErr = async (command) => {
 
       const sampleName = SAMPLES_INFO[sample]?.name;
       const packageName = SAMPLES_INFO[sample]?.package;
+      const mainFileName = SAMPLES_INFO[sample]?.mainFileName;
       const samplePath = resolve(SAMPLES_PATH, sample);
       const buildPath = resolve(samplePath, SAMPLES_INFO[sample]?.buildPath);
       const packageFile = JSON.parse(await readFile(resolve(samplePath, "package.json"), "utf8"));
@@ -136,7 +143,7 @@ const execLogErr = async (command) => {
 
       logHeader(`${sampleName}: calculating build sizes`);
       const { mainBundleName, mainBundleSize, mainBundleSizeGzip, mainBundleSizeBrotli, buildSize, buildFileCount } =
-        await getBuildSizes(buildPath);
+        await getBuildSizes(buildPath, null, mainFileName);
 
       // convert bytes to megabytes
       const mainBundleSizeMB = (mainBundleSize / 1024 ** 2).toFixed(2);
