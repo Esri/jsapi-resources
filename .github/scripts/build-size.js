@@ -130,11 +130,11 @@ const getPerformanceInfo = async (buildPath, sampleName) => {
 /**
  * Provides sizes for an application's production build.
  * @param {string} buildPath - path to the build directory
- * @param {string} [bundleFileType="js"] - type of bundle files, e.g. "js", "css", etc.
+ * @param {string} bundleFileType - type of bundle files, e.g. "js", "css", etc.
  * @param {string} mainFileName - the name of the main bundle index.js, main.js, etc || null
  * @returns {Promise<BuildSizes>} build sizes
  */
-const getBuildSizes = async (buildPath, bundleFileType = "js", mainFileName) => {
+const getBuildSizes = async (buildPath, bundleFileType, mainFileName) => {
 
   try {
     const build = resolve(process.cwd(), buildPath);
@@ -336,7 +336,7 @@ if (require.main === module) {
       if (!path) help("Error: The path to the build directory is required.");
 
       // set options parsed by flag, otherwise use defaults
-      const mainFileName = options["g"] || options["mainFileName"] || FLAG_INFO["mainFileName"].default;
+      const mainFileName = options["g"] || options["mainFileName"]; // no default
       const type = options["f"] || options["filetype"] || FLAG_INFO["filetype"].default;
       const decimals = options["d"] || options["decimals"] || FLAG_INFO["decimals"].default;
       const binary = options["b"] || options["binary"] || FLAG_INFO["binary"].default;
