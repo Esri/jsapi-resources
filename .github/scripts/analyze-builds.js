@@ -2,7 +2,7 @@
 const { resolve } = require("path");
 const {
   createWriteStream,
-  promises: { readdir, readFile }
+  promises: { readdir, readFile },
 } = require("fs");
 const exec = require("util").promisify(require("child_process").exec);
 const { getBuildSizes } = require("./build-size.js");
@@ -15,30 +15,37 @@ const SAMPLES_INFO = {
   "jsapi-angular-cli": {
     name: "Angular",
     package: "@angular/core",
-    buildPath: "dist" // relative path from the sample's root directory
+    buildPath: "dist", // relative path from the sample's root directory
   },
   "jsapi-react": {
     name: "React",
     package: "react",
-    buildPath: "dist"
+    buildPath: "dist",
   },
   "jsapi-vue": {
     name: "Vue",
     package: "vue",
-    buildPath: "dist"
+    buildPath: "dist",
+  },
+  "esbuild": {
+    name: "esbuild",
+    package: "esbuild",
+    devDep: true,
+    mainFileName: "index.js",
+    buildPath: "dist",
   },
   "rollup": {
     name: "Rollup",
     package: "rollup",
     devDep: true,
-    buildPath: "public"
+    buildPath: "public",
   },
   "webpack": {
     name: "Webpack",
     package: "webpack",
     devDep: true,
-    buildPath: "dist"
-  }
+    buildPath: "dist",
+  },
 };
 
 /**
@@ -83,8 +90,8 @@ const execLogErr = async (command) => {
             !!SAMPLES_INFO[sample] &&
             JSON.parse(await readFile(resolve(__dirname, SAMPLES_PATH, sample, "package.json"), "utf8")).dependencies[
               "@arcgis/core"
-            ].replace(/\^|\~/, "") // remove semver range
-        )
+            ].replace(/\^|\~/, ""), // remove semver range
+        ),
       )
     ).filter((version) => !!version);
 
@@ -102,7 +109,7 @@ const execLogErr = async (command) => {
     const outputPath = resolve(METRICS_PATH, `${jsapiVersion}.csv`);
     const stream = createWriteStream(outputPath);
     stream.write(
-      "Sample,Build size (MB),Build file count,Main bundle file,Main bundle size (MB),Main bundle gzipped size (MB),Main bundle brotli compressed size (MB),Load time (ms),Total runtime (ms),Loaded size (MB),Total JS requests,Total HTTP requests,JS heap size (MB)\n"
+      "Sample,Build size (MB),Build file count,Main bundle file,Main bundle size (MB),Main bundle gzipped size (MB),Main bundle brotli compressed size (MB),Load time (ms),Total runtime (ms),Loaded size (MB),Total JS requests,Total JS size (MB),Total HTTP requests,JS heap size (MB)\n",
     );
 
     for (const [itemCount, sample] of sampleDirectories.entries()) {
@@ -110,6 +117,7 @@ const execLogErr = async (command) => {
 
       const sampleName = SAMPLES_INFO[sample]?.name;
       const packageName = SAMPLES_INFO[sample]?.package;
+      const mainFileName = SAMPLES_INFO[sample]?.mainFileName;
       const samplePath = resolve(SAMPLES_PATH, sample);
       const buildPath = resolve(samplePath, SAMPLES_INFO[sample]?.buildPath);
       const packageFile = JSON.parse(await readFile(resolve(samplePath, "package.json"), "utf8"));
@@ -129,8 +137,9 @@ const execLogErr = async (command) => {
       console.log(buildOut);
 
       logHeader(`${sampleName}: calculating build sizes`);
+      const bundleFileType = "js"; // reserved for future use, e.g. .js, css, .ts
       const { mainBundleName, mainBundleSize, mainBundleSizeGzip, mainBundleSizeBrotli, buildSize, buildFileCount } =
-        await getBuildSizes(buildPath);
+        await getBuildSizes(buildPath, bundleFileType, mainFileName);
 
       // convert bytes to megabytes
       const mainBundleSizeMB = (mainBundleSize / 1024 ** 2).toFixed(2);
@@ -143,9 +152,10 @@ const execLogErr = async (command) => {
       const perfResults = await browserPerformanceTest(buildPath, sampleName);
       // convert bytes to megabytes
       const pageTotalMB = (perfResults.pageTotalBytes / 1024 ** 2).toFixed(2);
+      const pageTotalJSMB = (perfResults.pageTotalJSBytes / 1024 ** 2).toFixed(2);
       const JSHeapUsedSizeMB = (perfResults.JSHeapUsedSizeBytes / 1024 ** 2).toFixed(2);
 
-      const output = `${sampleName} ${packageVersion},${buildSizeMB},${buildFileCount},${mainBundleName},${mainBundleSizeMB},${mainBundleSizeGzipMB},${mainBundleSizeBrotliMB},${perfResults.elapsedRuntimeMS},${perfResults.totalScriptTimeMS},${pageTotalMB},${perfResults.totalJSRequests},${perfResults.totalHTTPRequests},${JSHeapUsedSizeMB}\n`;
+      const output = `${sampleName} ${packageVersion},${buildSizeMB},${buildFileCount},${mainBundleName},${mainBundleSizeMB},${mainBundleSizeGzipMB},${mainBundleSizeBrotliMB},${perfResults.elapsedRuntimeMS},${perfResults.totalScriptTimeMS},${pageTotalMB},${perfResults.totalJSRequests},${pageTotalJSMB},${perfResults.totalHTTPRequests},${JSHeapUsedSizeMB}\n`;
 
       console.log("Writing results to CSV:", output);
       stream.write(output);

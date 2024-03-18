@@ -5,6 +5,7 @@ const WebServer = require("./WebServer");
 let go, webserver;
 let test = 0;
 let pageTotalBytes = 0;
+let pageTotalJSBytes = 0;
 let totalJSRequests = 0;
 let totalHTTPRequests = 0;
 let performanceMarkStart, performanceMarkEnd;
@@ -13,7 +14,7 @@ const TEST_URL = "http://localhost:" + PORT;
 
 /**
  * Use HTTP response object to calculate total data transferred
- * @param {Object} response 
+ * @param {Object} response
  */
 const addResponseSize = async (response) => {
   totalHTTPRequests++;
@@ -26,6 +27,9 @@ const addResponseSize = async (response) => {
   try {
     const buffer = await response.buffer();
     pageTotalBytes += buffer.length;
+    if (str === ".js") {
+      pageTotalJSBytes += buffer.length;
+    }
   } catch (e) {
     console.log("ERROR in http response:" + e);
   }
@@ -37,8 +41,8 @@ const addResponseSize = async (response) => {
  */
 const errorLogging = (page) => {
   page.on("console", async (msg) => {
-    const args = await Promise.all(msg.args().map(arg => arg.toString()));
-    const type = msg.type().toUpperCase();    
+    const args = await Promise.all(msg.args().map((arg) => arg.toString()));
+    const type = msg.type().toUpperCase();
     let text = "";
     for (let i = 0; i < args.length; ++i) {
       text += `[${i}] ${args[i]} `;
@@ -90,7 +94,7 @@ const capturePageMetrics = async (page, sampleName) => {
   // This is not reflective of when the app becomes usable. It's just the very last http request.
   const elapsedRuntimeMS = Math.round(
     allPerformanceEntries[allPerformanceEntries.length - 1].startTime +
-      allPerformanceEntries[allPerformanceEntries.length - 1].duration
+      allPerformanceEntries[allPerformanceEntries.length - 1].duration,
   );
 
   const pageMetrics = await page.metrics();
@@ -103,7 +107,8 @@ const capturePageMetrics = async (page, sampleName) => {
   /**
    * sampleName - name of the sample or bundle
    * elapsedRuntimeMS - runtime in milliseconds derived from the applications last HTTP request
-   * pageTotalBytes - total number of bytes calculated using the http response object
+   * pageTotalBytes - total number of bytes calculated using the http response object for all files
+   * pageTotalJSBytes - total number of bytes calculated using the http response object for .js files
    * JSHeapUsedSizeBytes - JSHeapUsedSize as reported by puppeteer
    * totalScriptTimeMS - approximate internal runtime of the library script in milliseconds.
    * Useful for comparing against the `elapsedRuntimeMS`. Should not be used as an indicator of
@@ -115,10 +120,11 @@ const capturePageMetrics = async (page, sampleName) => {
     sampleName,
     elapsedRuntimeMS,
     pageTotalBytes,
+    pageTotalJSBytes,
     JSHeapUsedSizeBytes,
     totalScriptTimeMS,
     totalJSRequests,
-    totalHTTPRequests
+    totalHTTPRequests,
   };
 };
 
@@ -143,6 +149,7 @@ const startWebServer = (path, port) => {
 const browserPerformanceTest = async (path, sampleName = "") => {
   pageTotalBytes = 0;
   totalJSRequests = 0;
+  pageTotalJSBytes = 0;
   totalHTTPRequests = 0;
   startWebServer(path, PORT);
 
@@ -156,22 +163,23 @@ const browserPerformanceTest = async (path, sampleName = "") => {
   // no more than 0 network connections for at least 500 ms.
   console.log("Waiting for page load...");
   go = await page.goto(TEST_URL, {
-    waitUntil: "networkidle0"
+    waitUntil: "networkidle0",
   });
 
   // Check for HTTP page not found errors
   if (go?.status() !== 404) {
-    await page.waitForSelector(".esri-view-root", {visible: true})
-    .then( async () => {
-      console.log("waitForSelector SUCCESS.");
-      console.log("Pause for any additional http responses.");
-      await new Promise(r => setTimeout(r, 10000));         
-      console.log("Page loaded. Capturing metrics...");
-      pageMetrics = await capturePageMetrics(page, sampleName);
-    })
-    .catch((err) => {
-      console.error("waitForSelector timeout ERROR: ", err);
-    });
+    await page
+      .waitForSelector(".esri-view-root", { visible: true })
+      .then(async () => {
+        console.log("waitForSelector SUCCESS.");
+        console.log("Pause for any additional http responses.");
+        await new Promise((r) => setTimeout(r, 10000));
+        console.log("Page loaded. Capturing metrics...");
+        pageMetrics = await capturePageMetrics(page, sampleName);
+      })
+      .catch((err) => {
+        console.error("waitForSelector timeout ERROR: ", err);
+      });
 
     // Clean up by closing the browser
     await browser.close();
@@ -185,7 +193,7 @@ const browserPerformanceTest = async (path, sampleName = "") => {
   } else {
     console.log("\x1b[41m\x1b[30mERROR page did not load:", path);
     return {
-      error: "Page did not load"
+      error: "Page did not load",
     };
   }
 };

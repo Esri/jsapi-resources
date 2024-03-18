@@ -1,15 +1,15 @@
 {
   "arrowParens": "always",
+  "bracketSameLine": false,
   "bracketSpacing": true,
   "endOfLine": "auto",
-  "jsxBracketSameLine": false,
   "jsxSingleQuote": false,
   "printWidth": 120,
   "quoteProps": "consistent",
   "semi": true,
   "singleQuote": false,
   "tabWidth": 2,
-  "trailingComma": "none",
+  "trailingComma": "all",
   "useTabs": false,
   "overrides": [
     {
