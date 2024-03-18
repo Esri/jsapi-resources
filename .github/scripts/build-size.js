@@ -30,7 +30,7 @@ const formatBytes = (bytes, decimals = 2, binary = false) => {
       "\n    decimals:",
       decimals,
       "\n    binary:",
-      binary
+      binary,
     );
   }
 };
@@ -90,7 +90,7 @@ const getFileSizeGzip = (filePath) =>
     .then(compressGzip)
     .then((output) => output.length)
     .catch((err) =>
-      help(err, "\n\nOccurred while getting gzipped file size.", "Double check the file path:\n   ", filePath)
+      help(err, "\n\nOccurred while getting gzipped file size.", "Double check the file path:\n   ", filePath),
     );
 
 /**
@@ -104,14 +104,19 @@ const getFileSizeBrotli = (filePath) =>
     .then(compressBrotli)
     .then((output) => output.length)
     .catch((err) =>
-      help(err, "\n\nOccurred while getting brotli compressed file size.", "Double check the file path:\n   ", filePath)
+      help(
+        err,
+        "\n\nOccurred while getting brotli compressed file size.",
+        "Double check the file path:\n   ",
+        filePath,
+      ),
     );
 
 /**
  * Provides performance information from an applications's production build
- * @param {string} buildPath 
- * @param {string} sampleName 
- * @returns {object} performance information 
+ * @param {string} buildPath
+ * @param {string} sampleName
+ * @returns {object} performance information
  */
 const getPerformanceInfo = async (buildPath, sampleName) => {
   try {
@@ -122,10 +127,10 @@ const getPerformanceInfo = async (buildPath, sampleName) => {
       "\n\nOccurred while getting performance info.",
       "Double check the inputs:",
       "\n    build path:",
-      resolve(buildPath)
+      resolve(buildPath),
     );
-  }  
-}
+  }
+};
 
 /**
  * Provides sizes for an application's production build.
@@ -135,7 +140,6 @@ const getPerformanceInfo = async (buildPath, sampleName) => {
  * @returns {Promise<BuildSizes>} build sizes
  */
 const getBuildSizes = async (buildPath, bundleFileType, mainFileName) => {
-
   try {
     const build = resolve(process.cwd(), buildPath);
     const buildFiles = await getFiles(build);
@@ -167,7 +171,7 @@ const getBuildSizes = async (buildPath, bundleFileType, mainFileName) => {
       mainBundleSizeGzip,
       mainBundleSizeBrotli,
       buildSize,
-      buildFileCount
+      buildFileCount,
     };
   } catch (err) {
     help(
@@ -177,7 +181,7 @@ const getBuildSizes = async (buildPath, bundleFileType, mainFileName) => {
       "\n    build path:",
       resolve(buildPath),
       "\n    bundle filetype:",
-      bundleFileType
+      bundleFileType,
     );
   }
 };
@@ -195,7 +199,7 @@ const saveBuildSizes = async (buildSizes, outputPath) => {
 
     const timestamp = new Intl.DateTimeFormat("default", {
       dateStyle: "short",
-      timeStyle: "long"
+      timeStyle: "long",
     })
       .format(Date.now())
       .replace(",", " at");
@@ -231,7 +235,7 @@ const saveBuildSizes = async (buildSizes, outputPath) => {
       help(
         "Error saving build sizes to CSV.",
         "I must be called from the same directory as package.json to get the project version number.",
-        "I recommended adding me as an NPM script so I can be called anywhere in the project."
+        "I recommended adding me as an NPM script so I can be called anywhere in the project.",
       );
     }
   }
@@ -246,7 +250,7 @@ const saveBuildSizes = async (buildSizes, outputPath) => {
 function help(...messages) {
   messages && console.error(...messages);
   console.error(
-    "\nAdd the -h or --help flag for usage information when on the CLI.\n\nCheck out the documentation when using the exported functions:\nhttps://benelan.github.io/build-sizes/global.html\n"
+    "\nAdd the -h or --help flag for usage information when on the CLI.\n\nCheck out the documentation when using the exported functions:\nhttps://benelan.github.io/build-sizes/global.html\n",
   );
   process.exit(1);
 }
@@ -283,7 +287,7 @@ module.exports = {
   getFiles,
   getFileSizeGzip,
   getFileSizeBrotli,
-  filterFilesByType
+  filterFilesByType,
 };
 
 /*********** CLI ONLY CODE ************/
@@ -291,29 +295,29 @@ if (require.main === module) {
   const FLAG_INFO = {
     binary: {
       description: "Convert bytes to human readable format in base 2 instead of base 10",
-      boolean: true
+      boolean: true,
     },
     decimals: {
       description: "Number of decimal places for rounding bytes to a human readable format",
-      default: 2
+      default: 2,
     },
     filetype: {
       description: "Filetype of the main bundle",
-      default: "js"
+      default: "js",
     },
     outfile: {
-      description: "Path to a file for saving build sizes as CSV data"
+      description: "Path to a file for saving build sizes as CSV data",
     },
     path: {
       description: "Path to the build directory (also available as argument)",
-      required: true
+      required: true,
     },
     runtime: {
-      description: "Include a snapshot of runtime performance information"
+      description: "Include a snapshot of runtime performance information",
     },
     mainFileName: {
-      description: "The name of the main bundle index.js, main.js, etc || null"
-    }
+      description: "The name of the main bundle index.js, main.js, etc || null",
+    },
   };
 
   let loadingInterval; // loading animation interval
@@ -346,14 +350,14 @@ if (require.main === module) {
       const buildSizes = await getBuildSizes(path, type, mainFileName);
 
       const line = "-".repeat(title.length);
-      const bundle = `Main ${type.toUpperCase()} bundle`;      
+      const bundle = `Main ${type.toUpperCase()} bundle`;
 
-      if(runtime) {
+      if (runtime) {
         const performanceInfo = await getPerformanceInfo(path, buildSizes.mainBundleName);
 
         // log sizes to console
         title = "|> Application Performance <|";
-        
+
         console.log(
           `\n${line}\n${title}\n${line}`,
           `\n --> bundle name:`,
@@ -370,7 +374,7 @@ if (require.main === module) {
           formatBytes(performanceInfo.pageTotalBytes, decimals, binary),
           `\n --> jsheap size:`,
           formatBytes(performanceInfo.JSHeapUsedSizeBytes, decimals, binary),
-          `\n${line}\n`
+          `\n${line}\n`,
         );
       }
 
@@ -406,7 +410,7 @@ if (require.main === module) {
         formatBytes(mainBundleSizeGzip, decimals, binary),
         `\n --> brotli size:`,
         formatBytes(mainBundleSizeBrotli, decimals, binary),
-        `\n${line}\n`
+        `\n${line}\n`,
       );
     } catch (err) {
       help(err);
@@ -480,7 +484,7 @@ if (require.main === module) {
       .map(
         (f) =>
           `  -${f.charAt(0)}, --${f} ${req(f)} ${bool(f)}
-     ${FLAG_INFO[f].description} ${def(f)}`
+     ${FLAG_INFO[f].description} ${def(f)}`,
       )
       .join("\n\n");
 

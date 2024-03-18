@@ -11,10 +11,10 @@ const run = () => {
   server.start();
 
   setTimeout(async () => {
-    const t = await exec("cd " + path + " && cd .. && curl http://localhost:3000");  
+    const t = await exec("cd " + path + " && cd .. && curl http://localhost:3000");
     console.log("Stopping", t);
     server.stop();
   }, 5000);
-}
+};
 
 run();

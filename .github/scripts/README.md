@@ -23,7 +23,7 @@ const { getBuildSizes, formatBytes } = require("./build-sizes.js");
       "\nBuild size: ",
       formatBytes(buildSize),
       "\nBuild file count: ",
-      buildFileCount
+      buildFileCount,
     );
   } catch (err) {
     console.error(err);
@@ -72,12 +72,12 @@ Now, in addition to the build size information the output will also include the 
 ```
 -----------------------------
 |> Application Performance <|
------------------------------ 
- --> bundle name: vendor.4332238d.js 
- --> load time (ms): 1630 
- --> script runtime (ms): 5733 
- --> app load size: 3.80 MB 
- --> jsheap size: 21.38 MB 
+-----------------------------
+ --> bundle name: vendor.4332238d.js
+ --> load time (ms): 1630
+ --> script runtime (ms): 5733
+ --> app load size: 3.80 MB
+ --> jsheap size: 21.38 MB
 -----------------------------
 ```
 
@@ -92,48 +92,60 @@ Providing the `-h` or `--help` flag will log usage information to the console, c
 <details>
 
 #### Arguments
+
 **path [required]**
+
 - Path to the build directory
 
 #### Options
 
-**-b, --binary  [boolean]**
-- Convert bytes to human readable format in base 2 instead of base 10
+**-b, --binary [boolean]**
+
+- Convert bytes to human-readable format in base 2 instead of base 10
 
 **-d, --decimals**
-- Number of decimal places for rounding bytes to a human readable format (default is 2)
+
+- Number of decimal places for rounding bytes to a human-readable format (default is 2)
 
 **-f, --filetype**
+
 - Filetype of the main bundle (default is js)
 
 **-o, --outfile**
+
 - Path to a file for saving build sizes as CSV data
 
 **-p, --path [required]**
+
 - Path to the build directory (also available as argument)
 
 **-r, -runtime**
+
 - Include a snapshot of runtime performance information
 
 #### Examples
 
 `node build-size.js dist`
+
 - Simplest usage with sane defaults
 
 `node build-size.js dist -r`
+
 - Simplest usage with sane defaults and performance information
 
 `node build-size.js dist --filetype=css --binary --decimals=1`
+
 - Size of the largest css file with tweaked number formatting
 
 `node build-size.js -f=css -b -d=1 -p=dist`
+
 - Same as above, but use a flag for path when it's not the first argument
 
 `node build-size.js dist --outfile=metrics.csv`
+
 - Save the build sizes to a csv
 
 </details>
-
 
 ### Running from NPM script
 
@@ -152,7 +164,7 @@ You can get the sizes after every build by utilizing a sample's NPM scripts. For
 ...
 ```
 
-After running `npm run build`, the sizes will be logged to the console. Note that the `buildPath` argument is the name of of the build directory, since the current working directory is the application's root when running an NPM script.
+After running `npm run build`, the sizes will be logged to the console. Note that the `buildPath` argument is the name of the build directory, since the current working directory is the application's root when running an NPM script.
 
 <!-- add "Headless performance" doc here when done  -->
 
@@ -189,22 +201,23 @@ If a sample does not have an info item it will be skipped, so you can fine tune 
 
 ### Script output
 
-The script will create a CSV file containing sample metrics in [`esm-samples/.metrics`](https://github.com/Esri/jsapi-resources/tree/main/esm-samples/.metrics). The the output filename is the version of the ArcGIS JSAPI used in the samples. The CSV contains the name of the samples with the version of the main packages and the return properties from the [build sizes script](#build-sizes).
+The script will create a CSV file containing sample metrics in [`esm-samples/.metrics`](https://github.com/Esri/jsapi-resources/tree/main/esm-samples/.metrics). The output filename is the version of the ArcGIS JSAPI used in the samples. The CSV contains the name of the samples with the version of the main packages and the return properties from the [build sizes script](#build-sizes).
 
-Bundle size is dependant on multiple factors and will vary based on framework, module bundler, transpiling and related configurations. The compile process can output several hundred or more bundles on-disk due to using dynamic imports. At runtime, your application will typically only load a portion of the bundles depending on the `@arcgis/core` functionality used. The functionality used can also affect the size of largest bundle. 
+Bundle size is dependent on multiple factors and will vary based on framework, module bundler, transpiling and related configurations. The compile process can output several hundred or more bundles on-disk due to using dynamic imports. At runtime, your application will typically only load a portion of the bundles depending on the `@arcgis/core` functionality used. The functionality used can also affect the size of largest bundle.
 
 ### Performance analysis
 
 [`build-perf.js`](build-perf.js) is a helper library that uses [puppeteer](https://github.com/puppeteer/puppeteer) and [express](https://github.com/expressjs/express), which a lightweight web server to extract browser performance metrics.
 
 The library provides the following information:
-  * `elapsedRuntimeMS` - runtime in milliseconds derived from the applications last HTTP request.
-  * `JSHeapUsedSizeBytes` - JSHeapUsedSize as reported by puppeteer.
-  * `pageTotalBytes` - total number of bytes calculated using the http response object. 
-  * `sampleName` - name of the sample or bundle.
-  * `totalScriptTimeMS` - approximate internal runtime of the library script in milliseconds. Useful for comparing against the `elapsedRuntimeMS`. Should not be used as an indicator of application performance, it's most useful for troubleshooting differences between runtime and determining if the platform itself caused a slowdown.
 
-These performance indicators will vary depending on the device or virtual machine that runs the script. They are best used for analysing trends over time, and they should be run on the same device in order to keep as many of the variables constant as possible. The calculations are dependant on many hardware and software factors including CPU load, memory usage and internet speed during the time window that the script is running. For example, the numbers you see using a GitHub action may be significantly different from when you run the scripts locally on your development machine.
+- `elapsedRuntimeMS` - runtime in milliseconds derived from the applications last HTTP request.
+- `JSHeapUsedSizeBytes` - JSHeapUsedSize as reported by puppeteer.
+- `pageTotalBytes` - total number of bytes calculated using the http response object.
+- `sampleName` - name of the sample or bundle.
+- `totalScriptTimeMS` - approximate internal runtime of the library script in milliseconds. Useful for comparing against the `elapsedRuntimeMS`. Should not be used as an indicator of application performance, it's most useful for troubleshooting differences between runtime and determining if the platform itself caused a slowdown.
+
+These performance indicators will vary depending on the device or virtual machine that runs the script. They are best used for analysing trends over time, and they should be run on the same device in order to keep as many of the variables constant as possible. The calculations are dependent on many hardware and software factors including CPU load, memory usage and internet speed during the time window that the script is running. For example, the numbers you see using a GitHub action may be significantly different from when you run the scripts locally on your development machine.
 
 ### Running from GitHub Action
 
@@ -217,7 +230,7 @@ The workflow is required to pass in order to merge a pull request. The GitHub Do
 The workflow will only analyze the samples when the following conditions are met:
 
 1. A `package.json` file is in the diff between the PR branch and `main` - [code](https://github.com/Esri/jsapi-resources/blob/main/.github/workflows/analyze-builds.yml#L22-L23)
-2. All of the samples being analyzed have the same version of the ArcGIS JSAPI - [code](https://github.com/Esri/jsapi-resources/blob/main/.github/scripts/analyze-builds.js#L51-L69)
+2. All the samples being analyzed have the same version of the ArcGIS JSAPI - [code](https://github.com/Esri/jsapi-resources/blob/main/.github/scripts/analyze-builds.js#L51-L69)
 3. The most recent commit did not change any `esm-samples/.metrics/*.csv` files - [code](https://github.com/Esri/jsapi-resources/blob/main/.github/workflows/analyze-builds.yml#L24-L26)
 
 The script takes around 8-12 minutes to analyze the samples, so the first condition prevents impacting pull requests unrelated to the ESM samples. The second condition makes sure the output metrics are accurate, since the CSV filename is the version of the ArcGIS JSAPI. The third ensures the script does not run recursively.
