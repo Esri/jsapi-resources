@@ -142,8 +142,11 @@ const getBuildSizes = async (buildPath, bundleFileType, mainFileName) => {
     const filteredBuildFiles = filterFilesByType(buildFiles, bundleFileType);
 
     // the file with the largest size by type
-    const mainBundleFile = mainFileName
-      ? filteredBuildFiles.find((file) => mainFileName === file.name) : null;
+    const mainBundleFile = filteredBuildFiles.length
+      ? mainFileName
+        ? filteredBuildFiles.find((file) => mainFileName === file.name)
+        : filteredBuildFiles.reduce((max, file) => (max.size > file.size ? max : file))
+      : null;
 
     // the largest file size by type
     const mainBundleSize = mainBundleFile ? mainBundleFile.size : 0;
