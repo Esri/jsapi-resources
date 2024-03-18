@@ -1,7 +1,7 @@
-Sample,Build size (MB),Build file count,Main bundle file,Main bundle size (MB),Main bundle gzipped size (MB),Main bundle brotli compressed size (MB),Load time (ms),Total runtime (ms),Loaded size (MB),Total JS requests,Total HTTP requests,JS heap size (MB)
-esbuild 0.20.2,8.94,807,index.js,0.26,0.07,0.06,2364,14035,5.24,407,517,28.25
-Angular 17.2.0,9.96,320,Not found,0.00,0.00,0.00,3367,13240,5.85,73,183,28.51
-React 18.2.0,7.85,437,Not found,0.00,0.00,0.00,2294,14009,5.31,158,268,22.80
-Vue 3.4.19,7.76,437,Not found,0.00,0.00,0.00,2503,13799,5.22,158,265,25.13
-Rollup 4.12.0,7.57,436,Not found,0.00,0.00,0.00,2255,13259,5.09,158,267,26.16
-Webpack 5.90.3,10.18,314,Not found,0.00,0.00,0.00,3350,13345,5.57,66,177,26.60
+Sample,Build size (MB),Build file count,Main bundle file,Main bundle size (MB),Main bundle gzipped size (MB),Main bundle brotli compressed size (MB),Load time (ms),Total runtime (ms),Loaded size (MB),Total JS requests,Total JS size (MB),Total HTTP requests,JS heap size (MB)
+esbuild 0.20.2,8.03,720,index.js,0.26,0.07,0.06,2832,14185,5.22,392,3.62,502,24.30
+Angular 17.2.0,8.97,303,main.a4a6167966eab80f.js,1.60,0.45,0.37,3065,13728,5.82,72,4.19,182,29.24
+React 18.2.0,7.85,437,index-C1HLK4lr.js,1.47,0.42,0.34,2688,13750,5.31,158,3.71,267,28.83
+Vue 3.4.19,7.77,437,index-DOlR4Sxi.js,1.38,0.39,0.32,2476,13659,5.23,158,3.62,268,28.23
+Rollup 4.12.0,7.57,436,main.js,1.29,0.35,0.28,2574,13722,5.09,158,3.48,267,22.36
+Webpack 5.90.3,9.18,297,index.js,1.40,0.38,0.30,3128,13808,5.56,66,3.95,177,27.25
