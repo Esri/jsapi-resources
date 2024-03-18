@@ -5,6 +5,7 @@ const WebServer = require("./WebServer");
 let go, webserver;
 let test = 0;
 let pageTotalBytes = 0;
+let pageTotalJSBytes = 0;
 let totalJSRequests = 0;
 let totalHTTPRequests = 0;
 let performanceMarkStart, performanceMarkEnd;
@@ -26,6 +27,9 @@ const addResponseSize = async (response) => {
   try {
     const buffer = await response.buffer();
     pageTotalBytes += buffer.length;
+    if (str === ".js") {
+      pageTotalJSBytes += buffer.length;
+    }    
   } catch (e) {
     console.log("ERROR in http response:" + e);
   }
@@ -103,7 +107,8 @@ const capturePageMetrics = async (page, sampleName) => {
   /**
    * sampleName - name of the sample or bundle
    * elapsedRuntimeMS - runtime in milliseconds derived from the applications last HTTP request
-   * pageTotalBytes - total number of bytes calculated using the http response object
+   * pageTotalBytes - total number of bytes calculated using the http response object for all files
+   * pageTotalJSBytes - total number of bytes calculated using the http response object for .js files
    * JSHeapUsedSizeBytes - JSHeapUsedSize as reported by puppeteer
    * totalScriptTimeMS - approximate internal runtime of the library script in milliseconds.
    * Useful for comparing against the `elapsedRuntimeMS`. Should not be used as an indicator of
@@ -115,6 +120,7 @@ const capturePageMetrics = async (page, sampleName) => {
     sampleName,
     elapsedRuntimeMS,
     pageTotalBytes,
+    pageTotalJSBytes,
     JSHeapUsedSizeBytes,
     totalScriptTimeMS,
     totalJSRequests,
@@ -143,6 +149,7 @@ const startWebServer = (path, port) => {
 const browserPerformanceTest = async (path, sampleName = "") => {
   pageTotalBytes = 0;
   totalJSRequests = 0;
+  pageTotalJSBytes = 0;
   totalHTTPRequests = 0;
   startWebServer(path, PORT);
 
