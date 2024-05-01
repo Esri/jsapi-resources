@@ -16,8 +16,7 @@
             "outputPath": "dist/",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": [
-              "src/zone-flags.ts",              
+            "polyfills": [     
               "zone.js"
             ],
             "tsConfig": "tsconfig.app.json",

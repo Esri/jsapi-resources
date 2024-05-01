@@ -10,26 +10,7 @@ For a list of all available `npm` commands see `scripts` in `package.json`, e.g.
 
 ## Known issues
 
-* The Maps SDK compatibility with Webpack versions prior to `5.84.0` was removed at 4.29 (February 2024).
-
-* When using Angular 17, for better application load performance with distribution builds it is recommended to use the Webpack builder `@angular-devkit/build-angular:browser` instead of the default esbuild configuration. This can be configured in the project's `angular.json` file. More information is available in the [Building Angular apps](https://angular.dev/tools/cli/build) topic on the angular.dev site. At this time esbuild does not offer the ability to customize chunking. That may result in the creation of a significant number of small on-disk bundled files, as well as an increase in the number of files requested by the application at startup. Here is an example snippet:
-
-*angular.json - Webpack configuration*
-
-```json
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:browser",
-          "options": {
-            "outputPath": "dist/",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
-``` 
-
-* Some of the SDKs widgets may not work correctly in Angular 16+. This is due to an [Angular bug](https://github.com/angular/angular/issues/54581) affecting `.on*` event listeners. A potential workaround is to disable zone.js monkey patching of DOM `click` event. Make the following updates to your app, and be sure to test your application thoroughly for unexpected side effects. **This sample includes this workaround**.
+* It is recommended to update to zone.js `0.14.5`. Earlier versions of zone.js will cause some of the SDK's widget buttons to not work correctly due to an [Angular bug](https://github.com/angular/angular/issues/54581) affecting `.on*` event listeners. If you are unable to update zone.js, a potential workaround is to disable monkey patching of DOM `click` event. Make the following updates and be sure to test thoroughly for unexpected side effects.
 
 _src/zone-flags.ts_ - add this file to your project:
 
@@ -54,6 +35,25 @@ _tsconfig.app.json_
     "src/main.ts"
   ],
 ```
+
+* The Maps SDK compatibility with Webpack versions prior to `5.84.0` was removed at 4.29 (February 2024).
+
+* When using Angular 17, for better application load performance with distribution builds it is recommended to use the Webpack builder `@angular-devkit/build-angular:browser` instead of the default esbuild configuration. This can be configured in the project's `angular.json` file. More information is available in the [Building Angular apps](https://angular.dev/tools/cli/build) topic on the angular.dev site. At this time esbuild does not offer the ability to customize chunking. That may result in the creation of a significant number of small on-disk bundled files, as well as an increase in the number of files requested by the application at startup. Here is an example snippet:
+
+*angular.json - Webpack configuration*
+
+```json
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+``` 
 
 * Currently, due to limitations in TypeScript, the APIs [autocasting](https://developers.arcgis.com/javascript/latest/programming-patterns/#autocasting) functionality works best in non-TypeScript applications. No changes are required if you are already using the API without any TypeScript build errors.
 
