@@ -10,7 +10,7 @@ For a list of all available `npm` commands see `scripts` in `package.json`, e.g.
 
 ## Known issues
 
-* It is recommended to update to zone.js `0.14.5`. Earlier versions of zone.js will cause some of the SDKs widgets buttons to not work correctly in Angular 16+ due to an [Angular bug](https://github.com/angular/angular/issues/54581) affecting `.on*` event listeners. If you are unable to update zone.js, a potential workaround is to disable monkey patching of DOM `click` event. Make the following updates and be sure to test thoroughly for unexpected side effects.
+* It is recommended to update to zone.js `0.14.5`. Earlier versions of zone.js will cause some of the SDK's widget buttons to not work correctly due to an [Angular bug](https://github.com/angular/angular/issues/54581) affecting `.on*` event listeners. If you are unable to update zone.js, a potential workaround is to disable monkey patching of DOM `click` event. Make the following updates and be sure to test thoroughly for unexpected side effects.
 
 _src/zone-flags.ts_ - add this file to your project:
 
