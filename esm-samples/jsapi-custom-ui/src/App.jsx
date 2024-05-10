@@ -27,8 +27,7 @@ function App() {
       });
 
       const bookmarks = new Bookmarks({
-        view,
-        editingEnabled: true
+        view
       });
 
       const bkExpand = new Expand({
