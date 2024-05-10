@@ -15,9 +15,7 @@ const view = new MapView({
 });
 
 const bookmarks = new Bookmarks({
-  view,
-  // allows bookmarks to be added, edited, or deleted
-  editingEnabled: true
+  view
 });
 
 const bkExpand = new Expand({

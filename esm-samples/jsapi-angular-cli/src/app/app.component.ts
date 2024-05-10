@@ -42,9 +42,7 @@ export class AppComponent implements OnInit, OnDestroy {
     });
 
     const bookmarks = new Bookmarks({
-      view: this.view,
-      // allows bookmarks to be added, edited, or deleted
-      editingEnabled: true,
+      view: this.view
     });
 
     const bkExpand = new Expand({
