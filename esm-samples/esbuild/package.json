@@ -2,12 +2,12 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "@arcgis/core": "~4.29.0"
+    "@arcgis/core": "~4.30.0"
   },
   "devDependencies": {
     "cpx2": "^7.0.1",
     "del-cli": "^5.1.0",
-    "esbuild": "^0.20.2"
+    "esbuild": "^0.21.4"
   },
   "scripts": {
     "init-dist": "del-cli dist && cpx \"public/**\" dist",
