@@ -2,11 +2,6 @@
 
 This sample demonstrates how to use the [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core) ES modules with rollup.
 
-## Known Issues
-- At 4.27, we removed CommonJS dependencies from the sample's build pipeline.
-- If you are using rollup `3.14.0` - `3.16.0`, to improve bundling performance set the `output.experimentalDeepDynamicChunkOptimization` flag to `true`. Reference this rollup [pull request](https://github.com/rollup/rollup/pull/4837). This issue can also be resolved by upgrading to `3.17.0`+.
-- It is recommended to upgrade `@rollup/plugin-terser` to `v0.4.0` or later. Previous versions have noticeably slower performance compared to `rollup-plugin-terser`. More information is available in the plugin's [CHANGELOG](https://github.com/rollup/plugins/blob/master/packages/terser/CHANGELOG.md#v040).
-
 ## Get Started
 
 Run `npm install` and then start adding modules.
@@ -58,4 +53,4 @@ This example can also be used with TypeScript sources. The following steps conve
 
 ## Experimental
 
-In `rollup.config.prod.js`, you can try fine tuning the [`output.experimentalMinChunkSize`](https://rollupjs.org/configuration-options/#output-experimentalminchunksize). Using a setting of `100_000` with this sample resulted in a roughly 17% reduction in the number of `.js` files requested. Depending on your application and other environment factors such as internet download speeds, this may result in a slight decrease in loading time.
+In `rollup.config.prod.js`, you can try fine tuning the [`output.experimentalMinChunkSize`](https://rollupjs.org/configuration-options/#output-experimentalminchunksize). Using a setting of `100_000` with this sample resulted in approximately 57% reduction in the number of `.js` files requested. There was also an increase in total `.js` loaded of approximately 230 KB. Depending on your application and other environment factors such as internet download speeds, this may result in a slight decrease in loading time.
