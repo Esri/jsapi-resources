@@ -5,14 +5,14 @@ Integrating Node.js with [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/
 ---
 ## Known Issues
  
-* Using the SDK's [projection engine](https://developers.arcgis.com/javascript/latest/api-reference/esri-geometry-projection.html) in Node.js requires transpiling to CJS and using a local copy of the SDK's assets.
+* Using the SDK's [projection engine](https://developers.arcgis.com/javascript/latest/api-reference/esri-geometry-projection.html) in Node.js requires transpiling to CJS and using a local copy of the SDK's assets. This sample uses rollup for that step.
 * If you are getting the error `ReferenceError: crypto is not defined` and you are using Node 18, use the `--experimental-global-webcrypto` flag.
 * If you are getting the error `TypeError: Cannot read properties of undefined (reading 'bind')`, try upgrading to Node 18.19+ or use the `--experimental-fetch` flag, for example: `node --experimental-fetch test-request.js` or `node --experimental-fetch test-webmap.js`.
 
 ---
 
 ## Get Started
-Make sure you are running Node 18.19.0 or greater: `node -v`.
+Make sure you are running Node 18.19.1 or greater: `node -v`.
 
 To run a test app, execute these commands in a terminal window:
 1. `npm install` - install the modules
