@@ -8,19 +8,19 @@ The Maps SDK's ES modules are available through the [`@arcgis/core`](https://www
 
 Below are a collection of samples that provide _proof-of-concept_ for using `@arcgis/core` with a variety of popular JavaScript build tools, frameworks and module bundlers.  
 
-* [Angular CLI](./esm-samples/jsapi-angular-cli/)
-* [ArcGIS ESM CDN](./esm-samples/jsapi-esm-cdn/)
-* [Custom workers](./esm-samples/jsapi-custom-workers/)
-* [Custom UI](./esm-samples/jsapi-custom-ui/)
-* [Deno](./esm-samples/jsapi-deno/)
-* [esbuild (no framework)](./esm-samples/esbuild/)
-* [Node.js](./esm-samples/jsapi-node/)
-* [OAuth](./esm-samples/jsapi-oauth/)
-* [React/Vite](./esm-samples/jsapi-react/)
-* [Rollup.js (no framework)](./esm-samples/rollup/)
-* [Vue.js/Vite](./esm-samples/jsapi-vue/)
-* [Vite/TypeScript](./esm-samples/jsapi-vite-ts/)
-* [Webpack (no framework)](./esm-samples/webpack/)
+* [Angular CLI](./core-samples/jsapi-angular-cli/)
+* [ArcGIS ESM CDN](./core-samples/jsapi-esm-cdn/)
+* [Custom workers](./core-samples/jsapi-custom-workers/)
+* [Custom UI](./core-samples/jsapi-custom-ui/)
+* [Deno](./core-samples/jsapi-deno/)
+* [esbuild (no framework)](./core-samples/esbuild/)
+* [Node.js](./core-samples/jsapi-node/)
+* [OAuth](./core-samples/jsapi-oauth/)
+* [React/Vite](./core-samples/jsapi-react/)
+* [Rollup.js (no framework)](./core-samples/rollup/)
+* [Vue.js/Vite](./core-samples/jsapi-vue/)
+* [Vite/TypeScript](./core-samples/jsapi-vite-ts/)
+* [Webpack (no framework)](./core-samples/webpack/)
 
 ## HTML OAuth callback
 

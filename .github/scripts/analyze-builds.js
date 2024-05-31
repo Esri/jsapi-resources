@@ -8,7 +8,7 @@ const exec = require("util").promisify(require("child_process").exec);
 const { getBuildSizes } = require("./build-size.js");
 const browserPerformanceTest = require("./build-perf");
 
-const SAMPLES_PATH = resolve(__dirname, "..", "..", "esm-samples");
+const SAMPLES_PATH = resolve(__dirname, "..", "..", "core-samples");
 const METRICS_PATH = resolve(SAMPLES_PATH, ".metrics");
 
 const SAMPLES_INFO = {

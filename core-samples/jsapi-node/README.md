@@ -30,7 +30,7 @@ import esriConfig from '@arcgis/core/config.js';
 esriConfig.assetsPath = "node_modules/@arcgis/core/assets"; // relative to when running in root
 ```
 
-An example can be found in [`projection.js`](https://github.com/Esri/jsapi-resources/blob/master/esm-samples/jsapi-node/src/projection.js#L6) and in [test-webmap.js](https://github.com/Esri/jsapi-resources/blob/master/esm-samples/jsapi-node/test-webmap.js#L4-L5).
+An example can be found in [`projection.js`](https://github.com/Esri/jsapi-resources/tree/main/core-samples/jsapi-node/src/projection.js#L6) and in [test-webmap.js](https://github.com/Esri/jsapi-resources/tree/main/core-samples/jsapi-node/test-webmap.js#L4-L5).
 
 More information can be found in the SDKs [Working with assets](https://developers.arcgis.com/javascript/latest/es-modules/#working-with-assets) guide topic.
 

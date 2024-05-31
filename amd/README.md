@@ -2,7 +2,7 @@
 
 # arcgis-js-api build tools (Deprecated)
 
-**Deprecation Notice**: The [arcgis-js-api](https://www.npmjs.com/package/arcgis-js-api) npm package has been deprecated at 4.29 and will be retired at 4.31. If you are building a new application, we recommend using the [@arcgis/core](https://developers.arcgis.com/javascript/latest/es-modules/) ES modules, here are [sample applications](https://github.com/Esri/jsapi-resources/tree/master/esm-samples) for getting started.
+**Deprecation Notice**: The [arcgis-js-api](https://www.npmjs.com/package/arcgis-js-api) npm package has been deprecated at 4.29 and will be retired at 4.31. If you are building a new application, we recommend using the [@arcgis/core](https://developers.arcgis.com/javascript/latest/es-modules/) ES modules, here are [sample applications](https://github.com/Esri/jsapi-resources/tree/main/core-samples) for getting started.
 
 These are example local build configurations for Dojo and Requirejs when using the [arcgis-js-api (AMD)](https://www.npmjs.com/package/arcgis-js-api) npm package.
 

@@ -36,10 +36,10 @@ const { getBuildSizes, formatBytes } = require("./build-sizes.js");
 
 You can also run the script via the command line. When running from the CLI, the script requires the path (absolute or relative) to the build directory as an argument. The script will log the sizes to the console.
 
-For example, your current working directory is `.github/scripts`. You want to analyze the build sizes of the [react sample](https://github.com/Esri/jsapi-resources/tree/main/esm-samples/jsapi-react), which is already built, and the build directory is named `dist`. To get the size, you can run:
+For example, your current working directory is `.github/scripts`. You want to analyze the build sizes of the [react sample](https://github.com/Esri/jsapi-resources/tree/main/core-samples/jsapi-react), which is already built, and the build directory is named `dist`. To get the size, you can run:
 
 ```bash
-node build-size.js ../../esm-samples/jsapi-react/dist
+node build-size.js ../../core-samples/jsapi-react/dist
 ```
 
 And the output to the console is:
@@ -64,7 +64,7 @@ Main JS bundle
 There are also options that you can set with flags. For example, you can tell the script to run a browser performance analysis against the build using the `-r` argument:
 
 ```bash
-node build-size.js ../../esm-samples/jsapi-react/build -r
+node build-size.js ../../core-samples/jsapi-react/build -r
 ```
 
 Now, in addition to the build size information the output will also include the following:
@@ -84,7 +84,7 @@ Now, in addition to the build size information the output will also include the 
 Another example, you can specify a filetype for the largest bundle size (default is "js"):
 
 ```bash
-node build-size.js ../../esm-samples/jsapi-react/build --filetype=css
+node build-size.js ../../core-samples/jsapi-react/build --filetype=css
 ```
 
 Providing the `-h` or `--help` flag will log usage information to the console, copy/pasted here for convenience:
@@ -149,7 +149,7 @@ Providing the `-h` or `--help` flag will log usage information to the console, c
 
 ### Running from NPM script
 
-You can get the sizes after every build by utilizing a sample's NPM scripts. For example, you can add a couple NPM scripts to `esm-samples/jsapi-react/package.json`:
+You can get the sizes after every build by utilizing a sample's NPM scripts. For example, you can add a couple NPM scripts to `core-samples/jsapi-react/package.json`:
 
 ```diff
 ...
@@ -187,7 +187,7 @@ The script requires some information about the samples. The [sample info is stor
 | devDep (optional) | is the main package a devDependency (default is `false`)              | boolean |
 | buildPath         | relative path from the sample's root directory to the build directory | string  |
 
-For example, the angular sample is in the [`jsapi-angular-cli`](https://github.com/Esri/jsapi-resources/tree/main/esm-samples/jsapi-angular-cli) directory. You want to name the sample `Angular`, the main angular package is `@angular/core` (and it isn't a devDependency), and the build path from the sample's root directory is `dist`. The sample's info is:
+For example, the angular sample is in the [`jsapi-angular-cli`](https://github.com/Esri/jsapi-resources/tree/main/core-samples/jsapi-angular-cli) directory. You want to name the sample `Angular`, the main angular package is `@angular/core` (and it isn't a devDependency), and the build path from the sample's root directory is `dist`. The sample's info is:
 
 ```js
 "jsapi-angular-cli": {
@@ -201,7 +201,7 @@ If a sample does not have an info item it will be skipped, so you can fine tune 
 
 ### Script output
 
-The script will create a CSV file containing sample metrics in [`esm-samples/.metrics`](https://github.com/Esri/jsapi-resources/tree/main/esm-samples/.metrics). The output filename is the version of the ArcGIS JSAPI used in the samples. The CSV contains the name of the samples with the version of the main packages and the return properties from the [build sizes script](#build-sizes).
+The script will create a CSV file containing sample metrics in [`core-samples/.metrics`](https://github.com/Esri/jsapi-resources/tree/main/core-samples/.metrics). The output filename is the version of the ArcGIS JSAPI used in the samples. The CSV contains the name of the samples with the version of the main packages and the return properties from the [build sizes script](#build-sizes).
 
 Bundle size is dependent on multiple factors and will vary based on framework, module bundler, transpiling and related configurations. The compile process can output several hundred or more bundles on-disk due to using dynamic imports. At runtime, your application will typically only load a portion of the bundles depending on the `@arcgis/core` functionality used. The functionality used can also affect the size of largest bundle.
 
@@ -231,7 +231,7 @@ The workflow will only analyze the samples when the following conditions are met
 
 1. A `package.json` file is in the diff between the PR branch and `main` - [code](https://github.com/Esri/jsapi-resources/blob/main/.github/workflows/analyze-builds.yml#L22-L23)
 2. All the samples being analyzed have the same version of the ArcGIS JSAPI - [code](https://github.com/Esri/jsapi-resources/blob/main/.github/scripts/analyze-builds.js#L51-L69)
-3. The most recent commit did not change any `esm-samples/.metrics/*.csv` files - [code](https://github.com/Esri/jsapi-resources/blob/main/.github/workflows/analyze-builds.yml#L24-L26)
+3. The most recent commit did not change any `core-samples/.metrics/*.csv` files - [code](https://github.com/Esri/jsapi-resources/blob/main/.github/workflows/analyze-builds.yml#L24-L26)
 
 The script takes around 8-12 minutes to analyze the samples, so the first condition prevents impacting pull requests unrelated to the ESM samples. The second condition makes sure the output metrics are accurate, since the CSV filename is the version of the ArcGIS JSAPI. The third ensures the script does not run recursively.
 

@@ -1,6 +1,6 @@
 # TypeScript (AMD) - Deprecated
 
-**Deprecation Notice**: The AMD TypeScript declaration files and the [arcgis-js-api](https://www.npmjs.com/package/arcgis-js-api) npm package have been deprecated at 4.29 and will be retired at 4.31. if you are building a new application, we recommend using the [@arcgis/core](https://developers.arcgis.com/javascript/latest/es-modules/) ES modules, here are [sample applications](https://github.com/Esri/jsapi-resources/tree/main/esm-samples) for getting started.
+**Deprecation Notice**: The AMD TypeScript declaration files and the [arcgis-js-api](https://www.npmjs.com/package/arcgis-js-api) npm package have been deprecated at 4.29 and will be retired at 4.31. if you are building a new application, we recommend using the [@arcgis/core](https://developers.arcgis.com/javascript/latest/es-modules/) ES modules, here are [sample applications](https://github.com/Esri/jsapi-resources/tree/main/core-samples) for getting started.
 
 TypeScript declaration files are available for download from the [archive](./archive/) folder. Choose the file that corresponds to the ArCGIS Maps SDK for JavaScript [version](https://developers.arcgis.com/javascript/latest/install-and-set-up/#amd-modules-via-arcgis-cdn) being used in your app. 
 
