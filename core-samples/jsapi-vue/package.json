@@ -8,7 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@arcgis/core": "^4.30.0-next.20240531",
+    "@arcgis/core": "~4.30.0",
     "vue": "^3.4.27"
   },
   "devDependencies": {
