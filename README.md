@@ -30,10 +30,6 @@ If you have set OAuthInfo's [`popup`](https://developers.arcgis.com/javascript/l
 
 The AMD TypeScript `.d.ts` files are deprecated at 4.29 and the final update will be 4.31. The last several files can be downloaded from this [repo](./typescript/README.md). The NPM `.d.ts` files can be installed via the [`arcgis-js-api`](https://www.npmjs.com/package/arcgis-js-api) package, which was also deprecated at 4.29. Use the [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core) package instead.
 
-## 3.x samples (Deprecated)
-
-The deprecated 3.x Bower and TypeScript samples can be downloaded or [checked out](https://git-scm.com/book/en/v2/Git-Basics-Tagging) via the [`legacy` releases tag](https://github.com/Esri/jsapi-resources/releases/tag/legacy).
-
 ## Contributing
 
 Please see our [guidelines for contributing](CONTRIBUTING.md).
