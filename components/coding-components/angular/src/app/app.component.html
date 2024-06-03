@@ -1,0 +1,24 @@
+<style>
+  :host {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+      "Segoe UI Symbol";
+    font-size: 14px;
+    color: #333;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+</style>
+
+<div *ngIf="isLoading; else content">
+  <!-- Show scrim when isLoading is true -->
+  <calcite-scrim id="scrim" loading></calcite-scrim>
+</div>
+
+<ng-template #content>
+  <!-- Show editor and hide scrim when isLoading is false -->
+  <div class="editor-wrapper">
+    <arcgis-arcade-editor script="$feature" [profile]="profile" [testData]="testData"></arcgis-arcade-editor>
+  </div>
+</ng-template>

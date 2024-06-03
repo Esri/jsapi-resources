@@ -1,0 +1,10 @@
+@import 'https://js.arcgis.com/4.29/@arcgis/core/assets/esri/themes/dark/main.css';
+
+html,
+body {
+  background-color: var(--calcite-ui-foreground-2);
+  padding: 0;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+}

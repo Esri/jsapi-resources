@@ -1,0 +1,24 @@
+{
+  "name": "coding-components-webpack-template",
+  "private": true,
+  "scripts": {
+    "build": "webpack --mode production",
+    "start": "webpack serve --mode development"
+  },
+  "dependencies": {
+    "@arcgis/coding-components": "~4.29.6",
+    "@arcgis/core": "~4.29.6",
+    "@esri/calcite-components": "^2.5.1"
+  },
+  "devDependencies": {
+    "css-loader": "^6.10.0",
+    "html-webpack-plugin": "^5.6.0",
+    "mini-css-extract-plugin": "^2.7.6",
+    "source-map-loader": "5.0.0",
+    "style-loader": "3.3.4",
+    "terser-webpack-plugin": "^5.3.9",
+    "webpack": "^5.90.1",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.0.1"
+  }
+}

@@ -1,0 +1,12 @@
+.editor-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 4rem 2rem;
+    height: 70vh;
+    min-height: 400px;
+}
+
+arcgis-arcade-editor {
+    max-width: 80%;
+}

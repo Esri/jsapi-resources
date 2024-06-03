@@ -1,0 +1,34 @@
+@import "https://js.arcgis.com/coding-components/4.29/arcgis-coding-components.css";
+@import "https://js.arcgis.com/calcite-components/2.5.1/calcite.css";
+@import "https://js.arcgis.com/4.29/@arcgis/core/assets/esri/themes/light/main.css";
+
+html,
+body {
+  background-color: var(--calcite-ui-foreground-2);
+}
+
+#app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.editor-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 70vh;
+  min-height: 400px;
+  position: relative;
+}
+
+arcgis-arcade-editor {
+  flex: 1 1 auto;
+}
+
+calcite-scrim {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
