@@ -5,7 +5,6 @@ import {
   ElementRef,
   OnDestroy,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 
 import WebMap from '@arcgis/core/WebMap';
@@ -16,7 +15,7 @@ import Expand from '@arcgis/core/widgets/Expand';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet],
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
