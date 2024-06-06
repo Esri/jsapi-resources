@@ -1,0 +1,20 @@
+{
+  "name": "coding-components-vue-template",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@arcgis/coding-components": ">=4.30-next <4.31",
+    "@arcgis/core": ">=4.30-next <4.31",
+    "@esri/calcite-components": "^2.8.1",
+    "vue": "^3.4.19"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.3",
+    "vite": "^5.1.3"
+  }
+}

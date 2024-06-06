@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+    <title>Map components AMD template</title>
+    <link rel="icon" href="data:;base64,=" />
+    <style>
+      html,
+      body,
+      arcgis-map {
+        height: 100vh;
+        width: 100vw;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <!-- Load the ArcGIS Maps SDK for JavaScript -->
+    <link rel="stylesheet" href="https://js.arcgis.com/4.30/esri/themes/dark/main.css" />
+    <script src="https://js.arcgis.com/4.30/"></script>
+
+    <!-- Load the Map components -->
+    <script type="module" src="https://js.arcgis.com/map-components/4.30/arcgis-map-components.esm.js"></script>
+  </head>
+  <body>
+    <arcgis-map item-id="d5dda743788a4b0688fe48f43ae7beb9">
+      <arcgis-expand position="top-right">
+        <arcgis-search></arcgis-search>
+      </arcgis-expand>
+      <arcgis-legend position="bottom-left"></arcgis-legend>
+    </arcgis-map>
+  </body>
+</html>
