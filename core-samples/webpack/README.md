@@ -2,8 +2,6 @@
 
 This sample demonstrates how to use the [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core) ES modules with webpack.
 
-- *NOTE:* Compatibility of the SDK with Webpack versions prior to `5.84.0` was removed at 4.29.
-
 ## Get Started
 
 Run `npm install` and then start adding modules.
