@@ -2,9 +2,6 @@
 
 This sample demonstrates using [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core) ES modules with custom workers.
 
-## Known Issues
-- It is recommended to upgrade `@rollup/plugin-terser` to `v0.4.0` or later. Previous versions have noticeably slower performance compared to `rollup-plugin-terser`. More information is available in the plugin's [CHANGELOG](https://github.com/rollup/plugins/blob/master/packages/terser/CHANGELOG.md#v040).
-
 ## Building workers
 
 The key to using custom workers is building the workers separately from your main build. In this demo we use Rollup to build the workers and webpack to build the main application.
@@ -104,4 +101,4 @@ Run `npm install` and then start adding modules.
 
 For a list of all available `npm` commands see `scripts` in `package.json`, e.g. `npm run build`.
 
-For additional information, see the [Build with ES modules](https://developers.arcgis.com/javascript/latest/es-modules/) Guide topic in the SDK.
+For additional information, see the [Getting started with npm](https://developers.arcgis.com/javascript/latest/getting-started-npm#api) Guide topic in the SDK.
