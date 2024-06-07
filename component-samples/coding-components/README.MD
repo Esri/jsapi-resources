@@ -1,4 +1,4 @@
-# Coding components (beta)
+# Coding components
 
 > **Disclaimer:** Components are in beta. Please do not contact Esri Technical Support for assistance.
 

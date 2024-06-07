@@ -36,10 +36,13 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('map-components-angular-template');
   });
 
-  it('should render the arcgis-map custom element', () => {
+  it('should have expected attribute and value', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('arcgis-map')).toBeTruthy();
+    const arcgisMapElement = compiled.querySelector('arcgis-map');
+    if (arcgisMapElement) {
+      expect(arcgisMapElement.getAttribute('item-id')).toBe('d5dda743788a4b0688fe48f43ae7beb9');
+    }
   });
 });

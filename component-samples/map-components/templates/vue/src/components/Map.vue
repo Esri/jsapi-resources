@@ -1,5 +1,5 @@
 <script setup>
-function onReady(event) {
+const onReady = (event) => {
   console.log("MapView ready", event);
 }
 </script>
