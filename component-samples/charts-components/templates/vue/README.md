@@ -4,68 +4,8 @@
 
 This template is for getting started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` Single-File Components, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
 
-## Commands
+## Get Started
 
-Instructions for setup after you save this directory to your machine.
+Run `npm install` and then start adding modules.
 
-### Install dependencies
-
-#### npm
-
-```
-npm install
-```
-
-#### yarn
-
-```
-yarn install
-```
-
-### Dev
-
-Start local server
-
-#### npm
-
-```
-npm run dev
-```
-
-#### yarn
-
-```
-yarn dev
-```
-
-### Build
-
-Build the project to the specified output folder (`/dist`)
-
-#### npm
-
-```
-npm run build
-```
-
-#### yarn
-
-```
-yarn build
-```
-
-### Preview
-
-Start local server to serve the specified output folder. You must run `build` before `preview`
-
-#### npm
-
-```
-npm run preview
-```
-
-#### yarn
-
-```
-yarn preview
-```
+For a list of all available `npm` commands see `scripts` in `package.json`, e.g. `npm run build`.

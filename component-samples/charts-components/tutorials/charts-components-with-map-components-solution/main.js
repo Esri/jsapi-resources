@@ -25,7 +25,7 @@ import { defineCustomElements as defineMapElements } from "@arcgis/map-component
  * you need to keep the version number in the path the same as the version of
  * `@esri/calcite-components` installed as a dependency of `@arcgis/map-components`.
  */
-defineCalciteElements(window, { resourcesUrl: "https://js.arcgis.com/calcite-components/2.8.0/assets" });
+defineCalciteElements(window, { resourcesUrl: "https://js.arcgis.com/calcite-components/2.8.5/assets" });
 
 /**
  * Use the Map Components to define and lazy load the custom map elements.
