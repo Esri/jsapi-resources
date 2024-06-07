@@ -16,7 +16,7 @@
             "outputPath": "dist/",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": ["src/zone-flags.ts", "zone.js"],
+            "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": ["src/styles.css"],
@@ -79,5 +79,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
