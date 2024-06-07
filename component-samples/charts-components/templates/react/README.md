@@ -4,72 +4,8 @@
 
 This repository showcases how to integrate the charts components with [React](https://react.dev/).
 
-## Get started
+## Get Started
 
-The project was created using [`yarn create vite`](https://vitejs.dev/guide/#scaffolding-your-first-vite-project) with the [React template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react).
+Run `npm install` and then start adding modules.
 
-## Commands
-
-Instructions for setup after you save this directory to your machine.
-
-### Install dependencies
-
-#### npm
-
-```
-npm install
-```
-
-#### yarn
-
-```
-yarn install
-```
-
-### Dev
-
-Start local server
-
-#### npm
-
-```
-npm run dev
-```
-
-#### yarn
-
-```
-yarn dev
-```
-
-### Build
-
-Build the project to the specified output folder (`/dist`)
-
-#### npm
-
-```
-npm run build
-```
-
-#### yarn
-
-```
-yarn build
-```
-
-### Preview
-
-Start local server to serve the specified output folder. You must run `build` before `preview`
-
-#### npm
-
-```
-npm run preview
-```
-
-#### yarn
-
-```
-yarn preview
-```
+For a list of all available `npm` commands see `scripts` in `package.json`, e.g. `npm run build`.

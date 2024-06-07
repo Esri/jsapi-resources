@@ -21,17 +21,16 @@ import { ScatterPlotModel } from "@arcgis/charts-model";
 import { createFeatureLayer } from "../functions/create-feature-layer";
 
 import "./Charts.css";
-// set the default action bar based on the series type
+// Customize the default actions for the scatterplot action bar
 function setDefaultActionBar(chartElementId: string, seriesType: string) {
-  const actionBarElement = document.getElementById(chartElementId) as HTMLArcgisChartsActionBarElement;
+  const actionBarElement = document.getElementById(
+    chartElementId,
+  ) as HTMLArcgisChartsActionBarElement;
 
   if (actionBarElement !== null) {
     actionBarElement.actionBarHideActionsProps = {
-      hideRotateChart: seriesType === "histogramSeries" || seriesType === "pieSeries" || seriesType === "scatterSeries",
+      hideRotateChart: true,
       hideFilterByExtent: true,
-      hideZoom: true,
-      hideSelection: true,
-      hideFullExtent: true
     };
   }
 }
@@ -43,7 +42,7 @@ export default function Scatterplot() {
   // useCallback to prevent the function from being recreated when the component rebuilds
   const initScatterplot = useCallback(async () => {
     const layer = await createFeatureLayer(
-      "https://services.arcgis.com/V6ZHFr6zdgNZuVG0/ArcGIS/rest/services/ChicagoCr/FeatureServer/0"
+      "https://services.arcgis.com/V6ZHFr6zdgNZuVG0/ArcGIS/rest/services/ChicagoCr/FeatureServer/0",
     );
 
     // Create a new ScatterPlotModel and set the x and y axis fields.
@@ -60,18 +59,23 @@ export default function Scatterplot() {
     scatterplotRef.current.layer = layer;
 
     // Add event listener when selection is made on the chart to enable/disable action bar buttons.
-    scatterplotRef.current.addEventListener("arcgisChartsSelectionComplete", (event: CustomEvent) => {
-      const actionBarElement = document.getElementById("scatterplot-action-bar") as HTMLArcgisChartsActionBarElement;
+    scatterplotRef.current.addEventListener(
+      "arcgisChartsSelectionComplete",
+      (event: CustomEvent) => {
+        const actionBarElement = document.getElementById(
+          "scatterplot-action-bar",
+        ) as HTMLArcgisChartsActionBarElement;
 
-      const selectionData = event.detail;
-      if (selectionData.selectionOIDs === undefined || selectionData.selectionOIDs.length === 0) {
-        actionBarElement.clearSelectionState = "disabled";
-        actionBarElement.filterBySelectionState = "disabled";
-      } else {
-        actionBarElement.clearSelectionState = "enabled";
-        actionBarElement.filterBySelectionState = "enabled";
-      }
-    });
+        const selectionData = event.detail;
+        if (selectionData.selectionOIDs === undefined || selectionData.selectionOIDs.length === 0) {
+          actionBarElement.clearSelectionState = "disabled";
+          actionBarElement.filterBySelectionState = "disabled";
+        } else {
+          actionBarElement.clearSelectionState = "enabled";
+          actionBarElement.filterBySelectionState = "enabled";
+        }
+      },
+    );
 
     // Set the default actions for the action bar based on the series type
     setDefaultActionBar("scatterplot-action-bar", config.series[0].type);
