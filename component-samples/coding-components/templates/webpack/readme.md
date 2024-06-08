@@ -4,48 +4,8 @@
 
 This repository showcases how to integrate the coding components using webpack.
 
-## Project setup
+Run `npm install` and then start adding modules.
 
-Instructions for setup after you save this directory to your machine.
+For a list of all available `npm` commands see `scripts` in `package.json`, e.g. `npm run build`.
 
-### Install dependencies
 
-#### npm
-
-```
-npm install
-```
-
-#### yarn
-
-```
-yarn install
-```
-
-### Start the development server
-
-#### npm
-
-```
-npm run start
-```
-
-#### yarn
-
-```
-yarn start
-```
-
-### Generate the production-ready compiled code
-
-#### npm
-
-```
-npm run build
-```
-
-#### yarn
-
-```
-yarn build
-```
