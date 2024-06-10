@@ -33,10 +33,12 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('coding-components-angular-template');
   });
 
-  it('should render the calcite scrim on initial render', () => {
+  it('should render the arcgis-arcade-editor component when isLoading is false', () => {
     const fixture = TestBed.createComponent(AppComponent);
+    fixture.componentInstance.isLoading = false;
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('calcite-scrim')).toBeTruthy();
+    const arcadeEditorElement = compiled.querySelector('arcgis-arcade-editor');
+    expect(arcadeEditorElement?.getAttribute('script')).toBe('$feature');
   });
 });
