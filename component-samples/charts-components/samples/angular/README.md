@@ -25,4 +25,7 @@ _angular.json - Webpack configuration_
             "polyfills": [
               "zone.js"
             ],
+          },
+        },
+      }
 ```
