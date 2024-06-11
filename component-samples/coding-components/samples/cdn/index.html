@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8" />
@@ -31,15 +31,15 @@
 
     <!-- Load Calcite Components. Note this could be after loading the ArcGIS Maps SDK for JS but before loading the Coding Components  -->
     <link rel="stylesheet" type="text/css" href="https://js.arcgis.com/calcite-components/2.8.5/calcite.css" />
+    <script type="module" src="https://js.arcgis.com/calcite-components/5/calcite.esm.js"></script>
+
+    <!-- Load the ArcGIS Maps SDK for JavaScript -->
+    <script src="https://js.arcgis.com/4.30/"></script>
     <link
       rel="stylesheet"
       type="text/css"
       href="https://js.arcgis.com/4.30/@arcgis/core/assets/esri/themes/dark/main.css"
     />
-    <script type="module" src="https://js.arcgis.com/calcite-components/5/calcite.esm.js"></script>
-
-    <!-- Load the ArcGIS Maps SDK for JavaScript -->
-    <script src="https://js.arcgis.com/4.30/"></script>
 
     <!-- Load the Coding Components -->
     <link
@@ -67,8 +67,8 @@
 
         const webMap = new WebMap({
           portalItem: {
-            id: "93d14bfd59a84af0be99a883feba052b"
-          }
+            id: "93d14bfd59a84af0be99a883feba052b",
+          },
         });
 
         await webMap.loadAll();
@@ -78,13 +78,13 @@
         const featureSet = await featureLayer.queryFeatures({
           where: "1=1",
           outFields: ["*"],
-          returnGeometry: true
+          returnGeometry: true,
         });
 
         return {
           webMap,
           featureLayer,
-          featureSet
+          featureSet,
         };
       }
 
@@ -120,8 +120,8 @@
             $feature: data.featureLayer,
             $layer: data.featureLayer,
             $map: data.webMap,
-            $datastore: data.featureLayer
-          }
+            $datastore: data.featureLayer,
+          },
         };
 
         // Tells Arcade editor to the following test data. The data provided must match the expected data for the
@@ -133,8 +133,8 @@
             $feature: data.featureSet.features[0],
             $layer: data.featureLayer,
             $map: data.webMap,
-            $datastore: data.featureLayer.url
-          }
+            $datastore: data.featureLayer.url,
+          },
         };
 
         // Set a script on the editor
