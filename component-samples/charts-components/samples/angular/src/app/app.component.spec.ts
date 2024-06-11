@@ -31,16 +31,16 @@ describe("AppComponent", () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'charts-components-angular-template'`, () => {
+  it(`should have as title 'charts-components-angular-sample'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual("charts-components-angular-template");
+    expect(app.title).toEqual("charts-components-angular-sample");
   });
 
   it("should render title", () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector("h1")?.textContent).toContain("Hello, charts-components-angular-template");
+    expect(compiled.querySelector("h1")?.textContent).toContain("Hello, charts-components-angular-sample");
   });
 });

@@ -18,7 +18,7 @@ import type FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 
 /**
  * Simple data loader against public data.
- * For this template we are using the Popup profile.
+ * For this sample we are using the Popup profile.
  * For the profile definition, we need a web map and a feature layer
  * For the test data, we need a web map, a feature layer and a feature set.
  */

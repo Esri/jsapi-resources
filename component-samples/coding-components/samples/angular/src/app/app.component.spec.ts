@@ -27,10 +27,10 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'coding-components-angular-template'`, () => {
+  it(`should have as title 'coding-components-angular-sample'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('coding-components-angular-template');
+    expect(app.title).toEqual('coding-components-angular-sample');
   });
 
   it('should render the arcgis-arcade-editor component when isLoading is false', () => {

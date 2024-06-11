@@ -1,5 +1,5 @@
 {
-  "name": "charts-components-webpack-template",
+  "name": "charts-components-webpack-sample",
   "private": true,
   "scripts": {
     "build": "webpack --mode production",

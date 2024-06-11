@@ -54,7 +54,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Charts components Webpack template',
+      title: 'Charts components Webpack sample',
       template: './public/index.html',
       filename: './index.html',
       chunksSortMode: 'none',

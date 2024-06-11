@@ -22,7 +22,7 @@ import { defineCustomElements } from "@arcgis/map-components/dist/loader";
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent implements OnInit {
-  title = "map-components-angular-template";
+  title = "map-components-angular-sample";
 
   arcgisViewReadyChange(event: any) {
     console.log("MapView ready", event);

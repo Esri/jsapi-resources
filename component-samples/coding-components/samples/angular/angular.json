@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "coding-components-angular-template": {
+    "coding-components-angular-sample": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -50,10 +50,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "coding-components-angular-template:build:production"
+              "buildTarget": "coding-components-angular-sample:build:production"
             },
             "development": {
-              "buildTarget": "coding-components-angular-template:build:development"
+              "buildTarget": "coding-components-angular-sample:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -61,7 +61,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "coding-components-angular-template:build"
+            "buildTarget": "coding-components-angular-sample:build"
           }
         },
         "test": {

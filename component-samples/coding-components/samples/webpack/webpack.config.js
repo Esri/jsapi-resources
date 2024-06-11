@@ -59,7 +59,7 @@ module.exports = {
   plugins: [
     // This plugin simplifies creation of HTML files to serve your webpack bundles.
     new HtmlWebPackPlugin({
-      title: "Coding components Webpack template",
+      title: "Coding components Webpack sample",
       template: "./public/index.html",
       filename: "./index.html",
       chunksSortMode: "none",

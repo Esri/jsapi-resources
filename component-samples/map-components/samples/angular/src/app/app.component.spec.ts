@@ -30,10 +30,10 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'map-components-angular-template'`, () => {
+  it(`should have as title 'map-components-angular-sample'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('map-components-angular-template');
+    expect(app.title).toEqual('map-components-angular-sample');
   });
 
   it('should have expected attribute and value', () => {

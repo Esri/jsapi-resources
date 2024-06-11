@@ -1,5 +1,5 @@
 {
-  "name": "coding-components-webpack-template",
+  "name": "coding-components-webpack-sample",
   "private": true,
   "scripts": {
     "build": "webpack --mode production",

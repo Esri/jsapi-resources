@@ -54,7 +54,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebPackPlugin({
-      title: "Map components Webpack template",
+      title: "Map components Webpack sample",
       template: "./public/index.html",
       filename: "./index.html",
       chunksSortMode: "none",

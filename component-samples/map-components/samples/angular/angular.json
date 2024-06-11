@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "map-components-angular-template": {
+    "map-components-angular-sample": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -52,10 +52,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "map-components-angular-template:build:production"
+              "buildTarget": "map-components-angular-sample:build:production"
             },
             "development": {
-              "buildTarget": "map-components-angular-template:build:development"
+              "buildTarget": "map-components-angular-sample:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -63,7 +63,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "map-components-angular-template:build"
+            "buildTarget": "map-components-angular-sample:build"
           }
         },
         "test": {

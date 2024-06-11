@@ -25,7 +25,7 @@ import { defineCustomElements as defineChartsElements } from "@arcgis/charts-com
   styleUrl: "./app.component.css"
 })
 export class AppComponent {
-  title = "charts-components-angular-template";
+  title = "charts-components-angular-sample";
 
   @ViewChild("scatterplot") scatterplot: HTMLArcgisChartsScatterPlotElement | undefined;
 

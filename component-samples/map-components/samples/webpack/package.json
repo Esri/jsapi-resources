@@ -1,5 +1,5 @@
 {
-  "name": "map-components-webpack-template",
+  "name": "map-components-webpack-sample",
   "private": true,
   "scripts": {
     "build": "webpack --mode production",
