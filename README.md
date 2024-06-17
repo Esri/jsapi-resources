@@ -2,7 +2,9 @@ jsapi-resources
 ===============
 A collection of resources for developers using the [ArcGIS Maps SDK for JavaScript](https://js.arcgis.com). Refer to the README files in each subdirectory for specific instructions on how to use a particular resource. 
 
-## ES modules (ESM) samples
+## Components samples
+
+## API samples
 
 The Maps SDK's ES modules are available through the [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core) package on NPM. TypeScript definitions are included in the install.
 
@@ -22,9 +24,9 @@ Below are a collection of samples that provide _proof-of-concept_ for using `@ar
 * [Vite/TypeScript](./core-samples/jsapi-vite-ts/)
 * [Webpack (no framework)](./core-samples/webpack/)
 
-## HTML OAuth callback
+## HTML OAuth callback page
 
-If you have set OAuthInfo's [`popup`](https://developers.arcgis.com/javascript/latest/api-reference/esri-identity-OAuthInfo.html#popup) property to `true`, you'll need to host a [callback page](./oauth/) on your server. For more information, visit the Maps SDK's [Access secure resources](https://developers.arcgis.com/javascript/latest/secure-resources/)] guide topic.
+If you have set OAuthInfo's [`popup`](https://developers.arcgis.com/javascript/latest/api-reference/esri-identity-OAuthInfo.html#popup) property to `true`, you'll need to host a [callback page](./oauth/) on your server. For more information, visit the Maps SDK's [Access secure resources](https://developers.arcgis.com/javascript/latest/secure-resources/) guide topic.
 
 ## AMD TypeScript declaration files (Deprecated)
 
