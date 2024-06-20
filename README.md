@@ -1,28 +1,13 @@
-jsapi-resources
+Resources for the ArcGIS Maps SDK for JavaScript
 ===============
 A collection of resources for developers using the [ArcGIS Maps SDK for JavaScript](https://js.arcgis.com). Refer to the README files in each subdirectory for specific instructions on how to use a particular resource. 
 
-## Components samples
+## Samples
 
-## API samples
+This repository provides a collection of code samples that provide _proof-of-concept_ for using the ArcGIS Maps SDK for JavaScript components and core API with a variety of popular build tools, frameworks and module bundlers. 
 
-The Maps SDK's ES modules are available through the [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core) package on NPM. TypeScript definitions are included in the install.
-
-Below are a collection of samples that provide _proof-of-concept_ for using `@arcgis/core` with a variety of popular JavaScript build tools, frameworks and module bundlers.  
-
-* [Angular CLI](./core-samples/jsapi-angular-cli/)
-* [ArcGIS ESM CDN](./core-samples/jsapi-esm-cdn/)
-* [Custom workers](./core-samples/jsapi-custom-workers/)
-* [Custom UI](./core-samples/jsapi-custom-ui/)
-* [Deno](./core-samples/jsapi-deno/)
-* [esbuild (no framework)](./core-samples/esbuild/)
-* [Node.js](./core-samples/jsapi-node/)
-* [OAuth](./core-samples/jsapi-oauth/)
-* [React/Vite](./core-samples/jsapi-react/)
-* [Rollup.js (no framework)](./core-samples/rollup/)
-* [Vue.js/Vite](./core-samples/jsapi-vue/)
-* [Vite/TypeScript](./core-samples/jsapi-vite-ts/)
-* [Webpack (no framework)](./core-samples/webpack/)
+* [Components samples](./component-samples/)
+* [Core API samples](./core-samples/)
 
 ## HTML OAuth callback page
 
