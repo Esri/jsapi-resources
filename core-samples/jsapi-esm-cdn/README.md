@@ -4,6 +4,10 @@ Use the ES modules (ESM) via the ArcGIS CDN only for testing and prototyping. Th
 
 For best performance, build your application locally using the [@arcgis/core](https://www.npmjs.com/package/@arcgis/core) npm package. Local build tools, which are typically included in all frameworks, offer the ability to take advantage of tree shaking, chunking, bundling, minimizing and obfuscating in a way that works best for your application.
 
+## Getting started
+
+📁 **[Click here to download this directory as a ZIP file](https://download-directory.github.io?url=https://github.com/Esri/jsapi-resources/tree/main/core-samples/jsapi-esm-cdn/))** 📁
+
 ## Configuration
 
 None. 

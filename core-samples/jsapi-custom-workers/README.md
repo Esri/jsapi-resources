@@ -2,6 +2,16 @@
 
 This sample demonstrates using [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core) ES modules with custom workers.
 
+## Getting started
+
+📁 **[Click here to download this directory as a ZIP file](https://download-directory.github.io?url=https://github.com/Esri/jsapi-resources/tree/main/core-samples/jsapi-custom-workers/))** 📁
+
+Run `npm install` and then start adding modules.
+
+For a list of all available `npm` commands see `scripts` in `package.json`, e.g. `npm run build`.
+
+For additional information, see the [Getting started with npm](https://developers.arcgis.com/javascript/latest/getting-started-npm#api) Guide topic in the SDK.
+
 ## Building workers
 
 The key to using custom workers is building the workers separately from your main build. In this demo we use Rollup to build the workers and webpack to build the main application.
@@ -94,11 +104,3 @@ export function doSpatialJoin([f1, f2]) {
 ```
 
 For more details on using `@arcgis/core/core/workers`, you can review the [documentation](https://developers.arcgis.com/javascript/latest/api-reference/esri-core-workers.html).
-
-## Getting started
-
-Run `npm install` and then start adding modules.
-
-For a list of all available `npm` commands see `scripts` in `package.json`, e.g. `npm run build`.
-
-For additional information, see the [Getting started with npm](https://developers.arcgis.com/javascript/latest/getting-started-npm#api) Guide topic in the SDK.

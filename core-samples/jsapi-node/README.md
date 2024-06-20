@@ -12,6 +12,9 @@ Integrating Node.js with [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/
 ---
 
 ## Get Started
+
+📁 **[Click here to download this directory as a ZIP file](https://download-directory.github.io?url=https://github.com/Esri/jsapi-resources/tree/main/core-samples/jsapi-node/))** 📁
+
 Make sure you are running Node 18.19.1 or greater: `node -v`.
 
 To run a test app, execute these commands in a terminal window:
