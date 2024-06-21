@@ -15,7 +15,7 @@ const SAMPLES_INFO = {
   "jsapi-angular-cli": {
     name: "Angular",
     package: "@angular/core",
-    buildPath: "dist", // relative path from the sample's root directory
+    buildPath: "dist/browser/", // relative path from the sample's root directory
   },
   "jsapi-react": {
     name: "React",
