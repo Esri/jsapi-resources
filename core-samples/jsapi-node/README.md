@@ -35,7 +35,7 @@ esriConfig.assetsPath = "node_modules/@arcgis/core/assets"; // relative to when 
 
 An example can be found in [`projection.js`](https://github.com/Esri/jsapi-resources/tree/main/core-samples/jsapi-node/src/projection.js#L6) and in [test-webmap.js](https://github.com/Esri/jsapi-resources/tree/main/core-samples/jsapi-node/test-webmap.js#L4-L5).
 
-More information can be found in the SDKs [Working with assets](https://developers.arcgis.com/javascript/latest/es-modules/#working-with-assets) guide topic.
+For additional information, see the [Get started with npm](https://developers.arcgis.com/javascript/latest/get-started-npm/#api) Guide topic in the SDK.
 
 ## IdentityManager
 

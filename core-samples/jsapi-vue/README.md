@@ -10,7 +10,7 @@ Run `npm install` and then start adding modules.
 
 For a list of all available `npm` commands see `scripts` in `package.json`, e.g. `npm run build`.
 
-For additional information, see the [Build with ES modules](https://developers.arcgis.com/javascript/latest/es-modules/) Guide topic in the SDK.
+For additional information, see the [Get started with npm](https://developers.arcgis.com/javascript/latest/get-started-npm/#api) Guide topic in the SDK.
 
 ## Production builds
 

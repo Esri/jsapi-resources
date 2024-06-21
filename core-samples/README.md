@@ -25,7 +25,7 @@ You can use these links to download all of the samples, or individual samples:
 
 Run `npm install` in a project directory and then start adding ArcGIS Maps SDK for JavaScript functionality.
 
-For additional information, see the [Build with ES modules](https://developers.arcgis.com/javascript/latest/es-modules/) Guide topic in the SDK.
+For additional information, see the [Get started with npm](https://developers.arcgis.com/javascript/latest/get-started-npm/#api) Guide topic in the SDK.
 
 ## TypeScript
 
