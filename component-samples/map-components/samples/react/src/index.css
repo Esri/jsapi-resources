@@ -1,0 +1,11 @@
+@import 'https://js.arcgis.com/4.30/@arcgis/core/assets/esri/themes/dark/main.css';
+
+#root,
+html,
+body,
+arcgis-map {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+}

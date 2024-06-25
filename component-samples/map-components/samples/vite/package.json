@@ -1,0 +1,18 @@
+{
+  "name": "map-components-vite-sample",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@arcgis/core": "~4.30.0",
+    "@arcgis/map-components": "~4.30.0",
+    "@esri/calcite-components": "^2.8.5"
+  },
+  "devDependencies": {
+    "vite": "^5.1.3"
+  }
+}
