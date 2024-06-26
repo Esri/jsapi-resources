@@ -29,3 +29,7 @@ coverage
 
 *.tsbuildinfo
 .DS_Store
+
+# Package lock files
+yarn.lock
+package-lock.json

@@ -43,3 +43,7 @@ Thumbs.db
 
 # wrappers
 charts-components-angular
+
+# Package lock files
+yarn.lock
+package-lock.json
