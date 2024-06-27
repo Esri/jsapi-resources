@@ -1,0 +1,21 @@
+{
+  "name": "charts-components-vue-sample",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@arcgis/charts-components": "~4.30.0",
+    "@arcgis/charts-model": "~4.30.0",
+    "@arcgis/core": "~4.30.0",
+    "vue": "^3.4.19"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.3",
+    "resolve-pkg": "^2.0.0",
+    "vite": "^5.1.3"
+  }
+}

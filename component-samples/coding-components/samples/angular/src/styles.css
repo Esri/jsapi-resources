@@ -1,0 +1,8 @@
+@import "https://js.arcgis.com/coding-components/4.30/arcgis-coding-components.css";
+@import "https://js.arcgis.com/calcite-components/2.8.5/calcite.css";
+@import "https://js.arcgis.com/4.30/@arcgis/core/assets/esri/themes/light/main.css";
+
+html,
+body {
+  background-color: var(--calcite-ui-foreground-2);
+}

@@ -165,15 +165,24 @@ const browserPerformanceTest = async (path, sampleName = "") => {
   go = await page.goto(TEST_URL, {
     waitUntil: "networkidle0",
   });
-
+  console.log("GO STATUS ", go?.status());
   // Check for HTTP page not found errors
   if (go?.status() !== 404) {
+    // There can be significant network delays for queries and tile responses.
+    // 15000ms is just a best guess based on close observation.
+    console.log("wait for network idle.");
+    await page
+      .waitForNetworkIdle({ idleTime: 15000 })
+      .then(() =>{
+        console.log("wait for network idle completed.");
+      })
+      .catch((err) => {
+        console.error("wait for network idle ERROR: ", err);
+      });
     await page
       .waitForSelector(".esri-view-root", { visible: true })
       .then(async () => {
         console.log("waitForSelector SUCCESS.");
-        console.log("Pause for any additional http responses.");
-        await new Promise((r) => setTimeout(r, 10000));
         console.log("Page loaded. Capturing metrics...");
         pageMetrics = await capturePageMetrics(page, sampleName);
       })
@@ -198,5 +207,5 @@ const browserPerformanceTest = async (path, sampleName = "") => {
   }
 };
 
-// browserPerformanceTest("../../esm-samples/webpack/dist/");
+// browserPerformanceTest("../../core-samples/webpack/dist/");
 module.exports = browserPerformanceTest;

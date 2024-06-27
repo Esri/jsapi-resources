@@ -1,0 +1,19 @@
+{
+  "name": "charts-components-vite-sample",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@arcgis/charts-components": "~4.30.0",
+    "@arcgis/charts-model": "~4.30.0",
+    "@arcgis/core": "~4.30.0"
+  },
+  "devDependencies": {
+    "resolve-pkg": "^2.0.0",
+    "vite": "^5.1.3"
+  }
+}
