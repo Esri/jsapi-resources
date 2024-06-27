@@ -1,7 +1,5 @@
 # Coding components React using Vite sample
 
-📁 **[Click here to download this directory as a ZIP file](https://download-directory.github.io?url=https://github.com/Esri/jsapi-resources/tree/main/component-samples/coding-components/samples/react)** 📁
-
 This repository showcases how to integrate the coding components with [React](https://react.dev/).
 
 ## Get started
