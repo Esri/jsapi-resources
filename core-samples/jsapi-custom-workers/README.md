@@ -4,8 +4,6 @@ This sample demonstrates using [`@arcgis/core`](https://www.npmjs.com/package/@a
 
 ## Getting started
 
-📁 **[Click here to download this directory as a ZIP file](https://download-directory.github.io?url=https://github.com/Esri/jsapi-resources/tree/main/core-samples/jsapi-custom-workers/))** 📁
-
 Run `npm install` and then start adding modules.
 
 For a list of all available `npm` commands see `scripts` in `package.json`, e.g. `npm run build`.

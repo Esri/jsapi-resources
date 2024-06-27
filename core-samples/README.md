@@ -2,25 +2,6 @@
 
 The samples in this directory demonstrate using [@arcgis/core](https://www.npmjs.com/package/@arcgis/core) ES modules with various frameworks, module bundlers and build tools. `@arcgis/core` is installed using [npm](https://docs.npmjs.com/downloading-and-installing-packages-locally), and is intended for use in local builds that you host.
 
-## Download
-
-You can use these links to download all of the samples, or individual samples:
-
-* [Download all samples](https://download-directory.github.io?url=https://github.com/Esri/jsapi-resources/tree/main/core-samples)
-* [Angular CLI](https://download-directory.github.io?url=https://github.com/Esri/jsapi-resources/tree/main/core-samples/jsapi-angular-cli/)
-* [ArcGIS ESM CDN](https://download-directory.github.io?url=https://github.com/Esri/jsapi-resources/tree/main/core-samples/jsapi-esm-cdn/)
-* [Custom workers](https://download-directory.github.io?url=https://github.com/Esri/jsapi-resources/tree/main/core-samples/jsapi-custom-workers/)
-* [Custom UI](https://download-directory.github.io?url=https://github.com/Esri/jsapi-resources/tree/main/core-samples/jsapi-custom-ui/)
-* [Deno](https://download-directory.github.io?url=https://github.com/Esri/jsapi-resources/tree/main/core-samples/jsapi-deno/)
-* [esbuild (no framework)](https://download-directory.github.io?url=https://github.com/Esri/jsapi-resources/tree/main/core-samples/esbuild/)
-* [Node.js](https://download-directory.github.io?url=https://github.com/Esri/jsapi-resources/tree/main/core-samples/jsapi-node/)
-* [OAuth](https://download-directory.github.io?url=https://github.com/Esri/jsapi-resources/tree/main/core-samples/jsapi-oauth/)
-* [React/Vite](https://download-directory.github.io?url=https://github.com/Esri/jsapi-resources/tree/main/core-samples/jsapi-react/)
-* [Rollup.js (no framework)](https://download-directory.github.io?url=https://github.com/Esri/jsapi-resources/tree/main/core-samples/rollup/)
-* [Vue.js/Vite](https://download-directory.github.io?url=https://github.com/Esri/jsapi-resources/tree/main/core-samples/jsapi-vue/)
-* [Vite/TypeScript](https://download-directory.github.io?url=https://github.com/Esri/jsapi-resources/tree/main/core-samples/jsapi-vite-ts/)
-* [Webpack (no framework)](https://download-directory.github.io?url=https://github.com/Esri/jsapi-resources/tree/main/core-samples/webpack/)
-
 ## Get Started
 
 Run `npm install` in a project directory and then start adding ArcGIS Maps SDK for JavaScript functionality.

@@ -6,8 +6,6 @@ For best performance, build your application locally using the [@arcgis/core](ht
 
 ## Getting started
 
-📁 **[Click here to download this directory as a ZIP file](https://download-directory.github.io?url=https://github.com/Esri/jsapi-resources/tree/main/core-samples/jsapi-esm-cdn/))** 📁
-
 ## Configuration
 
 None. 
