@@ -4,7 +4,7 @@ This sample demonstrates how to use [@arcgis/core](https://www.npmjs.com/package
 
 ## Get Started
 
-📁 **[Click here to download this directory as a ZIP file](https://github.com/Esri/jsapi-resources/blob/main/zips/core-sample-jsapi-vite-ts.zip)** 📁
+📁 **[Click here to download this directory as a ZIP file](https://esri.github.io/jsapi-resources/zips/core-sample-jsapi-vite-ts.zip)** 📁
 
 Run `npm install` and then start adding modules.
 

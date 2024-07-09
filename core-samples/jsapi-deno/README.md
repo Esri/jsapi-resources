@@ -4,7 +4,7 @@ Integrating [Deno](https://deno.com//) with [`@arcgis/core`](https://www.npmjs.c
 
 Please refer to the [Deno installation](https://docs.deno.com/runtime/manual/getting_started) instructions for your environment.
 
-📁 **[Click here to download this directory as a ZIP file](https://github.com/Esri/jsapi-resources/blob/main/zips/core-sample-jsapi-deno.zip)** 📁
+📁 **[Click here to download this directory as a ZIP file](https://esri.github.io/jsapi-resources/zips/core-sample-jsapi-deno.zip)** 📁
 
 ## Usage
 

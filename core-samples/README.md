@@ -6,19 +6,19 @@ The samples in this directory demonstrate using [@arcgis/core](https://www.npmjs
 
 You can use these links to download all of the samples, or individual samples:
 
-* [Angular CLI](https://github.com/Esri/jsapi-resources/blob/main/zips/core-sample-jsapi-angular-cli.zip)
-* [ArcGIS ESM CDN](https://github.com/Esri/jsapi-resources/blob/main/zips/core-sample-jsapi-esm-cdn.zip)
-* [Custom workers](https://github.com/Esri/jsapi-resources/blob/main/zips/core-sample-jsapi-custom-workers.zip)
-* [Custom UI](https://github.com/Esri/jsapi-resources/blob/main/zips/core-sample-jsapi-custom-ui.zip)
-* [Deno](https://github.com/Esri/jsapi-resources/blob/main/zips/core-sample-jsapi-deno.zip)
-* [esbuild (no framework)](https://github.com/Esri/jsapi-resources/blob/main/zips/core-sample-esbuild.zip)
-* [Node.js](https://github.com/Esri/jsapi-resources/blob/main/zips/core-sample-jsapi-node.zip)
-* [OAuth](https://github.com/Esri/jsapi-resources/blob/main/zips/core-sample-jsapi-oauth.zip)
-* [React/Vite](https://github.com/Esri/jsapi-resources/blob/main/zips/core-sample-jsapi-react.zip)
-* [Rollup.js (no framework)](https://github.com/Esri/jsapi-resources/blob/main/zips/core-sample-rollup.zip)
-* [Vue.js/Vite](https://github.com/Esri/jsapi-resources/blob/main/zips/core-sample-jsapi-vue.zip)
-* [Vite/TypeScript](https://github.com/Esri/jsapi-resources/blob/main/zips/core-sample-jsapi-vite-ts.zip)
-* [Webpack (no framework)](https://github.com/Esri/jsapi-resources/blob/main/zips/core-sample-webpack.zip)
+* [Angular CLI](https://esri.github.io/jsapi-resources/zips/core-sample-jsapi-angular-cli.zip)
+* [ArcGIS ESM CDN](https://esri.github.io/jsapi-resources/zips/core-sample-jsapi-esm-cdn.zip)
+* [Custom workers](https://esri.github.io/jsapi-resources/zips/core-sample-jsapi-custom-workers.zip)
+* [Custom UI](https://esri.github.io/jsapi-resources/zips/core-sample-jsapi-custom-ui.zip)
+* [Deno](https://esri.github.io/jsapi-resources/zips/core-sample-jsapi-deno.zip)
+* [esbuild (no framework)](https://esri.github.io/jsapi-resources/zips/core-sample-esbuild.zip)
+* [Node.js](https://esri.github.io/jsapi-resources/zips/core-sample-jsapi-node.zip)
+* [OAuth](https://esri.github.io/jsapi-resources/zips/core-sample-jsapi-oauth.zip)
+* [React/Vite](https://esri.github.io/jsapi-resources/zips/core-sample-jsapi-react.zip)
+* [Rollup.js (no framework)](https://esri.github.io/jsapi-resources/zips/core-sample-rollup.zip)
+* [Vue.js/Vite](https://esri.github.io/jsapi-resources/zips/core-sample-jsapi-vue.zip)
+* [Vite/TypeScript](https://esri.github.io/jsapi-resources/zips/core-sample-jsapi-vite-ts.zip)
+* [Webpack (no framework)](https://esri.github.io/jsapi-resources/zips/core-sample-webpack.zip)
 
 ## Get Started
 

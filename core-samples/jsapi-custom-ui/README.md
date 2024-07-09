@@ -6,7 +6,7 @@ The component in this sample is created in [JSX](https://react.dev/learn/writing
 
 ## Get Started
 
-📁 **[Click here to download this directory as a ZIP file](https://github.com/Esri/jsapi-resources/blob/main/zips/core-sample-jsapi-custom-ui.zip)** 📁
+📁 **[Click here to download this directory as a ZIP file](https://esri.github.io/jsapi-resources/zips/core-sample-jsapi-custom-ui.zip)** 📁
 
 Run `npm install` and then start adding modules.
 

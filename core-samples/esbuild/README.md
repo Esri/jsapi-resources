@@ -7,7 +7,7 @@ This sample demonstrates how to use the [`@arcgis/core`](https://www.npmjs.com/p
 ## Get Started
 
 
-📁 **[Click here to download this directory as a ZIP file](https://github.com/Esri/jsapi-resources/blob/main/zips/core-sample-esbuild.zip)** 📁
+📁 **[Click here to download this directory as a ZIP file](https://esri.github.io/jsapi-resources/zips/core-sample-esbuild.zip)** 📁
 
 Run `npm install` and then start adding modules.
 
