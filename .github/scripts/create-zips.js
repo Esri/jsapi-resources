@@ -27,8 +27,11 @@ const SAMPLES_RELATIVE_PATH = "../../";
 const SAMPLE_DIRS = [
   { dir: "core-samples", name: "core-sample" },
   { dir: "component-samples/map-components/samples", name: "map-component-sample" },
+  { dir: "component-samples/map-components/tutorials", name: "map-components-tutorial" },  
   { dir: "component-samples/charts-components/samples", name: "charts-components-sample" },
-  { dir: "component-samples/coding-components/samples", name: "coding-components-sample" }];
+  { dir: "component-samples/charts-components/tutorials", name: "charts-components-tutorial" },
+  { dir: "component-samples/coding-components/samples", name: "coding-components-sample" }
+];
 
 /**
  * Emphasizes a message in the console
