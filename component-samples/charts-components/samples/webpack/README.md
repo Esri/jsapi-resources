@@ -1,8 +1,10 @@
-# Charts components Webpack sample
+# Charts components Webpack sample (beta)
 
 This repository showcases how to integrate the charts components using webpack.
 
 ## Get Started
+
+📁 **[Click here to download this directory as a ZIP file](https://esri.github.io/jsapi-resources/zips/charts-components-sample-webpack.zip)** 📁
 
 Run `npm install` and then start adding modules.
 
