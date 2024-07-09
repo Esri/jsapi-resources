@@ -3,6 +3,7 @@ on:
   pull_request:
     types: [opened, reopened, synchronize, labeled, unlabeled]
     branches: [main]
+  workflow_dispatch:    
 jobs:
   analyze:
     if: "!contains(github.event.pull_request.labels.*.name, 'draft') && github.actor!='dependabot-preview[bot]'"
@@ -12,47 +13,81 @@ jobs:
         with:
           fetch-depth: 0
           ref: ${{ github.event.pull_request.head.ref }}
-          token: ${{ secrets.ESM_BUILD }}
-      - name: should samples build
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: should create zip files
+        id: verify
+        run: |
+          # This step involves analyzing if any files changed in the branch, if so we'll create zip files
+          current_branch=$(git rev-parse --abbrev-ref HEAD)
+          # did any files change in component or core samples
+          samples_changed=$(git diff --name-only "$current_branch" $(git merge-base "$current_branch" origin/main) -- "./core-samples" "./components")
+          if [ -z "$samples_changed" ]; then
+            echo "no samples changed, skipping creation of zip files"
+            echo "zipskip=true" >> $GITHUB_OUTPUT   
+          else
+            echo "samples changed: $samples_changed"
+            echo "zipskip=false" >> $GITHUB_OUTPUT
+          fi              
+      - name: should build samples
         id: build
         run: |
-          current_branch=$(git rev-parse --abbrev-ref HEAD)
+          # This step involves analyzing the package.json files changed in the branch, if so we'll build the samples
+          current_branch=$(git rev-parse --abbrev-ref HEAD)        
           # package.json files changed in the branch
           packages_changed=$(git diff --name-only "$current_branch" $(git merge-base "$current_branch" origin/main) -- "./core-samples/**/package.json")
           # metric files changed in the previous commit
           metrics_changed=$(git diff --name-only HEAD^ HEAD -- "./core-samples/.metrics/*.csv")
           if [ -z "$packages_changed" ]; then
             echo "no package.json files changed, skipping build analysis"
+            echo "skip=true" >> $GITHUB_OUTPUT
           elif [ -n "$metrics_changed" ]; then
             echo "metric files changed: $metrics_changed"
             echo "the previous commit contained build metrics, skipping build analysis"
+            echo "skip=true" >> $GITHUB_OUTPUT            
           else
             echo "package.json files changed: $packages_changed"
             echo "analyzing builds"
             echo "skip=false" >> $GITHUB_OUTPUT
           fi
-      - if: steps.build.outputs.skip == 'false'
-        name: setup node
-        uses: actions/setup-node@v3
+      - name: setup node
+        if: steps.build.outputs.skip == 'false' || steps.verify.outputs.zipskip == 'false'        
+        uses: actions/setup-node@v4
         with:
-          check-latest: true        
-          node-version: 18
-      - if: steps.build.outputs.skip == 'false'
-        name: install dependencies for sample metrics script
+          check-latest: true 
+      - name: install dependencies for sample metrics script
+        if: steps.build.outputs.skip == 'false' || steps.verify.outputs.zipskip == 'false'     
+        working-directory: .github/scripts
         run: |
-          cd ./.github/scripts/
-          npm i
-      - if: steps.build.outputs.skip == 'false'
-        name: run sample metrics script
-        run: node ./.github/scripts/analyze-builds.js
-      - name: push sample metrics analysis
-        if: steps.build.outputs.skip == 'false'
+          npm i             
+      - name: Setup up git config
+        if: steps.build.outputs.skip == 'false' || steps.verify.outputs.zipskip == 'false'
         run: |
           git branch
           git status
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add ./core-samples/.metrics/*.csv
+      - name: create zip files
+        if: steps.verify.outputs.zipskip == 'false'        
+        working-directory: .github/scripts        
+        run: |
+          node create-zips.js     
+      - name: commit zip files
+        if: steps.verify.outputs.zipskip == 'false'        
+        working-directory: .github/scripts
+        run: |
+          git add ../../zips/
+          git commit -m "ci: add zip files" || true
+          git push origin ${{ github.event.pull_request.head.ref }}     
+      - name: run sample metrics script
+        if: steps.build.outputs.skip == 'false'        
+        working-directory: .github/scripts
+        run: |
+          node analyze-builds.js      
+      - name: push sample metrics analysis
+        if: steps.build.outputs.skip == 'false'
+        working-directory: .github/scripts
+        run: |
+          git add ../../core-samples/.metrics/*.csv
           git status
           git commit -m "ci: analyze core esm sample builds" || true
           git push origin ${{ github.event.pull_request.head.ref }}
