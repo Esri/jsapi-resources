@@ -4,6 +4,8 @@ This sample demonstrates how to log in to ArcGIS Online or Enterprise using OAut
 
 ## Get Started
 
+📁 **[Click here to download this directory as a ZIP file](https://github.com/Esri/jsapi-resources/blob/main/zips/core-sample-jsapi-oauth.zip))** 📁
+
 1. Create a registered application in ArcGIS Online or ArcGIS Enterprise and add a valid redirect URL that will redirect you back to your hosted application after login. See the [Register an OAuth application](https://next.sites.afd.arcgis.com/documentation/mapping-apis-and-services/security/tutorials/register-your-application/) tutorial for more details.
 2. Copy the Client ID from your registered application in step 1 and use it to replace the `appId` property in `OAuthInfo` in the main.js file.
 3. Run `npm install` then `npm run dev` to test the app. When testing locally you may need to add a [redirect URL](https://developers.arcgis.com/documentation/mapping-apis-and-services/security/tutorials/add-redirect-uri/) if you are seeing redirect errors when you test logging in, e.g. http://localhost:5173/.

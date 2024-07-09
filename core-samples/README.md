@@ -2,6 +2,24 @@
 
 The samples in this directory demonstrate using [@arcgis/core](https://www.npmjs.com/package/@arcgis/core) ES modules with various frameworks, module bundlers and build tools. `@arcgis/core` is installed using [npm](https://docs.npmjs.com/downloading-and-installing-packages-locally), and is intended for use in local builds that you host.
 
+## Download
+
+You can use these links to download all of the samples, or individual samples:
+
+* [Angular CLI](https://github.com/Esri/jsapi-resources/blob/main/zips/core-sample-jsapi-angular-cli.zip)
+* [ArcGIS ESM CDN](https://github.com/Esri/jsapi-resources/blob/main/zips/core-sample-jsapi-esm-cdn.zip)
+* [Custom workers](https://github.com/Esri/jsapi-resources/blob/main/zips/core-sample-jsapi-custom-workers.zip)
+* [Custom UI](https://github.com/Esri/jsapi-resources/blob/main/zips/core-sample-jsapi-custom-ui.zip)
+* [Deno](https://github.com/Esri/jsapi-resources/blob/main/zips/core-sample-jsapi-deno.zip)
+* [esbuild (no framework)](https://github.com/Esri/jsapi-resources/blob/main/zips/core-sample-esbuild.zip)
+* [Node.js](https://github.com/Esri/jsapi-resources/blob/main/zips/core-sample-jsapi-node.zip)
+* [OAuth](https://github.com/Esri/jsapi-resources/blob/main/zips/core-sample-jsapi-oauth.zip)
+* [React/Vite](https://github.com/Esri/jsapi-resources/blob/main/zips/core-sample-jsapi-react.zip)
+* [Rollup.js (no framework)](https://github.com/Esri/jsapi-resources/blob/main/zips/core-sample-rollup.zip)
+* [Vue.js/Vite](https://github.com/Esri/jsapi-resources/blob/main/zips/core-sample-jsapi-vue.zip)
+* [Vite/TypeScript](https://github.com/Esri/jsapi-resources/blob/main/zips/core-sample-jsapi-vite-ts.zip)
+* [Webpack (no framework)](https://github.com/Esri/jsapi-resources/blob/main/zips/core-sample-webpack.zip)
+
 ## Get Started
 
 Run `npm install` in a project directory and then start adding ArcGIS Maps SDK for JavaScript functionality.
