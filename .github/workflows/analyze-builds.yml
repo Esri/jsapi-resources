@@ -13,7 +13,7 @@ jobs:
         with:
           fetch-depth: 0
           ref: ${{ github.event.pull_request.head.ref }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.ESM_BUILD }}
       - name: should create zip files
         id: verify
         run: |
