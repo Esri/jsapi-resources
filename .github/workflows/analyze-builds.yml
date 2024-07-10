@@ -21,7 +21,7 @@ jobs:
           current_branch=$(git rev-parse --abbrev-ref HEAD)
           # did any files change in component or core samples
           # compare against version before the last commit in the branch
-          samples_changed=$(git diff --name-only "$current_branch" $(git merge-base "$current_branch" HEAD^) -- "./core-samples" "./components")
+          samples_changed=$(git diff --name-only "$current_branch" $(git merge-base "$current_branch" HEAD^) -- "./core-samples" "./component-samples")
           if [ -z "$samples_changed" ]; then
             echo "no samples changed, skipping creation of zip files"
             echo "zipskip=true" >> $GITHUB_OUTPUT   
