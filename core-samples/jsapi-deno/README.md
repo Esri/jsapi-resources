@@ -4,6 +4,8 @@ Integrating [Deno](https://deno.com//) with [`@arcgis/core`](https://www.npmjs.c
 
 Please refer to the [Deno installation](https://docs.deno.com/runtime/manual/getting_started) instructions for your environment.
 
+📁 **[Click here to download this directory as a ZIP file](https://esri.github.io/jsapi-resources/zips/core-sample-jsapi-deno.zip)** 📁
+
 ## Usage
 
 The `@arcgis/core` package can be referenced with [npm specifiers](https://docs.deno.com/runtime/manual/node/npm_specifiers), meaning you do not need to manually install the package in your projects.

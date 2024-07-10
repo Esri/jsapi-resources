@@ -1,5 +1,7 @@
 # Coding components Vite sample
 
+📁 **[Click here to download this directory as a ZIP file](https://esri.github.io/jsapi-resources/zips/coding-components-sample-vite.zip)** 📁
+
 This project showcases how to integrate the coding components using vite.
 
 ## Get started

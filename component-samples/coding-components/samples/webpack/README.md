@@ -1,5 +1,7 @@
 # Coding components Webpack sample
 
+📁 **[Click here to download this directory as a ZIP file](https://esri.github.io/jsapi-resources/zips/coding-components-sample-webpack.zip)** 📁
+
 This repository showcases how to integrate the coding components using webpack.
 
 Run `npm install` and then start adding modules.
