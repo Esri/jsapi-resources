@@ -1,6 +1,6 @@
 # Map components Webpack sample
 
-📁 **[Click here to download this directory as a ZIP file](https://esri.github.io/jsapi-resources/zips/coding-components-sample-webpack.zip)** 📁
+📁 **[Click here to download this directory as a ZIP file](https://esri.github.io/jsapi-resources/zips/map-component-sample-webpack.zip)** 📁
 
 This repository showcases how to integrate the map components using webpack.
 
