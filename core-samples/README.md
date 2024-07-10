@@ -4,7 +4,7 @@ The samples in this directory demonstrate using [@arcgis/core](https://www.npmjs
 
 ## Download
 
-You can use these links to download all of the samples, or individual samples:
+You can use these links to download individual samples:
 
 * [Angular CLI](https://esri.github.io/jsapi-resources/zips/core-sample-jsapi-angular-cli.zip)
 * [ArcGIS ESM CDN](https://esri.github.io/jsapi-resources/zips/core-sample-jsapi-esm-cdn.zip)
