@@ -18,11 +18,18 @@
       width: 100%;
     }
   </style>
+  <script type="importmap">
+    {
+      "imports": {
+        "@arcgis/core/": "https://js.arcgis.com/4.30/@arcgis/core/"
+      }
+    }
+  </script>
   <script type="module">
-    import WebMap from 'https://js.arcgis.com/4.30/@arcgis/core/WebMap.js';
-    import MapView from 'https://js.arcgis.com/4.30/@arcgis/core/views/MapView.js';
-    import Bookmarks from 'https://js.arcgis.com/4.30/@arcgis/core/widgets/Bookmarks.js';
-    import Expand from 'https://js.arcgis.com/4.30/@arcgis/core/widgets/Expand.js';
+    import WebMap from '@arcgis/core/WebMap.js';
+    import MapView from '@arcgis/core/views/MapView.js';
+    import Bookmarks from '@arcgis/core/widgets/Bookmarks.js';
+    import Expand from '@arcgis/core/widgets/Expand.js';
 
     const webmap = new WebMap({
       portalItem: {
