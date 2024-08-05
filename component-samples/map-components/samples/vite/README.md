@@ -15,7 +15,7 @@ For a list of all available `npm` commands see `scripts` in `package.json`, e.g.
 ***Note:*** The sample demonstrates the recommended pattern for loading ArcGIS Map Components by individually loading each component using the pure ESM approach.
 
 ### Lazy Loading Components
-To lazy load the components as needed and optimize initial load time, use the following approach:
+To lazy load the components as needed, use the following approach:
 
 ```
 // Replace the imports in main.js
@@ -29,3 +29,5 @@ mapElement.addEventListener('arcgisViewReadyChange', event => {
   console.log('MapView ready', event);
 });
 ```
+
+Recommended to use this ES modules (ESM) via the ArcGIS CDN way of importing only for testing and prototyping.

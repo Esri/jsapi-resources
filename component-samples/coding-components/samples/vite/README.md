@@ -27,5 +27,6 @@ To lazy load the components as needed and optimize initial load time, use the fo
 
  defineCalciteElements(window, { resourcesUrl: "https://js.arcgis.com/calcite-components/2.8.5/assets" });
  defineCodingElements(window, { resourcesUrl: "https://js.arcgis.com/coding-components/4.30/assets" });
-
 ```
+
+Recommended to use this ES modules (ESM) via the ArcGIS CDN way of importing only for testing and prototyping.
