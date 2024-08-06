@@ -14,7 +14,7 @@ For a list of all available `npm` commands see `scripts` in `package.json`, e.g.
 
 ***Note:*** The sample demonstrates the recommended pattern for loading ArcGIS Map Components by individually loading each component using the pure ESM approach.
 
-### Lazy Loading Components
+### Loading All Components
 To lazy load the components as needed and optimize initial load time, use the following approach:
 
 ```
@@ -28,5 +28,6 @@ To lazy load the components as needed and optimize initial load time, use the fo
  defineCalciteElements(window, { resourcesUrl: "https://js.arcgis.com/calcite-components/2.8.5/assets" });
  defineCodingElements(window, { resourcesUrl: "https://js.arcgis.com/coding-components/4.30/assets" });
 ```
-
 Recommended to use this ES modules (ESM) via the ArcGIS CDN way of importing only for testing and prototyping.
+
+For more details on registering components, please refer to the [ArcGIS for JavaScript API documentation](https://developers.arcgis.com/javascript/latest/get-started-npm/#components).
