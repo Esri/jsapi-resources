@@ -15,7 +15,7 @@ For a list of all available `npm` commands see `scripts` in `package.json`, e.g.
 ***Note:*** The sample demonstrates the recommended pattern for loading ArcGIS Map Components by individually loading each component using the pure ESM approach.
 
 ### Loading All Components
-To lazy load the components as needed, use the following approach:
+To register all the components once, use the following approach:
 
 ```
 // Replace the component imports in main.js
