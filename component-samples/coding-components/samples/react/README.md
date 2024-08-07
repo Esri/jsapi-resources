@@ -12,14 +12,13 @@ Run `npm install` and then start adding modules.
 
 For a list of all available `npm` commands see `scripts` in `package.json`, e.g. `npm run build`.
 
-***Note:*** The sample demonstrates the recommended pattern for loading ArcGIS Map Components by individually loading each component using the pure ESM approach.
+***Note:*** This sample demonstrates the recommended pattern for using components from the ArcGIS Map SDK for JavaScript by individually loading components.
 
 ### Loading All Components
-To register all the components once, use the following approach:
+The JavaScript Maps SDK also offers a convenience pattern useful for quick testing and prototyping. You can register all components at once using the following approach:
 
 ```
-// Replace the imports in main.js
-
+// Replace the individual imports with defineCustomElements()
  import { defineCustomElements as defineCalciteElements } from "@esri/calcite-components/dist/loader";
  import { defineCustomElements as defineCodingElements } from "@arcgis/coding-components/dist/loader";
 
@@ -28,6 +27,5 @@ To register all the components once, use the following approach:
  defineCalciteElements(window, { resourcesUrl: "https://js.arcgis.com/calcite-components/2.8.5/assets" });
  defineCodingElements(window, { resourcesUrl: "https://js.arcgis.com/coding-components/4.30/assets" });
 ```
-Recommended to use this ES modules (ESM) via the ArcGIS CDN way of importing only for testing and prototyping.
 
-For more details on registering components, please refer to the [ArcGIS for JavaScript API documentation](https://developers.arcgis.com/javascript/latest/get-started-npm/#components).
+For more details on using the SDK, please refer to the [ArcGIS Maps SDK for JavaScript documentation](https://developers.arcgis.com/javascript/latest/get-started-overview/).

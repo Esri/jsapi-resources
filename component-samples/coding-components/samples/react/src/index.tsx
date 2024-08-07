@@ -19,13 +19,10 @@ import ReactDOM from "react-dom/client";
 import ArcadeEditor from "./components/ArcadeEditor";
 
 // Individual imports for each component
-import { setArcgisAssetPath as setCodingComponentsAssetPath } from "@arcgis/coding-components/dist/components";
 import "@arcgis/coding-components/dist/components/arcgis-arcade-editor";
 
-import { setAssetPath as setCalciteComponentsAssetPath } from '@esri/calcite-components/dist/components';
 import "@esri/calcite-components/dist/components/calcite-scrim";
-
-setCodingComponentsAssetPath("https://js.arcgis.com/coding-components/4.30/assets");
+import { setAssetPath as setCalciteComponentsAssetPath } from '@esri/calcite-components/dist/components';
 setCalciteComponentsAssetPath("https://js.arcgis.com/calcite-components/2.8.0/assets");
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
