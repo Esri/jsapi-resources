@@ -13,9 +13,10 @@
  * limitations under the License.
  */
 
-// Lazy loading ESM
-import { defineCustomElements } from "@arcgis/map-components/dist/loader";
-defineCustomElements(window, { resourcesUrl: "https://js.arcgis.com/map-components/4.30/assets" });
+// Individual imports for each component
+import "@arcgis/map-components/dist/components/arcgis-map";
+import "@arcgis/map-components/dist/components/arcgis-legend";
+import "@arcgis/map-components/dist/components/arcgis-search";
 
 const mapElement = document.querySelector("arcgis-map");
 mapElement.addEventListener("arcgisViewReadyChange", (event) => {
