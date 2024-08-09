@@ -17,7 +17,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 
-// Individual imports for each component
+// Individual imports for each component used in this sample
 import "@arcgis/map-components/dist/components/arcgis-map";
 import "@arcgis/map-components/dist/components/arcgis-legend";
 import "@arcgis/map-components/dist/components/arcgis-search";

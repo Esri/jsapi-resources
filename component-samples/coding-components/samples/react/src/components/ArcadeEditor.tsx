@@ -15,6 +15,7 @@
 
 import { useEffect, useCallback, useState } from "react";
 
+// Import React components of the components used in this sample
 import { ArcgisArcadeEditor } from "@arcgis/coding-components-react";
 import { CalciteScrim } from "@esri/calcite-components-react";
 
