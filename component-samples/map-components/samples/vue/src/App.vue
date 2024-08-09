@@ -1,7 +1,10 @@
 <script setup>
 import Map from "@/components/Map.vue";
-import { defineCustomElements } from "@arcgis/map-components/dist/loader";
-defineCustomElements(window, { resourcesUrl: "https://js.arcgis.com/map-components/4.30/assets" });
+
+// Individual imports for each component
+import "@arcgis/map-components/dist/components/arcgis-map";
+import "@arcgis/map-components/dist/components/arcgis-legend";
+import "@arcgis/map-components/dist/components/arcgis-search";
 </script>
 
 <template>

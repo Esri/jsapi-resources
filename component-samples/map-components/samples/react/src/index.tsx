@@ -17,10 +17,11 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 
+// Individual imports for each component used in this sample
+import "@arcgis/map-components/dist/components/arcgis-map";
+import "@arcgis/map-components/dist/components/arcgis-legend";
+import "@arcgis/map-components/dist/components/arcgis-search";
 import { ArcgisMap, ArcgisSearch, ArcgisLegend } from "@arcgis/map-components-react";
-import { defineCustomElements as defineMapElements } from "@arcgis/map-components/dist/loader";
-
-defineMapElements(window, { resourcesUrl: "https://js.arcgis.com/map-components/4.30/assets" });
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 root.render(
