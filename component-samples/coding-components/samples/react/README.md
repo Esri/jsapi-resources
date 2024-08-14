@@ -22,7 +22,7 @@ The JavaScript Maps SDK also offers a convenience pattern useful for quick testi
  import { defineCustomElements as defineCalciteElements } from "@esri/calcite-components/dist/loader";
  import { defineCustomElements as defineCodingElements } from "@arcgis/coding-components/dist/loader";
 
- defineCalciteElements(window, { resourcesUrl: "https://js.arcgis.com/calcite-components/2.8.5/assets" });
+ defineCalciteElements(window, { resourcesUrl: "https://js.arcgis.com/calcite-components/2.8.6/assets" });
  defineCodingElements(window, { resourcesUrl: "https://js.arcgis.com/coding-components/4.30/assets" });
 ```
 
