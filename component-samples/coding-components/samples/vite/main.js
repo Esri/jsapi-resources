@@ -17,15 +17,13 @@ import "./style.css"; // Arcade editor styles
 
 import { loadData } from "./load-data";
 
-// Individual imports for each component
-import { setArcgisAssetPath as setCodingComponentsAssetPath } from "@arcgis/coding-components/dist/components";
-import "@arcgis/coding-components/dist/components/arcgis-arcade-editor";
-
 import { setAssetPath as setCalciteComponentsAssetPath } from '@esri/calcite-components/dist/components';
+
+// Individual imports for each component
+import "@arcgis/coding-components/dist/components/arcgis-arcade-editor";
 import "@esri/calcite-components/dist/components/calcite-scrim";
 
-setCodingComponentsAssetPath("https://js.arcgis.com/coding-components/4.30/assets");
-setCalciteComponentsAssetPath("https://js.arcgis.com/calcite-components/2.8.0/assets");
+setCalciteComponentsAssetPath("https://js.arcgis.com/calcite-components/2.8.5/assets");
 
 (async () => {
   // Get the Arcade editor element

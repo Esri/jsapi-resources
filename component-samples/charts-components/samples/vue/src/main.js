@@ -22,7 +22,7 @@ import { defineCustomElements as defineCalciteElements } from "@esri/calcite-com
 import { defineCustomElements as defineChartsElements } from "@arcgis/charts-components/dist/loader";
 
 // define custom elements in the browser, and load the assets from the CDN
-defineCalciteElements(window, { resourcesUrl: 'https://js.arcgis.com/calcite-components/2.8.0/assets' });
+defineCalciteElements(window, { resourcesUrl: 'https://js.arcgis.com/calcite-components/2.8.5/assets' });
 defineChartsElements(window, { resourcesUrl: 'https://js.arcgis.com/charts-components/4.30/t9n' });
 
 createApp(App).mount("#app");
