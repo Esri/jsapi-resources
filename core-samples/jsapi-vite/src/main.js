@@ -12,7 +12,7 @@ const webmap = new WebMap({
 });
 
 const view = new MapView({
-  container:"viewDiv",
+  container: "viewDiv",
   map: webmap
 });
 

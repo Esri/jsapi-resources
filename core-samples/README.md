@@ -17,7 +17,7 @@ You can use these links to download individual samples:
 * [React/Vite](https://esri.github.io/jsapi-resources/zips/core-sample-jsapi-react.zip)
 * [Rollup.js (no framework)](https://esri.github.io/jsapi-resources/zips/core-sample-rollup.zip)
 * [Vue.js/Vite](https://esri.github.io/jsapi-resources/zips/core-sample-jsapi-vue.zip)
-* [Vite/TypeScript](https://esri.github.io/jsapi-resources/zips/core-sample-jsapi-vite-ts.zip)
+* [Vite](https://esri.github.io/jsapi-resources/zips/core-sample-jsapi-vite.zip)
 * [Webpack (no framework)](https://esri.github.io/jsapi-resources/zips/core-sample-webpack.zip)
 
 ## Get Started
