@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "vite": "^5.2.12"
+    "vite": "^5.4.0"
   },
   "dependencies": {
     "@arcgis/core": "~4.30.0"
