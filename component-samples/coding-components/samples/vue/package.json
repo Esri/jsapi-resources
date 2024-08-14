@@ -10,7 +10,7 @@
   "dependencies": {
     "@arcgis/coding-components": "~4.30.0",
     "@arcgis/core": "~4.30.0",
-    "@esri/calcite-components": "^2.8.5",
+    "@esri/calcite-components": "^2.8.6",
     "vue": "^3.4.19"
   },
   "devDependencies": {
