@@ -20,7 +20,7 @@
     "@angular/router": "^17.3.6",
     "@arcgis/core": "~4.30.0",
     "@arcgis/map-components-angular": "~4.30.0",
-    "@esri/calcite-components": "^2.8.5",
+    "@esri/calcite-components": "^2.8.6",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.5"

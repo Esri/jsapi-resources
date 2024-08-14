@@ -21,7 +21,7 @@ import { defineCustomElements as defineChartsElements } from '@arcgis/charts-com
 
 // define custom elements in the browser, and load the assets from the CDN
 defineChartsElements(window, { resourcesUrl: 'https://js.arcgis.com/charts-components/4.30/t9n' });
-defineCalciteElements(window, { resourcesUrl: 'https://js.arcgis.com/calcite-components/2.8.5/assets' });
+defineCalciteElements(window, { resourcesUrl: 'https://js.arcgis.com/calcite-components/2.8.6/assets' });
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

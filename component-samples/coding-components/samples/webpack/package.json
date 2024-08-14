@@ -8,7 +8,7 @@
   "dependencies": {
     "@arcgis/coding-components": "~4.30.0",
     "@arcgis/core": "~4.30.0",
-    "@esri/calcite-components": "^2.8.5"
+    "@esri/calcite-components": "^2.8.6"
   },
   "devDependencies": {
     "css-loader": "^6.10.0",
