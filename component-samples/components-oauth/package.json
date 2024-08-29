@@ -9,7 +9,8 @@
   },
   "dependencies": {
     "@arcgis/core": "~4.30.0",
-    "@arcgis/map-components": "~4.30.0"
+    "@arcgis/map-components": "~4.30.0",
+    "@esri/calcite-components": "^2.8.6"
   },
   "devDependencies": {
     "vite": "^5.4.0"
