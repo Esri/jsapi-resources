@@ -7,7 +7,7 @@ import "@arcgis/map-components/dist/components/arcgis-search";
 
 // Import ArcGIS core modules for OAuth authentication
 import esriConfig from "@arcgis/core/config";
-import IdentityManager from "@arcgis/core/identity/IdentityManager";
+import esriId from "@arcgis/core/identity/IdentityManager.js";
 import OAuthInfo from "@arcgis/core/identity/OAuthInfo";
 
 // Configure the portal URL and OAuth settings
@@ -17,9 +17,11 @@ const oAuthInfo = new OAuthInfo({
     appId: "YOUR_APP_ID", // Replace with your actual App ID
     portalUrl: esriConfig.portalUrl,
     popup: true,
+    // Optional: Add redirect URI if popup: false or for other configurations
+    redirectUri: "https://myapp.com/callback" // Replace with your actual redirect/callback URL
 });
 
-IdentityManager.registerOAuthInfos([oAuthInfo]);
+esriId.registerOAuthInfos([oAuthInfo]);
 
 // Function to load map components after authentication
 function loadMapComponents() {
@@ -32,12 +34,12 @@ function loadMapComponents() {
 }
 
 // Check if the user is already signed in
-IdentityManager.checkSignInStatus(esriConfig.portalUrl)
+esriId.checkSignInStatus(esriConfig.portalUrl + "/sharing")
     .then(() => {
         // User is already signed in, load the map components
         loadMapComponents();
     })
     .catch(() => {
         // User is not signed in, prompt for sign-in and then load components
-        IdentityManager.getCredential(esriConfig.portalUrl).then(loadMapComponents);
+        esriId.getCredential(esriConfig.portalUrl).then(loadMapComponents);
     });
