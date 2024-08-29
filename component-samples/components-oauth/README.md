@@ -10,7 +10,7 @@ This sample demonstrates how to log in to ArcGIS Online or Enterprise using `OAu
 2. Update the `main.js` File:
     - Replace `YOUR_PORTAL_URL` with your actual portal URL to match your OAuth application’s settings.
     - Copy the Client ID from your registered application and replace the `YOUR_APP_ID` in the `OAuthInfo` object.
-    -  ***Note:*** If you have set OAuthInfo's `popup` property to `true`, you'll need to host a callback page on your server. Save the [oauth-callback.html](oauth-callback.html) page in the same folder as your application page. You can optionally change the location or name by setting the OAuthInfo's `popupCallbackUrl` property.
+    - ***Note:*** If you set OAuthInfo's `popup` property to `true`, follow the [OAuth callback setup instructions](https://github.com/Esri/jsapi-resources/tree/main/oauth).
 
 3. Run `npm install` then `npm run dev` to start the app locally.
 
