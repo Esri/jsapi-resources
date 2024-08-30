@@ -12,6 +12,7 @@ This sample demonstrates how to log in to ArcGIS Online or Enterprise using `OAu
     - Copy the Client ID from your registered application and replace the `YOUR_APP_ID` in the `OAuthInfo` object.
     - ***Note:*** If you set OAuthInfo's `popup` property to `true`, follow the [OAuth callback setup instructions](https://github.com/Esri/jsapi-resources/tree/main/oauth).
 
+- ***Important:*** Replace the `item-id` in `index.html` with a secure web map item ID from the portal configured in `main.js` to ensure your application functions securely.
 3. Run `npm install` then `npm run dev` to start the app locally.
 
 ## Additional Resources
