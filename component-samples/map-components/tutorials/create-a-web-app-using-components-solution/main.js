@@ -15,84 +15,58 @@
 
 import "./style.css";
 
-/**
- * Import functions to define the custom HTML elements from the
- * Map Components and Calcite Components libraries.
- */
-import { defineCustomElements as defineMapElements } from "@arcgis/map-components/dist/loader";
-import { defineCustomElements as defineCalciteElements } from "@esri/calcite-components/dist/loader";
+// Import the the `arcgis-layer-list` and `arcgis-map` components
+// from the `@arcgis/map-components` package.
+import "@arcgis/map-components/dist/components/arcgis-layer-list";
+import "@arcgis/map-components/dist/components/arcgis-map";
 
-/**
- * Define the custom elements on the window using the Calcite Components
- * Use the CDN-hosted assets. When using the CDN-hosted assets,
- * you need to keep the version number in the path the same as the version of
- * `@esri/calcite-components` installed as a dependency of `@arcgis/map-components`.
- */
-defineCalciteElements(window, {
-  resourcesUrl: "https://js.arcgis.com/calcite-components/2.8.6/assets"
-});
+// Import the `calcite-navigation`, `calcite-navigation-logo`, and `calcite-shell` components
+// from the `@esri/calcite-components` package.
+import "@esri/calcite-components/dist/components/calcite-navigation";
+import "@esri/calcite-components/dist/components/calcite-navigation-logo";
+import "@esri/calcite-components/dist/components/calcite-shell";
 
-/**
- * Use the Map Components to define and lazy load the custom map elements.
- */
-defineMapElements(window, {
-  resourcesUrl: "https://js.arcgis.com/map-components/4.30/assets"
-});
+// Import the setAssetPath function from calcite-components.
+// This function allows you to set the path to the calcite components assets.
+import { setAssetPath } from "@esri/calcite-components/dist/components";
 
-/**
- * Use `document.querySelector()` to get a reference to the `arcgis-layer-list` component.
- * Add an event listener for the `arcgis-layer-list` component's `arcgisLayerListReady` event.
- */
-document.querySelector("arcgis-layer-list").addEventListener("arcgisLayerListReady", (event) => {
-  /**
-   * Get a reference to the ArcGIS Maps SDK for JavaScript `LayerList` widget
-   * from the `event.detail` object.
-   */
-  const arcgisLayerList = event.target;
-  /**
-   * Add a listItemCreatedFunction to the layer list.
-   * This function will add a legend in the list item panel for all layers except group layers.
-   * https://next.sites.afd.arcgis.com/javascript/latest/api-reference/esri-widgets-LayerList.html#listItemCreatedFunction
-   */
-  arcgisLayerList.listItemCreatedFunction = (event) => {
-    const { item } = event;
-    if (item.layer.type !== "group") {
-      item.panel = {
-        content: "legend"
-      };
-    }
-  };
-});
+// CDN hosted calcite components assets
+setAssetPath("https://js.arcgis.com/calcite-components/2.8.6/assets");
 
-/**
- * Use `document.querySelector()` to get a reference to the `arcgis-map` component.
- * Add an event listener for the `arcgis-map` component's `arcgisViewReadyChange` event.
- */
-document.querySelector("arcgis-map").addEventListener("arcgisViewReadyChange", (event) => {
-  /**
-   * Create a constant for the map's portal item.
-   * https://developers.arcgis.com/javascript/latest/api-reference/esri-WebMap.html#portalItem
-   */
-  const { portalItem } = event.target.map;
+// Get a reference to the arcgis-layer-list element.
+const arcgisLayerList = document.querySelector("arcgis-layer-list");
 
-  /**
-   * Set properties on the `calcite-navigation-logo`
-   * from the properties of the portal item.
-   */
+// Set the listItemCreatedFunction to add a legend to each list item.
+arcgisLayerList.listItemCreatedFunction = (event) => {
+  const { item } = event;
+  if (item.layer.type !== "group") {
+    item.panel = {
+      content: "legend",
+    };
+  }
+};
+
+// Get a reference to the arcgis-map element.
+const arcgisMap = document.querySelector("arcgis-map");
+
+// Since we are using property values from the map component,
+// we use the arcgisViewReadyChange event to determine when the map is ready.
+arcgisMap.addEventListener("arcgisViewReadyChange", () => {
+  const { portalItem } = arcgisMap.map;
+
+  // Get a reference to the calcite-navigation-logo element.
   const navigationLogo = document.querySelector("calcite-navigation-logo");
+
+  // Set the navigationLogo's properties to the portalItem's title, snippet, and thumbnailUrl.
   navigationLogo.heading = portalItem.title;
   navigationLogo.description = portalItem.snippet;
   navigationLogo.thumbnail = portalItem.thumbnailUrl;
 
-  /**
-   * Find the accidental deaths layer in the `event.target.map.layers` collection.
-   * https://developers.arcgis.com/javascript/latest/api-reference/esri-Map.html#layers
-   */
-  const layer = event.target.map.layers.find((layer) => layer.id === "Accidental_Deaths_8938");
+  // Find the accidental deaths layer in the `event.target.map.layers` collection.
+  // https://developers.arcgis.com/javascript/latest/api-reference/esri-Map.html#layers
+  const layer = arcgisMap.map.layers.find((layer) => layer.id === "Accidental_Deaths_8938");
 
-  /**
-   * Modify the layer's popup template title.
-   * https://developers.arcgis.com/javascript/latest/api-reference/esri-PopupTemplate.html
-   */
+  //  Modify the layer's popup template title.
+  //  https://developers.arcgis.com/javascript/latest/api-reference/esri-PopupTemplate.html
   layer.popupTemplate.title = "Accidental Deaths";
 });
