@@ -21,6 +21,7 @@ export default defineConfig({
     open: true,
   },
   build: {
+    chunkSizeWarningLimit: 1500,
     outDir: "dist",
   },
 });
