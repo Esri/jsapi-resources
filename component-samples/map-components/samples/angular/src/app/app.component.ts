@@ -22,8 +22,6 @@ import "@arcgis/map-components/dist/components/arcgis-search";
 import "@arcgis/map-components/dist/components/arcgis-legend";
 import { setAssetPath as setCalciteComponentsAssetPath } from '@esri/calcite-components/dist/components';
 
-setCalciteComponentsAssetPath("https://js.arcgis.com/calcite-components/2.8.6/assets");
-
 @Component({
   selector: "app-root",
   standalone: true,
@@ -34,6 +32,10 @@ setCalciteComponentsAssetPath("https://js.arcgis.com/calcite-components/2.8.6/as
 })
 export class AppComponent implements OnInit {
   title = "map-components-angular-sample";
+
+  constructor() {
+    setCalciteComponentsAssetPath("https://js.arcgis.com/calcite-components/2.8.6/assets");
+  }
 
   arcgisViewReadyChange(event: any) {
     console.log("MapView ready", event);
