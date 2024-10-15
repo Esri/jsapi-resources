@@ -13,7 +13,9 @@
  * limitations under the License.
  */
 
-import { Component, OnInit } from "@angular/core";
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { RouterOutlet } from "@angular/router";
 import { loadData } from "../functions/load-data.service";
 import { IEditorProfileDefinition, IPredefinedProfile } from "@arcgis/coding-components/dist/types/utils/profile/types";
 import { IEditorTestContext } from "@arcgis/coding-components/dist/types/utils/arcade-executor";
@@ -26,8 +28,11 @@ import { defineCustomElements as defineCodingElements } from "@arcgis/coding-com
 
 @Component({
   selector: "app-root",
+  standalone: true,
+  imports: [RouterOutlet, CommonModule],
   templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.css"]
+  styleUrls: ["./app.component.css"],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppComponent implements OnInit {
   title = 'coding-components-angular-template';
