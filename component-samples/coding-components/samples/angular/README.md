@@ -1,9 +1,20 @@
+
 # Coding components Angular sample
 
 📁 **[Click here to download this directory as a ZIP file](https://esri.github.io/jsapi-resources/zips/coding-components-sample-angular.zip)** 📁
 
 ## Known issues
 * The compile warning `The glob pattern import("./**/*.entry.js*") did not match any files [empty-glob]` is a known issue with Stencil and it can be ignored. 
+* You may encounter the following build configuration error:
+`[ERROR] No loader is configured for ".ttf" files: node_modules/monaco-editor/esm/vs/base/browser/ui/codicons/codicon/codicon.ttf`.
+
+To fix this, add the following configuration in your `angular.json` file:
+
+```json
+"loader": {
+  ".ttf": "file"
+}
+```
 
 ## Licensing
 Copyright 2024 Esri
