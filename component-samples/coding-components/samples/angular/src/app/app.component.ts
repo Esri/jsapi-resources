@@ -4,12 +4,12 @@ import { RouterOutlet } from "@angular/router";
 import { loadData } from "../functions/load-data.service";
 import { IEditorProfileDefinition, IPredefinedProfile } from "@arcgis/coding-components/dist/types/utils/profile/types";
 import { IEditorTestContext } from "@arcgis/coding-components/dist/types/utils/arcade-executor";
-import { defineCustomElements as defineCalciteElements } from "@esri/calcite-components/dist/loader";
-import { defineCustomElements as defineCodingElements } from "@arcgis/coding-components/dist/loader";
 
-// Calcite Components
-// import "@esri/calcite-components/dist/components/calcite-scrim";
-// import "@arcgis/coding-components/dist/components/arcgis-arcade-editor";
+import { setAssetPath } from "@esri/calcite-components/dist/components";
+setAssetPath("https://js.arcgis.com/calcite-components/2.8.6/assets");
+
+import "@esri/calcite-components/dist/components/calcite-scrim";
+import "@arcgis/coding-components/dist/components/arcgis-arcade-editor";
 
 @Component({
   selector: "app-root",
@@ -30,9 +30,6 @@ export class AppComponent implements OnInit {
   public testData!: IEditorTestContext;
 
   ngOnInit() {
-    // define custom elements in the browser, and load the assets from the CDN
-    defineCalciteElements(window, { resourcesUrl: "https://js.arcgis.com/calcite-components/2.8.6/assets" });
-    defineCodingElements(window, { resourcesUrl: "https://js.arcgis.com/coding-components/4.30/assets" });
     // Call async functions here
     this.fetch();
   }
