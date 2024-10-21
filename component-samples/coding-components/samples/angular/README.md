@@ -8,7 +8,7 @@
 * You may encounter the following build configuration error:
 `[ERROR] No loader is configured for ".ttf" files: node_modules/monaco-editor/esm/vs/base/browser/ui/codicons/codicon/codicon.ttf`.
 
-To fix this, add the following configuration in your `angular.json` file:
+To fix this, the following has been added to the `angular.json` configuration file in this sample:
 
 ```json
 "loader": {
