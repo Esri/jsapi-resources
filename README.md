@@ -13,9 +13,9 @@ This repository provides a collection of code samples that provide _proof-of-con
 
 If you have set OAuthInfo's [`popup`](https://developers.arcgis.com/javascript/latest/api-reference/esri-identity-OAuthInfo.html#popup) property to `true`, you'll need to host a [callback page](./oauth/) on your server. For more information, visit the Maps SDK's [Access secure resources](https://developers.arcgis.com/javascript/latest/secure-resources/) guide topic.
 
-## AMD TypeScript declaration files (Deprecated)
+## TypeScript declaration files
 
-The AMD TypeScript `.d.ts` files are deprecated at 4.29 and the final update will be 4.31. The last several files can be downloaded from this [repo](./typescript/README.md). The NPM `.d.ts` files can be installed via the [`arcgis-js-api`](https://www.npmjs.com/package/arcgis-js-api) package, which was also deprecated at 4.29. Use the [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core) package instead.
+TypeScript definitions are included in the [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core) npm package.
 
 ## Contributing
 
