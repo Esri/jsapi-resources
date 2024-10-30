@@ -16,7 +16,7 @@ import "@esri/calcite-components/dist/components/calcite-shell";
 import { setAssetPath } from "@esri/calcite-components/dist/components";
 
 // CDN hosted calcite components assets
-setAssetPath("https://js.arcgis.com/calcite-components/2.8.6/assets");
+setAssetPath("https://js.arcgis.com/calcite-components/2.13.2/assets");
 
 // Get a reference to the arcgis-layer-list element.
 const arcgisLayerList = document.querySelector("arcgis-layer-list");
