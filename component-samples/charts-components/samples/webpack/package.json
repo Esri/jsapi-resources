@@ -6,9 +6,9 @@
     "start": "webpack serve --mode development"
   },
   "dependencies": {
-    "@arcgis/charts-components": "~4.30.0",
-    "@arcgis/charts-model": "~4.30.0",
-    "@arcgis/core": "~4.30.0"
+    "@arcgis/charts-components": "~4.31.0",
+    "@arcgis/charts-model": "~4.31.0",
+    "@arcgis/core": "~4.31.0"
   },
   "devDependencies": {
     "css-loader": "^6.10.0",

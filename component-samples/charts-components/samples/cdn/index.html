@@ -1,76 +1,98 @@
 <!doctype html>
 <html>
-
-<head>
+  <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
-    <title>Charts components AMD sample</title>
-    <style>
-        .chart-container {
-            height: 800px;
-        }
-    </style>
+    <title>Charts components CDN sample</title>
     <link rel="icon" href="data:;base64,=" />
 
-    <!-- Load the ArcGIS Maps SDK for JavaScript -->
-    <link rel="stylesheet" href="https://js.arcgis.com/4.30/esri/themes/dark/main.css" />
-    <script src="https://js.arcgis.com/4.30/"></script>
+    <!-- Load Calcite Components-->
+    <link rel="stylesheet" type="text/css" href="https://js.arcgis.com/calcite-components/2.13.2/calcite.css" />
+    <script type="module" src="https://js.arcgis.com/calcite-components/2.13.2/calcite.esm.js"></script>
 
-    <!-- Load the Charts Components -->
-    <script type="module" src="https://js.arcgis.com/charts-components/4.30/arcgis-charts-components.esm.js"></script>
+    <!-- Load the ArcGIS Maps SDK for JavaScript -->
+    <link rel="stylesheet" href="https://js.arcgis.com/4.31/esri/themes/dark/main.css" />
+    <script src="https://js.arcgis.com/4.31/"></script>
 
     <!-- Load the Charts Model -->
-    <script type="module" src="https://js.arcgis.com/charts-model/4.30/index.js"></script>
-</head>
-
-<body>
-    <arcgis-charts-scatter-plot id="scatterplot" class="chart-container"></arcgis-charts-scatter-plot>
+    <script type="module" src="https://js.arcgis.com/charts-model/4.31/index.js"></script>
+		
+    <!-- Load the Charts Components -->
+    <script type="module" src="https://js.arcgis.com/charts-components/4.31/arcgis-charts-components.esm.js"></script>
+    <link rel="stylesheet" href="https://js.arcgis.com/charts-components/4.31/arcgis-charts-components.css" />
+  </head>
+  <body>
+    <arcgis-charts-scatter-plot id="scatterplot" class="chart-container">
+      <arcgis-charts-action-bar slot="action-bar" id="scatterplot-action-bar"></arcgis-charts-action-bar>
+    </arcgis-charts-scatter-plot>
     <script type="module">
-        /**
-         * Import ScatterPlotModel from the Charts Model module.
-         */
-        const { ScatterPlotModel } = await $arcgis.import("@arcgis/charts-model");
+      /**
+      * Import ScatterPlotModel from the Charts Model module.
+      */
+      const { ScatterPlotModel } = await $arcgis.import("@arcgis/charts-model");
+      
+      /**
+      * Create a feature layer with a service URL. This will be used to create a chart later.
+      */
+      async function createFeatureLayer(url) {
+          const FeatureLayer = await $arcgis.import("esri/layers/FeatureLayer");
+      
+          const featureLayer = new FeatureLayer({
+              url: url
+          });
+      
+          await featureLayer.load();
+      
+          return featureLayer;
+      }
+      
+			/**
+			 * Adds an event listener to the chart element that listens for the "arcgisSelectionComplete" event. 
+			 * This will enable or disable the Clear Selection and Filter by Selection buttons in the action bar based on the selection state.
+			 */
+      function addSelectionEventListener(chartElement, actionBarId) {
+      	chartElement.addEventListener("arcgisSelectionComplete", (event) => {
+      		const actionBarElement = document.getElementById(actionBarId);
+      
+      		const selectionData = event.detail;
+				
+					if (selectionData.selectionOIDs === undefined || selectionData.selectionOIDs.length === 0) {
+						actionBarElement.clearSelectionState = "disabled";
+						actionBarElement.filterBySelectionState = "disabled";
+					} else {
+						actionBarElement.clearSelectionState = "enabled";
+						actionBarElement.filterBySelectionState = "enabled";
+					}
+				});
+      }
+      
+      /**
+      * Initialize the scatterplot chart.
+      */
+      async function initScatterplot() {
+          const layer = await createFeatureLayer('https://services.arcgis.com/V6ZHFr6zdgNZuVG0/ArcGIS/rest/services/ChicagoCr/FeatureServer/0');
+      
+          const scatterplotElement = document.getElementById("scatterplot");
+      
+          // Create a new ScatterPlotModel and set the x and y axis fields.
+          const scatterplotModel = new ScatterPlotModel();
+          await scatterplotModel.setup({ layer });
+      
+          await scatterplotModel.setXAxisField("Ward");
+          await scatterplotModel.setYAxisField("Beat");
+      
+          // Set the scatterplot element's config and layer properties.
+          const config = scatterplotModel.getConfig();
+      
+          scatterplotElement.config = config;
+          scatterplotElement.layer = layer;
 
-        /**
-         * Create a feature layer with a service URL. This will be used to create a chart later.
-         */
-        async function createFeatureLayer(url) {
-            const FeatureLayer = await $arcgis.import("esri/layers/FeatureLayer");
-
-            const featureLayer = new FeatureLayer({
-                url: url
-            });
-
-            await featureLayer.load();
-
-            return featureLayer;
-        }
-
-        /**
-         * Initialize the scatterplot chart.
-         */
-        async function initScatterplot() {
-            const layer = await createFeatureLayer('https://services.arcgis.com/V6ZHFr6zdgNZuVG0/ArcGIS/rest/services/ChicagoCr/FeatureServer/0');
-
-            const scatterplotElement = document.getElementById("scatterplot");
-
-            // Create a new ScatterPlotModel and set the x and y axis fields.
-            const scatterplotModel = new ScatterPlotModel();
-            await scatterplotModel.setup({ layer });
-
-            await scatterplotModel.setXAxisField("Ward");
-            await scatterplotModel.setYAxisField("Beat");
-
-            // Set the scatterplot element's config and layer properties.
-            const config = scatterplotModel.getConfig();
-
-            scatterplotElement.config = config;
-            scatterplotElement.layer = layer;
-        }
-
-        // Call initScatterplot() function to render the chart.
-        initScatterplot();
+					// Add an event listener for when selections are made on the chart, the filter by selection button will be enabled
+					addSelectionEventListener(scatterplotElement, "scatterplot-action-bar");
+      }
+      
+      // Call initScatterplot() function to render the chart.
+      initScatterplot();
     </script>
-</body>
-
+  </body>
 </html>
