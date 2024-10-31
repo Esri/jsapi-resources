@@ -1,6 +1,6 @@
 /* import the `@arcgis/core` light theme and `@esri/calcite-components` CSS stylesheets. */
-@import "https://js.arcgis.com/4.30/@arcgis/core/assets/esri/themes/light/main.css";
-@import "https://js.arcgis.com/calcite-components/2.8.6/calcite.css";
+@import "https://js.arcgis.com/4.31/@arcgis/core/assets/esri/themes/light/main.css";
+@import "https://js.arcgis.com/calcite-components/2.13.2/calcite.css";
 
 /* Add CSS styles to make the `html`, `body` and `arcgis-map` elements the full width and height of their parent containers. */
 html,

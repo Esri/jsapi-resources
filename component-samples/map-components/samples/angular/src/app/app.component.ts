@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
   title = "map-components-angular-sample";
 
   constructor() {
-    setCalciteComponentsAssetPath("https://js.arcgis.com/calcite-components/2.8.6/assets");
+    setCalciteComponentsAssetPath("https://js.arcgis.com/calcite-components/2.13.2/assets");
   }
 
   arcgisViewReadyChange(event: any) {
