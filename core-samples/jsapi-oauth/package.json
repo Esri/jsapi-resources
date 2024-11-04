@@ -9,11 +9,11 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "vite": "^5.2.12"
+    "vite": "^5.4.10"
   },
   "dependencies": {
-    "@arcgis/core": "~4.30.0",
+    "@arcgis/core": "~4.31.0",
     "install": "^0.13.0",
-    "npm": "^10.8.1"
+    "npm": "^10.9.0"
   }
 }
