@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "@arcgis/core": "^4.31.0-next.20241104"
+    "@arcgis/core": "~4.31.0"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^28.0.1",
