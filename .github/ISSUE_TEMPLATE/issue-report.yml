@@ -60,7 +60,7 @@ body:
         - OS:
             e.g. Apple iOS 18, Windows 10* 64-bit or MacOS 14.7
         - Device:
-            e.g. iPhone 15, Samsung Galaxy S24 or Macbook Pro
+            e.g. iPhone 15, Samsung Galaxy S24 or MacBook Pro
         ...
     validations:
       required: true
