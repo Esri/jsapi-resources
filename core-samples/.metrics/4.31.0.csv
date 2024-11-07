@@ -1,0 +1,7 @@
+Sample,Build size (MB),Build file count,Main bundle file,Main bundle size (MB),Main bundle gzipped size (MB),Main bundle brotli compressed size (MB),Load time (ms),Total runtime (ms),Loaded size (MB),Total JS requests,Total JS size (MB),Total HTTP requests,JS heap size (MB)
+esbuild 0.24.0,9.58,798,index.js,0.28,0.07,0.06,5522,18956,5.46,434,3.86,535,34.58
+Angular 18.2.10,9.85,800,chunk-GP3VH4KH.js,0.69,0.20,0.17,5460,18884,5.70,435,4.08,539,41.00
+React 18.3.1,9.36,482,index-C485BtYY.js,1.58,0.45,0.37,5570,19011,5.56,179,3.95,284,23.95
+Vue 3.5.12,9.28,482,index-B_i9zCQu.js,1.50,0.43,0.35,5895,18925,5.47,179,3.87,283,26.76
+Rollup 4.24.4,9.04,481,main.js,1.40,0.39,0.31,5576,18604,5.31,179,3.71,282,35.38
+Webpack 5.96.1,10.76,325,index.js,1.52,0.42,0.33,5197,18614,5.80,72,4.20,176,31.77
