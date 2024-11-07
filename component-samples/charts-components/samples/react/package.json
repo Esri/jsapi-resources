@@ -8,10 +8,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@arcgis/charts-components-react": "~4.30.0",
-    "@arcgis/charts-model": "~4.30.0",
-    "@arcgis/core": "~4.30.0",
-    "@esri/calcite-components-react": "^2.8.6",
+    "@arcgis/charts-components-react": "~4.31.0",
+    "@arcgis/charts-model": "~4.31.0",
+    "@arcgis/core": "~4.31.0",
+    "@esri/calcite-components-react": "^2.13.2",
     "react": "^18.3.0",
     "react-dom": "^18.3.0"
   },

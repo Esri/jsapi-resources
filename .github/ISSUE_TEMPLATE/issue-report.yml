@@ -48,7 +48,7 @@ body:
     attributes:
       label: Reproduction browser
       description: Browser (check https://whatismybrowser.com/)
-      placeholder: e.g. Chrome 103 on Windows 11
+      placeholder: e.g. Chrome 130 on Windows 11
     validations:
       required: true
   - type: textarea
@@ -58,9 +58,9 @@ body:
       description: Provide the operating system version and device make/model.
       placeholder: |
         - OS:
-            e.g. Apple iOS 15.5, Windows 10* 64-bit or MacOS 12.4
+            e.g. Apple iOS 18, Windows 10* 64-bit or MacOS 14.7
         - Device:
-            e.g. iPhone 13, Samsung Galaxy S22 or Macbook Pro
+            e.g. iPhone 15, Samsung Galaxy S24 or MacBook Pro
         ...
     validations:
       required: true

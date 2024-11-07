@@ -1,6 +1,5 @@
-@import "https://js.arcgis.com/calcite-components/2.8.6/calcite.css";
-@import 'https://js.arcgis.com/4.30/@arcgis/core/assets/esri/themes/light/main.css';
-@import "https://js.arcgis.com/coding-components/4.30/arcgis-coding-components.css";
+@import 'https://js.arcgis.com/4.31/@arcgis/core/assets/esri/themes/light/main.css';
+@import "https://js.arcgis.com/coding-components/4.31/arcgis-coding-components.css";
 
 html,
 body {

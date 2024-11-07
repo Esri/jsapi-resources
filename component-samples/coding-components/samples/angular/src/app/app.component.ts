@@ -6,7 +6,7 @@ import { IEditorProfileDefinition, IPredefinedProfile } from "@arcgis/coding-com
 import { IEditorTestContext } from "@arcgis/coding-components/dist/types/utils/arcade-executor";
 
 import { setAssetPath } from "@esri/calcite-components/dist/components";
-setAssetPath("https://js.arcgis.com/calcite-components/2.8.6/assets");
+setAssetPath("https://js.arcgis.com/calcite-components/2.13.2/assets");
 
 import "@esri/calcite-components/dist/components/calcite-scrim";
 import "@arcgis/coding-components/dist/components/arcgis-arcade-editor";

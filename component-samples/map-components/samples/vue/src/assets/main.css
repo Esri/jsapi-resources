@@ -1,13 +1,13 @@
-@import 'https://js.arcgis.com/4.30/@arcgis/core/assets/esri/themes/dark/main.css';
+@import 'https://js.arcgis.com/4.31/@arcgis/core/assets/esri/themes/dark/main.css';
 
 html,
 main,
-body,
-arcgis-map {
-  background-color: var(--calcite-ui-foreground-2);
-  padding: 0;
+body {
   margin: 0;
-  width: 100vw;
+}
+
+arcgis-map {
+  display: block;
   height: 100vh;
 }
 

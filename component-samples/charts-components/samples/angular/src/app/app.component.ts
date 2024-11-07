@@ -1,47 +1,44 @@
-/* Copyright 2024 Esri
- *
- * Licensed under the Apache License Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit, ViewChild, ElementRef } from "@angular/core";
+import { RouterOutlet } from "@angular/router";
 
-import { Component, ViewChild } from "@angular/core";
 import { createFeatureLayer } from "../functions/create-feature-layer.service";
+import { addSelectionEventListener } from '../functions/add-selection-event-listener.service';
 import { ScatterPlotModel } from "@arcgis/charts-model";
 
+import { defineCustomElements as defineCalciteElements } from "@esri/calcite-components/dist/loader";
 import { defineCustomElements as defineChartsElements } from "@arcgis/charts-components/dist/loader";
 
 @Component({
   selector: "app-root",
+  standalone: true,
+  imports: [RouterOutlet],
   templateUrl: "./app.component.html",
-  styleUrl: "./app.component.css"
+  styleUrl: "./app.component.css",
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = "charts-components-angular-sample";
 
-  @ViewChild("scatterplot") scatterplot: HTMLArcgisChartsScatterPlotElement | undefined;
+  @ViewChild("scatterplot") scatterplot!: ElementRef<HTMLArcgisChartsScatterPlotElement>;
 
-  ngOnInit() {
-    // define custom elements in the browser, and load the assets from the CDN
-    defineChartsElements(window, { resourcesUrl: "https://js.arcgis.com/charts-components/4.30/t9n" });
-  }
+  async ngOnInit(): Promise<void> {
+    // define custom elements in the browser, and load the assets from the CDN for calcite and charts components
+    defineChartsElements(window, {
+      resourcesUrl: "https://js.arcgis.com/charts-components/4.31/assets"
+    });
+    defineCalciteElements(window, {
+      resourcesUrl: "https://js.arcgis.com/calcite-components/2.13.2/assets"
+    }); 
 
-  ngAfterViewInit() {
-    this.initScatterplot();
+    await customElements.whenDefined('arcgis-charts-scatter-plot');
+
+    this.initScatterplot(this.scatterplot);
   }
 
   /**
    * Function to initialize the scatterplot.
    */
-  async initScatterplot() {
+  async initScatterplot(scatterplot: ElementRef<HTMLArcgisChartsScatterPlotElement>) {
     const layer = await createFeatureLayer(
       "https://services.arcgis.com/V6ZHFr6zdgNZuVG0/ArcGIS/rest/services/ChicagoCr/FeatureServer/0"
     );
@@ -56,9 +53,10 @@ export class AppComponent {
     // Set the scatterplot element's config and layer properties.
     const config = scatterplotModel.getConfig();
 
-    if (this.scatterplot !== undefined) {
-      this.scatterplot.config = config;
-      this.scatterplot.layer = layer;
-    }
+    scatterplot.nativeElement.config = config;
+    scatterplot.nativeElement.layer = layer;
+
+    // Add an event listener for when selections are made on the chart, the filter by selection button will be enabled
+	  addSelectionEventListener(scatterplot.nativeElement, "scatterplot-action-bar");
   }
 }

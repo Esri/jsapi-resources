@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { createFeatureLayer } from '../utils/create-feature-layer';
+import { addSelectionEventListener } from '../utils/add-selection-event-listener';
 import { ScatterPlotModel } from '@arcgis/charts-model';
 
 // Read more about ref() at https://vuejs.org/api/reactivity-core.html#ref
@@ -24,10 +25,15 @@ onMounted(async () => {
 
     scatterplotRef.value.config = config;
     scatterplotRef.value.layer = layer;
+
+    // Add an event listener for when selections are made on the chart, the filter by selection button will be enabled
+    addSelectionEventListener(scatterplotRef.value, "scatterplot-action-bar");
   }
 });
 </script>
 
 <template>
-  <arcgis-charts-scatter-plot ref="scatterplotRef" class="chart-container"></arcgis-charts-scatter-plot>
+  <arcgis-charts-scatter-plot ref="scatterplotRef" class="chart-container">
+    <arcgis-charts-action-bar slot="action-bar" id="scatterplot-action-bar"></arcgis-charts-action-bar>
+  </arcgis-charts-scatter-plot>
 </template>

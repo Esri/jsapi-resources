@@ -16,7 +16,7 @@ The JavaScript Maps SDK also offers a convenience pattern useful for quick testi
 ```
 // Replace the individual imports with defineCustomElements()
  import { defineCustomElements } from "@arcgis/map-components/dist/loader";
- defineCustomElements(window, { resourcesUrl: "https://js.arcgis.com/map-components/4.30/assets" });
+ defineCustomElements(window, { resourcesUrl: "https://js.arcgis.com/map-components/4.31/assets" });
 ```
 
 For more details on using the SDK, please refer to the [ArcGIS Maps SDK for JavaScript documentation](https://developers.arcgis.com/javascript/latest/get-started-overview/).
