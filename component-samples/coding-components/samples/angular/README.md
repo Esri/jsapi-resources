@@ -3,9 +3,8 @@
 
 📁 **[Click here to download this directory as a ZIP file](https://esri.github.io/jsapi-resources/zips/coding-components-sample-angular.zip)** 📁
 
-**Deprecation Notice**: The [@arcgis/coding-components-angular](https://www.npmjs.com/package/@arcgis/coding-components-angular) npm package has been deprecated at 4.31. We recommend using the `@arcgis/coding-components`, as shown in the sample.
-
 ## Known issues
+* The [@arcgis/coding-components-angular](https://www.npmjs.com/package/@arcgis/coding-components-angular) npm package has been deprecated at 4.31.  We recommend using the `@arcgis/coding-components`, as shown in the sample.
 * The compile warning `The glob pattern import("./**/*.entry.js*") did not match any files [empty-glob]` is a known issue with Stencil and it can be ignored. 
 * You may encounter the following build configuration error:
 `[ERROR] No loader is configured for ".ttf" files: node_modules/monaco-editor/esm/vs/base/browser/ui/codicons/codicon/codicon.ttf`.
