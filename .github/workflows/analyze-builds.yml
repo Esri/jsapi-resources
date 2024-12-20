@@ -14,6 +14,7 @@ jobs:
           fetch-depth: 0
           ref: ${{ github.event.pull_request.head.ref }}
           token: ${{ secrets.ESM_BUILD }}
+          node-version: 22
       - name: should create zip files
         id: verify
         run: |
