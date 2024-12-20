@@ -11,7 +11,7 @@ Run `npm install` and then start adding functionality.
 For a list of all available `npm` commands see `scripts` in `package.json`, e.g. `npm run build`.
 
 ## Known issues
-* If you encounter the error message `TS1203: Export assignment cannot be used when targeting ECMAScript modules`, one temporary workaround is to set `skipLibCheck` to `true`. This setting will reduce type-system accuracy. More information is available here: https://www.typescriptlang.org/tsconfig/#skipLibCheck. 
+* If you encounter the error message `TS1203: Export assignment cannot be used when targeting ECMAScript modules` on an SDK module, one temporary workaround is to set `skipLibCheck` to `true`. This setting will reduce type-system accuracy. More information is available here: https://www.typescriptlang.org/tsconfig/#skipLibCheck. 
 
 * When deploying Angular 19 apps into production environments, it is recommended to ensure your webserver environment is using [HTTP/2](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Evolution_of_HTTP#http2_%E2%80%93_a_protocol_for_greater_performance). This is due to esbuild [code splitting](https://esbuild.github.io/api/#splitting).
 
