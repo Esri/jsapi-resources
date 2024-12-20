@@ -11,7 +11,11 @@ Run `npm install` and then start adding functionality.
 For a list of all available `npm` commands see `scripts` in `package.json`, e.g. `npm run build`.
 
 ## Known issues
-* When deploying Angular 18 apps into production environments, it is recommended to ensure your webserver environment is using [HTTP/2](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Evolution_of_HTTP#http2_%E2%80%93_a_protocol_for_greater_performance). This is due to esbuild [code splitting](https://esbuild.github.io/api/#splitting).
+* If you encounter the error message `TS1203: Export assignment cannot be used when targeting ECMAScript modules` on an SDK module, one temporary workaround is to set `skipLibCheck` to `true`. This setting will reduce type-system accuracy. More information is available here: https://www.typescriptlang.org/tsconfig/#skipLibCheck. 
+
+* When deploying Angular 19 apps into production environments, it is recommended to ensure your webserver environment is using [HTTP/2](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Evolution_of_HTTP#http2_%E2%80%93_a_protocol_for_greater_performance). This is due to esbuild [code splitting](https://esbuild.github.io/api/#splitting).
+
+* The compile warning `The glob pattern import("./**/*.entry.js*") did not match any files [empty-glob]` is a known issue with Stencil and it can be ignored.
 
 * It is recommended to update to zone.js `0.14.5` or later. Earlier versions of zone.js will cause some of the SDK's widget buttons to not work correctly due to an [Angular bug](https://github.com/angular/angular/issues/54581) affecting `.on*` event listeners. If you are unable to update zone.js, a potential workaround is to disable monkey patching of DOM `click` event. Make the following updates and be sure to test thoroughly for unexpected side effects.
 
