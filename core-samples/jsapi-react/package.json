@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@arcgis/core": "^4.32.0-next.20241219",
+    "@arcgis/core": "~4.31.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
