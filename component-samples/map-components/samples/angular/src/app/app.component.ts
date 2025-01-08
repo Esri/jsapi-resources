@@ -1,5 +1,4 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from "@angular/core";
-import { RouterOutlet } from "@angular/router";
 
 import { setAssetPath } from "@esri/calcite-components/dist/components";
 setAssetPath("https://js.arcgis.com/calcite-components/2.13.2/assets");
@@ -12,7 +11,6 @@ import "@arcgis/map-components/dist/components/arcgis-legend";
 @Component({
   selector: "app-root",
   standalone: true,
-  imports: [RouterOutlet],
   templateUrl: "./app.component.html",
   styleUrl: "./app.component.css",
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
