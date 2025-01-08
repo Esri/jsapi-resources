@@ -12,7 +12,7 @@ root.render(
   <StrictMode>
     <arcgis-map
       itemId="d5dda743788a4b0688fe48f43ae7beb9"
-      onArcgisViewReadyChange={(event) => {
+      onarcgisViewReadyChange={(event) => {
         console.log("MapView ready", event);
       }}
     >
