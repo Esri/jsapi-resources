@@ -18,9 +18,9 @@
     "@angular/platform-browser": "^19.0.0",
     "@angular/platform-browser-dynamic": "^19.0.0",
     "@angular/router": "^19.0.0",
-    "@arcgis/coding-components": "^4.32.0-next.61",
-    "@arcgis/core": "^4.32.0-next.20241226",
-    "@esri/calcite-components-angular": "^3.0.0",
+    "@arcgis/coding-components": "~4.31.0",
+    "@arcgis/core": "~4.31.0",
+    "@esri/calcite-components-angular": "^2.13.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
