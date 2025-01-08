@@ -18,8 +18,8 @@
     "@angular/platform-browser": "^19.0.0",
     "@angular/platform-browser-dynamic": "^19.0.0",
     "@angular/router": "^19.0.0",
-    "@arcgis/map-components": "^4.32.0-next.61",
-    "@arcgis/core": "^4.32.0-next.20241226",
+    "@arcgis/map-components": "~4.31.0",
+    "@arcgis/core": "~4.31.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
