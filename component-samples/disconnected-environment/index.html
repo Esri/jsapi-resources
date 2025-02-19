@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="data:;base64,=" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Maps SDK in a disconnected environment</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="editor-wrapper">
+        <arcgis-arcade-editor script="$feature.place"/>
+      </div>
+      <arcgis-map center="-101.08, 44.69" zoom="4" basemap="none">
+        <arcgis-placement position="top-right">
+          <calcite-button>Test arcade expression</calcite-button>
+        </arcgis-placement>
+      </arcgis-map>
+    </div>
+    <calcite-scrim id="scrim" loading></calcite-scrim>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
