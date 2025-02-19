@@ -3,18 +3,14 @@ on:
   pull_request:
     types: [opened, reopened, synchronize, labeled, unlabeled]
     branches: [main]
-  workflow_dispatch:    
+  workflow_dispatch:
 jobs:
   analyze:
     if: "!contains(github.event.pull_request.labels.*.name, 'draft') && github.actor!='dependabot-preview[bot]'"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          ref: ${{ github.event.pull_request.head.ref }}
-          token: ${{ secrets.ESM_BUILD }}
-          node-version: 22
+
       - name: should create zip files
         id: verify
         run: |
@@ -29,7 +25,7 @@ jobs:
           else
             echo "samples changed: $samples_changed"
             echo "zipskip=false" >> $GITHUB_OUTPUT
-          fi              
+          fi
       - name: should build samples
         id: build
         run: |
@@ -52,15 +48,15 @@ jobs:
             echo "skip=false" >> $GITHUB_OUTPUT
           fi
       - name: setup node
-        if: steps.build.outputs.skip == 'false' || steps.verify.outputs.zipskip == 'false'        
+        if: steps.build.outputs.skip == 'false' || steps.verify.outputs.zipskip == 'false'
         uses: actions/setup-node@v4
         with:
-          check-latest: true 
+          check-latest: true
       - name: install dependencies for sample metrics script
-        if: steps.build.outputs.skip == 'false' || steps.verify.outputs.zipskip == 'false'     
+        if: steps.build.outputs.skip == 'false' || steps.verify.outputs.zipskip == 'false'
         working-directory: .github/scripts
         run: |
-          npm i             
+          npm i
       - name: Setup up git config
         if: steps.build.outputs.skip == 'false' || steps.verify.outputs.zipskip == 'false'
         run: |
@@ -69,22 +65,22 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
       - name: create zip files
-        if: steps.verify.outputs.zipskip == 'false'        
-        working-directory: .github/scripts        
+        if: steps.verify.outputs.zipskip == 'false'
+        working-directory: .github/scripts
         run: |
-          node create-zips.js     
+          node create-zips.js
       - name: commit zip files
-        if: steps.verify.outputs.zipskip == 'false'        
+        if: steps.verify.outputs.zipskip == 'false'
         working-directory: .github/scripts
         run: |
           git add ../../zips/
           git commit -m "ci: add zip files" || true
-          git push origin ${{ github.event.pull_request.head.ref }}     
+          git push origin ${{ github.event.pull_request.head.ref }}
       - name: run sample metrics script
-        if: steps.build.outputs.skip == 'false'        
+        if: steps.build.outputs.skip == 'false'
         working-directory: .github/scripts
         run: |
-          node analyze-builds.js      
+          node analyze-builds.js
       - name: push sample metrics analysis
         if: steps.build.outputs.skip == 'false'
         working-directory: .github/scripts
