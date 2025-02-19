@@ -7,7 +7,7 @@
   "devDependencies": {
     "cpx2": "^8.0.0",
     "del-cli": "^6.0.0",
-    "esbuild": "^0.24.0"
+    "esbuild": "^0.25.0"
   },
   "scripts": {
     "init-dist": "del-cli dist && cpx \"public/**\" dist",
