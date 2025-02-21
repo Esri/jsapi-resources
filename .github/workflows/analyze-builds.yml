@@ -7,14 +7,16 @@ on:
 jobs:
   analyze:
     if: "!contains(github.event.pull_request.labels.*.name, 'draft') && github.actor!='dependabot-preview[bot]'"
-    runs-on: ubuntu-latest
-    timeout-minutes: 30  
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
     steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
           ref: ${{ github.event.pull_request.head.ref }}
-          token: ${{ secrets.ESM_BUILD }}
       - name: should create zip files
         id: verify
         run: |
@@ -101,4 +103,4 @@ jobs:
     steps:
       - name: Capture error
         run: |
-          echo "Error in the build analysis"          
+          echo "Error in the build analysis"
