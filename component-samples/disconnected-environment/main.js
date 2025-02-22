@@ -122,7 +122,7 @@ calciteButtonElement.addEventListener("click", async () => {
 // Hook up the feature layer to the map
 // Use componentOnReady since there is no basemap to listen for the arcgisViewReadyChange event
 mapElement.componentOnReady().then(() => {
-  mapElement.addLayers([polylineFeature]);
+  mapElement.map.add(polylineFeature);
 });
 
 // Everything has been loaded and assigned, we can remove scrim
