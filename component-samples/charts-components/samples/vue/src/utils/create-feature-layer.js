@@ -1,4 +1,4 @@
-import FeatureLayer from '@arcgis/core/layers/FeatureLayer';
+import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 
 /**
  * Create a feature layer with a service URL. This will be used to create a chart later.

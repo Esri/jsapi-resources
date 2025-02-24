@@ -2,11 +2,11 @@ import { defineConfig } from "vite";
 
 const config = {
   build: {
-    chunkSizeWarningLimit: 1500
+    chunkSizeWarningLimit: 1600,
   },
   server: {
-    open: true
-  }
+    open: true,
+  },
 };
 
 export default defineConfig(config);

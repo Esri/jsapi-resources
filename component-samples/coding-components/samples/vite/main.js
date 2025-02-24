@@ -2,13 +2,9 @@ import "./style.css"; // Arcade editor styles
 
 import { loadData } from "./load-data";
 
-import { setAssetPath as setCalciteComponentsAssetPath } from '@esri/calcite-components/dist/components';
-
 // Individual imports for each component
-import "@arcgis/coding-components/dist/components/arcgis-arcade-editor";
-import "@esri/calcite-components/dist/components/calcite-scrim";
-
-setCalciteComponentsAssetPath("https://js.arcgis.com/calcite-components/2.13.2/assets");
+import "@arcgis/coding-components/components/arcgis-arcade-editor";
+import "@esri/calcite-components/components/calcite-scrim";
 
 (async () => {
   // Get the Arcade editor element
@@ -29,10 +25,7 @@ setCalciteComponentsAssetPath("https://js.arcgis.com/calcite-components/2.13.2/a
   const dataPromise = loadData();
 
   // Wait for our data to be loaded and wait for the component to be defined in the custom elements
-  const [data] = await Promise.all([
-    dataPromise,
-    customElements.whenDefined("arcgis-arcade-editor"),
-  ]);
+  const [data] = await Promise.all([dataPromise, customElements.whenDefined("arcgis-arcade-editor")]);
 
   // Tells Arcade editor to use the 'popup' profile and provides the necessary data used as
   // definition for the profile variables. Feature Layer and Web Map instances are used by the

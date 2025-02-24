@@ -1,14 +1,11 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from "@angular/core";
+import type { OnInit } from "@angular/core";
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { loadData } from "../functions/load-data.service";
-import { IEditorProfileDefinition, IPredefinedProfile } from "@arcgis/coding-components/dist/types/utils/profile/types";
-import { IEditorTestContext } from "@arcgis/coding-components/dist/types/utils/arcade-executor";
+import type { IEditorTestContext, IEditorProfileDefinition, IPredefinedProfile } from "@arcgis/coding-components";
 
-import { setAssetPath } from "@esri/calcite-components/dist/components";
-setAssetPath("https://js.arcgis.com/calcite-components/2.13.2/assets");
-
-import "@esri/calcite-components/dist/components/calcite-scrim";
-import "@arcgis/coding-components/dist/components/arcgis-arcade-editor";
+import "@esri/calcite-components/components/calcite-scrim";
+import "@arcgis/coding-components/components/arcgis-arcade-editor";
 
 @Component({
   selector: "app-root",
@@ -19,10 +16,10 @@ import "@arcgis/coding-components/dist/components/arcgis-arcade-editor";
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppComponent implements OnInit {
-  title = 'coding-components-angular-template';
+  title = "coding-components-angular-template";
 
   // Property to track loading state
-  public isLoading: boolean = true;
+  public isLoading = true;
 
   // Properties for the arcade editor
   public profile!: IEditorProfileDefinition | IPredefinedProfile;
@@ -43,8 +40,8 @@ export class AppComponent implements OnInit {
         $feature: data.featureLayer,
         $layer: data.featureLayer,
         $map: data.webMap,
-        $datastore: data.featureLayer
-      }
+        $datastore: data.featureLayer,
+      },
     };
 
     this.testData = {
@@ -52,8 +49,8 @@ export class AppComponent implements OnInit {
         $feature: data.featureSet.features[0],
         $layer: data.featureLayer,
         $map: data.webMap,
-        $datastore: data.featureLayer.url
-      }
+        $datastore: data.featureLayer.url,
+      },
       // spatialReference: {wkid: 3857},
       // timeZone: "system"
     };

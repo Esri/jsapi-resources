@@ -1,17 +1,15 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="icon" href="data:;base64,=" />
+    <title>Charts components webpack sample</title>
+  </head>
 
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
-	<link rel="icon" href="data:;base64,=" />
-	<title>Charts components webpack sample</title>
-</head>
-
-<body>
-	<arcgis-charts-scatter-plot id="scatterplot" class="chart-container">
-		<arcgis-charts-action-bar slot="action-bar" id="scatterplot-action-bar"></arcgis-charts-action-bar>
-	</arcgis-charts-scatter-plot>
-</body>
-
+  <body>
+    <arcgis-chart id="scatterplot">
+      <arcgis-charts-action-bar slot="action-bar"></arcgis-charts-action-bar>
+    </arcgis-chart>
+  </body>
 </html>

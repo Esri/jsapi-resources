@@ -1,19 +1,19 @@
-const path = require('path');
+const path = require("path");
 
-const HtmlWebPackPlugin = require('html-webpack-plugin');
+const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   entry: {
-    index: ['./src/index.css', './src/index.js']
+    index: ["./src/index.css", "./src/index.js"],
   },
   node: false,
   output: {
-    path: path.join(__dirname, 'dist'),
-    chunkFilename: 'chunks/[id].js'
+    path: path.join(__dirname, "dist"),
+    chunkFilename: "chunks/[id].js",
   },
   devServer: {
-    static: path.join(__dirname, 'dist'),
+    static: path.join(__dirname, "dist"),
     compress: true,
     port: 3001,
   },
@@ -26,24 +26,21 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader'
-        ]
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
-    ]
+    ],
   },
   plugins: [
     new HtmlWebPackPlugin({
-      title: 'ArcGIS Maps SDK  for JavaScript',
-      template: './public/index.html',
-      filename: './index.html',
-      chunksSortMode: 'none',
-      inlineSource: '.(css)$'
+      title: "ArcGIS Maps SDK  for JavaScript",
+      template: "./public/index.html",
+      filename: "./index.html",
+      chunksSortMode: "none",
+      inlineSource: ".(css)$",
     }),
     new MiniCssExtractPlugin({
       filename: "[name].[chunkhash].css",
-      chunkFilename: "[id].css"
-    })
-  ]
+      chunkFilename: "[id].css",
+    }),
+  ],
 };

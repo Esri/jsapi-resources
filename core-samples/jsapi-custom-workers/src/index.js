@@ -16,26 +16,26 @@ const button1 = document.getElementById("btn-1");
 
 const cityLayer = new FeatureLayer({
   portalItem: {
-    id: "e39d04981238498792eb33ea26ba1c09"
-  }
+    id: "e39d04981238498792eb33ea26ba1c09",
+  },
 });
 
 const frsLayer = new FeatureLayer({
   portalItem: {
-    id: "cdff193a3e3743a5bc770e2743f215b3"
-  }
+    id: "cdff193a3e3743a5bc770e2743f215b3",
+  },
 });
 
 const map = new ArcGISMap({
   basemap: "dark-gray-vector",
-  layers: [cityLayer, frsLayer]
+  layers: [cityLayer, frsLayer],
 });
 
 const view = new MapView({
   container: "viewDiv",
   map,
   center: [-117.98, 33.96],
-  zoom: 12
+  zoom: 12,
 });
 
 const legend = new Legend({ view });
@@ -53,11 +53,11 @@ view.when(() => {
 async function runJoin() {
   const [cityLayerView, frsLayerView] = await Promise.all([
     view.whenLayerView(cityLayer),
-    view.whenLayerView(frsLayer)
+    view.whenLayerView(frsLayer),
   ]);
   await whenOnce(() => !view.updating);
   const query = {
-    returnGeometry: true
+    returnGeometry: true,
   };
   const cityResults = await cityLayerView.queryFeatures(query);
   const frsResults = await frsLayerView.queryFeatures(query);
@@ -75,15 +75,15 @@ async function runJoin() {
     {
       name: "count",
       alist: "Count",
-      type: "integer"
-    }
+      type: "integer",
+    },
   ]);
 
   const { renderer } = await colorRendererCreator.createContinuousRenderer({
     layer: joinLayer,
     view,
     field: "count",
-    theme: "above-and-below"
+    theme: "above-and-below",
   });
 
   joinLayer.renderer = renderer;
@@ -100,7 +100,7 @@ async function createLayer(layer, source, extraFields) {
   for (const field of [...extraFields, ...layer.fields]) {
     fieldInfosMap.set(field.name, {
       fieldName: field.name,
-      label: field.alias || field.name
+      label: field.alias || field.name,
     });
   }
 
@@ -119,10 +119,10 @@ async function createLayer(layer, source, extraFields) {
       content: [
         {
           type: "fields",
-          fieldInfos: [...fieldInfos.values()]
-        }
-      ]
-    }
+          fieldInfos: [...fieldInfos.values()],
+        },
+      ],
+    },
   });
 
   return featLayer;

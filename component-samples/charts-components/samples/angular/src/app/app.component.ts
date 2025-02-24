@@ -1,46 +1,38 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit, ViewChild, ElementRef } from "@angular/core";
-import { RouterOutlet } from "@angular/router";
+import type { OnInit, ElementRef } from "@angular/core";
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild } from "@angular/core";
 
 import { createFeatureLayer } from "../functions/create-feature-layer.service";
-import { addSelectionEventListener } from '../functions/add-selection-event-listener.service';
 import { ScatterPlotModel } from "@arcgis/charts-model";
 
 import { defineCustomElements as defineCalciteElements } from "@esri/calcite-components/dist/loader";
 import { defineCustomElements as defineChartsElements } from "@arcgis/charts-components/dist/loader";
 
+defineCalciteElements();
+defineChartsElements(window, { resourcesUrl: "https://js.arcgis.com/charts-components/4.32/assets" });
+
 @Component({
   selector: "app-root",
   standalone: true,
-  imports: [RouterOutlet],
   templateUrl: "./app.component.html",
-  styleUrl: "./app.component.css",
+  styleUrls: ["./app.component.css"],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppComponent implements OnInit {
   title = "charts-components-angular-sample";
 
-  @ViewChild("scatterplot") scatterplot!: ElementRef<HTMLArcgisChartsScatterPlotElement>;
+  @ViewChild("scatterplot") scatterplot!: ElementRef<HTMLArcgisChartElement>;
 
-  async ngOnInit(): Promise<void> {
-    // define custom elements in the browser, and load the assets from the CDN for calcite and charts components
-    defineChartsElements(window, {
-      resourcesUrl: "https://js.arcgis.com/charts-components/4.31/assets"
+  ngOnInit(): void {
+    this.initScatterplot().catch((error) => {
+      console.error("Error initializing scatterplot:", error);
     });
-    defineCalciteElements(window, {
-      resourcesUrl: "https://js.arcgis.com/calcite-components/2.13.2/assets"
-    }); 
-
-    await customElements.whenDefined('arcgis-charts-scatter-plot');
-
-    this.initScatterplot(this.scatterplot);
   }
-
   /**
-   * Function to initialize the scatterplot.
+   * Function to use the scatterplot charts model to configure the chart.
    */
-  async initScatterplot(scatterplot: ElementRef<HTMLArcgisChartsScatterPlotElement>) {
+  async initScatterplot(): Promise<void> {
     const layer = await createFeatureLayer(
-      "https://services.arcgis.com/V6ZHFr6zdgNZuVG0/ArcGIS/rest/services/ChicagoCr/FeatureServer/0"
+      "https://services.arcgis.com/V6ZHFr6zdgNZuVG0/ArcGIS/rest/services/ChicagoCr/FeatureServer/0",
     );
 
     // Create a new ScatterPlotModel and set the x and y axis fields.
@@ -53,10 +45,7 @@ export class AppComponent implements OnInit {
     // Set the scatterplot element's config and layer properties.
     const config = scatterplotModel.getConfig();
 
-    scatterplot.nativeElement.config = config;
-    scatterplot.nativeElement.layer = layer;
-
-    // Add an event listener for when selections are made on the chart, the filter by selection button will be enabled
-	  addSelectionEventListener(scatterplot.nativeElement, "scatterplot-action-bar");
+    this.scatterplot.nativeElement.model = config;
+    this.scatterplot.nativeElement.layer = layer;
   }
 }

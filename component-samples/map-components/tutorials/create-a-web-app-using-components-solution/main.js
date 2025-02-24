@@ -2,21 +2,21 @@ import "./style.css";
 
 // Import the the `arcgis-layer-list` and `arcgis-map` components
 // from the `@arcgis/map-components` package.
-import "@arcgis/map-components/dist/components/arcgis-layer-list";
-import "@arcgis/map-components/dist/components/arcgis-map";
+import "@arcgis/map-components/components/arcgis-layer-list";
+import "@arcgis/map-components/components/arcgis-map";
 
 // Import the `calcite-navigation`, `calcite-navigation-logo`, and `calcite-shell` components
 // from the `@esri/calcite-components` package.
-import "@esri/calcite-components/dist/components/calcite-navigation";
-import "@esri/calcite-components/dist/components/calcite-navigation-logo";
-import "@esri/calcite-components/dist/components/calcite-shell";
+import "@esri/calcite-components/components/calcite-navigation";
+import "@esri/calcite-components/components/calcite-navigation-logo";
+import "@esri/calcite-components/components/calcite-shell";
 
 // Import the setAssetPath function from calcite-components.
 // This function allows you to set the path to the calcite components assets.
-import { setAssetPath } from "@esri/calcite-components/dist/components";
+import { setAssetPath } from "@esri/calcite-components";
 
 // CDN hosted calcite components assets
-setAssetPath("https://js.arcgis.com/calcite-components/2.13.2/assets");
+setAssetPath("https://js.arcgis.com/calcite-components/3.0.3/assets");
 
 // Get a reference to the arcgis-layer-list element.
 const arcgisLayerList = document.querySelector("arcgis-layer-list");

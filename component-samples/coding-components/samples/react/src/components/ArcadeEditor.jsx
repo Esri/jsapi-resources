@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
 // Individual imports for each component used in this sample
-import "@arcgis/coding-components/dist/components/arcgis-arcade-editor";
-import "@esri/calcite-components/dist/components/calcite-scrim";
+import "@arcgis/coding-components/components/arcgis-arcade-editor";
+import "@esri/calcite-components/components/calcite-scrim";
 
 import { loadData } from "../functions/load-data";
 import "./ArcadeEditor.css";

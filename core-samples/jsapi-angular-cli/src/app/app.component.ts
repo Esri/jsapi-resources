@@ -1,30 +1,24 @@
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  ElementRef,
-  OnDestroy,
-} from '@angular/core';
+import type { OnInit, ElementRef, OnDestroy } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
-import WebMap from '@arcgis/core/WebMap';
-import MapView from '@arcgis/core/views/MapView';
-import Bookmarks from '@arcgis/core/widgets/Bookmarks';
-import Expand from '@arcgis/core/widgets/Expand';
+import WebMap from '@arcgis/core/WebMap.js';
+import MapView from '@arcgis/core/views/MapView.js';
+import Bookmarks from '@arcgis/core/widgets/Bookmarks.js';
+import Expand from '@arcgis/core/widgets/Expand.js';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
-
 export class AppComponent implements OnInit, OnDestroy {
   public view: any = null;
 
   // The <div> where we will place the map
   @ViewChild('mapViewNode', { static: true }) private mapViewEl!: ElementRef;
 
-  initializeMap(): Promise<any> {
+  async initializeMap(): Promise<any> {
     const container = this.mapViewEl.nativeElement;
 
     const webmap = new WebMap({
@@ -35,11 +29,11 @@ export class AppComponent implements OnInit, OnDestroy {
 
     this.view = new MapView({
       container,
-      map: webmap
+      map: webmap,
     });
 
     const bookmarks = new Bookmarks({
-      view: this.view
+      view: this.view,
     });
 
     const bkExpand = new Expand({
@@ -78,4 +72,3 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   }
 }
-

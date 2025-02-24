@@ -1,7 +1,8 @@
 // @deno-types="npm:@arcgis/core/interfaces.d.ts"
-import { Application, Context } from "https://deno.land/x/oak@v17.1.3/mod.ts";
-import config from "npm:@arcgis/core@4.31/config.js";
-import WebMap from "npm:@arcgis/core@4.31/WebMap.js";
+import type { Context } from "https://deno.land/x/oak@v17.1.4/mod.ts";
+import { Application } from "https://deno.land/x/oak@v17.1.4/mod.ts";
+import config from "npm:@arcgis/core@4.32/config.js";
+import WebMap from "npm:@arcgis/core@4.32/WebMap.js";
 
 // Disable so it doesn't attempt to load DOM-related JavaScript.
 config.request.useIdentity = false;
@@ -12,13 +13,13 @@ const port = 8000;
 
 app.use(async (ctx: Context) => {
   const webmap = new WebMap({
-    portalItem: { id: "3d52817a120b477db912add2e62ef9b6" }
+    portalItem: { id: "3d52817a120b477db912add2e62ef9b6" },
   });
 
   await webmap.load();
 
   ctx.response.headers.set("Content-Type", "text/html");
-  ctx.response.body = "<h3>WebMap PortalItem description:</h3><hr/>" + webmap.portalItem.description;
+  ctx.response.body = `<h3>WebMap PortalItem description:</h3><hr/>${webmap.portalItem.description}`;
 });
 
 app.listen({ port });

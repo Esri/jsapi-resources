@@ -2,9 +2,9 @@
 import Map from "@/components/Map.vue";
 
 // Individual imports for each component
-import "@arcgis/map-components/dist/components/arcgis-map";
-import "@arcgis/map-components/dist/components/arcgis-legend";
-import "@arcgis/map-components/dist/components/arcgis-search";
+import "@arcgis/map-components/components/arcgis-map";
+import "@arcgis/map-components/components/arcgis-legend";
+import "@arcgis/map-components/components/arcgis-search";
 </script>
 
 <template>

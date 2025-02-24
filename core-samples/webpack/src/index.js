@@ -5,23 +5,23 @@ import WebMap from "@arcgis/core/WebMap";
 
 const webmap = new WebMap({
   portalItem: {
-    id: "aa1d3f80270146208328cf66d022e09c"
-  }
+    id: "aa1d3f80270146208328cf66d022e09c",
+  },
 });
 
 const view = new MapView({
   container: "viewDiv",
-  map: webmap
+  map: webmap,
 });
 
 const bookmarks = new Bookmarks({
-  view
+  view,
 });
 
 const bkExpand = new Expand({
   view,
   content: bookmarks,
-  expanded: true
+  expanded: true,
 });
 
 // Add the widget to the top-right corner of the view

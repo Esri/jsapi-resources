@@ -1,11 +1,11 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
 import "./index.css";
 
 // Individual imports for each component used in this sample
-import "@arcgis/map-components/dist/components/arcgis-map";
-import "@arcgis/map-components/dist/components/arcgis-legend";
-import "@arcgis/map-components/dist/components/arcgis-search";
+import "@arcgis/map-components/components/arcgis-map";
+import "@arcgis/map-components/components/arcgis-legend";
+import "@arcgis/map-components/components/arcgis-search";
 
 const root = createRoot(document.getElementById("root"));
 root.render(
@@ -19,5 +19,5 @@ root.render(
       <arcgis-search position="top-right"></arcgis-search>
       <arcgis-legend position="bottom-left"></arcgis-legend>
     </arcgis-map>
-  </StrictMode>
+  </StrictMode>,
 );

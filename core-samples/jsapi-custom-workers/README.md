@@ -19,7 +19,7 @@ The key to using custom workers is building the workers separately from your mai
 ```js
 // rollup.worker.config.js
 import resolve from "@rollup/plugin-node-resolve";
-import terser from '@rollup/plugin-terser';
+import terser from "@rollup/plugin-terser";
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -28,7 +28,7 @@ export default {
     // ArcGIS JS API RemoteClient for using workers
     RemoteClient: "@arcgis/core/core/workers/RemoteClient.js",
     // User custom worker
-    SpatialJoin: "./src/spatial-join-worker.js"
+    SpatialJoin: "./src/spatial-join-worker.js",
   },
   output: {
     chunkFileNames: "chunks/worker/[name]-[hash].js",
@@ -36,10 +36,10 @@ export default {
     // You can use the loader of your own choice, but System works well
     // in a production environment
     format: "system",
-    exports: "named"
+    exports: "named",
   },
   plugins: [resolve(), production && terser()],
-  preserveEntrySignatures: "allow-extension"
+  preserveEntrySignatures: "allow-extension",
 };
 ```
 
@@ -57,7 +57,7 @@ import * as workers from "@arcgis/core/core/workers.js";
 config.workers.workerPath = "./RemoteClient.js";
 
 // what loader to use, in this case SystemJS
-config.workers.loaderUrl = "https://cdn.jsdelivr.net/npm/systemjs@6.14.3/dist/s.min.js";
+config.workers.loaderUrl = "https://cdn.jsdelivr.net/npm/systemjs@6.15.1/dist/s.min.js";
 ...
   const results1= await layerView1.queryFeatures(query);
   const results2 = await layerView2.queryFeatures(query);
@@ -100,7 +100,6 @@ export function doSpatialJoin([f1, f2]) {
   }
   return features;
 }
-
 ```
 
 For more details on using `@arcgis/core/core/workers`, you can review the [documentation](https://developers.arcgis.com/javascript/latest/api-reference/esri-core-workers.html).

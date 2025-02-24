@@ -1,73 +1,71 @@
-<!DOCTYPE HTML>
+<!doctype html>
 <html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no" />
+    <title>ArcGIS ESM CDN</title>
 
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no" />
-  <title>ArcGIS ESM CDN</title>
+    <link rel="stylesheet" href="https://js.arcgis.com/4.32/@arcgis/core/assets/esri/themes/light/main.css" />
 
-  <link rel="stylesheet" href="https://js.arcgis.com/4.31/@arcgis/core/assets/esri/themes/light/main.css" />
-
-  <style>
-    html,
-    body,
-    #viewDiv {
-      padding: 0;
-      margin: 0;
-      height: 100%;
-      width: 100%;
-    }
-  </style>
-  <script type="importmap">
-    {
-      "imports": {
-        "@arcgis/core/": "https://js.arcgis.com/4.31/@arcgis/core/"
+    <style>
+      html,
+      body,
+      #viewDiv {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
       }
-    }
-  </script>
-  <script type="module">
-    import WebMap from '@arcgis/core/WebMap.js';
-    import MapView from '@arcgis/core/views/MapView.js';
-    import Bookmarks from '@arcgis/core/widgets/Bookmarks.js';
-    import Expand from '@arcgis/core/widgets/Expand.js';
-
-    const webmap = new WebMap({
-      portalItem: {
-        id: 'aa1d3f80270146208328cf66d022e09c',
-      },
-    });
-
-    const view = new MapView({
-      container: "viewDiv",
-      map: webmap
-    });
-
-    const bookmarks = new Bookmarks({
-      view
-    });
-
-    const bkExpand = new Expand({
-      view,
-      content: bookmarks,
-      expanded: true,
-    });
-
-    // Add the widget to the top-right corner of the view
-    view.ui.add(bkExpand, 'top-right');
-
-    // bonus - how many bookmarks in the webmap?
-    view.when(() => {
-      if (webmap.bookmarks && webmap.bookmarks.length) {
-        console.log('Bookmarks: ', webmap.bookmarks.length);
-      } else {
-        console.log('No bookmarks in this webmap.');
+    </style>
+    <script type="importmap">
+      {
+        "imports": {
+          "@arcgis/core/": "https://js.arcgis.com/4.32/@arcgis/core/"
+        }
       }
-    });
-  </script>
-</head>
+    </script>
+    <script type="module">
+      import WebMap from "@arcgis/core/WebMap.js";
+      import MapView from "@arcgis/core/views/MapView.js";
+      import Bookmarks from "@arcgis/core/widgets/Bookmarks.js";
+      import Expand from "@arcgis/core/widgets/Expand.js";
 
-<body>
-  <div id="viewDiv"></div>
-</body>
+      const webmap = new WebMap({
+        portalItem: {
+          id: "aa1d3f80270146208328cf66d022e09c",
+        },
+      });
 
+      const view = new MapView({
+        container: "viewDiv",
+        map: webmap,
+      });
+
+      const bookmarks = new Bookmarks({
+        view,
+      });
+
+      const bkExpand = new Expand({
+        view,
+        content: bookmarks,
+        expanded: true,
+      });
+
+      // Add the widget to the top-right corner of the view
+      view.ui.add(bkExpand, "top-right");
+
+      // bonus - how many bookmarks in the webmap?
+      view.when(() => {
+        if (webmap.bookmarks && webmap.bookmarks.length) {
+          console.log("Bookmarks: ", webmap.bookmarks.length);
+        } else {
+          console.log("No bookmarks in this webmap.");
+        }
+      });
+    </script>
+  </head>
+
+  <body>
+    <div id="viewDiv"></div>
+  </body>
 </html>

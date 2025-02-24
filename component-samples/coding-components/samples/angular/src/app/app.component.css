@@ -1,5 +1,6 @@
-@import url("https://js.arcgis.com/4.31/@arcgis/core/assets/esri/themes/dark/main.css");
-@import url("https://js.arcgis.com/coding-components/4.31/arcgis-coding-components.css");
+@import url("https://js.arcgis.com/calcite-components/3.0.3/calcite.css");
+@import url("https://js.arcgis.com/4.32/@arcgis/core/assets/esri/themes/dark/main.css");
+@import url("https://js.arcgis.com/coding-components/4.32/arcgis-coding-components.css");
 
 .editor-wrapper {
   display: flex;

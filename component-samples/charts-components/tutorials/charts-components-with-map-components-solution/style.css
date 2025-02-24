@@ -1,19 +1,21 @@
-/* import the `@arcgis/core` light theme and `@esri/calcite-components` CSS stylesheets. */
-@import "https://js.arcgis.com/4.31/@arcgis/core/assets/esri/themes/light/main.css";
-@import "https://js.arcgis.com/calcite-components/2.13.2/calcite.css";
+/* import the `@arcgis/core` light theme CSS stylesheets. */
+@import "https://js.arcgis.com/4.32/@arcgis/core/assets/esri/themes/light/main.css";
 
+/* Add CSS styles to make the `html`, `body` and `arcgis-map` elements the full width and height of their parent containers. */
 html,
 body {
-  padding: 0;
   margin: 0;
-  height: 100%;
-  width: 100%;
 }
 
-#scatterplot {
+arcgis-map {
+  display: block;
+  height: 100vh;
+}
+
+arcgis-chart {
   position: absolute;
-  bottom: 100px;
-  left: 30px;
-  height: 40%;
-  width: 50%;
+  bottom: 20px;
+  left: 20px;
+  height: 50%;
+  width: 60%;
 }
