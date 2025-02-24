@@ -21,6 +21,7 @@ jobs:
         id: verify
         run: |
           # This step involves analyzing if any files changed in the branch, if so we'll create zip files
+          # The scripts/create-zips.js file sets the folders that are used to create the zips
           current_branch=$(git rev-parse --abbrev-ref HEAD)
           # did any files change in component or core samples
           # compare against version before the last commit in the branch
