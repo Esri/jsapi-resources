@@ -14,7 +14,7 @@ For a list of all available `npm` commands see `scripts` in `package.json`, e.g.
 
 - If you encounter the error message `TS1203: Export assignment cannot be used when targeting ECMAScript modules` on an SDK module then update to SDK version 4.32 or greater. One temporary workaround is to set `skipLibCheck` to `true`. This setting will reduce type-system accuracy. More information is available here: https://www.typescriptlang.org/tsconfig/#skipLibCheck.
 
-- When deploying Angular 19 apps into production environments, it is recommended to ensure your webserver environment is using [HTTP/2](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Evolution_of_HTTP#http2_%E2%80%93_a_protocol_for_greater_performance). This is due to esbuild [code splitting](https://esbuild.github.io/api/#splitting).
+- When deploying Angular 19 apps into production environments, for best performance it is recommended to ensure your webserver environment is using [HTTP/2](https://developer.mozilla.org/en-US/docs/Glossary/HTTP_2) or [HTTP/3](https://developer.mozilla.org/en-US/docs/Glossary/HTTP_3). For more information: https://esbuild.github.io/api/#splitting.
 
 - The compile warning `The glob pattern import("./**/*.entry.js*") did not match any files [empty-glob]` is a known issue with Stencil and it can be ignored.
 
@@ -44,6 +44,6 @@ _tsconfig.app.json_
   ],
 ```
 
-- Currently, due to limitations in TypeScript, the APIs [autocasting](https://developers.arcgis.com/javascript/latest/programming-patterns/#autocasting) functionality works best in non-TypeScript applications. No changes are required if you are already using the API without any TypeScript build errors.
+- Due to limitations in TypeScript, the APIs [autocasting](https://developers.arcgis.com/javascript/latest/programming-patterns/#autocasting) functionality prior to version 4.32 works best in non-TypeScript applications. No changes are required if you are already using the API without any TypeScript build errors.
 
 - In order to use the APIs TypeScript [decorators](https://developers.arcgis.com/javascript/latest/api-reference/esri-core-accessorSupport-decorators.html), set the [`useDefineForClassFields`](https://www.typescriptlang.org/tsconfig#useDefineForClassFields) option to `false` in `tsconfig.compilerOptions`.

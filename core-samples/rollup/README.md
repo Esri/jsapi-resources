@@ -29,16 +29,16 @@ For additional information, see the [Get started with npm](https://developers.ar
 
 This example can also be used with TypeScript sources. The following steps convert the example into a TypeScript starter.
 
-1. Rename src/main.js to src/main.ts
-2. Change npm packages
-3. `npm install -D @rollup/plugin-typescript`
-4. `npm install -D tslib`
-5. `npm install -D typescript`
-6. Edit both rollup.config.js and rollup.config.prod.js
-7. Add `import typescript from "@rollup/plugin-typescript";`
-8. Change `input: "src/main.js",` to `input: "src/main.ts",`
-9. Add `typescript()` to the end of the `plugins` array
-10. Create a file called `tsconfig.json` in the root directory of your project:
+- Rename src/main.js to src/main.ts
+- Change npm packages
+- `npm install -D @rollup/plugin-typescript`
+- `npm install -D tslib`
+- `npm install -D typescript`
+- Edit both rollup.config.js and rollup.config.prod.js
+- Add `import typescript from "@rollup/plugin-typescript";`
+- Change `input: "src/main.js",` to `input: "src/main.ts",`
+- Add `typescript()` to the end of the `plugins` array
+- Create a file called `tsconfig.json` in the root directory of your project:
 
 ```json
 {
