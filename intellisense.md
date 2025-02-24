@@ -55,7 +55,7 @@ const mapElement = document.querySelector("arcgis-map");
 // Try typing mapElement.map below and see IntelliSense in action
 ```
 
-### Loading comppnents via npm
+### Loading components via npm
 
 In a project that loads components via npm, you will get IntelliSense in your JavaScript or TypeScript file as soon as you import a component from a package such as the `@arcgis/map-components`.
 
@@ -86,7 +86,7 @@ const mapElement = document.querySelector("arcgis-map");
 
 ### ArcGIS Maps SDK for JavaScript core API
 
-The API's types are automatically inferred, you don't need to set type annotations for every declaration. 
+Once a module has been imported, then the API's TypeScript types are automatically inferred, you don't need to set type annotations for every declaration. 
 
 ```ts
 // main.js

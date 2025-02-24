@@ -22,5 +22,5 @@ defineCustomElements(window, { resourcesUrl: "https://js.arcgis.com/charts-compo
 
 ## Known issues
 
-- The [@arcgis/charts-components-angular](https://www.npmjs.com/package/@arcgis/charts-components-angular) npm package has been deprecated at 4.31. We recommend using the `@arcgis/charts-components`, as shown in the sample.
+- The [@arcgis/charts-components-angular](https://www.npmjs.com/package/@arcgis/charts-components-angular) npm package has been deprecated at 4.31. We recommend using the `@arcgis/charts-components`, as shown in this sample.
 - The compile warning `The glob pattern import("./**/*.entry.js*") did not match any files [empty-glob]` is a known issue with Stencil and it can be ignored.
