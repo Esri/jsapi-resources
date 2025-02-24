@@ -15,7 +15,7 @@
     "@arcgis/coding-components": "~4.32.0",
     "@arcgis/core": "~4.32.0",
     "@arcgis/map-components": "~4.32.0",
-    "@esri/calcite-components": "~3.0.2"
+    "@esri/calcite-components": "~3.0.3"
   },
   "devDependencies": {
     "cpx2": "^8.0.0",

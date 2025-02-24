@@ -8,12 +8,12 @@
     "watch": "rollup -c -w"
   },
   "dependencies": {
-    "@arcgis/core": "~4.32.0",
-    "@rollup/plugin-replace": "^6.0.2"
+    "@arcgis/core": "~4.32.0"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^28.0.2",
     "@rollup/plugin-node-resolve": "^16.0.0",
+    "@rollup/plugin-replace": "^6.0.2",
     "@rollup/plugin-terser": "^0.4.4",
     "rollup": "^4.34.8",
     "rollup-plugin-delete": "^3.0.0",
