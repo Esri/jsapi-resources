@@ -17,4 +17,5 @@ For additional information, see the [Get started with npm](https://developers.ar
 See the [VueJS Deployment](https://cli.vuejs.org/guide/deployment.html#deployment) guide.
 
 ### Customize configuration
+
 See [Configuration Reference](https://cli.vuejs.org/config/).

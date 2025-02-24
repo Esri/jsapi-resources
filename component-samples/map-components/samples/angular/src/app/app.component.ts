@@ -1,12 +1,10 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from "@angular/core";
+import type { OnInit } from "@angular/core";
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 
-import { setAssetPath } from "@esri/calcite-components/dist/components";
-setAssetPath("https://js.arcgis.com/calcite-components/2.13.2/assets");
-
-import "@arcgis/map-components/dist/components/arcgis-map";
-import "@arcgis/map-components/dist/components/arcgis-zoom";
-import "@arcgis/map-components/dist/components/arcgis-search";
-import "@arcgis/map-components/dist/components/arcgis-legend";
+import "@arcgis/map-components/components/arcgis-map";
+import "@arcgis/map-components/components/arcgis-zoom";
+import "@arcgis/map-components/components/arcgis-search";
+import "@arcgis/map-components/components/arcgis-legend";
 
 @Component({
   selector: "app-root",

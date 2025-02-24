@@ -22,7 +22,7 @@ const signInOrOut = () => {
         .getCredential(info.portalUrl + "/sharing", {
           // Set the following property to false to not show a dialog
           // before the OAuth popup window is open.
-          oAuthPopupConfirmation: false
+          oAuthPopupConfirmation: false,
         })
         .then(() => {
           // Once a credential is returned from the promise, check the
@@ -40,7 +40,7 @@ const checkSignIn = () => {
     .then(() => {
       // If signed in, show the username un the UI.
       const portal = new Portal({
-        authMode: "immediate"
+        authMode: "immediate",
       });
       if (info.portalUrl !== "https://www.arcgis.com") {
         portal.url = info.portalUrl;
@@ -57,7 +57,7 @@ const checkSignIn = () => {
 //Create a new OAuthInfo object.
 const info = new OAuthInfo({
   // Swap this ID out with an app ID registered in your ArcGIS Organization.
-  appId: "REGISTERED_APP_ID"
+  appId: "REGISTERED_APP_ID",
   // Add the portalUrl property if using your own portal.
   //portalUrl: "https://<host>:<port>/<webadaptor>",
   // Set the authNamespace property to prevent the user's signed in state

@@ -1,17 +1,17 @@
 {
   "name": "jsapi-vite",
-  "private": true,
   "version": "0.0.0",
+  "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
   },
-  "devDependencies": {
-    "vite": "^5.4.10"
-  },
   "dependencies": {
-    "@arcgis/core": "~4.31.0"
+    "@arcgis/core": "~4.32.0"
+  },
+  "devDependencies": {
+    "vite": "^6.1.1"
   }
 }

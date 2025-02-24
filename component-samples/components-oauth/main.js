@@ -6,9 +6,9 @@ import esriId from "@arcgis/core/identity/IdentityManager";
 import OAuthInfo from "@arcgis/core/identity/OAuthInfo";
 
 // Import the ArcGIS Map Components
-import "@arcgis/map-components/dist/components/arcgis-map";
-import "@arcgis/map-components/dist/components/arcgis-legend";
-import "@arcgis/map-components/dist/components/arcgis-search";
+import "@arcgis/map-components/components/arcgis-map";
+import "@arcgis/map-components/components/arcgis-legend";
+import "@arcgis/map-components/components/arcgis-search";
 
 // Configure the portal URL and OAuth settings
 esriConfig.portalUrl = "YOUR_PORTAL_URL"; // Replace with your actual Portal URL
@@ -28,4 +28,3 @@ const mapElement = document.querySelector("arcgis-map");
 mapElement.addEventListener("arcgisViewReadyChange", (event) => {
   console.log("MapView ready", event);
 });
-

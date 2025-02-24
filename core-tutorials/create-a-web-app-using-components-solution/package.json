@@ -1,0 +1,16 @@
+{
+  "name": "create-a-web-app-using-components-solution",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@arcgis/map-components": "~4.32.0"
+  },
+  "devDependencies": {
+    "vite": "^6.1.0"
+  }
+}

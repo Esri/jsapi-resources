@@ -5,7 +5,7 @@ import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
  */
 export async function createFeatureLayer(url) {
   const featureLayer = new FeatureLayer({
-    url: url
+    url: url,
   });
 
   await featureLayer.load();

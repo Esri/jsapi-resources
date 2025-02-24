@@ -32,11 +32,13 @@ These samples use the [oak](https://deno.land/x/oak) middleware for building a s
 You can run these samples with Deno using the following command.
 
 > WebMap
+
 ```sh
 deno run --allow-net --allow-env --allow-read webmap.ts
 ```
 
 > Request
+
 ```sh
 deno run --allow-net --allow-env --allow-read request.ts
 ```
@@ -44,6 +46,6 @@ deno run --allow-net --allow-env --allow-read request.ts
 Shell scripts have been provided to quickly run these samples.
 
 To run a test app, execute these commands in a terminal window:
-*  WebMap Sample - `./webmap.sh`
-*  Request Sample - `./request.sh`
 
+- WebMap Sample - `./webmap.sh`
+- Request Sample - `./request.sh`

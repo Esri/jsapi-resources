@@ -1,4 +1,4 @@
-import WebMap from "@arcgis/core/WebMap";
+import WebMap from "@arcgis/core/WebMap.js";
 import type FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 
 /**

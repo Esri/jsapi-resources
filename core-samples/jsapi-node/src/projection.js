@@ -7,9 +7,7 @@ esriConfig.assetsPath = "node_modules/@arcgis/core/assets"; // relative to when 
 
 pe.load()
   .then(() => {
-    console.log(
-      pe.project(new Point({ x: -117, y: 34 }), { wkid: 3857 }).toJSON()
-    );
+    console.log(pe.project(new Point({ x: -117, y: 34 }), { wkid: 3857 }).toJSON());
   })
   .catch((error) => {
     console.error(error);
