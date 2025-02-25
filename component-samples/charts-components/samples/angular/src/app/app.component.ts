@@ -42,10 +42,10 @@ export class AppComponent implements OnInit {
     await scatterplotModel.setXAxisField("Ward");
     await scatterplotModel.setYAxisField("Beat");
 
-    // Set the scatterplot element's config and layer properties.
+    // Set the scatterplot element's layer and model properties.
     const config = scatterplotModel.getConfig();
 
-    this.scatterplot.nativeElement.model = config;
     this.scatterplot.nativeElement.layer = layer;
+    this.scatterplot.nativeElement.model = config;
   }
 }
