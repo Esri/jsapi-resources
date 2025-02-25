@@ -27,13 +27,17 @@ const SAMPLES_RELATIVE_PATH = "../../";
 const SAMPLE_DIRS = [
   { dir: "core-samples", name: "core-sample" },
   { dir: "component-samples/map-components/samples", name: "map-component-sample" },
-  { dir: "component-samples/map-components/tutorials", name: "map-components-tutorial" },  
+  { dir: "component-samples/map-components/tutorials", name: "map-components-tutorial" },
   { dir: "component-samples/charts-components/samples", name: "charts-components-sample" },
   { dir: "component-samples/charts-components/tutorials", name: "charts-components-tutorial" },
-  { dir: "component-samples/coding-components/samples", name: "coding-components-sample" },
-  { dir: "component-samples/components-oauth", name: "components-oauth-sample" },  
-  { dir: "component-samples/disconnected-environment", name: "disconnected-sample" }
+  { dir: "component-samples/coding-components/samples", name: "coding-components-sample" }
 ];
+
+// Stand-alone samples with no subdirectories
+const SAMPLE_DIRS_NOSUBDIR = [
+  { dir: "component-samples/components-oauth", name: "components-oauth-sample" },
+  { dir: "component-samples/disconnected-environment", name: "disconnected-sample" }
+]
 
 /**
  * Emphasizes a message in the console
@@ -85,6 +89,10 @@ const createZips = async () => {
     await Promise.all(subDirs.map(async (dir) => {
       await createArchive(`${SAMPLES_RELATIVE_PATH}${directoryList.dir}/${dir.name}`, OUTPUT_DIR, `${directoryList.name}-${dir.name}`);
     }));
+  }));
+
+  await Promise.all(SAMPLE_DIRS_NOSUBDIR.map(async (directoryList) => {
+    await createArchive(`${SAMPLES_RELATIVE_PATH}${directoryList.dir}`, OUTPUT_DIR, `${directoryList.name}`);
   }));
 }
 
