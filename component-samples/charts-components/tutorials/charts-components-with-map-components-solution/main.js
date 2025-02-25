@@ -31,9 +31,9 @@ mapElement.addEventListener("arcgisViewReadyChange", async (event) => {
   // Get the chart config from the layer
   const chartConfig = featureLayer.charts[0];
 
-  // Set the model to the config, and the layer to the feature layer on the chart element
-  chartElement.model = chartConfig;
+  // Set the layer property to the feature layer, and the model property to the chart config on the chart element
   chartElement.layer = featureLayer;
+  chartElement.model = chartConfig;
 
   // Get the layer views from the view
   const featureLayerViews = view.layerViews;

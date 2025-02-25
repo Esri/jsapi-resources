@@ -1,69 +1,71 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
-    <title>Charts components CDN sample</title>
-    <link rel="icon" href="data:;base64,=" />
 
-    <!-- Load Calcite Components-->
-    <script type="module" src="https://js.arcgis.com/calcite-components/3.0.3/calcite.esm.js"></script>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+  <title>Charts components CDN sample</title>
+  <link rel="icon" href="data:;base64,=" />
 
-    <!-- Load the ArcGIS Maps SDK for JavaScript -->
-    <script src="https://js.arcgis.com/4.32/"></script>
+  <!-- Load Calcite Components-->
+  <script type="module" src="https://js.arcgis.com/calcite-components/3.0.3/calcite.esm.js"></script>
 
-    <!-- Load the Charts Components -->
-    <script type="module" src="https://js.arcgis.com/charts-components/4.32/arcgis-charts-components.esm.js"></script>
-    <link rel="stylesheet" href="https://js.arcgis.com/charts-components/4.32/arcgis-charts-components.css" />
-  </head>
+  <!-- Load the ArcGIS Maps SDK for JavaScript -->
+  <script src="https://js.arcgis.com/4.32/"></script>
 
-  <body>
-    <arcgis-chart id="scatterplot" class="chart-container">
-      <arcgis-charts-action-bar slot="action-bar" id="scatterplot-action-bar"></arcgis-charts-action-bar>
-    </arcgis-chart>
-    <script type="module">
-      // Import ScatterPlotModel from Charts model
-      import { ScatterPlotModel } from "https://js.arcgis.com/charts-model/4.32/index.js";
+  <!-- Load the Charts Components -->
+  <script type="module" src="https://js.arcgis.com/charts-components/4.32/arcgis-charts-components.esm.js"></script>
+  <link rel="stylesheet" href="https://js.arcgis.com/charts-components/4.32/arcgis-charts-components.css" />
+</head>
 
-      require(["esri/layers/FeatureLayer"], (FeatureLayer) => {
-        // Create a feature layer with a service URL. This will be used to create a chart later
-        async function createFeatureLayer(url) {
-          const featureLayer = new FeatureLayer({
-            url: url,
-          });
+<body>
+  <arcgis-chart id="scatterplot" class="chart-container">
+    <arcgis-charts-action-bar slot="action-bar" id="scatterplot-action-bar"></arcgis-charts-action-bar>
+  </arcgis-chart>
+  <script type="module">
+    // Import ScatterPlotModel from Charts model
+    import { ScatterPlotModel } from "https://js.arcgis.com/charts-model/4.32/index.js";
 
-          await featureLayer.load();
+    require(["esri/layers/FeatureLayer"], (FeatureLayer) => {
+      // Create a feature layer with a service URL. This will be used to create a chart later
+      async function createFeatureLayer(url) {
+        const featureLayer = new FeatureLayer({
+          url: url,
+        });
 
-          return featureLayer;
-        }
+        await featureLayer.load();
 
-        /**
-         * Function to use the scatterplot charts model to configure the chart.
-         */
-        async function initScatterplot() {
-          const layer = await createFeatureLayer(
-            "https://services.arcgis.com/V6ZHFr6zdgNZuVG0/ArcGIS/rest/services/ChicagoCr/FeatureServer/0",
-          );
+        return featureLayer;
+      }
 
-          const scatterplotElement = document.getElementById("scatterplot");
+      /**
+       * Function to use the scatterplot charts model to configure the chart.
+       */
+      async function initScatterplot() {
+        const layer = await createFeatureLayer(
+          "https://services.arcgis.com/V6ZHFr6zdgNZuVG0/ArcGIS/rest/services/ChicagoCr/FeatureServer/0",
+        );
 
-          // Create a new ScatterPlotModel and set the x and y axis fields.
-          const scatterplotModel = new ScatterPlotModel();
-          await scatterplotModel.setup({ layer });
+        const scatterplotElement = document.getElementById("scatterplot");
 
-          await scatterplotModel.setXAxisField("Ward");
-          await scatterplotModel.setYAxisField("Beat");
+        // Create a new ScatterPlotModel and set the x and y axis fields.
+        const scatterplotModel = new ScatterPlotModel();
+        await scatterplotModel.setup({ layer });
 
-          // Set the scatterplot element's config and layer properties.
-          const config = scatterplotModel.getConfig();
+        await scatterplotModel.setXAxisField("Ward");
+        await scatterplotModel.setYAxisField("Beat");
 
-          scatterplotElement.model = config;
-          scatterplotElement.layer = layer;
-        }
+        // Set the scatterplot element's layer and model properties.
+        const config = scatterplotModel.getConfig();
 
-        // Call initScatterplot() function to render the chart.
-        initScatterplot();
-      });
-    </script>
-  </body>
+        scatterplotElement.layer = layer;
+        scatterplotElement.model = config;
+      }
+
+      // Call initScatterplot() function to render the chart.
+      initScatterplot();
+    });
+  </script>
+</body>
+
 </html>

@@ -23,11 +23,11 @@ async function initScatterplot() {
   await scatterplotModel.setXAxisField("Ward");
   await scatterplotModel.setYAxisField("Beat");
 
-  // Set the scatterplot element's config and layer properties.
+  // Set the scatterplot element's layer and model properties.
   const config = scatterplotModel.getConfig();
 
-  scatterplotElement.model = config;
   scatterplotElement.layer = layer;
+  scatterplotElement.model = config;
 }
 
 // Call initScatterplot() function to render the chart.

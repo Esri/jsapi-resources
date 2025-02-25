@@ -23,11 +23,11 @@ export default function Scatterplot() {
     await scatterplotModel.setXAxisField("Ward");
     await scatterplotModel.setYAxisField("Beat");
 
-    // Set the scatterplot element's config and layer properties.
+    // Set the scatterplot element's layer and model properties.
     const config = scatterplotModel.getConfig();
 
-    scatterplotRef.current.model = config;
     scatterplotRef.current.layer = layer;
+    scatterplotRef.current.model = config;
   }, []);
 
   // Register a function that will execute after the current render cycle

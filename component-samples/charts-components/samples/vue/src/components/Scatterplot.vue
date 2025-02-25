@@ -21,11 +21,11 @@ onMounted(async () => {
     await scatterplotModel.setXAxisField("Ward");
     await scatterplotModel.setYAxisField("Beat");
 
-    // Set the scatterplot element's config and layer properties.
+    // Set the scatterplot element's layer and model properties.
     const config = scatterplotModel.getConfig();
 
-    scatterplotRef.value.model = config;
     scatterplotRef.value.layer = layer;
+    scatterplotRef.value.model = config;
   }
 });
 </script>
