@@ -12,7 +12,7 @@ The `@arcgis/core` package can be referenced with [npm specifiers](https://docs.
 
 ## Notes
 
-Currently loading the web assembly files for modules such as [projection](https://developers.arcgis.com/javascript/latest/api-reference/esri-geometry-projection.html) does not work in Deno.
+Currently loading the web assembly files for modules such as [projectOperator](https://developers.arcgis.com/javascript/latest/api-reference/esri-geometry-operators-projectOperator.html) does not work in Deno.
 
 ## IdentityManager
 
