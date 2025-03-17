@@ -25,6 +25,10 @@ import { defineCustomElements } from "@arcgis/charts-components/dist/loader";
 defineCustomElements(window, { resourcesUrl: "https://js.arcgis.com/charts-components/4.32/assets" });
 ```
 
+## Known issue
+
+- The console error `Error: <rect> attribute height: A negative value is not valid.` is a known issue and it can be ignored. This should not impact the actual chart rendering.
+
 ## Licensing
 
 Copyright 2025 Esri
