@@ -59,10 +59,13 @@ jobs:
             echo "analyzing builds"
             echo "skip=false" >> $GITHUB_OUTPUT
           fi
-  push-metrics-or-zips:
+  analyze-builds:
     runs-on: ubuntu-22.04
     needs: [context]
-    if: needs.context.outputs.skip_zip == 'false' || needs.context.outputs.skip_metrics == 'false' || github.event_name == 'workflow_dispatch'
+    strategy:
+      matrix:
+        samples: ["jsapi-angular-cli", "jsapi-react", "jsapi-vue", "esbuild", "rollup", "webpack"]
+    if: needs.context.outputs.skip_metrics == 'false' || github.event_name == 'workflow_dispatch'
     steps:
       - uses: actions/checkout@v4
         with:
@@ -79,6 +82,23 @@ jobs:
         run: |
           npm i
 
+      - name: run sample metrics script
+        working-directory: .github/scripts
+        env:
+          SAMPLE_TARGET: ${{ matrix.samples }}
+        run: |
+          node analyze-single-builds.js
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: analysis-${{ matrix.samples }}
+          path: .github/scripts/analysis-${{ matrix.runs-on }}.txt
+
+  push-metrics-and-zips:
+    runs-on: ubuntu-22.04
+    needs: [analyze-builds, context]
+    if: always() && needs.context.outputs.skip_zip == 'false' || needs.context.outputs.skip_metrics == 'false' || github.event_name == 'workflow_dispatch'
+    steps:
       - name: Setup up git config
         run: |
           git branch
@@ -97,26 +117,16 @@ jobs:
         run: |
           git add zips
 
-      - name: run sample metrics script
-        if: needs.context.outputs.skip_metrics == 'false' || github.event_name == 'workflow_dispatch'
-        working-directory: .github/scripts
-        run: |
-          node analyze-builds.js
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: analysis-*.txt
+          merge-multiple: true
 
-      - name: push sample metrics analysis
-        if: needs.context.outputs.skip_metrics == 'false' || github.event_name == 'workflow_dispatch'
-        run: |
-          git add core-samples/.metrics/*.csv
-          git status
-          git commit -m "ci: analyze core esm sample builds" || true
-
-      - name: push changes
-        run: |
-          git push origin ${{ github.event.pull_request.head.ref || github.ref }}
+      - run: ls
 
   errors:
     runs-on: ubuntu-latest
-    needs: [push-metrics-or-zips]
+    needs: [push-metrics-and-zips]
     if: needs.push-metrics-or-zips.result == 'failure' && failure()
     steps:
       - name: Capture error
