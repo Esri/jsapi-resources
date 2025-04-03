@@ -91,7 +91,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: analysis-${{ matrix.samples }}
+          name: analysis-${{ matrix.samples }}.txt
           path: .github/scripts/analysis-${{ matrix.samples }}.txt
 
   push-metrics-and-zips:
@@ -134,6 +134,7 @@ jobs:
 
       - uses: actions/download-artifact@v4
         with:
+          path: analysis-texts
           pattern: analysis-*.txt
           merge-multiple: true
 
