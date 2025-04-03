@@ -99,6 +99,16 @@ jobs:
     needs: [analyze-builds, context]
     if: always() && needs.context.outputs.skip_zip == 'false' || needs.context.outputs.skip_metrics == 'false' || github.event_name == 'workflow_dispatch'
     steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.ref }}
+
+      - name: setup node
+        uses: actions/setup-node@v4
+        with:
+          check-latest: true
+
       - name: Setup up git config
         run: |
           git branch
