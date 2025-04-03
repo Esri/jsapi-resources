@@ -87,7 +87,7 @@ jobs:
         env:
           SAMPLE_TARGET: ${{ matrix.samples }}
         run: |
-          node analyze-single-builds.js
+          node analyze-single-build.js
 
       - uses: actions/upload-artifact@v4
         with:
