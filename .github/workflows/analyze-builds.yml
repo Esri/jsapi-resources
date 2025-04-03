@@ -92,7 +92,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: analysis-${{ matrix.samples }}
-          path: .github/scripts/analysis-${{ matrix.runs-on }}.txt
+          path: .github/scripts/analysis-${{ matrix.samples }}.txt
 
   push-metrics-and-zips:
     runs-on: ubuntu-22.04
