@@ -116,6 +116,11 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
+      - name: install dependencies for sample metrics script
+        working-directory: .github/scripts
+        run: |
+          npm i
+
       - name: create zip files
         if: needs.context.outputs.skip_zip == 'false' || github.event_name == 'workflow_dispatch'
         working-directory: .github/scripts
