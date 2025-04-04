@@ -18,6 +18,7 @@ jobs:
     outputs:
       skip_zip: ${{ steps.push-zip.outputs.skip }}
       skip_metrics: ${{ steps.push-metrics.outputs.skip }}
+      samples: ${{ steps.extract-samples.outputs.samples }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -26,8 +27,14 @@ jobs:
 
       - name: Check whether to push zip files
         id: push-zip
-        if: github.event_name == 'pull_request'
         run: |
+          # If this is workflow_dispatch, compile and push zip files
+          github_event="${{ github.event_name }}"
+          if [ "$github_event" == "workflow_dispatch" ]; then
+            echo "skip=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
           # This step involves analyzing if any files changed in the branch, if so we'll create zip files
           # The scripts/create-zips.js file sets the folders that are used to create the zips
           current_branch=${{ github.head_ref }}
@@ -44,13 +51,17 @@ jobs:
 
       - name: Check whether to push sample metrics
         id: push-metrics
-        if: github.event_name == 'pull_request'
         run: |
+          # If this is workflow_dispatch, compile and push zip files
+          github_event="${{ github.event_name }}"
+          if [ "$github_event" == "workflow_dispatch" ]; then
+            echo "skip=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
           # This step involves analyzing the package.json files changed in the branch, if so we'll build the samples
           # package.json files changed in the branch
           packages_changed=$(git diff --name-only "${{ github.head_ref }}" "${{ github.base_ref }}" -- "./core-samples/**/package.json")
-          # metric files changed in the previous commit
-          metrics_changed=$(git diff --name-only HEAD^ HEAD -- "./core-samples/.metrics/*.csv")
           if [ -z "$packages_changed" ]; then
             echo "no package.json files changed, skipping build analysis"
             echo "skip=true" >> $GITHUB_OUTPUT
@@ -59,13 +70,21 @@ jobs:
             echo "analyzing builds"
             echo "skip=false" >> $GITHUB_OUTPUT
           fi
+
+      - name: Extract samples to run metrics
+        id: extract-samples
+        if: steps.push-metrics.outputs.skip == 'false'
+        run: |
+          samples=$(jq -c 'keys' .github/scripts/samplesInfo.json)
+          echo "samples=$samples" >> $GITHUB_ENV
+
   analyze-builds:
     runs-on: ubuntu-22.04
     needs: [context]
     strategy:
       matrix:
-        samples: ["jsapi-angular-cli", "jsapi-react", "jsapi-vue", "esbuild", "rollup", "webpack"]
-    if: needs.context.outputs.skip_metrics == 'false' || github.event_name == 'workflow_dispatch'
+        samples: ${{ fromJson(needs.context.outputs.samples) }}}
+    if: needs.context.outputs.skip_metrics == 'false'
     steps:
       - uses: actions/checkout@v4
         with:
@@ -97,7 +116,7 @@ jobs:
   push-metrics-and-zips:
     runs-on: ubuntu-22.04
     needs: [analyze-builds, context]
-    if: always() && needs.context.outputs.skip_zip == 'false' || needs.context.outputs.skip_metrics == 'false' || github.event_name == 'workflow_dispatch'
+    if: always() && (needs.context.outputs.skip_zip == 'false' || needs.context.outputs.skip_metrics == 'false')
     steps:
       - uses: actions/checkout@v4
         with:
@@ -122,23 +141,32 @@ jobs:
           npm i
 
       - name: create zip files
-        if: needs.context.outputs.skip_zip == 'false' || github.event_name == 'workflow_dispatch'
+        if: needs.context.outputs.skip_zip == 'false'
         working-directory: .github/scripts
         run: |
           node create-zips.js
 
       - name: commit zip files
-        if: needs.context.outputs.skip_zip == 'false' || github.event_name == 'workflow_dispatch'
+        if: needs.context.outputs.skip_zip == 'false'
         run: |
           git add zips
 
       - uses: actions/download-artifact@v4
+        if: needs.context.outputs.skip_metrics == 'false'
         with:
           path: analysis-texts
           pattern: analysis-*.txt
           merge-multiple: true
 
-      - run: ls
+      # from each analysis-*.txt file, create a single analysis.txt file
+      - run: |
+          # create a single analysis.txt file from all analysis-*.txt files
+          # remove the first line of each file and append to analysis.txt
+          for file in $(ls analysis-texts/analysis-*.txt); do
+            cat $${file} >> analysis.txt
+          done
+
+          cat analysis.txt
 
   errors:
     runs-on: ubuntu-latest

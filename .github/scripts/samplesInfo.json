@@ -1,0 +1,36 @@
+{
+  "jsapi-angular-cli": {
+    "name": "Angular",
+    "package": "@angular/core",
+    "buildPath": "dist/browser/"
+  },
+  "jsapi-react": {
+    "name": "React",
+    "package": "react",
+    "buildPath": "dist"
+  },
+  "jsapi-vue": {
+    "name": "Vue",
+    "package": "vue",
+    "buildPath": "dist"
+  },
+  "esbuild": {
+    "name": "esbuild",
+    "package": "esbuild",
+    "devDep": true,
+    "mainFileName": "index.js",
+    "buildPath": "dist"
+  },
+  "rollup": {
+    "name": "Rollup",
+    "package": "rollup",
+    "devDep": true,
+    "buildPath": "public"
+  },
+  "webpack": {
+    "name": "Webpack",
+    "package": "webpack",
+    "devDep": true,
+    "buildPath": "dist"
+  }
+}
