@@ -40,7 +40,7 @@ jobs:
           current_branch=${{ github.head_ref }}
           # did any files change in component or core samples
           # compare against version before the last commit in the branch
-          samples_changed=$(git diff --name-only ${{ github.head_ref }} ${{ github.base_ref }} -- "./core-samples" "./component-samples")
+          samples_changed=$(git diff --name-only ${{ github.head_ref }} origin/${{ github.base_ref }} -- "./core-samples" "./component-samples")
           if [ -z "$samples_changed" ]; then
             echo "no samples changed, skipping creation of zip files"
             echo "skip=true" >> $GITHUB_OUTPUT   
@@ -61,7 +61,7 @@ jobs:
 
           # This step involves analyzing the package.json files changed in the branch, if so we'll build the samples
           # package.json files changed in the branch
-          packages_changed=$(git diff --name-only "${{ github.head_ref }}" "${{ github.base_ref }}" -- "./core-samples/**/package.json")
+          packages_changed=$(git diff --name-only "${{ github.head_ref }}" origin/"${{ github.base_ref }}" -- "./core-samples/**/package.json")
           if [ -z "$packages_changed" ]; then
             echo "no package.json files changed, skipping build analysis"
             echo "skip=true" >> $GITHUB_OUTPUT
