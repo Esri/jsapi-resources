@@ -116,7 +116,7 @@ jobs:
 
   push-metrics-and-zips:
     runs-on: ubuntu-22.04
-    needs: [analyze-builds, context]
+    needs: [analyze-core-samples, context]
     if: always() && (needs.context.outputs.skip_zip == 'false' || needs.context.outputs.skip_metrics == 'false')
     steps:
       - uses: actions/checkout@v4
