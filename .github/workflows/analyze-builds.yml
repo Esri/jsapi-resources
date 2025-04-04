@@ -76,14 +76,15 @@ jobs:
         if: steps.push-metrics.outputs.skip == 'false'
         run: |
           samples=$(jq -c 'keys' .github/scripts/samplesInfo.json)
+          echo "Samples to run metrics on: $samples"
           echo "samples=$samples" >> $GITHUB_OUTPUT
 
-  analyze-builds:
+  analyze-core-samples:
     runs-on: ubuntu-22.04
     needs: [context]
     strategy:
       matrix:
-        samples: ${{ fromJson(needs.context.outputs.samples) }}}
+        samples: ${{ fromJson(needs.context.outputs.samples) }}
     if: needs.context.outputs.skip_metrics == 'false'
     steps:
       - uses: actions/checkout@v4
