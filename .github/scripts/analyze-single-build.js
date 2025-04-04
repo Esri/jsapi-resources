@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 const { resolve } = require("path");
 const {
-  promises: { readdir, readFile, writeFile },
+  promises: { readFile, writeFile },
 } = require("fs");
 const exec = require("util").promisify(require("child_process").exec);
 const { getBuildSizes } = require("./build-size.js");

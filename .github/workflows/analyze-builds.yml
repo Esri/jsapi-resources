@@ -160,14 +160,24 @@ jobs:
           merge-multiple: true
 
       # from each analysis-*.txt file, create a single analysis.txt file
-      - run: |
-          # create a single analysis.txt file from all analysis-*.txt files
-          # remove the first line of each file and append to analysis.txt
-          for file in $(ls analysis-texts/analysis-*.txt); do
-            cat $${file} >> analysis.txt
-          done
+      - name: combine analysis files
+        if: needs.context.outputs.skip_metrics == 'false'
+        working-directory: .github/scripts
+        env:
+          ANALYSIS_OUTPUTS_PATH: ../../analysis-texts
+        run: |
+          # combine all analysis-*.txt files into a single analysis.txt file
+          node validate-and-combine-metrics.js
 
-          cat analysis.txt
+      - name: commit analysis files
+        if: needs.context.outputs.skip_metrics == 'false'
+        run: |
+          git add core-samples/.metrics/*.csv
+
+      - name: commit and push changes
+        run: |
+          git commit -m "ci: analyze core esm sample builds" || true
+          git push origin ${{ github.head_ref }}
 
   errors:
     runs-on: ubuntu-latest
