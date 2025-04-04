@@ -76,7 +76,7 @@ jobs:
         if: steps.push-metrics.outputs.skip == 'false'
         run: |
           samples=$(jq -c 'keys' .github/scripts/samplesInfo.json)
-          echo "samples=$samples" >> $GITHUB_ENV
+          echo "samples=$samples" >> $GITHUB_OUTPUT
 
   analyze-builds:
     runs-on: ubuntu-22.04
