@@ -3,34 +3,14 @@ const { resolve } = require("path");
 const {
   promises: { readFile, writeFile },
 } = require("fs");
-const exec = require("util").promisify(require("child_process").exec);
 const { getBuildSizes } = require("./build-size.js");
 const browserPerformanceTest = require("./build-perf");
 const SAMPLES_INFO = require("./samplesInfo.json");
+const { logHeader, execLogErr } = require("./lib.js");
 
 const SAMPLES_PATH = resolve(__dirname, "..", "..", "core-samples");
 const SAMPLE_TARGET = process.env.SAMPLE_TARGET;
 const outputPrefix = "analysis-";
-
-/**
- * Emphasizes a message in the console
- * @param {string} message - text to log
- */
-const logHeader = (message) => {
-  const line = "-".repeat(message.length + 8);
-  console.log(`${line}\n|-> ${message} <-|\n${line}`);
-};
-
-/**
- * Executes a bash command, logs stderr, and returns stdout
- * @param {string} command - bash command
- * @returns {Promise<string>} the command's stdout
- */
-const execLogErr = async (command) => {
-  const { stdout, stderr } = await exec(command);
-  !!stderr && console.error("stderr:\n", stderr);
-  return stdout;
-};
 
 const run = async () => {
   try {

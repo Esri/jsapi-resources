@@ -6,40 +6,11 @@ const {
 } = require("fs");
 const exec = require("util").promisify(require("child_process").exec);
 const SAMPLES_INFO = require("./samplesInfo.json");
+const { getDirectories, logHeader } = require("./lib");
 
 const SAMPLES_PATH = resolve(__dirname, "..", "..", "core-samples");
 const METRICS_PATH = resolve(SAMPLES_PATH, ".metrics");
 const ANALYSIS_OUTPUTS_PATH = process.env.ANALYSIS_OUTPUTS_PATH || resolve(__dirname, "..", "..", "analysis-texts");
-
-/**
- * Get the names of a directory's subdirectories (not recursive)
- * @param {string} directoryPath - path to the root directory
- * @returns {Promise<string[]>} subdirectory names
- */
-const getDirectories = async (directoryPath) =>
-  (await readdir(directoryPath, { withFileTypes: true }))
-    .filter((dirent) => dirent.isDirectory() && dirent.name.charAt(0) !== ".")
-    .map((dirent) => dirent.name);
-
-/**
- * Emphasizes a message in the console
- * @param {string} message - text to log
- */
-const logHeader = (message) => {
-  const line = "-".repeat(message.length + 8);
-  console.log(`${line}\n|-> ${message} <-|\n${line}`);
-};
-
-/**
- * Executes a bash command, logs stderr, and returns stdout
- * @param {string} command - bash command
- * @returns {Promise<string>} the command's stdout
- */
-const execLogErr = async (command) => {
-  const { stdout, stderr } = await exec(command);
-  !!stderr && console.error("stderr:\n", stderr);
-  return stdout;
-};
 
 (async () => {
   try {
