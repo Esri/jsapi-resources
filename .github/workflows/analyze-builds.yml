@@ -109,6 +109,9 @@ jobs:
         run: |
           node analyze-single-build.js
 
+      # https://github.com/actions/runner/pull/2477
+      # parallel matrix doesn't yet support dynamic outputs
+      # hence storing individual output in text files and re-joining them later
       - uses: actions/upload-artifact@v4
         with:
           name: analysis-${{ matrix.samples }}.txt
