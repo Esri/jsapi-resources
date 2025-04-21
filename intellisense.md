@@ -35,7 +35,7 @@ map-component-sample-vite/
 
 In the case of component packages other than [`@arcgis/map-components`](https://developers.arcgis.com/javascript/latest/references/map-components/), replace `map-components` with your `<package-name>`. 
 
-The instructions for setting up HTML IntelliSense apply to projects that load components either via the [ArcGIS CDN](https://next.sites.afd.arcgis.com/javascript/latest/get-started-cdn/) or through [npm](https://next.sites.afd.arcgis.com/javascript/latest/get-started-npm/).
+The instructions for setting up HTML IntelliSense apply to projects that load components either via the [ArcGIS CDN](https://developers.arcgis.com/javascript/latest/get-started-cdn/) or through [npm](https://developers.arcgis.com/javascript/latest/get-started-npm/).
 
 > [!TIP]
 > These instructions are for a "per project" basis and are not available globally in VS Code.
