@@ -1,6 +1,6 @@
-# ArcGIS Maps SDK for JavaScript with rollup
+# ArcGIS Maps SDK for JavaScript with Rollup
 
-This sample demonstrates how to use the [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core) ES modules with rollup.
+This sample demonstrates how to use the [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core) ES modules with Rollup.
 
 ## Get Started
 
@@ -25,6 +25,8 @@ For additional information, see the [Get started with npm](https://developers.ar
     }),
 ```
 
+- It is recommended to avoid using [top level await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await#top_level_await) due to limitations in Rollup that may result in runtime application hangs. There are multiple alternatives. You can use [async functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function), async [arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions), async [IIFEs](https://developer.mozilla.org/en-US/docs/Glossary/IIFE), or use the SDK's events.
+
 ## TypeScript
 
 This example can also be used with TypeScript sources. The following steps convert the example into a TypeScript starter.
@@ -48,7 +50,7 @@ This example can also be used with TypeScript sources. The following steps conve
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
-    "lib": ["dom", "dom.iterable", "es2022"],
+    "lib": ["dom", "dom.iterable", "es2023"],
     "module": "es2020",
     "moduleResolution": "node",
     "noUnusedLocals": true,
@@ -56,7 +58,7 @@ This example can also be used with TypeScript sources. The following steps conve
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "es2021"
+    "target": "es2023"
   },
   "include": ["src"],
   "exclude": ["node_modules"]
