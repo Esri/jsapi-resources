@@ -6,21 +6,36 @@ This page describes how to set up IntelliSense in Visual Studio Code for the Arc
 
 ## HTML
 
-For IntelliSense in HTML, add the following to the `.vscode/settings.json` file in your project:
+For IntelliSense in HTML, add the following `.vscode/settings.json` file as part of the [`@arcgis/map-components` Vite sample](https://github.com/Esri/jsapi-resources/tree/main/component-samples/map-components/samples/vite) project:
 
 ```json
 {
   "html.customData": [
-    "./node_modules/@arcgis/<package-name>/dist/docs/vscode.html-custom-data.json"
+    "./node_modules/@arcgis/map-components/dist/docs/vscode.html-custom-data.json"
   ],
 }
 ```
 
-In the case of [`@arcgis/map-components`](https://developers.arcgis.com/javascript/latest/references/map-components/), replace `<package-name>` with `map-components`.
+`vscode.html-custom-data.json` provides a list of components and their attributes.
 
-`vscode.html-custom-data.json` - Provides a list of components and their attributes.
+This will be the resulting folder structure:
 
-The instructions for setting up HTML IntelliSense apply to projects that load components either via the [ArcGIS CDN](https://next.sites.afd.arcgis.com/javascript/latest/get-started-cdn/) or through [npm](https://next.sites.afd.arcgis.com/javascript/latest/get-started-npm/).
+```
+map-component-sample-vite/
+├── .gitignore
+├── index.html
+├── main.js
+├── package.json
+├── README.md
+├── styles.css
+├── vite.config.js
+└── .vscode/
+    └── settings.json
+```
+
+In the case of component packages other than [`@arcgis/map-components`](https://developers.arcgis.com/javascript/latest/references/map-components/), replace `map-components` with your `<package-name>`. 
+
+The instructions for setting up HTML IntelliSense apply to projects that load components either via the [ArcGIS CDN](https://developers.arcgis.com/javascript/latest/get-started-cdn/) or through [npm](https://developers.arcgis.com/javascript/latest/get-started-npm/).
 
 > [!TIP]
 > These instructions are for a "per project" basis and are not available globally in VS Code.
@@ -98,3 +113,8 @@ const webmap = new WebMap({
   }
 });
 ```
+
+### Additional resources
+
+- [ArcGIS JavaScript Maps SDK Developer docs - Get started with npm](https://developers.arcgis.com/javascript/latest/get-started-npm/)
+- [ArcGIS JavaScript Maps SDK Developer docs - Get started with CDN](https://developers.arcgis.com/javascript/latest/get-started-cdn/)
