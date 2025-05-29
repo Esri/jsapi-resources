@@ -11,3 +11,4 @@ You can use these links to download individual samples:
 - [Vite (no framework)](https://esri.github.io/jsapi-resources/zips/map-component-sample-vite.zip)
 - [Vue](https://esri.github.io/jsapi-resources/zips/map-component-sample-vue.zip)
 - [Webpack (no framework)](https://esri.github.io/jsapi-resources/zips/map-component-sample-webpack.zip)
+- [Web Worker (no framework)](https://esri.github.io/jsapi-resources/zips/map-component-geometry-operator-worker.zip)
