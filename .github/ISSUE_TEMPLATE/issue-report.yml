@@ -15,7 +15,7 @@ body:
     attributes:
       label: Sample name
       description: Which sample in this repository is the issue related to? Only open issues for samples in this repository.
-    placeholder: e.g. "Map-components sample for React"
+      placeholder: e.g. "Map-components sample for React"
     validations:
       required: true
   - type: textarea
