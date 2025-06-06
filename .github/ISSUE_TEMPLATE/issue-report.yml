@@ -1,15 +1,23 @@
-name: Issue
-description: Report an issue with one of the samples in this repository. 
+name: Problems with a sample
+description: Report an issue with one of the samples in this repository.
 body:
   - type: checkboxes
     attributes:
       label: IMPORTANT
       description: Verify the following requirements have been met before opening an issue.
       options:
-        - label: My question is related to the samples and content within this repository. For all other issues, open a ticket with [Esri Technical Support](https://support.esri.com/) or post your question in the [community forum](https://community.esri.com/t5/arcgis-api-for-javascript/ct-p/arcgis-api-for-javascript).
+        - label: My question is only related to the samples and content within this repository. For all other SDK issues, post your question in the [community forum](https://community.esri.com/t5/arcgis-api-for-javascript/ct-p/arcgis-api-for-javascript) or open a ticket with [Esri Technical Support](https://support.esri.com/).
           required: true
         - label: I have [checked for existing issues](https://github.com/Esri/jsapi-resources/issues) to avoid duplicates. If someone has already opened an issue for what you are experiencing, please add a 👍 reaction and comment as necessary to the existing issue instead of creating a new one. You can also refer to this repo's [troubleshooting guide](https://developers.arcgis.com/javascript/latest/troubleshooting/) for hints and suggestions.
           required: true
+  - type: textarea
+    id: name
+    attributes:
+      label: Sample name
+      description: Which sample in this repository is the issue related to? Only open issues for samples in this repository.
+    placeholder: e.g. "Map-components sample for React"
+    validations:
+      required: true
   - type: textarea
     id: actual
     attributes:
@@ -48,19 +56,19 @@ body:
     attributes:
       label: Reproduction browser
       description: Browser (check https://whatismybrowser.com/)
-      placeholder: e.g. Chrome 130 on Windows 11
+      placeholder: e.g. Chrome 137 on Windows 11
     validations:
       required: true
   - type: textarea
     id: operatingsystem
     attributes:
-      label: Operating System (check https://whatsmyos.com)
-      description: Provide the operating system version and device make/model.
+      label: Operating System
+      description: Provide the operating system version and device make/model  (check https://whatsmyos.com)
       placeholder: |
         - OS:
-            e.g. Apple iOS 18, Windows 10* 64-bit or MacOS 14.7
+            e.g. Apple iOS 18, Windows 11 64-bit or MacOS 15.5
         - Device:
-            e.g. iPhone 15, Samsung Galaxy S24 or MacBook Pro
+            e.g. iPhone 16, Samsung Galaxy S25 or MacBook Pro
         ...
     validations:
       required: true
