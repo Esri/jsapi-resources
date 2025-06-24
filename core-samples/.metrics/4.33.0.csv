@@ -1,0 +1,2 @@
+Sample,Build size (MB),Build file count,Main bundle file,Main bundle size (MB),Main bundle gzipped size (MB),Main bundle brotli compressed size (MB),Load time (ms),Total runtime (ms),Loaded size (MB),Total JS requests,Total JS size (MB),Total HTTP requests,JS heap size (MB)
+esbuild 0.25.0,12.85,1191,index.js,0.29,0.08,0.06,7293,19956,5.52,496,3.96,594,27.10
