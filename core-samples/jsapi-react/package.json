@@ -1,5 +1,5 @@
 {
-  "name": "jsapi-react",
+  "name": "core-react-sample",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -9,12 +9,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@arcgis/core": "~4.32.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "@arcgis/core": "~4.33.0-next",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
   },
   "devDependencies": {
-    "@vitejs/plugin-react": "^4.3.4",
-    "vite": "^6.1.1"
+    "@vitejs/plugin-react": "^4.5.2",
+    "vite": "^6.3.5"
   }
 }

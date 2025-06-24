@@ -3,13 +3,12 @@
   "private": true,
   "scripts": {
     "build": "webpack --mode production",
-    "start": "webpack serve --mode development"
+    "start": "webpack serve --mode development --open"
   },
   "dependencies": {
-    "@arcgis/charts-components": "~4.32.0",
-    "@arcgis/charts-model": "~4.32.0",
-    "@arcgis/core": "~4.32.0",
-    "@esri/calcite-components": "^3.0.3"
+    "@arcgis/charts-components": "~4.33.0-next",
+    "@arcgis/core": "~4.33.0-next",
+    "@esri/calcite-components": "^3.2.1"
   },
   "devDependencies": {
     "css-loader": "^7.1.2",
@@ -17,9 +16,9 @@
     "mini-css-extract-plugin": "^2.9.2",
     "source-map-loader": "^5.0.0",
     "style-loader": "4.0.0",
-    "terser-webpack-plugin": "^5.3.11",
-    "webpack": "^5.98.0",
+    "terser-webpack-plugin": "^5.3.14",
+    "webpack": "^5.99.9",
     "webpack-cli": "^6.0.1",
-    "webpack-dev-server": "^5.2.0"
+    "webpack-dev-server": "^5.2.2"
   }
 }

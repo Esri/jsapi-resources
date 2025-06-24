@@ -44,6 +44,6 @@ _tsconfig.app.json_
   ],
 ```
 
-- Due to limitations in TypeScript, the APIs [autocasting](https://developers.arcgis.com/javascript/latest/programming-patterns/#autocasting) functionality prior to version 4.32 works best in non-TypeScript applications. No changes are required if you are already using the API without any TypeScript build errors.
+- Due to limitations in TypeScript, the APIs [autocasting](https://developers.arcgis.com/javascript/latest/programming-patterns/#autocasting) functionality prior to version 4.32 works best in non-TypeScript applications. No changes are required if you are already using the API without any TypeScript build errors. See the [Autocasting in TypeScript](https://developers.arcgis.com/javascript/latest/autocasting/#autocasting-in-typescript) guide topic for more information.
 
 - In order to use the APIs TypeScript [decorators](https://developers.arcgis.com/javascript/latest/api-reference/esri-core-accessorSupport-decorators.html), set the [`useDefineForClassFields`](https://www.typescriptlang.org/tsconfig#useDefineForClassFields) option to `false` in `tsconfig.compilerOptions`.

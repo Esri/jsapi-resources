@@ -2,35 +2,23 @@
 
 📁 **[Click here to download this directory as a ZIP file](https://esri.github.io/jsapi-resources/zips/coding-components-sample-angular.zip)** 📁
 
+See the [Get started with npm guide](https://developers.arcgis.com/javascript/latest/get-started/#npm) for full instructions.
+
 ## Known issues
 
-- The [@arcgis/coding-components-angular](https://www.npmjs.com/package/@arcgis/coding-components-angular) npm package has been deprecated at 4.31. We recommend using the `@arcgis/coding-components`, as shown in this sample.
-- For versions prior to 4.32, the compile warning `The glob pattern import("./**/*.entry.js*") did not match any files [empty-glob]` is a known issue with Stencil and it can be ignored.
 - You may encounter the following build configuration error:
   `[ERROR] No loader is configured for ".ttf" files: node_modules/monaco-editor/esm/vs/base/browser/ui/codicons/codicon/codicon.ttf`.
 
-To fix this, the following has been added to the `angular.json` configuration file in this sample:
+  To fix this, the following has been added to the `angular.json` configuration file in this sample:
 
-```json
-"loader": {
-  ".ttf": "file"
-}
-```
+  ```json
+  "loader": {
+    ".ttf": "file"
+  }
+  ```
 
-## Licensing
-
-Copyright 2025 Esri
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
-A copy of the license is available in the repository's [license.txt](https://github.com/Esri/jsapi-resources/blob/master/license.txt) file.
+- You may encounter the following warning when running the sample:
+  `The above dynamic import cannot be analyzed by Vite`.
+  This does not affect the functionality of the sample. The problem may be related to Angular's Vite configuration and how it handles dynamic imports such as those in the [monaco-editor](https://microsoft.github.io/monaco-editor/) which the Arcade Editor component is built with.
+  - https://github.com/angular/angular-cli/issues/29470
+  - https://github.com/angular/angular/issues/59764

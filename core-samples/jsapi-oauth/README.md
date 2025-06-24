@@ -16,4 +16,4 @@ For a list of all available `npm` commands see `scripts` in `package.json`.
 For additional information, see:
 
 - [Implement user authentication](https://developers.arcgis.com/javascript/latest/tutorials/implement-user-authentication/) in the ArcGIS Maps SDK for JavaScript documentation.
-- [Get started with npm](https://developers.arcgis.com/javascript/latest/get-started-npm/#api/) Guide topic in the SDK.
+- [Get started with npm](https://developers.arcgis.com/javascript/latest/get-started/#npm/) Guide topic in the SDK.

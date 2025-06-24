@@ -1,21 +1,18 @@
-/* import the `@arcgis/core` light theme CSS stylesheets. */
-@import "https://js.arcgis.com/4.32/@arcgis/core/assets/esri/themes/light/main.css";
+/* CSS Styles for the tutorial will be added here */
+/* import the `@arcgis/core` light theme and `@esri/calcite-components` CSS stylesheets. */
+@import "https://js.arcgis.com/4.33/@arcgis/core/assets/esri/themes/light/main.css";
+@import "https://js.arcgis.com/calcite-components/3.2.1/calcite.css";
 
 /* Add CSS styles to make the `html`, `body` and `arcgis-map` elements the full width and height of their parent containers. */
 html,
-body {
+body,
+arcgis-map {
+  height: 100%;
   margin: 0;
 }
 
-arcgis-map {
-  display: block;
-  height: 100vh;
-}
-
+/* Add CSS styles to make the `arcgis-chart` element the full height and 200% of the width. */
 arcgis-chart {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  height: 50%;
-  width: 60%;
+  height: 100%;
+  width: 200%;
 }

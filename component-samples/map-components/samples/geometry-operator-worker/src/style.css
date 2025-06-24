@@ -1,0 +1,30 @@
+@import "https://js.arcgis.com/4.33/@arcgis/core/assets/esri/themes/light/main.css";
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+arcgis-map {
+  display: block;
+  height: 100vh;
+}
+
+#infoDiv {
+  max-width: 400px;
+  padding: 0.2rem 0.8rem;
+  font-size: 20px;
+}
+
+#customLegend {
+  position: absolute;
+  bottom: 40px;
+  left: 20px;
+  z-index: 50;
+  background-color: white;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  display: none;
+}

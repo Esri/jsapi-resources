@@ -1,0 +1,16 @@
+<div *ngIf="isLoading; else content">
+  <!-- Show scrim when isLoading is true -->
+  <calcite-scrim id="scrim" loading></calcite-scrim>
+</div>
+
+<ng-template #content>
+  <!-- Show editor and hide scrim when isLoading is false -->
+  <div class="editor-wrapper">
+    <arcgis-arcade-editor
+      script="$feature"
+      [profile]="profile"
+      [testData]="testData"
+      (arcgisScriptChange)="arcgisScriptChange($event)"
+    ></arcgis-arcade-editor>
+  </div>
+</ng-template>

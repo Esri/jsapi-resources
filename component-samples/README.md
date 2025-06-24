@@ -2,30 +2,12 @@
 
 This directory contains samples that demonstrate how to use web components from the ArcGIS Maps SDK for JavaScript with various frameworks, module bundlers, and build tools. There are three component packages available:
 
-- Map components
-- Coding components
-- Charts components (beta)
+- [Map components](https://developers.arcgis.com/javascript/latest/references/map-components/)
+- [Coding components](https://developers.arcgis.com/javascript/latest/references/coding-components/)
+- [Charts components (beta)](https://developers.arcgis.com/javascript/latest/references/charts-components/)
 
 Components from the SDK can be accessed through the ArcGIS CDN or npm. To install npm, visit [https://www.npmjs.com/get-npm](https://www.npmjs.com/get-npm).
 
 ## Usage
 
 To use a sample, navigate to its directory and follow the instructions provided in its README. The samples can also be downloaded using the links provided in the respective README files.
-
-## Licensing
-
-Copyright 2025 Esri
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
-A copy of the license is available in the repository's [license.txt](https://github.com/Esri/jsapi-resources/blob/master/license.txt) file.

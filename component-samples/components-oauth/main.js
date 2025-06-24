@@ -7,6 +7,7 @@ import OAuthInfo from "@arcgis/core/identity/OAuthInfo";
 
 // Import the ArcGIS Map Components
 import "@arcgis/map-components/components/arcgis-map";
+import "@arcgis/map-components/components/arcgis-zoom";
 import "@arcgis/map-components/components/arcgis-legend";
 import "@arcgis/map-components/components/arcgis-search";
 
