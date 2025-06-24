@@ -1,4 +1,4 @@
-# Charts components
+# Charts components (beta)
 
 These samples and tutorials are for [Charts components](https://developers.arcgis.com/javascript/latest/references/charts-components/).
 
