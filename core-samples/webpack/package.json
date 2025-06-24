@@ -8,7 +8,7 @@
     "start": "webpack serve --mode development"
   },
   "dependencies": {
-    "@arcgis/core": "~4.33.0-next"
+    "@arcgis/core": "~4.33.0"
   },
   "devDependencies": {
     "css-loader": "^7.1.2",

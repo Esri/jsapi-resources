@@ -9,7 +9,7 @@
     "watch": "rollup -c -w"
   },
   "dependencies": {
-    "@arcgis/core": "~4.33.0-next"
+    "@arcgis/core": "~4.33.0"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^28.0.3",

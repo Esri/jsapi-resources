@@ -12,9 +12,9 @@
     "copy:components": "cpx \"node_modules/@arcgis/coding-components/dist/arcgis-coding-components/assets/**/*.*\" ./public/assets && cpx \"node_modules/@arcgis/map-components/dist/arcgis-map-components/assets/**/*.*\" ./public/assets"
   },
   "dependencies": {
-    "@arcgis/coding-components": "~4.33.0-next",
-    "@arcgis/core": "~4.33.0-next",
-    "@arcgis/map-components": "~4.33.0-next",
+    "@arcgis/coding-components": "~4.33.0",
+    "@arcgis/core": "~4.33.0",
+    "@arcgis/map-components": "~4.33.0",
     "@esri/calcite-components": "^3.2.1"
   },
   "devDependencies": {

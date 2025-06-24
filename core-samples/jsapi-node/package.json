@@ -4,6 +4,6 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "@arcgis/core": "~4.33.0-next"
+    "@arcgis/core": "~4.33.0"
   }
 }
