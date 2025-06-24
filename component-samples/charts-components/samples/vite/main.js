@@ -1,36 +1,35 @@
 import "./style.css";
 
-import { ScatterPlotModel } from "@arcgis/charts-model";
-import { createFeatureLayer } from "./create-feature-layer";
+// Individual imports for each component used in this sample
+import "@arcgis/charts-components/components/arcgis-chart";
+import "@arcgis/charts-components/components/arcgis-charts-action-bar";
 
-import { defineCustomElements as defineCalciteElements } from "@esri/calcite-components/dist/loader";
-import { defineCustomElements as defineChartsElements } from "@arcgis/charts-components/dist/loader";
+// Import createModel from the charts-components package
+import { createModel } from "@arcgis/charts-components/model";
 
-// Define custom elements in the browser, and load the assets from the CDN
-defineCalciteElements();
-defineChartsElements(window, { resourcesUrl: "https://js.arcgis.com/charts-components/4.32/assets" });
+import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 
-// Function to initialize the scatterplot.
-async function initScatterplot() {
-  const layer = await createFeatureLayer(
-    "https://services.arcgis.com/V6ZHFr6zdgNZuVG0/ArcGIS/rest/services/ChicagoCr/FeatureServer/0",
-  );
+async function initChart() {
+  // Create a new feature layer from service URL
+  const layer = new FeatureLayer({
+    url: "https://services1.arcgis.com/hLJbHVT9ZrDIzK0I/arcgis/rest/services/CollegeScorecard_0/FeatureServer/0",
+  });
+  await layer.load();
 
-  const scatterplotElement = document.getElementById("scatterplot");
+  // Use querySelector to get the <arcgis-chart> element
+  const chartElement = document.querySelector("arcgis-chart");
 
-  // Create a new ScatterPlotModel and set the x and y axis fields.
-  const scatterplotModel = new ScatterPlotModel();
-  await scatterplotModel.setup({ layer });
+  // Use createModel to create a scatterplot model
+  const chartModel = await createModel({ layer, chartType: "scatterplot" });
 
-  await scatterplotModel.setXAxisField("Ward");
-  await scatterplotModel.setYAxisField("Beat");
+  // Configure the chart model
+  await chartModel.setXAxisField("SAT_Score_Average");
+  await chartModel.setYAxisField("Earnings");
+  chartModel.setShowLinearTrend(true);
 
-  // Set the scatterplot element's layer and model properties.
-  const config = scatterplotModel.getConfig();
-
-  scatterplotElement.layer = layer;
-  scatterplotElement.model = config;
+  // Set the chart model to the chart element
+  chartElement.model = chartModel;
 }
 
-// Call initScatterplot() function to render the chart.
-initScatterplot();
+// Call initChart() function to render the chart
+initChart();

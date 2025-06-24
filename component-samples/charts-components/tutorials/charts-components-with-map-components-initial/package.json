@@ -1,15 +1,16 @@
 {
   "name": "charts-components-with-map-components-initial",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
-    "@arcgis/core": "~4.32.0"
+    "@arcgis/core": "~4.33.0"
   },
   "devDependencies": {
-    "vite": "^6.1.1"
+    "vite": "^6.3.5"
   }
 }

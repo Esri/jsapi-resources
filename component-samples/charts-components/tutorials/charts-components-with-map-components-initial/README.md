@@ -12,17 +12,7 @@ To start the development server run `npm run dev`
 
 For a list of all available `npm` commands see `scripts` in `package.json`, e.g. `npm run build`.
 
-For more details on using the SDK, please refer to the [ArcGIS Maps SDK for JavaScript documentation](https://developers.arcgis.com/javascript/latest/get-started-overview/).
-
-## Loading All Components
-
-Charts components currently only support loading all components. You can register all components at once using the following approach:
-
-```js
-import { defineCustomElements } from "@arcgis/charts-components/dist/loader";
-
-defineCustomElements(window, { resourcesUrl: "https://js.arcgis.com/charts-components/4.32/assets" });
-```
+For more details on using the SDK, please refer to the [ArcGIS Maps SDK for JavaScript documentation](https://developers.arcgis.com/javascript/latest/get-started/).
 
 ## Licensing
 

@@ -1,0 +1,21 @@
+{
+  "name": "map-components-geometry-operator-worker-sample",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@arcgis/core": "~4.33.0",
+    "@arcgis/map-components": "~4.33.0",
+    "@esri/calcite-components": "^3.2.1",
+    "comlink": "^4.4.2"
+  },
+  "devDependencies": {
+    "vite": "^6.3.5",
+    "vite-plugin-comlink": "^5.1.0"
+  }
+}

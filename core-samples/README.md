@@ -24,7 +24,7 @@ You can use these links to download individual samples:
 
 Run `npm install` in a project directory and then start adding ArcGIS Maps SDK for JavaScript functionality.
 
-For additional information, see the [Get started with npm](https://developers.arcgis.com/javascript/latest/get-started-npm/#api) Guide topic in the SDK.
+For additional information, see the [Get started with npm](https://developers.arcgis.com/javascript/latest/get-started/#npm) Guide topic in the SDK.
 
 ## TypeScript
 
@@ -36,8 +36,9 @@ Building applications locally involves understanding many interrelated pieces in
 
 ### Bundle size and performance
 
-For each release, we track certain metrics including bundle size and web application performance. These files can be found in the [/core-samples/.metrics](./.metrics/) directory. 
-<!-- You can read more about how we capture this information this [README](../.github/scripts/README.md). -->
+For each release, we track certain metrics including bundle size and web application performance. These files can be found in the [/core-samples/.metrics](./.metrics/) directory.
+
+<!-- You can read more about how we capture this information this [README](). -->
 
 The performance metrics can be separated into two categories: initial application load and on-disk build output files.
 

@@ -1,4 +1,6 @@
 {
+  "name": "core-esbuild-sample",
+  "version": "0.0.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -8,7 +10,7 @@
     "watch": "npm run init-dist && esbuild src/* --bundle --chunk-names=chunks/[name]-[hash] --format=esm --log-override:empty-glob=debug --splitting --outdir=dist --sourcemap --watch"
   },
   "dependencies": {
-    "@arcgis/core": "~4.32.0"
+    "@arcgis/core": "~4.33.0"
   },
   "devDependencies": {
     "cpx2": "^8.0.0",

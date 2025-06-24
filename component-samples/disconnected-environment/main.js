@@ -90,14 +90,7 @@ const polylineFeature = new FeatureLayer({
 // definition for the profile variables.
 arcadeEditorElement.profile = {
   id: "labeling",
-  disabledVariables: [
-    "$layer",
-    "$map",
-    "$datastore",
-    "$graph",
-    "$userInput",
-    "$view",
-  ],
+  disabledVariables: ["$layer", "$map", "$datastore", "$graph", "$userInput", "$view"],
   definitions: {
     $feature: polylineFeature,
   },
@@ -114,8 +107,7 @@ arcadeEditorElement.testData = {
 calciteButtonElement.addEventListener("click", async () => {
   const testResult = await arcadeEditorElement.getTestResult();
   if (testResult.type === "text") {
-    polylineFeature.labelingInfo[0].labelExpressionInfo.expression =
-      arcadeEditorElement.script;
+    polylineFeature.labelingInfo[0].labelExpressionInfo.expression = arcadeEditorElement.script;
   }
 });
 

@@ -1,5 +1,5 @@
 {
-  "name": "jsapi-oauth",
+  "name": "core-oauth-sample",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -9,9 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@arcgis/core": "~4.32.0"
+    "@arcgis/core": "~4.33.0"
   },
   "devDependencies": {
-    "vite": "^6.1.1"
+    "vite": "^6.3.5"
   }
 }

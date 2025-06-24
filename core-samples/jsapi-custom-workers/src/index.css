@@ -1,4 +1,5 @@
-@import "https://js.arcgis.com/4.32/@arcgis/core/assets/esri/themes/dark/main.css";
+@import "https://js.arcgis.com/4.33/@arcgis/core/assets/esri/themes/light/main.css";
+
 html,
 body,
 #viewDiv {
@@ -8,6 +9,7 @@ body,
   width: 100%;
   background: rgba(50, 50, 50);
 }
+
 #btn-1 {
   width: 100%;
   height: 30px;

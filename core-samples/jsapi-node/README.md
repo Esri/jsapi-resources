@@ -1,15 +1,12 @@
 # ArcGIS Maps SDK for JavaScript in Node.js
 
-Integrating Node.js with [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core) can be done by building the app with native ES modules or by transpiling to CommonJS (CJS). This sample contains examples of both approaches.
-
-Using the SDK's [projectOperator](https://developers.arcgis.com/javascript/latest/api-reference/esri-geometry-operators-projectOperator.html) in Node.js requires transpiling to CJS and using a local copy of the SDK's assets. This is related to the current capabilities of the projectOperator's wasm-based dependencies. This sample uses rollup for the transpiling.
+Integrating Node.js with [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core) can be done by creating the app with native ES modules.
 
 ---
 
 ## Known Issues
 
-- If you are getting the error `ReferenceError: crypto is not defined` and you are using Node 18, use the `--experimental-global-webcrypto` flag.
-- If you are getting the error `TypeError: Cannot read properties of undefined (reading 'bind')`, try upgrading to Node 18.19+ or use the `--experimental-fetch` flag, for example: `node --experimental-fetch test-request.js` or `node --experimental-fetch test-webmap.js`.
+- As of version 4.33, when using projection operators in native Node.js applications, the associated assets (e.g., .wasm files) are now served via the ArcGIS CDN by default. This is similar to how other default SDK assets are hosted. Additionally, it is no longer necessary to transpile to CommonJS (CJS). If you need to host the SDK's assets locally, you can serve them from your web server and reference them in your application. For example: esriConfig.assetsPath = "https://mywebsite.com/assets"; This breaking change includes the [projectOperator](https://developers.arcgis.com/javascript/latest/api-reference/esri-geometry-operators-projectOperator.html), [shapePreservingProjectOperator](https://developers.arcgis.com/javascript/latest/api-reference/esri-geometry-operators-shapePreservingProjectOperator.html), [geographicTransformationUtils](https://developers.arcgis.com/javascript/latest/api-reference/esri-geometry-operators-support-geographicTransformationUtils.html) as well as the geodetic and geodesic operators, and the legacy [projection](https://developers.arcgis.com/javascript/latest/api-reference/esri-geometry-projection.html) module.
 
 ---
 
@@ -17,28 +14,23 @@ Using the SDK's [projectOperator](https://developers.arcgis.com/javascript/lates
 
 📁 **[Click here to download this directory as a ZIP file](https://esri.github.io/jsapi-resources/zips/core-sample-jsapi-node.zip)** 📁
 
-Make sure you are running Node 18.19.1 or greater: `node -v`.
+Make sure you are running Node 20.18.0 or greater: `node -v`.
 
-To run a test app, execute these commands in a terminal window:
+To run a test app, execute these commands in a terminal window. No compiling or bundling is necessary.
 
-1. `npm install` - install the modules
-2. `npm run build` - run the build script
-3. `node test-projection.js` - run the app and the output will be written to the terminal window.
-
-The source files are in the `/src` directory. Running the build command transpiles the files to CJS and outputs them in the `/public` directory. Only `projection.js` requires transpiling because it uses the SDK's projection engine. The `.mjs` files can be run natively, e.g. `node ./src/request.mjs`.
+1. `npm install` - install the `@arcgis/core` package
+2. `node projection.js` - run the app and the output will be written to the terminal window.
 
 ## Working with assets
 
-For most local builds, the API's assets are pulled from the ArcGIS CDN at runtime and there is no need for additional configuration. However, when working with certain modules, Node.js may require configuring the API to manage the assets locally. The assets include images, web workers, web assembly (.wasm) and localization files. Be sure to set [`config.assetsPath`](https://developers.arcgis.com/javascript/latest/api-reference/esri-config.html#assetsPath) so that the assets are correctly resolved, for example:
+For most local builds, the API's assets are pulled from the ArcGIS CDN at runtime and there is no need for additional configuration. However, when working with certain modules, Node.js may require configuring the API to manage the assets locally. The assets include images, web workers, web assembly (.wasm) and localization files. Be sure to set [`config.assetsPath`](https://developers.arcgis.com/javascript/latest/api-reference/esri-config.html#assetsPath) so that the assets are correctly resolved. They will need to be hosted on a web server, for example:
 
 ```js
 import esriConfig from "@arcgis/core/config.js";
-esriConfig.assetsPath = "node_modules/@arcgis/core/assets"; // relative to when running in root
+esriConfig.assetsPath = "https://mywebsite.com/assets";
 ```
 
-An example can be found in [`projection.js`](https://github.com/Esri/jsapi-resources/tree/main/core-samples/jsapi-node/src/projection.js#L6) and in [test-webmap.js](https://github.com/Esri/jsapi-resources/tree/main/core-samples/jsapi-node/test-webmap.js#L4-L5).
-
-For additional information, see the [Get started with npm](https://developers.arcgis.com/javascript/latest/get-started-npm/#api) Guide topic in the SDK.
+For more information on copying assets, see the [Copy and point to local assets](https://developers.arcgis.com/javascript/latest/working-with-assets/#copy-and-point-to-local-assets) guide topic.
 
 ## IdentityManager
 

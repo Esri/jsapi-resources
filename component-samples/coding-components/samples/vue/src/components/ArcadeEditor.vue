@@ -67,7 +67,6 @@ onMounted(async () => {
         @arcgisScriptChange="
           async (e) => {
             console.log('script:', e.detail);
-            console.log('outputType on script:', await editor.getOutputType());
           }
         "
         @arcgisDiagnosticsChange="

@@ -1,18 +1,12 @@
 import "./style.css";
 
-// Import the `arcgis-map` component from the `@arcgis/map-components` package.
+// Import the `arcgis-map` and `arcgis-placement` components from the `@arcgis/map-components` package.
 import "@arcgis/map-components/components/arcgis-map";
+import "@arcgis/map-components/components/arcgis-placement";
 
-// Import the defineCustomElements functions from calcite-components and charts-components.
-// Note: Charts components is in beta and individual loading is not yet available. Use lazy loading instead.
-import { defineCustomElements as defineCalciteElements } from "@esri/calcite-components/dist/loader";
-import { defineCustomElements as defineChartsElements } from "@arcgis/charts-components/dist/loader";
-
-// Use CDN hosted Calcite assets
-defineCalciteElements();
-
-// Use CDN hosted Charts assets
-defineChartsElements(window, { resourcesUrl: "https://js.arcgis.com/charts-components/4.32/assets" });
+// Import the `arcgis-charts-action-bar` and `arcgis-chart` components from the `@arcgis/charts-components` package.
+import "@arcgis/charts-components/components/arcgis-chart";
+import "@arcgis/charts-components/components/arcgis-charts-action-bar";
 
 // Get a reference to the arcgis-map, arcgis-chart, and arcgis-charts-action-bar elements
 const mapElement = document.querySelector("arcgis-map");
@@ -20,20 +14,18 @@ const chartElement = document.querySelector("arcgis-chart");
 const actionBarElement = document.querySelector("arcgis-charts-action-bar");
 
 // Since we are using property values from the map component, we use the arcgisViewReadyChange event to determine when the map is ready.
-mapElement.addEventListener("arcgisViewReadyChange", async (event) => {
+mapElement.addEventListener("arcgisViewReadyChange", (event) => {
   // Get the map and the view from the event target
   const { map, view } = event.target;
 
-  // Get the layer from the map
-  const featureLayer = map.layers.find((layer) => layer.title === "CollegeScorecard");
-  await featureLayer.load();
+  // Get the layer "CollegeScorecard" from the map
+  const layer = map.layers.find((layer) => layer.title === "CollegeScorecard");
 
-  // Get the chart config from the layer
-  const chartConfig = featureLayer.charts[0];
+  // Set the layer on the chart element
+  chartElement.layer = layer;
 
-  // Set the layer property to the feature layer, and the model property to the chart config on the chart element
-  chartElement.layer = featureLayer;
-  chartElement.model = chartConfig;
+  // Set first existing chart model from the layer on the chart element
+  chartElement.model = layer.charts[0];
 
   // Get the layer views from the view
   const featureLayerViews = view.layerViews;
@@ -50,15 +42,6 @@ mapElement.addEventListener("arcgisViewReadyChange", async (event) => {
 
   // Set the view of the chart element to the map view, to be used for the extent filter
   chartElement.view = view;
-
-  // Add an event listener to the action bar element to listen to the default action select event
-  actionBarElement.addEventListener("arcgisDefaultActionSelect", (event) => {
-    // Get the actionId and actionActive from the event detail
-    const { actionId, actionActive } = event.detail;
-    if (actionId === "filterByExtent") {
-      chartElement.filterByExtent = actionActive;
-    }
-  });
 });
 
 // Add an event listener to the `arcgisViewClick` event on the `arcgis-map` element.

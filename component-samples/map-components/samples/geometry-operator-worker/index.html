@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="data:;base64,=" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Geometry operators analysis with workers</title>
+  </head>
+  <body>
+    <arcgis-map basemap="topo-vector" zoom="12" center="-95.9895, 36.1551">
+      <arcgis-zoom position="top-left"></arcgis-zoom>
+      <arcgis-placement position="top-right">
+        <div id="infoDiv" class="esri-widget">
+          <p>
+            Click on the map to start the analysis on showing 200 meter buffers around all river and stream segments
+            contained inside a 10 kilometer radius of the clicked point.
+          </p>
+          <div id="lengthDiv"></div>
+          <calcite-loader id="calciteLoader" label="loading" type="indeterminate" hidden="true"></calcite-loader>
+        </div>
+      </arcgis-placement>
+    </arcgis-map>
+    <div id="customLegend">
+      <div id="queryBufferDiv">Query buffer</div>
+      <div id="centerPointDiv">Center point</div>
+      <div id="riversAndStreamsDiv">Rivers/Streams</div>
+      <div id="buffersDiv">River Buffers</div>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

@@ -11,7 +11,6 @@ import { loadData } from "./load-data";
   // Log script change events
   arcadeEditorElt.addEventListener("arcgisScriptChange", async (e) => {
     console.log("script:", e.detail);
-    // console.log("outputType on script:", await arcadeEditorElt.getOutputType());
   });
 
   // Log editor diagnostics

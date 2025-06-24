@@ -1,8 +1,8 @@
 // @deno-types="npm:@arcgis/core/interfaces.d.ts"
 import type { Context } from "https://deno.land/x/oak@v17.1.4/mod.ts";
 import { Application } from "https://deno.land/x/oak@v17.1.4/mod.ts";
-import config from "npm:@arcgis/core@4.32/config.js";
-import WebMap from "npm:@arcgis/core@4.32/WebMap.js";
+import config from "npm:@arcgis/core@4.33/config.js";
+import WebMap from "npm:@arcgis/core@4.33/WebMap.js";
 
 // Disable so it doesn't attempt to load DOM-related JavaScript.
 config.request.useIdentity = false;

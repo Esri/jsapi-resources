@@ -3,11 +3,12 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
-    <title>Map components AMD sample</title>
+    <title>Map components CDN sample</title>
     <link rel="icon" href="data:;base64,=" />
     <style>
       html,
       body {
+        height: 100%;
         margin: 0;
       }
       arcgis-map {
@@ -17,21 +18,56 @@
     </style>
 
     <!-- Load Calcite Components-->
-    <script type="module" src="https://js.arcgis.com/calcite-components/3.0.3/calcite.esm.js"></script>
+    <script type="module" src="https://js.arcgis.com/calcite-components/3.2.1/calcite.esm.js"></script>
 
-    <!-- Load the ArcGIS Maps SDK for JavaScript -->
-    <link rel="stylesheet" href="https://js.arcgis.com/4.32/esri/themes/dark/main.css" />
-    <script src="https://js.arcgis.com/4.32/"></script>
+    <!-- Load the ArcGIS Maps SDK for JavaScript core API -->
+    <link rel="stylesheet" href="https://js.arcgis.com/4.33/esri/themes/light/main.css" />
+    <script src="https://js.arcgis.com/4.33/"></script>
 
     <!-- Load the Map components -->
-    <script type="module" src="https://js.arcgis.com/map-components/4.32/arcgis-map-components.esm.js"></script>
+    <script type="module" src="https://js.arcgis.com/map-components/4.33/"></script>
   </head>
   <body>
-    <arcgis-map item-id="d5dda743788a4b0688fe48f43ae7beb9">
-      <arcgis-expand position="top-right">
-        <arcgis-search></arcgis-search>
-      </arcgis-expand>
+    <arcgis-map item-id="02b37471d5d84cacbebcccd785460e94">
+      <arcgis-zoom position="top-left"></arcgis-zoom>
+      <arcgis-search position="top-right"></arcgis-search>
       <arcgis-legend position="bottom-left"></arcgis-legend>
     </arcgis-map>
   </body>
+
+  <script type="module">
+    const Graphic = await $arcgis.import("@arcgis/core/Graphic.js");
+
+    const viewElement = document.querySelector("arcgis-map");
+
+    // Wait for the view to be ready before adding additional functionality
+    await viewElement.viewOnReady();
+
+    // First create a point geometry (this is the location of the Titanic)
+    const point = {
+      type: "point", // autocasts as new Point()
+      longitude: -118.38,
+      latitude: 33.34,
+    };
+
+    // Create a symbol for drawing the point
+    const markerSymbol = {
+      type: "simple-marker",
+      style: "triangle",
+      size: 20,
+      color: "red",
+      outline: {
+        color: "white",
+        width: 2,
+      },
+    };
+
+    // Create a graphic and add the geometry and symbol to it
+    const pointGraphic = new Graphic({
+      geometry: point,
+      symbol: markerSymbol,
+    });
+
+    viewElement.graphics.add(pointGraphic);
+  </script>
 </html>

@@ -40,7 +40,6 @@ export default function ArcadeEditor() {
             // Log script change events
             onarcgisScriptChange={async (e) => {
               console.log("script:", e.detail);
-              // console.log("outputType on script:", await arcadeEditorElt.getOutputType());
             }}
             // Log editor diagnostics
             onarcgisDiagnosticsChange={async (e) => {

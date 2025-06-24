@@ -23,7 +23,6 @@ module.exports = {
       directory: path.join(__dirname, "dist"),
     },
     compress: true,
-    port: 8080,
   },
   experiments: {
     // Because we are using async/await in index.js
@@ -58,15 +57,4 @@ module.exports = {
       chunkFilename: "[id].css",
     }),
   ],
-  // Resolve property for importing files
-  resolve: {
-    modules: [path.resolve(__dirname, "/src"), "node_modules/"],
-    extensions: [".js", ".css"],
-    // Necessary for monaco-editor and marked module not found error
-    fullySpecified: false,
-    alias: {
-      "monaco-editor": path.resolve(__dirname, "node_modules/monaco-editor"),
-      "marked": path.resolve(__dirname, "node_modules/marked"),
-    },
-  },
 };

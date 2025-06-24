@@ -6,7 +6,7 @@ export default defineConfig({
     open: true,
   },
   build: {
-    chunkSizeWarningLimit: 1500,
+    chunkSizeWarningLimit: 2000,
     outDir: "dist",
   },
 });

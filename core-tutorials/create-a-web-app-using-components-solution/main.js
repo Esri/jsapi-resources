@@ -25,12 +25,13 @@ arcgisLayerList.listItemCreatedFunction = (event) => {
 };
 
 // Get a reference to the arcgis-map element.
-const arcgisMap = document.querySelector("arcgis-map");
+const viewElement = document.querySelector("arcgis-map");
 
-// Since we are using property values from the map component,
-// we use the arcgisViewReadyChange event to determine when the map is ready.
-arcgisMap.addEventListener("arcgisViewReadyChange", () => {
-  const { portalItem } = arcgisMap.map;
+// Wait for the map component to be ready before accessing its properties.
+// You can use either the arcgisViewReadyChange event or the viewOnReady method.
+// Since Vite does not support top-level async/await, the event approach is used here.
+viewElement.addEventListener("arcgisViewReadyChange", () => {
+  const { portalItem } = viewElement.map;
 
   // Get a reference to the calcite-navigation-logo element.
   const navigationLogo = document.querySelector("calcite-navigation-logo");
@@ -42,7 +43,7 @@ arcgisMap.addEventListener("arcgisViewReadyChange", () => {
 
   // Find the accidental deaths layer in the `event.target.map.layers` collection.
   // https://developers.arcgis.com/javascript/latest/api-reference/esri-Map.html#layers
-  const layer = arcgisMap.map.layers.find((layer) => layer.id === "Accidental_Deaths_8938");
+  const layer = viewElement.map.layers.find((layer) => layer.id === "Accidental_Deaths_8938");
 
   //  Modify the layer's popup template title.
   //  https://developers.arcgis.com/javascript/latest/api-reference/esri-PopupTemplate.html

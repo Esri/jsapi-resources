@@ -1,10 +1,11 @@
-@import "https://js.arcgis.com/calcite-components/3.0.3/calcite.css";
-@import "https://js.arcgis.com/4.32/@arcgis/core/assets/esri/themes/dark/main.css";
-@import "https://js.arcgis.com/map-components/4.32/arcgis-map-components.css";
+@import "https://js.arcgis.com/calcite-components/3.2.1/calcite.css";
+@import "https://js.arcgis.com/4.33/@arcgis/core/assets/esri/themes/light/main.css";
+@import "https://js.arcgis.com/4.33/map-components/main.css";
 
 html,
 main,
 body {
+  height: 100%;
   margin: 0;
 }
 

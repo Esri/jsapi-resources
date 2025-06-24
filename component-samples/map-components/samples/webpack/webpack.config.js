@@ -23,7 +23,6 @@ module.exports = {
       directory: path.join(__dirname, "dist"),
     },
     compress: true,
-    port: 8080,
   },
   module: {
     rules: [

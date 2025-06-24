@@ -12,7 +12,7 @@ To start the development server run `npm run dev`
 
 For a list of all available `npm` commands see `scripts` in `package.json`, e.g. `npm run build`.
 
-For more details on using the SDK, please refer to the [ArcGIS Maps SDK for JavaScript documentation](https://developers.arcgis.com/javascript/latest/get-started-overview/).
+For more details on using the SDK, please refer to the [ArcGIS Maps SDK for JavaScript documentation](https://developers.arcgis.com/javascript/latest/get-started/).
 
 ## Licensing
 
