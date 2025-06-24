@@ -22,7 +22,8 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/styles.css"]
+            "styles": ["src/styles.css"],
+            "outputPath": "dist"
           },
           "configurations": {
             "production": {
@@ -78,5 +79,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "37c47794-6d29-4f9a-ae3e-50b4852e6be1"
   }
 }
