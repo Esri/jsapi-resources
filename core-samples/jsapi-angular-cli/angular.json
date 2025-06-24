@@ -22,7 +22,8 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/styles.css"]
+            "styles": ["src/styles.css"],
+            "outputPath": "dist"
           },
           "configurations": {
             "production": {
