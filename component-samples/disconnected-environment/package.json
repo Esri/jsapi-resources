@@ -9,7 +9,7 @@
     "copy:all": "npm run copy:calcite && npm run copy:core && npm run copy:components",
     "copy:calcite": "cpx \"node_modules/@esri/calcite-components/dist/calcite/assets/**/*.*\" ./public/assets",
     "copy:core": "cpx \"node_modules/@arcgis/core/assets/**/*.*\" ./public/assets",
-    "copy:components": "cpx \"node_modules/@arcgis/coding-components/dist/arcgis-coding-components/assets/**/*.*\" ./public/assets && cpx \"node_modules/@arcgis/map-components/dist/arcgis-map-components/assets/**/*.*\" ./public/assets"
+    "copy:components": "cpx \"node_modules/@arcgis/coding-components/dist/cdn/assets/**/*.*\" ./public/assets && cpx \"node_modules/@arcgis/map-components/dist/cdn/assets/**/*.*\" ./public/assets"
   },
   "dependencies": {
     "@arcgis/coding-components": "~4.33.0",
