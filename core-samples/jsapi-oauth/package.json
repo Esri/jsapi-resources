@@ -12,6 +12,6 @@
     "@arcgis/core": "~4.33.0"
   },
   "devDependencies": {
-    "vite": "^6.3.5"
+    "vite": "^7.0.4"
   }
 }
