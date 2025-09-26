@@ -3,13 +3,13 @@
 @import "@arcgis/map-components/main.css";
 @import "@arcgis/coding-components/main.css";
 
-/* The JavaScript SDK (v4.33) uses named exports for component stylesheets.
- * In certain development environments, this may not work which 
- * means you will need to remove lines 3-4 and uncomment lines 14-15.
- * Outdated versions of build tools and node (before 2020) may not support named exports.
- * If you're working with TypeScript and your moduleResolution is set to `node`,
- * then named exports also won't work.
- */
+/*
+ * Starting from v4.33 of the JavaScript SDK, named exports for component 
+ * stylesheets require modern build tools and Node.js (2020+). If you encounter 
+ * issues, remove lines 3-4 and uncomment lines 14-15 below. It's recommended to 
+ * upgrade to the latest versions of build tools to ensure support for named exports.
+ * TypeScript projects with moduleResolution set to `node` may also have issues.
+*/
 
 /* @import "@arcgis/map-components/dist/cdn/main.css"; */
 /* @import "@arcgis/coding-components/dist/cdn/main.css"; */
