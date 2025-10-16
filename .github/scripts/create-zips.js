@@ -26,18 +26,12 @@ const SAMPLES_RELATIVE_PATH = "../../";
 // Everything in the directory path will be zipped.
 const SAMPLE_DIRS = [
   { dir: "core-samples", name: "core-sample" },
-  { dir: "component-samples/map-components/samples", name: "map-component-sample" },
-  { dir: "component-samples/map-components/tutorials", name: "map-components-tutorial" },
-  { dir: "component-samples/charts-components/samples", name: "charts-components-sample" },
-  { dir: "component-samples/charts-components/tutorials", name: "charts-components-tutorial" },
-  { dir: "component-samples/coding-components/samples", name: "coding-components-sample" }
+  { dir: "component-samples/tutorials", name: "component-sample-tutorial" },
+  { dir: "component-samples/", name: "component-sample" },  
 ];
 
 // Stand-alone samples with no subdirectories
-const SAMPLE_DIRS_NOSUBDIR = [
-  { dir: "component-samples/components-oauth", name: "components-oauth-sample" },
-  { dir: "component-samples/disconnected-environment", name: "disconnected-sample" }
-]
+const SAMPLE_DIRS_NOSUBDIR = [];
 
 /**
  * Emphasizes a message in the console
