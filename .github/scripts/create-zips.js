@@ -27,7 +27,7 @@ const SAMPLES_RELATIVE_PATH = "../../";
 const SAMPLE_DIRS = [
   { dir: "core-samples"},
   { dir: "component-samples/tutorials"},
-  { dir: "component-samples/"}
+  { dir: "component-samples"}
 ];
 
 /**
