@@ -25,13 +25,10 @@ const SAMPLES_RELATIVE_PATH = "../../";
 // The list of sample directories to be zipped.
 // Everything in the directory path will be zipped.
 const SAMPLE_DIRS = [
-  { dir: "core-samples", name: "core-sample" },
-  { dir: "component-samples/tutorials", name: "component-sample-tutorial" },
-  { dir: "component-samples/", name: "component-sample" },  
+  { dir: "core-samples"},
+  { dir: "component-samples/tutorials"},
+  { dir: "component-samples/"}
 ];
-
-// Stand-alone samples with no subdirectories
-const SAMPLE_DIRS_NOSUBDIR = [];
 
 /**
  * Emphasizes a message in the console
@@ -81,12 +78,8 @@ const createZips = async () => {
   await Promise.all(SAMPLE_DIRS.map(async (directoryList) => {
     const subDirs = await getSubDirectories(resolve(__dirname, SAMPLES_RELATIVE_PATH, directoryList.dir));
     await Promise.all(subDirs.map(async (dir) => {
-      await createArchive(`${SAMPLES_RELATIVE_PATH}${directoryList.dir}/${dir.name}`, OUTPUT_DIR, `${directoryList.name}-${dir.name}`);
+      await createArchive(`${SAMPLES_RELATIVE_PATH}${directoryList.dir}/${dir.name}`, OUTPUT_DIR, `${dir.name}`);
     }));
-  }));
-
-  await Promise.all(SAMPLE_DIRS_NOSUBDIR.map(async (directoryList) => {
-    await createArchive(`${SAMPLES_RELATIVE_PATH}${directoryList.dir}`, OUTPUT_DIR, `${directoryList.name}`);
   }));
 }
 
