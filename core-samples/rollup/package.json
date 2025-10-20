@@ -9,8 +9,7 @@
     "watch": "rollup -c -w"
   },
   "dependencies": {
-    "@arcgis/core": "~4.34.0",
-    "rollup-plugin-import-css": "^4.0.2"
+    "@arcgis/core": "~4.34.0"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^28.0.3",
@@ -19,6 +18,7 @@
     "@rollup/plugin-terser": "^0.4.4",
     "rollup": "~4.52.4",
     "rollup-plugin-delete": "^3.0.1",
+    "rollup-plugin-import-css": "^4.0.2",
     "rollup-plugin-livereload": "^2.0.5",
     "rollup-plugin-serve": "^3.0.0"
   }

@@ -4,7 +4,7 @@ Integrating [Deno](https://deno.com//) with [`@arcgis/core`](https://www.npmjs.c
 
 Please refer to the [Deno installation](https://docs.deno.com/runtime/manual/getting_started) instructions for your environment.
 
-**DEPRECATED** since 4.34. New applications should be built with [components](../../component-samples/). Read about the [transition plan from widgets to components](https://developers.arcgis.com/javascript/latest/components-transition-plan/).
+**DEPRECATED** since 4.34.
 
 📁 **[Click here to download this directory as a ZIP file](https://esri.github.io/jsapi-resources/zips/jsapi-deno.zip)** 📁
 
