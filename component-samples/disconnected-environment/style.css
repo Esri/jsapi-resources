@@ -1,19 +1,3 @@
-@import "@esri/calcite-components/calcite/calcite.css";
-@import "@arcgis/core/assets/esri/themes/light/main.css";
-@import "@arcgis/map-components/main.css";
-@import "@arcgis/coding-components/main.css";
-
-/*
- * Starting from v4.33 of the JavaScript SDK, named exports for component 
- * stylesheets require modern build tools and Node.js (2020+). If you encounter 
- * issues, remove lines 3-4 and uncomment lines 14-15 below. It's recommended to 
- * upgrade to the latest versions of build tools to ensure support for named exports.
- * TypeScript projects with moduleResolution set to `node` may also have issues.
-*/
-
-/* @import "@arcgis/map-components/dist/cdn/main.css"; */
-/* @import "@arcgis/coding-components/dist/cdn/main.css"; */
-
 html,
 body {
   background-color: var(--calcite-ui-foreground-2);

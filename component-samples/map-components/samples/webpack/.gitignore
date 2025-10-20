@@ -1,8 +1,0 @@
-node_modules
-dist
-.DS_store
-.DS_Store
-
-# Package lock files
-yarn.lock
-package-lock.json

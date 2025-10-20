@@ -1,7 +1,8 @@
 import del from "rollup-plugin-delete";
 import resolve from "@rollup/plugin-node-resolve";
 import terser from "@rollup/plugin-terser";
-import replace from "@rollup/plugin-replace"; // new at 4.32
+import replace from "@rollup/plugin-replace";
+import css from "rollup-plugin-import-css";
 
 export default {
   input: "src/main.js",
@@ -20,6 +21,7 @@ export default {
         "process.env.NODE_ENV": JSON.stringify("production"),
       },
     }),
+    css(),
     resolve(),
     terser(),
   ],

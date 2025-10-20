@@ -2,7 +2,7 @@
 
 Integrating Node.js with [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core) can be done by creating the app with native ES modules.
 
----
+**NOTE:** New applications should be built with [components](../../component-samples/). Read about the [transition plan from widgets to components](https://developers.arcgis.com/javascript/latest/components-transition-plan/).
 
 ## Known Issues
 
@@ -12,13 +12,13 @@ Integrating Node.js with [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/
 
 ## Get Started
 
-📁 **[Click here to download this directory as a ZIP file](https://esri.github.io/jsapi-resources/zips/core-sample-jsapi-node.zip)** 📁
+📁 **[Click here to download this directory as a ZIP file](https://esri.github.io/jsapi-resources/zips/jsapi-node.zip)** 📁
 
 Make sure you are running Node 20.18.0 or greater: `node -v`.
 
 To run a test app, execute these commands in a terminal window. No compiling or bundling is necessary.
 
-1. `npm install` - install the `@arcgis/core` package
+1. `npm install` - install the `@arcgis/core` package. You do not need to build the project files.
 2. `node projection.js` - run the app and the output will be written to the terminal window.
 
 ## Working with assets

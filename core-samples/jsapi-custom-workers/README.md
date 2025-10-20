@@ -1,10 +1,12 @@
-# ArcGIS Maps SDK for JavaScript with custom workers
+# ArcGIS Maps SDK for JavaScript with custom workers (Deprecated)
 
 This sample demonstrates using [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core) ES modules with custom workers.
 
+**DEPRECATED** since 4.34. New applications should be built with [components](../../component-samples/). Read about the [transition plan from widgets to components](https://developers.arcgis.com/javascript/latest/components-transition-plan/).
+
 ## Getting started
 
-📁 **[Click here to download this directory as a ZIP file](https://esri.github.io/jsapi-resources/zips/core-sample-jsapi-custom-workers.zip)** 📁
+📁 **[Click here to download this directory as a ZIP file](https://esri.github.io/jsapi-resources/zips/jsapi-custom-workers.zip)** 📁
 
 Run `npm install` and then start adding modules.
 

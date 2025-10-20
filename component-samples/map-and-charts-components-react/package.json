@@ -1,0 +1,37 @@
+{
+  "name": "map-and-charts-components-react-sample",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@arcgis/charts-components": "~4.34.0",
+    "@arcgis/core": "~4.34.0",
+    "@arcgis/map-components": "~4.34.0",
+    "@esri/calcite-components": "^3.3.2",
+    "react": "~19.2.0",
+    "react-dom": "~19.2.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "~5.0.4",
+    "typescript": "~5.8.3",
+    "vite": "~7.1.9"
+  },
+  "browserslist": {
+    "production": [
+      "last 4 chrome versions",
+      "last 4 edge versions",
+      "last 2 firefox versions",
+      "last 2 safari versions"
+    ],
+    "development": [
+      "last 4 chrome versions",
+      "last 4 edge versions",
+      "last 2 firefox versions",
+      "last 2 safari versions"
+    ]
+  }
+}

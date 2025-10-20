@@ -1,0 +1,16 @@
+#root,
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+arcgis-map {
+  display: block;
+  height: 100vh;
+}
+
+arcgis-chart {
+  width: 700px;
+  height: 550px;
+}

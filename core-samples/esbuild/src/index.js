@@ -2,6 +2,7 @@ import Bookmarks from "@arcgis/core/widgets/Bookmarks";
 import Expand from "@arcgis/core/widgets/Expand";
 import MapView from "@arcgis/core/views/MapView";
 import WebMap from "@arcgis/core/WebMap";
+import "./styles.css";
 
 const webmap = new WebMap({
   portalItem: {

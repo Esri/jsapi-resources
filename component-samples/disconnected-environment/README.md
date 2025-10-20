@@ -1,8 +1,8 @@
 # Maps SDK components in a disconnected environment with Vite
 
-📁 **[Click here to download this directory as a ZIP file](https://esri.github.io/jsapi-resources/zips/components-disconnected.zip)** 📁
+📁 **[Click here to download this directory as a ZIP file](https://esri.github.io/jsapi-resources/zips/disconnected-environment.zip)** 📁
 
-This project showcases [how to use the Maps SDK's components in a disconnected environment](https://developers.arcgis.com/javascript/latest/working-with-assets/) with Vite.
+This project showcases [how to use the Maps SDK's components in a disconnected environment](https://developers.arcgis.com/javascript/latest/working-with-assets/) with Vite, featuring the SDK's Map components, Coding components and core API.
 
 ## Get started
 

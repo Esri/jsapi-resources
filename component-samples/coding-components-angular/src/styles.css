@@ -1,0 +1,8 @@
+@import "@esri/calcite-components/calcite/calcite.css";
+@import "@arcgis/coding-components/main.css";
+@import "monaco-editor/min/vs/editor/editor.main.css";
+
+html,
+body {
+  background-color: var(--calcite-ui-foreground-2);
+}

@@ -1,0 +1,21 @@
+html,
+body {
+  background-color: var(--calcite-ui-foreground-2);
+}
+
+.editor-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 70vh;
+  min-height: 400px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1rem;
+}
+
+arcgis-arcade-editor {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}

@@ -2,7 +2,8 @@ import del from "rollup-plugin-delete";
 import serve from "rollup-plugin-serve";
 import livereload from "rollup-plugin-livereload";
 import resolve from "@rollup/plugin-node-resolve";
-import replace from "@rollup/plugin-replace"; // new at 4.32
+import replace from "@rollup/plugin-replace";
+import css from "rollup-plugin-import-css";
 
 export default {
   input: "src/main.js",
@@ -23,6 +24,7 @@ export default {
       },
     }),
     resolve(),
+    css(),
     serve("public"),
     livereload({
       watch: "public/main.js",
