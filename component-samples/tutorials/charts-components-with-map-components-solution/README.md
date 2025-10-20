@@ -1,6 +1,6 @@
-# Charts components with Map components - (solution)
+# Chart and map interactions - (solution)
 
-📁 **[Click here to download this directory as a ZIP file](https://esri.github.io/jsapi-resources/zips/charts-components-with-map-components-solution.zip)** 📁
+📁 **[Click here to download this directory as a ZIP file](https://esri.github.io/jsapi-resources/zips/chart-and-map-interactions-solution.zip)** 📁
 
 ## Get started
 
