@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+    <title>Component (Map and Charts) CDN sample</title>
+    <link rel="icon" href="data:;base64,=" />
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+
+      arcgis-map {
+        display: block;
+        height: 100vh;
+      }
+
+      arcgis-chart {
+        width: 700px;
+        height: 550px;
+      }
+    </style>
+
+    <!-- Load Calcite Components-->
+    <script type="module" src="https://js.arcgis.com/calcite-components/3.3.2/calcite.esm.js"></script>
+
+    <!-- Load the ArcGIS Maps SDK for JavaScript core API -->
+    <script src="https://js.arcgis.com/4.34/"></script>
+
+    <!-- Load the Map components -->
+    <script type="module" src="https://js.arcgis.com/4.34/map-components/"></script>
+
+    <!-- Load the Charts components -->
+    <script type="module" src="https://js.arcgis.com/4.34/charts-components/"></script>
+  </head>
+
+  <body>
+    <arcgis-map item-id="02b37471d5d84cacbebcccd785460e94">
+      <arcgis-chart layer-item-id="a1dcdab248cc4618b6426fd5b16106c0" chart-index="0" slot="bottom-right"></arcgis-chart>
+      <arcgis-zoom slot="top-left"></arcgis-zoom>
+      <arcgis-search slot="top-right"></arcgis-search>
+      <arcgis-legend slot="bottom-left"></arcgis-legend>
+    </arcgis-map>
+  </body>
+
+  <script type="module">
+    const Graphic = await $arcgis.import("@arcgis/core/Graphic.js");
+
+    const viewElement = document.querySelector("arcgis-map");
+
+    // Wait for the view to be ready before adding additional functionality
+    await viewElement.viewOnReady();
+
+    // First create a point geometry (this is the location of the Titanic)
+    const point = {
+      type: "point", // autocasts as new Point()
+      longitude: -118.38,
+      latitude: 33.34,
+    };
+
+    // Create a symbol for drawing the point
+    const markerSymbol = {
+      type: "simple-marker",
+      style: "triangle",
+      size: 20,
+      color: "red",
+      outline: {
+        color: "white",
+        width: 2,
+      },
+    };
+
+    // Create a graphic and add the geometry and symbol to it
+    const pointGraphic = new Graphic({
+      geometry: point,
+      symbol: markerSymbol,
+    });
+
+    viewElement.graphics.add(pointGraphic);
+  </script>
+</html>

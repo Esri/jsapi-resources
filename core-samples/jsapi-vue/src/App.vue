@@ -6,10 +6,10 @@
 import WebMap from "@arcgis/core/WebMap";
 import MapView from "@arcgis/core/views/MapView";
 import Bookmarks from "@arcgis/core/widgets/Bookmarks";
-import Expand from "@arcgis/core/widgets/Expand"; 
+import Expand from "@arcgis/core/widgets/Expand";
 
 export default {
-  name: 'App',
+  name: "App",
   async mounted() {
     const webmap = new WebMap({
       portalItem: {
@@ -24,7 +24,7 @@ export default {
     });
 
     const bookmarks = new Bookmarks({
-      view: view
+      view: view,
     });
 
     const bkExpand = new Expand({
@@ -44,10 +44,10 @@ export default {
         console.log("No bookmarks in this webmap.");
       }
     });
-  }
-}
+  },
+};
 </script>
 
 <style scoped>
-  @import './main.css';
+@import "./main.css";
 </style>

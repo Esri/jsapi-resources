@@ -1,0 +1,8 @@
+@import "@esri/calcite-components/calcite/calcite.css";
+@import "@arcgis/map-components/main.css";
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}

@@ -1,0 +1,8 @@
+arcgis-map {
+  display: block;
+}
+
+arcgis-chart {
+  width: 700px;
+  height: 550px;
+}

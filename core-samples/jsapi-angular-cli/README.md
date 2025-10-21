@@ -1,10 +1,12 @@
-# ArcGIS Maps SDK for JavaScript with Angular CLI
+# ArcGIS Maps SDK for JavaScript with Angular CLI (Deprecated)
 
 This sample demonstrates how to use [@arcgis/core](https://www.npmjs.com/package/@arcgis/core) ES modules with Angular.
 
+**DEPRECATED** since 4.34. New applications should be built with [components](../../component-samples/). Read about the [transition plan from widgets to components](https://developers.arcgis.com/javascript/latest/components-transition-plan/).
+
 ## Get Started
 
-📁 **[Click here to download this directory as a ZIP file](https://esri.github.io/jsapi-resources/zips/core-sample-jsapi-angular-cli.zip)** 📁
+📁 **[Click here to download this directory as a ZIP file](https://esri.github.io/jsapi-resources/zips/jsapi-angular-cli.zip)** 📁
 
 Run `npm install` and then start adding functionality.
 

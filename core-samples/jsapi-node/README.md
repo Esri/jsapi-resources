@@ -2,8 +2,6 @@
 
 Integrating Node.js with [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core) can be done by creating the app with native ES modules.
 
----
-
 ## Known Issues
 
 - As of version 4.33, when using projection operators in native Node.js applications, the associated assets (e.g., .wasm files) are now served via the ArcGIS CDN by default. This is similar to how other default SDK assets are hosted. Additionally, it is no longer necessary to transpile to CommonJS (CJS). If you need to host the SDK's assets locally, you can serve them from your web server and reference them in your application. For example: esriConfig.assetsPath = "https://mywebsite.com/assets"; This breaking change includes the [projectOperator](https://developers.arcgis.com/javascript/latest/api-reference/esri-geometry-operators-projectOperator.html), [shapePreservingProjectOperator](https://developers.arcgis.com/javascript/latest/api-reference/esri-geometry-operators-shapePreservingProjectOperator.html), [geographicTransformationUtils](https://developers.arcgis.com/javascript/latest/api-reference/esri-geometry-operators-support-geographicTransformationUtils.html) as well as the geodetic and geodesic operators, and the legacy [projection](https://developers.arcgis.com/javascript/latest/api-reference/esri-geometry-projection.html) module.
@@ -12,13 +10,13 @@ Integrating Node.js with [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/
 
 ## Get Started
 
-📁 **[Click here to download this directory as a ZIP file](https://esri.github.io/jsapi-resources/zips/core-sample-jsapi-node.zip)** 📁
+📁 **[Click here to download this directory as a ZIP file](https://esri.github.io/jsapi-resources/zips/jsapi-node.zip)** 📁
 
 Make sure you are running Node 20.18.0 or greater: `node -v`.
 
 To run a test app, execute these commands in a terminal window. No compiling or bundling is necessary.
 
-1. `npm install` - install the `@arcgis/core` package
+1. `npm install` - install the `@arcgis/core` package. You do not need to build the project files.
 2. `node projection.js` - run the app and the output will be written to the terminal window.
 
 ## Working with assets

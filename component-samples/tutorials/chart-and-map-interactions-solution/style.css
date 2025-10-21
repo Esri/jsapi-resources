@@ -1,0 +1,11 @@
+/* Add CSS styles to make the `html` and `body` elements the full width and height of their parent containers. */
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+/* Add CSS styles to make the `arcgis-chart` element's width 800px. */
+arcgis-chart {
+  width: 800px;
+}

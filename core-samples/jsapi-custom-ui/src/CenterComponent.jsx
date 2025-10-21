@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import { watch } from '@arcgis/core/core/reactiveUtils';
-import './center-component.css';
+import { useState, useEffect } from "react";
+import { watch } from "@arcgis/core/core/reactiveUtils";
+import "./center-component.css";
 
 /**
  * React component that can be used in an ArcGIS JS SDK application.
@@ -20,13 +20,18 @@ const CenterComponent = ({ view, id }) => {
         const { latitude, longitude } = value.center;
         // Update the component's display
         setCenter(`${longitude.toFixed(4)}, ${latitude.toFixed(4)}`);
-    });
+      },
+    );
     // Clean up any handles or event listeners
     // created in useEffect method
     return () => handle.remove();
   }, [view]);
 
- return <div id={id} className="center-component">Center: {center}</div>;
+  return (
+    <div id={id} className="center-component">
+      Center: {center}
+    </div>
+  );
 };
 
 export default CenterComponent;

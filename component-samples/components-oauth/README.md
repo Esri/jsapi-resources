@@ -1,6 +1,6 @@
 # ArcGIS Maps SDK for Javascript: Map Components Oauth Sample
 
-📁 **[Click here to download this directory as a ZIP file](https://esri.github.io/jsapi-resources/zips/map-components-ouath-sample-vite.zip)** 📁
+📁 **[Click here to download this directory as a ZIP file](https://esri.github.io/jsapi-resources/zips/components-oauth.zip)** 📁
 
 This sample demonstrates how to log in to ArcGIS Online or Enterprise using `OAuth 2.0` authentication and the `IdentityManager` with the ArcGIS JavaScript SDK for Map Components with ES modules in a Vite-based application.
 
