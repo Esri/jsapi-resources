@@ -1,7 +1,7 @@
 Sample,Build size (MB),Build file count,Main bundle file,Main bundle size (MB),Main bundle gzipped size (MB),Main bundle brotli compressed size (MB),Load time (ms),Total runtime (ms),Loaded size (MB),Total JS requests,Total JS size (MB),Total HTTP requests,JS heap size (MB)
-esbuild 0.25.0,22.91,1526,index.js,0.30,0.08,0.07,10042,23868,5.60,515,4.00,612,30.67
-Angular 20.3.3,13.75,1244,chunk-QVKBXHBS.js,1.09,0.27,0.22,9379,23207,5.73,517,4.15,614,36.39
-React 19.2.0,12.70,704,index-Cv-cEcH6.js,1.72,0.50,0.40,8200,21984,5.70,204,4.10,301,27.18
-Vue 3.5.22,12.57,703,index-dQOoJ2Ut.js,1.59,0.46,0.37,8605,22453,5.56,204,3.97,301,26.99
-Rollup 4.52.4,12.35,703,main.js,1.51,0.42,0.33,9486,23244,5.41,204,3.84,300,31.59
-Webpack 5.102.0,15.52,496,index.js,1.62,0.47,0.36,13128,26623,6.02,71,4.42,168,32.34
+esbuild 0.25.0,22.91,1526,index.js,0.30,0.08,0.07,9416,22893,5.60,515,4.00,612,35.33
+Angular 20.3.3,13.75,1244,chunk-QVKBXHBS.js,1.09,0.27,0.22,9288,22800,5.73,517,4.15,614,41.41
+React 19.2.0,12.70,704,index-Cv-cEcH6.js,1.72,0.50,0.40,8916,22662,5.70,204,4.10,301,26.37
+Vue 3.5.22,12.57,703,index-dQOoJ2Ut.js,1.59,0.46,0.37,9513,23316,5.57,204,3.97,301,28.07
+Rollup 4.52.4,12.35,703,main.js,1.51,0.42,0.33,8950,22806,5.41,204,3.84,300,27.26
+Webpack 5.102.0,15.52,496,index.js,1.62,0.47,0.36,8212,22033,6.02,71,4.42,168,33.12
