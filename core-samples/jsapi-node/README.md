@@ -2,8 +2,6 @@
 
 Integrating Node.js with [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core) can be done by creating the app with native ES modules.
 
-**NOTE:** New applications should be built with [components](../../component-samples/). Read about the [transition plan from widgets to components](https://developers.arcgis.com/javascript/latest/components-transition-plan/).
-
 ## Known Issues
 
 - As of version 4.33, when using projection operators in native Node.js applications, the associated assets (e.g., .wasm files) are now served via the ArcGIS CDN by default. This is similar to how other default SDK assets are hosted. Additionally, it is no longer necessary to transpile to CommonJS (CJS). If you need to host the SDK's assets locally, you can serve them from your web server and reference them in your application. For example: esriConfig.assetsPath = "https://mywebsite.com/assets"; This breaking change includes the [projectOperator](https://developers.arcgis.com/javascript/latest/api-reference/esri-geometry-operators-projectOperator.html), [shapePreservingProjectOperator](https://developers.arcgis.com/javascript/latest/api-reference/esri-geometry-operators-shapePreservingProjectOperator.html), [geographicTransformationUtils](https://developers.arcgis.com/javascript/latest/api-reference/esri-geometry-operators-support-geographicTransformationUtils.html) as well as the geodetic and geodesic operators, and the legacy [projection](https://developers.arcgis.com/javascript/latest/api-reference/esri-geometry-projection.html) module.
