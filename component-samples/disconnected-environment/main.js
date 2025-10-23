@@ -1,6 +1,5 @@
 import "./style.css"; // CSS to style the app
 
-import esriConfig from "@arcgis/core/config.js";
 import { setAssetPath as setCalciteAssetPath } from "@esri/calcite-components";
 import { setAssetPath as setMapAssetPath } from "@arcgis/map-components";
 import { setAssetPath as setCodingAssetPath } from "@arcgis/coding-components";
@@ -16,16 +15,11 @@ import "@esri/calcite-components/components/calcite-scrim";
 import Graphic from "@arcgis/core/Graphic";
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 
-// Set assets path for @arcgis/core, @esri/calcite-components,
+// Set assets path for @esri/calcite-components,
 // @arcgis/map-components and @arcgis/coding-components
-esriConfig.assetsPath = "./assets";
 setCalciteAssetPath("./assets");
 setMapAssetPath("./assets");
 setCodingAssetPath("./assets");
-
-// Optional:
-// Point to your Enterprise /portal/apps/fonts directory
-// esriConfig.fontsUrl = "https://<your-enterprise-portal>.com/portal/apps/fonts/";
 
 // Get the Map element
 const mapElement = document.querySelector("arcgis-map");
