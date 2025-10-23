@@ -5,6 +5,13 @@
     <link rel="icon" href="data:;base64,=" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Maps SDK in a disconnected environment</title>
+    <script>
+      globalThis.esriConfig = {
+        assetsPath: "./assets",
+        // Optional: point to your Enterprise /portal/apps/fonts directory
+        // fontsUrl: "https://<your-enterprise-portal>.com/portal/apps/fonts/",
+      };
+    </script>
   </head>
   <body>
     <div class="container">
