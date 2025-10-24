@@ -1,7 +1,7 @@
 Sample,Build size (MB),Build file count,Main bundle file,Main bundle size (MB),Main bundle gzipped size (MB),Main bundle brotli compressed size (MB),Load time (ms),Total runtime (ms),Loaded size (MB),Total JS requests,Total JS size (MB),Total HTTP requests,JS heap size (MB)
-esbuild 0.25.0,13.49,1239,index.js,0.30,0.08,0.07,9096,22966,5.60,515,4.00,612,36.79
-Angular 20.3.3,13.75,1244,chunk-QVKBXHBS.js,1.09,0.27,0.22,10492,24156,5.73,517,4.15,614,31.84
-React 19.2.0,12.70,704,index-jiQ-nvh9.js,1.72,0.50,0.40,9928,23562,5.70,204,4.10,301,35.04
-Vue 3.5.22,12.57,703,index-YOWEJfKb.js,1.59,0.46,0.37,9368,22855,5.57,204,3.97,301,37.46
-Rollup 4.52.4,12.35,703,main.js,1.51,0.42,0.33,8516,22269,5.41,204,3.84,300,35.33
-Webpack 5.102.0,15.52,496,index.js,1.62,0.47,0.36,9045,22823,6.02,71,4.42,168,27.75
+esbuild 0.25.0,13.49,1239,index.js,0.30,0.08,0.07,9586,23359,5.60,515,4.00,612,31.78
+Angular 20.3.3,13.75,1244,chunk-QVKBXHBS.js,1.09,0.27,0.22,9375,23149,5.73,517,4.15,614,31.70
+React 19.2.0,12.70,704,index-jiQ-nvh9.js,1.72,0.50,0.40,8966,22745,5.70,204,4.10,301,31.70
+Vue 3.5.22,12.57,703,index-YOWEJfKb.js,1.59,0.46,0.37,9359,23067,5.57,204,3.97,301,29.91
+Rollup 4.52.4,12.35,703,main.js,1.51,0.42,0.33,9033,22839,5.41,204,3.84,300,31.38
+Webpack 5.102.0,15.52,496,index.js,1.62,0.47,0.36,9269,23045,6.02,71,4.42,168,36.09
