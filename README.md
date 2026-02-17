@@ -1,28 +1,21 @@
 Resources for the ArcGIS Maps SDK for JavaScript
 ===============
-A collection of resources for developers using the [ArcGIS Maps SDK for JavaScript](https://js.arcgis.com). Refer to the README files in each subdirectory for specific instructions on how to use a particular resource. 
 
-## Samples
+This repository provides a collection of code templates that provide _proof-of-concept_ for using the [ArcGIS Maps SDK for JavaScript](https://js.arcgis.com) components with a variety of popular frameworks and module bundlers. 
 
-This repository provides a collection of code samples that provide _proof-of-concept_ for using the ArcGIS Maps SDK for JavaScript components and core API with a variety of popular build tools, frameworks and module bundlers. 
+Refer to the README files in each subdirectory for specific instructions on how to use a particular resource.
 
-* [Components samples](./component-samples/)
-* [Core API samples](./core-samples/)
+> [!TIP]
+> **Got questions?** Post them to the [JavaScript Maps SDK community site](https://community.esri.com/t5/arcgis-javascript-maps-sdk-questions/bd-p/arcgis-api-for-javascript-questions).
+
 
 ## HTML OAuth callback page
 
-If you have set OAuthInfo's [`popup`](https://developers.arcgis.com/javascript/latest/api-reference/esri-identity-OAuthInfo.html#popup) property to `true`, you'll need to host a [callback page](./oauth/) on your server. For more information, visit the Maps SDK's [Access secure resources](https://developers.arcgis.com/javascript/latest/secure-resources/) guide topic.
-
-## TypeScript declaration files
-
-TypeScript definitions are included in the [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/core) npm package.
-
-## Contributing
-
-Please see our [guidelines for contributing](CONTRIBUTING.md).
+If you have set OAuthInfo's [`popup`](https://developers.arcgis.com/javascript/latest/api-reference/esri-identity-OAuthInfo.html#popup) property to `true`, you'll need to host a [callback page](./templates/oauth/) on your server. For more information, visit the Maps SDK's [Access secure resources](https://developers.arcgis.com/javascript/latest/secure-resources/) guide topic.
 
 ## Licensing
-Copyright 2025 Esri
+
+Copyright 2026 Esri
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
