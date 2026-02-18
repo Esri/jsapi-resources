@@ -11,7 +11,7 @@ Refer to the README files in each subdirectory for specific instructions on how 
 
 ## HTML OAuth callback page
 
-If you have set OAuthInfo's [`popup`](https://developers.arcgis.com/javascript/latest/api-reference/esri-identity-OAuthInfo.html#popup) property to `true`, you'll need to host a [callback page](./templates/oauth/) on your server. For more information, visit the Maps SDK's [Access secure resources](https://developers.arcgis.com/javascript/latest/secure-resources/) guide topic.
+If you have set OAuthInfo's [`popup`](https://developers.arcgis.com/javascript/latest/api-reference/esri-identity-OAuthInfo.html#popup) property to `true`, you'll need to host a [callback page](./oauth/) on your server. For more information, visit the Maps SDK's [Access secure resources](https://developers.arcgis.com/javascript/latest/secure-resources/) guide topic.
 
 ## Licensing
 
