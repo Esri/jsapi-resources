@@ -1,6 +1,6 @@
 # ArcGIS Maps SDK for JavaScript Vite TypeScript template
 
-📁 **[Click here to download this directory as a ZIP file](https://esri.github.io/jsapi-resources/zips/map-and-charts-components-vite.zip)** 📁
+📁 **[Click here to download this directory as a ZIP file](https://esri.github.io/jsapi-resources/zips/js-maps-sdk-vite.zip)** 📁
 
 This template demonstrates how to use the [ArcGIS Maps SDK for JavaScript](https://developers.arcgis.com/javascript/latest/) in a Vite TypeScript application.
 

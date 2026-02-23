@@ -10,7 +10,7 @@ Integrating Node.js with [`@arcgis/core`](https://www.npmjs.com/package/@arcgis/
 
 ## Get Started
 
-📁 **[Click here to download this directory as a ZIP file](https://esri.github.io/jsapi-resources/zips/jsapi-node.zip)** 📁
+📁 **[Click here to download this directory as a ZIP file](https://esri.github.io/jsapi-resources/zips/js-maps-sdk-node.zip)** 📁
 
 Make sure you are running Node 22.21.0 or greater: `node -v`.
 

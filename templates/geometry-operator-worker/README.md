@@ -1,6 +1,6 @@
 # Map components geometry operator worker sample
 
-📁 **[Click here to download this directory as a ZIP file](https://esri.github.io/jsapi-resources/zips/map-components-geometry-operator-worker.zip)** 📁
+📁 **[Click here to download this directory as a ZIP file](https://esri.github.io/jsapi-resources/zips/geometry-operator-worker.zip)** 📁
 
 This project demonstrates using the SDK's geometry operators inside a web worker. You can continue to perform tasks in the user interface while the worker handles potentially resource intensive processing on a background thread. The worker implementation is simplified by using [comlink](https://github.com/GoogleChromeLabs/comlink).
 

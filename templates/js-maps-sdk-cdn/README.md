@@ -1,6 +1,6 @@
 # ArcGIS Maps SDK for JavaScript CDN template
 
-📁 **[Click here to download this directory as a ZIP file](https://esri.github.io/jsapi-resources/zips/map-and-charts-components-cdn.zip)** 📁
+📁 **[Click here to download this directory as a ZIP file](https://esri.github.io/jsapi-resources/zips/js-maps-sdk-cdn.zip)** 📁
 
 This template demonstrates how to use the [ArcGIS Maps SDK for JavaScript](https://developers.arcgis.com/javascript/latest/) in a CDN application.
 
