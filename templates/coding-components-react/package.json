@@ -1,0 +1,36 @@
+{
+  "name": "coding-components-react-template",
+  "description": "ArcGIS Maps SDK for JavaScript Coding components React template",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@arcgis/coding-components": "^5.0.0",
+    "@arcgis/core": "^5.0.0",
+    "@esri/calcite-components": "^5.0.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "~5.1.2",
+    "vite": "^7.2.2"
+  },
+  "browserslist": {
+    "production": [
+      "last 4 chrome versions",
+      "last 4 edge versions",
+      "last 2 firefox versions",
+      "last 2 safari versions"
+    ],
+    "development": [
+      "last 4 chrome versions",
+      "last 4 edge versions",
+      "last 2 firefox versions",
+      "last 2 safari versions"
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+#root,
+html,
+body {
+  background-color: var(--calcite-ui-foreground-2);
+  height: 100%;
+  margin: 0;
+}
+
+arcgis-chart {
+  width: 350px;
+  height: 250px;
+}

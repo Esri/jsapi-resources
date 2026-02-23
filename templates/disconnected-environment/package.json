@@ -1,0 +1,27 @@
+{
+  "name": "disconnected-environment-template",
+  "description": "ArcGIS Maps SDK for JavaScript disconnected environment Vite template",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npm run copy:all && vite",
+    "build": "npm run copy:all && vite build",
+    "preview": "vite preview",
+    "copy:all": "npm run copy:calcite && npm run copy:core && npm run copy:components",
+    "copy:calcite": "cpx \"node_modules/@esri/calcite-components/dist/cdn/assets/**/*.*\" ./public/assets",
+    "copy:core": "cpx \"node_modules/@arcgis/core/assets/**/*.*\" ./public/assets",
+    "copy:components": "cpx \"node_modules/@arcgis/coding-components/dist/cdn/assets/**/*.*\" ./public/assets && cpx \"node_modules/@arcgis/map-components/dist/cdn/assets/**/*.*\" ./public/assets && cpx \"node_modules/@arcgis/charts-components/dist/cdn/assets/**/*.*\" ./public/assets && cpx \"node_modules/@arcgis/common-components/dist/cdn/assets/**/*.*\" ./public/common-components/assets"
+  },
+  "dependencies": {
+    "@arcgis/charts-components": "^5.0.0",
+    "@arcgis/coding-components": "^5.0.0",
+    "@arcgis/common-components": "^5.0.0",
+    "@arcgis/core": "^5.0.0",
+    "@arcgis/map-components": "^5.0.0",
+    "@esri/calcite-components": "^5.0.0"
+  },
+  "devDependencies": {
+    "cpx2": "^8.0.0",
+    "vite": "^7.2.2"
+  }
+}

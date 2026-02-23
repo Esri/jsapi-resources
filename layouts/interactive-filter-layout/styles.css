@@ -1,0 +1,251 @@
+calcite-shell {
+  --calcite-color-brand: #815432;
+  --calcite-color-brand-hover: #634327;
+  --calcite-color-brand-press: #583d1c;
+  --calcite-color-background: #e3dccb;
+  --calcite-color-foreground-1: #f4ebd4;
+  --calcite-color-foreground-2: #f0e0c0;
+  --calcite-color-foreground-3: #dfcdaa;
+  --calcite-color-foreground-current: #d8bba0;
+  --calcite-color-info: #267121;
+  --calcite-color-success: #308e29;
+  --calcite-color-warning: #f1c21b;
+  --calcite-color-danger: #d83020;
+  --calcite-color-danger-hover: #a82b1e;
+  --calcite-color-danger-press: #851012;
+  --calcite-color-text-1: #3a3335;
+  --calcite-color-text-2: #3d3638;
+  --calcite-color-text-3: #463d40;
+  --calcite-color-text-inverse: #ffffff;
+  --calcite-color-text-link: #267121;
+  --calcite-color-border-1: #e6ddd1;
+  --calcite-color-border-2: #e8e1dc;
+  --calcite-color-border-3: #e6ddd1;
+  --calcite-color-border-input: #a1a19e;
+  --calcite-scrim-background: var(--calcite-color-background);
+}
+
+.calcite-mode-dark calcite-shell {
+  --calcite-color-brand: #ca9834;
+  --calcite-color-brand-hover: #864326;
+  --calcite-color-brand-press: #6f4220;
+  --calcite-color-background: #423b33;
+  --calcite-color-foreground-1: #332f29;
+  --calcite-color-foreground-2: #2c2a26;
+  --calcite-color-foreground-3: #1a1917;
+  --calcite-color-foreground-current: #4a4033;
+  --calcite-color-info: #2d8626;
+  --calcite-color-success: #36da43;
+  --calcite-color-warning: #ffc900;
+  --calcite-color-danger: #fe583e;
+  --calcite-color-danger-hover: #ff0015;
+  --calcite-color-danger-press: #d90012;
+  --calcite-color-text-1: #fdf0d5;
+  --calcite-color-text-2: #fff6f6;
+  --calcite-color-text-3: #ffffff;
+  --calcite-color-text-inverse: #000000;
+  --calcite-color-text-link: #2d8626;
+  --calcite-color-border-1: #564e4a;
+  --calcite-color-border-2: #40383a;
+  --calcite-color-border-3: #47423e;
+  --calcite-color-border-input: #4b4245;
+}
+
+arcgis-scene * {
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.vintage-map-title {
+  padding: var(--calcite-size-sm) var(--calcite-size-xs);
+  font-family: Georgia, "Times New Roman", Times, serif;
+  text-align: center;
+  pointer-events: none;
+  width: 26rem;
+  background: var(--calcite-color-foreground-1);
+  color: var(--calcite-color-text-1);
+  border: 3px double var(--calcite-color-brand);
+}
+
+.map-title-main {
+  font-size: 2.5rem;
+  font-weight: bold;
+  letter-spacing: 2.5px;
+  color: var(--calcite-color-text-3);
+  text-transform: uppercase;
+}
+
+.map-title-main:nth-of-type(2) {
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+}
+.map-title-sub {
+  font-size: 1rem;
+  font-style: italic;
+  margin: 0.25rem 0 0;
+  color: var(--calcite-color-text-3);
+  opacity: 0.75;
+}
+
+.attribution-text {
+  font-size: 0.75rem;
+  font-style: italic;
+  margin: 0.125rem 0;
+  color: var(--calcite-color-text-3);
+  font-family: Georgia, "Times New Roman", Times, serif;
+  max-width: 26rem;
+  text-align: justify;
+}
+
+.map-title-detail {
+  font-size: 0.875rem;
+  letter-spacing: 1px;
+  font-style: italic;
+  color: var(--calcite-color-text-3);
+  border-top: 1px solid color-mix(in srgb, var(--calcite-color-brand) 25%, var(--calcite-color-background) 100%);
+  margin-block-start: var(--calcite-size-xxs);
+  padding-block-start: var(--calcite-size-xxs);
+}
+
+.map-title-super {
+  font-size: 0.85rem;
+  font-style: italic;
+  color: color-mix(in srgb, var(--calcite-color-brand) 100%, var(--calcite-color-background) 50%);
+  margin-block-end: var(--calcite-size-xxxs);
+  letter-spacing: 1px;
+  text-transform: none;
+}
+
+#inset-map {
+  height: 140px;
+  overflow: hidden;
+}
+
+calcite-panel {
+  width: 18rem;
+  border: 3px double var(--calcite-color-brand);
+}
+
+calcite-tile {
+  height: 100%;
+  border: 3px double var(--calcite-color-brand);
+}
+calcite-tile:first-of-type {
+  margin-inline-end: 0.5rem;
+}
+
+calcite-tile[selected] {
+  --calcite-tile-background-color: var(--calcite-color-foreground-current);
+}
+
+calcite-tile:not(:last-of-type) {
+  margin-block-end: 0.5rem;
+}
+
+.point-symbol-svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+  color: var(--calcite-list-item-icon-color, #6b6f76);
+}
+
+calcite-list-item[selected] .point-symbol-svg {
+  color: var(--calcite-list-item-icon-color-selected, var(--calcite-list-item-icon-color, #6b6f76));
+}
+
+calcite-list-item[value="hiking:easy"] {
+  --calcite-list-item-icon-color-selected: #2e7d32;
+}
+
+calcite-list-item[value="hiking:medium"] {
+  --calcite-list-item-icon-color-selected: #2196f3;
+}
+
+calcite-list-item[value="hiking:difficult"] {
+  --calcite-list-item-icon-color-selected: #0f0f0f;
+}
+
+calcite-list-item[value="cablecar:open"][selected],
+calcite-list-item[value="railway:all"][selected] {
+  --calcite-list-item-icon-color-selected: #f57c00;
+}
+
+calcite-list-item[value="hiking:easy"][selected] {
+  --calcite-icon-color: #2e7d32;
+}
+
+calcite-list-item[value="hiking:medium"][selected] {
+  --calcite-icon-color: #2196f3;
+}
+
+calcite-list-item[value="hiking:difficult"][selected] {
+  --calcite-icon-color: #0f0f0f;
+}
+
+calcite-list-item[value="cablecar:open"][selected],
+calcite-list-item[value="railway:all"][selected] {
+  --calcite-icon-color: #f57c00;
+}
+
+.block-toggle-row {
+  padding: 0.75rem 0.75rem 0;
+  border-top: 1px solid var(--calcite-color-border-3);
+}
+
+.line-preview-svg {
+  display: flex;
+}
+
+[slot="bottom-right"] calcite-block {
+  --calcite-block-content-space: 0;
+  margin-block: 0;
+}
+
+/* todo cleanup vignette */
+
+arcgis-scene {
+  position: relative;
+}
+
+arcgis-scene::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(227, 220, 203, 0) 75%, rgba(227, 220, 203, 1) 98%);
+  transition: opacity 900ms ease;
+  z-index: 1;
+}
+
+arcgis-scene::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(227, 220, 203, 0) 50%,
+    rgba(227, 220, 203, 0.4) 70%,
+    rgba(227, 220, 203, 0.8) 85%,
+    rgba(227, 220, 203, 1) 100%
+  );
+  transition: opacity 900ms ease;
+  z-index: 0;
+}
+
+body.calcite-mode-dark arcgis-scene::after {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(36, 29, 21, 0) 50%,
+    rgba(36, 29, 21, 0.4) 70%,
+    rgba(36, 29, 21, 0.8) 85%,
+    rgba(36, 29, 21, 1) 100%
+  );
+  transition: opacity 900ms ease;
+}
+
+body.calcite-mode-dark arcgis-scene::before {
+  background: linear-gradient(to bottom, rgba(36, 29, 21, 0) 75%, rgba(36, 29, 21, 1) 98%);
+  transition: opacity 900ms ease;
+  z-index: 1;
+}

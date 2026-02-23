@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+    <title>ArcGIS Maps SDK for JavaScript CDN template</title>
+    <link rel="icon" href="data:;base64,=" />
+    <style>
+      html,
+      body {
+        background-color: var(--calcite-ui-foreground-2);
+        height: 100%;
+        margin: 0;
+      }
+
+      arcgis-chart {
+        width: 350px;
+        height: 250px;
+      }
+    </style>
+    <!-- Load the ArcGIS Maps SDK for JavaScript from the CDN -->
+    <script type="module" src="https://js.arcgis.com/5.0/"></script>
+
+    <!-- Optional: If you're loading secure web maps -->
+    <!-- Configure the IdentityManager before the SDK's components load -->
+    <!-- <script type="module">
+      const [config, idMgr, OAuthInfo] = await $arcgis.import([
+        "@arcgis/core/config.js",
+        "@arcgis/core/identity/IdentityManager.js",
+        "@arcgis/core/identity/OAuthInfo.js",
+      ]);
+
+      // Default portalUrl is ArcGIS Online
+      // Only set if using other portals
+      //config.portalUrl = "YOUR_PORTAL_URL";
+      const oAuthInfo = new OAuthInfo({
+        appId: "YOUR_APP_ID",
+        //portalUrl: config.portalUrl
+      });
+      idMgr.registerOAuthInfos([oAuthInfo]);
+    </script> -->
+  </head>
+
+  <body>
+    <!-- The Shell component is used as a layout for this template -->
+    <calcite-shell content-behind>
+      <calcite-navigation slot="header">
+        <!-- Heading and description dynamically populated below using JavaScript -->
+        <calcite-navigation-logo heading-level="1" slot="logo"></calcite-navigation-logo>
+      </calcite-navigation>
+
+      <!-- The Map component fits to the size of the parent element -->
+      <!-- The basemap, extent, zoom and more are provided by the Web Map (item-id) -->
+      <arcgis-map item-id="dd4b2f25487d4a37a45093ba6acd026d">
+        <arcgis-zoom slot="top-left"></arcgis-zoom>
+        <arcgis-search slot="top-right"></arcgis-search>
+        <arcgis-expand slot="bottom-left">
+          <arcgis-legend></arcgis-legend>
+        </arcgis-expand>
+        <!-- A Feature Layer in the Web Map has an associated chart (layer-item-id) -->
+        <arcgis-chart
+          layer-item-id="b1717962dab247ad93eaca257b32fe02"
+          chart-index="1"
+          slot="bottom-right"
+        ></arcgis-chart>
+      </arcgis-map>
+    </calcite-shell>
+  </body>
+
+  <script type="module">
+    // Import modules from the SDK's core API
+    const Graphic = await $arcgis.import("@arcgis/core/Graphic.js");
+    const Point = await $arcgis.import("@arcgis/core/geometry/Point.js");
+    const SimpleMarkerSymbol = await $arcgis.import("@arcgis/core/symbols/SimpleMarkerSymbol.js");
+    const SimpleLineSymbol = await $arcgis.import("@arcgis/core/symbols/SimpleLineSymbol.js");
+
+    const viewElement = document.querySelector("arcgis-map");
+    const calciteNavLogo = document.querySelector("calcite-navigation-logo");
+
+    viewElement.addEventListener("arcgisViewReadyChange", () => {
+      // Use metadata from the Web Map to populate the header
+      const { title, description } = viewElement.map.portalItem;
+
+      if (calciteNavLogo) {
+        calciteNavLogo.heading = title === "" ? "A web map" : title;
+        calciteNavLogo.description = description === "" ? "ArcGIS Maps SDK for JavaScript template" : description;
+      }
+
+      // Define a point geometry
+      const point = new Point({
+        longitude: -98.38,
+        latitude: 38.34,
+      });
+
+      // Create an outline for the marker symbol
+      const outline = new SimpleLineSymbol({
+        color: "white",
+        width: 2,
+      });
+
+      // Create a symbol for drawing the point
+      const symbol = new SimpleMarkerSymbol({
+        style: "triangle",
+        size: 20,
+        color: "red",
+        outline,
+      });
+
+      // Create a graphic and add the geometry and symbol to it
+      const pointGraphic = new Graphic({
+        geometry: point,
+        symbol,
+      });
+
+      // Add a graphic to demonstrate custom visualizations beyond Web Map content
+      viewElement.graphics.add(pointGraphic);
+    });
+  </script>
+</html>

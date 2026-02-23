@@ -1,6 +1,0 @@
-Sample,Build size (MB),Build file count,Main bundle file,Main bundle size (MB),Main bundle gzipped size (MB),Main bundle brotli compressed size (MB),Load time (ms), Total runtime (ms), Loaded size (MB), JS heap size (MB)
-Angular 13.2.5,7.99,212,main.d5ce15753c4dbfab.js,1.67,0.47,0.38,8642,11867,5.24,23.15
-CRA 5.0.0,27.68,431,main.c9cf2225.js,1.68,0.46,0.37,7339,10467,5.13,23.75
-Vue 3.2.31,7.25,281,index.3419002c.js,1.49,0.42,0.34,7480,10746,4.86,21.28
-Rollup 2.70.1,7.08,280,main.js,1.40,0.38,0.31,8389,11543,4.74,22.54
-Webpack 5.70.0,8.02,205,index.js,1.51,0.40,0.33,7703,10838,4.95,19.95

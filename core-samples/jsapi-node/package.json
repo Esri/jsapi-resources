@@ -1,9 +1,0 @@
-{
-  "name": "core-node-sample",
-  "version": "0.0.0",
-  "private": true,
-  "type": "module",
-  "dependencies": {
-    "@arcgis/core": "~4.34.0"
-  }
-}

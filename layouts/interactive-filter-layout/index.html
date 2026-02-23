@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive-filter Layout</title>
+    <link rel="icon" href="data:;base64,=" />
+  </head>
+
+  <body>
+    <calcite-shell content-behind>
+      <arcgis-scene item-id="02b635b4926c42ddb4fa21c99305fb23" popup-disabled="" id="scene">
+        <!-- Top Left Slot -->
+        <div class="vintage-map-title" slot="top-left">
+          <div class="map-title-super">Esri Developer & Technology Summit</div>
+          <div class="map-title-main">TRAVELER'S MAP</div>
+          <div class="map-title-sub">of</div>
+          <div class="map-title-main">The ALPS</div>
+          <div class="map-title-detail">
+            Hiking trails and transport options in the Alps, highlighting panoramic views and showcasing winter transit
+            availability
+          </div>
+        </div>
+
+        <!-- Top Right Slot -->
+        <arcgis-zoom slot="top-right"></arcgis-zoom>
+        <arcgis-navigation-toggle slot="top-right"></arcgis-navigation-toggle>
+        <arcgis-compass slot="top-right"></arcgis-compass>
+
+        <!-- Bottom Left Slot -->
+        <div slot="bottom-left" style="display: flex; flex-direction: column; gap: 0.5rem">
+          <div class="attribution-text" id="attribution"></div>
+          <div class="attribution-text">
+            Inspired by historical maps of The Alps, including:
+            <calcite-link
+              target="_blank"
+              href="https://www.davidrumsey.com/luna/servlet/detail/RUMSEY~8~1~271789~90045618:View--Traveler-s-Map-of-The-Alps---"
+              >1</calcite-link
+            >,
+            <calcite-link
+              target="_blank"
+              href="https://www.davidrumsey.com/luna/servlet/detail/RUMSEY~8~1~375453~90141806:Venezia-Tridentina--and--Venezia-Gi"
+              >2</calcite-link
+            >,
+            <calcite-link
+              target="_blank"
+              href="https://www.davidrumsey.com/luna/servlet/detail/RUMSEY~8~1~372883~90139625:Panorama-delle-Alpi-di-Mesocco--Des"
+              >3</calcite-link
+            >.
+          </div>
+          <div class="attribution-text">Powered by Esri.</div>
+        </div>
+
+        <!-- Bottom Right Slot -->
+        <div slot="bottom-right" style="display: flex; flex-direction: column; gap: 0.5rem">
+          <calcite-tile-group
+            id="time-toggle"
+            selection-appearance="outline"
+            selection-mode="single-persist"
+            class="time-toggle"
+            label="Choose time of day"
+          >
+            <calcite-tile heading="Morning" label="Morning" selected>
+              <calcite-icon slot="content-top" icon="brightness" scale="s"></calcite-icon>
+            </calcite-tile>
+            <calcite-tile heading="Night" label="Night">
+              <calcite-icon slot="content-top" icon="moon" scale="s"></calcite-icon>
+            </calcite-tile>
+          </calcite-tile-group>
+          <calcite-panel id="controls-panel" slot="bottom-right" loading>
+            <calcite-block heading="Trail Type" expanded>
+              <calcite-list id="trail-list" selection-mode="multiple">
+                <calcite-list-item value="hiking:easy" label="Easy">
+                  <div slot="content-start" id="icon-easy" class="point-symbol icon-easy"></div>
+                  <div slot="content-end" id="symbol-hiking-easy" class="line-preview"></div>
+                </calcite-list-item>
+                <calcite-list-item value="hiking:medium" label="Medium">
+                  <div slot="content-start" id="icon-medium" class="point-symbol icon-medium"></div>
+                  <div slot="content-end" id="symbol-hiking-medium" class="line-preview"></div>
+                </calcite-list-item>
+                <calcite-list-item value="hiking:difficult" label="Difficult">
+                  <div slot="content-start" id="icon-difficult" class="point-symbol icon-difficult"></div>
+                  <div slot="content-end" id="symbol-hiking-difficult" class="line-preview"></div>
+                </calcite-list-item>
+              </calcite-list>
+              <div class="block-toggle-row">
+                <calcite-label layout="inline-space-between">
+                  Panoramic views
+                  <calcite-switch scale="s" id="panoramic-switch"></calcite-switch>
+                </calcite-label>
+              </div>
+            </calcite-block>
+          </calcite-panel>
+          <calcite-panel id="controls-panel-2" slot="bottom-right" loading>
+            <calcite-block heading="Transport" expanded>
+              <calcite-list id="transport-list" selection-mode="multiple">
+                <calcite-list-item value="cablecar:open" label="Cable Cars">
+                  <div slot="content-start" id="icon-cable" class="point-symbol icon-cable"></div>
+                  <div slot="content-end" id="symbol-transport-cable" class="line-preview"></div>
+                </calcite-list-item>
+                <calcite-list-item value="railway:all" label="Railway">
+                  <div slot="content-start" id="icon-rail" class="point-symbol icon-rail"></div>
+                  <div slot="content-end" id="symbol-transport-rail" class="line-preview"></div>
+                </calcite-list-item>
+              </calcite-list>
+
+              <div class="block-toggle-row">
+                <calcite-label layout="inline-space-between">
+                  Winter mode
+                  <calcite-switch scale="s" id="winter-switch"></calcite-switch>
+                </calcite-label>
+              </div>
+            </calcite-block>
+          </calcite-panel>
+
+          <calcite-panel id="inset-panel" loading>
+            <div id="inset-map"></div>
+          </calcite-panel>
+        </div>
+      </arcgis-scene>
+    </calcite-shell>
+
+    <script type="module" src="./main.js"></script>
+
+    <script type="module">
+      const trailListEl = document.getElementById("trail-list");
+      const transportListEl = document.getElementById("transport-list");
+      const panoramicSwitch = document.getElementById("panoramic-switch");
+      const winterSwitch = document.getElementById("winter-switch");
+      const timeToggle = document.getElementById("time-toggle");
+
+      if (trailListEl) {
+        trailListEl.addEventListener("calciteListChange", (event) => {
+          globalThis.handlePathsListChange?.(event);
+        });
+      }
+
+      if (transportListEl) {
+        transportListEl.addEventListener("calciteListChange", (event) => {
+          globalThis.handlePathsListChange?.(event);
+        });
+      }
+
+      if (panoramicSwitch) {
+        panoramicSwitch.addEventListener("calciteSwitchChange", (event) => {
+          globalThis.handlePathsListChange?.(event);
+        });
+      }
+
+      if (winterSwitch) {
+        winterSwitch.addEventListener("calciteSwitchChange", (event) => {
+          globalThis.handlePathsListChange?.(event);
+        });
+      }
+
+      if (timeToggle) {
+        timeToggle.addEventListener("calciteTileGroupSelect", (event) => {
+          const selected = event?.target?.selectedItems?.[0];
+          const label = (selected?.heading || "").toLowerCase();
+          globalThis.toggleTheme?.(label === "night");
+        });
+      }
+    </script>
+  </body>
+</html>

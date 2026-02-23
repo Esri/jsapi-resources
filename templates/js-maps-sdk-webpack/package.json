@@ -1,0 +1,27 @@
+{
+  "name": "js-maps-sdk-webpack-template",
+  "description": "ArcGIS Maps SDK for JavaScript Webpack template",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "webpack --config webpack.config.mjs --mode production",
+    "start": "webpack-dev-server --config webpack.config.mjs --mode development --open"
+  },
+  "dependencies": {
+    "@arcgis/charts-components": "^5.0.0",
+    "@arcgis/core": "^5.0.0",
+    "@arcgis/map-components": "^5.0.0",
+    "@esri/calcite-components": "^5.0.0"
+  },
+  "devDependencies": {
+    "css-loader": "~7.1.2",
+    "html-webpack-plugin": "~5.6.4",
+    "mini-css-extract-plugin": "~2.9.4",
+    "source-map-loader": "~5.0.0",
+    "style-loader": "~4.0.0",
+    "terser-webpack-plugin": "~5.3.14",
+    "webpack": "~5.102.0",
+    "webpack-cli": "~6.0.1",
+    "webpack-dev-server": "~5.2.2"
+  }
+}

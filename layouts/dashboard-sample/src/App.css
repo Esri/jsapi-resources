@@ -1,0 +1,131 @@
+html,
+body,
+#root {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  background: var(--calcite-color-background);
+}
+/* Light mode (default)*/
+.calcite-mode-light {
+  --calcite-color-background: #fdf8ec;
+  --calcite-color-foreground-1: #fffaed;
+  --calcite-color-foreground-2: #fae9c8;
+  --calcite-color-foreground-3: #fce5b6;
+  --calcite-color-foreground-current: #ebd09d;
+
+  --calcite-ui-text-1: #1f1f1f;
+  --calcite-ui-text-2: #3a3a3a;
+  --calcite-ui-text-3: #555;
+}
+
+/* Dark mode */
+.calcite-mode-dark {
+  --calcite-color-background: #1f1f1f;
+  --calcite-color-foreground-1: #2a2a2a;
+  --calcite-color-foreground-2: #333333;
+  --calcite-color-foreground-3: #3d3d3d;
+  --calcite-color-foreground-current: #4a4a4a;
+
+  --calcite-color-border-3: #444;
+
+  --calcite-ui-text-1: #ffffff;
+  --calcite-ui-text-2: #d1d1d1;
+  --calcite-ui-text-3: #b5b5b5;
+}
+
+/* Sidebar */
+calcite-shell-panel[slot="panel-start"] calcite-panel {
+  border-block: 0;
+}
+
+calcite-shell-panel[slot="panel-start"] calcite-block {
+  margin: 0;
+}
+
+/* Main content */
+.dashboard-main {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100%;
+}
+
+/* Metric cards row */
+.metric-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  padding: 16px 20px 0 20px;
+}
+
+.metric-card {
+  --calcite-panel-corner-radius: 12px;
+  --calcite-panel-content-space: 0.25rem;
+  border: 1px solid var(--calcite-color-border-3);
+}
+
+.metric-value {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 8px 0;
+  text-align: center;
+  color: var(--calcite-ui-text-3);
+}
+
+/* Mobile: collapse sidebar */
+@media (max-width: 880px) {
+  .dashboard-body {
+    grid-template-columns: 0px 1fr;
+  }
+}
+
+/* Map container */
+.map-panel {
+  flex: 1 1 auto; /* flexible growth and shrink */
+  padding: 1.25rem;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Optional: ensure arcgis-map still fills the container */
+.map-panel arcgis-map {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--calcite-color-border-3);
+}
+
+/* Charts row container */
+.charts-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px; /* same as metrics row */
+  padding: 1.25rem;
+  border-top: 1px solid var(--calcite-color-border-3);
+  background: var(--calcite-color-foreground-2);
+  height: 320px; /* increased from 260px */
+}
+
+/* Individual chart styling */
+.charts-row arcgis-chart {
+  border: 1px solid var(--calcite-color-border-3);
+  border-radius: 8px;
+  background: var(--calcite-color-foreground-1);
+  width: 60%;
+  height: 100%; /* fill the row height */
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.charts-row.hidden {
+  display: none;
+}
+
+/* Footer */
+.dashboard-footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  border-block-start: 1px solid var(--calcite-color-border-3);
+}

@@ -1,0 +1,10 @@
+{
+  "name": "js-maps-sdk-node-template",
+  "version": "0.0.0",
+  "description": "ArcGIS Maps SDK for JavaScript node template",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@arcgis/core": "^5.0.0"
+  }
+}
