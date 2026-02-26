@@ -1,5 +1,7 @@
 import "./index.css";
 
+import React, { useState } from "react";
+
 // Individual imports for each component used in this sample
 import "@arcgis/map-components/components/arcgis-map";
 import "@arcgis/map-components/components/arcgis-zoom";
@@ -13,17 +15,16 @@ import "@esri/calcite-components/dist/components/calcite-shell-panel";
 import "@arcgis/ai-components/components/arcgis-assistant";
 import "@arcgis/ai-components/components/arcgis-assistant-agent";
 import "@arcgis/ai-components/components/arcgis-assistant-navigation-agent";
-import "@arcgis/ai-components/components/arcgis-assistant-data-exploration-agent";
-import "@arcgis/ai-components/components/arcgis-assistant-help-agent";
+
+import type { ArcgisMap } from "@arcgis/map-components/components/arcgis-map";
 
 // Core API import
 import WebMap from "@arcgis/core/WebMap.js";
-
-import { useState } from "react";
 import MapView from "@arcgis/core/views/MapView.js";
+
 import { LocationServicesAgent } from "./locationServicesAgent";
 
-function App() {
+function App(): React.JSX.Element {
   const map = new WebMap({
     portalItem: {
       id: "957e1e4d26994e8ca34248e45067f4b9",
@@ -32,8 +33,8 @@ function App() {
 
   const [mapView, setMapView] = useState<MapView | null>(null);
 
-  const handleViewReady = (event: any) => {
-    const viewElement = event.target;
+  const handleViewReady = (event: CustomEvent): void => {
+    const viewElement = event.target as ArcgisMap;
     const view = viewElement.view;
     setMapView(view);
   };
@@ -47,8 +48,8 @@ function App() {
               reference-element="#main-map"
               heading="Walk and drive times"
               description="Use the chat below to calculate drive times and walking distances to understand the accessibility of different locations."
-              entry-message="You must first navigate to a location on the map using the navigation agent before asking about drive times or walking distances."
-              suggested-prompts={[
+              entryMessage="You must first navigate to a location on the map using the navigation agent before asking about drive times or walking distances."
+              suggestedPrompts={[
                 "Go to the Palm Springs convention center",
                 "How far can I get in 10 minutes walking from the convention center?",
               ]}

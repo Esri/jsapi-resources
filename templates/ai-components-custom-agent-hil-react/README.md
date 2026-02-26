@@ -12,7 +12,7 @@ See the [Custom agents](https://developers.arcgis.com/javascript/latest/agentic-
 
 **AI components are currently in [beta](https://developers.arcgis.com/javascript/latest/faq/#what-does-the-beta-tag-mean).** Due to the non-deterministic nature of generative AI, there may be inaccuracies or unexpected behavior when using the out-of-the-box agents. We are actively working on improving the accuracy and capabilities of the agents. During the beta period, we welcome your [feedback](https://developers.arcgis.com/javascript/latest/faq/#how-can-i-provide-feedback-or-request-features-for-ai-components) to help us improve and shape the future of these capabilities.
 
-The JS Maps SDK doesn't provide an out-of-the-box API for building custom agents. Custom agents are built using the following third party dependencies, which are automatically installed when you install `@arcgis/ai-components`:
+The JS Maps SDK doesn't provide an out-of-the-box API for building custom agents. Custom agents are built using the following third party dependencies, which are automatically included when you install `@arcgis/ai-components`:
 
 - [LangGraph](https://docs.langchain.com/oss/javascript/langgraph/overview) (v1.1) is used to define the orchestration graph agents and tools, manages global state and LLM calls, and defines multi-step workflows
 - [LangChainJS](https://docs.langchain.com/oss/javascript/langchain/overview) (v1.1) manages LLM and embeddings calls

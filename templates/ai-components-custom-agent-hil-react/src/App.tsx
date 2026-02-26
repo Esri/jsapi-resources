@@ -1,5 +1,7 @@
 import "./index.css";
 
+import React, { useState } from "react";
+
 // Individual imports for each component used in this sample
 import "@arcgis/map-components/components/arcgis-map";
 import "@arcgis/map-components/components/arcgis-zoom";
@@ -17,11 +19,12 @@ import "@arcgis/ai-components/components/arcgis-assistant-agent";
 import "@arcgis/ai-components/components/arcgis-assistant-navigation-agent";
 import "@arcgis/ai-components/components/arcgis-assistant-data-exploration-agent";
 
+import type { ArcgisMap } from "@arcgis/map-components/components/arcgis-map";
+
 // Core API import
 import WebMap from "@arcgis/core/WebMap.js";
-
-import { useState } from "react";
 import MapView from "@arcgis/core/views/MapView.js";
+
 import { ServiceMaintenanceAgent } from "./maintenanceAgent";
 
 function App(): React.JSX.Element {
@@ -34,7 +37,7 @@ function App(): React.JSX.Element {
   const [mapView, setMapView] = useState<MapView | null>(null);
 
   const handleViewReady = (event: CustomEvent): void => {
-    const viewElement = event.target as HTMLArcgisMapElement;
+    const viewElement = event.target as ArcgisMap;
     const view = viewElement.view;
     setMapView(view);
   };

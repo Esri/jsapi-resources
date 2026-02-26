@@ -21,7 +21,7 @@ interface ServiceMaintenanceTicket {
 }
 
 /**
- * Context required by the Maintenance Service  Agent.
+ * Context required by the Maintenance Service Agent.
  * Supplied by the application via the agent `getContext()` provider.
  */
 type ServiceMaintenanceContext = {
@@ -287,7 +287,7 @@ const ServiceMaintenanceAgentDescription = String.raw`- **Maintenance** — User
 
 const ServiceMaintenanceAgent: AgentRegistration = {
   id: "serviceMaintenance",
-  name: "Maintenance Service  Agent",
+  name: "Maintenance Service Agent",
   description: ServiceMaintenanceAgentDescription,
   createGraph: createServiceMaintenanceAgentGraph,
   workspace: ServiceMaintenanceState,
