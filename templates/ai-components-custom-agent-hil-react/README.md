@@ -4,7 +4,11 @@ This sample shows how to create a custom agent with a human-in-the-loop (HIL) wo
 
 Human-in-the-loop provides an interrupt in an agentic workflow that prompts the human/user for additional information prior to proceeding. This is often used to safeguard against LLMs making decisions that lead to destructive actions. For example, you may use an interrupt to prompt the user to confirm whether to proceed with given parameters before executing a tool. The LLM may also not have confidence in a user's intent and could prompt them to provide more information in freeform text. You can also present deterministic options as a menu to the user before proceeding with a workflow.
 
-📁 **[Click here to download this directory as a ZIP file](https://esri.github.io/jsapi-resources/zips/ai-components-custom-agent-hil-react.zip)** 📁
+📁 **[Click here to download this directory as a ZIP file](https://esri.github.io/jsapi-resources/zips/ai-components-custom-agent-hil-react.zip)** 📁 or run:
+
+```bash
+npx @arcgis/create -n my-arcgis-app -t ai-components-custom-agent-hil-react
+```
 
 See the [Get started with npm guide](https://developers.arcgis.com/javascript/latest/get-started/#use-arcgiscreate) for full instructions and the [AI components (beta) reference](https://developers.arcgis.com/javascript/latest/references/ai-components/) documentation for more information.
 

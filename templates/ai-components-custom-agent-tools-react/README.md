@@ -2,7 +2,11 @@
 
 This sample shows how to create a custom agent that may call tools in behalf of the user within the context of the `arcgis-assistant` component (beta) using React + TypeScript. The agent defined in this example includes one tool that calculates a service area from natural language input. You can use this example to learn how to write tools for custom agents.
 
-📁 **[Click here to download this directory as a ZIP file](https://esri.github.io/jsapi-resources/zips/ai-components-custom-agent-tools-react.zip)** 📁
+📁 **[Click here to download this directory as a ZIP file](https://esri.github.io/jsapi-resources/zips/ai-components-custom-agent-tools-react.zip)** 📁 or run:
+
+```bash
+npx @arcgis/create -n my-arcgis-app -t ai-components-custom-agent-tools-react
+```
 
 See the [Get started with npm guide](https://developers.arcgis.com/javascript/latest/get-started/#use-arcgiscreate) for full instructions and the [AI components (beta) reference](https://developers.arcgis.com/javascript/latest/references/ai-components/) documentation for more information.
 
