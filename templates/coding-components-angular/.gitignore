@@ -8,9 +8,15 @@
 
 # Node
 /node_modules
-npm-debug.log
-yarn-error.log
-package-lock.json
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
 # IDEs and editors
 .idea/
@@ -35,10 +41,14 @@ package-lock.json
 .sass-cache/
 /connect.lock
 /coverage
-/libpeerconnection.log
 testem.log
 /typings
 /src/assets
+jspm_packages/
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
 # System files
 .DS_Store
