@@ -7,7 +7,7 @@ Human-in-the-loop provides an interrupt in an agentic workflow that prompts the 
 📁 **[Click here to download this directory as a ZIP file](https://esri.github.io/jsapi-resources/zips/ai-components-custom-agent-hil-react.zip)** 📁 or run:
 
 ```bash
-npx @arcgis/create -n my-arcgis-app -t ai-components-custom-agent-hil-react
+npx @arcgis/create -n my-arcgis-app -t "ai-components-custom-agent-hil-react (beta)"
 ```
 
 See the [Get started with npm guide](https://developers.arcgis.com/javascript/latest/get-started/#use-arcgiscreate) for full instructions and the [AI components (beta) reference](https://developers.arcgis.com/javascript/latest/references/ai-components/) documentation for more information.
