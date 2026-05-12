@@ -333,6 +333,7 @@ async function validateTemplate(browser, templateDir, index) {
     build: "not run",
     dev: "not run",
     preview: "not run",
+    failed: false,
     issues: [],
   };
 
@@ -344,6 +345,7 @@ async function validateTemplate(browser, templateDir, index) {
   const install = installDependencies(templateDir, templateArtifactDir);
   summary.install = install.status === 0 ? "passed" : "failed";
   if (install.status !== 0) {
+    summary.failed = true;
     summary.issues.push("Dependency installation failed.");
     return summary;
   }
@@ -352,7 +354,10 @@ async function validateTemplate(browser, templateDir, index) {
     const build = runScript(templateDir, "build");
     writeLog(templateArtifactDir, "build", build);
     summary.build = build.status === 0 ? "passed" : "failed";
-    if (build.status !== 0) summary.issues.push("Build failed.");
+    if (build.status !== 0) {
+      summary.failed = true;
+      summary.issues.push("Build failed.");
+    }
   }
 
   const devScript = scripts.dev ? "dev" : scripts.start ? "start" : null;
@@ -364,9 +369,11 @@ async function validateTemplate(browser, templateDir, index) {
       await waitForServer(url, server);
       const inspection = await inspectApp(browser, url, templateArtifactDir, "dev");
       summary.dev = inspection.issues.length === 0 ? "passed" : "failed";
+      if (inspection.issues.length > 0) summary.failed = true;
       summary.issues.push(...inspection.issues.map((issue) => `Dev: ${issue}`));
     } catch (error) {
       summary.dev = "failed";
+      summary.failed = true;
       summary.issues.push(`Dev server failed: ${error.message}`);
     } finally {
       const output = server.getOutput();
@@ -387,10 +394,12 @@ async function validateTemplate(browser, templateDir, index) {
         await waitForServer(url, previewServer.child ? previewServer : null);
         const inspection = await inspectApp(browser, url, templateArtifactDir, "preview");
         summary.preview = inspection.issues.length === 0 ? "passed" : "failed";
+        if (inspection.issues.length > 0) summary.failed = true;
         summary.issues.push(...inspection.issues.map((issue) => `Preview: ${issue}`));
       }
     } catch (error) {
       summary.preview = "failed";
+      summary.failed = true;
       summary.issues.push(`Preview failed: ${error.message}`);
     } finally {
       if (previewServer) {
@@ -452,7 +461,7 @@ async function main() {
     for (const [index, templateDir] of templateDirs.entries()) {
       const summary = await validateTemplate(browser, templateDir, index);
       summaries.push(summary);
-      if (summary.issues.some((issue) => !issue.startsWith("Skipped:"))) hasFailure = true;
+      if (summary.failed) hasFailure = true;
     }
   } finally {
     await browser.close();
