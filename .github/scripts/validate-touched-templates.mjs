@@ -10,10 +10,16 @@ const artifactRoot = resolve(process.env.ARTIFACT_DIR || join(repoRoot, "templat
 const playwrightRoot = process.env.PLAYWRIGHT_ROOT;
 
 const TEMPLATE_ROOTS = ["templates", "tutorials", "layouts"];
+// Maximum time to wait for each started dev or preview server to respond.
 const SERVER_TIMEOUT_MS = Number(process.env.SERVER_TIMEOUT_MS || 120000);
+// Maximum time Playwright will wait for initial page navigation.
 const PAGE_TIMEOUT_MS = Number(process.env.PAGE_TIMEOUT_MS || 45000);
+// Maximum time to wait for ArcGIS and Calcite custom elements to be registered.
 const CUSTOM_ELEMENT_TIMEOUT_MS = Number(process.env.CUSTOM_ELEMENT_TIMEOUT_MS || 15000);
+// First local port used for validation; each template gets an isolated port pair.
 const START_PORT = Number(process.env.START_PORT || 4300);
+const ARCGIS_OR_CALCITE_PATTERN = /^(arcgis|calcite)-/;
+const VALIDATED_RESPONSE_PATTERN = /(arcgis|calcite|127\.0\.0\.1|localhost)/i;
 
 mkdirSync(artifactRoot, { recursive: true });
 
@@ -251,7 +257,7 @@ async function inspectApp(browser, url, artifactDir, label) {
   });
   page.on("response", (response) => {
     const responseUrl = response.url();
-    if (response.status() >= 400 && /(arcgis|calcite|127\.0\.0\.1|localhost)/i.test(responseUrl)) {
+    if (response.status() >= 400 && VALIDATED_RESPONSE_PATTERN.test(responseUrl)) {
       severeResponses.push(`${response.status()} ${responseUrl}`);
     }
   });
@@ -266,12 +272,13 @@ async function inspectApp(browser, url, artifactDir, label) {
   await page.waitForTimeout(2000);
   await page.screenshot({ path: join(artifactDir, `${label}.png`), fullPage: true });
 
-  const dom = await page.evaluate(async (customElementTimeoutMs) => {
+  const dom = await page.evaluate(async ({ customElementTimeoutMs, arcgisOrCalcitePatternSource }) => {
+    const arcgisOrCalcitePattern = new RegExp(arcgisOrCalcitePatternSource);
     const sleep = (ms) => new Promise((resolveSleep) => setTimeout(resolveSleep, ms));
     const deadline = Date.now() + customElementTimeoutMs;
     const interestingTags = () => [...document.querySelectorAll("*")]
       .map((element) => element.localName)
-      .filter((tag) => /^(arcgis|calcite)-/.test(tag));
+      .filter((tag) => arcgisOrCalcitePattern.test(tag));
 
     while (Date.now() < deadline) {
       const tags = interestingTags();
@@ -301,7 +308,7 @@ async function inspectApp(browser, url, artifactDir, label) {
       mapLikeElements,
       emptyMapLikeElements: mapLikeElements.filter((element) => element.width === 0 || element.height === 0),
     };
-  }, CUSTOM_ELEMENT_TIMEOUT_MS);
+  }, { customElementTimeoutMs: CUSTOM_ELEMENT_TIMEOUT_MS, arcgisOrCalcitePatternSource: ARCGIS_OR_CALCITE_PATTERN.source });
 
   await page.close();
 
