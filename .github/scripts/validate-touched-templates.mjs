@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { createRequire } from "node:module";
-import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
+import { appendFileSync, existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { createServer } from "node:http";
 import { extname, join, relative, resolve, sep } from "node:path";
 import { spawn, spawnSync } from "node:child_process";
@@ -8,10 +8,6 @@ import { spawn, spawnSync } from "node:child_process";
 const repoRoot = resolve(process.env.GITHUB_WORKSPACE || process.cwd());
 const artifactRoot = resolve(process.env.ARTIFACT_DIR || join(repoRoot, "template-validation-artifacts"));
 const playwrightRoot = process.env.PLAYWRIGHT_ROOT;
-const requireFromPlaywrightRoot = playwrightRoot
-  ? createRequire(join(playwrightRoot, "package.json"))
-  : createRequire(import.meta.url);
-const { chromium } = requireFromPlaywrightRoot("playwright");
 
 const TEMPLATE_ROOTS = ["templates", "tutorials", "layouts"];
 const SERVER_TIMEOUT_MS = Number(process.env.SERVER_TIMEOUT_MS || 120000);
@@ -430,14 +426,27 @@ function writeReport(changedFiles, templateDirs) {
     lines.push("");
   }
 
-  writeFileSync(join(artifactRoot, "validation-report.md"), lines.join("\n"));
-  console.log(lines.join("\n"));
+  const report = lines.join("\n");
+  writeFileSync(join(artifactRoot, "validation-report.md"), report);
+  if (process.env.GITHUB_STEP_SUMMARY) {
+    appendFileSync(process.env.GITHUB_STEP_SUMMARY, `${report}\n`);
+  }
+  console.log(report);
 }
 
 async function main() {
   const changedFiles = getChangedFiles();
   const templateDirs = [...new Set(changedFiles.map(findTemplateDir).filter(Boolean))].sort();
 
+  if (templateDirs.length === 0) {
+    writeReport(changedFiles, templateDirs);
+    return;
+  }
+
+  const requireFromPlaywrightRoot = playwrightRoot
+    ? createRequire(join(playwrightRoot, "package.json"))
+    : createRequire(import.meta.url);
+  const { chromium } = requireFromPlaywrightRoot("playwright");
   const browser = await chromium.launch();
   try {
     for (const [index, templateDir] of templateDirs.entries()) {
