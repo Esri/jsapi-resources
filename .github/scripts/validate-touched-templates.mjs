@@ -234,7 +234,14 @@ async function startStaticPreview(templateDir, port) {
     }
     const fileExists = existsSync(requestedFile);
     const isDirectoryRequest = fileExists && statSync(requestedFile).isDirectory();
-    const file = fileExists && !isDirectoryRequest ? requestedFile : join(root, "index.html");
+    const shouldServeFile = fileExists && !isDirectoryRequest;
+    const acceptsHtml = (request.headers.accept || "").includes("text/html");
+    if (!shouldServeFile && !acceptsHtml) {
+      response.writeHead(404, { "content-type": "text/plain; charset=utf-8" });
+      response.end("Not found");
+      return;
+    }
+    const file = shouldServeFile ? requestedFile : join(root, "index.html");
     try {
       response.writeHead(200, { "content-type": contentType(file) });
       response.end(readFileSync(file));
@@ -287,8 +294,8 @@ async function inspectApp(browser, url, artifactDir, label) {
   await page.waitForTimeout(2000);
   await page.screenshot({ path: join(artifactDir, `${label}.png`), fullPage: true });
 
-  const dom = await page.evaluate(async ({ customElementTimeoutMs, arcgisOrCalcitePatternSource, mapLikeSelector }) => {
-    const arcgisOrCalcitePattern = new RegExp(arcgisOrCalcitePatternSource);
+  const dom = await page.evaluate(async ({ customElementTimeoutMs, customElementPattern, mapLikeSelector }) => {
+    const arcgisOrCalcitePattern = new RegExp(customElementPattern);
     const sleep = (ms) => new Promise((resolveSleep) => setTimeout(resolveSleep, ms));
     const deadline = Date.now() + customElementTimeoutMs;
     const interestingTags = () => [...document.querySelectorAll("*")]
@@ -326,7 +333,7 @@ async function inspectApp(browser, url, artifactDir, label) {
     };
   }, {
     customElementTimeoutMs: CUSTOM_ELEMENT_TIMEOUT_MS,
-    arcgisOrCalcitePatternSource: ARCGIS_OR_CALCITE_PATTERN.source,
+    customElementPattern: ARCGIS_OR_CALCITE_PATTERN.source,
     mapLikeSelector: MAP_LIKE_SELECTOR,
   });
 
