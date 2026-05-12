@@ -99,15 +99,22 @@ function writeLog(dir, name, result) {
   );
 }
 
+function getInstallCommand(cwd) {
+  if (existsSync(join(cwd, "pnpm-lock.yaml"))) {
+    return ["pnpm", ["install", "--frozen-lockfile"]];
+  }
+  if (existsSync(join(cwd, "yarn.lock"))) {
+    return ["yarn", ["install", "--frozen-lockfile"]];
+  }
+  if (existsSync(join(cwd, "package-lock.json"))) {
+    return ["npm", ["ci"]];
+  }
+  return ["npm", ["install"]];
+}
+
 function installDependencies(templateDir, templateArtifactDir) {
   const cwd = join(repoRoot, templateDir);
-  const packageManager = existsSync(join(cwd, "pnpm-lock.yaml"))
-    ? ["pnpm", ["install", "--frozen-lockfile"]]
-    : existsSync(join(cwd, "yarn.lock"))
-      ? ["yarn", ["install", "--frozen-lockfile"]]
-      : existsSync(join(cwd, "package-lock.json"))
-        ? ["npm", ["ci"]]
-        : ["npm", ["install"]];
+  const packageManager = getInstallCommand(cwd);
 
   const result = run(packageManager[0], packageManager[1], { cwd });
   writeLog(templateArtifactDir, "install", result);
@@ -225,7 +232,9 @@ async function startStaticPreview(templateDir, port) {
       response.end("Forbidden");
       return;
     }
-    const file = existsSync(requestedFile) && !requestedFile.endsWith(sep) ? requestedFile : join(root, "index.html");
+    const fileExists = existsSync(requestedFile);
+    const isDirectoryRequest = requestedFile.endsWith(sep);
+    const file = fileExists && !isDirectoryRequest ? requestedFile : join(root, "index.html");
     try {
       response.writeHead(200, { "content-type": contentType(file) });
       response.end(readFileSync(file));
