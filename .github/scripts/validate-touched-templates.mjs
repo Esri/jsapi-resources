@@ -8,6 +8,9 @@ import { spawn, spawnSync } from "node:child_process";
 const repoRoot = resolve(process.env.GITHUB_WORKSPACE || process.cwd());
 const artifactRoot = resolve(process.env.ARTIFACT_DIR || join(repoRoot, "template-validation-artifacts"));
 const playwrightRoot = process.env.PLAYWRIGHT_ROOT;
+const agentModel = process.env.AGENT_MODEL || "gpt-5.2-codex";
+const browserMcpBackend = process.env.BROWSER_MCP_BACKEND || "both";
+const mcpProfilePath = process.env.MCP_PROFILE_PATH || join(artifactRoot, "agent-mcp-profile.json");
 
 const TEMPLATE_ROOTS = ["templates", "tutorials", "layouts"];
 // Maximum time to wait for each started dev or preview server to respond.
@@ -451,7 +454,18 @@ async function validateTemplate(browser, templateDir, index) {
 }
 
 function writeReport(changedFiles, templateDirs) {
-  const lines = ["# Template validation report", "", `Changed files considered: ${changedFiles.length}`, ""];
+  const lines = [
+    "# Template validation report",
+    "",
+    "## Agentic browser validation profile",
+    "",
+    `- Selected model profile: ${agentModel}`,
+    `- Browser MCP backend: ${browserMcpBackend}`,
+    `- MCP profile artifact: ${mcpProfilePath}`,
+    "",
+    `Changed files considered: ${changedFiles.length}`,
+    "",
+  ];
   if (templateDirs.length === 0) {
     lines.push("No touched app templates were detected.", "");
   }

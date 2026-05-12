@@ -11,6 +11,25 @@ on:
         description: "Optional comma- or newline-separated template/tutorial/layout paths to validate"
         required: false
         default: ""
+      agent_model:
+        description: "Model profile for manual agentic review artifacts"
+        required: false
+        default: "gpt-5.2-codex"
+        type: choice
+        options:
+          - "gpt-5.2-codex"
+          - "gpt-5.3-codex"
+          - "claude-sonnet-4.5"
+          - "claude-opus-4.5"
+      browser_mcp_backend:
+        description: "Browser MCP server profile to expose to the validation agent"
+        required: false
+        default: "both"
+        type: choice
+        options:
+          - "both"
+          - "playwright-mcp"
+          - "chrome-devtools-mcp"
   pull_request:
     paths:
       - "templates/**"
@@ -39,11 +58,45 @@ jobs:
         with:
           node-version: "22"
 
-      - name: Install Playwright validator runtime
+      - name: Install browser agent runtimes
         run: |
           mkdir -p "$RUNNER_TEMP/template-validator"
-          npm install --prefix "$RUNNER_TEMP/template-validator" playwright@1.57.0
+          npm install --prefix "$RUNNER_TEMP/template-validator" \
+            playwright@1.57.0 \
+            @playwright/mcp@0.0.75 \
+            chrome-devtools-mcp@0.26.0
           npm --prefix "$RUNNER_TEMP/template-validator" exec playwright install --with-deps chromium
+
+      - name: Write agent MCP profile
+        shell: bash
+        env:
+          AGENT_MODEL: ${{ github.event.inputs.agent_model || 'gpt-5.2-codex' }}
+          BROWSER_MCP_BACKEND: ${{ github.event.inputs.browser_mcp_backend || 'both' }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/template-validation-artifacts"
+          cat > "$RUNNER_TEMP/template-validation-artifacts/agent-mcp-profile.json" <<EOF
+          {
+            "model": "$AGENT_MODEL",
+            "browserMcpBackend": "$BROWSER_MCP_BACKEND",
+            "mcpServers": {
+              "playwright": {
+                "enabled": $([[ "$BROWSER_MCP_BACKEND" == "both" || "$BROWSER_MCP_BACKEND" == "playwright-mcp" ]] && echo true || echo false),
+                "command": "$RUNNER_TEMP/template-validator/node_modules/.bin/playwright-mcp",
+                "args": ["--browser", "chromium", "--headless"]
+              },
+              "chrome-devtools": {
+                "enabled": $([[ "$BROWSER_MCP_BACKEND" == "both" || "$BROWSER_MCP_BACKEND" == "chrome-devtools-mcp" ]] && echo true || echo false),
+                "command": "$RUNNER_TEMP/template-validator/node_modules/.bin/chrome-devtools-mcp",
+                "args": []
+              }
+            }
+          }
+          EOF
+          cat > "$RUNNER_TEMP/template-validation-artifacts/browser-agent-prompt.md" <<'EOF'
+          # Browser validation agent prompt
+
+          Use the selected model profile and enabled MCP browser servers to review the per-template validation artifacts. Focus on page load failures, console errors, ArcGIS/Calcite network failures, unresolved custom elements, empty map/component containers, and DOM regressions in the app shell.
+          EOF
 
       - name: Resolve comparison refs
         id: refs
@@ -53,8 +106,8 @@ jobs:
             echo "base_sha=${{ github.event.pull_request.base.sha }}" >> "$GITHUB_OUTPUT"
             echo "head_sha=${{ github.event.pull_request.head.sha }}" >> "$GITHUB_OUTPUT"
           else
-            git fetch origin "${{ inputs.base_ref }}"
-            echo "base_sha=origin/${{ inputs.base_ref }}" >> "$GITHUB_OUTPUT"
+            git fetch origin "${{ github.event.inputs.base_ref || 'main' }}"
+            echo "base_sha=origin/${{ github.event.inputs.base_ref || 'main' }}" >> "$GITHUB_OUTPUT"
             echo "head_sha=HEAD" >> "$GITHUB_OUTPUT"
           fi
 
@@ -62,8 +115,11 @@ jobs:
         env:
           BASE_SHA: ${{ steps.refs.outputs.base_sha }}
           HEAD_SHA: ${{ steps.refs.outputs.head_sha }}
-          TEMPLATE_PATHS: ${{ inputs.template_paths }}
+          TEMPLATE_PATHS: ${{ github.event.inputs.template_paths }}
           ARTIFACT_DIR: ${{ runner.temp }}/template-validation-artifacts
+          AGENT_MODEL: ${{ github.event.inputs.agent_model || 'gpt-5.2-codex' }}
+          BROWSER_MCP_BACKEND: ${{ github.event.inputs.browser_mcp_backend || 'both' }}
+          MCP_PROFILE_PATH: ${{ runner.temp }}/template-validation-artifacts/agent-mcp-profile.json
           PLAYWRIGHT_ROOT: ${{ runner.temp }}/template-validator
           CI: "true"
         run: node .github/scripts/validate-touched-templates.mjs
