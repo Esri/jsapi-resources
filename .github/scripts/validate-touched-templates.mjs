@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { createRequire } from "node:module";
-import { appendFileSync, existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
+import { appendFileSync, existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { createServer } from "node:http";
 import { extname, join, relative, resolve, sep } from "node:path";
 import { spawn, spawnSync } from "node:child_process";
@@ -59,7 +59,7 @@ function getChangedFiles() {
     throw new Error("BASE_SHA is required when TEMPLATE_PATHS is not provided.");
   }
 
-  const diff = run("git", ["diff", "--name-only", `${baseSha}...${headSha}`]);
+  const diff = run("git", ["diff", "--name-only", `${baseSha}..${headSha}`]);
   if (diff.status !== 0) {
     throw new Error(`Unable to determine changed files.\n${diff.stderr || diff.stdout}`);
   }
@@ -233,7 +233,7 @@ async function startStaticPreview(templateDir, port) {
       return;
     }
     const fileExists = existsSync(requestedFile);
-    const isDirectoryRequest = requestedFile.endsWith(sep);
+    const isDirectoryRequest = fileExists && statSync(requestedFile).isDirectory();
     const file = fileExists && !isDirectoryRequest ? requestedFile : join(root, "index.html");
     try {
       response.writeHead(200, { "content-type": contentType(file) });
