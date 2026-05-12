@@ -1,0 +1,77 @@
+name: Validate touched app templates
+
+on:
+  workflow_dispatch:
+    inputs:
+      base_ref:
+        description: "Base ref to compare against when template_paths is empty"
+        required: false
+        default: "main"
+      template_paths:
+        description: "Optional comma- or newline-separated template/tutorial/layout paths to validate"
+        required: false
+        default: ""
+  pull_request:
+    paths:
+      - "templates/**"
+      - "tutorials/**"
+      - "layouts/**"
+      - ".github/scripts/validate-touched-templates.mjs"
+      - ".github/workflows/validate-touched-templates.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate-touched-templates:
+    name: Validate touched app templates
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install Playwright validator runtime
+        run: |
+          mkdir -p "$RUNNER_TEMP/template-validator"
+          npm install --prefix "$RUNNER_TEMP/template-validator" playwright@1.57.0
+          npm --prefix "$RUNNER_TEMP/template-validator" exec playwright install --with-deps chromium
+
+      - name: Resolve comparison refs
+        id: refs
+        shell: bash
+        run: |
+          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            echo "base_sha=${{ github.event.pull_request.base.sha }}" >> "$GITHUB_OUTPUT"
+            echo "head_sha=${{ github.event.pull_request.head.sha }}" >> "$GITHUB_OUTPUT"
+          else
+            git fetch origin "${{ inputs.base_ref }}"
+            echo "base_sha=origin/${{ inputs.base_ref }}" >> "$GITHUB_OUTPUT"
+            echo "head_sha=HEAD" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Validate touched templates
+        env:
+          BASE_SHA: ${{ steps.refs.outputs.base_sha }}
+          HEAD_SHA: ${{ steps.refs.outputs.head_sha }}
+          TEMPLATE_PATHS: ${{ inputs.template_paths }}
+          ARTIFACT_DIR: ${{ runner.temp }}/template-validation-artifacts
+          PLAYWRIGHT_ROOT: ${{ runner.temp }}/template-validator
+          CI: "true"
+        run: node .github/scripts/validate-touched-templates.mjs
+
+      - name: Upload validation artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: template-validation-artifacts
+          path: ${{ runner.temp }}/template-validation-artifacts
+          if-no-files-found: ignore
