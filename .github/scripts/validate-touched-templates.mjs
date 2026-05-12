@@ -13,8 +13,8 @@ const browserMcpBackend = process.env.BROWSER_MCP_BACKEND || "both";
 const mcpProfilePath = process.env.MCP_PROFILE_PATH || join(artifactRoot, "agent-mcp-profile.json");
 
 const TEMPLATE_ROOTS = ["templates", "tutorials", "layouts"];
-// Maximum time to wait for each started dev or preview server to respond.
-const SERVER_TIMEOUT_MS = Number(process.env.SERVER_TIMEOUT_MS || 120000);
+// Maximum time to wait for each started dev or preview server to respond; defaults to 2 minutes.
+const SERVER_STARTUP_TIMEOUT_MS = Number(process.env.SERVER_STARTUP_TIMEOUT_MS || process.env.SERVER_TIMEOUT_MS || 120000);
 // Maximum time Playwright will wait for initial page navigation.
 const PAGE_TIMEOUT_MS = Number(process.env.PAGE_TIMEOUT_MS || 45000);
 // Maximum time to wait for ArcGIS and Calcite custom elements to be registered.
@@ -172,7 +172,7 @@ function startScript(templateDir, scriptName, port) {
 }
 
 async function waitForServer(url, processHandle) {
-  const deadline = Date.now() + SERVER_TIMEOUT_MS;
+  const deadline = Date.now() + SERVER_STARTUP_TIMEOUT_MS;
   let lastError = "";
   while (Date.now() < deadline) {
     if (processHandle?.child?.exitCode !== null) {
@@ -301,7 +301,7 @@ async function inspectApp(browser, url, artifactDir, label) {
 
   const dom = await page.evaluate(async ({ customElementTimeoutMs, customElementPattern, mapLikeSelector }) => {
     const arcgisOrCalcitePattern = new RegExp(customElementPattern);
-    const sleep = (ms) => new Promise((resolveSleep) => setTimeout(resolveSleep, ms));
+    const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
     const deadline = Date.now() + customElementTimeoutMs;
     const interestingTags = () => [...document.querySelectorAll("*")]
       .map((element) => element.localName)
