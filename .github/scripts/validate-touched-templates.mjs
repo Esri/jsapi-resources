@@ -2,6 +2,7 @@
 import { createRequire } from "node:module";
 import { appendFileSync, existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { createServer } from "node:http";
+import { createServer as createNetServer } from "node:net";
 import { extname, join, relative, resolve, sep } from "node:path";
 import { spawn, spawnSync } from "node:child_process";
 
@@ -191,6 +192,21 @@ async function waitForServer(url, processHandle) {
   throw new Error(`Timed out waiting for ${url}: ${lastError}`);
 }
 
+async function findAvailablePort(preferredPort) {
+  for (let port = preferredPort; port < preferredPort + 20; port += 1) {
+    const available = await new Promise((resolvePort) => {
+      const server = createNetServer();
+      server.once("error", () => resolvePort(false));
+      server.once("listening", () => {
+        server.close(() => resolvePort(true));
+      });
+      server.listen(port, "127.0.0.1");
+    });
+    if (available) return port;
+  }
+  throw new Error(`No available local port found starting at ${preferredPort}.`);
+}
+
 function findBuiltIndex(templateDir) {
   const distRoot = join(repoRoot, templateDir, "dist");
   if (!existsSync(distRoot)) return null;
@@ -291,7 +307,8 @@ async function inspectApp(browser, url, artifactDir, label) {
 
   let navigationError = null;
   try {
-    await page.goto(url, { waitUntil: "networkidle", timeout: PAGE_TIMEOUT_MS });
+    await page.goto(url, { waitUntil: "domcontentloaded", timeout: PAGE_TIMEOUT_MS });
+    await page.waitForSelector("body", { timeout: PAGE_TIMEOUT_MS });
   } catch (error) {
     navigationError = error.message;
   }
@@ -402,7 +419,7 @@ async function validateTemplate(browser, templateDir, index) {
 
   const devScript = scripts.dev ? "dev" : scripts.start ? "start" : null;
   if (devScript) {
-    const port = START_PORT + index * 10;
+    const port = await findAvailablePort(START_PORT + index * 10);
     const server = startScript(templateDir, devScript, port);
     const url = `http://127.0.0.1:${port}/`;
     try {
@@ -423,7 +440,7 @@ async function validateTemplate(browser, templateDir, index) {
   }
 
   if (scripts.preview || scripts.build) {
-    const port = START_PORT + index * 10 + 1;
+    const port = await findAvailablePort(START_PORT + index * 10 + 1);
     let previewServer = null;
     try {
       previewServer = scripts.preview ? startScript(templateDir, "preview", port) : await startStaticPreview(templateDir, port);
