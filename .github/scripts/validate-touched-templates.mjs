@@ -18,6 +18,8 @@ const PAGE_TIMEOUT_MS = Number(process.env.PAGE_TIMEOUT_MS || 45000);
 const CUSTOM_ELEMENT_TIMEOUT_MS = Number(process.env.CUSTOM_ELEMENT_TIMEOUT_MS || 15000);
 // First local port used for validation; each template gets an isolated port pair.
 const START_PORT = Number(process.env.START_PORT || 4300);
+const MAX_COMMAND_BUFFER_MB = 20;
+const MAX_COMMAND_BUFFER_BYTES = 1024 * 1024 * MAX_COMMAND_BUFFER_MB;
 const ARCGIS_OR_CALCITE_PATTERN = /^(arcgis|calcite)-/;
 const VALIDATED_RESPONSE_PATTERN = /(arcgis|calcite|127\.0\.0\.1|localhost)/i;
 const MAP_LIKE_SELECTOR = "arcgis-map, arcgis-scene, arcgis-map-components, arcgis-placement, #viewDiv, .viewDiv";
@@ -33,7 +35,7 @@ function run(command, args, options = {}) {
     encoding: "utf8",
     shell: false,
     env: { ...process.env, ...(options.env || {}) },
-    maxBuffer: 1024 * 1024 * 20,
+    maxBuffer: MAX_COMMAND_BUFFER_BYTES,
   });
   return {
     command: [command, ...args].join(" "),
