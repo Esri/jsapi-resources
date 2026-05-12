@@ -331,6 +331,7 @@ async function inspectApp(browser, url, artifactDir, label) {
       arcgisOrCalciteTags: tags,
       undefinedCustomElements,
       mapLikeElements,
+      // A map or component container with either zero dimension cannot render visibly.
       emptyMapLikeElements: mapLikeElements.filter((element) => element.width === 0 || element.height === 0),
     };
   }, {
