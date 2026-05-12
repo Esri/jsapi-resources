@@ -20,6 +20,7 @@ const CUSTOM_ELEMENT_TIMEOUT_MS = Number(process.env.CUSTOM_ELEMENT_TIMEOUT_MS |
 const START_PORT = Number(process.env.START_PORT || 4300);
 const ARCGIS_OR_CALCITE_PATTERN = /^(arcgis|calcite)-/;
 const VALIDATED_RESPONSE_PATTERN = /(arcgis|calcite|127\.0\.0\.1|localhost)/i;
+const MAP_LIKE_SELECTOR = "arcgis-map, arcgis-scene, arcgis-map-components, arcgis-placement, #viewDiv, .viewDiv";
 
 mkdirSync(artifactRoot, { recursive: true });
 
@@ -216,10 +217,15 @@ async function startStaticPreview(templateDir, port) {
 
   const server = createServer((request, response) => {
     const requestUrl = new URL(request.url || "/", `http://127.0.0.1:${port}`);
-    const decodedPath = decodeURIComponent(requestUrl.pathname);
-    const requestedFile = resolve(root, `.${decodedPath}`);
-    const safeFile = requestedFile.startsWith(root) ? requestedFile : join(root, "index.html");
-    const file = existsSync(safeFile) && !safeFile.endsWith(sep) ? safeFile : join(root, "index.html");
+    const requestedPath = decodeURIComponent(requestUrl.pathname).replace(/^\/+/, "");
+    const requestedFile = join(root, requestedPath);
+    const isInsideRoot = requestedFile === root || requestedFile.startsWith(`${root}${sep}`);
+    if (!isInsideRoot) {
+      response.writeHead(403, { "content-type": "text/plain; charset=utf-8" });
+      response.end("Forbidden");
+      return;
+    }
+    const file = existsSync(requestedFile) && !requestedFile.endsWith(sep) ? requestedFile : join(root, "index.html");
     try {
       response.writeHead(200, { "content-type": contentType(file) });
       response.end(readFileSync(file));
@@ -272,7 +278,7 @@ async function inspectApp(browser, url, artifactDir, label) {
   await page.waitForTimeout(2000);
   await page.screenshot({ path: join(artifactDir, `${label}.png`), fullPage: true });
 
-  const dom = await page.evaluate(async ({ customElementTimeoutMs, arcgisOrCalcitePatternSource }) => {
+  const dom = await page.evaluate(async ({ customElementTimeoutMs, arcgisOrCalcitePatternSource, mapLikeSelector }) => {
     const arcgisOrCalcitePattern = new RegExp(arcgisOrCalcitePatternSource);
     const sleep = (ms) => new Promise((resolveSleep) => setTimeout(resolveSleep, ms));
     const deadline = Date.now() + customElementTimeoutMs;
@@ -288,11 +294,12 @@ async function inspectApp(browser, url, artifactDir, label) {
 
     const tags = [...new Set(interestingTags())];
     const undefinedCustomElements = tags.filter((tag) => !customElements.get(tag));
-    const mapLikeElements = [...document.querySelectorAll("arcgis-map, arcgis-scene, arcgis-map-components, arcgis-placement, #viewDiv, .viewDiv")]
+    const mapLikeElements = [...document.querySelectorAll(mapLikeSelector)]
       .map((element) => {
         const rect = element.getBoundingClientRect();
+        const firstClass = element.classList?.length ? `.${element.classList.item(0)}` : "";
         return {
-          selector: element.id ? `#${element.id}` : element.localName || element.className,
+          selector: element.id ? `#${element.id}` : firstClass || element.localName,
           width: Math.round(rect.width),
           height: Math.round(rect.height),
           childCount: element.children.length,
@@ -308,7 +315,11 @@ async function inspectApp(browser, url, artifactDir, label) {
       mapLikeElements,
       emptyMapLikeElements: mapLikeElements.filter((element) => element.width === 0 || element.height === 0),
     };
-  }, { customElementTimeoutMs: CUSTOM_ELEMENT_TIMEOUT_MS, arcgisOrCalcitePatternSource: ARCGIS_OR_CALCITE_PATTERN.source });
+  }, {
+    customElementTimeoutMs: CUSTOM_ELEMENT_TIMEOUT_MS,
+    arcgisOrCalcitePatternSource: ARCGIS_OR_CALCITE_PATTERN.source,
+    mapLikeSelector: MAP_LIKE_SELECTOR,
+  });
 
   await page.close();
 
