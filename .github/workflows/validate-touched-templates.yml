@@ -14,13 +14,10 @@ on:
       agent_model:
         description: "Model profile for manual agentic review artifacts"
         required: false
-        default: "gpt-5.2-codex"
+        default: "gpt-4.1"
         type: choice
         options:
-          - "gpt-5.2-codex"
-          - "gpt-5.3-codex"
-          - "claude-sonnet-4.5"
-          - "claude-opus-4.5"
+          - "gpt-4.1"
       browser_mcp_backend:
         description: "Browser MCP server profile to expose to the validation agent"
         required: false
@@ -70,7 +67,7 @@ jobs:
       - name: Write agent MCP profile
         shell: bash
         env:
-          AGENT_MODEL: ${{ github.event.inputs.agent_model || 'gpt-5.2-codex' }}
+          AGENT_MODEL: ${{ github.event.inputs.agent_model || 'gpt-4.1' }}
           BROWSER_MCP_BACKEND: ${{ github.event.inputs.browser_mcp_backend || 'both' }}
         run: |
           mkdir -p "$RUNNER_TEMP/template-validation-artifacts"
@@ -117,7 +114,7 @@ jobs:
           HEAD_SHA: ${{ steps.refs.outputs.head_sha }}
           TEMPLATE_PATHS: ${{ github.event.inputs.template_paths }}
           ARTIFACT_DIR: ${{ runner.temp }}/template-validation-artifacts
-          AGENT_MODEL: ${{ github.event.inputs.agent_model || 'gpt-5.2-codex' }}
+          AGENT_MODEL: ${{ github.event.inputs.agent_model || 'gpt-4.1' }}
           BROWSER_MCP_BACKEND: ${{ github.event.inputs.browser_mcp_backend || 'both' }}
           MCP_PROFILE_PATH: ${{ runner.temp }}/template-validation-artifacts/agent-mcp-profile.json
           PLAYWRIGHT_ROOT: ${{ runner.temp }}/template-validator

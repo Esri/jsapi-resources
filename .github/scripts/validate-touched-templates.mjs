@@ -9,7 +9,7 @@ import { spawn, spawnSync } from "node:child_process";
 const repoRoot = resolve(process.env.GITHUB_WORKSPACE || process.cwd());
 const artifactRoot = resolve(process.env.ARTIFACT_DIR || join(repoRoot, "template-validation-artifacts"));
 const playwrightRoot = process.env.PLAYWRIGHT_ROOT;
-const agentModel = process.env.AGENT_MODEL || "gpt-5.2-codex";
+const agentModel = process.env.AGENT_MODEL || "gpt-4.1";
 const browserMcpBackend = process.env.BROWSER_MCP_BACKEND || "both";
 const mcpProfilePath = process.env.MCP_PROFILE_PATH || join(artifactRoot, "agent-mcp-profile.json");
 
