@@ -1,6 +1,6 @@
 import WebMap from "@arcgis/core/WebMap.js";
-import type FeatureLayer from "@arcgis/core/layers/FeatureLayer";
-import type FeatureSet from "@arcgis/core/rest/support/FeatureSet";
+import type FeatureLayer from "@arcgis/core/layers/FeatureLayer.js";
+import type FeatureSet from "@arcgis/core/rest/support/FeatureSet.js";
 
 /**
  * Simple data loader against public data.

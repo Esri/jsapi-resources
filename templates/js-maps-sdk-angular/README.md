@@ -4,6 +4,15 @@
 
 This template demonstrates how to use the [ArcGIS Maps SDK for JavaScript](https://developers.arcgis.com/javascript/latest/) in a Angular application.
 
+> [!TIP]
+> **Angular 22** Angular 22 introduces a new chunk optimization strategy that may produce a substantially different build output than Angular 21. In testing with this sample application, Angular 22 generated fewer chunks, changed startup bundle composition, and produced different Lighthouse performance results.
+>
+> If you want a build output that more closely resembles Angular 21, add the following build script to your package.json:
+>
+> `"build-faster": NG_BUILD_OPTIMIZE_CHUNKS=0 ng build --configuration production",`
+>
+> Performance characteristics vary by application. Be sure to benchmark your build times and runtime performance before and after enabling this workaround.
+
 ## Get started
 
 To quickly scaffold a new application using this template, run the following command in your terminal:

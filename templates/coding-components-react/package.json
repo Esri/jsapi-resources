@@ -9,15 +9,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@arcgis/coding-components": "^5.0.0",
-    "@arcgis/core": "^5.0.0",
-    "@esri/calcite-components": "^5.0.0",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "@arcgis/coding-components": "^5.1.0",
+    "@arcgis/core": "^5.1.0",
+    "@esri/calcite-components": "^5.1.1",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
   },
   "devDependencies": {
-    "@vitejs/plugin-react": "~5.1.2",
-    "vite": "^7.2.2"
+    "@vitejs/plugin-react": "~6.0.2",
+    "vite": "^8.0.16"
   },
   "browserslist": {
     "production": [

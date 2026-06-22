@@ -1,16 +1,8 @@
-import { Annotation, messagesStateReducer } from "@langchain/langgraph/web";
-import type { ChatHistory } from "@arcgis/ai-components/utils/index.js";
+import { Annotation } from "@langchain/langgraph/web";
+import { createAgentRuntimeState } from "@arcgis/ai-components/utils/index.js";
 
 export const LocationServicesState = Annotation.Root({
-  messages: Annotation<ChatHistory>({
-    reducer: messagesStateReducer,
-    default: () => [],
-  }),
-  outputMessage: Annotation<string>({
-    reducer: (current = "", update) =>
-      typeof update === "string" && update.trim() ? (current ? `${current}\n\n${update}` : update) : current,
-    default: () => "",
-  }),
+  ...createAgentRuntimeState(),
 });
 
 export type LocationServicesGraphStateType = typeof LocationServicesState.State;

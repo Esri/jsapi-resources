@@ -25,7 +25,7 @@ import Graphic from "@arcgis/core/Graphic.js";
 import Point from "@arcgis/core/geometry/Point.js";
 import SimpleMarkerSymbol from "@arcgis/core/symbols/SimpleMarkerSymbol.js";
 import SimpleLineSymbol from "@arcgis/core/symbols/SimpleLineSymbol.js";
-import type WebMap from "@arcgis/core/WebMap";
+import type WebMap from "@arcgis/core/WebMap.js";
 
 export function App(): React.JSX.Element {
   const [navHeading, setNavHeading] = useState("");
@@ -87,7 +87,12 @@ export function App(): React.JSX.Element {
       </calcite-navigation>
       {/* The Map component fits to the size of the parent element  */}
       {/* The basemap, extent, zoom and more are provided by the Web Map (item-id) */}
-      <arcgis-map item-id="dd4b2f25487d4a37a45093ba6acd026d" onarcgisViewReadyChange={handleViewReady}>
+      {/* Note: popup-component-enabled enables the Popup component (beta). See https://developers.arcgis.com/javascript/latest/references/map-components/components/arcgis-map/#popupComponentEnabled for details. */}
+      <arcgis-map
+        item-id="dd4b2f25487d4a37a45093ba6acd026d"
+        popup-component-enabled
+        onarcgisViewReadyChange={handleViewReady}
+      >
         <arcgis-zoom slot="top-left" />
         <arcgis-search slot="top-right" />
         <arcgis-expand slot="bottom-left">

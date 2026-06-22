@@ -17,7 +17,7 @@ export async function locationServicesToolCalling(
 
   const res = (await locationServicesToolNode.invoke(
     {
-      messages: state.messages,
+      messages: state.agentExecutionContext.messages,
     },
     config,
   )) as { messages: ToolMessage[] };
@@ -26,8 +26,8 @@ export async function locationServicesToolCalling(
   await sendTraceMessage({ text: `Finished executing locationServices tool: ${toolMessages}` }, config);
 
   // Keep as ToolMessages in inputMessages (for LLM context)
-  const messages = [...state.messages, ...res.messages];
+  const messages = [...state.agentExecutionContext.messages, ...res.messages];
   const outputMessage = res.messages.map((m) => m.text).join("\n");
 
-  return { ...state, messages, outputMessage };
+  return { ...state, agentExecutionContext: { ...state.agentExecutionContext, messages }, outputMessage };
 }

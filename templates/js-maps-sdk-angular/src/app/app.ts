@@ -26,7 +26,7 @@ import Graphic from "@arcgis/core/Graphic.js";
 import Point from "@arcgis/core/geometry/Point.js";
 import SimpleLineSymbol from "@arcgis/core/symbols/SimpleLineSymbol.js";
 import SimpleMarkerSymbol from "@arcgis/core/symbols/SimpleMarkerSymbol.js";
-import type WebMap from "@arcgis/core/WebMap";
+import type WebMap from "@arcgis/core/WebMap.js";
 import type { ArcgisMap } from "@arcgis/map-components/components/arcgis-map";
 
 @Component({

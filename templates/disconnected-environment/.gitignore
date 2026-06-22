@@ -9,6 +9,10 @@
 # Node
 /node_modules
 
+# Assets
+/public/assets
+/public/common-components/assets/
+
 # Logs
 logs
 *.log

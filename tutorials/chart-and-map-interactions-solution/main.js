@@ -31,10 +31,10 @@ chartElement.layer = layer;
 
 // Set the chart element's view property to the view, and enable syncing of selections between the chart and layer view
 chartElement.view = view;
-chartElement.syncSelectionsBetweenChartAndLayerViewPolicy = "enabled";
+chartElement.syncViewSelection = true;
 
 // Listen for click events on the view, and perform a hit test to get the object ID of the clicked feature
-// This along side of the `syncSelectionsBetweenChartAndLayerViewPolicy` property will allow for the chart to update its selection based on clicks in the view
+// This along side of the `syncViewSelection` property will allow for the chart to update its selection based on clicks in the view
 viewElement.addEventListener("arcgisViewClick", async (event) => {
   const { results } = await viewElement.hitTest(event.detail, { include: [layer] });
   if (results?.length > 0) {

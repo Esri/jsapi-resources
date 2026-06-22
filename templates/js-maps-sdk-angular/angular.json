@@ -1,9 +1,12 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
+  "cli": {
+    "packageManager": "npm"
+  },
   "newProjectRoot": "projects",
   "projects": {
-    "map-and-charts-components-angular-sample": {
+    "js-maps-sdk-angular-template": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,8 +16,8 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
+            "outputPath": "dist",
             "browser": "src/main.ts",
-            "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "assets": [
               {
@@ -32,6 +35,7 @@
               "raf",
               "rgbcolor",
               "ajv",
+              "fastq",
               "fast-memoize",
               "html2canvas",
               "jszip",
@@ -43,7 +47,7 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "8MB",
+                  "maximumWarning": "9MB",
                   "maximumError": "12MB"
                 },
                 {
@@ -52,7 +56,8 @@
                   "maximumError": "8kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "extractLicenses": false
             },
             "development": {
               "optimization": false,
@@ -66,21 +71,15 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "map-and-charts-components-angular-sample:build:production"
+              "buildTarget": "js-maps-sdk-angular-template:build:production"
             },
             "development": {
-              "buildTarget": "map-and-charts-components-angular-sample:build:development"
+              "buildTarget": "js-maps-sdk-angular-template:build:development"
             }
           },
           "defaultConfiguration": "development"
-        },
-        "extract-i18n": {
-          "builder": "@angular/build:extract-i18n"
         }
       }
     }
-  },
-  "cli": {
-    "analytics": false
   }
 }

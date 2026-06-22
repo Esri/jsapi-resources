@@ -10,7 +10,7 @@ import z from "zod";
 import { findServiceAreas } from "./core";
 import { getLocationServicesContext } from "../../context/getlocationServicesContext";
 
-export async function findServiceAreasWrapper(
+async function findServiceAreasWrapper(
   {
     facilities,
     driveTimeCutoffs,

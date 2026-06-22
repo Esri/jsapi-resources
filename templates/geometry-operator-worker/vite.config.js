@@ -8,6 +8,12 @@ export default defineConfig({
   worker: {
     format: "es",
     plugins: () => [comlink()],
+    rollupOptions: {
+      output: {
+        // Prevent worker-emitted CSS/asset names from colliding with app assets.
+        assetFileNames: "assets/worker/[name]-[hash][extname]",
+      },
+    },
   },
   server: {
     open: true,
