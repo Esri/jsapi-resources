@@ -36,7 +36,7 @@ const config = {
         use: ["source-map-loader"],
       },
       ...
-    ];
+    ],
   }
 };
 ```
