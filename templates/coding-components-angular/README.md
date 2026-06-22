@@ -9,8 +9,7 @@ See the [Get started with npm guide](https://developers.arcgis.com/javascript/la
 >
 > If you want a build output that more closely resembles Angular 21, add the following build script to your package.json:
 >
-> `"build-faster": NG_BUILD_OPTIMIZE_CHUNKS=0 ng build --configuration production",`
->
+> `"build-faster": "NG_BUILD_OPTIMIZE_CHUNKS=0 ng build --configuration production"`
 > Performance characteristics vary by application. Be sure to benchmark your build times and runtime performance before and after enabling this workaround.
 
 ## Known issues
