@@ -21,7 +21,7 @@ This template uses the following packages:
 
 ## Optional debugging
 
-If you notice hard-to-read stack traces or browser warnings about missing source maps, you can enable [source-map-loader](https://v4.webpack.js.org/loaders/source-map-loader/) for better debugging.
+If you notice hard-to-read stack traces or browser warnings about missing source maps, you can install and enable [source-map-loader](https://v4.webpack.js.org/loaders/source-map-loader/) for better debugging (e.g. `npm i -D source-map-loader`).
 
 ```mjs
 // webpack.config.mjs
