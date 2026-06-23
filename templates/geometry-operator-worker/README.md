@@ -12,6 +12,18 @@ Run `npm install` to install the dependencies, and then `npm run dev` to see the
 
 For a list of all available `npm` commands see `scripts` in `package.json`, e.g. `npm run build`.
 
+> [!TIP]
+> **Configuring assets:** If you receive a `FILE_NAME_CONFLICT` warning, configure `assetFileNames` in vite.config.js to use a naming pattern that avoids collisions between worker-emitted and application assets. For example:
+>
+> ```js
+> rollupOptions: {
+>   output: {
+>     // Use a separate naming pattern for worker-emitted assets.
+>     assetFileNames: "assets/worker/[name]-[hash][extname]",
+>   },
+> },
+> ```
+
 For more details on using the SDK, please refer to the [ArcGIS Maps SDK for JavaScript documentation](https://developers.arcgis.com/javascript/latest/get-started/).
 
 ## Learn more

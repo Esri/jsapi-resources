@@ -1,4 +1,4 @@
-import type MapView from "@arcgis/core/views/MapView";
+import type MapView from "@arcgis/core/views/MapView.js";
 
 /**
  * Context required by the Location Services agent.

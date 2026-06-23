@@ -4,6 +4,14 @@
 
 See the [Get started with npm guide](https://developers.arcgis.com/javascript/latest/get-started/#use-arcgiscreate) for full instructions and the [Coding components reference](https://developers.arcgis.com/javascript/latest/references/coding-components/) documentation for more information.
 
+> [!TIP]
+> **Angular 22** Angular 22 introduces a new chunk optimization strategy that may produce a substantially different build output than Angular 21. In testing with this sample application, Angular 22 generated fewer chunks, changed startup bundle composition, and produced different Lighthouse performance results.
+>
+> If you want a build output that more closely resembles Angular 21, add the following build script to your package.json:
+>
+> `"build-faster": "NG_BUILD_OPTIMIZE_CHUNKS=0 ng build --configuration production"`
+> Performance characteristics vary by application. Be sure to benchmark your build times and runtime performance before and after enabling this workaround.
+
 ## Known issues
 
 - You may encounter the following build configuration error:

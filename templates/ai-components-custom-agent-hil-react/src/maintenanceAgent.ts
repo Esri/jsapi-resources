@@ -1,7 +1,12 @@
-import { StateGraph, START, END, Annotation, messagesStateReducer, NodeInterrupt } from "@langchain/langgraph/web";
-import { invokeStructuredPrompt, sendTraceMessage } from "@arcgis/ai-components/utils/index.js";
-import type { AgentRegistration, ChatHistory, UiInterrupt } from "@arcgis/ai-components/utils/index.js";
+import { StateGraph, START, END, Annotation, NodeInterrupt } from "@langchain/langgraph/web";
+import {
+  createAgentRuntimeState,
+  invokeStructuredPrompt,
+  sendTraceMessage,
+} from "@arcgis/ai-components/utils/index.js";
+import type { AgentRegistration, UiInterrupt } from "@arcgis/ai-components/utils/index.js";
 import type { RunnableConfig } from "@langchain/core/runnables";
+import { AIMessage } from "@langchain/core/messages";
 import z from "zod";
 import type { CustomConfigurableType } from "@arcgis/ai-components/utils/index.js";
 import MapView from "@arcgis/core/views/MapView.js";
@@ -35,19 +40,7 @@ type ServiceMaintenanceContext = {
  * ticket: structured Maintenance report for this agent
  */
 const ServiceMaintenanceState = Annotation.Root({
-  messages: Annotation<ChatHistory>({
-    reducer: messagesStateReducer,
-    default: () => [],
-  }),
-  // Accumulates user-visible output across graph nodes.
-  // Each node may append text to `outputMessage`; the final value is
-  // concatenated in execution order and returned to the orchestrator.
-  // Only plain text should be written here (no tool messages or tool calls).
-  outputMessage: Annotation<string>({
-    reducer: (current = "", update) =>
-      typeof update === "string" && update.trim() ? (current ? `${current}\n\n${update}` : update) : current,
-    default: () => "",
-  }),
+  ...createAgentRuntimeState(),
   ticket: Annotation<ServiceMaintenanceTicket | null>({
     reducer: (_current, update) => update ?? null,
     default: () => null,
@@ -61,6 +54,15 @@ type ServiceMaintenanceGraphStateType = typeof ServiceMaintenanceState.State;
  */
 const serviceMaintenanceIncidentPrompt = String.raw`
 You are an assistant that logs road maintenance issues for a city public works department.
+
+Assigned task:
+{assignedTask}
+
+Original user request:
+{userRequest}
+
+Prior steps:
+{priorSteps}
 
 From the user's message, extract:
 - "category": one of the following categories: "Pothole", "Cracks", "Faded Paint", "Debris", "Erosion", "Blockage", or "Other". If you can't determine a category, use "Other".
@@ -84,7 +86,7 @@ const extractMaintenanceLLM = async (
 
   const incidentSchema = z.object({
     category: z.enum(["Pothole", "Cracks", "Faded Paint", "Debris", "Erosion", "Blockage", "Other"]),
-    notes: z.string(),
+    notes: z.string().max(256),
     severity: z.enum(["Low", "Moderate", "High", "Critical"]),
     address: z.string(),
   });
@@ -92,7 +94,11 @@ const extractMaintenanceLLM = async (
   const response = await invokeStructuredPrompt({
     promptText: serviceMaintenanceIncidentPrompt,
     modelTier: "default",
-    messages: state.messages,
+    inputVariables: {
+      assignedTask: state.agentExecutionContext.assignedTask,
+      userRequest: state.agentExecutionContext.userRequest,
+      priorSteps: state.agentExecutionContext.priorSteps,
+    },
     schema: incidentSchema,
   });
 
@@ -109,8 +115,14 @@ const extractMaintenanceLLM = async (
     CreationDate: new Date(),
   };
 
+  const messages = [...state.agentExecutionContext.messages, new AIMessage(JSON.stringify(response))];
+
   return {
     ticket,
+    agentExecutionContext: {
+      ...state.agentExecutionContext,
+      messages,
+    },
   };
 };
 

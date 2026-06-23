@@ -5,6 +5,6 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "@arcgis/core": "^5.0.0"
+    "@arcgis/core": "^5.1.0"
   }
 }

@@ -87,7 +87,13 @@ const handleViewReady = (event) => {
 
     <!-- The Map component fits to the size of the parent element -->
     <!-- The basemap, extent, zoom and more are provided by the Web Map (item-id) -->
-    <arcgis-map ref="mapElement" item-id="dd4b2f25487d4a37a45093ba6acd026d" @arcgisViewReadyChange="handleViewReady">
+    <!-- Note: popup-component-enabled enables the Popup component (beta). See https://developers.arcgis.com/javascript/latest/references/map-components/components/arcgis-map/#popupComponentEnabled for details. -->
+    <arcgis-map
+      ref="mapElement"
+      item-id="dd4b2f25487d4a37a45093ba6acd026d"
+      popup-component-enabled
+      @arcgisViewReadyChange="handleViewReady"
+    >
       <arcgis-zoom slot="top-left"></arcgis-zoom>
       <arcgis-search slot="top-right"></arcgis-search>
       <arcgis-expand slot="bottom-left">

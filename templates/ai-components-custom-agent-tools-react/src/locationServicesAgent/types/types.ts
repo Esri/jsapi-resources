@@ -1,4 +1,4 @@
-import type SpatialReference from "@arcgis/core/geometry/SpatialReference";
+import type SpatialReference from "@arcgis/core/geometry/SpatialReference.js";
 
 export interface FacilityPoint {
   x: number;
@@ -12,20 +12,4 @@ export interface FindServiceAreasOptions {
   travelDirection: "from-facility" | "to-facility";
   outSpatialReference?: SpatialReference;
   serviceAreaUrl?: string;
-}
-
-/** Service area polygon geometry */
-export interface ServiceAreaPolygonGeometry {
-  rings: number[][][];
-  spatialReference: { wkid: number };
-}
-
-/** Service area polygon result */
-export interface ServiceAreaPolygon {
-  geometry: ServiceAreaPolygonGeometry;
-  attributes: {
-    FromBreak: number;
-    ToBreak: number;
-    FacilityID?: number;
-  };
 }

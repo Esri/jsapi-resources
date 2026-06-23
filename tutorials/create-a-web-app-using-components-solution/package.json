@@ -8,11 +8,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@arcgis/core": "^5.0.0",
-    "@arcgis/map-components": "^5.0.0",
-    "@esri/calcite-components": "^5.0.0"
+    "@arcgis/core": "^5.1.0",
+    "@arcgis/map-components": "^5.1.0",
+    "@esri/calcite-components": "^5.1.1"
   },
   "devDependencies": {
-    "vite": "^7.2.2"
+    "vite": "^8.0.16"
   }
 }
