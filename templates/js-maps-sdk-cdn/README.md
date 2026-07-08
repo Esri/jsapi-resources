@@ -10,6 +10,6 @@ To quickly scaffold a new application using this template, run the following com
 npx @arcgis/create -n my-arcgis-app -t cdn
 ```
 
-`<script type="module" src="https://js.arcgis.com/5.0/"></script>` will load all the necessary packages used in the template.
+`<script type="module" src="https://js.arcgis.com/5.1/"></script>` will load all the necessary packages used in the template.
 
 See the [Get started with CDN guide](https://developers.arcgis.com/javascript/latest/web-components/get-started/#create-an-app-with-the-arcgis-cdn) for full setup instructions.
