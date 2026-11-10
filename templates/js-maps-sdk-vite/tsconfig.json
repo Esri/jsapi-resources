@@ -32,7 +32,7 @@
     // Type-check only; rely on Vite build for emit
     "noEmit": true,
     // This sets the output at the minimum version of JavaScript features that will be supported.
-    "target": "ES2023",
+    "target": "ES2024",
     // Improves performance by checking only the .ts files you write
     // rather than the .d.ts files from the libraries you are using.
     "skipLibCheck": true,

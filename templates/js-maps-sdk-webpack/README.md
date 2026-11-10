@@ -26,7 +26,7 @@ If you notice hard-to-read stack traces or browser warnings about missing source
 ```mjs
 // webpack.config.mjs
 const config = {
-  ...
+  // ...
   module: {
     rules: [
       {
@@ -35,9 +35,9 @@ const config = {
         exclude: /node_modules/,
         use: ["source-map-loader"],
       },
-      ...
+      // ...
     ],
-  }
+  },
 };
 ```
 

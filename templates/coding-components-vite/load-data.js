@@ -10,9 +10,10 @@ export async function loadData() {
   const webMap = new WebMap({
     portalItem: { id: "93d14bfd59a84af0be99a883feba052b" },
   });
-  await webMap.loadAll();
+  await webMap.load();
 
   const featureLayer = webMap.findLayerById("17c807fd286-layer-47");
+  await featureLayer.load();
 
   const featureSet = await featureLayer.queryFeatures({
     where: "1=1",

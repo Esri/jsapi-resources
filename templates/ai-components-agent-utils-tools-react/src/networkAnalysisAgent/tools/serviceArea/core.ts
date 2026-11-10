@@ -10,8 +10,8 @@ import SimpleMarkerSymbol from "@arcgis/core/symbols/SimpleMarkerSymbol.js";
 import type { FindServiceAreasOptions } from "../../types/types";
 import { fetchServiceDescription } from "@arcgis/core/rest/networkService.js";
 import type { ArcgisMap } from "@arcgis/map-components/components/arcgis-map";
-import GroupLayer from "@arcgis/core/layers/GroupLayer.js";
-import MapNotesLayer from "@arcgis/core/layers/MapNotesLayer.js";
+import type GroupLayer from "@arcgis/core/layers/GroupLayer.js";
+import type MapNotesLayer from "@arcgis/core/layers/MapNotesLayer.js";
 import Portal from "@arcgis/core/portal/Portal.js";
 
 /**

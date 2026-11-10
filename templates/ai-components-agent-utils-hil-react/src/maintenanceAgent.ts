@@ -9,9 +9,9 @@ import {
 import type { AgentRegistration } from "@arcgis/ai-components/utils/index.js";
 import type { FunctionAgentExecute } from "@arcgis/ai-components/agent-utils/FunctionAgent.js";
 import z from "zod";
-import FeatureLayer from "@arcgis/core/layers/FeatureLayer.js";
+import type FeatureLayer from "@arcgis/core/layers/FeatureLayer.js";
 import Graphic from "@arcgis/core/Graphic.js";
-import Point from "@arcgis/core/geometry/Point.js";
+import type Point from "@arcgis/core/geometry/Point.js";
 import type { ArcgisMap } from "@arcgis/map-components/components/arcgis-map";
 
 interface ServiceMaintenanceTicket {

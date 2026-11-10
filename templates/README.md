@@ -1,4 +1,4 @@
-# ArcGIS Maps SDK for Javascript - Component Samples
+# ArcGIS Maps SDK for Javascript Samples
 
 This directory contains samples that demonstrate how to use web components and the core API from the ArcGIS Maps SDK for JavaScript with various frameworks, module bundlers, and build tools. There are three component packages available.
 

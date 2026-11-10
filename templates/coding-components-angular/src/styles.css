@@ -1,6 +1,6 @@
 @import "@esri/calcite-components/main.css";
 @import "@arcgis/coding-components/main.css";
-@import "monaco-editor/min/vs/editor/editor.main.css";
+@import "../node_modules/monaco-editor/min/vs/editor/editor.main.css";
 
 html,
 body {

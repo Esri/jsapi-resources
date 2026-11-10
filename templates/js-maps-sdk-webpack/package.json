@@ -8,19 +8,19 @@
     "start": "webpack-dev-server --config webpack.config.mjs --mode development --open"
   },
   "dependencies": {
-    "@arcgis/charts-components": "^5.1.0",
-    "@arcgis/core": "^5.1.0",
-    "@arcgis/map-components": "^5.1.0",
-    "@esri/calcite-components": "^5.1.1"
+    "@arcgis/charts-components": "^5.2.1",
+    "@arcgis/core": "^5.2.1",
+    "@arcgis/map-components": "^5.2.1",
+    "@esri/calcite-components": "^5.2.1"
   },
   "devDependencies": {
-    "css-loader": "~7.1.4",
+    "css-loader": "~7.1.5",
     "html-webpack-plugin": "~5.6.7",
     "mini-css-extract-plugin": "~2.10.2",
     "style-loader": "~4.0.0",
     "terser-webpack-plugin": "~5.6.1",
-    "webpack": "~5.107.2",
-    "webpack-cli": "~7.0.3",
-    "webpack-dev-server": "~5.2.4"
+    "webpack": "~5.112.2",
+    "webpack-cli": "~7.2.3",
+    "webpack-dev-server": "~6.1.0"
   }
 }

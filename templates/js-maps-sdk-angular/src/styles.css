@@ -1,8 +1,21 @@
 @import "@esri/calcite-components/main.css";
 @import "@arcgis/map-components/main.css";
 
+:root {
+  --calcite-color-brand: #b34b00;
+  --calcite-color-brand-hover: #9f4504;
+  --calcite-color-brand-press: #803703;
+  --calcite-color-focus: #b34b00;
+  --calcite-color-background: #faf3e3;
+  --calcite-color-foreground-1: #fffaed;
+  --calcite-color-foreground-2: #fae9c8;
+  --calcite-color-foreground-3: #fce5b6;
+  --calcite-color-foreground-current: #ebd09d;
+}
+
 html,
 body {
+  background-color: var(--calcite-color-background);
   height: 100%;
   margin: 0;
 }

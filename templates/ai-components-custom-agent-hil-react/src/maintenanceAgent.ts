@@ -9,10 +9,10 @@ import type { RunnableConfig } from "@langchain/core/runnables";
 import { AIMessage } from "@langchain/core/messages";
 import z from "zod";
 import type { CustomConfigurableType } from "@arcgis/ai-components/utils/index.js";
-import MapView from "@arcgis/core/views/MapView.js";
-import FeatureLayer from "@arcgis/core/layers/FeatureLayer.js";
+import type MapView from "@arcgis/core/views/MapView.js";
+import type FeatureLayer from "@arcgis/core/layers/FeatureLayer.js";
 import Graphic from "@arcgis/core/Graphic.js";
-import Point from "@arcgis/core/geometry/Point.js";
+import type Point from "@arcgis/core/geometry/Point.js";
 
 /**
  * --- Types ---

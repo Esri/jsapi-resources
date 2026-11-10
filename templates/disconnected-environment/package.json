@@ -4,24 +4,20 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "npm run copy:all && vite",
-    "build": "npm run copy:all && vite build",
-    "preview": "vite preview",
-    "copy:all": "npm run copy:calcite && npm run copy:core && npm run copy:components",
-    "copy:calcite": "cpx \"node_modules/@esri/calcite-components/dist/cdn/assets/**/*.*\" ./public/assets",
-    "copy:core": "cpx \"node_modules/@arcgis/core/assets/**/*.*\" ./public/assets",
-    "copy:components": "cpx \"node_modules/@arcgis/coding-components/dist/cdn/assets/**/*.*\" ./public/assets && cpx \"node_modules/@arcgis/map-components/dist/cdn/assets/**/*.*\" ./public/assets && cpx \"node_modules/@arcgis/charts-components/dist/cdn/assets/**/*.*\" ./public/assets && cpx \"node_modules/@arcgis/common-components/dist/cdn/assets/**/*.*\" ./public/common-components/assets"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "@arcgis/charts-components": "^5.1.0",
-    "@arcgis/coding-components": "^5.1.0",
-    "@arcgis/common-components": "^5.1.0",
-    "@arcgis/core": "^5.1.0",
-    "@arcgis/map-components": "^5.1.0",
-    "@esri/calcite-components": "^5.1.1"
+    "@arcgis/charts-components": "^5.2.1",
+    "@arcgis/coding-components": "^5.2.1",
+    "@arcgis/common-components": "^5.2.1",
+    "@arcgis/core": "^5.2.1",
+    "@arcgis/map-components": "^5.2.1",
+    "@esri/calcite-components": "^5.2.1"
   },
   "devDependencies": {
-    "cpx2": "^8.0.0",
-    "vite": "^8.0.16"
+    "vite": "^8.3.5",
+    "vite-plugin-static-copy": "^4.1.1"
   }
 }

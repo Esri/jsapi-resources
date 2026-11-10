@@ -10,6 +10,7 @@ See the [Get started with npm guide](https://developers.arcgis.com/javascript/la
 > If you want a build output that more closely resembles Angular 21, add the following build script to your package.json:
 >
 > `"build-faster": "NG_BUILD_OPTIMIZE_CHUNKS=0 ng build --configuration production"`
+>
 > Performance characteristics vary by application. Be sure to benchmark your build times and runtime performance before and after enabling this workaround.
 
 ## Known issues
@@ -35,7 +36,7 @@ See the [Get started with npm guide](https://developers.arcgis.com/javascript/la
 
   - See [this issue](https://github.com/angular/angular-cli/issues/31018) for more information.
 
-- `monaco-editor/min/vs/editor/editor.main.css` will need to be imported because of an [Angular bug](https://github.com/angular/angular-cli/issues/31017) that prevents css auto-loading in the production build.
+- `../node_modules/monaco-editor/min/vs/editor/editor.main.css` is imported directly because the Monaco package export map does not expose this CSS file to Angular's production builder. This also works around an [Angular bug](https://github.com/angular/angular-cli/issues/31017) that prevents CSS auto-loading in the production build.
 
 - You may encounter the following warning when running the sample:
   `The above dynamic import cannot be analyzed by Vite`.

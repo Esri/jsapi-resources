@@ -1,0 +1,23 @@
+{
+  "name": "js-maps-sdk-astro-template",
+  "version": "0.0.0",
+  "description": "ArcGIS Maps SDK for JavaScript Astro template",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@arcgis/charts-components": "^5.2.1",
+    "@arcgis/core": "^5.2.1",
+    "@arcgis/map-components": "^5.2.1",
+    "@esri/calcite-components": "^5.2.1"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.12",
+    "astro": "^7.4.2",
+    "typescript": "~6.0.3"
+  }
+}

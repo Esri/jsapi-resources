@@ -5,12 +5,13 @@ import "@arcgis/map-components/components/arcgis-map";
 import "@arcgis/map-components/components/arcgis-zoom";
 
 // Core API imports
+import { open as openConnection } from "@arcgis/core/core/workers.js";
 import * as intl from "@arcgis/core/intl.js";
-import * as bufferOperator from "@arcgis/core/geometry/operators/bufferOperator.js";
+import { bufferExecute } from "@arcgis/core/geometry/operators/bufferOperator.js";
 import * as symbolUtils from "@arcgis/core/symbols/support/symbolUtils.js";
 import SimpleMarkerSymbol from "@arcgis/core/symbols/SimpleMarkerSymbol.js";
 import SimpleLineSymbol from "@arcgis/core/symbols/SimpleLineSymbol.js";
-import Graphic from "@arcgis/core/Graphic";
+import Graphic from "@arcgis/core/Graphic.js";
 
 const greenLineSymbol = new SimpleLineSymbol({
   style: "solid",
@@ -46,10 +47,11 @@ const calciteLoader = document.getElementById("calciteLoader");
 const lengthDiv = document.getElementById("lengthDiv");
 
 // Create a new worker thread that will be used to perform the geometry operations
-const geometryOperatorsWorker = new ComlinkWorker(new URL("./geometry-operator-worker.mjs", import.meta.url), {
-  name: "geometryOperatorWorker",
-  type: "module", // this is required
-});
+const workerUrl = new URL(
+  import.meta.env.DEV ? "./geometry-operator-worker.js" : "../geometry-operator-worker.js",
+  import.meta.url,
+);
+const geometryOperatorConnection = await openConnection(workerUrl.href, { isESM: true });
 
 // Run query in the worker thread
 // This function will be called when the user clicks on the map
@@ -57,7 +59,7 @@ const runWorker = async (queryBuffer) => {
   calciteLoader.hidden = false;
 
   // This work will be done in the worker thread.
-  const result = await geometryOperatorsWorker.getRiverBuffers(queryBuffer);
+  const result = await geometryOperatorConnection.invoke("getRiverBuffers", queryBuffer);
 
   // Process the results returned from the worker
   const rivers = result.bufferedFeatureSet.map((feature) => Graphic.fromJSON(feature.rivers));
@@ -91,7 +93,7 @@ const addPointAndBuffer = (mapPoint, queryBuffer) => {
 mapElement.addEventListener("arcgisViewClick", async (event) => {
   // Create a new buffer around the clicked point
   // The buffer will be used to query the river features
-  const queryBuffer = bufferOperator.execute(event.detail.mapPoint, 10000, {
+  const queryBuffer = bufferExecute(event.detail.mapPoint, 10000, {
     unit: "meters",
   });
 
