@@ -6,20 +6,36 @@
     <title>ArcGIS Maps SDK for JavaScript CDN template</title>
     <link rel="icon" href="data:;base64,=" />
     <style>
+      :root {
+        --calcite-color-brand: #b34b00;
+        --calcite-color-brand-hover: #9f4504;
+        --calcite-color-brand-press: #803703;
+        --calcite-color-focus: #b34b00;
+        --calcite-color-background: #faf3e3;
+        --calcite-color-foreground-1: #fffaed;
+        --calcite-color-foreground-2: #fae9c8;
+        --calcite-color-foreground-3: #fce5b6;
+        --calcite-color-foreground-current: #ebd09d;
+      }
+
       html,
       body {
-        background-color: var(--calcite-ui-foreground-2);
+        background-color: var(--calcite-color-background);
         height: 100%;
         margin: 0;
       }
 
+      calcite-navigation-logo {
+        --calcite-navigation-logo-heading-text-color: var(--calcite-color-brand);
+      }
+
       arcgis-chart {
-        width: 350px;
-        height: 250px;
+        width: min(clamp(360px, 40dvw, 640px), calc(100dvw - 80px));
+        height: clamp(250px, 40dvh, 400px);
       }
     </style>
     <!-- Load the ArcGIS Maps SDK for JavaScript from the CDN -->
-    <script type="module" src="https://js.arcgis.com/5.1/"></script>
+    <script type="module" src="https://js.arcgis.com/5.2/"></script>
 
     <!-- Optional: If you're loading secure web maps -->
     <!-- Configure the IdentityManager before the SDK's components load -->
@@ -61,7 +77,7 @@
         <!-- A Feature Layer in the Web Map has an associated chart (layer-item-id) -->
         <arcgis-chart
           layer-item-id="b1717962dab247ad93eaca257b32fe02"
-          chart-index="1"
+          chart-index="0"
           slot="bottom-right"
         ></arcgis-chart>
       </arcgis-map>
@@ -70,15 +86,13 @@
 
   <script type="module">
     // Import modules from the SDK's core API
-    const Graphic = await $arcgis.import("@arcgis/core/Graphic.js");
-    const Point = await $arcgis.import("@arcgis/core/geometry/Point.js");
-    const SimpleMarkerSymbol = await $arcgis.import("@arcgis/core/symbols/SimpleMarkerSymbol.js");
-    const SimpleLineSymbol = await $arcgis.import("@arcgis/core/symbols/SimpleLineSymbol.js");
+    const summaryStatistics = await $arcgis.import("@arcgis/core/smartMapping/statistics/summaryStatistics.js");
+    const ExpressionContent = await $arcgis.import("@arcgis/core/popup/content/ExpressionContent.js");
 
     const viewElement = document.querySelector("arcgis-map");
     const calciteNavLogo = document.querySelector("calcite-navigation-logo");
 
-    viewElement.addEventListener("arcgisViewReadyChange", () => {
+    viewElement.addEventListener("arcgisViewReadyChange", async () => {
       // Use metadata from the Web Map to populate the header
       const { title, description } = viewElement.map.portalItem;
 
@@ -87,34 +101,39 @@
         calciteNavLogo.description = description === "" ? "ArcGIS Maps SDK for JavaScript template" : description;
       }
 
-      // Define a point geometry
-      const point = new Point({
-        longitude: -98.38,
-        latitude: 38.34,
-      });
+      // Configure the layers shown in the map
+      const wheatLayerGroup = viewElement.map.allLayers.find((layer) => layer.title === "Types of wheat over time");
+      wheatLayerGroup.visible = false;
 
-      // Create an outline for the marker symbol
-      const outline = new SimpleLineSymbol({
-        color: "white",
-        width: 2,
-      });
+      const productionLayer = viewElement.map.allLayers.find(
+        (layer) => layer.title === "Harvested wheat - 2022 (Spike map)",
+      );
+      productionLayer.visible = true;
 
-      // Create a symbol for drawing the point
-      const symbol = new SimpleMarkerSymbol({
-        style: "triangle",
-        size: 20,
-        color: "red",
-        outline,
-      });
-
-      // Create a graphic and add the geometry and symbol to it
-      const pointGraphic = new Graphic({
-        geometry: point,
-        symbol,
-      });
-
-      // Add a graphic to demonstrate custom visualizations beyond Web Map content
-      viewElement.graphics.add(pointGraphic);
+      // Calculate the layer average and use an Arcade expression to compare each feature to it in the popup.
+      const { avg } = await summaryStatistics({ layer: productionLayer, field: "Wheat_prod_2022" });
+      const popupContent = productionLayer.popupTemplate.content;
+      if (Array.isArray(popupContent)) {
+        popupContent.unshift(
+          new ExpressionContent({
+            expressionInfo: {
+              expression: `
+                var production = $feature.Wheat_prod_2022;
+                var ratio = production / ${avg};
+                return {
+                  type: "text",
+                  text: When(
+                    IsEmpty(production), "No 2022 wheat production was reported for this county.",
+                    "In 2022, this county produced <strong>about " +
+                      Text(ratio, IIf(ratio < 0.1, "#0.0####", "#0.0#")) +
+                      " times as much</strong> wheat as the average U.S. county."
+                  )
+                };
+              `,
+            },
+          }),
+        );
+      }
     });
   </script>
 </html>

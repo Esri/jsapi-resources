@@ -1,11 +1,27 @@
+:root {
+  --calcite-color-brand: #b34b00;
+  --calcite-color-brand-hover: #9f4504;
+  --calcite-color-brand-press: #803703;
+  --calcite-color-focus: #b34b00;
+  --calcite-color-background: #faf3e3;
+  --calcite-color-foreground-1: #fffaed;
+  --calcite-color-foreground-2: #fae9c8;
+  --calcite-color-foreground-3: #fce5b6;
+  --calcite-color-foreground-current: #ebd09d;
+}
+
 html,
 body {
-  background-color: var(--calcite-ui-foreground-2);
+  background-color: var(--calcite-color-background);
   height: 100%;
   margin: 0;
 }
 
+calcite-navigation-logo {
+  --calcite-navigation-logo-heading-text-color: var(--calcite-color-brand);
+}
+
 arcgis-chart {
-  width: 350px;
-  height: 250px;
+  width: min(clamp(360px, 40dvw, 640px), calc(100dvw - 80px));
+  height: clamp(250px, 40dvh, 400px);
 }

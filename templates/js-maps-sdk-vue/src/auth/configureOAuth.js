@@ -9,16 +9,11 @@ export function configureOAuth({ portalUrl, appId, popup = false }) {
     esriConfig.portalUrl = portalUrl;
   }
 
-  const oAuthInfo = portalUrl
-    ? new OAuthInfo({
-        appId,
-        portalUrl,
-        popup,
-      })
-    : new OAuthInfo({
-        appId,
-        popup,
-      });
+  const oAuthInfo = new OAuthInfo({
+    appId,
+    portalUrl,
+    popup,
+  });
 
   esriId.registerOAuthInfos([oAuthInfo]);
 }

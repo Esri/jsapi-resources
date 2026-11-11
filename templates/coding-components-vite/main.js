@@ -13,7 +13,6 @@ import "@esri/calcite-components/components/calcite-scrim";
   // Log script change events
   arcadeEditorElt.addEventListener("arcgisScriptChange", async (e) => {
     console.log("script:", e.detail);
-    // console.log("outputType on script:", await arcadeEditorElt.getTestResult());
   });
 
   // Log editor diagnostics

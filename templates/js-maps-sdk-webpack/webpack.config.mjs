@@ -43,6 +43,7 @@ const config = {
       filename: "./index.html",
       chunksSortMode: "none",
       inlineSource: ".(css)$",
+      scriptLoading: "module",
     }),
     new MiniCssExtractPlugin({
       filename: "[name].[chunkhash].css",

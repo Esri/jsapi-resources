@@ -16,7 +16,7 @@ import "@esri/calcite-components/components/calcite-scrim";
 // Import the modules we need
 import Graphic from "@arcgis/core/Graphic";
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
-import { createModel } from "@arcgis/charts-components";
+import { createModel } from "@arcgis/charts-components/model/shared/setup-utils";
 
 // Set assets paths
 setCalciteAssetPath("./assets");
@@ -25,13 +25,10 @@ setCodingAssetPath("./assets");
 setChartsAssetPath("./assets");
 setCommonAssetPath("./common-components/assets");
 
-// Get the Map element
+// Get the required elements
 const mapElement = document.querySelector("arcgis-map");
-// Get the Arcade Editor element
 const arcadeEditorElement = document.querySelector("arcgis-arcade-editor");
-// Get the Calcite Button element
 const calciteButtonElement = document.querySelector("calcite-button");
-// Get the Chart element
 const chartElement = document.querySelector("arcgis-chart");
 
 // Create multiple graphics with polyline geometry.
@@ -89,7 +86,7 @@ const polylineFeature = new FeatureLayer({
         type: "text",
         font: { size: 12 },
       },
-      labelPlacement: "above-center",
+      labelPlacement: "above-along",
       labelExpressionInfo: {
         expression: arcadeEditorElement.script,
       },

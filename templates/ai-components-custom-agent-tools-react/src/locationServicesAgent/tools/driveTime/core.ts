@@ -9,8 +9,8 @@ import SimpleFillSymbol from "@arcgis/core/symbols/SimpleFillSymbol.js";
 import SimpleMarkerSymbol from "@arcgis/core/symbols/SimpleMarkerSymbol.js";
 import type { FindServiceAreasOptions } from "../../types/types";
 import type MapView from "@arcgis/core/views/MapView.js";
-import GroupLayer from "@arcgis/core/layers/GroupLayer.js";
-import MapNotesLayer from "@arcgis/core/layers/MapNotesLayer.js";
+import type GroupLayer from "@arcgis/core/layers/GroupLayer.js";
+import type MapNotesLayer from "@arcgis/core/layers/MapNotesLayer.js";
 import Portal from "@arcgis/core/portal/Portal.js";
 
 /**

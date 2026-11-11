@@ -23,7 +23,7 @@ import type { ArcgisMap } from "@arcgis/map-components/components/arcgis-map";
 
 // Core API import
 import WebMap from "@arcgis/core/WebMap.js";
-import MapView from "@arcgis/core/views/MapView.js";
+import type MapView from "@arcgis/core/views/MapView.js";
 
 import { ServiceMaintenanceAgent } from "./maintenanceAgent";
 

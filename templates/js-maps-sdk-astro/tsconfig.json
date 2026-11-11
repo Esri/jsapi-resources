@@ -1,0 +1,48 @@
+{
+  // Enables editor support for TypeScript configuration properties.
+  "$schema": "https://json.schemastore.org/tsconfig.json",
+  // Extends Astro's strict defaults while preserving Astro-generated types.
+  "extends": "astro/tsconfigs/strict",
+  // Includes Astro's generated types and all template source files.
+  "include": [".astro/types.d.ts", "**/*"],
+  // Excludes Astro's production output from type-checking.
+  "exclude": ["dist"],
+  "compilerOptions": {
+    // Disallow unreachable code; keeps dead branches from compiling silently.
+    "allowUnreachableCode": false,
+    // Don't emit .d.ts from this template build (Vite handles output separately).
+    "declaration": false,
+    // Enable decorator syntax (used by some frameworks/tooling).
+    "experimentalDecorators": true,
+    // When `true`, this allows use of `import` syntax such as `import x from 'xyz'`.
+    "esModuleInterop": true,
+    // Specify library type definitions to be included in the compilation.
+    "lib": ["DOM", "DOM.Iterable", "ES2024"],
+    // The module system to use for compilation.
+    "module": "ES2020",
+    // Respects package.json's "exports" conditions.
+    "moduleResolution": "Bundler",
+    // Fail on unused locals/params.
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    // Allow importing from JSON files
+    "resolveJsonModule": true,
+    // Enable explicit .ts imports so Vite's bundler can resolve local files without path rewrites
+    "allowImportingTsExtensions": true,
+    // Preserve the original ESM syntax to align with Vite's output and tree-shaking
+    "verbatimModuleSyntax": true,
+    // Force ESM detection even without package.json hints to avoid accidental script mode
+    "moduleDetection": "force",
+    // Type-check only; rely on Astro build for emit
+    "noEmit": true,
+    // This sets the output at the minimum version of JavaScript features that will be supported.
+    "target": "ES2024",
+    // Improves performance by checking only the .ts files you write
+    // rather than the .d.ts files from the libraries you are using.
+    "skipLibCheck": true,
+    // Full strict type-checking for template code.
+    "strict": true,
+    // Preserves class field behavior expected by the component toolchain.
+    "useDefineForClassFields": false
+  }
+}

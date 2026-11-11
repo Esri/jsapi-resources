@@ -9,22 +9,22 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@arcgis/ai-components": "^5.1.0",
-    "@arcgis/core": "^5.1.0",
-    "@arcgis/map-components": "^5.1.0",
-    "@esri/calcite-components": "^5.1.1",
-    "@langchain/core": "^1.1.39",
-    "@langchain/langgraph": "^1.2.6",
-    "react": "^19.2.7",
-    "react-dom": "^19.2.7",
-    "zod": "^4.3.6"
+    "@arcgis/ai-components": "^5.2.1",
+    "@arcgis/core": "^5.2.1",
+    "@arcgis/map-components": "^5.2.1",
+    "@esri/calcite-components": "^5.2.1",
+    "@langchain/core": "^1.2.20",
+    "@langchain/langgraph": "^1.5.1",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
-    "@types/node": "~24.10.1",
-    "@types/react": "19.2.14",
-    "@types/react-dom": "19.2.3",
-    "@vitejs/plugin-react": "~6.0.2",
-    "typescript": "~6.0.2",
-    "vite": "^8.0.16"
+    "@types/node": "^26.6.5",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "~6.1.2",
+    "typescript": "~6.0.3",
+    "vite": "^8.3.5"
   }
 }

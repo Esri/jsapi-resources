@@ -1,15 +1,6 @@
 import type { OnInit } from "@angular/core";
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 
-// Optional: If you're loading secure web maps
-// import { configureOAuth } from "../auth/configureOAuth";
-// configureOAuth({
-//   // Default portalUrl is ArcGIS Online
-//   // Only set if using other portals
-//   portalUrl: "YOUR_PORTAL_URL",
-//   appId: "YOUR_APP_ID",
-// });
-
 // Individual imports for each Map, Chart and Calcite component
 import "@arcgis/map-components/components/arcgis-expand";
 import "@arcgis/map-components/components/arcgis-legend";
@@ -22,12 +13,20 @@ import "@esri/calcite-components/components/calcite-navigation";
 import "@esri/calcite-components/components/calcite-navigation-logo";
 
 // Import modules and types from the SDK's core API
-import Graphic from "@arcgis/core/Graphic.js";
-import Point from "@arcgis/core/geometry/Point.js";
-import SimpleLineSymbol from "@arcgis/core/symbols/SimpleLineSymbol.js";
-import SimpleMarkerSymbol from "@arcgis/core/symbols/SimpleMarkerSymbol.js";
+import summaryStatistics from "@arcgis/core/smartMapping/statistics/summaryStatistics.js";
+import ExpressionContent from "@arcgis/core/popup/content/ExpressionContent.js";
+import type FeatureLayer from "@arcgis/core/layers/FeatureLayer.js";
 import type WebMap from "@arcgis/core/WebMap.js";
 import type { ArcgisMap } from "@arcgis/map-components/components/arcgis-map";
+
+// Optional: If you're loading secure web maps
+// import { configureOAuth } from "../auth/configureOAuth";
+// configureOAuth({
+//   // Default portalUrl is ArcGIS Online
+//   // Only set if using other portals
+//   portalUrl: "YOUR_PORTAL_URL",
+//   appId: "YOUR_APP_ID",
+// });
 
 @Component({
   selector: "app-root",
@@ -43,7 +42,7 @@ export class App implements OnInit {
     console.log("OnInit");
   }
 
-  arcgisViewReadyChange(event: CustomEvent): void {
+  async arcgisViewReadyChange(event: CustomEvent): Promise<void> {
     const viewElement = event.target as ArcgisMap;
 
     // Use metadata from the Web Map to populate the header
@@ -55,33 +54,38 @@ export class App implements OnInit {
     this.navHeading = title;
     this.navDescription = description;
 
-    // Define a point geometry
-    const point = new Point({
-      longitude: -98.38,
-      latitude: 38.34,
-    });
+    // Configure the layers shown in the map
+    const wheatLayerGroup = map.allLayers.find((layer) => layer.title === "Types of wheat over time")!;
+    wheatLayerGroup.visible = false;
 
-    // Create an outline for the marker symbol
-    const outline = new SimpleLineSymbol({
-      color: "white",
-      width: 2,
-    });
+    const productionLayer = map.allLayers.find(
+      (layer) => layer.title === "Harvested wheat - 2022 (Spike map)",
+    ) as FeatureLayer;
+    productionLayer.visible = true;
 
-    // Create a symbol for drawing the point
-    const markerSymbol = new SimpleMarkerSymbol({
-      style: "triangle",
-      size: 20,
-      color: "red",
-      outline,
-    });
-
-    // Create a graphic and add the geometry and symbol to it
-    const pointGraphic = new Graphic({
-      geometry: point,
-      symbol: markerSymbol,
-    });
-
-    // Add a graphic to demonstrate custom visualizations beyond Web Map content
-    viewElement.graphics.add(pointGraphic);
+    // Calculate the layer average and use an Arcade expression to compare each feature to it in the popup.
+    const { avg } = await summaryStatistics({ layer: productionLayer, field: "Wheat_prod_2022" });
+    const popupContent = productionLayer.popupTemplate!.content;
+    if (Array.isArray(popupContent)) {
+      popupContent.unshift(
+        new ExpressionContent({
+          expressionInfo: {
+            expression: `
+              var production = $feature.Wheat_prod_2022;
+              var ratio = production / ${avg};
+              return {
+                type: "text",
+                text: When(
+                  IsEmpty(production), "No 2022 wheat production was reported for this county.",
+                  "In 2022, this county produced <strong>about " +
+                    Text(ratio, IIf(ratio < 0.1, "#0.0####", "#0.0#")) +
+                    " times as much</strong> wheat as the average U.S. county."
+                )
+              };
+            `,
+          },
+        }),
+      );
+    }
   }
 }
