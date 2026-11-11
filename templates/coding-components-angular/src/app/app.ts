@@ -1,5 +1,5 @@
 import type { OnInit } from "@angular/core";
-import { ChangeDetectorRef, Component, CUSTOM_ELEMENTS_SCHEMA, inject } from "@angular/core";
+import { Component, CUSTOM_ELEMENTS_SCHEMA, signal } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
 import { loadData } from "../functions/load-data.service";
@@ -17,15 +17,14 @@ import "@arcgis/coding-components/components/arcgis-arcade-editor";
 })
 export class App implements OnInit {
   title = "coding-components-angular-template";
-  private readonly cdr = inject(ChangeDetectorRef);
 
   // Property to track loading state
-  public isLoading = true;
-  public loadError = "";
+  public isLoading = signal(true);
+  public loadError = signal("");
 
   // Properties for the arcade editor
-  public profile!: EditorProfileDefinition | PredefinedProfile;
-  public testData!: EditorTestContext;
+  public profile = signal<EditorProfileDefinition | PredefinedProfile | undefined>(undefined);
+  public testData = signal<EditorTestContext | undefined>(undefined);
 
   ngOnInit(): void {
     void this.fetch();
@@ -40,7 +39,7 @@ export class App implements OnInit {
     try {
       const data = await loadData();
 
-      this.profile = {
+      this.profile.set({
         id: "popup",
         definitions: {
           $feature: data.featureLayer,
@@ -48,9 +47,9 @@ export class App implements OnInit {
           $map: data.webMap,
           $datastore: data.featureLayer,
         },
-      };
+      });
 
-      this.testData = {
+      this.testData.set({
         profileVariableInstances: {
           $feature: data.featureSet.features[0],
           $layer: data.featureLayer,
@@ -59,13 +58,12 @@ export class App implements OnInit {
         },
         // spatialReference: {wkid: 3857},
         // timeZone: "system"
-      };
+      });
     } catch (error) {
       console.error("Failed to load Arcade editor data", error);
-      this.loadError = "Unable to load the Arcade editor data.";
+      this.loadError.set("Unable to load the Arcade editor data.");
     } finally {
-      this.isLoading = false;
-      this.cdr.detectChanges(); // Force change detection
+      this.isLoading.set(false);
     }
   }
 }
