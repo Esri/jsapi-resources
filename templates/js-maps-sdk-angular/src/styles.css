@@ -2,15 +2,22 @@
 @import "@arcgis/map-components/main.css";
 
 :root {
-  --calcite-color-brand: #b34b00;
-  --calcite-color-brand-hover: #9f4504;
-  --calcite-color-brand-press: #803703;
-  --calcite-color-focus: #b34b00;
-  --calcite-color-background: #faf3e3;
-  --calcite-color-foreground-1: #fffaed;
-  --calcite-color-foreground-2: #fae9c8;
-  --calcite-color-foreground-3: #fce5b6;
-  --calcite-color-foreground-current: #ebd09d;
+  /* Remove these CSS variables to revert back to Calcite defaults. */
+  --calcite-color-brand: light-dark(#b34b00, #e6a14c);
+  --calcite-color-brand-hover: light-dark(#9f4504, #f5b765);
+  --calcite-color-brand-press: light-dark(#803703, #ffd08b);
+  --calcite-color-focus: light-dark(#b34b00, #e6a14c);
+  --calcite-color-background: light-dark(#faf3e3, #211a12);
+  --calcite-color-foreground-1: light-dark(#fffaed, #2d2418);
+  --calcite-color-foreground-2: light-dark(#fae9c8, #3b2d1f);
+  --calcite-color-foreground-3: light-dark(#fce5b6, #4a3722);
+  --calcite-color-foreground-current: light-dark(#ebd09d, #6f4518);
+  --calcite-color-text-1: light-dark(#141414, #f6ebd0);
+  --calcite-color-text-2: light-dark(#4a4a4a, #e7d4a9);
+  --calcite-color-text-3: light-dark(#555555, #d8c398);
+  /* Keep `color-scheme: light dark` to prevent Lightning CSS from creating invalid Calcite light-dark() colors.
+     https://github.com/Esri/calcite-design-system/blob/dev/examples/components/vite/README.md#avoid-the-vitelightning-css-light-dark-issue */
+  color-scheme: light dark;
 }
 
 html,

@@ -1,5 +1,11 @@
 @import "https://js.arcgis.com/5.2/@arcgis/core/assets/esri/themes/light/main.css";
 
+/* Keep `color-scheme: light dark` to prevent Lightning CSS from creating invalid Calcite light-dark() colors.
+   https://github.com/Esri/calcite-design-system/blob/dev/examples/components/vite/README.md#avoid-the-vitelightning-css-light-dark-issue */
+:root {
+  color-scheme: light dark;
+}
+
 html,
 body {
   height: 100%;
