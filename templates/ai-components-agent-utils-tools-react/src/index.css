@@ -1,3 +1,9 @@
+/* Keep `color-scheme: light dark` to prevent Lightning CSS from creating invalid Calcite light-dark() colors.
+   https://github.com/Esri/calcite-design-system/blob/dev/examples/components/vite/README.md#avoid-the-vitelightning-css-light-dark-issue */
+:root {
+  color-scheme: light dark;
+}
+
 #root,
 html,
 body {

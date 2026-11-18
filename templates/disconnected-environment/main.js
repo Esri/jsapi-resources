@@ -14,8 +14,8 @@ import "@esri/calcite-components/components/calcite-button";
 import "@esri/calcite-components/components/calcite-scrim";
 
 // Import the modules we need
-import Graphic from "@arcgis/core/Graphic";
-import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
+import Graphic from "@arcgis/core/Graphic.js";
+import FeatureLayer from "@arcgis/core/layers/FeatureLayer.js";
 import { createModel } from "@arcgis/charts-components/model/shared/setup-utils";
 
 // Set assets paths
@@ -85,6 +85,7 @@ const polylineFeature = new FeatureLayer({
       symbol: {
         type: "text",
         font: { size: 12 },
+        color: getComputedStyle(document.body).color,
       },
       labelPlacement: "above-along",
       labelExpressionInfo: {
